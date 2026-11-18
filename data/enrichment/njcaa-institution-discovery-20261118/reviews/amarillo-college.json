@@ -1,0 +1,44 @@
+{
+  "slug": "amarillo-college",
+  "name": "Amarillo College",
+  "collegeId": "cmox1gezp0006qtsgkj63ex7n",
+  "programId": "cmox1gf0e0008qtsgtm1uuc7v",
+  "storedState": "TX",
+  "storedDivision": "NJCAA_D1",
+  "directoryMatch": {
+    "unitid": "222576",
+    "name": "Amarillo College",
+    "aliases": [],
+    "state": "TX",
+    "city": "Amarillo",
+    "host": "actx.edu",
+    "decision": "UNIQUE_EXACT_NAME_OR_ALIAS_AND_STATE_DISCOVERY_LEAD_ONLY"
+  },
+  "directoryMatchStatus": "DISCOVERY_LEAD_NOT_CURRENT_CAMPUS_VERIFIED",
+  "needsHeadCoach": true,
+  "needs2027Roster": true,
+  "newPagesAttempted": 1,
+  "pages": [
+    {
+      "requestedUrl": "https://actx.edu/",
+      "checkedAtUtc": "2026-11-18T16:09:32.072Z",
+      "status": "FAILED",
+      "errorType": "TypeError",
+      "kind": "INSTITUTIONAL_DIRECTORY_HOST_LEAD",
+      "parent": {
+        "sourcePath": "../../geography/us-college-locations-ipeds2024.json",
+        "unitid": "222576",
+        "publishedName": "Amarillo College",
+        "state": "TX",
+        "city": "Amarillo"
+      }
+    }
+  ],
+  "unfetchedPublishedLeads": [],
+  "publishedLeads": [],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "campusIdentityReviewRequired": true,
+  "currentMembershipVerified": false,
+  "importApproval": "NOT_GRANTED"
+}

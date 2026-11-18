@@ -1,0 +1,41 @@
+{
+  "slug": "scottsdale-community-college",
+  "collegeId": "cmox23a2400biqtfknqf9i88p",
+  "programId": "cmox23a2u00bkqtfkteikxml6",
+  "name": "Scottsdale Community College",
+  "state": "AZ",
+  "storedDivision": "NJCAA_D2",
+  "pages": [
+    {
+      "requestedUrl": "https://njcaastats.prestosports.com/sports/bsb/2024-25/div2/teams/scottsdalecommunitycollege",
+      "kind": "STORED_URL_UNVERIFIED",
+      "checkedAtUtc": "2026-11-18T14:17:03.893Z",
+      "status": "HELD_ACCESS_NOT_RETRIED",
+      "finalUrl": "https://njcaastats.prestosports.com/sports/bsb/2024-25/div2/teams/scottsdalecommunitycollege"
+    },
+    {
+      "requestedUrl": "http://www.gochokes.com/sport/0/3.php",
+      "kind": "DISCOVERY_LEAD_NOT_CAMPUS_VERIFIED",
+      "checkedAtUtc": "2026-11-18T14:17:03.894Z",
+      "status": 403,
+      "finalUrl": "https://www.gochokes.com/sport/0/3.php",
+      "contentType": "text/html",
+      "sourcePath": "sources/scottsdale-community-college-1.source",
+      "sha256": "516e17f582464709696fbd04129e3d2c89c2ff25752471d6d0cac11ed487b30b"
+    }
+  ],
+  "thirdPartyExactNameLeads": [
+    {
+      "url": "http://www.gochokes.com/sport/0/3.php",
+      "label": "Scottsdale CC",
+      "parentSourcePath": "sources/directory-1.source",
+      "parentSHA256": "496ce44f9a76dc28894dc481d97424ffa3efb0cc8fe8f218363abbc43f06de00",
+      "parentUrl": "https://www.thebaseballobserver.com/njcaa-dii-baseball"
+    }
+  ],
+  "currentMembershipVerified": false,
+  "campusIdentityVerified": false,
+  "importApproval": "NOT_GRANTED",
+  "databaseAccess": false,
+  "databaseWrites": 0
+}

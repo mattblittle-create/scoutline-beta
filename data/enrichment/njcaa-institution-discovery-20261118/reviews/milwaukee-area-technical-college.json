@@ -1,0 +1,46 @@
+{
+  "slug": "milwaukee-area-technical-college",
+  "name": "Milwaukee Area Technical College",
+  "collegeId": "cmox238i20089qtfk7c9u50mt",
+  "programId": "cmox238ir008bqtfkkhzyjj4s",
+  "storedState": "WI",
+  "storedDivision": "NJCAA_D2",
+  "directoryMatch": {
+    "unitid": "239248",
+    "name": "Milwaukee Area Technical College",
+    "aliases": [
+      "MATC"
+    ],
+    "state": "WI",
+    "city": "Milwaukee",
+    "host": "matc.edu",
+    "decision": "UNIQUE_EXACT_NAME_OR_ALIAS_AND_STATE_DISCOVERY_LEAD_ONLY"
+  },
+  "directoryMatchStatus": "DISCOVERY_LEAD_NOT_CURRENT_CAMPUS_VERIFIED",
+  "needsHeadCoach": true,
+  "needs2027Roster": true,
+  "newPagesAttempted": 1,
+  "pages": [
+    {
+      "requestedUrl": "https://matc.edu/",
+      "checkedAtUtc": "2026-11-18T16:21:20.933Z",
+      "status": "FAILED",
+      "errorType": "Error",
+      "kind": "INSTITUTIONAL_DIRECTORY_HOST_LEAD",
+      "parent": {
+        "sourcePath": "../../geography/us-college-locations-ipeds2024.json",
+        "unitid": "239248",
+        "publishedName": "Milwaukee Area Technical College",
+        "state": "WI",
+        "city": "Milwaukee"
+      }
+    }
+  ],
+  "unfetchedPublishedLeads": [],
+  "publishedLeads": [],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "campusIdentityReviewRequired": true,
+  "currentMembershipVerified": false,
+  "importApproval": "NOT_GRANTED"
+}

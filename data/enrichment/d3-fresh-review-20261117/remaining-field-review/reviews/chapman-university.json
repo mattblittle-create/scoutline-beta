@@ -1,0 +1,1415 @@
+{
+  "slug": "chapman-university",
+  "collegeId": "cmovornvf004iqt7g0gvvkosm",
+  "programId": "cmovornw5004kqt7ge4x0r13x",
+  "checkedAtUtc": "2026-11-17T20:35:26.231Z",
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED",
+  "missingFields": [
+    "rosterUrl",
+    "questionnaireUrl",
+    "campsUrl",
+    "generalContactEmail",
+    "programXUrl"
+  ],
+  "pages": [
+    {
+      "requestedUrl": "https://athletics.chapman.edu/sports/baseball",
+      "kind": "baseball-home",
+      "parent": null,
+      "status": 200,
+      "finalUrl": "https://athletics.chapman.edu/sports/baseball",
+      "sourcePath": "../sources/chapman-university-1.html",
+      "sha256": "1045f4cf2bc2e1c8ada00c3f76fc19eb1aa8e217d31bb46367fc4e0a4a89c62a",
+      "reusedEvidence": true,
+      "originalCheckedAtUtc": "2026-11-17T17:21:23.612Z",
+      "parsed": {
+        "title": "Baseball - Chapman University Sidearm Sports, opens a new window",
+        "headings": [
+          "Chapman University",
+          "events",
+          "Main",
+          "Search",
+          "Sport",
+          "Top Stories",
+          "schedule",
+          "Latest",
+          "results",
+          "awards",
+          "Instagram",
+          "parallax",
+          "Footer",
+          "sponsors"
+        ],
+        "links": [
+          {
+            "url": "https://instagram.com/chapmanbaseball",
+            "label": "Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/baseball/schedule",
+            "label": "Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapmanhoops",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/mens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/mens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapmantfxc",
+            "label": "Cross Country: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapman_fb",
+            "label": "Football: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/football/schedule",
+            "label": "Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/football/roster",
+            "label": "Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapmanuniversitygolf",
+            "label": "Golf: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/mens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/mens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapmanmsoc",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/mens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/mens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapmanuswimdive",
+            "label": "Swimming & Diving: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/swimming-and-diving/schedule",
+            "label": "Swimming & Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/swimming-and-diving/roster",
+            "label": "Swimming & Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapmantennis",
+            "label": "Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/mens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/mens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/mens-track-and-field/schedule",
+            "label": "Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/mens-track-and-field/roster",
+            "label": "Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapmanmenswp",
+            "label": "Water Polo: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/mens-water-polo/schedule",
+            "label": "Water Polo: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/mens-water-polo/roster",
+            "label": "Water Polo: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapmanwbb",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapmanuwlax",
+            "label": "Golf: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapmanwscr",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapman.softball",
+            "label": "Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-swimming-and-diving/schedule",
+            "label": "Swimming & Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-swimming-and-diving/roster",
+            "label": "Swimming & Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapmanwtennis",
+            "label": "Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-track-and-field/schedule",
+            "label": "Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-track-and-field/roster",
+            "label": "Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapmanuvolleyball",
+            "label": "Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapmanwaterpolo",
+            "label": "Water Polo: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-water-polo/schedule",
+            "label": "Water Polo: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-water-polo/roster",
+            "label": "Water Polo: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/staff-directory",
+            "label": "Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/2023/6/15/information-seat-campaign.aspx",
+            "label": "Take-A-Seat",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.chapman.edu/news/2023/8/14/recruiting.aspx",
+            "label": "Prospective Student Athlete Questionnaire",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/baseball/coaches",
+            "label": "Coaches",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.instagram.com/chapmansports/",
+            "label": "Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://athletics.chapman.edu/sports/baseball/schedule",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/chapman-university-1.html",
+        "sha256": "1045f4cf2bc2e1c8ada00c3f76fc19eb1aa8e217d31bb46367fc4e0a4a89c62a",
+        "url": "https://athletics.chapman.edu/sports/baseball/schedule",
+        "label": "Baseball: Schedule"
+      },
+      "status": 200,
+      "finalUrl": "https://athletics.chapman.edu/sports/baseball/schedule",
+      "checkedAtUtc": "2026-11-17T20:35:26.804Z",
+      "sourcePath": "sources/chapman-university-1.html",
+      "sha256": "06f4fbf3b889ed9364786dd8cfa0f7a7473b9c2e8015259321e04d357f4aef66",
+      "parsed": {
+        "title": "2027 Baseball Schedule - Chapman University Sidearm Sports, opens a new window",
+        "headings": [
+          "Chapman University",
+          "events",
+          "Main",
+          "Search",
+          "Sport",
+          "2027 Baseball Schedule",
+          "Season Record",
+          "Scheduled Games",
+          "Footer",
+          "sponsors"
+        ],
+        "links": [
+          {
+            "url": "https://athletics.chapman.edu/sports/baseball/schedule",
+            "label": "Skip To Main Content",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapmanbaseball",
+            "label": "Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapmanhoops",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/mens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/mens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapmantfxc",
+            "label": "Cross Country: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapman_fb",
+            "label": "Football: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/football/schedule",
+            "label": "Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/football/roster",
+            "label": "Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapmanuniversitygolf",
+            "label": "Golf: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/mens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/mens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapmanmsoc",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/mens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/mens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapmanuswimdive",
+            "label": "Swimming & Diving: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/swimming-and-diving/schedule",
+            "label": "Swimming & Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/swimming-and-diving/roster",
+            "label": "Swimming & Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapmantennis",
+            "label": "Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/mens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/mens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/mens-track-and-field/schedule",
+            "label": "Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/mens-track-and-field/roster",
+            "label": "Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapmanmenswp",
+            "label": "Water Polo: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/mens-water-polo/schedule",
+            "label": "Water Polo: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/mens-water-polo/roster",
+            "label": "Water Polo: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapmanwbb",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapmanuwlax",
+            "label": "Golf: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapmanwscr",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapman.softball",
+            "label": "Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-swimming-and-diving/schedule",
+            "label": "Swimming & Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-swimming-and-diving/roster",
+            "label": "Swimming & Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapmanwtennis",
+            "label": "Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-track-and-field/schedule",
+            "label": "Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-track-and-field/roster",
+            "label": "Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapmanuvolleyball",
+            "label": "Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapmanwaterpolo",
+            "label": "Water Polo: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-water-polo/schedule",
+            "label": "Water Polo: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-water-polo/roster",
+            "label": "Water Polo: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/staff-directory",
+            "label": "Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/2023/6/15/information-seat-campaign.aspx",
+            "label": "Take-A-Seat",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.chapman.edu/news/2023/8/14/recruiting.aspx",
+            "label": "Prospective Student Athlete Questionnaire",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/baseball/coaches",
+            "label": "Coaches",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/baseball/schedule?print=true",
+            "label": "Print Print this page",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/baseball/schedule/2027?grid=true",
+            "label": "Grid Switch to Grid View",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/services/schedule_txt.ashx?schedule=351",
+            "label": "Text Text Format For Braille (New Tab)",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://athletics.chapman.edu/sports/baseball/coaches",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/chapman-university-1.html",
+        "sha256": "1045f4cf2bc2e1c8ada00c3f76fc19eb1aa8e217d31bb46367fc4e0a4a89c62a",
+        "url": "https://athletics.chapman.edu/sports/baseball/coaches",
+        "label": "Coaches"
+      },
+      "status": 200,
+      "finalUrl": "https://athletics.chapman.edu/sports/baseball/coaches",
+      "checkedAtUtc": "2026-11-17T20:35:26.958Z",
+      "sourcePath": "sources/chapman-university-2.html",
+      "sha256": "f6cade6db4221639e3de932ef7e203009ce6b7cc051dae11f6a785172bfcf689",
+      "parsed": {
+        "title": "Baseball Coaches - Chapman University Sidearm Sports, opens a new window",
+        "headings": [
+          "Chapman University",
+          "events",
+          "Main",
+          "Search",
+          "Sport",
+          "2026 Baseball Coaching Staff",
+          "Footer",
+          "sponsors"
+        ],
+        "links": [
+          {
+            "url": "https://athletics.chapman.edu/sports/baseball/coaches",
+            "label": "Skip To Main Content",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://instagram.com/chapmanbaseball",
+            "label": "Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/baseball/schedule",
+            "label": "Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapmanhoops",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/mens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/mens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapmantfxc",
+            "label": "Cross Country: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapman_fb",
+            "label": "Football: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/football/schedule",
+            "label": "Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/football/roster",
+            "label": "Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapmanuniversitygolf",
+            "label": "Golf: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/mens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/mens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapmanmsoc",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/mens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/mens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapmanuswimdive",
+            "label": "Swimming & Diving: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/swimming-and-diving/schedule",
+            "label": "Swimming & Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/swimming-and-diving/roster",
+            "label": "Swimming & Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapmantennis",
+            "label": "Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/mens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/mens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/mens-track-and-field/schedule",
+            "label": "Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/mens-track-and-field/roster",
+            "label": "Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapmanmenswp",
+            "label": "Water Polo: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/mens-water-polo/schedule",
+            "label": "Water Polo: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/mens-water-polo/roster",
+            "label": "Water Polo: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapmanwbb",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapmanuwlax",
+            "label": "Golf: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapmanwscr",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapman.softball",
+            "label": "Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-swimming-and-diving/schedule",
+            "label": "Swimming & Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-swimming-and-diving/roster",
+            "label": "Swimming & Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapmanwtennis",
+            "label": "Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-track-and-field/schedule",
+            "label": "Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-track-and-field/roster",
+            "label": "Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapmanuvolleyball",
+            "label": "Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapmanwaterpolo",
+            "label": "Water Polo: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-water-polo/schedule",
+            "label": "Water Polo: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-water-polo/roster",
+            "label": "Water Polo: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/staff-directory",
+            "label": "Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/2023/6/15/information-seat-campaign.aspx",
+            "label": "Take-A-Seat",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.chapman.edu/news/2023/8/14/recruiting.aspx",
+            "label": "Prospective Student Athlete Questionnaire",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/baseball/coaches?print=true",
+            "label": "Print",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/baseball/roster/coaches/scott-laverty/554",
+            "label": "Scott Laverty",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "mailto:baseball@chapman.edu",
+            "label": "baseball@chapman.edu",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/baseball/roster/coaches/dave-edwards/555",
+            "label": "Dave Edwards",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "mailto:baseball@chapman.edu",
+            "label": "baseball@chapman.edu",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/baseball/roster/coaches/eric-deovlet/556",
+            "label": "Eric Deovlet",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "mailto:baseball@chapman.edu",
+            "label": "baseball@chapman.edu",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://athletics.chapman.edu/sports/mens-basketball/schedule",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/chapman-university-1.html",
+        "sha256": "1045f4cf2bc2e1c8ada00c3f76fc19eb1aa8e217d31bb46367fc4e0a4a89c62a",
+        "url": "https://athletics.chapman.edu/sports/mens-basketball/schedule",
+        "label": "Basketball: Schedule"
+      },
+      "status": 200,
+      "finalUrl": "https://athletics.chapman.edu/sports/mens-basketball/schedule",
+      "checkedAtUtc": "2026-11-17T20:35:27.039Z",
+      "sourcePath": "sources/chapman-university-3.html",
+      "sha256": "3b53f90d4a7426d712c372e5abb37e7345c7f566f0ae043ebd7e03e4be13c070",
+      "parsed": {
+        "title": "2026-27 Men's Basketball Schedule - Chapman University Sidearm Sports, opens a new window",
+        "headings": [
+          "Chapman University",
+          "events",
+          "Main",
+          "Search",
+          "Sport",
+          "2026-27 Men's Basketball Schedule",
+          "Season Record",
+          "Scheduled Games",
+          "Footer",
+          "sponsors"
+        ],
+        "links": [
+          {
+            "url": "https://athletics.chapman.edu/sports/mens-basketball/schedule",
+            "label": "Skip To Main Content",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapmanbaseball",
+            "label": "Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/baseball/schedule",
+            "label": "Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapmanhoops",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/mens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapmantfxc",
+            "label": "Cross Country: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapman_fb",
+            "label": "Football: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/football/schedule",
+            "label": "Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/football/roster",
+            "label": "Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapmanuniversitygolf",
+            "label": "Golf: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/mens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/mens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapmanmsoc",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/mens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/mens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapmanuswimdive",
+            "label": "Swimming & Diving: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/swimming-and-diving/schedule",
+            "label": "Swimming & Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/swimming-and-diving/roster",
+            "label": "Swimming & Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapmantennis",
+            "label": "Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/mens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/mens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/mens-track-and-field/schedule",
+            "label": "Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/mens-track-and-field/roster",
+            "label": "Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapmanmenswp",
+            "label": "Water Polo: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/mens-water-polo/schedule",
+            "label": "Water Polo: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/mens-water-polo/roster",
+            "label": "Water Polo: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapmanwbb",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapmanuwlax",
+            "label": "Golf: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapmanwscr",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapman.softball",
+            "label": "Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-swimming-and-diving/schedule",
+            "label": "Swimming & Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-swimming-and-diving/roster",
+            "label": "Swimming & Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapmanwtennis",
+            "label": "Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-track-and-field/schedule",
+            "label": "Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-track-and-field/roster",
+            "label": "Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapmanuvolleyball",
+            "label": "Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/chapmanwaterpolo",
+            "label": "Water Polo: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-water-polo/schedule",
+            "label": "Water Polo: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/womens-water-polo/roster",
+            "label": "Water Polo: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/staff-directory",
+            "label": "Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/2023/6/15/information-seat-campaign.aspx",
+            "label": "Take-A-Seat",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.chapman.edu/news/2023/8/14/recruiting.aspx",
+            "label": "Prospective Student Athlete Questionnaire",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/mens-basketball/coaches",
+            "label": "Coaches",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/mens-basketball/schedule?print=true",
+            "label": "Print Print this page",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/sports/mens-basketball/schedule/2026-27?grid=true",
+            "label": "Grid Switch to Grid View",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.chapman.edu/services/schedule_txt.ashx?schedule=324",
+            "label": "Text Text Format For Braille (New Tab)",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          }
+        ]
+      }
+    }
+  ],
+  "status": "EVIDENCE_CAPTURED_REQUIRES_REVIEW"
+}

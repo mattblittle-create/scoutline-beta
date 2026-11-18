@@ -1,0 +1,41 @@
+{
+  "slug": "lawson-state-community-college",
+  "collegeId": "cmox1ghvv006cqtsglb9vjv65",
+  "programId": "cmox1ghwk006eqtsgn80cj86w",
+  "name": "Lawson State Community College",
+  "storedState": "AL",
+  "storedDivision": "NJCAA_D1",
+  "checkedAtUtc": "2026-11-18T14:20:42.397Z",
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "currentMembershipVerified": false,
+  "campusIdentityVerified": false,
+  "importApproval": "NOT_GRANTED",
+  "pages": [
+    {
+      "requestedUrl": "http://www.lawsonstate.edu/athletics/mens_baseball.aspx",
+      "kind": "DIRECTORY_ALIAS_REQUIRES_CAMPUS_REVIEW",
+      "parent": {
+        "sourcePath": "../njcaa-discovery-20261118/sources/directory-0.source",
+        "sha256": "63f1c531b007d2922e4db3aa2ba596ee54e397dbafd287df69b95213a011a404",
+        "label": "Lawson State"
+      },
+      "status": 404,
+      "finalUrl": "https://www.lawsonstate.edu/athletics/mens_baseball.aspx",
+      "checkedAtUtc": "2026-11-18T14:20:42.874Z",
+      "sourcePath": "sources/lawson-state-community-college-0.source",
+      "sha256": "ca67552a287e1a8318e8dcb0cf773ed490bbdda717cf757e0bf3cbc0fb92d599"
+    }
+  ],
+  "discoveryAliases": [
+    {
+      "url": "http://www.lawsonstate.edu/athletics/mens_baseball.aspx",
+      "label": "Lawson State",
+      "parentSourcePath": "sources/directory-0.source",
+      "parentSHA256": "63f1c531b007d2922e4db3aa2ba596ee54e397dbafd287df69b95213a011a404",
+      "parentUrl": "https://www.thebaseballobserver.com/njcaa-di-baseball",
+      "status": "UNVERIFIED_NORMALIZED_NAME_LEAD"
+    }
+  ],
+  "status": "HELD_NO_READABLE_SOURCE"
+}

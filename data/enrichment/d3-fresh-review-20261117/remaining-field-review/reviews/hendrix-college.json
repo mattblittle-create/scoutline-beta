@@ -1,0 +1,1844 @@
+{
+  "slug": "hendrix-college",
+  "collegeId": "cmovorqlz00a0qt7g0ya41hvf",
+  "programId": "cmovorqmp00a2qt7gn69zp17n",
+  "checkedAtUtc": "2026-11-17T20:36:08.288Z",
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED",
+  "missingFields": [
+    "scheduleUrl",
+    "questionnaireUrl",
+    "generalContactEmail"
+  ],
+  "pages": [
+    {
+      "requestedUrl": "https://hendrixwarriors.com/sports/baseball",
+      "kind": "baseball-home",
+      "parent": null,
+      "status": 200,
+      "finalUrl": "https://hendrixwarriors.com/sports/baseball",
+      "checkedAtUtc": "2026-11-17T20:36:08.895Z",
+      "sourcePath": "sources/hendrix-college-0.html",
+      "sha256": "a9dc0c2b25b67fd5b73fde6fb0fcb549412e696ff2adb82926756c54684776a5",
+      "parsed": {
+        "title": "Baseball - Hendrix College Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "Hendrix College Athletics",
+          "Scoreboard",
+          "Scoreboard Tab",
+          "Main",
+          "Sport",
+          "Top Stories",
+          "Stories List",
+          "Media",
+          "Warriors #moments",
+          "Awards",
+          "Contentstream",
+          "Slideshow",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://x.com/HendrixBaseball",
+            "label": "Baseball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/hendrixbaseball",
+            "label": "Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/baseball/schedule",
+            "label": "Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/Hendrix_MBB",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/hendrixmensbasketball",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/hendrix_xctf",
+            "label": "Cross Country: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/hendrixesports",
+            "label": "Esports: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/hendrixesports",
+            "label": "Esports: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/esports/schedule",
+            "label": "Esports: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/esports/roster",
+            "label": "Esports: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/hendrixfootball",
+            "label": "Football: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/hendrixfootball",
+            "label": "Football: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/football/schedule",
+            "label": "Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/football/roster",
+            "label": "Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/HDXGolf",
+            "label": "Golf: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/hendrixgolf",
+            "label": "Golf: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/HendrixLax",
+            "label": "Lacrosse: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/hendrixlax",
+            "label": "Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/hendrixsoccer",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/hdxswimdive",
+            "label": "Swimming & Diving: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-swimming-and-diving/schedule",
+            "label": "Swimming & Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-swimming-and-diving/roster",
+            "label": "Swimming & Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/hendrixtennis",
+            "label": "Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-track-and-field/schedule",
+            "label": "Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-track-and-field/roster",
+            "label": "Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/HX_WBB",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/hdxwbb",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/HendrixWFF",
+            "label": "Flag Football: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/HendrixWFF",
+            "label": "Flag Football: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/flag-football/schedule",
+            "label": "Flag Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/flag-football/roster",
+            "label": "Flag Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/hendrixwomensoccer",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/HDXSoftball",
+            "label": "Softball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/hdxsoftball",
+            "label": "Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-swimming-and-diving/schedule",
+            "label": "Swimming & Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-swimming-and-diving/roster",
+            "label": "Swimming & Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/hendrixwtennis",
+            "label": "Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-track-and-field/schedule",
+            "label": "Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-track-and-field/roster",
+            "label": "Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/HendrixVBALL",
+            "label": "Volleyball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/hendrixvolleyball",
+            "label": "Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/hendrixwarriorcheer",
+            "label": "Cheer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/cheerleading/schedule",
+            "label": "Cheer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/cheerleading/roster",
+            "label": "Cheer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/dance-team/schedule",
+            "label": "Dance: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/dance-team/roster",
+            "label": "Dance: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/staff-directory",
+            "label": "Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/2012/6/27/Camps.aspx",
+            "label": "Camps",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://hendrixwarriors.com/calendar",
+            "label": "Composite Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/historicalroster",
+            "label": "Historical Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://forms.arirecruiting.com/hendrixcollege_m.w.xc.tf/recruitquestionnaire",
+            "label": "Cross Country/Track & Field",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/baseball/coaches",
+            "label": "Coaches",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/2022/6/23/baseball-recruiting-form.aspx",
+            "label": "Recruit Questionnaire",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://go.flocollege.com/partner/scac?utm_medium=partner&utm_source=multiple&utm_content=landingpage&utm_term=hendricks-college&utm_campaign=scac&contract_id=006px000003axflyaa",
+            "label": "",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://hendrixwarriors.com/sports/baseball/schedule",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "sources/hendrix-college-0.html",
+        "sha256": "a9dc0c2b25b67fd5b73fde6fb0fcb549412e696ff2adb82926756c54684776a5",
+        "url": "https://hendrixwarriors.com/sports/baseball/schedule",
+        "label": "Baseball: Schedule"
+      },
+      "status": 200,
+      "finalUrl": "https://hendrixwarriors.com/sports/baseball/schedule",
+      "checkedAtUtc": "2026-11-17T20:36:09.976Z",
+      "sourcePath": "sources/hendrix-college-1.html",
+      "sha256": "d9d5e27aaab457c6ce4325cf79a3f47fb5ded4a00f0c74d00528c82ed3df8b94",
+      "parsed": {
+        "title": "2027 Baseball Schedule - Hendrix College Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "Hendrix College Athletics",
+          "Scoreboard",
+          "Scoreboard Tab",
+          "Main",
+          "Sport",
+          "2027 Baseball Schedule",
+          "Season Records",
+          "Scheduled Games",
+          "Related Videos",
+          "Related Headlines",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://hendrixwarriors.com/sports/baseball/schedule",
+            "label": "Skip To Main Content",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/HendrixBaseball",
+            "label": "Baseball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/hendrixbaseball",
+            "label": "Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/Hendrix_MBB",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/hendrixmensbasketball",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/hendrix_xctf",
+            "label": "Cross Country: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/hendrixesports",
+            "label": "Esports: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/hendrixesports",
+            "label": "Esports: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/esports/schedule",
+            "label": "Esports: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/esports/roster",
+            "label": "Esports: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/hendrixfootball",
+            "label": "Football: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/hendrixfootball",
+            "label": "Football: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/football/schedule",
+            "label": "Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/football/roster",
+            "label": "Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/HDXGolf",
+            "label": "Golf: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/hendrixgolf",
+            "label": "Golf: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/HendrixLax",
+            "label": "Lacrosse: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/hendrixlax",
+            "label": "Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/hendrixsoccer",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/hdxswimdive",
+            "label": "Swimming & Diving: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-swimming-and-diving/schedule",
+            "label": "Swimming & Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-swimming-and-diving/roster",
+            "label": "Swimming & Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/hendrixtennis",
+            "label": "Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-track-and-field/schedule",
+            "label": "Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-track-and-field/roster",
+            "label": "Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/HX_WBB",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/hdxwbb",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/HendrixWFF",
+            "label": "Flag Football: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/HendrixWFF",
+            "label": "Flag Football: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/flag-football/schedule",
+            "label": "Flag Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/flag-football/roster",
+            "label": "Flag Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/hendrixwomensoccer",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/HDXSoftball",
+            "label": "Softball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/hdxsoftball",
+            "label": "Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-swimming-and-diving/schedule",
+            "label": "Swimming & Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-swimming-and-diving/roster",
+            "label": "Swimming & Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/hendrixwtennis",
+            "label": "Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-track-and-field/schedule",
+            "label": "Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-track-and-field/roster",
+            "label": "Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/HendrixVBALL",
+            "label": "Volleyball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/hendrixvolleyball",
+            "label": "Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/hendrixwarriorcheer",
+            "label": "Cheer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/cheerleading/schedule",
+            "label": "Cheer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/cheerleading/roster",
+            "label": "Cheer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/dance-team/schedule",
+            "label": "Dance: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/dance-team/roster",
+            "label": "Dance: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/staff-directory",
+            "label": "Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/2012/6/27/Camps.aspx",
+            "label": "Camps",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://hendrixwarriors.com/calendar",
+            "label": "Composite Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/historicalroster",
+            "label": "Historical Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://forms.arirecruiting.com/hendrixcollege_m.w.xc.tf/recruitquestionnaire",
+            "label": "Cross Country/Track & Field",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/baseball/coaches",
+            "label": "Coaches",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/2022/6/23/baseball-recruiting-form.aspx",
+            "label": "Recruit Questionnaire",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/baseball/schedule?print=true",
+            "label": "Print Print this page",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/baseball/schedule/2027?grid=true",
+            "label": "Grid Switch to Grid View",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/services/schedule_txt.ashx?schedule=391",
+            "label": "Text Text Format For Braille (New Tab)",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://go.flocollege.com/partner/scac?utm_medium=partner&utm_source=multiple&utm_content=landingpage&utm_term=hendricks-college&utm_campaign=scac&contract_id=006px000003axflyaa",
+            "label": "",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://hendrixwarriors.com/sports/baseball/coaches",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "sources/hendrix-college-0.html",
+        "sha256": "a9dc0c2b25b67fd5b73fde6fb0fcb549412e696ff2adb82926756c54684776a5",
+        "url": "https://hendrixwarriors.com/sports/baseball/coaches",
+        "label": "Coaches"
+      },
+      "status": 200,
+      "finalUrl": "https://hendrixwarriors.com/sports/baseball/coaches",
+      "checkedAtUtc": "2026-11-17T20:36:11.087Z",
+      "sourcePath": "sources/hendrix-college-2.html",
+      "sha256": "7f8e94783fdc5db191c8bf14d81c2e920da87e8a61ae98d9a535c6f9001664fb",
+      "parsed": {
+        "title": "Baseball Coaches - Hendrix College Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "Hendrix College Athletics",
+          "Scoreboard",
+          "Scoreboard Tab",
+          "Main",
+          "Sport",
+          "2027 Baseball Coaching Staff",
+          "2027 Baseball Support Staff",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://hendrixwarriors.com/sports/baseball/coaches",
+            "label": "Skip To Main Content",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://x.com/HendrixBaseball",
+            "label": "Baseball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/hendrixbaseball",
+            "label": "Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/baseball/schedule",
+            "label": "Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/Hendrix_MBB",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/hendrixmensbasketball",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/hendrix_xctf",
+            "label": "Cross Country: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/hendrixesports",
+            "label": "Esports: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/hendrixesports",
+            "label": "Esports: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/esports/schedule",
+            "label": "Esports: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/esports/roster",
+            "label": "Esports: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/hendrixfootball",
+            "label": "Football: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/hendrixfootball",
+            "label": "Football: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/football/schedule",
+            "label": "Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/football/roster",
+            "label": "Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/HDXGolf",
+            "label": "Golf: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/hendrixgolf",
+            "label": "Golf: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/HendrixLax",
+            "label": "Lacrosse: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/hendrixlax",
+            "label": "Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/hendrixsoccer",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/hdxswimdive",
+            "label": "Swimming & Diving: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-swimming-and-diving/schedule",
+            "label": "Swimming & Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-swimming-and-diving/roster",
+            "label": "Swimming & Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/hendrixtennis",
+            "label": "Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-track-and-field/schedule",
+            "label": "Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-track-and-field/roster",
+            "label": "Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/HX_WBB",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/hdxwbb",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/HendrixWFF",
+            "label": "Flag Football: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/HendrixWFF",
+            "label": "Flag Football: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/flag-football/schedule",
+            "label": "Flag Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/flag-football/roster",
+            "label": "Flag Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/hendrixwomensoccer",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/HDXSoftball",
+            "label": "Softball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/hdxsoftball",
+            "label": "Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-swimming-and-diving/schedule",
+            "label": "Swimming & Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-swimming-and-diving/roster",
+            "label": "Swimming & Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/hendrixwtennis",
+            "label": "Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-track-and-field/schedule",
+            "label": "Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-track-and-field/roster",
+            "label": "Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/HendrixVBALL",
+            "label": "Volleyball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/hendrixvolleyball",
+            "label": "Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/hendrixwarriorcheer",
+            "label": "Cheer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/cheerleading/schedule",
+            "label": "Cheer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/cheerleading/roster",
+            "label": "Cheer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/dance-team/schedule",
+            "label": "Dance: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/dance-team/roster",
+            "label": "Dance: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/staff-directory",
+            "label": "Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/2012/6/27/Camps.aspx",
+            "label": "Camps",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://hendrixwarriors.com/calendar",
+            "label": "Composite Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/historicalroster",
+            "label": "Historical Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://forms.arirecruiting.com/hendrixcollege_m.w.xc.tf/recruitquestionnaire",
+            "label": "Cross Country/Track & Field",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/2022/6/23/baseball-recruiting-form.aspx",
+            "label": "Recruit Questionnaire",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/baseball/coaches?print=true",
+            "label": "Print",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/baseball/roster/coaches/r-j-thomas/1572",
+            "label": "R.J. Thomas",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "mailto:thomas@hendrix.edu",
+            "label": "thomas@hendrix.edu",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/baseball/roster/coaches/keegan-burney/1575",
+            "label": "Keegan Burney",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "mailto:burney@hendrix.edu",
+            "label": "burney@hendrix.edu",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/baseball/roster/coaches/nick-wagner/1577",
+            "label": "Nick Wagner",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "mailto:wagner@hendrix.edu",
+            "label": "wagner@hendrix.edu",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/baseball/roster/coaches/jay-mattox/1579",
+            "label": "Jay Mattox",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "mailto:mattox@hendrix.edu",
+            "label": "mattox@hendrix.edu",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/baseball/roster/coaches/hogan-ralston-25/1578",
+            "label": "Hogan Ralston '25",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "mailto:ralston@hendrix.edu",
+            "label": "ralston@hendrix.edu",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/baseball/roster/coaches/jack-hodgins/1576",
+            "label": "Jack Hodgins",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/baseball/roster/staff/wesley-jones/87",
+            "label": "Wesley Jones",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "mailto:JonesW@hendrix.edu",
+            "label": "JonesW@hendrix.edu",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://go.flocollege.com/partner/scac?utm_medium=partner&utm_source=multiple&utm_content=landingpage&utm_term=hendricks-college&utm_campaign=scac&contract_id=006px000003axflyaa",
+            "label": "",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://hendrixwarriors.com/sports/2022/6/23/baseball-recruiting-form.aspx",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "sources/hendrix-college-0.html",
+        "sha256": "a9dc0c2b25b67fd5b73fde6fb0fcb549412e696ff2adb82926756c54684776a5",
+        "url": "https://hendrixwarriors.com/sports/2022/6/23/baseball-recruiting-form.aspx",
+        "label": "Recruit Questionnaire"
+      },
+      "status": 200,
+      "finalUrl": "https://hendrixwarriors.com/sports/2022/6/23/baseball-recruiting-form.aspx",
+      "checkedAtUtc": "2026-11-17T20:36:11.702Z",
+      "sourcePath": "sources/hendrix-college-3.html",
+      "sha256": "ef011a6be0918adf8e4d08e80cc1dd747f86ac3245cb59d2343a29224a184233",
+      "parsed": {
+        "title": "Baseball Recruiting Form - Hendrix College Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "Hendrix College Athletics",
+          "Scoreboard",
+          "Scoreboard Tab",
+          "Main",
+          "Sport",
+          "Baseball Recruiting Form",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://x.com/HendrixBaseball",
+            "label": "Baseball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/hendrixbaseball",
+            "label": "Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/baseball/schedule",
+            "label": "Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/Hendrix_MBB",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/hendrixmensbasketball",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/hendrix_xctf",
+            "label": "Cross Country: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/hendrixesports",
+            "label": "Esports: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/hendrixesports",
+            "label": "Esports: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/esports/schedule",
+            "label": "Esports: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/esports/roster",
+            "label": "Esports: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/hendrixfootball",
+            "label": "Football: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/hendrixfootball",
+            "label": "Football: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/football/schedule",
+            "label": "Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/football/roster",
+            "label": "Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/HDXGolf",
+            "label": "Golf: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/hendrixgolf",
+            "label": "Golf: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/HendrixLax",
+            "label": "Lacrosse: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/hendrixlax",
+            "label": "Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/hendrixsoccer",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/hdxswimdive",
+            "label": "Swimming & Diving: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-swimming-and-diving/schedule",
+            "label": "Swimming & Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-swimming-and-diving/roster",
+            "label": "Swimming & Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/hendrixtennis",
+            "label": "Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-track-and-field/schedule",
+            "label": "Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/mens-track-and-field/roster",
+            "label": "Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/HX_WBB",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/hdxwbb",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/HendrixWFF",
+            "label": "Flag Football: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/HendrixWFF",
+            "label": "Flag Football: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/flag-football/schedule",
+            "label": "Flag Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/flag-football/roster",
+            "label": "Flag Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/hendrixwomensoccer",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/HDXSoftball",
+            "label": "Softball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/hdxsoftball",
+            "label": "Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-swimming-and-diving/schedule",
+            "label": "Swimming & Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-swimming-and-diving/roster",
+            "label": "Swimming & Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/hendrixwtennis",
+            "label": "Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-track-and-field/schedule",
+            "label": "Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-track-and-field/roster",
+            "label": "Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/HendrixVBALL",
+            "label": "Volleyball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/hendrixvolleyball",
+            "label": "Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/womens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/hendrixwarriorcheer",
+            "label": "Cheer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/cheerleading/schedule",
+            "label": "Cheer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/cheerleading/roster",
+            "label": "Cheer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/dance-team/schedule",
+            "label": "Dance: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/dance-team/roster",
+            "label": "Dance: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/staff-directory",
+            "label": "Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/2012/6/27/Camps.aspx",
+            "label": "Camps",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://hendrixwarriors.com/calendar",
+            "label": "Composite Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hendrixwarriors.com/historicalroster",
+            "label": "Historical Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://forms.arirecruiting.com/hendrixcollege_m.w.xc.tf/recruitquestionnaire",
+            "label": "Cross Country/Track & Field",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/baseball/coaches",
+            "label": "Coaches",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://hendrixwarriors.com/sports/2022/6/23/baseball-recruiting-form.aspx",
+            "label": "Recruit Questionnaire",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://go.flocollege.com/partner/scac?utm_medium=partner&utm_source=multiple&utm_content=landingpage&utm_term=hendricks-college&utm_campaign=scac&contract_id=006px000003axflyaa",
+            "label": "",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          }
+        ]
+      }
+    }
+  ],
+  "status": "EVIDENCE_CAPTURED_REQUIRES_REVIEW"
+}

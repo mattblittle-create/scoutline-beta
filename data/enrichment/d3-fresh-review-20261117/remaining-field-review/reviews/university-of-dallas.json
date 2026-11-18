@@ -1,0 +1,1262 @@
+{
+  "slug": "university-of-dallas",
+  "collegeId": "cmovoryg800pcqt7gz5j3vr2e",
+  "programId": "cmovorygy00peqt7g0nvdh750",
+  "checkedAtUtc": "2026-11-17T20:38:00.820Z",
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED",
+  "missingFields": [
+    "rosterUrl",
+    "scheduleUrl",
+    "questionnaireUrl",
+    "campsUrl",
+    "generalContactEmail"
+  ],
+  "pages": [
+    {
+      "requestedUrl": "https://udallasathletics.com/sports/baseball",
+      "kind": "baseball-home",
+      "parent": null,
+      "status": 200,
+      "finalUrl": "https://udallasathletics.com/sports/baseball",
+      "sourcePath": "../sources/university-of-dallas-1.html",
+      "sha256": "97fa67558e5edb016df42f2859a20105da6424f6173cbf3ff8efe3dba457e06d",
+      "reusedEvidence": true,
+      "originalCheckedAtUtc": "2026-11-17T17:27:29.452Z",
+      "parsed": {
+        "title": "Baseball - University of Dallas Sidearm Sports, opens a new window",
+        "headings": [
+          "University of Dallas",
+          "Main",
+          "Sport",
+          "Top Stories",
+          "Gameday",
+          "Crusaders #moments",
+          "Slideshow A",
+          "Photo Galleries",
+          "Social Media",
+          "Awards Slider",
+          "Slideshow B",
+          "Footer",
+          "Sponsor"
+        ],
+        "links": [
+          {
+            "url": "https://x.com/UDallasBaseball",
+            "label": "Baseball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/udallas_baseball",
+            "label": "Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/baseball/schedule",
+            "label": "Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UDallasMBB",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/udallasmbb",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/mens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/mens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UDallasCCTF",
+            "label": "Cross Country: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/udallascctf",
+            "label": "Cross Country: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/mens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/mens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UDallasGolf",
+            "label": "Golf: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/udallasmgolf",
+            "label": "Golf: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/mens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/mens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UDsoccerCoach",
+            "label": "Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/udallasmsoccer",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/mens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/mens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/udallastennis",
+            "label": "Tennis: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/udallastennis",
+            "label": "Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/mens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/mens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UDallasWBB",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/udallaswbb",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/womens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/womens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/womens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/womens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/udallaswgolf",
+            "label": "Golf: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/womens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/womens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UDallasWSoccer",
+            "label": "Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/udallaswsoccer",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/womens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/womens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UDallasSoftball",
+            "label": "Softball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/udallas_softball",
+            "label": "Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/womens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/womens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UDallasVball",
+            "label": "Volleyball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/udvball",
+            "label": "Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/womens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/womens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/documents/2025/5/20/CampusMap_Flyer_ADV_0524.pdf",
+            "label": "Campus Map",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/2025/5/14/recruiting-University-of-Dallas-Recruiting-Questionnaires.aspx",
+            "label": "Recruit Questionnaire",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://udallasathletics.com/staff-directory",
+            "label": "Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/udsid/roster?path=udsid",
+            "label": "Sports Information Team",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/documents/2025/5/20/NCAA_athletics_final_policy_4-27-23_-1-.pdf",
+            "label": "NCAA - Campus Sexual Violence Policy",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/baseball/coaches",
+            "label": "Coaches",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://udallasathletics.com/sports/baseball/schedule",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/university-of-dallas-1.html",
+        "sha256": "97fa67558e5edb016df42f2859a20105da6424f6173cbf3ff8efe3dba457e06d",
+        "url": "https://udallasathletics.com/sports/baseball/schedule",
+        "label": "Baseball: Schedule"
+      },
+      "status": 200,
+      "finalUrl": "https://udallasathletics.com/sports/baseball/schedule",
+      "checkedAtUtc": "2026-11-17T20:38:01.314Z",
+      "sourcePath": "sources/university-of-dallas-1.html",
+      "sha256": "1c22bc21b18a097cb1dd741ccf8105224e7ae4afaad6088f291b9a4bb3a584fc",
+      "parsed": {
+        "title": "2026 Baseball Schedule - University of Dallas Sidearm Sports, opens a new window",
+        "headings": [
+          "University of Dallas",
+          "Main",
+          "Sport",
+          "2026 Baseball Schedule",
+          "Season Records",
+          "Scheduled Games",
+          "Related Videos",
+          "Related Headlines",
+          "Footer",
+          "Sponsor"
+        ],
+        "links": [
+          {
+            "url": "https://udallasathletics.com/sports/baseball/schedule",
+            "label": "Skip To Main Content",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UDallasBaseball",
+            "label": "Baseball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/udallas_baseball",
+            "label": "Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UDallasMBB",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/udallasmbb",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/mens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/mens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UDallasCCTF",
+            "label": "Cross Country: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/udallascctf",
+            "label": "Cross Country: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/mens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/mens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UDallasGolf",
+            "label": "Golf: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/udallasmgolf",
+            "label": "Golf: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/mens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/mens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UDsoccerCoach",
+            "label": "Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/udallasmsoccer",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/mens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/mens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/udallastennis",
+            "label": "Tennis: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/udallastennis",
+            "label": "Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/mens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/mens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UDallasWBB",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/udallaswbb",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/womens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/womens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/womens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/womens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/udallaswgolf",
+            "label": "Golf: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/womens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/womens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UDallasWSoccer",
+            "label": "Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/udallaswsoccer",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/womens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/womens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UDallasSoftball",
+            "label": "Softball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/udallas_softball",
+            "label": "Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/womens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/womens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UDallasVball",
+            "label": "Volleyball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/udvball",
+            "label": "Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/womens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/womens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/documents/2025/5/20/CampusMap_Flyer_ADV_0524.pdf",
+            "label": "Campus Map",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/2025/5/14/recruiting-University-of-Dallas-Recruiting-Questionnaires.aspx",
+            "label": "Recruit Questionnaire",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://udallasathletics.com/staff-directory",
+            "label": "Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/udsid/roster?path=udsid",
+            "label": "Sports Information Team",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/documents/2025/5/20/NCAA_athletics_final_policy_4-27-23_-1-.pdf",
+            "label": "NCAA - Campus Sexual Violence Policy",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/baseball/coaches",
+            "label": "Coaches",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/baseball/schedule?print=true",
+            "label": "Print Print this page",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/baseball/schedule/2026?grid=true",
+            "label": "Grid Switch to Grid View",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/services/schedule_txt.ashx?schedule=294",
+            "label": "Text Text Format For Braille (New Tab)",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://udallasathletics.com/sports/baseball/coaches",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/university-of-dallas-1.html",
+        "sha256": "97fa67558e5edb016df42f2859a20105da6424f6173cbf3ff8efe3dba457e06d",
+        "url": "https://udallasathletics.com/sports/baseball/coaches",
+        "label": "Coaches"
+      },
+      "status": 200,
+      "finalUrl": "https://udallasathletics.com/sports/baseball/coaches",
+      "checkedAtUtc": "2026-11-17T20:38:01.542Z",
+      "sourcePath": "sources/university-of-dallas-2.html",
+      "sha256": "691b7c3052b77e4a63cf400c9961f3368d0c77d11acc1c1cb51dedbfd162f476",
+      "parsed": {
+        "title": "Baseball Coaches - University of Dallas Sidearm Sports, opens a new window",
+        "headings": [
+          "University of Dallas",
+          "Main",
+          "Sport",
+          "2026 Baseball Coaching Staff",
+          "Footer",
+          "Sponsor"
+        ],
+        "links": [
+          {
+            "url": "https://udallasathletics.com/sports/baseball/coaches",
+            "label": "Skip To Main Content",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://x.com/UDallasBaseball",
+            "label": "Baseball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/udallas_baseball",
+            "label": "Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/baseball/schedule",
+            "label": "Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UDallasMBB",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/udallasmbb",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/mens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/mens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UDallasCCTF",
+            "label": "Cross Country: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/udallascctf",
+            "label": "Cross Country: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/mens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/mens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UDallasGolf",
+            "label": "Golf: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/udallasmgolf",
+            "label": "Golf: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/mens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/mens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UDsoccerCoach",
+            "label": "Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/udallasmsoccer",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/mens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/mens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/udallastennis",
+            "label": "Tennis: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/udallastennis",
+            "label": "Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/mens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/mens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UDallasWBB",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/udallaswbb",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/womens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/womens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/womens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/womens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/udallaswgolf",
+            "label": "Golf: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/womens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/womens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UDallasWSoccer",
+            "label": "Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/udallaswsoccer",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/womens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/womens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UDallasSoftball",
+            "label": "Softball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/udallas_softball",
+            "label": "Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/womens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/womens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UDallasVball",
+            "label": "Volleyball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/udvball",
+            "label": "Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/womens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/womens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/documents/2025/5/20/CampusMap_Flyer_ADV_0524.pdf",
+            "label": "Campus Map",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/2025/5/14/recruiting-University-of-Dallas-Recruiting-Questionnaires.aspx",
+            "label": "Recruit Questionnaire",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://udallasathletics.com/staff-directory",
+            "label": "Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/udsid/roster?path=udsid",
+            "label": "Sports Information Team",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/documents/2025/5/20/NCAA_athletics_final_policy_4-27-23_-1-.pdf",
+            "label": "NCAA - Campus Sexual Violence Policy",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/baseball/coaches?print=true",
+            "label": "Print",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/baseball/roster/coaches/jordan-stickler/152",
+            "label": "Jordan Stickler",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "mailto:jsstickler@udallas.edu",
+            "label": "jsstickler@udallas.edu",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/baseball/roster/coaches/blake-wilson/195",
+            "label": "Blake Wilson",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "mailto:bwilson@udallas.edu",
+            "label": "bwilson@udallas.edu",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://udallasathletics.com/sports/mens-basketball/schedule",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/university-of-dallas-1.html",
+        "sha256": "97fa67558e5edb016df42f2859a20105da6424f6173cbf3ff8efe3dba457e06d",
+        "url": "https://udallasathletics.com/sports/mens-basketball/schedule",
+        "label": "Basketball: Schedule"
+      },
+      "status": 200,
+      "finalUrl": "https://udallasathletics.com/sports/mens-basketball/schedule",
+      "checkedAtUtc": "2026-11-17T20:38:02.896Z",
+      "sourcePath": "sources/university-of-dallas-3.html",
+      "sha256": "6c7b39e8a6579456a22b11fc6c1110dff9f6db86afbd7fbce3adfb19bc304331",
+      "parsed": {
+        "title": "2026-27 Men's Basketball Schedule - University of Dallas Sidearm Sports, opens a new window",
+        "headings": [
+          "University of Dallas",
+          "Main",
+          "Sport",
+          "2026-27 Men's Basketball Schedule",
+          "Season Records",
+          "Scheduled Games",
+          "Related Videos",
+          "Related Headlines",
+          "Footer",
+          "Sponsor"
+        ],
+        "links": [
+          {
+            "url": "https://udallasathletics.com/sports/mens-basketball/schedule",
+            "label": "Skip To Main Content",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UDallasBaseball",
+            "label": "Baseball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/udallas_baseball",
+            "label": "Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/baseball/schedule",
+            "label": "Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UDallasMBB",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/udallasmbb",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/mens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UDallasCCTF",
+            "label": "Cross Country: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/udallascctf",
+            "label": "Cross Country: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/mens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/mens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UDallasGolf",
+            "label": "Golf: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/udallasmgolf",
+            "label": "Golf: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/mens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/mens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UDsoccerCoach",
+            "label": "Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/udallasmsoccer",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/mens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/mens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/udallastennis",
+            "label": "Tennis: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/udallastennis",
+            "label": "Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/mens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/mens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UDallasWBB",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/udallaswbb",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/womens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/womens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/womens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/womens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/udallaswgolf",
+            "label": "Golf: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/womens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/womens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UDallasWSoccer",
+            "label": "Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/udallaswsoccer",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/womens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/womens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UDallasSoftball",
+            "label": "Softball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/udallas_softball",
+            "label": "Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/womens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/womens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UDallasVball",
+            "label": "Volleyball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/udvball",
+            "label": "Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/womens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/womens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/documents/2025/5/20/CampusMap_Flyer_ADV_0524.pdf",
+            "label": "Campus Map",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/2025/5/14/recruiting-University-of-Dallas-Recruiting-Questionnaires.aspx",
+            "label": "Recruit Questionnaire",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://udallasathletics.com/staff-directory",
+            "label": "Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/udsid/roster?path=udsid",
+            "label": "Sports Information Team",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/documents/2025/5/20/NCAA_athletics_final_policy_4-27-23_-1-.pdf",
+            "label": "NCAA - Campus Sexual Violence Policy",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/mens-basketball/coaches",
+            "label": "Coaches",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/mens-basketball/schedule?print=true",
+            "label": "Print Print this page",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/sports/mens-basketball/schedule/2026-27?grid=true",
+            "label": "Grid Switch to Grid View",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/services/schedule_txt.ashx?schedule=306",
+            "label": "Text Text Format For Braille (New Tab)",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://udallasathletics.com/news/2026/10/22/udallas-mens-basketball-schedule-is-set.aspx",
+            "label": "UDallas Men's Basketball Schedule is Set",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          }
+        ]
+      }
+    }
+  ],
+  "status": "EVIDENCE_CAPTURED_REQUIRES_REVIEW"
+}

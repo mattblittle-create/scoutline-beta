@@ -1,0 +1,53 @@
+{
+  "slug": "bronx-community-college",
+  "programId": "cmox2o0op000hqtbk77js2ymc",
+  "collegeId": "cmox2o0ny000fqtbkdjwm6sfi",
+  "checkedAtUtc": "2026-11-18T14:43:37.571Z",
+  "sourcePath": "../njcaa-discovery-20261118/sources/bronx-community-college-1.source",
+  "sourceSHA256": "9026f22a17d03c2d1f29b49f3c11e60d2974df4c6f9a66408603842f6d1e311d",
+  "sourceUrl": "https://bronxbroncos.com/sports/baseball",
+  "socialLeads": [],
+  "recruitingLeads": [
+    {
+      "url": "https://bronxbroncos.com/sb_output.aspx?form=7",
+      "label": "Recruit Me",
+      "context": "",
+      "kind": "QUESTIONNAIRE"
+    }
+  ],
+  "logoLeads": [
+    {
+      "url": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/bcccuny.sidearmsports.com/images/responsive/nav_logo.svg",
+      "label": "Bronx Broncos undefined"
+    }
+  ],
+  "captures": [
+    {
+      "requestedUrl": "https://bronxbroncos.com/sb_output.aspx?form=7",
+      "kind": "QUESTIONNAIRE",
+      "status": 200,
+      "finalUrl": "https://bronxbroncos.com/sb_output.aspx?form=7",
+      "contentType": "text/html; charset=utf-8",
+      "sourcePath": "sources/bronx-community-college-0.source",
+      "sha256": "7272580205ff9f4706d8c20bd7f8eabea45d67bfc22384187080c437ea885fa1"
+    },
+    {
+      "requestedUrl": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/bcccuny.sidearmsports.com/images/responsive/nav_logo.svg",
+      "kind": "LOGO_ASSET",
+      "status": 200,
+      "finalUrl": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/bcccuny.sidearmsports.com/images/responsive/nav_logo.svg",
+      "contentType": "image/svg+xml",
+      "sourcePath": "sources/bronx-community-college-1.source",
+      "sha256": "17ca9f20beafb9bd38927a05b327fdd5db73277673121f0c7b15b80ea86379a2",
+      "decoded": {
+        "format": "svg",
+        "width": 215,
+        "height": 229
+      },
+      "assetDecoded": true
+    }
+  ],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED"
+}

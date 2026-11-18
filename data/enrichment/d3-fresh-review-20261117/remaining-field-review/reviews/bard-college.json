@@ -1,0 +1,1279 @@
+{
+  "slug": "bard-college",
+  "collegeId": "cmovormdq001rqt7g5edt34ti",
+  "programId": "cmovormef001tqt7g66hzngzb",
+  "checkedAtUtc": "2026-11-17T20:35:04.884Z",
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED",
+  "missingFields": [
+    "rosterUrl",
+    "scheduleUrl",
+    "questionnaireUrl",
+    "campsUrl",
+    "generalContactEmail"
+  ],
+  "pages": [
+    {
+      "requestedUrl": "https://bardathletics.com/sports/baseball",
+      "kind": "baseball-home",
+      "parent": null,
+      "status": 200,
+      "finalUrl": "https://bardathletics.com/sports/baseball",
+      "sourcePath": "../sources/bard-college-1.html",
+      "sha256": "b90ddcecdabc63618b331ba8a3e9c9d03541d35cf4db238437b178d64a249f8f",
+      "reusedEvidence": true,
+      "originalCheckedAtUtc": "2026-11-17T17:20:44.739Z",
+      "parsed": {
+        "title": "Baseball - Bard College Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "Bard College Athletics",
+          "Main",
+          "Sport",
+          "Top Stories",
+          "Events and Results",
+          "Top Stories",
+          "Events and Results",
+          "Slideshow",
+          "Galleries",
+          "Footer",
+          "sponsor"
+        ],
+        "links": [
+          {
+            "url": "https://x.com/BardBaseball",
+            "label": "Baseball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/bardbaseball",
+            "label": "Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://bardathletics.com/sports/baseball/schedule",
+            "label": "Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/Bardhoops",
+            "label": "Basketball (M): X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/bardhoops",
+            "label": "Basketball (M): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://bardathletics.com/sports/mens-basketball/schedule",
+            "label": "Basketball (M): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/mens-basketball/roster",
+            "label": "Basketball (M): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/BardCollegeWBB",
+            "label": "Basketball (W): X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/bardcollegewbb",
+            "label": "Basketball (W): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://bardathletics.com/sports/womens-basketball/schedule",
+            "label": "Basketball (W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/womens-basketball/roster",
+            "label": "Basketball (W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/bardxctf",
+            "label": "Cross Country: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://bardathletics.com/sports/cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/BardWLax",
+            "label": "Lacrosse: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/bardwlax",
+            "label": "Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://bardathletics.com/sports/womens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/womens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/bardmsoc",
+            "label": "Soccer (M): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://bardathletics.com/sports/mens-soccer/schedule",
+            "label": "Soccer (M): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/mens-soccer/roster",
+            "label": "Soccer (M): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/bardwsoc",
+            "label": "Soccer (W): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://bardathletics.com/sports/womens-soccer/schedule",
+            "label": "Soccer (W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/womens-soccer/roster",
+            "label": "Soccer (W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/bardswimming",
+            "label": "Swimming: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://bardathletics.com/sports/swimming/schedule",
+            "label": "Swimming: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/swimming/roster",
+            "label": "Swimming: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/bardsquash",
+            "label": "Squash (M): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://bardathletics.com/sports/mens-squash/schedule",
+            "label": "Squash (M): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/mens-squash/roster",
+            "label": "Squash (M): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/bard_w_squash",
+            "label": "Squash (W): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://bardathletics.com/sports/womens-squash/schedule",
+            "label": "Squash (W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/womens-squash/roster",
+            "label": "Squash (W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/bardtennis",
+            "label": "Tennis (M): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://bardathletics.com/sports/mens-tennis/schedule",
+            "label": "Tennis (M): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/mens-tennis/roster",
+            "label": "Tennis (M): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/bardtennis",
+            "label": "Tennis (W): X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://bardathletics.com/sports/womens-tennis/schedule",
+            "label": "Tennis (W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/womens-tennis/roster",
+            "label": "Tennis (W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/@bardxctf",
+            "label": "Track and Field: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://bardathletics.com/sports/track-and-field/schedule",
+            "label": "Track and Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/track-and-field/roster",
+            "label": "Track and Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/bardmvb",
+            "label": "Volleyball (M): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://bardathletics.com/sports/mens-volleyball/schedule",
+            "label": "Volleyball (M): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/mens-volleyball/roster",
+            "label": "Volleyball (M): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/bardwvolleyball",
+            "label": "Volleyball (W): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://bardathletics.com/sports/womens-volleyball/schedule",
+            "label": "Volleyball (W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/womens-volleyball/roster",
+            "label": "Volleyball (W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/2024/2/15/GEN_1208103329.aspx",
+            "label": "Summer Camps",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://bardathletics.com/staff-directory",
+            "label": "Athletic Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://bardathletics.com/sports/2014/8/26/Baseball%20Prospect%20Camp.aspx",
+            "label": "Baseball Prospect Camp",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://bardathletics.com/sports/baseball/coaches/",
+            "label": "Coaches",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://bardathletics.com/sports/baseball",
+            "label": "Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "mailto: athletics@bard.edu",
+            "label": "athletics@bard.edu",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://bardathletics.com/sports/baseball/schedule",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/bard-college-1.html",
+        "sha256": "b90ddcecdabc63618b331ba8a3e9c9d03541d35cf4db238437b178d64a249f8f",
+        "url": "https://bardathletics.com/sports/baseball/schedule",
+        "label": "Baseball: Schedule"
+      },
+      "status": 200,
+      "finalUrl": "https://bardathletics.com/sports/baseball/schedule",
+      "checkedAtUtc": "2026-11-17T20:35:07.330Z",
+      "sourcePath": "sources/bard-college-1.html",
+      "sha256": "a7f31265d08b1ef56633a814f6048615469160dcfafe4100c6290fb06e526712",
+      "parsed": {
+        "title": "2026 Baseball Schedule - Bard College Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "Bard College Athletics",
+          "Main",
+          "Sport",
+          "2026 Baseball Schedule",
+          "Season Record",
+          "Scheduled Games",
+          "Footer",
+          "sponsor"
+        ],
+        "links": [
+          {
+            "url": "https://bardathletics.com/sports/baseball/schedule",
+            "label": "Skip To Main Content",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/BardBaseball",
+            "label": "Baseball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/bardbaseball",
+            "label": "Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://bardathletics.com/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/Bardhoops",
+            "label": "Basketball (M): X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/bardhoops",
+            "label": "Basketball (M): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://bardathletics.com/sports/mens-basketball/schedule",
+            "label": "Basketball (M): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/mens-basketball/roster",
+            "label": "Basketball (M): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/BardCollegeWBB",
+            "label": "Basketball (W): X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/bardcollegewbb",
+            "label": "Basketball (W): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://bardathletics.com/sports/womens-basketball/schedule",
+            "label": "Basketball (W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/womens-basketball/roster",
+            "label": "Basketball (W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/bardxctf",
+            "label": "Cross Country: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://bardathletics.com/sports/cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/BardWLax",
+            "label": "Lacrosse: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/bardwlax",
+            "label": "Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://bardathletics.com/sports/womens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/womens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/bardmsoc",
+            "label": "Soccer (M): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://bardathletics.com/sports/mens-soccer/schedule",
+            "label": "Soccer (M): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/mens-soccer/roster",
+            "label": "Soccer (M): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/bardwsoc",
+            "label": "Soccer (W): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://bardathletics.com/sports/womens-soccer/schedule",
+            "label": "Soccer (W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/womens-soccer/roster",
+            "label": "Soccer (W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/bardswimming",
+            "label": "Swimming: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://bardathletics.com/sports/swimming/schedule",
+            "label": "Swimming: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/swimming/roster",
+            "label": "Swimming: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/bardsquash",
+            "label": "Squash (M): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://bardathletics.com/sports/mens-squash/schedule",
+            "label": "Squash (M): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/mens-squash/roster",
+            "label": "Squash (M): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/bard_w_squash",
+            "label": "Squash (W): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://bardathletics.com/sports/womens-squash/schedule",
+            "label": "Squash (W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/womens-squash/roster",
+            "label": "Squash (W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/bardtennis",
+            "label": "Tennis (M): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://bardathletics.com/sports/mens-tennis/schedule",
+            "label": "Tennis (M): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/mens-tennis/roster",
+            "label": "Tennis (M): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/bardtennis",
+            "label": "Tennis (W): X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://bardathletics.com/sports/womens-tennis/schedule",
+            "label": "Tennis (W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/womens-tennis/roster",
+            "label": "Tennis (W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/@bardxctf",
+            "label": "Track and Field: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://bardathletics.com/sports/track-and-field/schedule",
+            "label": "Track and Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/track-and-field/roster",
+            "label": "Track and Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/bardmvb",
+            "label": "Volleyball (M): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://bardathletics.com/sports/mens-volleyball/schedule",
+            "label": "Volleyball (M): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/mens-volleyball/roster",
+            "label": "Volleyball (M): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/bardwvolleyball",
+            "label": "Volleyball (W): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://bardathletics.com/sports/womens-volleyball/schedule",
+            "label": "Volleyball (W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/womens-volleyball/roster",
+            "label": "Volleyball (W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/2024/2/15/GEN_1208103329.aspx",
+            "label": "Summer Camps",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://bardathletics.com/staff-directory",
+            "label": "Athletic Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://bardathletics.com/sports/2014/8/26/Baseball%20Prospect%20Camp.aspx",
+            "label": "Baseball Prospect Camp",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://bardathletics.com/sports/baseball/coaches/",
+            "label": "Coaches",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://bardathletics.com/sports/baseball/schedule?print=true",
+            "label": "Print Print this page",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/baseball/schedule/2026?grid=true",
+            "label": "Grid Switch to Grid View",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/services/schedule_txt.ashx?schedule=482",
+            "label": "Text Text Format For Braille (New Tab)",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "mailto: athletics@bard.edu",
+            "label": "athletics@bard.edu",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://bardathletics.com/sports/2014/8/26/Baseball%20Prospect%20Camp.aspx",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/bard-college-1.html",
+        "sha256": "b90ddcecdabc63618b331ba8a3e9c9d03541d35cf4db238437b178d64a249f8f",
+        "url": "https://bardathletics.com/sports/2014/8/26/Baseball%20Prospect%20Camp.aspx",
+        "label": "Baseball Prospect Camp"
+      },
+      "status": 200,
+      "finalUrl": "https://bardathletics.com/sports/2014/8/26/Baseball%20Prospect%20Camp.aspx",
+      "checkedAtUtc": "2026-11-17T20:35:07.920Z",
+      "sourcePath": "sources/bard-college-2.html",
+      "sha256": "32ca26e323f2f8ed8e91a3a52204f0b961ab9a59ecf8faddc768639bd903f713",
+      "parsed": {
+        "title": "Baseball Prospect Camp - Bard College Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "Bard College Athletics",
+          "Main",
+          "Baseball Prospect Camp",
+          "Footer",
+          "sponsor"
+        ],
+        "links": [
+          {
+            "url": "https://bardathletics.com/sports/2014/8/26/Baseball%20Prospect%20Camp.aspx",
+            "label": "Skip To Main Content",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://x.com/BardBaseball",
+            "label": "Baseball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/bardbaseball",
+            "label": "Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://bardathletics.com/sports/baseball/schedule",
+            "label": "Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/Bardhoops",
+            "label": "Basketball (M): X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/bardhoops",
+            "label": "Basketball (M): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://bardathletics.com/sports/mens-basketball/schedule",
+            "label": "Basketball (M): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/mens-basketball/roster",
+            "label": "Basketball (M): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/BardCollegeWBB",
+            "label": "Basketball (W): X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/bardcollegewbb",
+            "label": "Basketball (W): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://bardathletics.com/sports/womens-basketball/schedule",
+            "label": "Basketball (W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/womens-basketball/roster",
+            "label": "Basketball (W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/bardxctf",
+            "label": "Cross Country: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://bardathletics.com/sports/cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/BardWLax",
+            "label": "Lacrosse: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/bardwlax",
+            "label": "Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://bardathletics.com/sports/womens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/womens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/bardmsoc",
+            "label": "Soccer (M): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://bardathletics.com/sports/mens-soccer/schedule",
+            "label": "Soccer (M): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/mens-soccer/roster",
+            "label": "Soccer (M): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/bardwsoc",
+            "label": "Soccer (W): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://bardathletics.com/sports/womens-soccer/schedule",
+            "label": "Soccer (W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/womens-soccer/roster",
+            "label": "Soccer (W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/bardswimming",
+            "label": "Swimming: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://bardathletics.com/sports/swimming/schedule",
+            "label": "Swimming: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/swimming/roster",
+            "label": "Swimming: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/bardsquash",
+            "label": "Squash (M): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://bardathletics.com/sports/mens-squash/schedule",
+            "label": "Squash (M): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/mens-squash/roster",
+            "label": "Squash (M): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/bard_w_squash",
+            "label": "Squash (W): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://bardathletics.com/sports/womens-squash/schedule",
+            "label": "Squash (W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/womens-squash/roster",
+            "label": "Squash (W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/bardtennis",
+            "label": "Tennis (M): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://bardathletics.com/sports/mens-tennis/schedule",
+            "label": "Tennis (M): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/mens-tennis/roster",
+            "label": "Tennis (M): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/bardtennis",
+            "label": "Tennis (W): X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://bardathletics.com/sports/womens-tennis/schedule",
+            "label": "Tennis (W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/womens-tennis/roster",
+            "label": "Tennis (W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/@bardxctf",
+            "label": "Track and Field: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://bardathletics.com/sports/track-and-field/schedule",
+            "label": "Track and Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/track-and-field/roster",
+            "label": "Track and Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/bardmvb",
+            "label": "Volleyball (M): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://bardathletics.com/sports/mens-volleyball/schedule",
+            "label": "Volleyball (M): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/mens-volleyball/roster",
+            "label": "Volleyball (M): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/bardwvolleyball",
+            "label": "Volleyball (W): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://bardathletics.com/sports/womens-volleyball/schedule",
+            "label": "Volleyball (W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/womens-volleyball/roster",
+            "label": "Volleyball (W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/2024/2/15/GEN_1208103329.aspx",
+            "label": "Summer Camps",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://bardathletics.com/staff-directory",
+            "label": "Athletic Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://register.ryzer.com/camp.cfm?sport=2&id=339365",
+            "label": "CLICK HERE",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "mailto: athletics@bard.edu",
+            "label": "athletics@bard.edu",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://bardathletics.com/sports/baseball/coaches/",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/bard-college-1.html",
+        "sha256": "b90ddcecdabc63618b331ba8a3e9c9d03541d35cf4db238437b178d64a249f8f",
+        "url": "https://bardathletics.com/sports/baseball/coaches/",
+        "label": "Coaches"
+      },
+      "status": 200,
+      "finalUrl": "https://bardathletics.com/sports/baseball/coaches/",
+      "checkedAtUtc": "2026-11-17T20:35:08.865Z",
+      "sourcePath": "sources/bard-college-3.html",
+      "sha256": "9b781365efc5fbe3a99725c4fddc82e766e45954ac8cc84779305af479b7db25",
+      "parsed": {
+        "title": "Baseball Coaches - Bard College Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "Bard College Athletics",
+          "Main",
+          "Sport",
+          "2026 Baseball Coaching Staff",
+          "2026 Baseball Support Staff",
+          "Footer",
+          "sponsor"
+        ],
+        "links": [
+          {
+            "url": "https://bardathletics.com/sports/baseball/coaches/",
+            "label": "Skip To Main Content",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://bardathletics.com/sports/baseball/coaches/BardBaseball",
+            "label": "Baseball: Facebook",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://x.com/BardBaseball",
+            "label": "Baseball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/bardbaseball",
+            "label": "Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://bardathletics.com/sports/baseball/schedule",
+            "label": "Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/Bardhoops",
+            "label": "Basketball (M): X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/bardhoops",
+            "label": "Basketball (M): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://bardathletics.com/sports/mens-basketball/schedule",
+            "label": "Basketball (M): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/mens-basketball/roster",
+            "label": "Basketball (M): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/BardCollegeWBB",
+            "label": "Basketball (W): X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/bardcollegewbb",
+            "label": "Basketball (W): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://bardathletics.com/sports/womens-basketball/schedule",
+            "label": "Basketball (W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/womens-basketball/roster",
+            "label": "Basketball (W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/bardxctf",
+            "label": "Cross Country: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://bardathletics.com/sports/cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/BardWLax",
+            "label": "Lacrosse: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/bardwlax",
+            "label": "Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://bardathletics.com/sports/womens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/womens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/bardmsoc",
+            "label": "Soccer (M): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://bardathletics.com/sports/mens-soccer/schedule",
+            "label": "Soccer (M): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/mens-soccer/roster",
+            "label": "Soccer (M): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/bardwsoc",
+            "label": "Soccer (W): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://bardathletics.com/sports/womens-soccer/schedule",
+            "label": "Soccer (W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/womens-soccer/roster",
+            "label": "Soccer (W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/bardswimming",
+            "label": "Swimming: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://bardathletics.com/sports/swimming/schedule",
+            "label": "Swimming: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/swimming/roster",
+            "label": "Swimming: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/bardsquash",
+            "label": "Squash (M): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://bardathletics.com/sports/mens-squash/schedule",
+            "label": "Squash (M): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/mens-squash/roster",
+            "label": "Squash (M): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/bard_w_squash",
+            "label": "Squash (W): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://bardathletics.com/sports/womens-squash/schedule",
+            "label": "Squash (W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/womens-squash/roster",
+            "label": "Squash (W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/bardtennis",
+            "label": "Tennis (M): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://bardathletics.com/sports/mens-tennis/schedule",
+            "label": "Tennis (M): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/mens-tennis/roster",
+            "label": "Tennis (M): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/bardtennis",
+            "label": "Tennis (W): X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://bardathletics.com/sports/womens-tennis/schedule",
+            "label": "Tennis (W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/womens-tennis/roster",
+            "label": "Tennis (W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/@bardxctf",
+            "label": "Track and Field: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://bardathletics.com/sports/track-and-field/schedule",
+            "label": "Track and Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/track-and-field/roster",
+            "label": "Track and Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/bardmvb",
+            "label": "Volleyball (M): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://bardathletics.com/sports/mens-volleyball/schedule",
+            "label": "Volleyball (M): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/mens-volleyball/roster",
+            "label": "Volleyball (M): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/bardwvolleyball",
+            "label": "Volleyball (W): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://bardathletics.com/sports/womens-volleyball/schedule",
+            "label": "Volleyball (W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/womens-volleyball/roster",
+            "label": "Volleyball (W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bardathletics.com/sports/2024/2/15/GEN_1208103329.aspx",
+            "label": "Summer Camps",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://bardathletics.com/staff-directory",
+            "label": "Athletic Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://bardathletics.com/sports/2014/8/26/Baseball%20Prospect%20Camp.aspx",
+            "label": "Baseball Prospect Camp",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://bardathletics.com/sports/baseball/coaches/?print=true",
+            "label": "Print",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://bardathletics.com/sports/baseball/roster/coaches/andy-salvatore/906",
+            "label": "Andy Salvatore",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "mailto:asalvatore@bard.edu",
+            "label": "asalvatore@bard.edu",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://bardathletics.com/sports/baseball/roster/coaches/graham-marshall/965",
+            "label": "Graham Marshall",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "mailto:gmarshall@bard.edu",
+            "label": "gmarshall@bard.edu",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://bardathletics.com/sports/baseball/roster/staff/mira-cohen/4",
+            "label": "Mira Cohen",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://bardathletics.com/sports/baseball/roster/staff/zach-dangor/5",
+            "label": "Zach Dangor",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://bardathletics.com/sports/baseball/roster/staff/leo-oszuscik/6",
+            "label": "Leo Oszuscik",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "mailto: athletics@bard.edu",
+            "label": "athletics@bard.edu",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          }
+        ]
+      }
+    }
+  ],
+  "status": "EVIDENCE_CAPTURED_REQUIRES_REVIEW"
+}

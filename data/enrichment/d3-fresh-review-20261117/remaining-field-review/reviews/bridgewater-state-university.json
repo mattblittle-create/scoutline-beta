@@ -1,0 +1,2257 @@
+{
+  "slug": "bridgewater-state-university",
+  "collegeId": "cmovorn1l0030qt7g2ufsvzwt",
+  "programId": "cmovorn2q0032qt7ghteb4q8m",
+  "checkedAtUtc": "2026-11-17T20:35:16.694Z",
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED",
+  "missingFields": [
+    "rosterUrl",
+    "questionnaireUrl",
+    "campsUrl",
+    "generalContactEmail"
+  ],
+  "pages": [
+    {
+      "requestedUrl": "https://www.bsubears.com/sports/bsb/index",
+      "kind": "baseball-home",
+      "parent": null,
+      "status": 200,
+      "finalUrl": "https://www.bsubears.com/sports/bsb/index",
+      "sourcePath": "../sources/bridgewater-state-university-0.html",
+      "sha256": "2ef5560088cb4e7a684e1599f6d55fb2607c0c4eae279fff00eccd80ee365be3",
+      "reusedEvidence": true,
+      "originalCheckedAtUtc": "2026-11-17T17:21:03.187Z",
+      "parsed": {
+        "title": "Bridgewater St.",
+        "headings": [
+          "Bridgewater St.",
+          "Top Stories",
+          "Players of the Week",
+          "Countdown",
+          "Team Standings",
+          "Sponsors",
+          "Stats Leaders",
+          "Social Stream",
+          "Affiliates"
+        ],
+        "links": [
+          {
+            "url": "https://www.bsubears.com/sports/bsb/2025-26/roster",
+            "label": "Roster Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/bsb/2025-26/schedule",
+            "label": "Schedule Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/bsu_baseball/",
+            "label": "Instagram Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/BSUbaseball",
+            "label": "X Baseball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/mbkb/2026-27/roster",
+            "label": "Roster Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/mbkb/2026-27/schedule",
+            "label": "Schedule Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/bsumbb/",
+            "label": "Instagram Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/Bsumbb",
+            "label": "X Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/mxc/2026-27/roster",
+            "label": "Roster Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/mxc/2026-27/schedule",
+            "label": "Schedule Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/fball/2026-27/roster",
+            "label": "Roster Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/fball/2026-27/schedule",
+            "label": "Schedule Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/bridgewaterstatefootball/",
+            "label": "Instagram Football: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/BSU_Football_",
+            "label": "X Football: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/msoc/2026-27/roster",
+            "label": "Roster Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/msoc/2026-27/schedule",
+            "label": "Schedule Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/bsu_msoccer/",
+            "label": "Instagram Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/BSU_MSoccer",
+            "label": "X Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/mswimdive/2026-27/roster",
+            "label": "Roster Swimming & Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/mswimdive/2026-27/schedule",
+            "label": "Schedule Swimming & Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/bsuswimanddive/",
+            "label": "Instagram Swimming & Diving: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/BSUSwimandDive",
+            "label": "X Swimming & Diving: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/mten/2026-27/roster",
+            "label": "Roster Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/mten/2026-27/schedule",
+            "label": "Schedule Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/bsu_tennis/",
+            "label": "Instagram Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/bsu_tennis",
+            "label": "X Tennis: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/mtrack/2025-26/roster",
+            "label": "Roster Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/mtrack/2026-27/schedule",
+            "label": "Schedule Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/bsu_xc_tf/",
+            "label": "Instagram Track & Field: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wrest/2026-27/roster",
+            "label": "Roster Wrestling: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wrest/2026-27/schedule",
+            "label": "Schedule Wrestling: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/bsuwrestling/",
+            "label": "Instagram Wrestling: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/BSUwrestle",
+            "label": "X Wrestling: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wbkb/2026-27/roster",
+            "label": "Roster Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wbkb/2026-27/schedule",
+            "label": "Schedule Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/bsuwbb/",
+            "label": "Instagram Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/BsuWbb",
+            "label": "X Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wxc/2026-27/roster",
+            "label": "Roster Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wxc/2026-27/schedule",
+            "label": "Schedule Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/equest/2026-27/roster",
+            "label": "Roster Equestrian: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/equest/2026-27/schedule",
+            "label": "Schedule Equestrian: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/bsuequestrian/",
+            "label": "Instagram Equestrian: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/bsu_equestrian",
+            "label": "X Equestrian: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/fh/2026-27/roster",
+            "label": "Roster Field Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/fh/2026-27/schedule",
+            "label": "Schedule Field Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/bsufh/",
+            "label": "Instagram Field Hockey: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/BSU_FieldHockey",
+            "label": "X Field Hockey: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wlax/2025-26/roster",
+            "label": "Roster Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wlax/2026-27/schedule",
+            "label": "Schedule Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/bsuwlax/",
+            "label": "Instagram Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/bsuwlax",
+            "label": "X Lacrosse: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wsoc/2026-27/roster",
+            "label": "Roster Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wsoc/2026-27/schedule",
+            "label": "Schedule Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/bsubearswsoc/",
+            "label": "Instagram Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/sball/2025-26/roster",
+            "label": "Roster Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/sball/2026-27/schedule",
+            "label": "Schedule Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/bsusball/",
+            "label": "Instagram Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/BSUsball",
+            "label": "X Softball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wswimdive/2026-27/roster",
+            "label": "Roster Swimming & Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wswimdive/2026-27/schedule",
+            "label": "Schedule Swimming & Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wten/2026-27/roster",
+            "label": "Roster Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wten/2026-27/schedule",
+            "label": "Schedule Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wtrack/2025-26/roster",
+            "label": "Roster Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wtrack/2026-27/schedule",
+            "label": "Schedule Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wvball/2026-27/roster",
+            "label": "Roster Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wvball/2026-27/schedule",
+            "label": "Schedule Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/bsuwvb/",
+            "label": "Instagram Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/BSUWVB",
+            "label": "X Volleyball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/secure/index",
+            "label": "Admin/Coaches Secure Front Office: Admin/Coaches Secure",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.bsubears.com/InsideAthletics/Sports_Camps/index",
+            "label": "Camps / Clinics Front Office: Camps / Clinics",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.bsubears.com/composite",
+            "label": "Composite Schedule Front Office: Composite Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/Administration/staffdirectory/index",
+            "label": "Staff Directory Front Office: Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.bsubears.com/Administration/Sports_Medicine/AT-SM_Staff",
+            "label": "AT-SM Staff Sports Medicine: AT-SM Staff",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.bsubears.com/Administration/Sports_Medicine/Info_for_coaches2",
+            "label": "Coaches Information Sports Medicine: Coaches Information",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.instagram.com/bsubears/",
+            "label": "Instagram Fan Zone: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://twitter.com/bsubears",
+            "label": "Twitter Fan Zone: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/Campus_Recreation/Intramural_Sports/index",
+            "label": "Intramural Sports Recreation: Intramural Sports",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.bsubears.com/Campus_Recreation/Club_Sports/index",
+            "label": "Club Sports Recreation: Club Sports",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.bsubears.com/Campus_Recreation/Outdoor_Adventure/General_Information",
+            "label": "Outdoor Adventure Recreation: Outdoor Adventure",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.bsubears.com/Campus_Recreation/BearBike_Rental-index",
+            "label": "Bear Bike Rentals Recreation: Bear Bike Rentals",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.bsubears.com/ProspectiveAthletes/index",
+            "label": "Prospective Student Athlete Questionnaire General Information: Prospective Student Athlete Questionnaire",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.bsubears.com/ProspectiveAthletes/Head_Coach_Contact_Info_2026.pdf",
+            "label": "Coaches Contact Sheet (Updated January 2026) General Information: Coaches Contact Sheet (Updated January 2026)",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "http://www.bridgew.edu/campus-tour-online",
+            "label": "BSU Virtual Tour General Information: BSU Virtual Tour",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "http://www.bridgew.edu/campus-tour",
+            "label": "Schedule a Campus Tour General Information: Schedule a Campus Tour",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.bsubears.com/InsideAthletics/Sports_Camps/indexNEW",
+            "label": "Camps & Clinics General Information: Camps & Clinics",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.bsubears.com/Campus_Recreation/Fitness/ThornburgFitCtr/facility_hours",
+            "label": "Facility Hours Facilities: Facility Hours",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "http://www.bsubears.com/Campus_Recreation/Fitness/ThornburgFitCtr/General_Information",
+            "label": "Dr. Mary Lou Thornburg Fitness Center Facilities: Dr. Mary Lou Thornburg Fitness Center",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://x.com/bsubears",
+            "label": "X X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/bsb/coaches/index",
+            "label": "Coaching Staff",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.bsubears.com/InsideAthletics/Sports_Camps/Baseball/Summer_2026_-_Baseball_Prospect_Clinic_8-16-26",
+            "label": "Baseball Prospect Clinic - August 16",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.bsubears.com/InsideAthletics/Sports_Camps/Baseball/Fall_2026_-_Baseball_Prospect_Clinic_9-20-26",
+            "label": "Baseball Prospect Clinic - September 20",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://www.bsubears.com/sports/bsb/2025-26/schedule",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/bridgewater-state-university-0.html",
+        "sha256": "2ef5560088cb4e7a684e1599f6d55fb2607c0c4eae279fff00eccd80ee365be3",
+        "url": "https://www.bsubears.com/sports/bsb/2025-26/schedule",
+        "label": "Schedule Baseball: Schedule"
+      },
+      "status": 200,
+      "finalUrl": "https://www.bsubears.com/sports/bsb/2025-26/schedule",
+      "checkedAtUtc": "2026-11-17T20:35:17.962Z",
+      "sourcePath": "sources/bridgewater-state-university-1.html",
+      "sha256": "7f0ce520bc47b881c24588c14c5d6b1731073c639dcc69e6bc125527fff1fa47",
+      "parsed": {
+        "title": "2026 Baseball Schedule - Bridgewater St.",
+        "headings": [
+          "2026 Baseball Schedule",
+          "Affiliates"
+        ],
+        "links": [
+          {
+            "url": "https://www.bsubears.com/sports/bsb/2025-26/schedule",
+            "label": "Skip to navigation",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/bsb/2025-26/roster",
+            "label": "Roster Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/bsu_baseball/",
+            "label": "Instagram Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/BSUbaseball",
+            "label": "X Baseball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/mbkb/2026-27/roster",
+            "label": "Roster Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/mbkb/2026-27/schedule",
+            "label": "Schedule Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/bsumbb/",
+            "label": "Instagram Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/Bsumbb",
+            "label": "X Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/mxc/2026-27/roster",
+            "label": "Roster Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/mxc/2026-27/schedule",
+            "label": "Schedule Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/fball/2026-27/roster",
+            "label": "Roster Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/fball/2026-27/schedule",
+            "label": "Schedule Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/bridgewaterstatefootball/",
+            "label": "Instagram Football: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/BSU_Football_",
+            "label": "X Football: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/msoc/2026-27/roster",
+            "label": "Roster Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/msoc/2026-27/schedule",
+            "label": "Schedule Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/bsu_msoccer/",
+            "label": "Instagram Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/BSU_MSoccer",
+            "label": "X Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/mswimdive/2026-27/roster",
+            "label": "Roster Swimming & Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/mswimdive/2026-27/schedule",
+            "label": "Schedule Swimming & Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/bsuswimanddive/",
+            "label": "Instagram Swimming & Diving: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/BSUSwimandDive",
+            "label": "X Swimming & Diving: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/mten/2026-27/roster",
+            "label": "Roster Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/mten/2026-27/schedule",
+            "label": "Schedule Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/bsu_tennis/",
+            "label": "Instagram Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/bsu_tennis",
+            "label": "X Tennis: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/mtrack/2025-26/roster",
+            "label": "Roster Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/mtrack/2026-27/schedule",
+            "label": "Schedule Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/bsu_xc_tf/",
+            "label": "Instagram Track & Field: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wrest/2026-27/roster",
+            "label": "Roster Wrestling: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wrest/2026-27/schedule",
+            "label": "Schedule Wrestling: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/bsuwrestling/",
+            "label": "Instagram Wrestling: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/BSUwrestle",
+            "label": "X Wrestling: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wbkb/2026-27/roster",
+            "label": "Roster Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wbkb/2026-27/schedule",
+            "label": "Schedule Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/bsuwbb/",
+            "label": "Instagram Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/BsuWbb",
+            "label": "X Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wxc/2026-27/roster",
+            "label": "Roster Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wxc/2026-27/schedule",
+            "label": "Schedule Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/equest/2026-27/roster",
+            "label": "Roster Equestrian: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/equest/2026-27/schedule",
+            "label": "Schedule Equestrian: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/bsuequestrian/",
+            "label": "Instagram Equestrian: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/bsu_equestrian",
+            "label": "X Equestrian: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/fh/2026-27/roster",
+            "label": "Roster Field Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/fh/2026-27/schedule",
+            "label": "Schedule Field Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/bsufh/",
+            "label": "Instagram Field Hockey: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/BSU_FieldHockey",
+            "label": "X Field Hockey: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wlax/2025-26/roster",
+            "label": "Roster Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wlax/2026-27/schedule",
+            "label": "Schedule Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/bsuwlax/",
+            "label": "Instagram Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/bsuwlax",
+            "label": "X Lacrosse: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wsoc/2026-27/roster",
+            "label": "Roster Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wsoc/2026-27/schedule",
+            "label": "Schedule Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/bsubearswsoc/",
+            "label": "Instagram Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/sball/2025-26/roster",
+            "label": "Roster Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/sball/2026-27/schedule",
+            "label": "Schedule Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/bsusball/",
+            "label": "Instagram Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/BSUsball",
+            "label": "X Softball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wswimdive/2026-27/roster",
+            "label": "Roster Swimming & Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wswimdive/2026-27/schedule",
+            "label": "Schedule Swimming & Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wten/2026-27/roster",
+            "label": "Roster Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wten/2026-27/schedule",
+            "label": "Schedule Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wtrack/2025-26/roster",
+            "label": "Roster Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wtrack/2026-27/schedule",
+            "label": "Schedule Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wvball/2026-27/roster",
+            "label": "Roster Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wvball/2026-27/schedule",
+            "label": "Schedule Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/bsuwvb/",
+            "label": "Instagram Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/BSUWVB",
+            "label": "X Volleyball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/secure/index",
+            "label": "Admin/Coaches Secure Front Office: Admin/Coaches Secure",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.bsubears.com/InsideAthletics/Sports_Camps/index",
+            "label": "Camps / Clinics Front Office: Camps / Clinics",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.bsubears.com/composite",
+            "label": "Composite Schedule Front Office: Composite Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/Administration/staffdirectory/index",
+            "label": "Staff Directory Front Office: Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.bsubears.com/Administration/Sports_Medicine/AT-SM_Staff",
+            "label": "AT-SM Staff Sports Medicine: AT-SM Staff",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.bsubears.com/Administration/Sports_Medicine/Info_for_coaches2",
+            "label": "Coaches Information Sports Medicine: Coaches Information",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.instagram.com/bsubears/",
+            "label": "Instagram Fan Zone: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://twitter.com/bsubears",
+            "label": "Twitter Fan Zone: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/Campus_Recreation/Intramural_Sports/index",
+            "label": "Intramural Sports Recreation: Intramural Sports",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.bsubears.com/Campus_Recreation/Club_Sports/index",
+            "label": "Club Sports Recreation: Club Sports",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.bsubears.com/Campus_Recreation/Outdoor_Adventure/General_Information",
+            "label": "Outdoor Adventure Recreation: Outdoor Adventure",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.bsubears.com/Campus_Recreation/BearBike_Rental-index",
+            "label": "Bear Bike Rentals Recreation: Bear Bike Rentals",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.bsubears.com/ProspectiveAthletes/index",
+            "label": "Prospective Student Athlete Questionnaire General Information: Prospective Student Athlete Questionnaire",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.bsubears.com/ProspectiveAthletes/Head_Coach_Contact_Info_2026.pdf",
+            "label": "Coaches Contact Sheet (Updated January 2026) General Information: Coaches Contact Sheet (Updated January 2026)",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "http://www.bridgew.edu/campus-tour-online",
+            "label": "BSU Virtual Tour General Information: BSU Virtual Tour",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "http://www.bridgew.edu/campus-tour",
+            "label": "Schedule a Campus Tour General Information: Schedule a Campus Tour",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.bsubears.com/InsideAthletics/Sports_Camps/indexNEW",
+            "label": "Camps & Clinics General Information: Camps & Clinics",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.bsubears.com/Campus_Recreation/Fitness/ThornburgFitCtr/facility_hours",
+            "label": "Facility Hours Facilities: Facility Hours",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "http://www.bsubears.com/Campus_Recreation/Fitness/ThornburgFitCtr/General_Information",
+            "label": "Dr. Mary Lou Thornburg Fitness Center Facilities: Dr. Mary Lou Thornburg Fitness Center",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://x.com/bsubears",
+            "label": "X X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/bsb/coaches/index",
+            "label": "Coaching Staff",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/bsb/2025-26/schedule?eid=8geper3veib4kzcn",
+            "label": "Details Event details for Baseball vs St. Joseph's (L.I.) on Sat. 7",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/bsb/2025-26/schedule?eid=sfznvo5rotf1638w",
+            "label": "Details Event details for Baseball vs St. Joseph's (L.I.) on Sat. 7",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/bsb/2025-26/schedule?eid=yfesr43i2fqtnyfa",
+            "label": "Details Event details for Baseball vs Delaware Valley on Sun. 8",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/bsb/2025-26/schedule?eid=pui7g8llo0t0xknz",
+            "label": "Details Event details for Baseball vs Immaculata on Mon. 9",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/bsb/2025-26/schedule?eid=8r9q1o2n8kdr8o41",
+            "label": "Details Event details for Baseball vs Wittenberg on Tue. 10",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/bsb/2025-26/schedule?eid=mu2ux8jb1209i9po",
+            "label": "Details Event details for Baseball vs Penn College on Wed. 11",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/bsb/2025-26/schedule?eid=v3p6zj60r0c8gkve",
+            "label": "Details Event details for Baseball vs Westminster (Pa.) on Thu. 12",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/bsb/2025-26/schedule?eid=5vjxgkdvc6x3pqre",
+            "label": "Details Event details for Baseball vs Canton on Fri. 13",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/bsb/2025-26/schedule?eid=ewwdsu94c01zwt2v",
+            "label": "Details Event details for Baseball vs Wheaton (Mass.) on Thu. 19",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/bsb/2025-26/schedule?eid=e11hz7lwekvldk0u",
+            "label": "Details Event details for Baseball at Mass. Maritime on Tue. 24",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/bsb/2025-26/schedule?eid=eil7wp5102w9a7cl",
+            "label": "Details Event details for Baseball vs Fitchburg St. on Fri. 27",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/bsb/2025-26/schedule?eid=j2ksf1cj4vhdk8bk",
+            "label": "Details Event details for Baseball vs Fitchburg St. on Sat. 28",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/bsb/2025-26/schedule?eid=x0v0577zzh3dulcv",
+            "label": "Details Event details for Baseball vs Fitchburg St. on Sat. 28",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/bsb/2025-26/schedule?eid=qrss6emc4pjmb1qa",
+            "label": "Details Event details for Baseball at Mass. Maritime on Tue. 31",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/bsb/2025-26/schedule?eid=y2diki2mif619eh6",
+            "label": "Details Event details for Baseball at Mass. Maritime on Tue. 31",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/bsb/2025-26/schedule?eid=hnr63fbnjf1m4iho",
+            "label": "Details Event details for Baseball vs Framingham St. on Fri. 3",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/bsb/2025-26/schedule?eid=dyf2gax7r5ycbrft",
+            "label": "Details Event details for Baseball at Framingham St. on Sat. 4",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/bsb/2025-26/schedule?eid=gftfq6ntayb1j297",
+            "label": "Details Event details for Baseball at Framingham St. on Sat. 4",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/bsb/2025-26/schedule?eid=ax0pj2twz4feinda",
+            "label": "Details Event details for Baseball vs Salem St. on Tue. 7",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/bsb/2025-26/schedule?eid=whgeic28clv8htd8",
+            "label": "Details Event details for Baseball vs Salem St. on Tue. 7",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/bsb/2025-26/schedule?eid=yxv2qkihejyu9tb2",
+            "label": "Details Event details for Baseball vs Curry on Wed. 8",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/bsb/2025-26/schedule?eid=r6i5fhm30xvqskow",
+            "label": "Details Event details for Baseball at Salem St. on Tue. 14",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/bsb/2025-26/schedule?eid=7b2u8l33kr9lv964",
+            "label": "Details Event details for Baseball vs MCLA on Thu. 16",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/bsb/2025-26/schedule?eid=xgkomypy6kexyw8f",
+            "label": "Details Event details for Baseball at MCLA on Sat. 18",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/bsb/2025-26/schedule?eid=esckv5vvt24yndvk",
+            "label": "Details Event details for Baseball at MCLA on Sat. 18",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/bsb/2025-26/schedule?eid=nnsnpevwx4d0j1et",
+            "label": "Details Event details for Baseball vs Worcester St. on Mon. 20",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/bsb/2025-26/schedule?eid=6oqidzcv4qimckcg",
+            "label": "Details Event details for Baseball at Westfield St. on Fri. 24",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/bsb/2025-26/schedule?eid=f7g9rcsv886tr9ua",
+            "label": "Details Event details for Baseball vs Westfield St. on Sat. 25",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/bsb/2025-26/schedule?eid=dakedj94baijnklo",
+            "label": "Details Event details for Baseball vs Westfield St. on Sat. 25",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/bsb/2025-26/schedule?eid=9ckrhl4dhjypp999",
+            "label": "Details Event details for Baseball at Worcester St. on Tue. 28",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/bsb/2025-26/schedule?eid=ovsw3t8kxh873wmn",
+            "label": "Details Event details for Baseball at Worcester St. on Tue. 28",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/bsb/2025-26/schedule?eid=xvd1o3f49xvz4l0c",
+            "label": "Details Event details for Baseball vs Wentworth on Wed. 29",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/bsb/2025-26/schedule?eid=89ufppmq3907x22p",
+            "label": "Details Event details for Baseball at Anna Maria on Fri. 1",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/bsb/2025-26/schedule?eid=372pc2kaogbi4a6m",
+            "label": "Details Event details for Baseball vs Anna Maria on Sat. 2",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/bsb/2025-26/schedule?eid=0w55knvsv01aruen",
+            "label": "Details Event details for Baseball vs Anna Maria on Sat. 2",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/bsb/2025-26/schedule?eid=pydb1beeko8nt9m0",
+            "label": "Details Event details for Baseball vs Westfield St. on Thu. 7",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/bsb/2025-26/schedule?eid=zfjkvhgdqtievrsy",
+            "label": "Details Event details for Baseball vs Salem St. on Fri. 8",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/bsb/2025-26/schedule?eid=nvoaehonlkd8mguu",
+            "label": "Details Event details for Baseball vs Worcester St. on Sat. 9",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/bsb/2025-26/schedule?eid=cpcvynqt3b1cjdx6",
+            "label": "Details Event details for Baseball at Salisbury on Fri. 15",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/bsb/2025-26/schedule?eid=rl55da0df8qebaq7",
+            "label": "Details Event details for Baseball vs Mount Union on Sat. 16",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/bsb/2025-26/schedule?print=ical",
+            "label": "Calendar",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/bsb/2025-26/schedule?print=rss",
+            "label": "RSS Feed",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://facebook.com/sharer/sharer.php?u=https://www.bsubears.com/sports/bsb/2025-26/schedule",
+            "label": "Facebook Share this page on Facebook",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/intent/tweet/?text=2026%20Baseball%20Schedule&url=https://www.bsubears.com/sports/bsb/2025-26/schedule",
+            "label": "Twitter Share this page on Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "mailto:?subject=2026 Baseball Schedule&body=https://www.bsubears.com/sports/bsb/2025-26/schedule",
+            "label": "Email Share this page via email",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://bscbears.prestosports.com/sports/bsb/2025-26/schedule?dec=printer-decorator",
+            "label": "Print Print this page Print",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://www.bsubears.com/sports/bsb/coaches/index",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/bridgewater-state-university-0.html",
+        "sha256": "2ef5560088cb4e7a684e1599f6d55fb2607c0c4eae279fff00eccd80ee365be3",
+        "url": "https://www.bsubears.com/sports/bsb/coaches/index",
+        "label": "Coaching Staff"
+      },
+      "status": 200,
+      "finalUrl": "https://www.bsubears.com/sports/bsb/coaches/index",
+      "checkedAtUtc": "2026-11-17T20:35:19.024Z",
+      "sourcePath": "sources/bridgewater-state-university-2.html",
+      "sha256": "de3939d6913328c0be4181e0cfb0b2c786479f46155ac176b0a1962c73e17dd3",
+      "parsed": {
+        "title": "Baseball - Bridgewater St.",
+        "headings": [
+          "Baseball",
+          "Affiliates"
+        ],
+        "links": [
+          {
+            "url": "https://www.bsubears.com/sports/bsb/coaches/index",
+            "label": "Skip to navigation",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/bsb/2025-26/roster",
+            "label": "Roster Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/bsb/2025-26/schedule",
+            "label": "Schedule Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/bsu_baseball/",
+            "label": "Instagram Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/BSUbaseball",
+            "label": "X Baseball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/mbkb/2026-27/roster",
+            "label": "Roster Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/mbkb/2026-27/schedule",
+            "label": "Schedule Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/bsumbb/",
+            "label": "Instagram Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/Bsumbb",
+            "label": "X Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/mxc/2026-27/roster",
+            "label": "Roster Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/mxc/2026-27/schedule",
+            "label": "Schedule Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/fball/2026-27/roster",
+            "label": "Roster Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/fball/2026-27/schedule",
+            "label": "Schedule Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/bridgewaterstatefootball/",
+            "label": "Instagram Football: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/BSU_Football_",
+            "label": "X Football: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/msoc/2026-27/roster",
+            "label": "Roster Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/msoc/2026-27/schedule",
+            "label": "Schedule Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/bsu_msoccer/",
+            "label": "Instagram Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/BSU_MSoccer",
+            "label": "X Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/mswimdive/2026-27/roster",
+            "label": "Roster Swimming & Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/mswimdive/2026-27/schedule",
+            "label": "Schedule Swimming & Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/bsuswimanddive/",
+            "label": "Instagram Swimming & Diving: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/BSUSwimandDive",
+            "label": "X Swimming & Diving: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/mten/2026-27/roster",
+            "label": "Roster Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/mten/2026-27/schedule",
+            "label": "Schedule Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/bsu_tennis/",
+            "label": "Instagram Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/bsu_tennis",
+            "label": "X Tennis: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/mtrack/2025-26/roster",
+            "label": "Roster Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/mtrack/2026-27/schedule",
+            "label": "Schedule Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/bsu_xc_tf/",
+            "label": "Instagram Track & Field: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wrest/2026-27/roster",
+            "label": "Roster Wrestling: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wrest/2026-27/schedule",
+            "label": "Schedule Wrestling: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/bsuwrestling/",
+            "label": "Instagram Wrestling: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/BSUwrestle",
+            "label": "X Wrestling: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wbkb/2026-27/roster",
+            "label": "Roster Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wbkb/2026-27/schedule",
+            "label": "Schedule Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/bsuwbb/",
+            "label": "Instagram Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/BsuWbb",
+            "label": "X Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wxc/2026-27/roster",
+            "label": "Roster Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wxc/2026-27/schedule",
+            "label": "Schedule Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/equest/2026-27/roster",
+            "label": "Roster Equestrian: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/equest/2026-27/schedule",
+            "label": "Schedule Equestrian: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/bsuequestrian/",
+            "label": "Instagram Equestrian: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/bsu_equestrian",
+            "label": "X Equestrian: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/fh/2026-27/roster",
+            "label": "Roster Field Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/fh/2026-27/schedule",
+            "label": "Schedule Field Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/bsufh/",
+            "label": "Instagram Field Hockey: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/BSU_FieldHockey",
+            "label": "X Field Hockey: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wlax/2025-26/roster",
+            "label": "Roster Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wlax/2026-27/schedule",
+            "label": "Schedule Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/bsuwlax/",
+            "label": "Instagram Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/bsuwlax",
+            "label": "X Lacrosse: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wsoc/2026-27/roster",
+            "label": "Roster Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wsoc/2026-27/schedule",
+            "label": "Schedule Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/bsubearswsoc/",
+            "label": "Instagram Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/sball/2025-26/roster",
+            "label": "Roster Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/sball/2026-27/schedule",
+            "label": "Schedule Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/bsusball/",
+            "label": "Instagram Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/BSUsball",
+            "label": "X Softball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wswimdive/2026-27/roster",
+            "label": "Roster Swimming & Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wswimdive/2026-27/schedule",
+            "label": "Schedule Swimming & Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wten/2026-27/roster",
+            "label": "Roster Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wten/2026-27/schedule",
+            "label": "Schedule Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wtrack/2025-26/roster",
+            "label": "Roster Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wtrack/2026-27/schedule",
+            "label": "Schedule Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wvball/2026-27/roster",
+            "label": "Roster Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wvball/2026-27/schedule",
+            "label": "Schedule Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/bsuwvb/",
+            "label": "Instagram Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/BSUWVB",
+            "label": "X Volleyball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/secure/index",
+            "label": "Admin/Coaches Secure Front Office: Admin/Coaches Secure",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.bsubears.com/InsideAthletics/Sports_Camps/index",
+            "label": "Camps / Clinics Front Office: Camps / Clinics",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.bsubears.com/composite",
+            "label": "Composite Schedule Front Office: Composite Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/Administration/staffdirectory/index",
+            "label": "Staff Directory Front Office: Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.bsubears.com/Administration/Sports_Medicine/AT-SM_Staff",
+            "label": "AT-SM Staff Sports Medicine: AT-SM Staff",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.bsubears.com/Administration/Sports_Medicine/Info_for_coaches2",
+            "label": "Coaches Information Sports Medicine: Coaches Information",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.instagram.com/bsubears/",
+            "label": "Instagram Fan Zone: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://twitter.com/bsubears",
+            "label": "Twitter Fan Zone: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/Campus_Recreation/Intramural_Sports/index",
+            "label": "Intramural Sports Recreation: Intramural Sports",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.bsubears.com/Campus_Recreation/Club_Sports/index",
+            "label": "Club Sports Recreation: Club Sports",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.bsubears.com/Campus_Recreation/Outdoor_Adventure/General_Information",
+            "label": "Outdoor Adventure Recreation: Outdoor Adventure",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.bsubears.com/Campus_Recreation/BearBike_Rental-index",
+            "label": "Bear Bike Rentals Recreation: Bear Bike Rentals",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.bsubears.com/ProspectiveAthletes/index",
+            "label": "Prospective Student Athlete Questionnaire General Information: Prospective Student Athlete Questionnaire",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.bsubears.com/ProspectiveAthletes/Head_Coach_Contact_Info_2026.pdf",
+            "label": "Coaches Contact Sheet (Updated January 2026) General Information: Coaches Contact Sheet (Updated January 2026)",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "http://www.bridgew.edu/campus-tour-online",
+            "label": "BSU Virtual Tour General Information: BSU Virtual Tour",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "http://www.bridgew.edu/campus-tour",
+            "label": "Schedule a Campus Tour General Information: Schedule a Campus Tour",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.bsubears.com/InsideAthletics/Sports_Camps/indexNEW",
+            "label": "Camps & Clinics General Information: Camps & Clinics",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.bsubears.com/Campus_Recreation/Fitness/ThornburgFitCtr/facility_hours",
+            "label": "Facility Hours Facilities: Facility Hours",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "http://www.bsubears.com/Campus_Recreation/Fitness/ThornburgFitCtr/General_Information",
+            "label": "Dr. Mary Lou Thornburg Fitness Center Facilities: Dr. Mary Lou Thornburg Fitness Center",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://x.com/bsubears",
+            "label": "X X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/bsb/coaches/Zackrison_Greg",
+            "label": "",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/bsb/coaches/Frazier_Randy",
+            "label": "",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/bsb/coaches/Hock_Nick",
+            "label": "",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/bsb/coaches/O-Donnell_Jonathan",
+            "label": "",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://facebook.com/sharer/sharer.php?u=https://www.bsubears.com/sports/bsb/coaches/index",
+            "label": "Facebook Share this page on Facebook",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://twitter.com/intent/tweet/?text=Baseball&url=https://www.bsubears.com/sports/bsb/coaches/index",
+            "label": "Twitter Share this page on Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "mailto:?subject=Baseball&body=https://www.bsubears.com/sports/bsb/coaches/index",
+            "label": "Email Share this page via email",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://bscbears.prestosports.com/sports/bsb/coaches/index?dec=printer-decorator",
+            "label": "Print Print this page Print",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://www.bsubears.com/InsideAthletics/Sports_Camps/Baseball/Summer_2026_-_Baseball_Prospect_Clinic_8-16-26",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/bridgewater-state-university-0.html",
+        "sha256": "2ef5560088cb4e7a684e1599f6d55fb2607c0c4eae279fff00eccd80ee365be3",
+        "url": "https://www.bsubears.com/InsideAthletics/Sports_Camps/Baseball/Summer_2026_-_Baseball_Prospect_Clinic_8-16-26",
+        "label": "Baseball Prospect Clinic - August 16"
+      },
+      "status": 200,
+      "finalUrl": "https://www.bsubears.com/InsideAthletics/Sports_Camps/Baseball/Summer_2026_-_Baseball_Prospect_Clinic_8-16-26",
+      "checkedAtUtc": "2026-11-17T20:35:20.082Z",
+      "sourcePath": "sources/bridgewater-state-university-3.html",
+      "sha256": "8a04d171947763eee86e3e8ef9a2b15815b17508eec18cc43ad3660d89eb0dd3",
+      "parsed": {
+        "title": "Baseball Prospect Clinic - August 16 - Bridgewater St.",
+        "headings": [
+          "Baseball Prospect Clinic - August 16",
+          "Affiliates"
+        ],
+        "links": [
+          {
+            "url": "https://www.bsubears.com/InsideAthletics/Sports_Camps/Baseball/Summer_2026_-_Baseball_Prospect_Clinic_8-16-26",
+            "label": "Skip to navigation",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/bsb/2025-26/roster",
+            "label": "Roster Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/bsb/2025-26/schedule",
+            "label": "Schedule Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/bsu_baseball/",
+            "label": "Instagram Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/BSUbaseball",
+            "label": "X Baseball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/mbkb/2026-27/roster",
+            "label": "Roster Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/mbkb/2026-27/schedule",
+            "label": "Schedule Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/bsumbb/",
+            "label": "Instagram Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/Bsumbb",
+            "label": "X Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/mxc/2026-27/roster",
+            "label": "Roster Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/mxc/2026-27/schedule",
+            "label": "Schedule Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/fball/2026-27/roster",
+            "label": "Roster Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/fball/2026-27/schedule",
+            "label": "Schedule Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/bridgewaterstatefootball/",
+            "label": "Instagram Football: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/BSU_Football_",
+            "label": "X Football: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/msoc/2026-27/roster",
+            "label": "Roster Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/msoc/2026-27/schedule",
+            "label": "Schedule Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/bsu_msoccer/",
+            "label": "Instagram Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/BSU_MSoccer",
+            "label": "X Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/mswimdive/2026-27/roster",
+            "label": "Roster Swimming & Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/mswimdive/2026-27/schedule",
+            "label": "Schedule Swimming & Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/bsuswimanddive/",
+            "label": "Instagram Swimming & Diving: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/BSUSwimandDive",
+            "label": "X Swimming & Diving: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/mten/2026-27/roster",
+            "label": "Roster Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/mten/2026-27/schedule",
+            "label": "Schedule Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/bsu_tennis/",
+            "label": "Instagram Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/bsu_tennis",
+            "label": "X Tennis: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/mtrack/2025-26/roster",
+            "label": "Roster Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/mtrack/2026-27/schedule",
+            "label": "Schedule Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/bsu_xc_tf/",
+            "label": "Instagram Track & Field: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wrest/2026-27/roster",
+            "label": "Roster Wrestling: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wrest/2026-27/schedule",
+            "label": "Schedule Wrestling: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/bsuwrestling/",
+            "label": "Instagram Wrestling: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/BSUwrestle",
+            "label": "X Wrestling: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wbkb/2026-27/roster",
+            "label": "Roster Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wbkb/2026-27/schedule",
+            "label": "Schedule Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/bsuwbb/",
+            "label": "Instagram Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/BsuWbb",
+            "label": "X Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wxc/2026-27/roster",
+            "label": "Roster Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wxc/2026-27/schedule",
+            "label": "Schedule Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/equest/2026-27/roster",
+            "label": "Roster Equestrian: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/equest/2026-27/schedule",
+            "label": "Schedule Equestrian: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/bsuequestrian/",
+            "label": "Instagram Equestrian: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/bsu_equestrian",
+            "label": "X Equestrian: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/fh/2026-27/roster",
+            "label": "Roster Field Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/fh/2026-27/schedule",
+            "label": "Schedule Field Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/bsufh/",
+            "label": "Instagram Field Hockey: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/BSU_FieldHockey",
+            "label": "X Field Hockey: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wlax/2025-26/roster",
+            "label": "Roster Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wlax/2026-27/schedule",
+            "label": "Schedule Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/bsuwlax/",
+            "label": "Instagram Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/bsuwlax",
+            "label": "X Lacrosse: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wsoc/2026-27/roster",
+            "label": "Roster Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wsoc/2026-27/schedule",
+            "label": "Schedule Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/bsubearswsoc/",
+            "label": "Instagram Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/sball/2025-26/roster",
+            "label": "Roster Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/sball/2026-27/schedule",
+            "label": "Schedule Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/bsusball/",
+            "label": "Instagram Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/BSUsball",
+            "label": "X Softball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wswimdive/2026-27/roster",
+            "label": "Roster Swimming & Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wswimdive/2026-27/schedule",
+            "label": "Schedule Swimming & Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wten/2026-27/roster",
+            "label": "Roster Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wten/2026-27/schedule",
+            "label": "Schedule Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wtrack/2025-26/roster",
+            "label": "Roster Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wtrack/2026-27/schedule",
+            "label": "Schedule Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wvball/2026-27/roster",
+            "label": "Roster Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/sports/wvball/2026-27/schedule",
+            "label": "Schedule Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/bsuwvb/",
+            "label": "Instagram Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/BSUWVB",
+            "label": "X Volleyball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/secure/index",
+            "label": "Admin/Coaches Secure Front Office: Admin/Coaches Secure",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.bsubears.com/InsideAthletics/Sports_Camps/index",
+            "label": "Camps / Clinics Front Office: Camps / Clinics",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.bsubears.com/composite",
+            "label": "Composite Schedule Front Office: Composite Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bsubears.com/Administration/staffdirectory/index",
+            "label": "Staff Directory Front Office: Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.bsubears.com/Administration/Sports_Medicine/AT-SM_Staff",
+            "label": "AT-SM Staff Sports Medicine: AT-SM Staff",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.bsubears.com/Administration/Sports_Medicine/Info_for_coaches2",
+            "label": "Coaches Information Sports Medicine: Coaches Information",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.instagram.com/bsubears/",
+            "label": "Instagram Fan Zone: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://twitter.com/bsubears",
+            "label": "Twitter Fan Zone: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/Campus_Recreation/Intramural_Sports/index",
+            "label": "Intramural Sports Recreation: Intramural Sports",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.bsubears.com/Campus_Recreation/Club_Sports/index",
+            "label": "Club Sports Recreation: Club Sports",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.bsubears.com/Campus_Recreation/Outdoor_Adventure/General_Information",
+            "label": "Outdoor Adventure Recreation: Outdoor Adventure",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.bsubears.com/Campus_Recreation/BearBike_Rental-index",
+            "label": "Bear Bike Rentals Recreation: Bear Bike Rentals",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.bsubears.com/ProspectiveAthletes/index",
+            "label": "Prospective Student Athlete Questionnaire General Information: Prospective Student Athlete Questionnaire",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.bsubears.com/ProspectiveAthletes/Head_Coach_Contact_Info_2026.pdf",
+            "label": "Coaches Contact Sheet (Updated January 2026) General Information: Coaches Contact Sheet (Updated January 2026)",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "http://www.bridgew.edu/campus-tour-online",
+            "label": "BSU Virtual Tour General Information: BSU Virtual Tour",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "http://www.bridgew.edu/campus-tour",
+            "label": "Schedule a Campus Tour General Information: Schedule a Campus Tour",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.bsubears.com/InsideAthletics/Sports_Camps/indexNEW",
+            "label": "Camps & Clinics General Information: Camps & Clinics",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.bsubears.com/Campus_Recreation/Fitness/ThornburgFitCtr/facility_hours",
+            "label": "Facility Hours Facilities: Facility Hours",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "http://www.bsubears.com/Campus_Recreation/Fitness/ThornburgFitCtr/General_Information",
+            "label": "Dr. Mary Lou Thornburg Fitness Center Facilities: Dr. Mary Lou Thornburg Fitness Center",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://x.com/bsubears",
+            "label": "X X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.bsubears.com/InsideAthletics/Sports_Camps",
+            "label": "Camps & Clinics",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://bsubears.com/InsideAthletics/Sports_Camps/Headlines/baseballprospect2021",
+            "label": "Baseball Sports Offered: Baseball",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.bsubears.com/InsideAthletics/Sports_Camps/Headlines/field_hockey_11-13-2022",
+            "label": "Field Hockey Sports Offered: Field Hockey",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.bsubears.com/InsideAthletics/Sports_Camps/Lacrosse/Fall_2024_-_Women-s_Lacrosse_Prospect_Day_9-29-24",
+            "label": "Lacrosse Sports Offered: Lacrosse",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.bsubears.com/InsideAthletics/Sports_Camps/Headlines/mbball_11-11_clinic",
+            "label": "Men's Basketball Sports Offered: Men's Basketball",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.bsubears.com/InsideAthletics/Sports_Camps/Soccer/msocID21",
+            "label": "Soccer Sports Offered: Soccer",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.bsubears.com/InsideAthletics/Sports_Camps/Headlines/softball2021",
+            "label": "Softball Sports Offered: Softball",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.bsubears.com/InsideAthletics/Sports_Camps/camps/pdfs/2017_CAMP_CLINIC_RESOURCE_HANDBOOK.pdf",
+            "label": "Resources",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.bsubears.com/Administration/staffdirectory/campusrecreation/Bonomo_Melissa",
+            "label": "Contact Us",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "mailto:support@dserec.com",
+            "label": "support@dserec.com",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "mailto:melissa.bonomo@bridgew.edu",
+            "label": "melissa.bonomo@bridgew.edu",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "mailto:gzackrison@bridgew.edu",
+            "label": "gzackrison@bridgew.edu",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://facebook.com/sharer/sharer.php?u=https://www.bsubears.com/InsideAthletics/Sports_Camps/Baseball/Summer_2026_-_Baseball_Prospect_Clinic_8-16-26",
+            "label": "Facebook Share this page on Facebook",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://twitter.com/intent/tweet/?text=Baseball%20Prospect%20Clinic%20-%20August%2016&url=https://www.bsubears.com/InsideAthletics/Sports_Camps/Baseball/Summer_2026_-_Baseball_Prospect_Clinic_8-16-26",
+            "label": "Twitter Share this page on Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "mailto:?subject=Baseball Prospect Clinic - August 16&body=https://www.bsubears.com/InsideAthletics/Sports_Camps/Baseball/Summer_2026_-_Baseball_Prospect_Clinic_8-16-26",
+            "label": "Email Share this page via email",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://bscbears.prestosports.com/InsideAthletics/Sports_Camps/Baseball/Summer_2026_-_Baseball_Prospect_Clinic_8-16-26?dec=printer-decorator",
+            "label": "Print Print this page Print",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          }
+        ]
+      }
+    }
+  ],
+  "status": "EVIDENCE_CAPTURED_REQUIRES_REVIEW"
+}

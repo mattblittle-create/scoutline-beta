@@ -1,0 +1,53 @@
+{
+  "slug": "southwest-mississippi-community-college",
+  "programId": "cmox23ae400c8qtfk2f3hkt7z",
+  "collegeId": "cmox23adg00c6qtfknv2ydsft",
+  "checkedAtUtc": "2026-11-18T14:43:37.382Z",
+  "sourcePath": "../njcaa-discovery-20261118/sources/southwest-mississippi-community-college-1.source",
+  "sourceSHA256": "ddd37e12be08df1c662af644e5aa76edb611e7d773963fccb4e0d1793bd5894f",
+  "sourceUrl": "https://southwestbearathletics.com/sports/baseball",
+  "socialLeads": [],
+  "recruitingLeads": [
+    {
+      "url": "https://southwestbearathletics.com/sports/2022/5/16/camps.aspx",
+      "label": "Camps",
+      "context": "",
+      "kind": "CAMP"
+    }
+  ],
+  "logoLeads": [
+    {
+      "url": "https://southwestbearathletics.com/images/logos/site/site.png?height=72&mode=crop&anchor=middlecenter",
+      "label": "Southwest Mississippi Community College Go to homepage undefined"
+    }
+  ],
+  "captures": [
+    {
+      "requestedUrl": "https://southwestbearathletics.com/sports/2022/5/16/camps.aspx",
+      "kind": "CAMP",
+      "status": 200,
+      "finalUrl": "https://southwestbearathletics.com/sports/2022/5/16/camps.aspx",
+      "sourcePath": "../njcaa-core-review-20261118/sources/southwest-mississippi-community-college-4.source",
+      "sha256": "93b3e68769e8fdcc59fae41d5c786e5a4d9083611908d838baa0983279effa1d",
+      "reusedEvidence": true
+    },
+    {
+      "requestedUrl": "https://southwestbearathletics.com/images/logos/site/site.png?height=72&mode=crop&anchor=middlecenter",
+      "kind": "LOGO_ASSET",
+      "status": 200,
+      "finalUrl": "https://images.sidearmdev.com/resize?url=https%3a%2f%2fdxbhsrqyrr690.cloudfront.net%2fsidearm.nextgen.sites%2fswms.sidearmsports.com%2fimages%2flogos%2fsite%2fsite.png&height=72&type=webp&gravity=centre",
+      "contentType": "image/webp",
+      "sourcePath": "sources/southwest-mississippi-community-college-1.source",
+      "sha256": "76d8ff59e9b3caea15a6778272b66b8fc72239b1021105017d3a4799895740c3",
+      "decoded": {
+        "format": "webp",
+        "width": 72,
+        "height": 72
+      },
+      "assetDecoded": true
+    }
+  ],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED"
+}

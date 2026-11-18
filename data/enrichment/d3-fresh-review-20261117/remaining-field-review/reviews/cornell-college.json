@@ -1,0 +1,1810 @@
+{
+  "slug": "cornell-college",
+  "collegeId": "cmovorohm005rqt7gax2yf7dk",
+  "programId": "cmovoroib005tqt7gx5vdr5db",
+  "checkedAtUtc": "2026-11-17T20:35:35.206Z",
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED",
+  "missingFields": [
+    "questionnaireUrl",
+    "campsUrl",
+    "generalContactEmail"
+  ],
+  "pages": [
+    {
+      "requestedUrl": "https://cornellrams.com/sports/baseball",
+      "kind": "baseball-home",
+      "parent": null,
+      "status": 200,
+      "finalUrl": "https://cornellrams.com/sports/baseball",
+      "checkedAtUtc": "2026-11-17T20:35:35.642Z",
+      "sourcePath": "sources/cornell-college-0.html",
+      "sha256": "6fc361f3fb56182a0bcc19286dd088b5edbb3ea7434d6c9be58b98ff141512cc",
+      "parsed": {
+        "title": "Baseball - Cornell College Sidearm Sports, opens a new window",
+        "headings": [
+          "Cornell College",
+          "Main",
+          "Sport",
+          "Countdown",
+          "Top Stories",
+          "Schedule",
+          "Slideshow",
+          "Slideshow Count",
+          "Awards",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://x.com/CornellRamsBB",
+            "label": "Baseball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/cornellramsbb",
+            "label": "Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/baseball/schedule",
+            "label": "Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/CornellRamsMBB",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/cornellramsmbb",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/mens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/mens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/CornellRamsXCTF",
+            "label": "Cross Country: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/cornellramsxctf",
+            "label": "Cross Country: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/mens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/mens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/CornellRamsFB",
+            "label": "Football: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/cornellramsfootball",
+            "label": "Football: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/football/schedule",
+            "label": "Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/football/roster",
+            "label": "Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/CornellRamsMLAX",
+            "label": "Lacrosse: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/cornellcollegemlax",
+            "label": "Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/mens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/mens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/CornellRamsMSOC",
+            "label": "Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/cornellramsmsoc",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/mens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/mens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/CornellRamsTEN",
+            "label": "Tennis: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/cornellramsten",
+            "label": "Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/mens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/mens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/mens-track-and-field/schedule",
+            "label": "Track & Field : Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/mens-track-and-field/roster",
+            "label": "Track & Field : Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/CornellRamsWR",
+            "label": "Wrestling: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/cornellramswr",
+            "label": "Wrestling: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/wrestling/schedule",
+            "label": "Wrestling: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/wrestling/roster",
+            "label": "Wrestling: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/CornellRamsWBB",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/cornellramswbb",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/https://x.com/cornellramswffb",
+            "label": "Flag Football: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/https://www.instagram.com/cornellramswflagfb/",
+            "label": "Flag Football: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-flag-football/schedule",
+            "label": "Flag Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-flag-football/roster",
+            "label": "Flag Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/Cornellramswlax",
+            "label": "Lacrosse: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/cornellramswlax",
+            "label": "Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/CornellRamsWSOC",
+            "label": "Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/cornellcollegewomenssoccer",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/CornellRamsSB",
+            "label": "Softball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/cornellramsb",
+            "label": "Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-track-and-field/schedule",
+            "label": "Track & Field : Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-track-and-field/roster",
+            "label": "Track & Field : Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/CornellRamsVB",
+            "label": "Volleyball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/cornellramsvb",
+            "label": "Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/CornellRamsWWR",
+            "label": "Wrestling: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/cornellramswwr",
+            "label": "Wrestling: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-wrestling/schedule",
+            "label": "Wrestling: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-wrestling/roster",
+            "label": "Wrestling: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cornellesports",
+            "label": "Esports: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/esports/schedule",
+            "label": "Esports: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/esports/roster",
+            "label": "Esports: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cornellcollegecheer",
+            "label": "Cheer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/cheerleading/schedule",
+            "label": "Cheer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/cheerleading/roster",
+            "label": "Cheer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/dance-team/schedule",
+            "label": "Dance: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/dance-team/roster",
+            "label": "Dance: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/staff-directory?path=staff",
+            "label": "Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cornellcollegesportscamps.com/",
+            "label": "Camps and Clinics",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://cornellrams.com/sports/2021/8/4/campus-recreation.aspx",
+            "label": "Campus Recreation",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://cornellrams.com/sports/baseball/coaches",
+            "label": "Coaches",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://cornellrams.com/sports/reservebaseball/schedule/2027",
+            "label": "JV Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://cornellrams.com/sports/baseball/schedule",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "sources/cornell-college-0.html",
+        "sha256": "6fc361f3fb56182a0bcc19286dd088b5edbb3ea7434d6c9be58b98ff141512cc",
+        "url": "https://cornellrams.com/sports/baseball/schedule",
+        "label": "Baseball: Schedule"
+      },
+      "status": 200,
+      "finalUrl": "https://cornellrams.com/sports/baseball/schedule",
+      "checkedAtUtc": "2026-11-17T20:35:35.955Z",
+      "sourcePath": "sources/cornell-college-1.html",
+      "sha256": "ea19206393801ec5d52af40cf1b28332281e4364f79ddfd0913a7807e3092dd9",
+      "parsed": {
+        "title": "2027 Baseball Schedule - Cornell College Sidearm Sports, opens a new window",
+        "headings": [
+          "Cornell College",
+          "Main",
+          "Sport",
+          "2027 Baseball Schedule",
+          "Season Record",
+          "Scheduled Games",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://cornellrams.com/sports/baseball/schedule",
+            "label": "Skip To Main Content",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/CornellRamsBB",
+            "label": "Baseball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/cornellramsbb",
+            "label": "Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/CornellRamsMBB",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/cornellramsmbb",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/mens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/mens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/CornellRamsXCTF",
+            "label": "Cross Country: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/cornellramsxctf",
+            "label": "Cross Country: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/mens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/mens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/CornellRamsFB",
+            "label": "Football: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/cornellramsfootball",
+            "label": "Football: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/football/schedule",
+            "label": "Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/football/roster",
+            "label": "Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/CornellRamsMLAX",
+            "label": "Lacrosse: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/cornellcollegemlax",
+            "label": "Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/mens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/mens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/CornellRamsMSOC",
+            "label": "Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/cornellramsmsoc",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/mens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/mens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/CornellRamsTEN",
+            "label": "Tennis: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/cornellramsten",
+            "label": "Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/mens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/mens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/mens-track-and-field/schedule",
+            "label": "Track & Field : Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/mens-track-and-field/roster",
+            "label": "Track & Field : Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/CornellRamsWR",
+            "label": "Wrestling: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/cornellramswr",
+            "label": "Wrestling: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/wrestling/schedule",
+            "label": "Wrestling: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/wrestling/roster",
+            "label": "Wrestling: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/CornellRamsWBB",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/cornellramswbb",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/https://x.com/cornellramswffb",
+            "label": "Flag Football: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/https://www.instagram.com/cornellramswflagfb/",
+            "label": "Flag Football: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-flag-football/schedule",
+            "label": "Flag Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-flag-football/roster",
+            "label": "Flag Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/Cornellramswlax",
+            "label": "Lacrosse: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/cornellramswlax",
+            "label": "Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/CornellRamsWSOC",
+            "label": "Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/cornellcollegewomenssoccer",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/CornellRamsSB",
+            "label": "Softball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/cornellramsb",
+            "label": "Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-track-and-field/schedule",
+            "label": "Track & Field : Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-track-and-field/roster",
+            "label": "Track & Field : Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/CornellRamsVB",
+            "label": "Volleyball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/cornellramsvb",
+            "label": "Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/CornellRamsWWR",
+            "label": "Wrestling: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/cornellramswwr",
+            "label": "Wrestling: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-wrestling/schedule",
+            "label": "Wrestling: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-wrestling/roster",
+            "label": "Wrestling: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cornellesports",
+            "label": "Esports: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/esports/schedule",
+            "label": "Esports: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/esports/roster",
+            "label": "Esports: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cornellcollegecheer",
+            "label": "Cheer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/cheerleading/schedule",
+            "label": "Cheer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/cheerleading/roster",
+            "label": "Cheer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/dance-team/schedule",
+            "label": "Dance: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/dance-team/roster",
+            "label": "Dance: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/staff-directory?path=staff",
+            "label": "Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cornellcollegesportscamps.com/",
+            "label": "Camps and Clinics",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://cornellrams.com/sports/2021/8/4/campus-recreation.aspx",
+            "label": "Campus Recreation",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://cornellrams.com/sports/baseball/coaches",
+            "label": "Coaches",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://cornellrams.com/sports/reservebaseball/schedule/2027",
+            "label": "JV Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/baseball/schedule?print=true",
+            "label": "Print Print this page",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/baseball/schedule/2027?grid=true",
+            "label": "Grid Switch to Grid View",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/services/schedule_txt.ashx?schedule=373",
+            "label": "Text Text Format For Braille (New Tab)",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://cornellrams.com/sports/baseball/coaches",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "sources/cornell-college-0.html",
+        "sha256": "6fc361f3fb56182a0bcc19286dd088b5edbb3ea7434d6c9be58b98ff141512cc",
+        "url": "https://cornellrams.com/sports/baseball/coaches",
+        "label": "Coaches"
+      },
+      "status": 200,
+      "finalUrl": "https://cornellrams.com/sports/baseball/coaches",
+      "checkedAtUtc": "2026-11-17T20:35:36.815Z",
+      "sourcePath": "sources/cornell-college-2.html",
+      "sha256": "719f7e73dbee43f0a88ede109ca654e572ac05e6821d8513386591301ade2f42",
+      "parsed": {
+        "title": "Baseball Coaches - Cornell College Sidearm Sports, opens a new window",
+        "headings": [
+          "Cornell College",
+          "Main",
+          "Sport",
+          "2027 Baseball Coaching Staff",
+          "2027 Baseball Support Staff",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://cornellrams.com/sports/baseball/coaches",
+            "label": "Skip To Main Content",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://x.com/CornellRamsBB",
+            "label": "Baseball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/cornellramsbb",
+            "label": "Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/baseball/schedule",
+            "label": "Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/CornellRamsMBB",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/cornellramsmbb",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/mens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/mens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/CornellRamsXCTF",
+            "label": "Cross Country: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/cornellramsxctf",
+            "label": "Cross Country: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/mens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/mens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/CornellRamsFB",
+            "label": "Football: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/cornellramsfootball",
+            "label": "Football: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/football/schedule",
+            "label": "Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/football/roster",
+            "label": "Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/CornellRamsMLAX",
+            "label": "Lacrosse: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/cornellcollegemlax",
+            "label": "Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/mens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/mens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/CornellRamsMSOC",
+            "label": "Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/cornellramsmsoc",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/mens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/mens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/CornellRamsTEN",
+            "label": "Tennis: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/cornellramsten",
+            "label": "Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/mens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/mens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/mens-track-and-field/schedule",
+            "label": "Track & Field : Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/mens-track-and-field/roster",
+            "label": "Track & Field : Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/CornellRamsWR",
+            "label": "Wrestling: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/cornellramswr",
+            "label": "Wrestling: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/wrestling/schedule",
+            "label": "Wrestling: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/wrestling/roster",
+            "label": "Wrestling: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/CornellRamsWBB",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/cornellramswbb",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/https://x.com/cornellramswffb",
+            "label": "Flag Football: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/https://www.instagram.com/cornellramswflagfb/",
+            "label": "Flag Football: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-flag-football/schedule",
+            "label": "Flag Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-flag-football/roster",
+            "label": "Flag Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/Cornellramswlax",
+            "label": "Lacrosse: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/cornellramswlax",
+            "label": "Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/CornellRamsWSOC",
+            "label": "Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/cornellcollegewomenssoccer",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/CornellRamsSB",
+            "label": "Softball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/cornellramsb",
+            "label": "Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-track-and-field/schedule",
+            "label": "Track & Field : Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-track-and-field/roster",
+            "label": "Track & Field : Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/CornellRamsVB",
+            "label": "Volleyball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/cornellramsvb",
+            "label": "Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/CornellRamsWWR",
+            "label": "Wrestling: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/cornellramswwr",
+            "label": "Wrestling: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-wrestling/schedule",
+            "label": "Wrestling: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-wrestling/roster",
+            "label": "Wrestling: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cornellesports",
+            "label": "Esports: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/esports/schedule",
+            "label": "Esports: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/esports/roster",
+            "label": "Esports: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cornellcollegecheer",
+            "label": "Cheer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/cheerleading/schedule",
+            "label": "Cheer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/cheerleading/roster",
+            "label": "Cheer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/dance-team/schedule",
+            "label": "Dance: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/dance-team/roster",
+            "label": "Dance: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/staff-directory?path=staff",
+            "label": "Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cornellcollegesportscamps.com/",
+            "label": "Camps and Clinics",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://cornellrams.com/sports/2021/8/4/campus-recreation.aspx",
+            "label": "Campus Recreation",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://cornellrams.com/sports/reservebaseball/schedule/2027",
+            "label": "JV Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/baseball/coaches?print=true",
+            "label": "Print",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://cornellrams.com/sports/baseball/roster/coaches/colin-konicek/1077",
+            "label": "Colin Konicek",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "mailto:ckonicek@cornellcollege.edu",
+            "label": "ckonicek@cornellcollege.edu",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://cornellrams.com/sports/baseball/roster/coaches/evan-bender/1111",
+            "label": "Evan Bender",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "mailto:ebender@cornellcollege.edu",
+            "label": "ebender@cornellcollege.edu",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://cornellrams.com/sports/baseball/roster/staff/dj-soper/223",
+            "label": "DJ Soper",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://cornellrams.com/sports/baseball/roster/staff/danny-deaver/224",
+            "label": "Danny Deaver",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://cornellrams.com/sports/reservebaseball/schedule/2027",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "sources/cornell-college-0.html",
+        "sha256": "6fc361f3fb56182a0bcc19286dd088b5edbb3ea7434d6c9be58b98ff141512cc",
+        "url": "https://cornellrams.com/sports/reservebaseball/schedule/2027",
+        "label": "JV Schedule"
+      },
+      "status": 200,
+      "finalUrl": "https://cornellrams.com/sports/reservebaseball/schedule/2027",
+      "checkedAtUtc": "2026-11-17T20:35:37.969Z",
+      "sourcePath": "sources/cornell-college-3.html",
+      "sha256": "d577fa248db1b8cc86ddba0afda0c4a157fce7e326c9e35d9008fa44832a6f72",
+      "parsed": {
+        "title": "2027 Reserve Baseball Schedule - Cornell College Sidearm Sports, opens a new window",
+        "headings": [
+          "Cornell College",
+          "Main",
+          "Sport",
+          "2027 Reserve Baseball Schedule",
+          "Season Record",
+          "Scheduled Games",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://cornellrams.com/sports/reservebaseball/schedule/2027",
+            "label": "Skip To Main Content",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/CornellRamsBB",
+            "label": "Baseball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/cornellramsbb",
+            "label": "Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/baseball/schedule",
+            "label": "Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/CornellRamsMBB",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/cornellramsmbb",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/mens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/mens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/CornellRamsXCTF",
+            "label": "Cross Country: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/cornellramsxctf",
+            "label": "Cross Country: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/mens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/mens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/CornellRamsFB",
+            "label": "Football: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/cornellramsfootball",
+            "label": "Football: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/football/schedule",
+            "label": "Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/football/roster",
+            "label": "Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/CornellRamsMLAX",
+            "label": "Lacrosse: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/cornellcollegemlax",
+            "label": "Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/mens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/mens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/CornellRamsMSOC",
+            "label": "Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/cornellramsmsoc",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/mens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/mens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/CornellRamsTEN",
+            "label": "Tennis: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/cornellramsten",
+            "label": "Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/mens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/mens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/mens-track-and-field/schedule",
+            "label": "Track & Field : Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/mens-track-and-field/roster",
+            "label": "Track & Field : Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/CornellRamsWR",
+            "label": "Wrestling: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/cornellramswr",
+            "label": "Wrestling: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/wrestling/schedule",
+            "label": "Wrestling: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/wrestling/roster",
+            "label": "Wrestling: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/CornellRamsWBB",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/cornellramswbb",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/https://x.com/cornellramswffb",
+            "label": "Flag Football: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/https://www.instagram.com/cornellramswflagfb/",
+            "label": "Flag Football: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-flag-football/schedule",
+            "label": "Flag Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-flag-football/roster",
+            "label": "Flag Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/Cornellramswlax",
+            "label": "Lacrosse: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/cornellramswlax",
+            "label": "Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/CornellRamsWSOC",
+            "label": "Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/cornellcollegewomenssoccer",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/CornellRamsSB",
+            "label": "Softball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/cornellramsb",
+            "label": "Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-track-and-field/schedule",
+            "label": "Track & Field : Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-track-and-field/roster",
+            "label": "Track & Field : Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/CornellRamsVB",
+            "label": "Volleyball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/cornellramsvb",
+            "label": "Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/CornellRamsWWR",
+            "label": "Wrestling: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/cornellramswwr",
+            "label": "Wrestling: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-wrestling/schedule",
+            "label": "Wrestling: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/womens-wrestling/roster",
+            "label": "Wrestling: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cornellesports",
+            "label": "Esports: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/esports/schedule",
+            "label": "Esports: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/esports/roster",
+            "label": "Esports: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cornellcollegecheer",
+            "label": "Cheer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://cornellrams.com/sports/cheerleading/schedule",
+            "label": "Cheer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/cheerleading/roster",
+            "label": "Cheer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/dance-team/schedule",
+            "label": "Dance: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/dance-team/roster",
+            "label": "Dance: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/staff-directory?path=staff",
+            "label": "Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cornellcollegesportscamps.com/",
+            "label": "Camps and Clinics",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://cornellrams.com/sports/2021/8/4/campus-recreation.aspx",
+            "label": "Campus Recreation",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://cornellrams.com/sports/reservebaseball/schedule/2027?print=true",
+            "label": "Print Print this page",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/sports/reserve-baseball/schedule/2027?grid=true",
+            "label": "Grid Switch to Grid View",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://cornellrams.com/services/schedule_txt.ashx?schedule=378",
+            "label": "Text Text Format For Braille (New Tab)",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          }
+        ]
+      }
+    }
+  ],
+  "status": "EVIDENCE_CAPTURED_REQUIRES_REVIEW"
+}

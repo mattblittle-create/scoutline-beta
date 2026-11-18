@@ -1,0 +1,41 @@
+{
+  "slug": "galveston-college",
+  "collegeId": "cmox1ggu50043qtsgg2ijv30h",
+  "programId": "cmox1ggut0045qtsgothuzqft",
+  "name": "Galveston College",
+  "state": "TX",
+  "storedDivision": "NJCAA_D1",
+  "pages": [
+    {
+      "requestedUrl": "https://njcaastats.prestosports.com/sports/bsb/2024-25/div1/teams/galvestoncollege",
+      "kind": "STORED_URL_UNVERIFIED",
+      "checkedAtUtc": "2026-11-18T14:16:01.399Z",
+      "status": "HELD_ACCESS_NOT_RETRIED",
+      "finalUrl": "https://njcaastats.prestosports.com/sports/bsb/2024-25/div1/teams/galvestoncollege"
+    },
+    {
+      "requestedUrl": "https://gc.edu/athletics/whitecaps-baseball/",
+      "kind": "DISCOVERY_LEAD_NOT_CAMPUS_VERIFIED",
+      "checkedAtUtc": "2026-11-18T14:16:01.401Z",
+      "status": 404,
+      "finalUrl": "https://gc.edu/athletics/whitecaps-baseball/",
+      "contentType": "text/html; charset=UTF-8",
+      "sourcePath": "sources/galveston-college-1.source",
+      "sha256": "542ea3d63ab39799acbc25ba5bc3c14775e5d342ea4df272071eedcad0a5dbd0"
+    }
+  ],
+  "thirdPartyExactNameLeads": [
+    {
+      "url": "https://gc.edu/athletics/whitecaps-baseball/",
+      "label": "Galveston College",
+      "parentSourcePath": "sources/directory-0.source",
+      "parentSHA256": "63f1c531b007d2922e4db3aa2ba596ee54e397dbafd287df69b95213a011a404",
+      "parentUrl": "https://www.thebaseballobserver.com/njcaa-di-baseball"
+    }
+  ],
+  "currentMembershipVerified": false,
+  "campusIdentityVerified": false,
+  "importApproval": "NOT_GRANTED",
+  "databaseAccess": false,
+  "databaseWrites": 0
+}

@@ -1,0 +1,821 @@
+{
+  "slug": "emerson-college",
+  "collegeId": "cmw26egf3000cqtwg806gir5q",
+  "programId": "cmw26egf4000dqtwgvtigvgan",
+  "checkedAtUtc": "2026-11-17T20:35:51.641Z",
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED",
+  "missingFields": [
+    "rosterUrl",
+    "scheduleUrl",
+    "questionnaireUrl",
+    "campsUrl",
+    "generalContactEmail",
+    "programXUrl",
+    "programInstagramUrl"
+  ],
+  "pages": [
+    {
+      "requestedUrl": "https://emersonlions.com/sports/baseball",
+      "kind": "baseball-home",
+      "parent": null,
+      "status": 200,
+      "finalUrl": "https://emersonlions.com/sports/baseball",
+      "sourcePath": "../sources/emerson-college-1.html",
+      "sha256": "a85490a35e3f4b3d6f681e49007d548263e6b355b4e8d3e0df81e133e0bf5830",
+      "reusedEvidence": true,
+      "originalCheckedAtUtc": "2026-11-17T17:29:46.383Z",
+      "parsed": {
+        "title": "Baseball - Emerson College Sidearm Sports, opens a new window",
+        "headings": [
+          "Emerson College",
+          "Main",
+          "Sport",
+          "Stories",
+          "Videos",
+          "Instagram",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://emersonlions.com/sports/baseball/schedule",
+            "label": "Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/mens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/mens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/mens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/mens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/mens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/mens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/mens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/mens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/mens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/mens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/mens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/mens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/womens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/womens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/womens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/womens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/womens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/womens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/womens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/womens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/womens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/womens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/womens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/womens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/staff-directory",
+            "label": "Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://emersonlions.com/sports/2023/6/20/athletics-opengym-copy.aspx",
+            "label": "Open Gym Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/baseball/coaches",
+            "label": "Coaches",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://emersonlions.com/sports/baseball/schedule",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/emerson-college-1.html",
+        "sha256": "a85490a35e3f4b3d6f681e49007d548263e6b355b4e8d3e0df81e133e0bf5830",
+        "url": "https://emersonlions.com/sports/baseball/schedule",
+        "label": "Baseball: Schedule"
+      },
+      "status": 200,
+      "finalUrl": "https://emersonlions.com/sports/baseball/schedule",
+      "checkedAtUtc": "2026-11-17T20:35:52.117Z",
+      "sourcePath": "sources/emerson-college-1.html",
+      "sha256": "a002d6852641c25a117157af77b7f0d6cd1564f320f223aec593113874d31f09",
+      "parsed": {
+        "title": "2026 Baseball Schedule - Emerson College Sidearm Sports, opens a new window",
+        "headings": [
+          "Emerson College",
+          "Main",
+          "Sport",
+          "2026 Baseball Schedule",
+          "Season Record",
+          "Scheduled Games",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://emersonlions.com/sports/baseball/schedule",
+            "label": "Skip To Main Content",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/mens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/mens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/mens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/mens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/mens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/mens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/mens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/mens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/mens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/mens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/mens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/mens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/womens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/womens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/womens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/womens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/womens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/womens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/womens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/womens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/womens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/womens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/womens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/womens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/staff-directory",
+            "label": "Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://emersonlions.com/sports/2023/6/20/athletics-opengym-copy.aspx",
+            "label": "Open Gym Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/baseball/coaches",
+            "label": "Coaches",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://emersonlions.com/sports/baseball/schedule?print=true",
+            "label": "Print Print this page",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/baseball/schedule/2026?grid=true",
+            "label": "Grid Switch to Grid View",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/services/schedule_txt.ashx?schedule=210",
+            "label": "Text Text Format For Braille (New Tab)",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://emersonlions.com/sports/baseball/coaches",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/emerson-college-1.html",
+        "sha256": "a85490a35e3f4b3d6f681e49007d548263e6b355b4e8d3e0df81e133e0bf5830",
+        "url": "https://emersonlions.com/sports/baseball/coaches",
+        "label": "Coaches"
+      },
+      "status": 200,
+      "finalUrl": "https://emersonlions.com/sports/baseball/coaches",
+      "checkedAtUtc": "2026-11-17T20:35:53.122Z",
+      "sourcePath": "sources/emerson-college-2.html",
+      "sha256": "73a00ece6cb8591fb4a83eb6221a4362f814f67117a802058be059ab63c8bed1",
+      "parsed": {
+        "title": "Baseball Coaches - Emerson College Sidearm Sports, opens a new window",
+        "headings": [
+          "Emerson College",
+          "Main",
+          "Sport",
+          "2026 Baseball Coaching Staff",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://emersonlions.com/sports/baseball/coaches",
+            "label": "Skip To Main Content",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://emersonlions.com/sports/baseball/schedule",
+            "label": "Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/mens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/mens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/mens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/mens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/mens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/mens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/mens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/mens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/mens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/mens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/mens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/mens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/womens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/womens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/womens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/womens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/womens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/womens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/womens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/womens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/womens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/womens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/womens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/womens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/staff-directory",
+            "label": "Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://emersonlions.com/sports/2023/6/20/athletics-opengym-copy.aspx",
+            "label": "Open Gym Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/baseball/coaches?print=true",
+            "label": "Print",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://emersonlions.com/sports/baseball/roster/coaches/billy-uberti/281",
+            "label": "Billy Uberti",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "mailto:billy.uberti@emerson.edu",
+            "label": "billy.uberti@emerson.edu",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://emersonlions.com/sports/baseball/roster/coaches/matt-bischof/289",
+            "label": "Matt Bischof",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "mailto:matthew.bischof@emerson.edu",
+            "label": "matthew.bischof@emerson.edu",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://emersonlions.com/sports/baseball/roster/coaches/jeremy-blackwood/283",
+            "label": "Jeremy Blackwood",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "mailto:jeremy.blackwood@emerson.edu",
+            "label": "jeremy.blackwood@emerson.edu",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://emersonlions.com/sports/mens-basketball/schedule",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/emerson-college-1.html",
+        "sha256": "a85490a35e3f4b3d6f681e49007d548263e6b355b4e8d3e0df81e133e0bf5830",
+        "url": "https://emersonlions.com/sports/mens-basketball/schedule",
+        "label": "Basketball: Schedule"
+      },
+      "status": 200,
+      "finalUrl": "https://emersonlions.com/sports/mens-basketball/schedule",
+      "checkedAtUtc": "2026-11-17T20:35:54.037Z",
+      "sourcePath": "sources/emerson-college-3.html",
+      "sha256": "38931687a52edd5203cfe5d04a4f267fc5baddddd4fc38bb6ee5b909035bed29",
+      "parsed": {
+        "title": "2026-27 Men's Basketball Schedule - Emerson College Sidearm Sports, opens a new window",
+        "headings": [
+          "Emerson College",
+          "Main",
+          "Sport",
+          "2026-27 Men's Basketball Schedule",
+          "Season Record",
+          "Scheduled Games",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://emersonlions.com/sports/mens-basketball/schedule",
+            "label": "Skip To Main Content",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/baseball/schedule",
+            "label": "Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/mens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/mens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/mens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/mens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/mens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/mens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/mens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/mens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/mens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/mens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/mens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/womens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/womens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/womens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/womens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/womens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/womens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/womens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/womens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/womens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/womens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/womens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/womens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/staff-directory",
+            "label": "Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://emersonlions.com/sports/2023/6/20/athletics-opengym-copy.aspx",
+            "label": "Open Gym Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/documents/2023/7/18/Recruit_Questionnaire.pdf",
+            "label": "Recruit Questionnaire",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://emersonlions.com/sports/mens-basketball/coaches",
+            "label": "Coaches",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://emersonlions.com/sports/mens-basketball/schedule?print=true",
+            "label": "Print Print this page",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/sports/mens-basketball/schedule/2026-27?grid=true",
+            "label": "Grid Switch to Grid View",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://emersonlions.com/services/schedule_txt.ashx?schedule=220",
+            "label": "Text Text Format For Braille (New Tab)",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          }
+        ]
+      }
+    }
+  ],
+  "status": "EVIDENCE_CAPTURED_REQUIRES_REVIEW"
+}

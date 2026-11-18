@@ -1,0 +1,49 @@
+{
+  "slug": "rockingham-community-college",
+  "name": "Rockingham Community College",
+  "collegeId": "cmox2o38t005oqtbk7kvql8mr",
+  "programId": "cmox2o39j005qqtbkv783bg12",
+  "storedState": "NC",
+  "storedDivision": "NJCAA_D3",
+  "directoryMatch": {
+    "unitid": "199485",
+    "name": "Rockingham Community College",
+    "aliases": [
+      "RCC"
+    ],
+    "state": "NC",
+    "city": "Wentworth",
+    "host": "rockinghamcc.edu",
+    "decision": "UNIQUE_EXACT_NAME_OR_ALIAS_AND_STATE_DISCOVERY_LEAD_ONLY"
+  },
+  "directoryMatchStatus": "DISCOVERY_LEAD_NOT_CURRENT_CAMPUS_VERIFIED",
+  "needsHeadCoach": true,
+  "needs2027Roster": true,
+  "newPagesAttempted": 1,
+  "pages": [
+    {
+      "requestedUrl": "https://rockinghamcc.edu/",
+      "checkedAtUtc": "2026-11-18T16:22:02.018Z",
+      "finalUrl": "https://rockinghamcc.edu/",
+      "status": 403,
+      "contentType": "text/html; charset=UTF-8",
+      "sha256": "173ff65af9044bd4354e7ffa9f70e73de4977ab39bf86fee46a31b6395c5576e",
+      "sourcePath": "sources/13778b1068d295bbc212569fc3ddd4122d3adf1c1eacd11ee556922a75026d29.source",
+      "kind": "INSTITUTIONAL_DIRECTORY_HOST_LEAD",
+      "parent": {
+        "sourcePath": "../../geography/us-college-locations-ipeds2024.json",
+        "unitid": "199485",
+        "publishedName": "Rockingham Community College",
+        "state": "NC",
+        "city": "Wentworth"
+      }
+    }
+  ],
+  "unfetchedPublishedLeads": [],
+  "publishedLeads": [],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "campusIdentityReviewRequired": true,
+  "currentMembershipVerified": false,
+  "importApproval": "NOT_GRANTED"
+}

@@ -1,0 +1,1039 @@
+{
+  "slug": "austin-college",
+  "collegeId": "cmovorm97001iqt7gu3uem04g",
+  "programId": "cmovorm9x001kqt7g27pa7syb",
+  "checkedAtUtc": "2026-11-17T20:35:00.562Z",
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED",
+  "missingFields": [
+    "rosterUrl",
+    "scheduleUrl",
+    "questionnaireUrl",
+    "campsUrl",
+    "generalContactEmail",
+    "programXUrl",
+    "programInstagramUrl"
+  ],
+  "pages": [
+    {
+      "requestedUrl": "https://www.acroos.com/sports/bsb/index",
+      "kind": "baseball-home",
+      "parent": null,
+      "status": 200,
+      "finalUrl": "https://www.acroos.com/sports/bsb/index",
+      "sourcePath": "../sources/austin-college-0.html",
+      "sha256": "67eebe603cebd1edfd832070acc3e4cbf882c265f7b2d4e3aafb00027a80bfa2",
+      "reusedEvidence": true,
+      "originalCheckedAtUtc": "2026-11-17T17:20:34.163Z",
+      "parsed": {
+        "title": "Baseball - Austin College Kangaroos",
+        "headings": [
+          "Main Navigation Menu",
+          "Baseball",
+          "Top Stories Desktop",
+          "Top Stories",
+          "Schedule Tabs",
+          "Countdown",
+          "Recent news",
+          "Featured Athletes",
+          "#Moments",
+          "Stat Leaders",
+          "Sponsors",
+          "Social Stream"
+        ],
+        "links": [
+          {
+            "url": "https://www.acroos.com/sports/bsb/2025-26/schedule",
+            "label": "Schedule Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/bsb/2025-26/roster",
+            "label": "Roster Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/mbkb/2026-27/schedule",
+            "label": "Schedule Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/mbkb/2026-27/roster",
+            "label": "Roster Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/fball/2026-27/schedule",
+            "label": "Schedule Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/fball/2026-27/roster",
+            "label": "Roster Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/msoc/2026-27/schedule",
+            "label": "Schedule Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/msoc/2026-27/roster",
+            "label": "Roster Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/mswimdive/2026-27/schedule",
+            "label": "Schedule Swimming: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/mswimdive/2026-27/roster",
+            "label": "Roster Swimming: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/mten/2025-26/schedule",
+            "label": "Schedule Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/mten/2025-26/roster",
+            "label": "Roster Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/mwaterpolo/2026-27/schedule",
+            "label": "Schedule Water Polo: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/mwaterpolo/2026-27/roster",
+            "label": "Roster Water Polo: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/wbkb/2026-27/schedule",
+            "label": "Schedule Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/wbkb/2026-27/roster",
+            "label": "Roster Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/wsoc/2026-27/schedule",
+            "label": "Schedule Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/wsoc/2026-27/roster",
+            "label": "Roster Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/sball/2025-26/schedule",
+            "label": "Schedule Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/sball/2025-26/roster",
+            "label": "Roster Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/wswimdive/2026-27/schedule",
+            "label": "Schedule Swimming: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/wswimdive/2026-27/roster",
+            "label": "Roster Swimming: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/wten/2025-26/schedule",
+            "label": "Schedule Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/wten/2025-26/roster",
+            "label": "Roster Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/wvball/2026-27/schedule",
+            "label": "Schedule Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/wvball/2026-27/roster",
+            "label": "Roster Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/wwaterpolo/2026-27/schedule",
+            "label": "Schedule Water Polo: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/wwaterpolo/2026-27/roster",
+            "label": "Roster Water Polo: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/cheer/2026-27/schedule",
+            "label": "Schedule Cheer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/cheer/2026-27/roster",
+            "label": "Roster Cheer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/esports/2023-24/schedule",
+            "label": "Schedule Esports: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/esports/2023-24/roster",
+            "label": "Roster Esports: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/wwaterpolo/2025-26/schedule",
+            "label": "Women's Water Polo Women's Sports: Women's Water Polo",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/cheer/2025-26/schedule",
+            "label": "Cheer Co-Ed Sports: Cheer",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/esports/2025-26/schedule",
+            "label": "Esports Co-Ed Sports: Esports",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/information/directory/index",
+            "label": "Staff Directory Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.austincollege.edu/campus-life/title-ix-office/",
+            "label": "Title IX Information Title IX Information",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.austincollege.edu/campus-conduct-hotline",
+            "label": "Campus Conduct Hotline Campus Conduct Hotline",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://go.flocollege.com/partner/scac?utm_medium=partner&utm_source=multiple&utm_content=landingpage&utm_term=austin-college&utm_campaign=scac&contract_id=006px000003axflyaa",
+            "label": "SCAC Network SCAC Network",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.acroos.com/sports/bsb/index",
+            "label": "Schedules Schedules",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/ACsports",
+            "label": "Twitter Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/ACsports/",
+            "label": "Instagram Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.acroos.com/composite",
+            "label": "Composite Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/bsb/coaches/index",
+            "label": "Coaches",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.instagram.com/ackangaroosbsb/",
+            "label": "Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://www.acroos.com/sports/bsb/2025-26/schedule",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/austin-college-0.html",
+        "sha256": "67eebe603cebd1edfd832070acc3e4cbf882c265f7b2d4e3aafb00027a80bfa2",
+        "url": "https://www.acroos.com/sports/bsb/2025-26/schedule",
+        "label": "Schedule Baseball: Schedule"
+      },
+      "status": 200,
+      "finalUrl": "https://www.acroos.com/sports/bsb/2025-26/schedule",
+      "checkedAtUtc": "2026-11-17T20:35:03.825Z",
+      "sourcePath": "sources/austin-college-1.html",
+      "sha256": "e377ee24938b9bb327055c292feae26b49823e1e1f2f5f26aec91cf08bb1b569",
+      "parsed": {
+        "title": "2026 Kangaroo Baseball Schedule - Austin College Kangaroos",
+        "headings": [
+          "Main Navigation Menu",
+          "2026 Kangaroo Baseball Schedule"
+        ],
+        "links": [
+          {
+            "url": "https://www.acroos.com/sports/bsb/2025-26/schedule",
+            "label": "Skip to navigation",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/bsb/2025-26/roster",
+            "label": "Roster Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/mbkb/2026-27/schedule",
+            "label": "Schedule Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/mbkb/2026-27/roster",
+            "label": "Roster Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/fball/2026-27/schedule",
+            "label": "Schedule Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/fball/2026-27/roster",
+            "label": "Roster Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/msoc/2026-27/schedule",
+            "label": "Schedule Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/msoc/2026-27/roster",
+            "label": "Roster Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/mswimdive/2026-27/schedule",
+            "label": "Schedule Swimming: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/mswimdive/2026-27/roster",
+            "label": "Roster Swimming: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/mten/2025-26/schedule",
+            "label": "Schedule Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/mten/2025-26/roster",
+            "label": "Roster Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/mwaterpolo/2026-27/schedule",
+            "label": "Schedule Water Polo: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/mwaterpolo/2026-27/roster",
+            "label": "Roster Water Polo: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/wbkb/2026-27/schedule",
+            "label": "Schedule Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/wbkb/2026-27/roster",
+            "label": "Roster Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/wsoc/2026-27/schedule",
+            "label": "Schedule Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/wsoc/2026-27/roster",
+            "label": "Roster Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/sball/2025-26/schedule",
+            "label": "Schedule Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/sball/2025-26/roster",
+            "label": "Roster Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/wswimdive/2026-27/schedule",
+            "label": "Schedule Swimming: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/wswimdive/2026-27/roster",
+            "label": "Roster Swimming: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/wten/2025-26/schedule",
+            "label": "Schedule Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/wten/2025-26/roster",
+            "label": "Roster Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/wvball/2026-27/schedule",
+            "label": "Schedule Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/wvball/2026-27/roster",
+            "label": "Roster Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/wwaterpolo/2026-27/schedule",
+            "label": "Schedule Water Polo: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/wwaterpolo/2026-27/roster",
+            "label": "Roster Water Polo: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/cheer/2026-27/schedule",
+            "label": "Schedule Cheer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/cheer/2026-27/roster",
+            "label": "Roster Cheer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/esports/2023-24/schedule",
+            "label": "Schedule Esports: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/esports/2023-24/roster",
+            "label": "Roster Esports: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/wwaterpolo/2025-26/schedule",
+            "label": "Women's Water Polo Women's Sports: Women's Water Polo",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/cheer/2025-26/schedule",
+            "label": "Cheer Co-Ed Sports: Cheer",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/esports/2025-26/schedule",
+            "label": "Esports Co-Ed Sports: Esports",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/information/directory/index",
+            "label": "Staff Directory Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.austincollege.edu/campus-life/title-ix-office/",
+            "label": "Title IX Information Title IX Information",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.austincollege.edu/campus-conduct-hotline",
+            "label": "Campus Conduct Hotline Campus Conduct Hotline",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://go.flocollege.com/partner/scac?utm_medium=partner&utm_source=multiple&utm_content=landingpage&utm_term=austin-college&utm_campaign=scac&contract_id=006px000003axflyaa",
+            "label": "SCAC Network SCAC Network",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://twitter.com/ACsports",
+            "label": "Twitter Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/ACsports/",
+            "label": "Instagram Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.acroos.com/composite",
+            "label": "Composite Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/bsb/coaches/index",
+            "label": "Coaches",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.instagram.com/ackangaroosbsb/",
+            "label": "Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.acroos.com/sports/bsb/2025-26/schedule?eid=f6pvmzvb0lumaonz",
+            "label": "Details Event details for Baseball at #25 East Tex. Baptist on Tue. 10",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/bsb/2025-26/schedule?eid=ii8saasah5b0rfxi",
+            "label": "Details Event details for Baseball vs LeTourneau on Fri. 13",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/bsb/2025-26/schedule?eid=h5w8d8gk4kumoyu4",
+            "label": "Details Event details for Baseball vs LeTourneau on Sun. 15",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/bsb/2025-26/schedule?eid=u2zcjceeg8jq0c9h",
+            "label": "Details Event details for Baseball vs LeTourneau on Sun. 15",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/bsb/2025-26/schedule?eid=nbc834wliqvmmn1f",
+            "label": "Details Event details for Baseball at Dallas on Sat. 21",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/bsb/2025-26/schedule?eid=kpef3pmus16q2ktw",
+            "label": "Details Event details for Baseball at Dallas on Sat. 21",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/bsb/2025-26/schedule?eid=ec6vhsu3ohej2mf6",
+            "label": "Details Event details for Baseball at Dallas on Sun. 22",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/bsb/2025-26/schedule?eid=pi8s3kj9qzu5jxyr",
+            "label": "Details Event details for Baseball vs Ozarks (Ark.) on Fri. 27",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/bsb/2025-26/schedule?eid=o2o5zf61jlm0v9cd",
+            "label": "Details Event details for Baseball vs Ozarks (Ark.) on Sat. 28",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/bsb/2025-26/schedule?eid=6415mj9gr0bv1gan",
+            "label": "Details Event details for Baseball vs Ozarks (Ark.) on Sat. 28",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/bsb/2025-26/schedule?eid=z4drwluj2xyz7qfd",
+            "label": "Details Event details for Baseball at #25 Texas Lutheran on Fri. 6",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/bsb/2025-26/schedule?eid=ypqfbdutmz13cf44",
+            "label": "Details Event details for Baseball at #25 Texas Lutheran on Fri. 6",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/bsb/2025-26/schedule?eid=x0rvdeiwonvx80c6",
+            "label": "Details Event details for Baseball at #25 Texas Lutheran on Sat. 7",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/bsb/2025-26/schedule?eid=o6lgfmzyg5yibcw2",
+            "label": "Details Event details for Baseball vs St. Thomas (Tex.) on Fri. 13",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/bsb/2025-26/schedule?eid=qikscvpkvhpgx581",
+            "label": "Details Event details for Baseball vs St. Thomas (Tex.) on Sat. 14",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/bsb/2025-26/schedule?eid=imm5xyth3b5o3vyh",
+            "label": "Details Event details for Baseball vs St. Thomas (Tex.) on Sat. 14",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/bsb/2025-26/schedule?eid=g18qoxwfcic08uvg",
+            "label": "Details Event details for Baseball at Southeastern Oklahoma on Tue. 17",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/bsb/2025-26/schedule?eid=5dixswmuwz2la06x",
+            "label": "Details Event details for Baseball at Southeastern Oklahoma on Tue. 17",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/bsb/2025-26/schedule?eid=rr1g382tt0i7gpm1",
+            "label": "Details Event details for Baseball vs Concordia (Texas) on Fri. 20",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/bsb/2025-26/schedule?eid=jozug1zkxe4v5dj7",
+            "label": "Details Event details for Baseball vs Concordia (Texas) on Sat. 21",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/bsb/2025-26/schedule?eid=evknjm5z2dioiget",
+            "label": "Details Event details for Baseball vs Concordia (Texas) on Sat. 21",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/bsb/2025-26/schedule?eid=pi1zk6y0aque0sfj",
+            "label": "Details Event details for Baseball at Dallas Christian on Tue. 24",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/bsb/2025-26/schedule?eid=bdb9m838v6u9x95r",
+            "label": "Details Event details for Baseball at Dallas Christian on Tue. 24",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/bsb/2025-26/schedule?eid=7l30q5kqoxvovtx7",
+            "label": "Details Event details for Baseball at Centenary (La.) on Fri. 27",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/bsb/2025-26/schedule?eid=grd1vuh3g57c3317",
+            "label": "Details Event details for Baseball at Centenary (La.) on Sat. 28",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/bsb/2025-26/schedule?eid=g0nx3ytw1yxo0z1z",
+            "label": "Details Event details for Baseball at Centenary (La.) on Sat. 28",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/bsb/2025-26/schedule?eid=s6edira0sgx6a4ti",
+            "label": "Details Event details for Baseball at Arlington Baptist on Tue. 31",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/bsb/2025-26/schedule?eid=ftnl5838hhcbw29c",
+            "label": "Details Event details for Baseball vs East Tex. Baptist on Wed. 1",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/bsb/2025-26/schedule?eid=sq30x0c1q9gigchs",
+            "label": "Details Event details for Baseball vs McMurry on Fri. 3",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/bsb/2025-26/schedule?eid=3vzhxz54qwgpa7zk",
+            "label": "Details Event details for Baseball vs Arlington Baptist on Tue. 7",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/bsb/2025-26/schedule?eid=z6mp2pl2qhr53o5k",
+            "label": "Details Event details for Baseball at Schreiner on Fri. 10",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/bsb/2025-26/schedule?eid=t6db5kzuoh79eu5g",
+            "label": "Details Event details for Baseball at Schreiner on Fri. 10",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/bsb/2025-26/schedule?eid=ap2715w15onia6rq",
+            "label": "Details Event details for Baseball at Schreiner on Sat. 11",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/bsb/2025-26/schedule?eid=b5ku5ojpcfeeqnvk",
+            "label": "Details Event details for Baseball at Howard Payne on Tue. 14",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/bsb/2025-26/schedule?eid=h3p7cm3y6gg0f3so",
+            "label": "Details Event details for Baseball vs McMurry on Tue. 21",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/bsb/2025-26/schedule?eid=xtqgfx97y796ft2w",
+            "label": "Details Event details for Baseball vs McMurry on Tue. 21",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/bsb/2025-26/schedule?eid=9ojaztmdym850vkh",
+            "label": "Details Event details for Baseball at Hendrix on Thu. 23",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/bsb/2025-26/schedule?eid=s0pdb7cbxjqydq4x",
+            "label": "Details Event details for Baseball at Hendrix on Sat. 25",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/bsb/2025-26/schedule?eid=55gyl8kdq2zjcuj8",
+            "label": "Details Event details for Baseball at Hendrix on Sat. 25",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/bsb/2025-26/schedule?print=ical",
+            "label": "Calendar",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/bsb/2025-26/schedule?print=rss",
+            "label": "RSS Feed",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://facebook.com/sharer/sharer.php?u=https://acroos.com/sports/bsb/2025-26/schedule",
+            "label": "Facebook Share this page on Facebook",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/intent/tweet/?text=2026%20Kangaroo%20Baseball%20Schedule&url=https://acroos.com/sports/bsb/2025-26/schedule",
+            "label": "Twitter Share this page on Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "mailto:?subject=2026 Kangaroo Baseball Schedule&body=https://acroos.com/sports/bsb/2025-26/schedule",
+            "label": "Email Share this page via email",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://austin.prestosports.com/sports/bsb/2025-26/schedule?dec=printer-decorator",
+            "label": "Print Print this page Print",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://www.acroos.com/sports/bsb/coaches/index",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/austin-college-0.html",
+        "sha256": "67eebe603cebd1edfd832070acc3e4cbf882c265f7b2d4e3aafb00027a80bfa2",
+        "url": "https://www.acroos.com/sports/bsb/coaches/index",
+        "label": "Coaches"
+      },
+      "status": 200,
+      "finalUrl": "https://www.acroos.com/sports/bsb/coaches/index",
+      "checkedAtUtc": "2026-11-17T20:35:04.857Z",
+      "sourcePath": "sources/austin-college-2.html",
+      "sha256": "34996111feaa029eb937ba174040af4d2fa5b0a120414561b92265e143bf46ef",
+      "parsed": {
+        "title": "Baseball - Austin College Kangaroos",
+        "headings": [
+          "Main Navigation Menu",
+          "Baseball"
+        ],
+        "links": [
+          {
+            "url": "https://www.acroos.com/sports/bsb/coaches/index",
+            "label": "Skip to navigation",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.acroos.com/sports/bsb/2025-26/schedule",
+            "label": "Schedule Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/bsb/2025-26/roster",
+            "label": "Roster Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/mbkb/2026-27/schedule",
+            "label": "Schedule Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/mbkb/2026-27/roster",
+            "label": "Roster Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/fball/2026-27/schedule",
+            "label": "Schedule Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/fball/2026-27/roster",
+            "label": "Roster Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/msoc/2026-27/schedule",
+            "label": "Schedule Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/msoc/2026-27/roster",
+            "label": "Roster Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/mswimdive/2026-27/schedule",
+            "label": "Schedule Swimming: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/mswimdive/2026-27/roster",
+            "label": "Roster Swimming: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/mten/2025-26/schedule",
+            "label": "Schedule Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/mten/2025-26/roster",
+            "label": "Roster Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/mwaterpolo/2026-27/schedule",
+            "label": "Schedule Water Polo: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/mwaterpolo/2026-27/roster",
+            "label": "Roster Water Polo: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/wbkb/2026-27/schedule",
+            "label": "Schedule Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/wbkb/2026-27/roster",
+            "label": "Roster Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/wsoc/2026-27/schedule",
+            "label": "Schedule Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/wsoc/2026-27/roster",
+            "label": "Roster Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/sball/2025-26/schedule",
+            "label": "Schedule Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/sball/2025-26/roster",
+            "label": "Roster Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/wswimdive/2026-27/schedule",
+            "label": "Schedule Swimming: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/wswimdive/2026-27/roster",
+            "label": "Roster Swimming: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/wten/2025-26/schedule",
+            "label": "Schedule Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/wten/2025-26/roster",
+            "label": "Roster Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/wvball/2026-27/schedule",
+            "label": "Schedule Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/wvball/2026-27/roster",
+            "label": "Roster Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/wwaterpolo/2026-27/schedule",
+            "label": "Schedule Water Polo: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/wwaterpolo/2026-27/roster",
+            "label": "Roster Water Polo: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/cheer/2026-27/schedule",
+            "label": "Schedule Cheer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/cheer/2026-27/roster",
+            "label": "Roster Cheer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/esports/2023-24/schedule",
+            "label": "Schedule Esports: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/esports/2023-24/roster",
+            "label": "Roster Esports: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/wwaterpolo/2025-26/schedule",
+            "label": "Women's Water Polo Women's Sports: Women's Water Polo",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/cheer/2025-26/schedule",
+            "label": "Cheer Co-Ed Sports: Cheer",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/sports/esports/2025-26/schedule",
+            "label": "Esports Co-Ed Sports: Esports",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.acroos.com/information/directory/index",
+            "label": "Staff Directory Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.acroos.com/sports/bsb/coaches/www.austincollege.edu",
+            "label": "Learn More About Austin College Learn More About Austin College",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.austincollege.edu/campus-life/title-ix-office/",
+            "label": "Title IX Information Title IX Information",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.austincollege.edu/campus-conduct-hotline",
+            "label": "Campus Conduct Hotline Campus Conduct Hotline",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://go.flocollege.com/partner/scac?utm_medium=partner&utm_source=multiple&utm_content=landingpage&utm_term=austin-college&utm_campaign=scac&contract_id=006px000003axflyaa",
+            "label": "SCAC Network SCAC Network",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.acroos.com/sports/bsb/coaches/sports/wwaterpolo/recruits",
+            "label": "Women's Water Polo Women's Sports: Women's Water Polo",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://twitter.com/ACsports",
+            "label": "Twitter Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/ACsports/",
+            "label": "Instagram Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.acroos.com/composite",
+            "label": "Composite Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/ackangaroosbsb/",
+            "label": "Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.acroos.com/sports/bsb/coaches/Shawn_Counts",
+            "label": "",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.acroos.com/sports/bsb/coaches/Drew_Lancaster",
+            "label": "",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.acroos.com/sports/bsb/coaches/Kyle_Hope",
+            "label": "",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.acroos.com/information/directory/bios/Zachary_Sullivan",
+            "label": "",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://facebook.com/sharer/sharer.php?u=https://acroos.com/sports/bsb/coaches/index",
+            "label": "Facebook Share this page on Facebook",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://twitter.com/intent/tweet/?text=Baseball&url=https://acroos.com/sports/bsb/coaches/index",
+            "label": "Twitter Share this page on Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "mailto:?subject=Baseball&body=https://acroos.com/sports/bsb/coaches/index",
+            "label": "Email Share this page via email",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://austin.prestosports.com/sports/bsb/coaches/index?dec=printer-decorator",
+            "label": "Print Print this page Print",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          }
+        ]
+      }
+    }
+  ],
+  "status": "EVIDENCE_CAPTURED_REQUIRES_REVIEW"
+}

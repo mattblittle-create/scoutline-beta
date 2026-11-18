@@ -1,0 +1,2080 @@
+<!doctype html>
+<html lang="en-US" class="no-js">
+
+<head>
+
+    <!--------------------------------------------------
+        ----------------- Meta Information -----------------
+        --------------------------------------------------->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Serving the Chattahoochee Valley Area">
+
+
+    <!--------------------------------------------------
+        -------------------- Site Title --------------------
+        --------------------------------------------------->
+    <title>
+        Chattahoochee Valley Community College | Serving the Chattahoochee Valley Area    </title>
+
+    <!-- SimpliFi -->
+    <script async src='https://tag.simpli.fi/sifitag/1859a7b2-dfb7-40c6-bfa7-c13d80b9294d'></script>
+
+    <!--------------------------------------------------
+        -------------------- Site Icons --------------------
+        --------------------------------------------------->
+    <link rel="icon" href="https://www.cv.edu/wp-content/themes/cvcc/img/cvcc-favicon.png" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="https://www.cv.edu/wp-content/themes/cvcc/img/site-graphic.png" />
+
+
+    <!--------------------------------------------------
+        ----------------- Google Analytics -----------------
+        --------------------------------------------------->
+    <link href="//www.google-analytics.com" rel="dns-prefetch">
+
+
+    <!--------------------------------------------------
+        ---------------------- jQuery ----------------------
+        --------------------------------------------------->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+
+
+    <!--------------------------------------------------
+        --------------- Bootstrap Framework ----------------
+        --------------------------------------------------->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+
+    <!--------------------------------------------------
+        ------------------- Font Awesome -------------------
+        --------------------------------------------------->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+
+
+
+    <!--------------------------------------------------
+        ------------------- Adobe Fonts --------------------
+        --------------------------------------------------->
+    
+    <link rel="preload" href="https://use.typekit.net/ngg6lyh.css" as="style">
+    <link rel="stylesheet" href="https://use.typekit.net/ngg6lyh.css">
+
+
+    <!--------------------------------------------------
+        ------------------- Flex Slider --------------------
+        --------------------------------------------------->
+
+    <script src='//www.cv.edu/wp-content/cache/wpfc-minified/fgwcptvq/3mp7.js' type="text/javascript"></script>
+<!-- <script src="https://www.cv.edu/wp-content/themes/cvcc/assets/flexslider/jquery.flexslider.js"
+        type="text/javascript"></script> -->
+    <link rel="stylesheet" href="https://www.cv.edu/wp-content/themes/cvcc/assets/flexslider/flexslider.css" />
+
+
+    <script type="text/javascript">
+        // Can also be used with $(document).ready()
+        $(window).load(function () {
+            $('#flexslider-home-new').flexslider({
+                animation: "slide",
+                slideshow: true,
+                directionNav: true,
+                controlsContainer: $(".custom-controls-container"),
+                customDirectionNav: $(".custom-navigation a"),
+                controlNav: true,
+                directionNav: true,
+                prevText: "",
+                nextText: "",
+                start: function () {
+                    $('.slides').css('display', 'flex');
+                    $('.flex-control-paging li a').attr('role', 'button').attr('tabindex', '0');
+                    $('a.flex-prev').attr('role', 'button').attr('tabindex', '0');
+                    $('a.flex-next').attr('role', 'button').attr('tabindex', '0');
+                },
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        // Can also be used with $(document).ready()
+        $(window).load(function () {
+            $('#flexslider-v3').flexslider({
+                animation: "slide",
+                animationSpeed: 300,
+                slideshow: true,
+                controlsContainer: $(".custom-controls-container"),
+                customDirectionNav: $(".custom-navigation a"),
+                controlNav: true,
+                directionNav: true,
+                prevText: "",
+                nextText: "",
+                pauseOnHover: false,
+                start: function () {
+                    let sliderV3 = $('#flexslider-v3').data('flexslider');
+                    sliderV3.resize();
+                    $('.slides').css('display', 'flex');
+                    $('.flex-control-paging li a').attr('role', 'button').attr('tabindex', '0');
+                    $('a.flex-prev').attr('role', 'button').attr('tabindex', '0');
+                    $('a.flex-next').attr('role', 'button').attr('tabindex', '0');
+                },
+            });
+        });
+    </script>
+
+    <script>
+        $(window).load(function () {
+            $('#hofslider').flexslider({
+                animation: "slide",
+                controlNav: "thumbnails"
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+
+        (function () {
+
+            // store the slider in a local variable
+            var $window = $(window),
+                flexslider = { vars: {} };
+
+            // tiny helper function to add breakpoints
+            function getGridSize() {
+                return (window.innerWidth < 640) ? 1 :
+                    (window.innerWidth < 900) ? 3 : 3;
+            }
+
+
+
+            $window.load(function () {
+                $('#flexslider-home-headlines').flexslider({
+                    animation: "slide",
+                    animationLoop: true,
+                    slideshowSpeed: 10000,
+                    itemWidth: 210,
+                    itemMargin: 35,
+                    directionNav: false,
+                    minItems: getGridSize(), // use function to pull in initial value
+                    maxItems: getGridSize() // use function to pull in initial value
+                });
+            });
+
+            // check grid size on resize event
+            $window.resize(function () {
+                var gridSize = getGridSize();
+
+                flexslider.vars.minItems = gridSize;
+                flexslider.vars.maxItems = gridSize;
+            });
+        }());
+
+    </script>
+
+    <script type="text/javascript">
+
+        (function () {
+
+            // store the slider in a local variable
+            var $window = $(window),
+                flexslider = { vars: {} };
+
+            // tiny helper function to add breakpoints
+            function getGridSize() {
+                return (window.innerWidth < 640) ? 1 :
+                    (window.innerWidth < 900) ? 3 : 3;
+            }
+
+            $(function () {
+                SyntaxHighlighter.all();
+            });
+
+            $window.load(function () {
+                $('#flexslider-home-announcements').flexslider({
+                    animation: "slide",
+                    animationLoop: true,
+                    slideshowSpeed: 5000,
+                    itemWidth: 210,
+                    itemMargin: 35,
+                    directionNav: false,
+                    minItems: getGridSize(), // use function to pull in initial value
+                    maxItems: getGridSize() // use function to pull in initial value
+                });
+            });
+
+            // check grid size on resize event
+            $window.resize(function () {
+                var gridSize = getGridSize();
+
+                flexslider.vars.minItems = gridSize;
+                flexslider.vars.maxItems = gridSize;
+            });
+        }());
+
+    </script>
+
+
+    <!--------------------------------------------------
+        ------------------- Animate.CSS --------------------
+        --------------------------------------------------->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
+
+    <!--------------------------------------------------
+        -------------------- Main Menu ---------------------
+        --------------------------------------------------->
+    <script src='//www.cv.edu/wp-content/cache/wpfc-minified/8mpqk8a5/3mp7.js' type="text/javascript"></script>
+<!-- <script src="https://www.cv.edu/wp-content/themes/cvcc/js/menu.js" type="text/javascript"></script> -->
+    <script>
+        $(document).ready(function () {
+
+            // JQUERY NAV TOGGLE
+            $('#menu').bind('click', function (event) {
+                $('#mainnav ul').slideToggle();
+            });
+
+            $(window).resize(function () {
+                var w = $(window).width();
+                if (w > 768) {
+                    $('#mainnav ul').removeAttr('style');
+                }
+            });
+
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(window).on('load', function () {
+
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var modalElement = document.getElementById('myModal');
+
+            if (modalElement) {
+                var alertModal = new bootstrap.Modal(modalElement);
+
+                // a11y: the dialog has no tabindex (an unfocusable wrapper fails keyboard checks), so move
+                // focus to its first control when it opens and keep Tab inside it while it is open
+                var modalFocusFirst = function () {
+                    var first = modalElement.querySelector('button, a[href]');
+                    if (first) first.focus();
+                };
+                modalElement.addEventListener('shown.bs.modal', modalFocusFirst);
+                document.addEventListener('focusin', function (e) {
+                    if (modalElement.classList.contains('show') && !modalElement.contains(e.target)) {
+                        modalFocusFirst();
+                    }
+                });
+
+                alertModal.show();
+
+                var closeButton = document.getElementById('modalCloseButton');
+
+                if (closeButton) {
+                    closeButton.addEventListener('click', function () {
+                        console.log("clicked");
+                        document.cookie = "=1; max-age=604800; path=/; SameSite=Lax";
+                    });
+                }
+            }
+        });
+    </script>
+
+
+    <script type="application/javascript">
+
+        function loadJS(file) {
+            var jsElm = document.createElement("script");
+            jsElm.type = "application/javascript";
+            jsElm.src = file;
+            document.body.appendChild(jsElm);
+        }
+
+        window.onload = function () {
+
+            // find all elements with the class "simplifi-tracking-apply" and add the onclick attribute and value element
+            let simplifiTrackingApply = document.querySelectorAll('.simplifi-tracking-apply > a');
+
+            simplifiTrackingApply.forEach(element => {
+                $(element).attr('onclick', "loadJS('https://tag.simpli.fi/sifitag/b7cbf31b-3108-4c5f-bc4e-e1d066a419ab.js');");
+            });
+
+            let simplifiTrackingApplyTwo = document.querySelectorAll('.home-v3.button-container > a');
+
+            simplifiTrackingApplyTwo.forEach(element => {
+                if (element.textContent.trim() === 'Apply') {
+                    $(element).attr('onclick', "loadJS('https://tag.simpli.fi/sifitag/b7cbf31b-3108-4c5f-bc4e-e1d066a419ab.js');");
+                    console.log('banner-loop');
+                }
+            });
+        }
+    </script>
+
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '2299958494086034');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=2299958494086034&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+
+    <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+
+	<!-- This site is optimized with the Yoast SEO plugin v28.7 - https://yoast.com/product/yoast-seo-wordpress/ -->
+	<link rel="canonical" href="https://www.cv.edu/" />
+	<meta property="og:locale" content="en_US" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Home Page (Development) - Chattahoochee Valley Community College" />
+	<meta property="og:url" content="https://www.cv.edu/" />
+	<meta property="og:site_name" content="Chattahoochee Valley Community College" />
+	<meta property="article:modified_time" content="2026-10-27T12:27:55+00:00" />
+	<meta property="og:image" content="https://www.cv.edu/wp-content/uploads/2026/10/Tuesday-October-20-5–6-p.m.-Workforce-Training-Center-3413Seale-Road-Phenix-City-1.png" />
+	<meta property="og:image:width" content="940" />
+	<meta property="og:image:height" content="788" />
+	<meta property="og:image:type" content="image/png" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https:\/\/schema.org","@graph":[{"@type":"WebPage","@id":"https:\/\/www.cv.edu\/","url":"https:\/\/www.cv.edu\/","name":"Home Page (Development) - Chattahoochee Valley Community College","isPartOf":{"@id":"https:\/\/www.cv.edu\/#website"},"primaryImageOfPage":{"@id":"https:\/\/www.cv.edu\/#primaryimage"},"image":{"@id":"https:\/\/www.cv.edu\/#primaryimage"},"thumbnailUrl":"https:\/\/www.cv.edu\/wp-content\/uploads\/2026\/10\/Tuesday-October-20-5–6-p.m.-Workforce-Training-Center-3413Seale-Road-Phenix-City-1.png","datePublished":"2024-02-20T15:45:21+00:00","dateModified":"2026-10-27T12:27:55+00:00","breadcrumb":{"@id":"https:\/\/www.cv.edu\/#breadcrumb"},"inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["https:\/\/www.cv.edu\/"]}]},{"@type":"ImageObject","inLanguage":"en-US","@id":"https:\/\/www.cv.edu\/#primaryimage","url":"https:\/\/www.cv.edu\/wp-content\/uploads\/2026\/10\/Tuesday-October-20-5–6-p.m.-Workforce-Training-Center-3413Seale-Road-Phenix-City-1.png","contentUrl":"https:\/\/www.cv.edu\/wp-content\/uploads\/2026\/10\/Tuesday-October-20-5–6-p.m.-Workforce-Training-Center-3413Seale-Road-Phenix-City-1.png","width":940,"height":788},{"@type":"BreadcrumbList","@id":"https:\/\/www.cv.edu\/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home"}]},{"@type":"WebSite","@id":"https:\/\/www.cv.edu\/#website","url":"https:\/\/www.cv.edu\/","name":"Chattahoochee Valley Community College","description":"Serving the Chattahoochee Valley Area","potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https:\/\/www.cv.edu\/?s={search_term_string}"},"query-input":{"@type":"PropertyValueSpecification","valueRequired":true,"valueName":"search_term_string"}}],"inLanguage":"en-US"}]}</script>
+	<!-- / Yoast SEO plugin. -->
+
+
+<link rel='dns-prefetch' href='//www.google.com' />
+<link rel="alternate" type="text/calendar" title="Chattahoochee Valley Community College &raquo; iCal Feed" href="https://www.cv.edu/events/?ical=1" />
+<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="https://www.cv.edu/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.cv.edu%2F" />
+<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="https://www.cv.edu/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.cv.edu%2F&#038;format=xml" />
+		<style>
+			.lazyload,
+			.lazyloading {
+				max-width: 100%;
+			}
+		</style>
+		<style id="wp-img-auto-sizes-contain-inline-css">
+img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
+/*# sourceURL=wp-img-auto-sizes-contain-inline-css */
+</style>
+<style id="wp-emoji-styles-inline-css">
+
+	img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}
+/*# sourceURL=wp-emoji-styles-inline-css */
+</style>
+<style id="wp-block-library-inline-css">
+:root{--wp-block-synced-color:#7a00df;--wp-block-synced-color--rgb:122,0,223;--wp-bound-block-color:var(--wp-block-synced-color);--wp-editor-canvas-background:#ddd;--wp-admin-theme-color:#007cba;--wp-admin-theme-color--rgb:0,124,186;--wp-admin-theme-color-darker-10:#006ba1;--wp-admin-theme-color-darker-10--rgb:0,107,160.5;--wp-admin-theme-color-darker-20:#005a87;--wp-admin-theme-color-darker-20--rgb:0,90,135;--wp-admin-border-width-focus:2px}@media (min-resolution:192dpi){:root{--wp-admin-border-width-focus:1.5px}}.wp-element-button{cursor:pointer}:root .has-very-light-gray-background-color{background-color:#eee}:root .has-very-dark-gray-background-color{background-color:#313131}:root .has-very-light-gray-color{color:#eee}:root .has-very-dark-gray-color{color:#313131}:root .has-vivid-green-cyan-to-vivid-cyan-blue-gradient-background{background:linear-gradient(135deg,#00d084,#0693e3)}:root .has-purple-crush-gradient-background{background:linear-gradient(135deg,#34e2e4,#4721fb 50%,#ab1dfe)}:root .has-hazy-dawn-gradient-background{background:linear-gradient(135deg,#faaca8,#dad0ec)}:root .has-subdued-olive-gradient-background{background:linear-gradient(135deg,#fafae1,#67a671)}:root .has-atomic-cream-gradient-background{background:linear-gradient(135deg,#fdd79a,#004a59)}:root .has-nightshade-gradient-background{background:linear-gradient(135deg,#330968,#31cdcf)}:root .has-midnight-gradient-background{background:linear-gradient(135deg,#020381,#2874fc)}:root{--wp--preset--font-size--normal:16px;--wp--preset--font-size--huge:42px}.has-regular-font-size{font-size:1em}.has-larger-font-size{font-size:2.625em}.has-normal-font-size{font-size:var(--wp--preset--font-size--normal)}.has-huge-font-size{font-size:var(--wp--preset--font-size--huge)}:root .has-text-align-center{text-align:center}:root .has-text-align-left{text-align:left}:root .has-text-align-right{text-align:right}.has-fit-text{white-space:nowrap!important}#end-resizable-editor-section{display:none}.aligncenter{clear:both}.items-justified-left{justify-content:flex-start}.items-justified-center{justify-content:center}.items-justified-right{justify-content:flex-end}.items-justified-space-between{justify-content:space-between}.screen-reader-text{word-wrap:normal!important;border:0;clip-path:inset(50%);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px;word-break:normal!important}.screen-reader-text:focus{background-color:#ddd;clip-path:none;color:#444;display:block;font-size:1em;height:auto;left:5px;line-height:normal;padding:15px 23px 14px;text-decoration:none;top:5px;width:auto;z-index:100000}html :where(.has-border-color){border-style:solid}html :where([style^=border-color],[style*=";border-color"],[style*="; border-color"]){border-style:solid}html :where([style^=border-top-color],[style*=";border-top-color"],[style*="; border-top-color"]){border-top-style:solid}html :where([style^=border-right-color],[style*=";border-right-color"],[style*="; border-right-color"]){border-right-style:solid}html :where([style^=border-bottom-color],[style*=";border-bottom-color"],[style*="; border-bottom-color"]){border-bottom-style:solid}html :where([style^=border-left-color],[style*=";border-left-color"],[style*="; border-left-color"]){border-left-style:solid}html :where([style^=border-width],[style*=";border-width"],[style*="; border-width"]){border-style:solid}html :where([style^=border-top-width],[style*=";border-top-width"],[style*="; border-top-width"]){border-top-style:solid}html :where([style^=border-right-width],[style*=";border-right-width"],[style*="; border-right-width"]){border-right-style:solid}html :where([style^=border-bottom-width],[style*=";border-bottom-width"],[style*="; border-bottom-width"]){border-bottom-style:solid}html :where([style^=border-left-width],[style*=";border-left-width"],[style*="; border-left-width"]){border-left-style:solid}html :where(img[class*=wp-image-]){height:auto;max-width:100%}:where(figure){margin:0 0 1em}html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:var(--wp-admin--admin-bar--height,0px)}@media screen and (max-width:600px){html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:0px}}
+
+/*# sourceURL=/wp-includes/css/dist/block-library/common.min.css */
+</style>
+<style id="classic-theme-styles-inline-css">
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+/*# sourceURL=/wp-includes/css/classic-themes.min.css */
+</style>
+
+<style id="global-styles-inline-css">
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgb(6,147,227) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgb(252,185,0) 0%,rgb(255,105,0) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgb(255,105,0) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgb(255, 255, 255), 6px 6px rgb(0, 0, 0);--wp--preset--shadow--crisp: 6px 6px 0px rgb(0, 0, 0);}.wp-block-button{--wp--preset--dimension--25: 25%;--wp--preset--dimension--50: 50%;--wp--preset--dimension--75: 75%;--wp--preset--dimension--100: 100%;}:where(body) { margin: 0; }:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}body{padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;}:root :where(.wp-element-button, .wp-block-button__link){background-color: #32373c;border-width: 0;color: #fff;font-family: inherit;font-size: inherit;font-style: inherit;font-weight: inherit;letter-spacing: inherit;line-height: inherit;padding-top: calc(0.667em + 2px);padding-right: calc(1.333em + 2px);padding-bottom: calc(0.667em + 2px);padding-left: calc(1.333em + 2px);text-decoration: none;text-transform: inherit;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+/*# sourceURL=global-styles-inline-css */
+</style>
+
+<link rel='stylesheet' id='pvfw-modaal-css' href='https://www.cv.edu/wp-content/plugins/pdf-viewer-for-wordpress/tnc-resources/modaal.min.css?ver=12.6.4' media='all' />
+<link rel='stylesheet' id='pcpdev-css' href='https://www.cv.edu/wp-content/themes/cvcc/assets/css/base.css?ver=1.0' media='all' />
+<link rel='stylesheet' id='flexslider-css' href='https://www.cv.edu/wp-content/plugins/js_composer/assets/lib/flexslider/flexslider.min.css?ver=7.5' media='all' />
+<link rel='stylesheet' id='style-css' href='https://www.cv.edu/wp-content/themes/cvcc/style.css?ver=1795013108' media='all' />
+<script src='//www.cv.edu/wp-content/cache/wpfc-minified/qh8wkvv6/3mp7.js' type="text/javascript"></script>
+<!-- <script id="conditionizr-js" src="https://www.cv.edu/wp-content/themes/cvcc/assets/js/lib/conditionizr-4.3.0.min.js?ver=4.3.0"></script> -->
+<!-- <script id="modernizr-js" src="https://www.cv.edu/wp-content/themes/cvcc/assets/js/lib/modernizr-2.7.1.min.js?ver=2.7.1"></script> -->
+<!-- <script id="jquery-core-js" src="https://www.cv.edu/wp-includes/js/jquery/jquery.min.js?ver=3.7.1"></script> -->
+<!-- <script id="jquery-migrate-js" src="https://www.cv.edu/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1"></script> -->
+<!-- <script id="pcpdevscripts-js" src="https://www.cv.edu/wp-content/themes/cvcc/assets/js/scripts.js?ver=1.0.0"></script> -->
+<script></script><link rel="https://api.w.org/" href="https://www.cv.edu/wp-json/" /><link rel="alternate" title="JSON" type="application/json" href="https://www.cv.edu/wp-json/wp/v2/pages/26883" /><style id='ariaat-inline-styles'>
+.ariaat-skip-link {
+  position: absolute;
+  top: -1000px;
+  left: 0;
+  background: #000;
+  color: #fff;
+  padding: 8px 12px;
+  z-index: 9999;
+  text-decoration: none;
+}
+.ariaat-skip-link:focus {
+  top: 10px;
+  left: 10px;
+}
+</style>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WFD1QQD71H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-WFD1QQD71H');
+</script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WFD1QQD71H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-VFX778FL71');
+</script>
+
+<!-- Google Tag Manager -->
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+
+})(window,document,'script','dataLayer','GTM-KBLV7KH');</script>
+
+<!-- End Google Tag Manager -->
+
+
+<!-- Google Tag Manager -->
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+
+'https://urldefense.proofpoint.com/v2/url?u=https-3A__www.googletagmanager.com_gtm.js-3Fid-3D-27-2Bi-2Bdl-3Bf.parentNode.insertBefore-28j-2Cf-29&d=DwIFAw&c=UCja3IwhyjPGYeHcG7oIbg&r=YBnyUFShkumZ764TFOoXEX2lJDe6b5758Ehf4EBhvnY&m=CdalGRFRanio-kV9o7AlfGQCHw9uaaBppD9cyyoQMM7E68Z44RvfWbN-fgFLrdUy&s=vJUj1B9Ni-0nYhjAHMDUljF5CCPnrZ-lFP34fe9LZPk&e= ; })(window,document,'script','dataLayer','GTM-M4CZVJ5');</script>
+
+<!-- End Google Tag Manager --><style type='text/css'>
+				iframe.pvfw-pdf-viewer-frame{
+					max-width: 100%;
+					border: 0px;
+				}
+				@media screen and (max-width: 799px) {
+					iframe.pvfw-pdf-viewer-frame{
+						height: 400px;
+					}
+				}</style><!-- Meta Pixel Code -->
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1561937417655871');
+  fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1561937417655871&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
+<meta name="tec-api-version" content="v1"><meta name="tec-api-origin" content="https://www.cv.edu"><link rel="alternate" href="https://www.cv.edu/wp-json/tribe/events/v1/" />		<script>
+			document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+		</script>
+				<style>
+			.no-js img.lazyload {
+				display: none;
+			}
+
+			figure.wp-block-image img.lazyloading {
+				min-width: 150px;
+			}
+
+			.lazyload,
+			.lazyloading {
+				--smush-placeholder-width: 100px;
+				--smush-placeholder-bg-max-width: 120px;
+				--smush-placeholder-aspect-ratio: 1/1;
+				width: var(--smush-image-width, var(--smush-placeholder-width)) !important;
+				aspect-ratio: var(--smush-image-aspect-ratio, var(--smush-placeholder-aspect-ratio)) !important;
+			}
+
+						.lazyload, .lazyloading {
+				opacity: 0;
+			}
+
+			.lazyloaded {
+				opacity: 1;
+				transition: opacity 400ms;
+				transition-delay: 0ms;
+			}
+
+					</style>
+		        <style type="text/css">
+            .header {
+                background-color: ;
+            }
+        </style>
+            <style type="text/css">
+            body, .footer {
+                background-color: ;
+            }
+        </style>
+            <style type="text/css">
+            .nav ul li a {
+                color: ;
+            }
+        </style>
+            <style type="text/css">
+            body a {
+                color: ;
+            }
+        </style>
+    <meta name="generator" content="Powered by WPBakery Page Builder - drag and drop page builder for WordPress."/>
+<style id="pcp-a11y-contrast">
+	#myModal, #myModal .modal-dialog { color: #fff; }
+	#myModal .modal-content { color: #465462; }
+	#menu-header-main-menu-v3 > li { color: #fff; }
+	.sidebar .menu-item-label { font-weight: 600; color: #063c76; }
+	.pcp-h4 { font-size: 1.4em; line-height: 1.2; }
+	.pcp-h5 { font-size: 1.2em; line-height: 1.2; }
+</style>
+<noscript><style> .wpb_animate_when_almost_visible { opacity: 1; }</style></noscript>
+</head>
+
+<body class="home wp-singular page-template page-template-page-home-dev page-template-page-home-dev-php page page-id-26883 wp-theme-cvcc tribe-no-js home-page-development wpb-js-composer js-comp-ver-7.5 vc_responsive">
+    <a class="skip-link screen-reader-text" href="#main-content">Skip to content</a>
+
+    <div class="header-bottom-bar-container">
+    <div id="header-bottom-bar">
+
+        <div class="container-fluid">
+
+            <div class="container" style="width: auto; max-width: 100%;">
+
+
+                
+                <div class="row">
+
+                    <div class="col-12" style="display: flex; justify-content: flex-start; position: relative">
+                        <div class="header-bottom-menu">
+                            <ul id="menu-header-header-bottom-menu" class="menu"><li class="apply-button simplifi-tracking-apply menu-item menu-item-type-custom menu-item-object-custom menu-item-28268"><a href="https://www.cv.edu/apply/">Apply</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-11"><a href="https://alabama.instructure.com/">Canvas</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-12"><a href="https://www.cv.edu/alabamaeduemail">Student Email</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-13"><a href="https://www.cv.edu/pirateportal/">Pirate Portal</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27087"><a href="https://www.cv.edu/student-resources/records-office/student-forms/">Student Forms</a></li>
+</ul>                        </div>
+
+                        <div class="header-bottom-search">
+                            <div id="search-form-mobile" class="header-bottom-search-form">
+                                <!-- search -->
+<form class="search" method="get" action="https://www.cv.edu" role="search">
+	<input class="search-input" type="search" name="s" placeholder="Search" >
+	<button class="search-submit" type="submit" role="button">Search</button>
+</form>
+<!-- /search -->
+                            </div>
+                            <i class="fas fa-search search-icon" alt="Click to Search" title="Click to Search"></i>
+                        </div>
+
+                    </div>
+
+                    <div class="col-12" style="position: relative;">
+
+                    </div>
+
+                </div>
+
+                
+
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+    <div id="header" class="v3" style="position: relative; height: 75px;">
+        <div class="container" style="position: static;">
+            <a class="logo-v3" href="https://www.cv.edu">
+                <img data-src="/wp-content/uploads/2025/05/CVCC_middle_white.png" alt="Chattahoochee Valley Community College home" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjwvc3ZnPg==" class="lazyload" style="--smush-placeholder-width: 1509px; --smush-placeholder-aspect-ratio: 1509/593;">
+            </a>
+            <nav class="navbar">
+                <div class="menu-container v3">
+                    <div class="menu">
+                        <ul id="menu-header-main-menu-v3" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-27640 standard-menu"><a href="#" data-role="button" role="button">About Us</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27641"><a href="https://www.cv.edu/about/fast-facts/">Fast Facts</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-27642"><a href="https://www.cv.edu/about/leadership/">Leadership</a>
+	<ul class="sub-menu">
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27643"><a href="https://www.cv.edu/about/leadership/presidents-message/">President’s Message</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27644"><a href="https://www.cv.edu/about/leadership/board-of-trustees/">Board of Trustees</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27645"><a href="https://www.cv.edu/about/leadership/human-resources/">Human Resources</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27646"><a href="https://www.cv.edu/about/leadership/financial-reports/">Financial Disclosure</a></li>
+	</ul>
+</li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-27647"><a role="button">Our Story</a>
+	<ul class="sub-menu">
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27648"><a href="https://www.cv.edu/our-history-mission-and-vision/">Our History, Mission, and Vision</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-29292"><a href="https://www.cv.edu/about/cvcc-powering-growth-fueling-futures/">CVCC: Powering Growth, Fueling Futures</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-27649"><a href="https://www.cv.edu/accreditation/">Accreditation</a>
+		<ul class="sub-menu">
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27650"><a href="https://www.cv.edu/accreditation/qep/">Quality Enhancement Plan (COMPASS)</a></li>
+		</ul>
+</li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27651"><a href="https://www.cv.edu/consumer-information/">Consumer Information</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-privacy-policy menu-item-27652"><a rel="privacy-policy" href="https://www.cv.edu/privacy-policy/">Privacy Policy</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27653"><a href="https://www.cv.edu/foundation/">Foundation</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27654"><a href="https://www.cv.edu/alumni/">Alumni Relations</a></li>
+	</ul>
+</li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-27655"><a href="https://www.cv.edu/about/strategic-initiatives/">Strategic Initiatives</a>
+	<ul class="sub-menu">
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27656"><a href="https://www.cv.edu/about/strategic-initiatives/office-of-institutional-research/">Institutional Research</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27657"><a href="https://www.cv.edu/about/strategic-initiatives/mission/">Institutional Effectiveness</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27658"><a href="https://www.cv.edu/about/strategic-initiatives/office-of-institutional-advancement-and-alumni-relations/">Institutional Advancement &#038; Alumni Relations</a></li>
+	</ul>
+</li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-27659"><a href="#" role="button">Our Campus</a>
+	<ul class="sub-menu">
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27660"><a href="https://www.cv.edu/facilities-map/">Facilities &#038; Map</a></li>
+	</ul>
+</li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27662"><a href="https://www.cv.edu/about/open-records-request/">Open Records Request</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-27663"><a href="#" data-role="button" role="button">Admissions &#038; Financial Aid</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-27664"><a role="button">Admissions</a>
+	<ul class="sub-menu">
+		<li class="simplifi-tracking-apply menu-item menu-item-type-post_type menu-item-object-page menu-item-27665"><a href="https://www.cv.edu/apply/">Apply</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27666"><a href="https://www.cv.edu/registration-information/">Registration Information</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27667"><a href="https://www.cv.edu/college-placement/">English &#038; Math Placement</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27668"><a href="https://www.cv.edu/tuition/direct-deposit-information/">Direct Deposit Information</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27669"><a href="https://www.cv.edu/training-programs/dual-enrollment/">Dual Enrollment</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-29990"><a href="https://www.cv.edu/transient-information/">Transient Information</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-27670"><a href="https://www.cv.edu/tuition/">Tuition</a>
+		<ul class="sub-menu">
+			<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-27671"><a href="https://www.cv.edu/catalogpdf#page=51">Other Campus Fees</a></li>
+			<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-27672"><a href="https://www.cv.edu/catalogpdf#page=52">Other Student Fees</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27673"><a href="https://www.cv.edu/tuition/refunds/">Refunds</a></li>
+		</ul>
+</li>
+		<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-27674"><a href="/catalog">Catalogs</a>
+		<ul class="sub-menu">
+			<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-27675"><a href="https://catalog.cv.edu">2026-2027 Catalog &#038; Handbook</a></li>
+			<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-27676"><a href="/catalog">Archive</a></li>
+		</ul>
+</li>
+	</ul>
+</li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-27677"><a role="button">Financial Aid</a>
+	<ul class="sub-menu">
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27678"><a href="https://www.cv.edu/financial-aid/">The Office of Financial Aid &#038; Veteran Services</a></li>
+		<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-27679"><a role="button">Types of Aid</a>
+		<ul class="sub-menu">
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27680"><a href="https://www.cv.edu/financial-aid/grants/">Grants</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27681"><a href="https://www.cv.edu/financial-aid/scholarships/">Scholarships</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27682"><a href="https://www.cv.edu/financial-aid/loans/">Loans</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27683"><a href="https://www.cv.edu/financial-aid/direct-loan-requirements/">Direct Loan Requirements &#038; Information</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27684"><a href="https://www.cv.edu/financial-aid/work-study/">Federal Work Study Program</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27685"><a href="https://www.cv.edu/financial-aid/eligibility-chart/">Program Eligibility Chart</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27686"><a href="https://www.cv.edu/financial-aid/maintain-financial-aid-sap/">Maintain Financial Aid (SAP)</a></li>
+		</ul>
+</li>
+		<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-27687"><a role="button">Resources</a>
+		<ul class="sub-menu">
+			<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-27688"><a href="https://www.cv.edu/npcalc/">Net Price Calculator</a></li>
+			<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-27689"><a href="https://nces.ed.gov/collegenavigator/">College Navigator</a></li>
+			<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-27690"><a href="https://collegescorecard.ed.gov/">College Scorecard</a></li>
+			<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-27691"><a href="https://www.consumerfinance.gov/paying-for-college/">Paying for College</a></li>
+		</ul>
+</li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27692"><a href="https://www.cv.edu/financial-aid/faq/">Financial Aid FAQ &#038; Important Dates</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27693"><a href="https://www.cv.edu/financial-aid/financial-aid-contact-information/">Financial Aid Contact Information</a></li>
+	</ul>
+</li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-27694"><a role="button">Veterans Benefits &#038; Information</a>
+	<ul class="sub-menu">
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27695"><a href="https://www.cv.edu/veterans-information/cevss/">Center of Excellence for Veteran Student Success (CEVSS)</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-27696"><a href="https://www.cv.edu/veterans-information/">Veterans Information</a>
+		<ul class="sub-menu">
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27697"><a href="https://www.cv.edu/veterans-information/veterans-benefits/">Veterans Benefits</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27698"><a href="https://www.cv.edu/veterans-information/student-responsibilities/">Student Responsibilities</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27699"><a href="https://www.cv.edu/veterans-information/school-certifying-responsibility/">School Certifying Responsibility</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27700"><a href="https://www.cv.edu/veterans-information/veterans-education-benefits-eligibility-chart/">Veterans Education Benefits Eligibility Chart</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27701"><a href="https://www.cv.edu/veterans-information/army-pa-jumpstart/">Army PA Jumpstart</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27702"><a href="https://www.cv.edu/veterans-information/army-nursecorp-jumpstart/">Army NurseCorp Jumpstart</a></li>
+			<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-27703"><a href="https://benefits.va.gov/gibill/">U.S. Department of Veterans Affairs</a></li>
+			<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-27704"><a href="https://jst.doded.mil/">Joint Service Transcripts (JST)</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27705"><a href="https://www.cv.edu/veterans-information/mycaa/">Military Spouse Career Advancement Account (MyCAA)</a></li>
+			<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-27706"><a href="https://www.militaryonesource.mil/education-employment/for-service-members/choosing-a-college/postsecondary-education-complaint-system/">Postsecondary Education Complaint System</a></li>
+			<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-27707"><a href="https://www.military.com/education/finding-a-school/the-military-student-bill-of-rights.html">Military Student Bill of Rights</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27708"><a href="https://www.cv.edu/veterans-information/veterans-tuition-assistance/">Veterans Tuition Assistance</a></li>
+			<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-27709"><a href="https://federation.ngwebsolutions.com/sp/startSSO.ping?PartnerIdpId=https://eis-prod.ec.accs.edu:443/samlsso&#038;TargetResource=https%3a%2f%2fdynamicforms.ngwebsolutions.com%2fSubmit%2fStart%2f48e4c74c-e924-45fa-81a0-e351438379be">VA Request for Certification and Benefit Form</a></li>
+		</ul>
+</li>
+	</ul>
+</li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-27710"><a href="#" data-role="button" role="button">Programs &#038; Training</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-27711"><a href="https://www.cv.edu/training-programs/">Training Programs</a>
+	<ul class="sub-menu">
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27712"><a href="https://www.cv.edu/training-programs/adult-education/">Adult Education</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-27713"><a href="https://www.cv.edu/training-programs/workforce-development/">Workforce Development</a>
+		<ul class="sub-menu">
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27714"><a href="https://www.cv.edu/training-programs/workforce-development/continuing-education/">Continuing Education</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27715"><a href="https://www.cv.edu/training-programs/workforce-development/credentialing-assistance-military/">Credentialing Assistance (CA) – Military</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27716"><a href="https://www.cv.edu/training-programs/workforce-development/professional-certifications/">Professional Certifications</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27717"><a href="https://www.cv.edu/training-programs/workforce-development/return-of-unearned-military-credential/">Return of Unearned Military Credential</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27718"><a href="https://www.cv.edu/training-programs/workforce-development/training-for-business-and-industry/">Training for Business and Industry</a></li>
+		</ul>
+</li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27719"><a href="https://www.cv.edu/training-programs/dual-enrollment/">Dual Enrollment</a></li>
+		<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-27720"><a role="button">Online Learning</a>
+		<ul class="sub-menu">
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27721"><a href="https://www.cv.edu/training-programs/online-learning/getting-started/">Getting Started</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27722"><a href="https://www.cv.edu/training-programs/online-learning/faq/">Online Learning FAQ</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27723"><a href="https://www.cv.edu/training-programs/online-learning/resources/">Online Learning Resources</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27724"><a href="https://www.cv.edu/training-programs/online-learning/technical-skills/">Online Learning Technical Skills</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27725"><a href="https://www.cv.edu/training-programs/online-learning/online-student-complaint/">Online Student Complaint</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27726"><a href="https://www.cv.edu/training-programs/online-learning/tips-for-success/">Tips for Success</a></li>
+		</ul>
+</li>
+	</ul>
+</li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-27727"><a href="https://www.cv.edu/programs/">Degree Programs</a>
+	<ul class="sub-menu">
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-27728"><a href="https://www.cv.edu/programs/academic-transfer/">Academic Transfer</a>
+		<ul class="sub-menu">
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27729"><a href="https://www.cv.edu/programs/academic-transfer/english-communication/">English &#038; Communication</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27730"><a href="https://www.cv.edu/programs/academic-transfer/fine-arts/">Fine Arts</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27731"><a href="https://www.cv.edu/programs/academic-transfer/math/">Mathematics</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27732"><a href="https://www.cv.edu/programs/academic-transfer/science/">Science</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27733"><a href="https://www.cv.edu/programs/academic-transfer/history-social-science/">History/Social Science</a></li>
+		</ul>
+</li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-27734"><a href="https://www.cv.edu/programs/applied-technology/">Applied Technology</a>
+		<ul class="sub-menu">
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27735"><a href="https://www.cv.edu/programs/applied-technology/automotive-manufacturing/">Automotive Manufacturing</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-29398"><a href="https://www.cv.edu/programs/applied-technology/commercial-and-industrial-wiring/">Commercial and Industrial Wiring</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-29399"><a href="https://www.cv.edu/programs/applied-technology/electrical-equipment-installation-and-repair-semiconductor/">Electrical Equipment Installation and Repair (Semiconductor)</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-29396"><a href="https://www.cv.edu/programs/applied-technology/electrical-technology/">Electrical Technology</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27736"><a href="https://www.cv.edu/programs/applied-technology/hvac/">HVAC</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-29397"><a href="https://www.cv.edu/programs/applied-technology/industrial-instrumentation/">Industrial Instrumentation</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27737"><a href="https://www.cv.edu/programs/applied-technology/industrial-maintenance/">Industrial Maintenance</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27738"><a href="https://www.cv.edu/programs/applied-technology/welding-aws-smaw-gmaw-applied-technology-mssc-fork-lift-truck/">Welding</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27739"><a href="https://www.cv.edu/programs/applied-technology/industry-partnerships/">Industry Partnerships</a></li>
+		</ul>
+</li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-27740"><a href="https://www.cv.edu/programs/business-division-old/">Business Division</a>
+		<ul class="sub-menu">
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27741"><a href="https://www.cv.edu/programs/business-division-old/a-a-s-accounting/">Business Administration with Emphasis in Accounting</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27742"><a href="https://www.cv.edu/programs/business-division-old/a-a-s-business/">Business</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27743"><a href="https://www.cv.edu/programs/business-division-old/short-certificate-customer-service/">Customer Service</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27744"><a href="https://www.cv.edu/programs/business-division-old/a-a-s-entrepreneurship/">Entrepreneurship</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27745"><a href="https://www.cv.edu/programs/business-division-old/a-a-s-management/">Business Administration with Emphasis in Management</a></li>
+		</ul>
+</li>
+	</ul>
+</li>
+	<li class="hidden-menu-item menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-27746"><a role="button">Column Break</a>
+	<ul class="sub-menu">
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27747"><a href="https://www.cv.edu/programs/where-to-transfer/">Where To Transfer</a></li>
+		<li class="column-break menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-27748"><a href="https://www.cv.edu/programs/computer-info-technology-old/" title="column-break">Computer Information &#038; Technology</a>
+		<ul class="sub-menu">
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27749"><a href="https://www.cv.edu/programs/computer-info-technology-old/cisco-networking-academy/">CISCO Networking Academy</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27750"><a href="https://www.cv.edu/programs/computer-info-technology-old/a-a-s-cyber-defense-5-semesters/">Cyber Defense</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27751"><a href="https://www.cv.edu/programs/computer-info-technology-old/a-a-s-information-technology-5-semesters/">Information Technology</a></li>
+		</ul>
+</li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-27752"><a href="https://www.cv.edu/programs/health-sciences/">Health Sciences</a>
+		<ul class="sub-menu">
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27753"><a href="https://www.cv.edu/programs/health-sciences/associates-degree-nursing-direct-entry/">Associates Degree Nursing Direct Entry</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27754"><a href="https://www.cv.edu/programs/health-sciences/certified-nursing-assistant/">Certified Nursing Assistant (CNA)</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27764"><a href="https://www.cv.edu/programs/public-safety/emergency-medical/">Emergency Medical Services</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27755"><a href="https://www.cv.edu/programs/health-sciences/certified-nursing-assistant/home-health-aide/">Home Health Aide</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-29395"><a href="https://www.cv.edu/programs/health-sciences/kinesiology_exercise_science/">Kinesiology/Exercise Science</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27756"><a href="https://www.cv.edu/programs/health-sciences/medical-assisting/">Medical Assisting</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27757"><a href="https://www.cv.edu/programs/health-sciences/medical-laboratory-technician/">Medical Laboratory Technician</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27758"><a href="https://www.cv.edu/programs/health-sciences/mobility-lpn-or-paramedic-to-rn/">Mobility (LPN, Paramedic, Respiratory Therapist or Medical Assistant Technologist to RN)</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27759"><a href="https://www.cv.edu/programs/health-sciences/pharmacy_technician_program/">Pharmacy Technician Program</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27760"><a href="https://www.cv.edu/programs/health-sciences/practical-nursing/">Practical Nursing</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-29394"><a href="https://www.cv.edu/programs/health-sciences/wellness-and-personal-trainer/">Wellness and Personal Trainer</a></li>
+		</ul>
+</li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-27761"><a href="https://www.cv.edu/programs/public-safety/">Public Safety</a>
+		<ul class="sub-menu">
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27762"><a href="https://www.cv.edu/programs/public-safety/fire-science-investigator-protection-supression-fire-fighter-fire-chief/">Fire Science</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27763"><a href="https://www.cv.edu/programs/public-safety/criminal-justice-law-enforcement-security/">Criminal Justice</a></li>
+		</ul>
+</li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27765"><a href="https://www.cv.edu/programs/visual-communications/multimedia-graphic-design/">Visual Communications</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27766"><a href="https://www.cv.edu/programs/child-care-and-development/">Child Care and Development</a></li>
+	</ul>
+</li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-27767"><a href="#" data-role="button" role="button">Student Services</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-27768"><a role="button">Student Resources</a>
+	<ul class="sub-menu">
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27769"><a href="https://www.cv.edu/student-resources/ada/">ADA</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27770"><a href="https://www.cv.edu/student-resources/student-complaints-grievances/">Student Complaints &#038; Grievances</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27771"><a href="https://www.cv.edu/student-resources/sexual-harassment-title-ix/">Title IX Sexual Harassment</a></li>
+		<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-27772"><a role="button">Student Services</a>
+		<ul class="sub-menu">
+			<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-27773"><a href="https://catalog.cv.edu/">Student Handbook</a></li>
+			<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-27774"><a href="https://www.cv.edu/catalogpdf#page=279">Student Code of Conduct</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27776"><a href="https://www.cv.edu/student-clubs-organizations/">Student Clubs &#038; Organizations</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27777"><a href="https://www.cv.edu/student-resources/pirates-book-pack/">Pirates Book Pack</a></li>
+			<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-27778"><a href="https://cv.bncollege.com/webapp/wcs/stores/servlet/BNCBHomePage?storeId=65195&#038;catalogId=10001&#038;langId=-1">Bookstore</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27779"><a href="https://www.cv.edu/student-resources/student-id-parking/">Student ID &#038; Parking</a></li>
+		</ul>
+</li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27775"><a href="https://www.cv.edu/student-resources/advising/">Advising</a></li>
+		<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-27780"><a href="https://www.cvpirates.com">Athletics (CVPirates.com)</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27781"><a href="https://www.cv.edu/student-resources/security-emergencies/">Campus Police &#038; Emergencies</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27782"><a href="https://www.cv.edu/student-resources/class-schedule/">Class Schedule</a></li>
+	</ul>
+</li>
+	<li class="hidden-menu-item menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-27783"><a role="button">Column Break</a>
+	<ul class="sub-menu">
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27784"><a href="https://www.cv.edu/accreditation/qep/">COMPASS</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-27785"><a href="https://www.cv.edu/student-resources/graduation/">Graduation</a>
+		<ul class="sub-menu">
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27786"><a href="https://www.cv.edu/student-resources/graduation/graduation-application-deadlines/">Graduation Application &#038; Deadlines</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27787"><a href="https://www.cv.edu/student-resources/graduation/requirements/">Requirements</a></li>
+		</ul>
+</li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-27788"><a href="https://www.cv.edu/student-resources/learning-resource-center/">Learning Resource Center</a>
+		<ul class="sub-menu">
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27789"><a href="https://www.cv.edu/student-resources/learning-resource-center/library-links/">Library Resources</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27794"><a href="https://www.cv.edu/student-resources/tutoring-center/">Tutoring Center</a></li>
+		</ul>
+</li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27790"><a href="https://www.cv.edu/student-resources/records-office/student-forms/">Student Forms</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27791"><a href="https://www.cv.edu/student-resources/technical-support/">Technical Support</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27792"><a href="https://www.cv.edu/student-resources/testing-center/">Testing Center</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27793"><a href="https://www.cv.edu/student-resources/records-office/transcript-requests/">Transcript Requests</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27796"><a href="https://www.cv.edu/student-resources/career-services-center/">Career Services Center</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-29707"><a href="https://www.cv.edu/student-resources/accessing-cvcc-wifi/">Accessing CVCC WiFi</a></li>
+	</ul>
+</li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-27797"><a href="https://cvpirates.com/" data-role="button">Athletics</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-27799 standard-menu"><a href="#" data-role="button" role="button">Quick Links</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27800"><a href="https://www.cv.edu/collegeevents/">College Events</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27801"><a href="https://www.cv.edu/training-programs/career-coach/">Career Coach</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27802"><a href="https://www.cv.edu/student-resources/testing-center/">Testing Center</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27803"><a href="https://www.cv.edu/about/contact/">Contact Us</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-27804"><a target="_blank" href="https://ssb-prod.ec.accs.edu/PROD/CVCC/bwckschd.p_disp_dyn_sched">Dynamic Schedule</a></li>
+</ul>
+</li>
+</ul>                    </div>
+                </div>
+            </nav>
+            <script type="text/javascript" src="https://www.cv.edu/wp-content/themes/cvcc/megamenu.js"></script>
+        </div>
+    </div>
+
+<!-- Move to CSS file when ready-->
+<style>
+
+	body {
+		position: relative;
+	}
+
+	.container {
+		max-width: 90%;
+	}
+
+	.header-bottom-bar-container {
+		width: 100%;
+    	height: auto;
+    	background: #003da5;
+		float: left;
+	}
+
+	#header-bottom-bar {
+		background-color: #02358c;
+		padding: 0 2em 0em 0em;
+	}
+
+	.header-bottom-menu li {
+		padding-bottom: 2px;
+	}
+
+	#header-bottom-bar .apply-button:before,
+	#header-bottom-bar .apply-button:after	 {
+		content: '';
+        position: absolute;
+        display: block;
+        left: 0px;
+        top: 0;
+        bottom: 0;
+        aspect-ratio: 1 / 1;
+        height: 100%;
+        background: #FFC874;
+        transform: translateX(-100%);
+        -webkit-clip-path: polygon(100% 0, 100% 100%, 45% 100%);
+        clip-path: polygon(100% 0, 100% 100%, 45% 100%);
+	}
+
+	#header-bottom-bar .apply-button:after {
+		left: 100%;
+		transform: translateX(-12px);
+		clip-path: polygon(100% 0, 0 0, 45% 100%);
+	}
+
+	@media (min-width: 800px) {
+		#header-bottom-bar {
+			display: inline-block;
+			width: auto;
+			float: right;
+			width: 870px;
+		}
+	}
+
+	#header.v3 {
+		background-color: #003da5;
+	}
+
+	#header.v3 .menu > ul > li > ul.sub-menu {
+      top: 75px;
+	}
+
+	/* Home Page Slider v3 */
+
+	#flexslider-v3 .flex-item.content-container,
+	#flexslider-v3 .flex-item.image-container .triangle-scalene {
+		background-color: #3a75b2; /* was #6699cc: 3.0:1 with white text, needs 4.5:1 */
+	}
+
+	#flexslider-v3 .flex-item.content-container .button {
+		background-color: #003da5 !important;
+		color: white !important;
+	}
+
+	#flexslider-v3 .flex-item.content-container h2 {
+		padding: 1rem 2rem;
+		background-color: #003da5;
+		position: relative;
+	}
+
+	#flexslider-v3 .flex-control-paging li a {
+		background-color: white !important;
+		color: #003da5; /* a11y: hidden dot number must contrast with its bg */
+	}
+
+	#flexslider-v3 .flex-control-paging li a.flex-active {
+		background-color: #003da5 !important;
+		color: #fff;
+	}
+
+	/* a11y contrast: slider wrappers inherit the body text color, which fails on the dark blue backgrounds */
+	#flexslider-v3,
+	#flexslider-v3 .flex-viewport,
+	#flexslider-v3 .slides,
+	#flexslider-v3 li,
+	#flexslider-v3 .flex-wrapper,
+	#flexslider-v3 .flex-control-nav {
+		color: #fff;
+	}
+
+	@media only screen and (min-width: 1281px) {
+		#flexslider-v3 .flex-item.content-container {
+			padding: clamp(1.5rem, 4vw, 4rem) clamp(1.5rem, 2.5vw, 2.5rem);
+			padding-left: 0;
+			padding-right: 15rem;
+		}
+
+		#flexslider-v3 .flex-item.content-container .button {
+			background-color: #003da5 !important;
+			color: white !important;
+		}
+
+		#flexslider-v3 .flex-item.content-container h2 {
+			padding: 2rem 2rem;
+			background-color: #003da5;
+			width: 170%;
+			position: relative;
+			left: -100px;
+		}
+		#flexslider-v3 .flex-control-nav {
+			bottom: 20px !important;
+		}
+		#flexslider-v3 .flex-item.content-container h2:before {
+			content: '';
+			position: absolute;
+			display: block;
+			left: 1px;
+			top: 0;
+			bottom: 0;
+			aspect-ratio: 1/1;
+			height: 100%;
+			background: #003da5;
+			transform: translateX(-100%);
+			-webkit-clip-path: polygon(100% 0, 100% 100%, 45% 100%);
+			clip-path: polygon(100% 0, 100% 100%, 45% 100%);
+		}
+		#flexslider-v3 .flex-item.content-container a.button {
+			margin-top: 4px;
+		}
+	}
+
+	@media only screen and (min-width: 1281px) and (max-width: 1600px) {
+		#flexslider-v3 .flex-item.content-container {
+			padding: clamp(1.5rem, 3vw, 3rem) clamp(1.5rem, 2.5vw, 2.5rem);
+			padding-left: 0;
+			padding-right: 2rem;
+		}
+		#flexslider-v3 .flex-item.content-container h2 {
+			padding: 1.5rem 2rem;
+			width: 130%;
+			font-size: 30px;
+		}
+		#flexslider-v3 .flex-item.content-container a.button {
+			margin-top: 4px;
+		}
+		#flexslider-v3 .flex-control-nav {
+			bottom: 20px !important;
+		}
+	}
+
+	.slider-buttons a {
+		color: #003da5;
+		background-color: #FFD478;
+	}
+
+	.slider-buttons a:hover {
+		background-color: #fbe1b8 !important;
+	}
+
+	/* Home Page Headlines */
+
+	#home-headlines {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: flex-start;
+		column-gap: 3rem;
+		row-gap: 5rem;
+		padding-left: 5px;
+		padding-right: 5px;
+	}
+
+	#home-headlines .headline {
+		flex: 0 0 calc((100% / 3) - 32px);
+		max-width: 100%;
+	}
+
+    @media only screen and (max-width: 1200px) {
+        #home-headlines .headline {
+            flex: 0 0 calc((100% / 2) - 32px);
+            max-width: 100%;
+        }
+    }
+
+	.home-page-headlines {
+		padding-top: 0 !important;
+		margin-top: 0rem !important;
+	}
+
+	.home-page-headlines.mobile {
+		display: none;
+	}
+
+	@media only screen and (max-width: 768px) {
+		.home-page-headlines.desktop {
+			display: none;
+		}
+		.home-page-headlines.mobile {
+			display: flex;
+		}
+	}
+
+	.home-page-headlines .headline {
+		box-shadow: 0px 0px 10px 3px rgba(128, 128, 128, 0.333);
+	}
+
+	.home-page-headlines .headline-content {
+		padding: 2rem;
+	}
+
+	.home-page-headlines :where(h3, .headline-title) {
+		color: #003da5 !important;
+	}
+
+	.home-page-headlines .headline .button {
+		background-color: #003da5 !important;
+	}
+
+	/* Footer */
+
+	@media (max-width: 1000px) {
+		.home-page-headlines .headline-content {
+			padding: 2rem;
+		}
+	}
+
+/* --- Main Menu --- */
+
+.menu-container.v3 .menu > ul > li > a {
+    padding: 1em 2em;
+}
+
+@media only screen and (min-width: 1141px) and (max-width: 1280px) {
+	.menu-container.v3 .menu > ul > li > a {
+		font-size: 14px;
+	}
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1140px) {
+	.menu-container.v3 .menu > ul > li > a {
+		font-size: 12px;
+		padding: 1em 1.25em;
+	}
+}
+
+@media only screen and (max-width: 991px) {
+	#header .menu-mobile:after {
+		transform: translateY(-40%);
+	}
+	#header .menu-dropdown-icon:before {
+    	padding: 18px 1.5em;
+    }
+    #header .menu > ul > li > ul {
+        padding: 1em 2em;
+    }
+	#header .menu > ul {
+        padding: 0px !important;
+	}
+}
+
+.menu-container.v3,
+ul#menu-header-main-menu-v3,
+.menu > ul#menu-header-main-menu-v3 > li {
+	height: auto !important;
+}
+
+@media only screen and (max-width: 991px) {
+    #header.v3 .menu ul {
+        top: calc(100% + 13px) !important;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+	.menu-container.v3,
+	ul#menu-header-main-menu-v3,
+	.menu > ul#menu-header-main-menu-v3 > li {
+		height: 75px !important;
+	}
+}
+
+/* --- Top Menu Bar --- */
+
+#menu-header-header-bottom-menu .apply-button {
+	position: relative;
+	background-color: #FFC874 !important;
+	color: #003da5 !important;
+	padding-left: 1rem;
+	padding-right: 1rem;
+}
+
+#menu-header-header-bottom-menu .apply-button a {
+	text-transform: uppercase;
+	color: #003da5 !important;
+}
+
+#menu-header-header-bottom-menu .apply-button:hover a {
+	color: #003da5 !important;
+}
+
+/* Feaured Video Section */
+
+#featured-video > .container {
+	padding: 0 clamp(0rem, 10vw, 3rem) !important;
+}
+
+#featured-video .flex-wrapper {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	justify-content: space-between;
+	column-gap: 3rem;
+	row-gap: 3rem;
+	padding: 3rem clamp(3rem, 10vw, 15rem);
+	background-color: #eaf0f5;
+}
+
+#featured-video .flex-item:first-of-type {
+	flex: 1 0 320px;
+	max-width: 100%;
+}
+
+#featured-video .flex-item:last-of-type {
+	flex: 0 0 500px;
+	max-width: 100%;
+}
+
+#featured-video .circular-video-wrapper {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin: 0 auto;
+  border: 0px solid transparent;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#featured-video .video-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+#featured-video .circular-video-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+#featured-video .play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 70px;
+  height: 70px;
+  background: rgba(0,0,0,0.6);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#featured-video .play-button:after {
+  content: '';
+  display: block;
+  margin-left: 8px;
+  border-style: solid;
+  border-width: 18px 0 18px 32px;
+  border-color: transparent transparent transparent #fff;
+}
+
+@media only screen and (max-width: 480px) {
+
+	.header-bottom-menu a {
+        font-size: .6em;
+		position: relative;
+		bottom: 1px;
+    }
+
+	.logo-v3 {
+		transform: translateY(-56%);
+	}
+
+	#flexslider-v3 h2 {
+		font-size: 1.75rem !important;
+	}
+
+    #flexslider-v3 li {
+		background-color: #3a75b2 !important; /* was #6699cc (a11y contrast) */
+	}
+
+	#flexslider-v3 .flex-control-nav {
+		bottom: 1rem !important;
+	}
+	#flexslider-v3 .flex-item.content-container {
+		padding: 0 !important;
+	}
+
+	#flexslider-v3 .flex-item.content-container p {
+		padding-left: clamp(1.5rem, 5vw, 5rem) !important;
+		padding-right: clamp(1.5rem, 5vw, 5rem) !important;
+	}
+
+	#flexslider-v3 .flex-item.content-container a {
+		margin-left: clamp(1.5rem, 5vw, 5rem) !important;
+		margin-right: clamp(1.5rem, 5vw, 5rem) !important;
+	}
+
+	.home-v3.slider-buttons a {
+		border-radius: 0 !important;
+		font-size: 15px;
+	}
+
+	#featured-video,
+	#featured-video > .container {
+		padding-left: 0 !important;
+		padding-right: 0 !important;
+		max-width: 100% !important;
+	}
+	#featured-video .flex-wrapper {
+		padding: 0 !important;
+		row-gap: 0 !important;
+	}
+	#featured-video .flex-item:first-of-type {
+    	padding: 3rem clamp(3rem, 10vw, 15rem);
+	}
+}
+
+@media only screen and (max-width: 430px) {
+	.header-bottom-menu a {
+        font-size: .470em;
+    }
+}
+
+/* --- Footer --- */
+
+#footer-ship-v3 {
+	position: relative;
+	margin-top: 2rem;
+}
+
+footer {
+	background: #003da5 !important;
+	padding-top: 0 !important;
+}
+
+footer .content-area {
+	padding-top: 1rem;
+	padding-bottom: 0;
+	background-color: #003da5;
+}
+
+footer .footer-content {
+	justify-content: space-between;
+}
+
+footer .footer-content img {
+	width: 200px;
+	height: auto;
+}
+
+footer .footer-content .col {
+	margin-bottom: 0 !important;
+}
+
+footer #menu-footer-three-column-menu {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	justify-content: space-around;
+	margin-top: 0 !important;
+}
+
+footer #menu-footer-three-column-menu .standard-menu ul {
+	width: auto !important;
+}
+
+footer #menu-footer-three-column-menu > li {
+	flex: 0 0 auto;
+}
+
+footer #menu-footer-three-column-menu li.menu-item-has-children > a {
+	display: none !important;
+}
+
+footer #menu-footer-three-column-menu li.menu-item-has-children > ul.sub-menu {
+	margin-top: 0 !important;
+}
+
+#footer-bottom-bar {
+	background-color: #02358c !important;
+}
+
+@media only screen and (max-width: 1274px) {
+	footer .footer-content {
+		justify-content: center;
+	}
+}
+
+@media (max-width: 1000px) {
+	#footer-ship-v3 {
+		width: 1000px;
+		position: relative;
+		right: calc(1000px - 100%);
+	}
+}
+
+@media only screen and (max-width: 991px) {
+	footer .menu ul {
+		display: block;
+	}
+	footer #menu-footer-three-column-menu {
+		display: block;
+		padding-top: 3rem;
+		margin-bottom: 3rem;
+	}
+}
+
+</style>
+
+
+	<!-- Slider v3 -->
+	<div class="flex-slider-wrapper slider-v3" style="">
+		<div id="flexslider-v3" class="flexslider">
+			<ul class="slides"> 						<li class="slide">
+							<div class="flex-wrapper">
+								<div class="flex-item image-container bg-image lazyload" style="background-image:inherit;" data-bg-image="url(&#039;https://www.cv.edu/wp-content/uploads/2024/12/IMG_8589-1-scaled.jpg&#039;)">
+									<div class="triangle-scalene"></div>
+								</div>
+								<div class="flex-item content-container stack">
+									<h2>Register Now for Spring Semester 2027</h2>
+									<p>Don’t wait; secure your spot at CVCC today! Whether you’re starting fresh, continuing your journey, or exploring new opportunities, spring classes are filling fast. Take the first step toward your future. Register now!</p>
+																			<a href="https://www.cv.edu/registration-information/" class="button">Start Here<span class="screen-reader-text">: Register Now for Spring Semester 2027</span></a>
+																	</div>
+							</div>
+						</li> 						<li class="slide">
+							<div class="flex-wrapper">
+								<div class="flex-item image-container bg-image lazyload" style="background-image:inherit;" data-bg-image="url(&#039;https://www.cv.edu/wp-content/uploads/2024/05/32.png&#039;)">
+									<div class="triangle-scalene"></div>
+								</div>
+								<div class="flex-item content-container stack">
+									<h2>Don't Forget to File Your FAFSA</h2>
+									<p>File your FAFSA today to unlock grants, scholarships, work-study, and loans! Don’t miss out; filing early boosts your chances of receiving aid. Visit our financial aid office for help and secure your spot for the upcoming year!</p>
+																			<a href="https://studentaid.gov/h/apply-for-aid/fafsa" class="button">Read More<span class="screen-reader-text">: Don&#039;t Forget to File Your FAFSA</span></a>
+																	</div>
+							</div>
+						</li> 						<li class="slide">
+							<div class="flex-wrapper">
+								<div class="flex-item image-container bg-image lazyload" style="background-image:inherit;" data-bg-image="url(&#039;https://www.cv.edu/wp-content/uploads/2024/05/Student-in-lab2_5x7.jpg&#039;)">
+									<div class="triangle-scalene"></div>
+								</div>
+								<div class="flex-item content-container stack">
+									<h2>Get Hands-On Experience with CVCC's Applied Technology Programs</h2>
+									<p>Step into opportunity with CVCC's Applied Technology programs! Gain hands-on training in high-demand fields like automotive, welding, and industrial maintenance. Learn from experts and build the skills employers need. </p>
+																			<a href="https://www.cv.edu/programs/applied-technology/" class="button">Read More<span class="screen-reader-text">: Get Hands-On Experience with CVCC&#039;s Applied Technology Programs</span></a>
+																	</div>
+							</div>
+						</li> 						<li class="slide">
+							<div class="flex-wrapper">
+								<div class="flex-item image-container bg-image lazyload" style="background-image:inherit;" data-bg-image="url(&#039;https://www.cv.edu/wp-content/uploads/2024/12/education-costs-scholarship.png&#039;)">
+									<div class="triangle-scalene"></div>
+								</div>
+								<div class="flex-item content-container stack">
+									<h2>Scholarships Available</h2>
+									<p>At CVCC, we believe finances shouldn’t block your education. Explore our wide range of scholarships for achievers, those in need, and specific fields of study. Apply today and make college more affordable!</p>
+																			<a href="https://www.cv.edu/financial-aid/scholarships/" class="button">See More<span class="screen-reader-text">: Scholarships Available</span></a>
+																	</div>
+							</div>
+						</li> 			</ul>
+		</div>
+	</div>
+
+	<!-- Slider Buttons -->
+	<div class="container-fluid">
+		<div class="container">
+			<div class="home-v3 button-container slider-buttons flex-wrapper"> 						<a href="https://www.cv.edu/apply/" class="flex-item" style="background-color: #FFC874">Apply</a> 						<a href="https://www.cv.edu/collegeevents" class="flex-item" style="background-color: #FFC874">Academic Calendar</a> 						<a href="https://www.cv.edu/registration-information/" class="flex-item" style="background-color: #FFC874">Registration/Course Schedule</a> 						<a href="https://chattahoocheevalley.my.salesforce-sites.com/inquiry/targetx_base__inquiryform#?formId=a0B5f000000HrzDEAS" class="flex-item" style="background-color: #FFC874">Request Information</a> 						<a href="https://chattahoocheevalley.my.salesforce-sites.com/events" class="flex-item" style="background-color: #FFC874">Event Information</a> 						<a href="https://www.cv.edu/financial-aid/scholarships/" class="flex-item" style="background-color: #FFC874">Scholarships</a> 				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+<script>
+function playCircularVideo() {
+	const iframe = document.getElementById('yt-video');
+	const thumb = document.getElementById('yt-thumb');
+	const playButton = document.querySelector('#featured-video .play-button');
+	const rawUrl = iframe.dataset.src;
+
+	if (!rawUrl) {
+		console.error('The ACF video_url field is empty.');
+		return;
+	}
+
+	try {
+		const videoUrl = new URL(rawUrl);
+
+		videoUrl.searchParams.set('autoplay', '1');
+		videoUrl.searchParams.set('controls', '1');
+		videoUrl.searchParams.set('rel', '0');
+		videoUrl.searchParams.set('playsinline', '1');
+
+		console.log('Loading YouTube URL:', videoUrl.toString());
+
+		iframe.src = videoUrl.toString();
+		iframe.style.display = 'block';
+		thumb.style.display = 'none';
+		playButton.style.display = 'none';
+	} catch (error) {
+		console.error('Invalid YouTube URL:', rawUrl, error);
+	}
+}
+</script>
+<main id="main-content">
+	<!-- Video Section -->
+	<div id="featured-video" class="container-fluid content-area">
+		<div class="container">
+			<div class="flex-wrapper">
+				<div class="flex-item">
+					<h3 style="color: #003da5 !important;">Take The First Step</h3>
+					<p><p>Whether you&#8217;re beginning your college journey, returning to the classroom, or preparing for a new career, CVCC is here to help you succeed. Discover affordable, high-quality education, personalized support, and opportunities that prepare you for what comes next.</p>
+</p>
+				</div>
+				<div class="flex-item">
+					<div class="video-container">
+						<div class="circular-video-wrapper">
+							<div class="video-inner">
+								<img
+								id="yt-thumb"
+								data-src="https://www.cv.edu/wp-content/uploads/2026/07/wearethecommunity.png"
+								alt="Video Thumbnail"
+								class="video-thumb lazyload"
+								style="--smush-placeholder-width: 1440px; --smush-placeholder-aspect-ratio: 1440/931;width:100%;height:100%;object-fit:cover;display:block;position:absolute;top:0;left:0;"
+								 src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjwvc3ZnPg==" />
+								<iframe
+									id="yt-video"
+									data-src="https://www.youtube.com/embed/ToTn-PJZI9E"
+									src="about:blank"
+									title="Featured video"
+									frameborder="0"
+									allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+									allowfullscreen
+									style="display:none;position:absolute;top:0;left:0;width:100%;height:100%;">
+</iframe>
+								<div class="play-button" onclick="playCircularVideo()" role="button" tabindex="0" aria-label="Play video" onkeydown="if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); playCircularVideo(); }">
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Headlines: Desktop -->
+	<div class="container-fluid home-page-headlines desktop">
+		<div class="container"> 				<h3 style="font-size: 1.8em;">Headlines</h3>
+				<div id="home-headlines" class=""> 
+						<div class="headline">
+							<a href="https://www.cv.edu/chattahoochee-valley-community-college-named-among-americas-best-community-colleges-for-2027-by-time/" aria-label="Chattahoochee Valley Community College Named Among America&#8217;s Best Community Colleges for 2027 by TIME">
+								<img class="headline-image lazyload" data-src="https://www.cv.edu/wp-content/uploads/2026/11/CVCC-2026-Commencement-Ceremony--scaled.jpg" style="--smush-placeholder-width: 2560px; --smush-placeholder-aspect-ratio: 2560/1706;aspect-ratio: 5/3; display: block;object-fit: cover;" alt="Chattahoochee Valley Community College Named Among America&#8217;s Best Community Colleges for 2027 by TIME" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjwvc3ZnPg==" />
+							</a>
+							<div class="headline-content">
+								<a href="https://www.cv.edu/chattahoochee-valley-community-college-named-among-americas-best-community-colleges-for-2027-by-time/"><p class="headline-title">Chattahoochee Valley Community College Named Among America&#8217;s Best Community Colleges for 2027 by TIME</p></a>
+																	<p class="headline-excerpt">Phenix City, Ala. — Chattahoochee Valley Community College (CVCC) has earned national recognition as one of America's Best Community Colleges...</p>
+																<a class="button" href="https://www.cv.edu/chattahoochee-valley-community-college-named-among-americas-best-community-colleges-for-2027-by-time/">Read More<span class="screen-reader-text">: Chattahoochee Valley Community College Named Among America&#8217;s Best Community Colleges for 2027 by TIME</span></a>
+							</div>
+						</div> 
+						<div class="headline">
+							<a href="https://www.cv.edu/former-cvcc-student-carlee-davis-wins-statewide-alabama-pals-spring-cleanup-video-contest-award/" aria-label="Former CVCC Student Carlee Davis Wins Statewide Alabama PALS Spring Cleanup Video Contest Award">
+								<img class="headline-image lazyload" data-src="https://www.cv.edu/wp-content/uploads/2026/11/Carlee-and-Family-PAL-Award-scaled.jpeg" style="--smush-placeholder-width: 1920px; --smush-placeholder-aspect-ratio: 1920/2560;aspect-ratio: 5/3; display: block;object-fit: cover;" alt="Former CVCC Student Carlee Davis Wins Statewide Alabama PALS Spring Cleanup Video Contest Award" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjwvc3ZnPg==" />
+							</a>
+							<div class="headline-content">
+								<a href="https://www.cv.edu/former-cvcc-student-carlee-davis-wins-statewide-alabama-pals-spring-cleanup-video-contest-award/"><p class="headline-title">Former CVCC Student Carlee Davis Wins Statewide Alabama PALS Spring Cleanup Video Contest Award</p></a>
+																	<p class="headline-excerpt">Former CVCC Student Carlee Davis Wins Statewide Alabama PALS Spring Cleanup Video Contest Award Phenix City, Ala. — Former Chattahoochee...</p>
+																<a class="button" href="https://www.cv.edu/former-cvcc-student-carlee-davis-wins-statewide-alabama-pals-spring-cleanup-video-contest-award/">Read More<span class="screen-reader-text">: Former CVCC Student Carlee Davis Wins Statewide Alabama PALS Spring Cleanup Video Contest Award</span></a>
+							</div>
+						</div> 
+						<div class="headline">
+							<a href="https://www.cv.edu/chatt-valley-show-band-to-present-free-fall-concert-roots-rhythm-revival-nov-19/" aria-label="Chatt Valley Show Band to Present Free Fall Concert, “Roots, Rhythm &#038; Revival,” Nov. 19">
+								<img class="headline-image lazyload" data-src="https://www.cv.edu/wp-content/uploads/2026/11/Roots_Rhythm_Revival_16x9.png" style="--smush-placeholder-width: 1920px; --smush-placeholder-aspect-ratio: 1920/1080;aspect-ratio: 5/3; display: block;object-fit: cover;" alt="Chatt Valley Show Band to Present Free Fall Concert, “Roots, Rhythm &#038; Revival,” Nov. 19" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjwvc3ZnPg==" />
+							</a>
+							<div class="headline-content">
+								<a href="https://www.cv.edu/chatt-valley-show-band-to-present-free-fall-concert-roots-rhythm-revival-nov-19/"><p class="headline-title">Chatt Valley Show Band to Present Free Fall Concert, “Roots, Rhythm &#038; Revival,” Nov. 19</p></a>
+																	<p class="headline-excerpt">Phenix City, Ala. – Chattahoochee Valley Community College (CVCC) invites the community to an evening of live music as the...</p>
+																<a class="button" href="https://www.cv.edu/chatt-valley-show-band-to-present-free-fall-concert-roots-rhythm-revival-nov-19/">Read More<span class="screen-reader-text">: Chatt Valley Show Band to Present Free Fall Concert, “Roots, Rhythm &#038; Revival,” Nov. 19</span></a>
+							</div>
+						</div> 
+						<div class="headline">
+							<a href="https://www.cv.edu/adeca-leadership-visits-chattahoochee-valley-community-college-to-discuss-future-growth-and-grant-opportunities/" aria-label="ADECA Leadership Visits Chattahoochee Valley Community College to Discuss Future Growth and Grant Opportunities">
+								<img class="headline-image lazyload" data-src="https://www.cv.edu/wp-content/uploads/2026/10/Photo-One-scaled.jpeg" style="--smush-placeholder-width: 1920px; --smush-placeholder-aspect-ratio: 1920/1440;aspect-ratio: 5/3; display: block;object-fit: cover;" alt="ADECA Leadership Visits Chattahoochee Valley Community College to Discuss Future Growth and Grant Opportunities" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjwvc3ZnPg==" />
+							</a>
+							<div class="headline-content">
+								<a href="https://www.cv.edu/adeca-leadership-visits-chattahoochee-valley-community-college-to-discuss-future-growth-and-grant-opportunities/"><p class="headline-title">ADECA Leadership Visits Chattahoochee Valley Community College to Discuss Future Growth and Grant Opportunities</p></a>
+																	<p class="headline-excerpt">Phenix City, Ala.– Chattahoochee Valley Community College (CVCC) welcomed Alabama Department of Economic and Community Affairs (ADECA) Director Kenneth W....</p>
+																<a class="button" href="https://www.cv.edu/adeca-leadership-visits-chattahoochee-valley-community-college-to-discuss-future-growth-and-grant-opportunities/">Read More<span class="screen-reader-text">: ADECA Leadership Visits Chattahoochee Valley Community College to Discuss Future Growth and Grant Opportunities</span></a>
+							</div>
+						</div> 
+						<div class="headline">
+							<a href="https://www.cv.edu/cvcc-announces-spring-2027-registration-is-now-open/" aria-label="CVCC Announces Spring 2027 Registration Is Now Open">
+								<img class="headline-image lazyload" data-src="https://www.cv.edu/wp-content/uploads/2026/10/Spring-Registration-Ad-8.png" style="--smush-placeholder-width: 1080px; --smush-placeholder-aspect-ratio: 1080/1350;aspect-ratio: 5/3; display: block;object-fit: cover;" alt="CVCC Announces Spring 2027 Registration Is Now Open" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjwvc3ZnPg==" />
+							</a>
+							<div class="headline-content">
+								<a href="https://www.cv.edu/cvcc-announces-spring-2027-registration-is-now-open/"><p class="headline-title">CVCC Announces Spring 2027 Registration Is Now Open</p></a>
+																	<p class="headline-excerpt">Phenix City, Ala. – Chattahoochee Valley Community College (CVCC) announces that registration for the Spring 2027 semester is now open....</p>
+																<a class="button" href="https://www.cv.edu/cvcc-announces-spring-2027-registration-is-now-open/">Read More<span class="screen-reader-text">: CVCC Announces Spring 2027 Registration Is Now Open</span></a>
+							</div>
+						</div> 
+						<div class="headline">
+							<a href="https://www.cv.edu/lady-pirates-earn-no-5-ranking-in-njcaa-division-ii-preseason-poll/" aria-label="Lady Pirates Earn No. 5 Ranking in NJCAA Division II Preseason Poll">
+								<img class="headline-image lazyload" data-src="https://www.cv.edu/wp-content/uploads/2026/10/2026-27-CVCC-Lady-Pirates-Womens-Basketball-Team-scaled.jpg" style="--smush-placeholder-width: 2560px; --smush-placeholder-aspect-ratio: 2560/1703;aspect-ratio: 5/3; display: block;object-fit: cover;" alt="Lady Pirates Earn No. 5 Ranking in NJCAA Division II Preseason Poll" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjwvc3ZnPg==" />
+							</a>
+							<div class="headline-content">
+								<a href="https://www.cv.edu/lady-pirates-earn-no-5-ranking-in-njcaa-division-ii-preseason-poll/"><p class="headline-title">Lady Pirates Earn No. 5 Ranking in NJCAA Division II Preseason Poll</p></a>
+																	<p class="headline-excerpt">Phenix City, Ala. – National respect continues to grow for the Chattahoochee Valley Community College women's basketball program as the...</p>
+																<a class="button" href="https://www.cv.edu/lady-pirates-earn-no-5-ranking-in-njcaa-division-ii-preseason-poll/">Read More<span class="screen-reader-text">: Lady Pirates Earn No. 5 Ranking in NJCAA Division II Preseason Poll</span></a>
+							</div>
+						</div> 				</div> 		</div>
+	</div>
+
+	<!-- Headlines: Mobile -->
+	<div class="container-fluid content-area home-page-headlines mobile">
+		<div class="container"> 				<h3 style="font-size: 1.8em;">Headlines</h3>
+				<div id="flexslider-home-headlines" class="flexslider carousel">
+					<ul class="slides">	
+							<li class="slide headline">
+								<a href="https://www.cv.edu/chattahoochee-valley-community-college-named-among-americas-best-community-colleges-for-2027-by-time/" aria-label="Chattahoochee Valley Community College Named Among America&#8217;s Best Community Colleges for 2027 by TIME">
+									<img class="headline-image lazyload" data-src="https://www.cv.edu/wp-content/uploads/2026/11/CVCC-2026-Commencement-Ceremony--scaled.jpg" style="--smush-placeholder-width: 2560px; --smush-placeholder-aspect-ratio: 2560/1706;aspect-ratio: 5/3; display: block;object-fit: cover;" alt="Chattahoochee Valley Community College Named Among America&#8217;s Best Community Colleges for 2027 by TIME" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjwvc3ZnPg==" />
+								</a>
+								<a href="https://www.cv.edu/chattahoochee-valley-community-college-named-among-americas-best-community-colleges-for-2027-by-time/"><p class="headline-title">Chattahoochee Valley Community College Named Among America&#8217;s Best Community Colleges for 2027 by TIME</p></a>
+																	<p class="headline-excerpt">Phenix City, Ala. — Chattahoochee Valley Community College (CVCC) has earned national recognition as one of America's Best Community Colleges...</p>
+																<a class="button" href="https://www.cv.edu/chattahoochee-valley-community-college-named-among-americas-best-community-colleges-for-2027-by-time/">Read More<span class="screen-reader-text">: Chattahoochee Valley Community College Named Among America&#8217;s Best Community Colleges for 2027 by TIME</span></a>
+							</li> 
+							<li class="slide headline">
+								<a href="https://www.cv.edu/former-cvcc-student-carlee-davis-wins-statewide-alabama-pals-spring-cleanup-video-contest-award/" aria-label="Former CVCC Student Carlee Davis Wins Statewide Alabama PALS Spring Cleanup Video Contest Award">
+									<img class="headline-image lazyload" data-src="https://www.cv.edu/wp-content/uploads/2026/11/Carlee-and-Family-PAL-Award-scaled.jpeg" style="--smush-placeholder-width: 1920px; --smush-placeholder-aspect-ratio: 1920/2560;aspect-ratio: 5/3; display: block;object-fit: cover;" alt="Former CVCC Student Carlee Davis Wins Statewide Alabama PALS Spring Cleanup Video Contest Award" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjwvc3ZnPg==" />
+								</a>
+								<a href="https://www.cv.edu/former-cvcc-student-carlee-davis-wins-statewide-alabama-pals-spring-cleanup-video-contest-award/"><p class="headline-title">Former CVCC Student Carlee Davis Wins Statewide Alabama PALS Spring Cleanup Video Contest Award</p></a>
+																	<p class="headline-excerpt">Former CVCC Student Carlee Davis Wins Statewide Alabama PALS Spring Cleanup Video Contest Award Phenix City, Ala. — Former Chattahoochee...</p>
+																<a class="button" href="https://www.cv.edu/former-cvcc-student-carlee-davis-wins-statewide-alabama-pals-spring-cleanup-video-contest-award/">Read More<span class="screen-reader-text">: Former CVCC Student Carlee Davis Wins Statewide Alabama PALS Spring Cleanup Video Contest Award</span></a>
+							</li> 
+							<li class="slide headline">
+								<a href="https://www.cv.edu/chatt-valley-show-band-to-present-free-fall-concert-roots-rhythm-revival-nov-19/" aria-label="Chatt Valley Show Band to Present Free Fall Concert, “Roots, Rhythm &#038; Revival,” Nov. 19">
+									<img class="headline-image lazyload" data-src="https://www.cv.edu/wp-content/uploads/2026/11/Roots_Rhythm_Revival_16x9.png" style="--smush-placeholder-width: 1920px; --smush-placeholder-aspect-ratio: 1920/1080;aspect-ratio: 5/3; display: block;object-fit: cover;" alt="Chatt Valley Show Band to Present Free Fall Concert, “Roots, Rhythm &#038; Revival,” Nov. 19" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjwvc3ZnPg==" />
+								</a>
+								<a href="https://www.cv.edu/chatt-valley-show-band-to-present-free-fall-concert-roots-rhythm-revival-nov-19/"><p class="headline-title">Chatt Valley Show Band to Present Free Fall Concert, “Roots, Rhythm &#038; Revival,” Nov. 19</p></a>
+																	<p class="headline-excerpt">Phenix City, Ala. – Chattahoochee Valley Community College (CVCC) invites the community to an evening of live music as the...</p>
+																<a class="button" href="https://www.cv.edu/chatt-valley-show-band-to-present-free-fall-concert-roots-rhythm-revival-nov-19/">Read More<span class="screen-reader-text">: Chatt Valley Show Band to Present Free Fall Concert, “Roots, Rhythm &#038; Revival,” Nov. 19</span></a>
+							</li> 
+							<li class="slide headline">
+								<a href="https://www.cv.edu/adeca-leadership-visits-chattahoochee-valley-community-college-to-discuss-future-growth-and-grant-opportunities/" aria-label="ADECA Leadership Visits Chattahoochee Valley Community College to Discuss Future Growth and Grant Opportunities">
+									<img class="headline-image lazyload" data-src="https://www.cv.edu/wp-content/uploads/2026/10/Photo-One-scaled.jpeg" style="--smush-placeholder-width: 1920px; --smush-placeholder-aspect-ratio: 1920/1440;aspect-ratio: 5/3; display: block;object-fit: cover;" alt="ADECA Leadership Visits Chattahoochee Valley Community College to Discuss Future Growth and Grant Opportunities" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjwvc3ZnPg==" />
+								</a>
+								<a href="https://www.cv.edu/adeca-leadership-visits-chattahoochee-valley-community-college-to-discuss-future-growth-and-grant-opportunities/"><p class="headline-title">ADECA Leadership Visits Chattahoochee Valley Community College to Discuss Future Growth and Grant Opportunities</p></a>
+																	<p class="headline-excerpt">Phenix City, Ala.– Chattahoochee Valley Community College (CVCC) welcomed Alabama Department of Economic and Community Affairs (ADECA) Director Kenneth W....</p>
+																<a class="button" href="https://www.cv.edu/adeca-leadership-visits-chattahoochee-valley-community-college-to-discuss-future-growth-and-grant-opportunities/">Read More<span class="screen-reader-text">: ADECA Leadership Visits Chattahoochee Valley Community College to Discuss Future Growth and Grant Opportunities</span></a>
+							</li> 
+							<li class="slide headline">
+								<a href="https://www.cv.edu/cvcc-announces-spring-2027-registration-is-now-open/" aria-label="CVCC Announces Spring 2027 Registration Is Now Open">
+									<img class="headline-image lazyload" data-src="https://www.cv.edu/wp-content/uploads/2026/10/Spring-Registration-Ad-8.png" style="--smush-placeholder-width: 1080px; --smush-placeholder-aspect-ratio: 1080/1350;aspect-ratio: 5/3; display: block;object-fit: cover;" alt="CVCC Announces Spring 2027 Registration Is Now Open" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjwvc3ZnPg==" />
+								</a>
+								<a href="https://www.cv.edu/cvcc-announces-spring-2027-registration-is-now-open/"><p class="headline-title">CVCC Announces Spring 2027 Registration Is Now Open</p></a>
+																	<p class="headline-excerpt">Phenix City, Ala. – Chattahoochee Valley Community College (CVCC) announces that registration for the Spring 2027 semester is now open....</p>
+																<a class="button" href="https://www.cv.edu/cvcc-announces-spring-2027-registration-is-now-open/">Read More<span class="screen-reader-text">: CVCC Announces Spring 2027 Registration Is Now Open</span></a>
+							</li> 
+							<li class="slide headline">
+								<a href="https://www.cv.edu/lady-pirates-earn-no-5-ranking-in-njcaa-division-ii-preseason-poll/" aria-label="Lady Pirates Earn No. 5 Ranking in NJCAA Division II Preseason Poll">
+									<img class="headline-image lazyload" data-src="https://www.cv.edu/wp-content/uploads/2026/10/2026-27-CVCC-Lady-Pirates-Womens-Basketball-Team-scaled.jpg" style="--smush-placeholder-width: 2560px; --smush-placeholder-aspect-ratio: 2560/1703;aspect-ratio: 5/3; display: block;object-fit: cover;" alt="Lady Pirates Earn No. 5 Ranking in NJCAA Division II Preseason Poll" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjwvc3ZnPg==" />
+								</a>
+								<a href="https://www.cv.edu/lady-pirates-earn-no-5-ranking-in-njcaa-division-ii-preseason-poll/"><p class="headline-title">Lady Pirates Earn No. 5 Ranking in NJCAA Division II Preseason Poll</p></a>
+																	<p class="headline-excerpt">Phenix City, Ala. – National respect continues to grow for the Chattahoochee Valley Community College women's basketball program as the...</p>
+																<a class="button" href="https://www.cv.edu/lady-pirates-earn-no-5-ranking-in-njcaa-division-ii-preseason-poll/">Read More<span class="screen-reader-text">: Lady Pirates Earn No. 5 Ranking in NJCAA Division II Preseason Poll</span></a>
+							</li> 
+							<li class="slide headline">
+								<a href="https://www.cv.edu/cvcc-russell-county-sheriffs-office-partner-to-expand-workforce-training-and-career-opportunities/" aria-label="CVCC, Russell County Sheriff&#8217;s Office Partner to Expand Workforce Training and Career Opportunities">
+									<img class="headline-image lazyload" data-src="https://www.cv.edu/wp-content/uploads/2026/10/CVCC-President-Annette-Funderburk-Russell-Co.-Sherriff-Heath-Taylor--scaled.jpeg" style="--smush-placeholder-width: 1920px; --smush-placeholder-aspect-ratio: 1920/1616;aspect-ratio: 5/3; display: block;object-fit: cover;" alt="CVCC, Russell County Sheriff&#8217;s Office Partner to Expand Workforce Training and Career Opportunities" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjwvc3ZnPg==" />
+								</a>
+								<a href="https://www.cv.edu/cvcc-russell-county-sheriffs-office-partner-to-expand-workforce-training-and-career-opportunities/"><p class="headline-title">CVCC, Russell County Sheriff&#8217;s Office Partner to Expand Workforce Training and Career Opportunities</p></a>
+																	<p class="headline-excerpt">Phenix City, Ala. - Chattahoochee Valley Community College (CVCC) and the Russell County Sheriff's Office have partnered to provide workforce...</p>
+																<a class="button" href="https://www.cv.edu/cvcc-russell-county-sheriffs-office-partner-to-expand-workforce-training-and-career-opportunities/">Read More<span class="screen-reader-text">: CVCC, Russell County Sheriff&#8217;s Office Partner to Expand Workforce Training and Career Opportunities</span></a>
+							</li> 
+							<li class="slide headline">
+								<a href="https://www.cv.edu/400000-in-scholarships-available-for-students-pursuing-automotive-manufacturing-careers/" aria-label="$400,000 in Scholarships Available for Students Pursuing Automotive Manufacturing Careers">
+									<img class="headline-image lazyload" data-src="https://www.cv.edu/wp-content/uploads/2026/09/Automotive.jpg" style="--smush-placeholder-width: 1920px; --smush-placeholder-aspect-ratio: 1920/1440;aspect-ratio: 5/3; display: block;object-fit: cover;" alt="$400,000 in Scholarships Available for Students Pursuing Automotive Manufacturing Careers" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjwvc3ZnPg==" />
+								</a>
+								<a href="https://www.cv.edu/400000-in-scholarships-available-for-students-pursuing-automotive-manufacturing-careers/"><p class="headline-title">$400,000 in Scholarships Available for Students Pursuing Automotive Manufacturing Careers</p></a>
+																	<p class="headline-excerpt">Phenix City, Ala. — Chattahoochee Valley Community College is encouraging eligible students interested in careers in automotive and advanced manufacturing...</p>
+																<a class="button" href="https://www.cv.edu/400000-in-scholarships-available-for-students-pursuing-automotive-manufacturing-careers/">Read More<span class="screen-reader-text">: $400,000 in Scholarships Available for Students Pursuing Automotive Manufacturing Careers</span></a>
+							</li> 
+							<li class="slide headline">
+								<a href="https://www.cv.edu/cvcc-announces-inaugural-giving-days-campaign-to-support-students/" aria-label="CVCC Announces Inaugural Giving Days Campaign to Support Students">
+									<img class="headline-image lazyload" data-src="https://www.cv.edu/wp-content/uploads/2026/09/Instagram-Post-Size-Adjustment-2.png" style="--smush-placeholder-width: 1080px; --smush-placeholder-aspect-ratio: 1080/1440;aspect-ratio: 5/3; display: block;object-fit: cover;" alt="CVCC Announces Inaugural Giving Days Campaign to Support Students" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjwvc3ZnPg==" />
+								</a>
+								<a href="https://www.cv.edu/cvcc-announces-inaugural-giving-days-campaign-to-support-students/"><p class="headline-title">CVCC Announces Inaugural Giving Days Campaign to Support Students</p></a>
+																	<p class="headline-excerpt">Phenix City, Ala. — Chattahoochee Valley Community College and the CVCC Foundation announce the inaugural CVCC Giving Days, a month-long...</p>
+																<a class="button" href="https://www.cv.edu/cvcc-announces-inaugural-giving-days-campaign-to-support-students/">Read More<span class="screen-reader-text">: CVCC Announces Inaugural Giving Days Campaign to Support Students</span></a>
+							</li> 
+							<li class="slide headline">
+								<a href="https://www.cv.edu/cvcc-awarded-25000-to-launch-hvac-fasttrack-training-program/" aria-label="CVCC Awarded $25,000 to Launch HVAC FastTrack Training Program">
+									<img class="headline-image lazyload" data-src="https://www.cv.edu/wp-content/uploads/2026/09/HVAC-Instructor.jpg" style="--smush-placeholder-width: 640px; --smush-placeholder-aspect-ratio: 640/482;aspect-ratio: 5/3; display: block;object-fit: cover;" alt="CVCC Awarded $25,000 to Launch HVAC FastTrack Training Program" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjwvc3ZnPg==" />
+								</a>
+								<a href="https://www.cv.edu/cvcc-awarded-25000-to-launch-hvac-fasttrack-training-program/"><p class="headline-title">CVCC Awarded $25,000 to Launch HVAC FastTrack Training Program</p></a>
+																	<p class="headline-excerpt">Phenix City, Ala. — Chattahoochee Valley Community College (CVCC) has been awarded $25,000 from Alabama Construction Industry Craft Training (CICT)...</p>
+																<a class="button" href="https://www.cv.edu/cvcc-awarded-25000-to-launch-hvac-fasttrack-training-program/">Read More<span class="screen-reader-text">: CVCC Awarded $25,000 to Launch HVAC FastTrack Training Program</span></a>
+							</li> 
+							<li class="slide headline">
+								<a href="https://www.cv.edu/cvcc-awarded-more-than-612000-in-workforce-development-grants/" aria-label="CVCC Awarded More Than $612,000 in Workforce Development Grants">
+									<img class="headline-image lazyload" data-src="https://www.cv.edu/wp-content/uploads/2026/09/CVCC-Medical-Lab-Program-1-scaled.jpg" style="--smush-placeholder-width: 2560px; --smush-placeholder-aspect-ratio: 2560/1703;aspect-ratio: 5/3; display: block;object-fit: cover;" alt="CVCC Awarded More Than $612,000 in Workforce Development Grants" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjwvc3ZnPg==" />
+								</a>
+								<a href="https://www.cv.edu/cvcc-awarded-more-than-612000-in-workforce-development-grants/"><p class="headline-title">CVCC Awarded More Than $612,000 in Workforce Development Grants</p></a>
+																	<p class="headline-excerpt">Phenix City, Ala. -Chattahoochee Valley Community College has been awarded $612,455 in workforce development grants to support programs and initiatives...</p>
+																<a class="button" href="https://www.cv.edu/cvcc-awarded-more-than-612000-in-workforce-development-grants/">Read More<span class="screen-reader-text">: CVCC Awarded More Than $612,000 in Workforce Development Grants</span></a>
+							</li> 
+							<li class="slide headline">
+								<a href="https://www.cv.edu/chattahoochee-valley-community-college-welcomes-new-mens-basketball-head-coach/" aria-label="Chattahoochee Valley Community College  Welcomes New Men’s Basketball Head Coach">
+									<img class="headline-image lazyload" data-src="https://www.cv.edu/wp-content/uploads/2026/07/Untitled-design-10.png" style="--smush-placeholder-width: 1200px; --smush-placeholder-aspect-ratio: 1200/630;aspect-ratio: 5/3; display: block;object-fit: cover;" alt="Chattahoochee Valley Community College  Welcomes New Men’s Basketball Head Coach" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjwvc3ZnPg==" />
+								</a>
+								<a href="https://www.cv.edu/chattahoochee-valley-community-college-welcomes-new-mens-basketball-head-coach/"><p class="headline-title">Chattahoochee Valley Community College  Welcomes New Men’s Basketball Head Coach</p></a>
+																	<p class="headline-excerpt">Phenix City, AL—Chattahoochee Valley Community College (CVCC) is proud to welcome Mr. Marcus Thomas as Head Coach of the Men’s...</p>
+																<a class="button" href="https://www.cv.edu/chattahoochee-valley-community-college-welcomes-new-mens-basketball-head-coach/">Read More<span class="screen-reader-text">: Chattahoochee Valley Community College  Welcomes New Men’s Basketball Head Coach</span></a>
+							</li> 
+							<li class="slide headline">
+								<a href="https://www.cv.edu/chattahoochee-valley-community-college-to-launch-womens-flag-football-program-in-fall-2026/" aria-label="Chattahoochee Valley Community College to  Launch Women’s Flag Football Program in Fall 2026">
+									<img class="headline-image lazyload" data-src="https://www.cv.edu/wp-content/uploads/2026/07/Head-coach-Devon-Holmes-in-Light-Blue-Shirt.jpeg" style="--smush-placeholder-width: 1920px; --smush-placeholder-aspect-ratio: 1920/1280;aspect-ratio: 5/3; display: block;object-fit: cover;" alt="Chattahoochee Valley Community College to  Launch Women’s Flag Football Program in Fall 2026" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjwvc3ZnPg==" />
+								</a>
+								<a href="https://www.cv.edu/chattahoochee-valley-community-college-to-launch-womens-flag-football-program-in-fall-2026/"><p class="headline-title">Chattahoochee Valley Community College to  Launch Women’s Flag Football Program in Fall 2026</p></a>
+																	<p class="headline-excerpt">Phenix City, AL—Chattahoochee Valley Community College (CVCC) is proud to announce the addition of women’s flag football to its intercollegiate...</p>
+																<a class="button" href="https://www.cv.edu/chattahoochee-valley-community-college-to-launch-womens-flag-football-program-in-fall-2026/">Read More<span class="screen-reader-text">: Chattahoochee Valley Community College to  Launch Women’s Flag Football Program in Fall 2026</span></a>
+							</li> 
+							<li class="slide headline">
+								<a href="https://www.cv.edu/cvcc-to-host-registration-rallies-for-fall-2026-enrollment/" aria-label="CVCC to Host Registration Rallies for Fall 2026 Enrollment">
+									<img class="headline-image lazyload" data-src="https://www.cv.edu/wp-content/uploads/2026/06/Website-Graphic-Registration-Rallies.png" style="--smush-placeholder-width: 940px; --smush-placeholder-aspect-ratio: 940/788;aspect-ratio: 5/3; display: block;object-fit: cover;" alt="CVCC to Host Registration Rallies for Fall 2026 Enrollment" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjwvc3ZnPg==" />
+								</a>
+								<a href="https://www.cv.edu/cvcc-to-host-registration-rallies-for-fall-2026-enrollment/"><p class="headline-title">CVCC to Host Registration Rallies for Fall 2026 Enrollment</p></a>
+																	<p class="headline-excerpt">Phenix City, AL – Chattahoochee Valley Community College (CVCC) is making enrollment easy with three upcoming Registration Rallies designed to...</p>
+																<a class="button" href="https://www.cv.edu/cvcc-to-host-registration-rallies-for-fall-2026-enrollment/">Read More<span class="screen-reader-text">: CVCC to Host Registration Rallies for Fall 2026 Enrollment</span></a>
+							</li> 
+							<li class="slide headline">
+								<a href="https://www.cv.edu/community-reception-honoring-cvcc-president-annette-funderburk/" aria-label="Community Reception Honoring CVCC President Annette Funderburk">
+									<img class="headline-image lazyload" data-src="https://www.cv.edu/wp-content/uploads/2026/06/President-with-Basketball-Team-scaled.jpeg" style="--smush-placeholder-width: 1920px; --smush-placeholder-aspect-ratio: 1920/2560;aspect-ratio: 5/3; display: block;object-fit: cover;" alt="Community Reception Honoring CVCC President Annette Funderburk" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjwvc3ZnPg==" />
+								</a>
+								<a href="https://www.cv.edu/community-reception-honoring-cvcc-president-annette-funderburk/"><p class="headline-title">Community Reception Honoring CVCC President Annette Funderburk</p></a>
+																	<p class="headline-excerpt">Phenix City, AL- Chattahoochee Valley Community College extends its sincere appreciation to the many community leaders, students, alumni, faculty, staff,...</p>
+																<a class="button" href="https://www.cv.edu/community-reception-honoring-cvcc-president-annette-funderburk/">Read More<span class="screen-reader-text">: Community Reception Honoring CVCC President Annette Funderburk</span></a>
+							</li> 
+							<li class="slide headline">
+								<a href="https://www.cv.edu/2026-all-alabama-academic-team-awarded-61350-in-scholarships/" aria-label="2026 All-Alabama Academic Team awarded $61,350 in scholarships">
+									<img class="headline-image lazyload" data-src="https://www.cv.edu/wp-content/uploads/2026/04/2026_all_alabama.jpg" style="--smush-placeholder-width: 1920px; --smush-placeholder-aspect-ratio: 1920/1440;aspect-ratio: 5/3; display: block;object-fit: cover;" alt="2026 All-Alabama Academic Team awarded $61,350 in scholarships" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjwvc3ZnPg==" />
+								</a>
+								<a href="https://www.cv.edu/2026-all-alabama-academic-team-awarded-61350-in-scholarships/"><p class="headline-title">2026 All-Alabama Academic Team awarded $61,350 in scholarships</p></a>
+																	<p class="headline-excerpt">BIRMINGHAM – The Alabama Community College System (ACCS) recognized 48 of its top students at the 31st Annual All-Alabama Academic...</p>
+																<a class="button" href="https://www.cv.edu/2026-all-alabama-academic-team-awarded-61350-in-scholarships/">Read More<span class="screen-reader-text">: 2026 All-Alabama Academic Team awarded $61,350 in scholarships</span></a>
+							</li> 
+							<li class="slide headline">
+								<a href="https://www.cv.edu/annette-funderburk-named-president-of-chattahoochee-valley-community-college/" aria-label="Annette Funderburk named president of Chattahoochee Valley Community College">
+									<img class="headline-image lazyload" data-src="https://www.cv.edu/wp-content/uploads/2025/12/Annette-Funderburk_2025_website.jpg" style="--smush-placeholder-width: 500px; --smush-placeholder-aspect-ratio: 500/500;aspect-ratio: 5/3; display: block;object-fit: cover;" alt="Annette Funderburk named president of Chattahoochee Valley Community College" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjwvc3ZnPg==" />
+								</a>
+								<a href="https://www.cv.edu/annette-funderburk-named-president-of-chattahoochee-valley-community-college/"><p class="headline-title">Annette Funderburk named president of Chattahoochee Valley Community College</p></a>
+																	<p class="headline-excerpt">The Alabama Community College System (ACCS) Board of Trustees approved Chancellor Jimmy H. Baker’s recommendation to appoint Mrs. Annette Funderburk...</p>
+																<a class="button" href="https://www.cv.edu/annette-funderburk-named-president-of-chattahoochee-valley-community-college/">Read More<span class="screen-reader-text">: Annette Funderburk named president of Chattahoochee Valley Community College</span></a>
+							</li> 
+							<li class="slide headline">
+								<a href="https://www.cv.edu/cvcc-foundation-hosts-annual-hall-of-fame-gala-to-support-student-scholarships/" aria-label="CVCC Foundation Hosts Annual Hall of Fame Gala to Support Student Scholarships">
+									<img class="headline-image lazyload" data-src="https://www.cv.edu/wp-content/uploads/2026/03/2026CVCCHoF-57-scaled.jpg" style="--smush-placeholder-width: 2560px; --smush-placeholder-aspect-ratio: 2560/2209;aspect-ratio: 5/3; display: block;object-fit: cover;" alt="CVCC Foundation Hosts Annual Hall of Fame Gala to Support Student Scholarships" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjwvc3ZnPg==" />
+								</a>
+								<a href="https://www.cv.edu/cvcc-foundation-hosts-annual-hall-of-fame-gala-to-support-student-scholarships/"><p class="headline-title">CVCC Foundation Hosts Annual Hall of Fame Gala to Support Student Scholarships</p></a>
+																	<p class="headline-excerpt">Phenix City, AL – The Chattahoochee Valley Community College Foundation hosted its annual Hall of Fame Gala on March 5,...</p>
+																<a class="button" href="https://www.cv.edu/cvcc-foundation-hosts-annual-hall-of-fame-gala-to-support-student-scholarships/">Read More<span class="screen-reader-text">: CVCC Foundation Hosts Annual Hall of Fame Gala to Support Student Scholarships</span></a>
+							</li> 
+							<li class="slide headline">
+								<a href="https://www.cv.edu/lpn-partnership-program-creates-opportunities/" aria-label="LPN Partnership Program Creates Opportunities">
+									<img class="headline-image lazyload" data-src="https://www.cv.edu/wp-content/uploads/2026/02/katie-reaves.png" style="--smush-placeholder-width: 800px; --smush-placeholder-aspect-ratio: 800/450;aspect-ratio: 5/3; display: block;object-fit: cover;" alt="LPN Partnership Program Creates Opportunities" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjwvc3ZnPg==" />
+								</a>
+								<a href="https://www.cv.edu/lpn-partnership-program-creates-opportunities/"><p class="headline-title">LPN Partnership Program Creates Opportunities</p></a>
+																	<p class="headline-excerpt">Katie Reaves’ career in health care began unexpectedly at a job fair at EAMC‑Lanier Rural Emergency Hospital, where she accepted...</p>
+																<a class="button" href="https://www.cv.edu/lpn-partnership-program-creates-opportunities/">Read More<span class="screen-reader-text">: LPN Partnership Program Creates Opportunities</span></a>
+							</li> 
+							<li class="slide headline">
+								<a href="https://www.cv.edu/cvcc-foundation-announces-2026-hall-of-fame-inductees/" aria-label="CVCC Foundation Announces 2026 Hall of Fame Inductees">
+									<img class="headline-image lazyload" data-src="https://www.cv.edu/wp-content/uploads/2026/02/Hall-of-Fame_CATV-Ad_2026.png" style="--smush-placeholder-width: 1920px; --smush-placeholder-aspect-ratio: 1920/1236;aspect-ratio: 5/3; display: block;object-fit: cover;" alt="CVCC Foundation Announces 2026 Hall of Fame Inductees" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjwvc3ZnPg==" />
+								</a>
+								<a href="https://www.cv.edu/cvcc-foundation-announces-2026-hall-of-fame-inductees/"><p class="headline-title">CVCC Foundation Announces 2026 Hall of Fame Inductees</p></a>
+																	<p class="headline-excerpt">The Chattahoochee Valley Community College Foundation is proud to announce the 2026 Hall of Fame inductees. These distinguished individuals have...</p>
+																<a class="button" href="https://www.cv.edu/cvcc-foundation-announces-2026-hall-of-fame-inductees/">Read More<span class="screen-reader-text">: CVCC Foundation Announces 2026 Hall of Fame Inductees</span></a>
+							</li> 
+							<li class="slide headline">
+								<a href="https://www.cv.edu/2025-annual-report/" aria-label="2025 Annual Report">
+									<img class="headline-image lazyload" data-src="https://www.cv.edu/wp-content/uploads/2026/01/2025Thumbnail-2.jpg" style="--smush-placeholder-width: 1200px; --smush-placeholder-aspect-ratio: 1200/669;aspect-ratio: 5/3; display: block;object-fit: cover;" alt="2025 Annual Report" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjwvc3ZnPg==" />
+								</a>
+								<a href="https://www.cv.edu/2025-annual-report/"><p class="headline-title">2025 Annual Report</p></a>
+																	<p class="headline-excerpt">The 2025 annual report details the College’s progress, celebrates the accomplishments of students and faculty, and gratefully acknowledges the support...</p>
+																<a class="button" href="https://www.cv.edu/2025-annual-report/">Read More<span class="screen-reader-text">: 2025 Annual Report</span></a>
+							</li> 
+							<li class="slide headline">
+								<a href="https://www.cv.edu/cvcc-holds-first-pinning-for-eamc-nursing-cohort/" aria-label="CVCC Holds First Pinning for EAMC Nursing Cohort">
+									<img class="headline-image lazyload" data-src="https://www.cv.edu/wp-content/uploads/2025/08/IMG_0900-scaled.jpg" style="--smush-placeholder-width: 2560px; --smush-placeholder-aspect-ratio: 2560/1544;aspect-ratio: 5/3; display: block;object-fit: cover;" alt="CVCC Holds First Pinning for EAMC Nursing Cohort" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjwvc3ZnPg==" />
+								</a>
+								<a href="https://www.cv.edu/cvcc-holds-first-pinning-for-eamc-nursing-cohort/"><p class="headline-title">CVCC Holds First Pinning for EAMC Nursing Cohort</p></a>
+																	<p class="headline-excerpt">Chattahoochee Valley Community College (CVCC) proudly hosted its first pinning ceremony for graduates of the nursing program developed in partnership...</p>
+																<a class="button" href="https://www.cv.edu/cvcc-holds-first-pinning-for-eamc-nursing-cohort/">Read More<span class="screen-reader-text">: CVCC Holds First Pinning for EAMC Nursing Cohort</span></a>
+							</li> 
+							<li class="slide headline">
+								<a href="https://www.cv.edu/cvcc-nursing-programs-undergo-accreditation-review-august-26-28/" aria-label="CVCC Nursing Programs Undergo Accreditation Review August 26-28">
+									<img class="headline-image lazyload" data-src="https://www.cv.edu/wp-content/uploads/2025/07/65c3d2d013fd71ead0c03ce1_ACEN-commercial-1000.png" style="--smush-placeholder-width: 1000px; --smush-placeholder-aspect-ratio: 1000/563;aspect-ratio: 5/3; display: block;object-fit: cover;" alt="CVCC Nursing Programs Undergo Accreditation Review August 26-28" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjwvc3ZnPg==" />
+								</a>
+								<a href="https://www.cv.edu/cvcc-nursing-programs-undergo-accreditation-review-august-26-28/"><p class="headline-title">CVCC Nursing Programs Undergo Accreditation Review August 26-28</p></a>
+																	<p class="headline-excerpt">Chattahoochee Valley Community College (CVCC) will host a site visit from the Accreditation Commission for Education in Nursing (ACEN) on...</p>
+																<a class="button" href="https://www.cv.edu/cvcc-nursing-programs-undergo-accreditation-review-august-26-28/">Read More<span class="screen-reader-text">: CVCC Nursing Programs Undergo Accreditation Review August 26-28</span></a>
+							</li> 
+							<li class="slide headline">
+								<a href="https://www.cv.edu/cvcc-celebrates-adult-education-graduates/" aria-label="CVCC Celebrates Adult Education Graduates">
+									<img class="headline-image lazyload" data-src="https://www.cv.edu/wp-content/uploads/2025/06/website-icon-scaled.jpg" style="--smush-placeholder-width: 2560px; --smush-placeholder-aspect-ratio: 2560/1673;aspect-ratio: 5/3; display: block;object-fit: cover;" alt="CVCC Celebrates Adult Education Graduates" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjwvc3ZnPg==" />
+								</a>
+								<a href="https://www.cv.edu/cvcc-celebrates-adult-education-graduates/"><p class="headline-title">CVCC Celebrates Adult Education Graduates</p></a>
+																	<p class="headline-excerpt">Chattahoochee Valley Community College proudly celebrated the accomplishments of its Adult Education graduates during a special ceremony held in May....</p>
+																<a class="button" href="https://www.cv.edu/cvcc-celebrates-adult-education-graduates/">Read More<span class="screen-reader-text">: CVCC Celebrates Adult Education Graduates</span></a>
+							</li> 
+							<li class="slide headline">
+								<a href="https://www.cv.edu/cvcc-2025-graduation/" aria-label="CVCC 2025 Graduation">
+									<img class="headline-image lazyload" data-src="https://www.cv.edu/wp-content/uploads/2025/06/post-icon.jpg" style="--smush-placeholder-width: 1281px; --smush-placeholder-aspect-ratio: 1281/838;aspect-ratio: 5/3; display: block;object-fit: cover;" alt="CVCC 2025 Graduation" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjwvc3ZnPg==" />
+								</a>
+								<a href="https://www.cv.edu/cvcc-2025-graduation/"><p class="headline-title">CVCC 2025 Graduation</p></a>
+																	<p class="headline-excerpt">The Graduation photo gallery is here! Check out the special moments captured during the ceremony and celebration. &nbsp;</p>
+																<a class="button" href="https://www.cv.edu/cvcc-2025-graduation/">Read More<span class="screen-reader-text">: CVCC 2025 Graduation</span></a>
+							</li> 
+							<li class="slide headline">
+								<a href="https://www.cv.edu/cvcc-celebrates-the-class-of-2025-at-annual-graduation-ceremony/" aria-label="CVCC Celebrates the Class of 2025 at Annual Graduation Ceremony">
+									<img class="headline-image lazyload" data-src="https://www.cv.edu/wp-content/uploads/2025/05/featured-image.jpg" style="--smush-placeholder-width: 1920px; --smush-placeholder-aspect-ratio: 1920/908;aspect-ratio: 5/3; display: block;object-fit: cover;" alt="CVCC Celebrates the Class of 2025 at Annual Graduation Ceremony" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjwvc3ZnPg==" />
+								</a>
+								<a href="https://www.cv.edu/cvcc-celebrates-the-class-of-2025-at-annual-graduation-ceremony/"><p class="headline-title">CVCC Celebrates the Class of 2025 at Annual Graduation Ceremony</p></a>
+																	<p class="headline-excerpt">On May 9, Chattahoochee Valley Community College (CVCC) proudly celebrated the achievements of its Class of 2025 during a joyful...</p>
+																<a class="button" href="https://www.cv.edu/cvcc-celebrates-the-class-of-2025-at-annual-graduation-ceremony/">Read More<span class="screen-reader-text">: CVCC Celebrates the Class of 2025 at Annual Graduation Ceremony</span></a>
+							</li> 
+							<li class="slide headline">
+								<a href="https://www.cv.edu/cvcc-inducts-18-students-into-phi-theta-kappa-honor-society/" aria-label="CVCC Inducts  18 Students into Phi Theta Kappa Honor Society">
+									<img class="headline-image lazyload" data-src="https://www.cv.edu/wp-content/uploads/2025/05/featured-image2-scaled.jpg" style="--smush-placeholder-width: 2560px; --smush-placeholder-aspect-ratio: 2560/1387;aspect-ratio: 5/3; display: block;object-fit: cover;" alt="CVCC Inducts  18 Students into Phi Theta Kappa Honor Society" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjwvc3ZnPg==" />
+								</a>
+								<a href="https://www.cv.edu/cvcc-inducts-18-students-into-phi-theta-kappa-honor-society/"><p class="headline-title">CVCC Inducts  18 Students into Phi Theta Kappa Honor Society</p></a>
+																	<p class="headline-excerpt">Chattahoochee Valley Community College (CVCC) proudly celebrated academic excellence with the induction of 18 outstanding students into the Phi Theta...</p>
+																<a class="button" href="https://www.cv.edu/cvcc-inducts-18-students-into-phi-theta-kappa-honor-society/">Read More<span class="screen-reader-text">: CVCC Inducts  18 Students into Phi Theta Kappa Honor Society</span></a>
+							</li> 
+							<li class="slide headline">
+								<a href="https://www.cv.edu/lady-pirates-close-out-historic-season-at-njcaa-division-ii-national-tournament/" aria-label="Lady Pirates Close Out Historic Season at  NJCAA Division II National Tournament">
+									<img class="headline-image lazyload" data-src="https://www.cv.edu/wp-content/uploads/2025/04/website-icon-1.jpg" style="--smush-placeholder-width: 1064px; --smush-placeholder-aspect-ratio: 1064/618;aspect-ratio: 5/3; display: block;object-fit: cover;" alt="Lady Pirates Close Out Historic Season at  NJCAA Division II National Tournament" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjwvc3ZnPg==" />
+								</a>
+								<a href="https://www.cv.edu/lady-pirates-close-out-historic-season-at-njcaa-division-ii-national-tournament/"><p class="headline-title">Lady Pirates Close Out Historic Season at  NJCAA Division II National Tournament</p></a>
+																	<p class="headline-excerpt">The Chattahoochee Valley Community College (CVCC) Lady Pirates concluded an impressive season at the NJCAA Division II Women’s Basketball National...</p>
+																<a class="button" href="https://www.cv.edu/lady-pirates-close-out-historic-season-at-njcaa-division-ii-national-tournament/">Read More<span class="screen-reader-text">: Lady Pirates Close Out Historic Season at  NJCAA Division II National Tournament</span></a>
+							</li> 
+							<li class="slide headline">
+								<a href="https://www.cv.edu/two-cvcc-students-honored-at-all-alabama-academic-team-recognition-program/" aria-label="Two CVCC Students Honored at All-Alabama Academic Team Recognition Program">
+									<img class="headline-image lazyload" data-src="https://www.cv.edu/wp-content/uploads/2025/04/Featured-Image.jpg" style="--smush-placeholder-width: 1920px; --smush-placeholder-aspect-ratio: 1920/918;aspect-ratio: 5/3; display: block;object-fit: cover;" alt="Two CVCC Students Honored at All-Alabama Academic Team Recognition Program" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjwvc3ZnPg==" />
+								</a>
+								<a href="https://www.cv.edu/two-cvcc-students-honored-at-all-alabama-academic-team-recognition-program/"><p class="headline-title">Two CVCC Students Honored at All-Alabama Academic Team Recognition Program</p></a>
+																	<p class="headline-excerpt">Two outstanding students from Chattahoochee Valley Community College (CVCC), DeAndre Arnold and David Renteria, were recently recognized for their academic...</p>
+																<a class="button" href="https://www.cv.edu/two-cvcc-students-honored-at-all-alabama-academic-team-recognition-program/">Read More<span class="screen-reader-text">: Two CVCC Students Honored at All-Alabama Academic Team Recognition Program</span></a>
+							</li> 
+							<li class="slide headline">
+								<a href="https://www.cv.edu/a-night-to-remember-cvccs-2025-hall-of-fame-celebration/" aria-label="A Night to Remember: CVCC’s 2025 Hall of Fame Celebration">
+									<img class="headline-image lazyload" data-src="https://www.cv.edu/wp-content/uploads/2025/04/website-icon.jpg" style="--smush-placeholder-width: 1920px; --smush-placeholder-aspect-ratio: 1920/1097;aspect-ratio: 5/3; display: block;object-fit: cover;" alt="A Night to Remember: CVCC’s 2025 Hall of Fame Celebration" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjwvc3ZnPg==" />
+								</a>
+								<a href="https://www.cv.edu/a-night-to-remember-cvccs-2025-hall-of-fame-celebration/"><p class="headline-title">A Night to Remember: CVCC’s 2025 Hall of Fame Celebration</p></a>
+																	<p class="headline-excerpt">Chattahoochee Valley Community College (CVCC) hosted its 2025 Hall of Fame celebration in grand style, bringing together alumni, supporters, faculty,...</p>
+																<a class="button" href="https://www.cv.edu/a-night-to-remember-cvccs-2025-hall-of-fame-celebration/">Read More<span class="screen-reader-text">: A Night to Remember: CVCC’s 2025 Hall of Fame Celebration</span></a>
+							</li> 
+							<li class="slide headline">
+								<a href="https://www.cv.edu/pdfviewer-2024-annual-report-auto_viewertruepagezoomautopagemodethumbs/" aria-label="2024 Annual Report">
+									<img class="headline-image lazyload" data-src="https://www.cv.edu/wp-content/uploads/2025/04/Website-Icon-01.png" style="--smush-placeholder-width: 1200px; --smush-placeholder-aspect-ratio: 1200/667;aspect-ratio: 5/3; display: block;object-fit: cover;" alt="2024 Annual Report" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjwvc3ZnPg==" />
+								</a>
+								<a href="https://www.cv.edu/pdfviewer-2024-annual-report-auto_viewertruepagezoomautopagemodethumbs/"><p class="headline-title">2024 Annual Report</p></a>
+																	<p class="headline-excerpt">The 2024 annual report details the College’s progress, celebrates the accomplishments of students and faculty, and gratefully acknowledges the support...</p>
+																<a class="button" href="https://www.cv.edu/pdfviewer-2024-annual-report-auto_viewertruepagezoomautopagemodethumbs/">Read More<span class="screen-reader-text">: 2024 Annual Report</span></a>
+							</li> 
+							<li class="slide headline">
+								<a href="https://www.cv.edu/graduates-of-cvccs-allie-healthcare-programs-honored-in-pinning-ceremony/" aria-label="Graduates of CVCC&#8217;s Allied Healthcare Programs Honored in Pinning Ceremony">
+									<img class="headline-image lazyload" data-src="https://www.cv.edu/wp-content/uploads/2025/01/DSC_4139-scaled.jpg" style="--smush-placeholder-width: 2560px; --smush-placeholder-aspect-ratio: 2560/1703;aspect-ratio: 5/3; display: block;object-fit: cover;" alt="Graduates of CVCC&#8217;s Allied Healthcare Programs Honored in Pinning Ceremony" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjwvc3ZnPg==" />
+								</a>
+								<a href="https://www.cv.edu/graduates-of-cvccs-allie-healthcare-programs-honored-in-pinning-ceremony/"><p class="headline-title">Graduates of CVCC&#8217;s Allied Healthcare Programs Honored in Pinning Ceremony</p></a>
+																	<p class="headline-excerpt">On December 11, CVCC held a pinning ceremony to recognize its Allied Health Sciences program graduates. The event celebrated an...</p>
+																<a class="button" href="https://www.cv.edu/graduates-of-cvccs-allie-healthcare-programs-honored-in-pinning-ceremony/">Read More<span class="screen-reader-text">: Graduates of CVCC&#8217;s Allied Healthcare Programs Honored in Pinning Ceremony</span></a>
+							</li> 
+							<li class="slide headline">
+								<a href="https://www.cv.edu/cvcc-celebrates-2024-chancellors-award-winners/" aria-label="CVCC Celebrates 2024 Chancellor’s Award Winners">
+									<img class="headline-image lazyload" data-src="https://www.cv.edu/wp-content/uploads/2025/01/l-r-Jamekia-Richardson-Dr.-Bridgett-Jackson-Dexter-Jackson-and-President-Jackie-Screws-scaled.jpg" style="--smush-placeholder-width: 2560px; --smush-placeholder-aspect-ratio: 2560/1707;aspect-ratio: 5/3; display: block;object-fit: cover;" alt="CVCC Celebrates 2024 Chancellor’s Award Winners" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjwvc3ZnPg==" />
+								</a>
+								<a href="https://www.cv.edu/cvcc-celebrates-2024-chancellors-award-winners/"><p class="headline-title">CVCC Celebrates 2024 Chancellor’s Award Winners</p></a>
+																	<p class="headline-excerpt">CVCC proudly announces its recipients of the prestigious 2024 Chancellor’s Award. Recognized for their exceptional dedication, hard work, and contributions...</p>
+																<a class="button" href="https://www.cv.edu/cvcc-celebrates-2024-chancellors-award-winners/">Read More<span class="screen-reader-text">: CVCC Celebrates 2024 Chancellor’s Award Winners</span></a>
+							</li> 
+							<li class="slide headline">
+								<a href="https://www.cv.edu/2023-annual-report/" aria-label="2023 Annual Report">
+									<img class="headline-image lazyload" data-src="https://www.cv.edu/wp-content/uploads/2024/02/Thumbnail-pdf.jpg" style="--smush-placeholder-width: 1778px; --smush-placeholder-aspect-ratio: 1778/988;aspect-ratio: 5/3; display: block;object-fit: cover;" alt="2023 Annual Report" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjwvc3ZnPg==" />
+								</a>
+								<a href="https://www.cv.edu/2023-annual-report/"><p class="headline-title">2023 Annual Report</p></a>
+																	<p class="headline-excerpt">The 2023 annual report details the College’s progress, celebrates the accomplishments of students and faculty, and gratefully acknowledges the support...</p>
+																<a class="button" href="https://www.cv.edu/2023-annual-report/">Read More<span class="screen-reader-text">: 2023 Annual Report</span></a>
+							</li> 					</ul>
+				</div> 		</div>
+	</div>
+
+	<div class="container-fluid see-more" style="transform: translateX(4px); margin-top: 1rem;">
+		<div class="container">
+			<a href="https://www.cv.edu/headlines/" class="button">See More<span class="screen-reader-text"> Headlines</span></a>
+		</div>
+	</div>
+</main>
+			<!-- footer -->
+
+			<div id="footer-ship-v3">
+				<img data-src="/wp-content/uploads/2025/04/footer-top.svg" role="presentation" alt="decorative ship icon" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjwvc3ZnPg==" class="lazyload">
+			</div>
+
+			<!-- <div class="footer-cta">
+				<h1>Become a pirate today.</h1>
+				<a href="/admissions/apply">Enroll Now</a>
+			</div> -->
+
+			<footer id ="colophon" class="footer">
+
+				<div class="container-fluid content-area">
+					<div class="container">						
+
+						<div class="row footer-content">
+
+							
+							<div class="col" style="flex: 0;">
+								2602 College Drive<br />
+								Phenix City, AL 36869
+								<br/ ><br />
+								<a href="/facilities-map/">Directions and Maps</a>	
+								<br /><br />				
+								<a href="tel:+13342914900">(334) 291-4900</a>
+								<br /><br />
+								<div class="footer-social">
+																			<a href="https://www.facebook.com/CVCCPirates/" alt="Facebook" title="Facebook" target="blank"><i class="fab fa-facebook-f"></i></a>
+									
+																			<a href="https://twitter.com/cvccpirates" alt="Twitter" title="Twitter" target="blank"><i class="fab fa-twitter"></i></a>
+									
+									
+									
+																			<a href="https://www.linkedin.com/school/chattahoochee-valley-community-college/" alt="LinkedIn" title="LinkedIn" target="blank"><i class="fab fa-linkedin-in"></i></a>
+																	</div>
+								<br />																
+								<div id="search-form">
+									<!-- search -->
+<form class="search" method="get" action="https://www.cv.edu" role="search">
+	<input class="search-input" type="search" name="s" placeholder="Search" >
+	<button class="search-submit" type="submit" role="button">Search</button>
+</form>
+<!-- /search -->
+								</div>
+							</div>
+
+							<div class="col-7 col-lg">								
+								<ul id="menu-footer-three-column-menu" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-28288 standard-menu"><a href="#" role="button">Column 1</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-28332"><a href="https://alabama.instructure.com/">Canvas</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-28328"><a href="https://experience.elluciancloud.com/ccc147">PiratePortal</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-28329"><a href="https://www.outlook.com/alabama.edu">Alabama.edu Email</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-28289 standard-menu"><a href="#" role="button">Column 2</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-28295"><a href="https://www.cv.edu/consumer-information/">Consumer Information</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-28297"><a href="https://www.cv.edu/about/fast-facts/">Fast Facts</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-28296"><a href="https://www.cv.edu/alumni/">Alumni Relations</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-28327"><a href="https://alabamaedu.sharepoint.com/sites/CVCC_Intranet/">Intranet (Employees Only)</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-28290 standard-menu"><a href="#" role="button">Column 3</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-28334"><a href="https://www.cv.edu/about/contact/">Contact Us</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-28335"><a href="https://www.cv.edu/about/leadership/human-resources/">Job Opportunities</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-28333"><a href="https://www.cv.edu/npcalc/">Net Price Calculator</a></li>
+</ul>
+</li>
+</ul>							</div>
+							
+							<div class="col" style="flex: 0 0 220px;">
+								<div style="display: block; align-items: center; justify-content: flex-end; margin-bottom: 0 !important;">
+									<a href="https://www.accs.edu/" target="blank"><img data-src="/wp-content/themes/cvcc/img/accs-logo.png" alt="ACCS" title="ACCS" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjwvc3ZnPg==" class="lazyload" style="--smush-placeholder-width: 313px; --smush-placeholder-aspect-ratio: 313/68;" /></a>
+									<a href="https://alabamatransfers.com/" target="blank"><img data-src="/wp-content/themes/cvcc/img/alabama-transfers-logo.svg" alt="Alabama Transfers" title="Alabama Transfers" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjwvc3ZnPg==" class="lazyload" /></a>
+									<a href="https://cv.edu/accreditation/qep/"><img data-src="/wp-content/uploads/2023/07/compass.webp" alt="compass" title="compass" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjwvc3ZnPg==" class="lazyload" style="--smush-placeholder-width: 1000px; --smush-placeholder-aspect-ratio: 1000/673;" /></a>									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</footer>
+
+			<div id="footer-bottom-bar" class="container-fluid copyright">
+				<div class="container">
+					<div class="row" style="padding: 0;">
+						<div class="col" style="padding: 0;">
+							<p><span style="padding-right: .5em;">&copy; 2026 Chattahoochee Valley Community College.</span> <span> Website by <a href="http://www.pushcrankpress.com" target="blank">PushCrankPress</a>.</span></p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- /footer -->
+
+		</div>
+		<!-- /wrapper -->
+
+
+
+		<div class="print-footer">
+			<p>&copy; 2026 Chattahoochee Valley Community College.</p>
+		</div>
+
+
+		<script>
+		$( ".header-bottom-search i.search-icon" ).click(function() {
+			$( ".header-bottom-search-form" ).toggleClass( "reveal" );
+		});
+		</script>
+
+
+		<script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/wp-*.php","/wp-admin/*","/wp-content/uploads/*","/wp-content/*","/wp-content/plugins/*","/wp-content/themes/cvcc/*","/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+		<script>
+		( function ( body ) {
+			'use strict';
+			body.className = body.className.replace( /\btribe-no-js\b/, 'tribe-js' );
+		} )( document.body );
+		</script>
+		<script> /* <![CDATA[ */var tribe_l10n_datatables = {"aria":{"sort_ascending":": activate to sort column ascending","sort_descending":": activate to sort column descending"},"length_menu":"Show _MENU_ entries","empty_table":"No data available in table","info":"Showing _START_ to _END_ of _TOTAL_ entries","info_empty":"Showing 0 to 0 of 0 entries","info_filtered":"(filtered from _MAX_ total entries)","zero_records":"No matching records found","search":"Search:","all_selected_text":"All items on this page were selected. ","select_all_link":"Select all pages","clear_selection":"Clear Selection.","pagination":{"all":"All","next":"Next","previous":"Previous"},"select":{"rows":{"0":"","_":": Selected %d rows","1":": Selected 1 row"}},"datepicker":{"dayNames":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"dayNamesShort":["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],"dayNamesMin":["S","M","T","W","T","F","S"],"monthNames":["January","February","March","April","May","June","July","August","September","October","November","December"],"monthNamesShort":["January","February","March","April","May","June","July","August","September","October","November","December"],"monthNamesMin":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"nextText":"Next","prevText":"Prev","currentText":"Today","closeText":"Done","today":"Today","clear":"Clear"}};/* ]]> */ </script><script id="flexslider-js" src="https://www.cv.edu/wp-content/themes/cvcc/flexslider/jquery.flexslider.js?ver=1.0.0"></script>
+<script id="ariaat-frontend-js-extra">
+var Ariaat_Data = {"aria":[],"roles":[{"selector":"a.menu-mobile","role":"button"},{"selector":"a.flex-prev","role":"button"},{"selector":"a.flex-next","role":"button"}],"skip_link":".content-area","fix_tabindex":"","fix_non_text_fallback":"","make_viewport_scalable":""};
+//# sourceURL=ariaat-frontend-js-extra
+</script>
+<script id="ariaat-frontend-js" src="https://www.cv.edu/wp-content/plugins/aria-accessibility-toolkit/assets/js/ariaat-frontend.js?ver=1.7.0"></script>
+<script id="pvfw-modaal-js" src="https://www.cv.edu/wp-content/plugins/pdf-viewer-for-wordpress/tnc-resources/modaal.min.js?ver=12.6.4"></script>
+<script id="pvfw-custom-modaal-js" src="https://www.cv.edu/wp-content/plugins/pdf-viewer-for-wordpress/tnc-resources/custom-modal.js?ver=12.6.4"></script>
+<script id="gforms_recaptcha_recaptcha-js-extra">
+var gforms_recaptcha_recaptcha_strings = {"nonce":"cfcbdb5d25","disconnect":"Disconnecting","change_connection_type":"Resetting","spinner":"https://www.cv.edu/wp-content/plugins/gravityforms/images/spinner.svg","connection_type":"classic","disable_badge":"","change_connection_type_title":"Change Connection Type","change_connection_type_message":"Changing the connection type will delete your current settings.  Do you want to proceed?","disconnect_title":"Disconnect","disconnect_message":"Disconnecting from reCAPTCHA will delete your current settings.  Do you want to proceed?","site_key":"6Ld1w4ofAAAAAMorw1LKKxoyTN5g5bf8w9h129V9"};
+//# sourceURL=gforms_recaptcha_recaptcha-js-extra
+</script>
+<script data-wp-strategy="defer" defer id="gforms_recaptcha_recaptcha-js" src="https://www.google.com/recaptcha/api.js?render=6Ld1w4ofAAAAAMorw1LKKxoyTN5g5bf8w9h129V9&#038;ver=2.2.2"></script>
+<script data-wp-strategy="defer" defer id="gforms_recaptcha_frontend-js" src="https://www.cv.edu/wp-content/plugins/gravityformsrecaptcha/js/frontend.min.js?ver=2.2.2"></script>
+<script id="smush-lazy-load-js-before">
+var smushLazyLoadOptions = {"autoResizingEnabled":false,"autoResizeOptions":{"precision":5,"skipAutoWidth":true,"cdnBaseURL":""}};
+//# sourceURL=smush-lazy-load-js-before
+</script>
+<script id="smush-lazy-load-js" src="https://www.cv.edu/wp-content/plugins/wp-smushit/app/assets/js/smush-lazy-load.min.js?ver=4.3.5"></script>
+<script id="wp-emoji-settings" type="application/json">
+{"baseUrl":"https://s.w.org/images/core/emoji/17.0.2/72x72/","ext":".png","svgUrl":"https://s.w.org/images/core/emoji/17.0.2/svg/","svgExt":".svg","source":{"concatemoji":"https://www.cv.edu/wp-includes/js/wp-emoji-release.min.js?ver=7.1.4"}}
+</script>
+<script type="module">
+/*! This file is auto-generated */
+var e="script#wp-emoji-settings",t=document.querySelector(e);if(!(t instanceof HTMLScriptElement))throw new Error("Element missing: "+e);const r=JSON.parse(t.text),s=(window._wpemojiSettings=r,"wpEmojiSettingsSupports"),o=["flag","emoji"];function i(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(s,JSON.stringify(t))}catch(e){}}function c(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0);const r=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);return t.every((e,t)=>e===r[t])}function p(e,t){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var n=e.getImageData(16,16,1,1);for(let e=0;e<n.data.length;e++)if(0!==n.data[e])return!1;return!0}function u(e,t,n,r){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\udde8\ud83c\uddf6","\ud83c\udde8\u200b\ud83c\uddf6")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!r(e,"\ud83e\u1fac8")}return!1}function f(e,t,n,r){let a;const s=(a="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):document.createElement("canvas")).getContext("2d",{willReadFrequently:!0}),o=(s.textBaseline="top",s.font="600 32px Arial",{});return e.forEach(e=>{o[e]=t(s,e,n,r)}),o}function a(e){var t=document.createElement("script");t.src=e,t.defer=!0,document.head.appendChild(t)}r.supports={everything:!0,everythingExceptFlag:!0},new Promise(t=>{let n=function(){try{var e=JSON.parse(sessionStorage.getItem(s));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(o),u.toString(),c.toString(),p.toString()].join(",")+"));",r=new Blob([e],{type:"text/javascript"});const a=new Worker(URL.createObjectURL(r),{name:"wpTestEmojiSupports"});return void(a.onmessage=e=>{i(n=e.data),a.terminate(),t(n)})}catch(e){}i(n=f(o,u,c,p))}t(n)}).then(e=>{for(const n in e)r.supports[n]=e[n],r.supports.everything=r.supports.everything&&r.supports[n],"flag"!==n&&(r.supports.everythingExceptFlag=r.supports.everythingExceptFlag&&r.supports[n]);var t;r.supports.everythingExceptFlag=r.supports.everythingExceptFlag&&!r.supports.flag,r.supports.everything||((t=r.source||{}).concatemoji?a(t.concatemoji):t.wpemoji&&t.twemoji&&(a(t.twemoji),a(t.wpemoji)))});
+//# sourceURL=https://www.cv.edu/wp-includes/js/wp-emoji-loader.min.js
+</script>
+<script></script>
+	</body>
+
+</html><!-- WP Fastest Cache file was created in 0.334 seconds, on November 18, 2026 @ 9:45 am --><!-- via php -->

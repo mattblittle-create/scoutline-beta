@@ -1,0 +1,41 @@
+{
+  "slug": "usc-sumter",
+  "collegeId": "cmox1gkkd00c3qtsgold75ly9",
+  "programId": "cmox1gkl200c5qtsgrpd48ek9",
+  "name": "USC Sumter",
+  "state": "SC",
+  "storedDivision": "NJCAA_D1",
+  "pages": [
+    {
+      "requestedUrl": "https://njcaastats.prestosports.com/sports/bsb/2024-25/div1/teams/uscsumter",
+      "kind": "STORED_URL_UNVERIFIED",
+      "checkedAtUtc": "2026-11-18T14:16:32.014Z",
+      "status": "HELD_ACCESS_NOT_RETRIED",
+      "finalUrl": "https://njcaastats.prestosports.com/sports/bsb/2024-25/div1/teams/uscsumter"
+    },
+    {
+      "requestedUrl": "https://uscfireants.com/index.aspx?path=baseball",
+      "kind": "DISCOVERY_LEAD_NOT_CAMPUS_VERIFIED",
+      "checkedAtUtc": "2026-11-18T14:16:32.015Z",
+      "status": 202,
+      "finalUrl": "https://uscfireants.com/index.aspx?path=baseball",
+      "contentType": "text/html; charset=UTF-8",
+      "sourcePath": "sources/usc-sumter-1.source",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "thirdPartyExactNameLeads": [
+    {
+      "url": "https://uscfireants.com/index.aspx?path=baseball",
+      "label": "USC Sumter",
+      "parentSourcePath": "sources/directory-0.source",
+      "parentSHA256": "63f1c531b007d2922e4db3aa2ba596ee54e397dbafd287df69b95213a011a404",
+      "parentUrl": "https://www.thebaseballobserver.com/njcaa-di-baseball"
+    }
+  ],
+  "currentMembershipVerified": false,
+  "campusIdentityVerified": false,
+  "importApproval": "NOT_GRANTED",
+  "databaseAccess": false,
+  "databaseWrites": 0
+}

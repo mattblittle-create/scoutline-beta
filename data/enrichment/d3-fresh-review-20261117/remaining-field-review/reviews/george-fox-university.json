@@ -1,0 +1,853 @@
+{
+  "slug": "george-fox-university",
+  "collegeId": "cmovorpwd008lqt7gdmk1htq2",
+  "programId": "cmovorpx3008nqt7gvxugvsw2",
+  "checkedAtUtc": "2026-11-17T20:35:57.036Z",
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED",
+  "missingFields": [
+    "rosterUrl",
+    "scheduleUrl",
+    "questionnaireUrl",
+    "campsUrl",
+    "generalContactEmail"
+  ],
+  "pages": [
+    {
+      "requestedUrl": "https://athletics.georgefox.edu/sports/baseball",
+      "kind": "baseball-home",
+      "parent": null,
+      "status": 200,
+      "finalUrl": "https://athletics.georgefox.edu/sports/baseball",
+      "sourcePath": "../sources/george-fox-university-1.html",
+      "sha256": "b860abd546a0f4564a0e0faf32aa8c9b5d13393b398406c0ed33ee69aeb6193b",
+      "reusedEvidence": true,
+      "originalCheckedAtUtc": "2026-11-17T17:22:21.231Z",
+      "parsed": {
+        "title": "Baseball - George Fox University Sidearm Sports, opens a new window",
+        "headings": [
+          "George Fox University",
+          "Main",
+          "Schedule",
+          "Scores",
+          "Sport",
+          "Student Athlete Spotlight",
+          "Accomplishments",
+          "Headlines",
+          "Social",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://athletics.georgefox.edu/sports/baseball/schedule",
+            "label": "Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/mens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/mens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/football/schedule",
+            "label": "Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/football/roster",
+            "label": "Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/mens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/mens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/swimming/schedule",
+            "label": "Swimming: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/swimming/roster",
+            "label": "Swimming: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/mens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/mens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/track-and-field/schedule",
+            "label": "Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/track-and-field/roster",
+            "label": "Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/womens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/womens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/womens-flag-football/schedule",
+            "label": "Flag Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/womens-flag-football/roster",
+            "label": "Flag Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/womens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/womens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/womens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/womens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/womens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/womens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/stunt/schedule",
+            "label": "STUNT: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/stunt/roster",
+            "label": "STUNT: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/womens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/womens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/womens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/womens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/esports/schedule",
+            "label": "Esports: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/esports/roster",
+            "label": "Esports: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bruincamps.com/index.cfm",
+            "label": "Sports Camps",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/staff-directory",
+            "label": "Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/calendar",
+            "label": "Composite Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/baseball",
+            "label": "Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/baseball/coaches",
+            "label": "Coaches",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://athletics.georgefox.edu/sports/baseball/schedule",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/george-fox-university-1.html",
+        "sha256": "b860abd546a0f4564a0e0faf32aa8c9b5d13393b398406c0ed33ee69aeb6193b",
+        "url": "https://athletics.georgefox.edu/sports/baseball/schedule",
+        "label": "Baseball: Schedule"
+      },
+      "status": 200,
+      "finalUrl": "https://athletics.georgefox.edu/sports/baseball/schedule",
+      "checkedAtUtc": "2026-11-17T20:35:58.188Z",
+      "sourcePath": "sources/george-fox-university-1.html",
+      "sha256": "ab8b6ba32d615beaf7f3c0287faa67f16cee7bbf38dbd4ae1a9bad240e726d10",
+      "parsed": {
+        "title": "2026 Baseball Schedule - George Fox University Sidearm Sports, opens a new window",
+        "headings": [
+          "George Fox University",
+          "Main",
+          "Schedule",
+          "Scores",
+          "Sport",
+          "2026 Baseball Schedule",
+          "Season Record",
+          "Scheduled Games",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://athletics.georgefox.edu/sports/baseball/schedule",
+            "label": "Skip To Main Content",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/mens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/mens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/football/schedule",
+            "label": "Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/football/roster",
+            "label": "Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/mens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/mens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/swimming/schedule",
+            "label": "Swimming: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/swimming/roster",
+            "label": "Swimming: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/mens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/mens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/track-and-field/schedule",
+            "label": "Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/track-and-field/roster",
+            "label": "Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/womens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/womens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/womens-flag-football/schedule",
+            "label": "Flag Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/womens-flag-football/roster",
+            "label": "Flag Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/womens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/womens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/womens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/womens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/womens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/womens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/stunt/schedule",
+            "label": "STUNT: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/stunt/roster",
+            "label": "STUNT: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/womens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/womens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/womens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/womens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/esports/schedule",
+            "label": "Esports: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/esports/roster",
+            "label": "Esports: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bruincamps.com/index.cfm",
+            "label": "Sports Camps",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/staff-directory",
+            "label": "Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/calendar",
+            "label": "Composite Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/baseball/coaches",
+            "label": "Coaches",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/baseball/schedule?print=true",
+            "label": "Print Print this page",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/baseball/schedule/2026?grid=true",
+            "label": "Grid Switch to Grid View",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/services/schedule_txt.ashx?schedule=382",
+            "label": "Text Text Format For Braille (New Tab)",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "http://www.rhodeslynx.com/",
+            "label": "Rhodes Rhodes on February 13 7:00 AM PST/ 10:00 AM EST",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://athletics.georgefox.edu/sports/baseball/coaches",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/george-fox-university-1.html",
+        "sha256": "b860abd546a0f4564a0e0faf32aa8c9b5d13393b398406c0ed33ee69aeb6193b",
+        "url": "https://athletics.georgefox.edu/sports/baseball/coaches",
+        "label": "Coaches"
+      },
+      "status": 200,
+      "finalUrl": "https://athletics.georgefox.edu/sports/baseball/coaches",
+      "checkedAtUtc": "2026-11-17T20:35:58.883Z",
+      "sourcePath": "sources/george-fox-university-2.html",
+      "sha256": "b699b35e11c508803f095ae27fc9d3ec01997005ee1a262e2a9b0b6346ae0d92",
+      "parsed": {
+        "title": "Baseball Coaches - George Fox University Sidearm Sports, opens a new window",
+        "headings": [
+          "George Fox University",
+          "Main",
+          "Schedule",
+          "Scores",
+          "Sport",
+          "2026 Baseball Coaching Staff",
+          "2026 Baseball Support Staff",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://athletics.georgefox.edu/sports/baseball/coaches",
+            "label": "Skip To Main Content",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/baseball/schedule",
+            "label": "Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/mens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/mens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/football/schedule",
+            "label": "Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/football/roster",
+            "label": "Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/mens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/mens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/swimming/schedule",
+            "label": "Swimming: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/swimming/roster",
+            "label": "Swimming: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/mens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/mens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/track-and-field/schedule",
+            "label": "Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/track-and-field/roster",
+            "label": "Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/womens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/womens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/womens-flag-football/schedule",
+            "label": "Flag Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/womens-flag-football/roster",
+            "label": "Flag Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/womens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/womens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/womens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/womens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/womens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/womens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/stunt/schedule",
+            "label": "STUNT: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/stunt/roster",
+            "label": "STUNT: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/womens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/womens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/womens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/womens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/esports/schedule",
+            "label": "Esports: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/esports/roster",
+            "label": "Esports: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.bruincamps.com/index.cfm",
+            "label": "Sports Camps",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/staff-directory",
+            "label": "Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/calendar",
+            "label": "Composite Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/baseball/coaches?print=true",
+            "label": "Print",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/baseball/roster/coaches/kevin-kopple/903",
+            "label": "Kevin Kopple",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "mailto:kkopple@georgefox.edu",
+            "label": "kkopple@georgefox.edu",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/baseball/roster/coaches/brandon-rupp/904",
+            "label": "Brandon Rupp",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "mailto:brupp@georgefox.edu",
+            "label": "brupp@georgefox.edu",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/baseball/roster/coaches/carol-laube/906",
+            "label": "Carol Laube",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "mailto:claube@georgefox.edu",
+            "label": "claube@georgefox.edu",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/baseball/roster/coaches/ryan-fobert/908",
+            "label": "Ryan Fobert",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "mailto:rfobert@georgefox.edu",
+            "label": "rfobert@georgefox.edu",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/baseball/roster/coaches/nate-hickok/910",
+            "label": "Nate Hickok",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "mailto:nhickok@georgefox.edu",
+            "label": "nhickok@georgefox.edu",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/baseball/roster/coaches/jeremy-sangalang/915",
+            "label": "Jeremy Sangalang",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/baseball/roster/coaches/jared-miller/916",
+            "label": "Jared Miller",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/baseball/roster/coaches/brent-trask/905",
+            "label": "Brent Trask",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "mailto:btrask@georgefox.edu",
+            "label": "btrask@georgefox.edu",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/baseball/roster/coaches/jackson-bucholz/983",
+            "label": "Jackson Bucholz",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.georgefox.edu/sports/baseball/roster/staff/dale-isaak/194",
+            "label": "Dale Isaak",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "mailto:disaak@georgefox.edu",
+            "label": "disaak@georgefox.edu",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          }
+        ]
+      }
+    }
+  ],
+  "status": "EVIDENCE_CAPTURED_REQUIRES_REVIEW"
+}

@@ -1,0 +1,1032 @@
+<!DOCTYPE HTML><html lang="en">
+   <head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+<!-- Place favicon.ico in the root directory /_resources/images/favicon.ico   -->
+<link rel="icon" type="image/ico" href="/_resources/images/favicon.ico" sizes="32x32"/>
+<link rel="apple-touch-icon" href="/_resources/images/logos/lcc-apple-touch-icon.png" />
+
+<!-- Bootstrap core CSS   bootstrap.min.css v5    -->
+<link rel="stylesheet" type="text/css" href="/_resources/styles/bootstrap5/bootstrap.min.css" />
+
+<!-- public website stylesheet that is slightly modified   /_resources/styles/public-web.css    -->
+<link rel="stylesheet" type="text/css" href="/_resources/styles/public-web.10-2-2026-nm.css" />
+
+<!-- specific for this example  /_resources/styles/main.css   -->
+<link rel="stylesheet" type="text/css" href="/_resources/styles/main.8-28-2026-jr.css" />
+
+<!-- univers fonts   /_resources/styles/univers.css    -->
+<link rel="stylesheet" type="text/css" href="/_resources/styles/univers.5-10-2019-jr.css" />
+
+<!-- ou styles   /_resources/styles/oustyles.css   -->
+<link rel="stylesheet" type="text/css" href="/_resources/styles/oustyles.3-25-26-mb.css" />
+
+<!-- swipe slider  /_resources/styles/swiper.min.css   -->
+<!-- <link rel="stylesheet" type="text/css" href="/_resources/styles/swiper.min.1-18-2022-nm.css" />    -->
+
+<!-- Additional css from old site  -->
+
+<!-- bootstrap modal  -->
+<link rel="stylesheet" type="text/css" href="/_resources/bs-modal/bs-modal.css">
+
+<!-- tabs   /_resources/styles/tabs.css   -->
+<link rel="stylesheet" type="text/css" href="/_resources/styles/tabs.6-26-2025-mb.css" />
+
+<!--  fontawesome v6.6.0 updated 10-3-24   
+<script src="https://kit.fontawesome.com/c9a9fa953d.js" crossorigin="anonymous"></script>
+-->
+
+<!-- fontawesome version 7 added 11-18-25  -->	
+<script src="https://kit.fontawesome.com/9f65fc16e2.js" crossorigin="anonymous"></script>
+
+
+<!-- End Additional css from old site  -->
+<!-- overrides /_resources/styles/overrides.css   -->
+<link rel="stylesheet" type="text/css" href="/_resources/styles/overrides.9-3-2026-nm.css" />
+
+<!-- banner nav stylesheet  -->
+<link rel="stylesheet" type="text/css" href="/_resources/styles/alternate-navs-6-13-23-nm.css" />
+
+<!-- JavaSrcipt -->
+<!-- modernizr    /_resources/javascript/modernizr-2.8.3.min.js    -->
+<script src="/_resources/javascript/modernizr-2.8.3.min.5-10-2019-jr.js"></script>
+
+<!-- Fix for split section with calendar content on the left so background streaches full length -->
+<style>
+	/* Replacement for using excessive matchHeight.js Makes all children the same height */
+	.container:has(.calendarListing.match) {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: stretch;
+	}
+</style>
+<!-- Fix for did you know image placment -->
+<style>
+	section.didYouKnow .container {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: stretch;
+	}
+</style>
+<!-- Print Styling for Bootstrap  /_resources/styles/print.css    -->
+<link href="/_resources/styles/print.css" rel="stylesheet" media="print">
+
+<style>
+	/* Nick CSS tweaks below */
+	/* fix horizontal scroll bar bug */
+	body {
+		overflow-x: hidden;
+	}
+	/* removes underline on top nav links desktop and mobile */
+	.top-header .nav-underline .nav-link,
+	.top-header-mobile .nav-underline .nav-link {
+		border-bottom: none;
+	}
+	/* removes underline on dropdown nav links */ 
+	.dropdown-menu ul.list-unstyled li a {
+		text-decoration: none;
+	}
+	/* adds spacing to top nav links on desktop only */
+	.top-header .top-nav-link-spacing {
+		padding-left: 1rem;
+		padding-right: 1rem;
+	}
+	/* adds spacing to top nav first link on the left on desktop only */
+	.top-header .top-nav-spacing:first-child {
+		padding-left: 0.45rem;
+	}
+	/* adds spacing to top nav last link on the right on desktop only */
+	.top-header .top-nav-spacing:last-child {
+		padding-right: 0.45rem;
+	}
+	/* remove spacing for the 5star link */
+	.top-header .top-nav-link-spacing.star {
+		padding-left: 1.45rem;
+		padding-right: 0.5rem;
+		margin-right: 0.2rem;
+	}
+	/* adjust margin on hamburger icon on mobile so it stays on one line */
+	@media (max-width: 991px) {
+		.navbar-toggler {
+			margin: 5px 1px;
+		}
+	}
+	/* Fix DYK snippet for mobile - !important tag needed for display */
+	@media (max-width: 1000px) {
+		section.didYouKnow.hideRight div.panel-3 {
+			display: none !important;
+		}
+	}
+	/* END Nick CSS tweaks */
+</style>
+
+<!-- revealOnScroll animation -->
+<style>
+	.revealOnScroll {
+		opacity: 0;
+		transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+	}
+	.revealOnScroll[data-animation="fadeIn"] {
+		transform: translateY(0px);
+	}
+	.revealOnScroll[data-animation="fadeInUp"], .revealOnScroll[data-animation="fadeInUpJiggle"] {
+		transform: translateY(30px);
+	}
+	.revealOnScroll[data-animation="fadeInLeft"] {
+		transform: translateX(-30px);
+	}
+	.revealOnScroll[data-animation="fadeInRight"] {
+		transform: translateX(30px);
+	}
+	.revealOnScroll.visible {
+		opacity: 1;
+		transform: translate(0, 0);
+	}
+</style>
+<!-- revealOnScroll override for strange forced hidden issue -->
+<style>
+	.areas-of-study div.location {
+		opacity: 1;
+	}
+</style>
+<!-- Card Deck temporary fix -->
+<style>
+	.card-deck {
+		display: flex;
+		flex-wrap: wrap;
+	}
+	.card-deck .card {
+		flex: 1 0 0%;
+		margin: 5px;
+	}
+	@media (max-width: 991.98px) and (min-width: 768px) {
+		.card-deck {
+			flex-direction: column;
+		}
+
+		.card-deck .card {
+			margin: 5px;
+		}
+	}
+	@media (max-width: 767.98px) {
+		.card-deck {
+			flex-direction: column;
+		}
+
+		.card-deck .card {
+			margin: 5px;
+		}
+	}
+	@media (min-width: 992px) and (max-width: 1199.98px) {
+		.card-deck .card {
+			flex: 0 0 48%;
+			margin: 5px;
+		}
+	}
+</style>
+<!-- Modal close button fix issue -->
+<style>
+	.modal-header .close {
+		margin-left: auto;
+		background-color: transparent;
+		width: 60px;
+		height: 60px;
+		text-indent: 0px;
+		float: right;
+		font-size: 1.5rem;
+		font-weight: 700;
+		line-height: 1;
+		color: #000;
+		text-shadow: 0 1px 0 #fff;
+		opacity: .5;
+		margin: -1rem -1rem -1rem auto;
+		padding: 1rem;
+		border-radius: 0px;
+		border: 0;
+	}
+</style>
+<!-- OU Empty Anchor tag spacing fix -->
+<style>
+	a:empty {
+		width: 0;
+		height: 0;
+		margin: 0;
+		padding: 0;
+		border: none;
+	}
+</style>
+<!-- Scroll to top fix fix -->
+<style>
+	.positionScroll:has(#scrollTop) {
+		position: fixed;
+		top: 90vh;
+		right: 100px;
+		z-index: 11;
+		left: unset;
+	}
+	@media (max-width: 767px) {
+		.positionScroll:has(#scrollTop) {
+			right: 10px;
+		}
+	}
+</style>
+<!-- table tag with class "sortable" interface -->
+<style>
+	table.sorttable th { cursor: pointer; user-select: none; }
+	table.sorttable th.asc::after  { content: " ▲"; font-size: 0.75em; }
+	table.sorttable th.desc::after { content: " ▼"; font-size: 0.75em; }
+</style>
+
+<!-- Accessibility global visible focus fix -->
+<style>
+	/* Primary tab focus outline color */
+	:focus:not(:focus-visible) {
+		outline: none !important;
+		box-shadow: none !important;
+	}
+	:focus-visible {
+		outline: unset !important;
+		outline-offset: 2px;
+		outline-style: auto !important;
+		outline-color: #024385 !important;
+	}
+	/* Override tab focus outline color */
+	.top-header *:focus-visible,
+	.blue-header *:focus-visible,
+	#navbarsExampleDefault .nav-link.dropdown-toggle:focus-visible,
+	#navbarsExampleDefault form *:focus-visible,
+	.pageNavigation *:focus-visible,
+	#accessibleCarousel *:focus-visible,
+	.image-block a:focus-visible,
+	.classic-image-block a:focus-visible,
+	section.green *:focus-visible,
+	section.paleBlue *:focus-visible,
+	section.blue *:focus-visible {
+		outline-color: #EED18E !important;
+	}
+	/* Override tab focus outline offset */
+	.image-block a:focus-visible, .classic-image-block a:focus-visible {
+		outline-offset: -4px;
+	}
+	.image-block a:hover:focus-visible, .classic-image-block a:hover:focus-visible {
+		outline-offset: -16px;
+	}
+</style>
+
+<!-- Styles for the new HLC badge April 24, 2026 -->	   
+<style>
+	@media (min-width: 768px) {
+		footer#colophon div.lowerFooter div.accreditation {
+			width: 520px; /* this adds a width to the existing container so the badge fits inside with the others LARGE SCREENS */
+		}
+		/* new class that targets the parent container of the badge LARGE SCREENS */
+		.hlcBadge {
+			float: right; 
+			margin-top: 15px;
+		}
+	}	   
+
+	@media (max-width: 767px) {
+		/* new class that targets the parent container of the badge SMALL SCREENS */
+		.hlcBadge {
+			margin: 0 auto 0 auto;
+		}
+	}	   
+
+</style>
+
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+													  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+		'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+							})(window,document,'script','dataLayer','GTM-NR42DD');</script>
+<!-- End Google Tag Manager -->
+
+      <link rel="stylesheet" href="/_resources/styles/snippet-css/card-tile-gallery-block-9-3-26-jr.css">
+      <title>Lansing Community College</title>
+      <link rel="canonical" href="https://www.lcc.edu/index.html">
+      <meta property="og:url" content="https://www.lcc.edu/index.html">
+      <meta name="description" content="Lansing Community College exists so that all people have educational and enrichment opportunities to improve their quality of life and standard of living. Where Success Begins! Serving the Learning needs of a Changing Community. Located in Lansing, MI, the capital of Michigan">
+      <meta name="keywords" content="Lansing Community College, LCC, students, academics, admissions, certificates, associate degree, college courses, transfer opportunities">
+      <meta property="og:title" content="Lansing Community College">
+      <meta property="og:description" content="Lansing Community College exists so that all people have educational and enrichment opportunities to improve their quality of life and standard of living. Where Success Begins! Serving the Learning needs of a Changing Community. Located in Lansing, MI, the capital of Michigan">
+      <meta property="og:type" content="website">
+      <meta property="og:image" content="https://www.lcc.edu/_resources/images/logos/og-image-lcc-logo-do-not-delete.jpg">
+      <meta property="og:image:alt" content="Lansing Community College">
+      <meta name="twitter:image" content="https://www.lcc.edu/_resources/images/logos/og-image-lcc-logo-do-not-delete.jpg">
+      <meta name="twitter:image:alt" content="Lansing Community College">
+      <meta name="twitter:card" content="summary">
+      <meta name="twitter:title" content="Lansing Community College">
+      <meta name="twitter:description" content="Lansing Community College exists so that all people have educational and enrichment opportunities to improve their quality of life and standard of living. Where Success Begins! Serving the Learning needs of a Changing Community. Located in Lansing, MI, the capital of Michigan">
+      <meta name="twitter:site" content="@lccstars"><script>
+					var page_url="https://www.lcc.edu/index.html";
+				</script>
+      		<!-- facebook meta 4-20-21 -->
+      		
+      <meta name="facebook-domain-verification" content="0hq5fvnw6870ms62twjh8w1vxrtwgj">
+      
+      		
+      <style>
+			/* Custom caption styling */
+
+			#mainContent .carousel-caption {
+			background-color: rgba(0, 0, 0, 0.6);
+			padding: 1rem;
+			margin-bottom: 0.5rem;
+			position: absolute;
+			z-index: 0;
+			}
+
+			#mainContent .carousel-caption h1, 
+			#mainContent .carousel-caption .h1, 
+			#mainContent .carousel-caption a {
+			font-size: 2.4rem;
+			color: #fff;
+			margin-bottom: 0.4rem;
+			text-decoration: none;
+			font-family: 'UniversLTStd-Bold', sans-serif;
+			}
+			#mainContent .carousel-caption h1 a:focus, 
+			#mainContent .carousel-caption h1 a:hover,
+			#mainContent .carousel-caption .h1 a:focus, 
+			#mainContent .carousel-caption .h1 a:hover {
+			text-decoration: underline;
+			}
+
+			#mainContent .carousel-caption p {
+			font-size: 0.94rem;
+			color: #fff;
+			}
+			.carousel-control-next, 
+			.carousel-control-prev {
+			width: 10%
+			}
+			.carousel-control-next-icon, 
+			.carousel-control-prev-icon {
+			width: 3rem;
+			height: 3rem;
+			}
+
+			/* Adjust text size on smaller screens */
+			@media (max-width: 767px) {
+			#mainContent .carousel-caption {
+			padding: 0.75rem;
+			bottom: 0;
+			left: 0;
+			margin-bottom: 0;
+			width: 100%;
+			}
+
+			#mainContent .carousel-caption h1, 
+			#mainContent .carousel-caption .h1, 
+			#mainContent .carousel-caption a {
+			font-size: 1.25rem;
+			margin-bottom: 0.3rem;
+			}
+
+			#mainContent .carousel-caption p {
+			font-size: 0.8rem;
+			}
+			}
+
+
+
+			/* Carousel Image cover sizing */
+			.carousel-item, .carousel-inner {
+			height: 500px; /* Default height */
+			}
+			.carousel-inner {
+			background-color: #232B2D;
+			}
+
+			.carousel-item img {
+			height: 100%;
+			width: 100%;
+			object-fit: cover;
+			object-position: center;
+			}
+
+			/* Large screens */
+			.carousel-item, .carousel-inner
+			{
+			height: 550px;
+			}
+
+			/* Medium screens */
+			@media (max-width: 991px) {
+			.carousel-item, .carousel-inner {
+			height: 500px;
+			}
+			#mainContent .carousel-caption h1, 
+			#mainContent .carousel-caption .h1, 
+			#mainContent .carousel-caption a {
+			font-size: 1.2rem;
+			text-align: center;
+			}
+			#mainContent .carousel-caption p {
+			font-size: 0.8rem;
+			}
+			}
+
+			/* Small screens */
+			@media (max-width: 768px) {
+			.carousel-item, .carousel-inner {
+			height: 400px;
+			}
+			}
+
+			/* Extra small screens */
+			@media (max-width: 576px) {
+			.carousel-item, .carousel-inner {
+			height: 300px;
+			}
+			}
+
+		</style>
+      
+      		
+      <style>
+			.carousel-pause-btn {
+			position: absolute;
+			bottom: 1rem;
+			top: unset;
+			right: 1rem;
+			z-index: 20;
+			background-color: rgba(0, 0, 0, 0.6);
+			border: solid 2px #ffffff;
+			border-radius: 6px;
+			color: #ffffff;
+			padding: 0.5rem 0.75rem;
+			font-size: .9rem;
+			cursor: pointer;
+			transition: background-color 0.3s ease;
+			line-height: 1.2;
+			width: 50px;
+			}
+
+			/* Improve contrast on hover/focus */
+			.carousel-pause-btn:hover,
+			.carousel-pause-btn:focus {
+			background-color: #ffffff;
+			color: #000000;
+			}
+
+			/* Ensure button is readable and doesn't get cut off on small screens */
+			@media (max-width: 767px) {
+			.carousel-pause-btn {
+			font-size: 0.75rem;
+			padding: 0.5rem 0.7rem;
+			bottom: unset;
+			top: 0.32rem;
+			right: 0.3rem;
+			width: 40px;
+			border: solid 1px #ffffff;
+			}
+			}
+
+		</style>
+      
+      		
+      <style>
+			/* Card Block over-ride for full width implementation */
+			@media (min-width: 1001px) {
+			
+			.classic-image-block {
+			height: 300px;
+			}
+			.classic-image-block a, .classic-image-block h3 {
+			font-size: 40px;
+			}
+			
+			}
+		</style>
+      
+      
+      
+      	<script id="modern-campus-p13n-config" type="application/json">{"accountUuid":"5c1300fb-8bcd-4a52-a710-3cc375eaf701","dynamicContent":[]}</script>
+<script src="https://www.lcc.edu/cms-p13n.js"></script>
+<script src="https://matomo.personalization.moderncampus.net/matomo.js"></script>
+</head>
+   <body class="inner nursing apply health"><!-- Insert google analytics here -->
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe title="Google Tag Manager" src="https://www.googletagmanager.com/ns.html?id=GTM-NR42DD"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<!-- OU Search Ignore Start Here -->      <nav aria-label="Accessibility Navigation"><a class="skip-link" href="#pageTitle" tabindex="0">Skip to main content</a></nav>
+      <header>
+         <div class="top-header"><nav class="nav nav-underline" aria-label="Quick Links">
+   <div class="me-auto top-nav-spacing"><a href="/get-started/index.html" class="nav-link top-nav-link-spacing ">Prospective Students</a><a href="/students/index.html" class="nav-link top-nav-link-spacing ">Current Students</a><a href="/about/visitors/index.html" class="nav-link top-nav-link-spacing ">Visitors</a><a href="/faculty-staff/index.html" class="nav-link top-nav-link-spacing ">Faculty/Staff</a></div>
+   <div class="ms-auto top-nav-spacing"><a href="https://5starservicecenter.lcc.edu/TDClient/Home/Default.aspx" class="nav-link top-nav-link-spacing " title="5Star Service Center" target="_blank">5Star</a><a href="https://my.lcc.edu/" class="nav-link top-nav-link-spacing " target="_blank">myLCC</a><a href="https://myd2l.lcc.edu/" class="nav-link top-nav-link-spacing " target="_blank">D2L</a><a href="https://starnetb.lcc.edu/BannerExtensibility/customPage/page/SSBHome" class="nav-link top-nav-link-spacing " target="_blank">Banner</a><a href="/foundation/givenow/index.html" class="nav-link top-nav-link-spacing giveButton">Give</a></div>
+</nav></div>
+         <div class="blue-header">	<div id="lccbanner" class="d-none d-lg-block d-xl-block">   	 
+		  <a href="/"><img id="logobanner" src="/_resources/images/header/web_header_transparent_no_tagline.svg" height="68" alt="Lansing Community College" /></a>
+	</div>
+</div>
+         <nav class="navbar navbar-expand-lg navbar-dark" data-toggle="affix" aria-label="Main Navigation">
+	<a class="stickyLogoHide" id="smallLogo" href="/"><img class="navbar-brand sticky-logo mr-auto mr-lg-0" alt="Lansing Community College" src="/_resources/images/header/web_header_transparent_mobile_5.svg"></a><button class="navbar-toggler hamburgler" type="button" data-toggle="offcanvas" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Menu"><span class="navbar-toggler-icon"></span></button><div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault"><ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+   <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" role="button" aria-expanded="false" href="#" id="academics-d15e25" data-bs-toggle="dropdown">Academics</a><ul class="dropdown-menu mega-menu">
+         <li class="row no-gutters d-flex justify-content-center">
+            <div class="col-md-2 hideondesktop">
+               <ul class="list-unstyled">
+                  <li><a href="/academics/">Go to Academics</a></li>
+               </ul>
+            </div>
+            <div class="col-md-2">
+               <p class="sub-menu-heading">Resources</p>
+               <ul class="list-unstyled">
+                  <li><a href="/services/advising/index.html">Academic Advising</a></li>
+                  <li><a href="/community/college-credit-in-hs/index.html">College Credit in High School</a></li>
+                  <li><a href="/library/">Library</a></li>
+                  <li><a href="/registrar/">Registrar's Office</a></li>
+                  <li><a href="/registrar/registration/index.html">Registration</a></li>
+                  <li><a href="/services/">Services and Resources</a></li>
+                  <li><a href="/success-coaches/index.html">Success Coaches</a></li>
+               </ul>
+            </div>
+            <div class="col-md-2">
+               <p class="sub-menu-heading">Find Your Passion</p>
+               <ul class="list-unstyled">
+                  <li><a href="https://starnetb.lcc.edu/StudentRegistrationSsb/ssb/term/termSelection?mode=search" target="_blank">Course Offerings <em class="fa-solid fa-up-right-from-square" aria-hidden="true">​</em></a></li>
+                  <li><a href="https://lcc.lightcastcc.com/" target="_blank">Career Coach <em class="fa-solid fa-up-right-from-square" aria-hidden="true">​</em></a></li>
+                  <li><a href="/registrar/credit-for-prior-learning.html">Prior Learning Credit</a></li>
+                  <li><a href="/academics/selective-admissions.html">Selective Admissions Programs</a></li>
+                  <li><a href="/academics/transfer/">Transfer Opportunities</a></li>
+               </ul>
+            </div>
+            <div class="col-md-2">
+               <p class="sub-menu-heading">Find Your Path</p>
+               <ul class="list-unstyled">
+                  <li><a href="/academics/degrees/">Degrees and Programs</a></li>
+                  <li><a href="/academics/degrees/index.html?id=careers">Career Communities</a></li>
+                  <li><a href="/academics/catalog/">College Catalog</a></li>
+                  <li><a href="/academics/catalog/degree-certificate-programs/">Pathways</a></li>
+                  <li><a href="/academics/calendars/">Academic Calendars</a></li>
+               </ul>
+            </div>
+            <div class="col-md-3 photo-blurb d-none d-lg-block"><img src="/_resources/images/header/menu_academics_2.jpg" alt="Students studying outside on the rolling lawn outside the Gannon glass" class="img-fluid mb-3" width="653"><div class="d-grid"><a class="btn btn-blue btn-block rounded-0" href="/academics/" role="button">Go to Academics</a></div>
+            </div>
+         </li>
+      </ul>
+   </li>
+   <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" role="button" aria-expanded="false" href="#" id="admissions-d15e150" data-bs-toggle="dropdown">Admissions</a><ul class="dropdown-menu mega-menu">
+         <li class="row no-gutters d-flex justify-content-center">
+            <div class="col-md-2 hideondesktop">
+               <ul class="list-unstyled">
+                  <li><a href="/admissions/index.html">Go to Admissions</a></li>
+               </ul>
+            </div>
+            <div class="col-md-2">
+               <p class="sub-menu-heading">Admissions</p>
+               <ul class="list-unstyled">
+                  <li><a href="/admissions/first-time.html">First-time College Student</a></li>
+                  <li><a href="/admissions/transfer-students.html">Transfer and Guest</a></li>
+                  <li><a href="/admissions/veteran-students.html">Veterans</a></li>
+                  <li><a href="/admissions/international/">International Students</a></li>
+                  <li><a href="/community/college-credit-in-hs/dual.html">Dual Enrollment</a></li>
+                  <li><a href="/about/locations/">Campus Locations</a></li>
+               </ul>
+            </div>
+            <div class="col-md-2">
+               <p class="sub-menu-heading">Fund Your Future</p>
+               <ul class="list-unstyled">
+                  <li><a href="/tuition-and-costs/">Tuition &amp; Costs</a></li>
+                  <li><a href="/financial-aid/scholarships/">Scholarships</a></li>
+                  <li><a href="/financial-aid/">Financial Aid</a></li>
+                  <li><a href="/studentfinance/index.html">Student Finance</a></li>
+                  <li><a href="/financial-aid/scholarships/mireconnect.html">Michigan Reconnect Program</a></li>
+               </ul>
+            </div>
+            <div class="col-md-2">
+               <p class="sub-menu-heading">Become a Star</p>
+               <ul class="list-unstyled">
+                  <li><a href="/get-started/index.html">Apply </a></li>
+                  <li><a href="/get-started/index.html">Get Started</a></li>
+                  <li><a href="/admissions/request-information.html">Request Information</a></li>
+                  <li><a href="/campuslife/tours/">Visit</a></li>
+               </ul>
+            </div>
+            <div class="col-md-3 photo-blurb d-none d-lg-block"><img src="/_resources/images/header/menu_admissions.jpg" alt="A student being helped at the StarZone front desk" class="img-fluid mb-3" width="653"><div class="d-grid"><a class="btn btn-blue btn-block rounded-0" href="/admissions/index.html" role="button">Go to Admissions</a></div>
+            </div>
+         </li>
+      </ul>
+   </li>
+   <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" role="button" aria-expanded="false" href="#" id="campus-life-d15e266" data-bs-toggle="dropdown">Campus Life</a><ul class="dropdown-menu mega-menu">
+         <li class="row no-gutters d-flex justify-content-center">
+            <div class="col-md-2 hideondesktop">
+               <ul class="list-unstyled">
+                  <li><a href="/campuslife/">Go to Campus Life</a></li>
+               </ul>
+            </div>
+            <div class="col-md-2">
+               <p class="sub-menu-heading">Go Stars</p>
+               <ul class="list-unstyled">
+                  <li><a href="https://www.lccstars.com/landing/index" target="_blank">Athletics  <em class="fa-solid fa-up-right-from-square" aria-hidden="true">​</em></a></li>
+                  <li><a href="https://connect.lcc.edu/index.html" target="_blank">LCC Connect <em class="fa-solid fa-up-right-from-square" aria-hidden="true">​</em></a></li>
+                  <li><a href="/tv/">LCC TV </a></li>
+                  <li><a href="https://lookout.lcc.edu/index.html" target="_blank">Student Newspaper <em class="fa-solid fa-up-right-from-square" aria-hidden="true">​</em></a></li>
+               </ul>
+            </div>
+            <div class="col-md-2">
+               <p class="sub-menu-heading">Resources for Stars</p>
+               <ul class="list-unstyled">
+                  <li><a href="/services/index.html">Student Resources</a></li>
+                  <li><a href="/services/community-campus-resources/">Campus Resources</a></li>
+                  <li><a href="/services/academic-resources/">Academic Resources</a></li>
+                  <li><a href="/police/index.html">Police Department</a></li>
+                  <li><a href="/about/locations/">Campus Locations</a></li>
+                  <li><a href="/services/student-support-services/index.html">Center for Student Support</a></li>
+                  <li><a href="/services/global/index.html">Current International Students</a></li>
+               </ul>
+            </div>
+            <div class="col-md-2">
+               <p class="sub-menu-heading">Get Involved</p>
+               <ul class="list-unstyled">
+                  <li><a href="/campuslife/clubs/">Clubs &amp; Organizations</a></li>
+                  <li><a href="/services/community-campus-resources/performing-arts/">Performing Arts</a></li>
+                  <li><a href="https://artsconnect.openlcc.net/" target="_blank">Arts Connect @ LCC  <em class="fa-solid fa-up-right-from-square" aria-hidden="true">​</em></a></li>
+                  <li><a href="/empowerment/index.html">Office of Empowerment</a></li>
+                  <li><a href="/hhs/fitness-weight-training/index.html">Fitness Centers &amp; Weight Room</a></li>
+                  <li><a href="/library/">Library</a></li>
+                  <li><a href="/calendar/">Events Calendar</a></li>
+               </ul>
+            </div>
+            <div class="col-md-3 photo-blurb d-none d-lg-block"><img src="/_resources/images/header/menu_campuslife.jpg" alt="Students walking through campus" class="img-fluid mb-3" width="653"><div class="d-grid"><a class="btn btn-blue btn-block rounded-0" href="/campuslife/" role="button">Go to Campus Life</a></div>
+            </div>
+         </li>
+      </ul>
+   </li>
+   <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" role="button" aria-expanded="false" href="#" id="community-d15e394" data-bs-toggle="dropdown">Community</a><ul class="dropdown-menu mega-menu">
+         <li class="row no-gutters d-flex justify-content-center">
+            <div class="col-md-2 hideondesktop">
+               <ul class="list-unstyled">
+                  <li><a href="/community/">Go to Community Engagement</a></li>
+               </ul>
+            </div>
+            <div class="col-md-2">
+               <p class="sub-menu-heading">Community and Continuing Education</p>
+               <ul class="list-unstyled">
+                  <li><a href="/community/adult-enrichment/">Adult Enrichment</a></li>
+                  <li><a href="/neurodivergentfriendly/index.html">Neurodivergent-Friendly Campus</a></li>
+                  <li><a href="/community/continuing-education/">Continuing Education</a></li>
+                  <li><a href="/community/youth-programs/">Youth Programs</a></li>
+               </ul>
+            </div>
+            <div class="col-md-2">
+               <p class="sub-menu-heading">College Credit in High School</p>
+               <ul class="list-unstyled">
+                  <li><a href="/community/college-credit-in-hs/hs-advantage.html">High School Advantage</a></li>
+                  <li><a href="/community/college-credit-in-hs/dual.html">High School Dual Enrollment</a></li>
+               </ul>
+            </div>
+            <div class="col-md-2">
+               <p class="sub-menu-heading">Business &amp; Community</p>
+               <ul class="list-unstyled">
+                  <li><a href="/community/workforce/">Workforce Solutions through BCI</a></li>
+                  <li><a href="/community/center-manufacturing-excellence.html">Center for Manufacturing Excellence</a></li>
+                  <li><a href="/community/job-training-center/">Job Training Center</a></li>
+                  <li><a href="/community/small-business-development-center.html">Small Business Development</a></li>
+                  <li><a href="/community/conference-services/">Conference Services</a></li>
+                  <li><a href="/foundation/">LCC Foundation</a></li>
+                  <li><a href="/community/veterans-memorial.html">Veterans Memorial</a></li>
+               </ul>
+            </div>
+            <div class="col-md-3 photo-blurb d-none d-lg-block"><img src="/_resources/images/header/menu_community.jpg" alt="Center for Manufacturing Excellence building exterior" class="img-fluid mb-3" width="653"><div class="d-grid"><a class="btn btn-blue btn-block rounded-0" href="/community/" role="button">Go to Community Engagement</a></div>
+            </div>
+         </li>
+      </ul>
+   </li>
+   <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" role="button" aria-expanded="false" href="#" id="about-d15e502" data-bs-toggle="dropdown">About</a><ul class="dropdown-menu mega-menu">
+         <li class="row no-gutters d-flex justify-content-center">
+            <div class="col-md-2 hideondesktop">
+               <ul class="list-unstyled">
+                  <li><a href="/about/index.html">Go to About</a></li>
+               </ul>
+            </div>
+            <div class="col-md-2">
+               <p class="sub-menu-heading">General Information</p>
+               <ul class="list-unstyled">
+                  <li><a href="/about/accreditation/index.html">Accreditation</a></li>
+                  <li><a href="/hr/index.html">Human Resources</a></li>
+                  <li><a href="/about/board-of-trustees/index.html">Board of Trustees</a></li>
+                  <li><a href="/about/presidents-office/index.html">President's Office</a></li>
+                  <li><a href="/provost/index.html">Office of the Provost</a></li>
+                  <li><a href="/b-ops/index.html">Business Operations</a></li>
+                  <li><a href="/about/public-transparency-info.html">Public Transparency Information</a></li>
+                  <li><a href="/consumer-information/index.html">Consumer Information</a></li>
+                  <li><a href="/helpdesk/index.html">Help Desk</a></li>
+                  <li><a href="/about/contact.html">Contact Information</a></li>
+               </ul>
+            </div>
+            <div class="col-md-2">
+               <p class="sub-menu-heading">The Place to Be</p>
+               <ul class="list-unstyled">
+                  <li><a href="/hr/careers/index.html">Careers</a></li>
+                  <li><a href="/about/locations/index.html">Campus Locations</a></li>
+               </ul>
+            </div>
+            <div class="col-md-2">
+               <p class="sub-menu-heading">Get to Know LCC</p>
+               <ul class="list-unstyled">
+                  <li><a href="/about/guiding_principles.html">Statements of Purpose</a></li>
+                  <li><a href="/about/index.html">Our College</a></li>
+                  <li><a href="/services/community-campus-resources/index.html">Community &amp; Campus Resources</a></li>
+                  <li><a href="/divisions-departments/index.html">Divisions and Departments</a></li>
+                  <li><a href="/about/executive-leadership.html">Executive Leadership</a></li>
+                  <li><a href="/services/directory/index.html">Directory</a></li>
+                  <li><a href="/about/parking/index.html">Parking</a></li>
+                  <li><a href="/police/index.html">Police Department</a></li>
+                  <li><a href="/about/visitors/index.html">Visit LCC</a></li>
+               </ul>
+            </div>
+            <div class="col-md-3 photo-blurb d-none d-lg-block"><img src="/_resources/images/header/menu_about.jpg" alt="Downtown campus with the Red Ribbon sculpture and Clock Tower" class="img-fluid mb-3" width="653"><div class="d-grid"><a class="btn btn-blue btn-block rounded-0" href="/about/index.html" role="button">Go to About</a></div>
+            </div>
+         </li>
+      </ul>
+   </li>
+</ul><form action="/search/" id="cse-search-box" class="form-inline my-2 my-lg-0 pe-3 d-flex lcc-search"><label for="search-lcc" class="visually-hidden sr-only">Search LCC</label><input accesskey="4" type="search" id="search-lcc" class="form-control mr-sm-0 rounded-0" name="q" placeholder="Search LCC" aria-label="Search LCC"><div class="input-group-append"><button class="btn my-0 my-sm-0 rounded-0 magnifying-icon" value="submit" type="submit" aria-label="Search">&nbsp;</button></div>
+</form>               <div class="top-header-mobile d-lg-none mx-0"><nav class="nav nav-underline" aria-label="Quick Links">
+   <div class="me-auto top-nav-spacing"><a href="/get-started/index.html" class="nav-link top-nav-link-spacing ">Prospective Students</a><a href="/students/index.html" class="nav-link top-nav-link-spacing ">Current Students</a><a href="/about/visitors/index.html" class="nav-link top-nav-link-spacing ">Visitors</a><a href="/faculty-staff/index.html" class="nav-link top-nav-link-spacing ">Faculty/Staff</a></div>
+   <div class="ms-auto top-nav-spacing"><a href="https://5starservicecenter.lcc.edu/TDClient/Home/Default.aspx" class="nav-link top-nav-link-spacing " title="5Star Service Center" target="_blank">5Star</a><a href="https://my.lcc.edu/" class="nav-link top-nav-link-spacing " target="_blank">myLCC</a><a href="https://myd2l.lcc.edu/" class="nav-link top-nav-link-spacing " target="_blank">D2L</a><a href="https://starnetb.lcc.edu/BannerExtensibility/customPage/page/SSBHome" class="nav-link top-nav-link-spacing " target="_blank">Banner</a><a href="/foundation/givenow/index.html" class="nav-link top-nav-link-spacing giveButton">Give</a></div>
+</nav></div>
+            </div>
+         </nav>
+      </header>
+      
+<div id="CTA" class="ctaWrapper">
+    <div class="ctaContainer">
+      <nav aria-label="Plan your next move links" tabindex="-1">
+      	<!--<a class="started  cta-menu-item" href="/get-started/index.html" tabindex="-1"><span class="icon"></span><span class="title">Get Started</span></a>-->
+      	<a class="info  cta-menu-item" href="/admissions/request-information.html" tabindex="-1"><span class="icon"></span><span class="title">Info</span></a>
+      	<a class="visit  cta-menu-item" href="/campuslife/tours/index.html" tabindex="-1"><span class="icon"></span><span class="title">Visit</span></a>
+      	<a class="apply  cta-menu-item" href="/get-started/index.html" tabindex="-1"><span class="icon"></span><span class="title">Apply</span></a>
+      </nav>
+    </div>
+</div><!-- OU Search Ignore End Here -->
+      <main id="mainContent">
+         <article>
+            <div id="accessibleCarousel" class="carousel slide carousel-fade position-relative" data-bs-interval="false">
+               <div class="carousel-inner">
+                  <div class="carousel-item active"><img src="/_resources/images/_hp-slider/2026-silver-bells-hp-slide.jpg" class="d-block w-100 topAlignTop" alt="a graphic with holiday bells and red ribbon"><div class="carousel-caption text-start col-md-4 offset-md-0">
+                        <h1 id="pageTitle"><a href="https://direc.to/pqJn">Silver Bells Watch Party</a></h1>
+                        <p>This Friday, stay warm inside the Gannon Building while you enjoy holiday activities
+                           and watch the Silver Bells parade on the big screens. Free and open to the community.
+                           Please register to attend.</p>
+                     </div>
+                  </div>
+                  <div class="carousel-item"><img src="/_resources/images/_hp-slider/2026-help-portrait-hp-slide.jpg" class="d-block w-100 topAlignTop" alt="a family in the help portrait studio getting their family picture"><div class="carousel-caption text-start col-md-4 offset-md-0">
+                        <h1><a href="/lccpresident/help-portrait.html">Help-Portrait is back!</a></h1>
+                        <p>If you live in the Greater Lansing area and your family doesn’t have access to or
+                           is unable to afford professional photography, Help-Portrait at LCC was created for
+                           you.&nbsp; This year's event is Saturday, Dec. 5. Sign up today!</p>
+                     </div>
+                  </div>
+                  <div class="carousel-item"><img src="/_resources/images/_hp-slider/2026-foundation-scholarships-hp-slide.jpg" class="d-block w-100 topAlignTop" alt="distance shot of a graduate at commencement in the crowd of graduates"><div class="carousel-caption text-start col-md-4 offset-md-5">
+                        <h1><a href="/financial-aid/scholarships/index.html">Get funds to cover tuition, books and other educational expenses!</a></h1>
+                        <p>Apply for the LCC Foundation Scholarship by Jan. 31, 2027, for the fall 2027 through
+                           spring 2028 semesters.</p>
+                     </div>
+                  </div>
+                  <div class="carousel-item"><img src="/_resources/images/_hp-slider/2026-spring-27-registration-hp-slide.jpg" class="d-block w-100 topAlignTop" alt="students walking around campus - one student sitting and looking at a laptop"><div class="carousel-caption text-start col-md-4 offset-md-5">
+                        <h1><a href="https://direc.to/pxnd">Register now for the spring semester</a></h1>
+                        <p>The next semester starts in January 2027. Register now for the best class options!</p>
+                     </div>
+                  </div>
+                  <div class="carousel-item"><img src="/_resources/images/_hp-slider/2026-mi-reconnect-age-hp-slide.jpg" class="d-block w-100 topAlignTop" alt="a graduate at commencement"><div class="carousel-caption text-start col-md-4 offset-md-5">
+                        <h1><a href="/financial-aid/scholarships/mireconnect.html">Michigan Reconnect age requirement lowered to 21</a></h1>
+                        <p>You may be eligible for free or reduced tuition through the Michigan Reconnect program.</p>
+                     </div>
+                  </div>
+                  <div class="carousel-item"><img src="/_resources/images/_hp-slider/2026-hispanic-heritage-celebration-hp-slide.jpg" class="d-block w-100 topAlignTop" alt="a hispanic culture celebration event with women and children dancing with colorful dresses"><div class="carousel-caption text-start col-md-4 offset-md-0">
+                        <h1><a href="/calendar/#event-details/2a116954-62bb-4d29-b7cc-009980eb1e6f">“Juntos somos más” (Together, We Are More)</a></h1>
+                        <p>The Office of Empowerment invites everyone to celebrate Hispanic heritage with a celebration
+                           to honor the rich history, diverse cultures and contributions of Hispanic and Latino
+                           Communities. Join us Nov. 23, 2026 from 5:30 - 7:30p.m. Register to join us.</p>
+                     </div>
+                  </div>
+               </div><button class="carousel-control-prev" type="button" data-bs-target="#accessibleCarousel" data-bs-slide="prev" aria-label="Previous slide"><span class="carousel-control-prev-icon" aria-hidden="true"></span></button><button class="carousel-control-next" type="button" data-bs-target="#accessibleCarousel" data-bs-slide="next" aria-label="Next slide"><span class="carousel-control-next-icon" aria-hidden="true"></span></button><button type="button" class="carousel-pause-btn" id="carouselPauseBtn" aria-pressed="false" aria-label="Pause carousel"><em class="fa-solid fa-pause"></em></button></div>
+            <section class="altLightblue planUtilitieslight" aria-label="Sign up for college">
+               		
+               <div class="container">
+                  			
+                  <div class="row no-gutters d-flex text-center">
+                     				
+                     <h2 class="h3">Plan&nbsp;Your Next Move</h2>
+                     			</div>
+                  			
+                  <div class="row no-gutters d-flex text-center">
+                     				
+                     <div class="col-sm-12 col-md-12 col-lg-4"><a class="main-cta info" href="/admissions/request-information.html">Request Info</a></div>
+                     				
+                     <div class="col-sm-12 col-md-12 col-lg-4"><a class="main-cta visit" href="/campuslife/tours/index.html">Tours</a></div>
+                     				
+                     <div class="col-sm-12 col-md-12 col-lg-4"><a class="main-cta apply" href="/get-started/index.html">Apply</a></div>
+                     			</div>
+                  		</div>
+               		</section>
+            
+            	
+            
+            		
+            <section>
+               			
+               <div class="container">				
+                  				
+                  <div class="row">
+                     					
+                     <div class="col">
+                        						
+                        <h3>Online Chat</h3>
+                        					</div>
+                     				</div>
+                  
+                  				
+                  <div class="row">
+                     					
+                     <div class="col-sm-8 pr-4">
+                        						
+                        <p>Need help with Admissions, Registration, or Records? Click the chat button to start
+                           a chat with a live LCC representative.</p>
+                        
+                        						
+                        <p><strong>Please Note</strong>: Questions about Financial Aid will need to contact (517-483-1200, option 1) or Academic
+                           Advising will need to contact (517-483-1200, option 4).</p>
+                        					</div>
+                     
+                     					
+                     <div class="col-sm-4">
+                        
+                        						
+                        <div class="chatWidget">
+                           							<!-- Begin OCC Chat Requests Only code for StarZone department -->
+                           							<span class="occIcon-27196-86609">&nbsp;</span>
+                           							<script>
+								(function() {
+								var occ = document.createElement('script'); occ.type = 'text/javascript'; occ.async = true;
+								occ.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'www.onlinechatcenters.com/chat.a-27196-86609.js';
+								var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(occ, s);
+								})();
+							</script>
+                           							<!-- End OCC Chat Requests Only code -->
+                           						</div>
+                        
+                        					</div>
+                     				</div>
+                  			</div>
+               		</section>
+            
+            	
+            <section class="card-grid" aria-label="Popular Resources">
+               		
+               <div class="classic-card-tile-wrapper">
+                  <div class="classic-card-deck">
+                     <div class="classic-card">
+                        <div class="classic-card-body">
+                           <div class="classic-image-block d-flex justify-content-center align-items-center" style="background-image: url('/_resources/images/checkerboard/news.jpg');"><a href="/news/" class="d-flex justify-content-center align-items-center classic-image-block-link" style="padding: 20px;">News</a></div>
+                        </div>
+                     </div>
+                     <div class="classic-card">
+                        <div class="classic-card-body">
+                           <div class="classic-image-block d-flex justify-content-center align-items-center" style="background-image: url('/_resources/images/cards/events-2022.jpg');"><a href="/calendar/" class="d-flex justify-content-center align-items-center classic-image-block-link" style="padding: 20px;">Events</a></div>
+                        </div>
+                     </div>
+                     <div class="classic-card">
+                        <div class="classic-card-body">
+                           <div class="classic-image-block d-flex justify-content-center align-items-center" style="background-image: url('/_resources/images/cards/transfer-2022.jpg');"><a href="/academics/transfer/" class="d-flex justify-content-center align-items-center classic-image-block-link" style="padding: 20px;">Transfer</a></div>
+                        </div>
+                     </div>
+                     <div class="classic-card">
+                        <div class="classic-card-body">
+                           <div class="classic-image-block d-flex justify-content-center align-items-center" style="background-image: url('/_resources/images/cards/careers-2022.jpg');"><a href="/hr/careers/index.html" class="d-flex justify-content-center align-items-center classic-image-block-link" style="padding: 20px;">Careers</a></div>
+                        </div>
+                     </div>
+                     <div class="classic-card">
+                        <div class="classic-card-body">
+                           <div class="classic-image-block d-flex justify-content-center align-items-center" style="background-image: url('/_resources/images/cards/library-2022.jpg');"><a href="/library/" class="d-flex justify-content-center align-items-center classic-image-block-link" style="padding: 20px;">Library</a></div>
+                        </div>
+                     </div>
+                     <div class="classic-card">
+                        <div class="classic-card-body">
+                           <div class="classic-image-block d-flex justify-content-center align-items-center" style="background-image: url('/_resources/images/cards/community-engagement-2022.jpg');"><a href="/community/" class="d-flex justify-content-center align-items-center classic-image-block-link" style="padding: 20px;">Community Engagement</a></div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               		</section>
+         </article>
+      </main>
+      <!-- OU Search Ignore Start Here --><footer id="colophon">
+   <div class="upperFooter">
+      <div class="logoContact"><a href="/" class="logo" aria-label="Lansing Community College"></a><a href="tel:18006444522" class="phone">1-800-644-4522</a></div>
+      <div class="footerLocations">
+         <div class="locationListing">
+            <address class="singleLocation"><span class="collegeName">Lansing Community College</span><span class="address">600 N. Grand Avenue<br>Lansing, MI 48933</span></address>
+            <address class="singleLocation"><span class="collegeName">Mailing Address</span><span class="address">411 N. Grand Avenue<br>Lansing, MI 48933</span></address>
+            <div class="all-locations"><a class="location" href="/about/locations/">Campus Locations</a></div>
+         </div>
+      </div>
+   </div>
+   <div class="lowerFooter">
+      <div class="left"><span class="copyright">Copyright <span id="directedit">©</span>&nbsp;<script>document.write(new Date().getFullYear())</script>&nbsp;Lansing Community College, MI</span><div class="socialIcons">
+            <nav aria-label="Social Media Links">
+               <ul class="footerSocialButton">
+                  <li><a href="https://www.facebook.com/lccstars/" target="_blank" class="facebook" aria-label="Facebook"></a></li>
+                  <li><a href="https://www.instagram.com/lccstars/" target="_blank" class="instagram" aria-label="Instagram"></a></li>
+                  <li><a href="https://www.youtube.com/c/lccstars" target="_blank" class="youtube" aria-label="Youtube"></a></li>
+               </ul>
+            </nav>
+         </div>
+         <div class="consumerInfo">
+            <ul class="list-unstyled">
+               <li><a href="/consumer-information/index.html">Consumer Information</a></li>
+               <li><a href="/consumer-information/sexual-misconduct.html">Report Sexual Misconduct</a></li>
+               <li><a href="/hr/careers/index.html">Employment Opportunities</a></li>
+               <li><a href="/campuslife/documents/annual_security_report.pdf" target="_blank">Annual Security Report</a></li>
+               <li><a href="/about/federal-cares-act-reporting.html">Federal CARES Act Reporting</a></li>
+               <li><a href="/empowerment/index.html">Diversity at LCC</a></li>
+               <li><a href="/privacy/index.html">Privacy Statement</a></li>
+               <li><a href="/consumer-information/equal.html">Nondiscrimination</a></li>
+               <li><a href="/financial-aid/index.html">Financial Aid</a></li>
+               <li><a href="/helpdesk/index.html">Help Desk</a></li>
+            </ul>
+         </div>
+      </div>
+      <div class="accreditation right">
+         <div id="footerBadges"><a class="badge-button" href="/police/information-and-resources.html"><span><em class="fa-solid fa-chevron-right"></em></span> Campus Safety Info &amp; Resources</a></div><a href="/about/public-transparency-info.html"><img style="vertical-align: inherit; margin: 25px 30px 5px 20px;" title="Budget and Performance Transparency Reporting" src="/_resources/images/transparency_reporting_logo.png" alt="Transparency Reporting Budget and Salary Compensation" width="150" height="150"></a>
+         <!-- Start of HLC Accreditation Mark Digital Badge code --><div class="hlcBadge" style="width: 100%; max-width: 150px;"><!-- Start of HLC Accreditation Mark Digital Badge code -->
+            <div style="position: relative; width: 100%; aspect-ratio: 100 / 110.67; -webkit-transform: translateZ(0); overflow: hidden;"><iframe id="HLC" src="https://cdn2.yoshki.com/badgeframe?34" style="overflow: hidden;border:0px; margin:0px; padding:0px; background-color:transparent; top:0px; left:0px; width:100%; height:100%; position: absolute;" title="Higher Learning Commission Accreditation Status"></iframe></div>
+            <!-- End of HLC Accreditation Mark Digital Badge code --></div>
+         <!-- End of HLC Accreditation Mark Digital Badge code --></div>
+   </div>
+</footer><div id="menuOverlay"></div>
+
+<!-- core JavaScript -->
+
+<!-- jquery-3.7.1.min.js -->
+    <script src="/_resources/javascript/bootstrap5/jquery-3.7.1.min.js"></script>
+
+<!-- Bootstrap v5 bootstrap.bundle.min.js -->
+    <script src="/_resources/javascript/bootstrap5/bootstrap.bundle.min.js"></script>
+
+<!-- Swiper 4.4.6 /_resources/javascript/swiper.min.js //// Work on removing instances of this for a native accessible bootstrap solution -->
+<!-- <script src="/_resources/javascript/swiper.min.4-9-2020-nm.js"></script> -->
+
+<!-- Slick 1.6.0 /_resources/javascript/slick.min.js //// This opens the old accordions -->
+<!-- <script src="/_resources/javascript/slick.min.5-10-2019-jr.js"></script> -->
+
+<!-- Main JavaScript file main.js working on removing jQuery -->
+    <script src="/_resources/javascript/bootstrap5/main.4-6-2026-jr.js"></script>
+
+<!-- Modern Campus DirectEdit function short code /_resources/javascript/direct-edit.js -->
+    <script src="/_resources/javascript/direct-edit.5-10-2019-jr.js"></script>
+
+
+
+
+
+
+<script src="/_resources/javascript/snippet-js/modal-anchor-url-open.js"></script><script src="/_resources/js/ou-popular-search.js"></script><div id="hidden" style="display:none;"><a id="de" href="https://a.cms.omniupdate.com/11/?skin=oucampus&amp;account=lcc&amp;site=www&amp;action=de&amp;path=/index.pcf" target="_top">©</a></div>
+      
+      
+      		<script>
+			const carouselElement = document.querySelector('#accessibleCarousel');
+			const carousel = new bootstrap.Carousel(carouselElement, {
+			interval: 5000,
+			ride: false,
+			pause: false,
+			wrap: true
+			});
+
+			const pauseBtn = document.getElementById('carouselPauseBtn');
+			let isPaused = false;
+
+			pauseBtn.addEventListener('click', () => {
+			if (isPaused) {
+			carousel.next(); // Immediately advance to next slide
+			carousel.cycle();
+			pauseBtn.innerHTML = '<em class="fa-solid fa-pause"></em>';
+			pauseBtn.setAttribute('aria-pressed', 'false');
+			pauseBtn.setAttribute('aria-label', 'Pause carousel');
+			} else {
+			carousel.pause();
+			pauseBtn.innerHTML = '<em class="fa-solid fa-play"></em>';
+			pauseBtn.setAttribute('aria-pressed', 'true');
+			pauseBtn.setAttribute('aria-label', 'Play carousel');
+			}
+			isPaused = !isPaused;
+			});
+
+			// Start cycling manually
+			carousel.cycle();
+		</script>
+      
+      
+      	<!-- OU Search Ignore End Here --></body>
+</html>

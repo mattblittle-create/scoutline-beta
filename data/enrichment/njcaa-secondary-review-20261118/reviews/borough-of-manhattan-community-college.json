@@ -1,0 +1,53 @@
+{
+  "slug": "borough-of-manhattan-community-college",
+  "programId": "cmox2o0n7000eqtbknrpfdkgn",
+  "collegeId": "cmox2o0mg000cqtbk6xnygyvm",
+  "checkedAtUtc": "2026-11-18T14:43:37.470Z",
+  "sourcePath": "../njcaa-discovery-20261118/sources/borough-of-manhattan-community-college-1.source",
+  "sourceSHA256": "f277d17f193363b6c47df67b5b2b321730f61ad6f5cc20e7f125f11b912819fa",
+  "sourceUrl": "https://bmccathletics.com/sports/baseball",
+  "socialLeads": [],
+  "recruitingLeads": [
+    {
+      "url": "https://bmccathletics.com/sb_output.aspx?form=3",
+      "label": "Student-Athlete Recruit Form",
+      "context": "",
+      "kind": "QUESTIONNAIRE"
+    }
+  ],
+  "logoLeads": [
+    {
+      "url": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/bmcc.sidearmsports.com/responsive_2022/images/logo_main.png",
+      "label": "Borough of Manhattan Community College Athletics main-logo"
+    }
+  ],
+  "captures": [
+    {
+      "requestedUrl": "https://bmccathletics.com/sb_output.aspx?form=3",
+      "kind": "QUESTIONNAIRE",
+      "status": 200,
+      "finalUrl": "https://bmccathletics.com/sb_output.aspx?form=3",
+      "sourcePath": "../njcaa-core-review-20261118/sources/borough-of-manhattan-community-college-4.source",
+      "sha256": "9087ce8292f33d4929df8506163181cf719ef05720750e3f3488146829df6d8c",
+      "reusedEvidence": true
+    },
+    {
+      "requestedUrl": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/bmcc.sidearmsports.com/responsive_2022/images/logo_main.png",
+      "kind": "LOGO_ASSET",
+      "status": 200,
+      "finalUrl": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/bmcc.sidearmsports.com/responsive_2022/images/logo_main.png",
+      "contentType": "image/png",
+      "sourcePath": "sources/borough-of-manhattan-community-college-1.source",
+      "sha256": "b2d2b17a93e44326bb4d6f5e2b398cf2ea14a49a03cb329799d14b186ee3720e",
+      "decoded": {
+        "format": "png",
+        "width": 105,
+        "height": 151
+      },
+      "assetDecoded": true
+    }
+  ],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED"
+}

@@ -1,0 +1,2305 @@
+{
+  "slug": "st-olaf-college",
+  "collegeId": "cmovorwz300mfqt7gqvxzunrr",
+  "programId": "cmovorwzt00mhqt7gn1feag90",
+  "checkedAtUtc": "2026-11-17T20:37:31.566Z",
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED",
+  "missingFields": [
+    "rosterUrl",
+    "scheduleUrl",
+    "questionnaireUrl",
+    "generalContactEmail"
+  ],
+  "pages": [
+    {
+      "requestedUrl": "https://athletics.stolaf.edu/sports/baseball",
+      "kind": "baseball-home",
+      "parent": null,
+      "status": 200,
+      "finalUrl": "https://athletics.stolaf.edu/sports/baseball",
+      "sourcePath": "../sources/st-olaf-college-1.html",
+      "sha256": "5b6ba24216390dcfcd39094f9afad3e9ef847a5cdd9e741813e6bd874b2159f0",
+      "reusedEvidence": true,
+      "originalCheckedAtUtc": "2026-11-17T17:26:21.197Z",
+      "parsed": {
+        "title": "Baseball - St. Olaf College Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "St. Olaf College Athletics",
+          "Main",
+          "Scoreboard",
+          "Main",
+          "Sport",
+          "Scoreboard",
+          "Top Stories",
+          "Slideshow",
+          "Social Media",
+          "Quick Links",
+          "galleries",
+          "Footer",
+          "Main"
+        ],
+        "links": [
+          {
+            "url": "https://instagram.com/st.olafalpine",
+            "label": "Alpine Skiing: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-alpine-skiing/schedule",
+            "label": "Alpine Skiing: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-alpine-skiing/roster",
+            "label": "Alpine Skiing: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/stolafbaseball",
+            "label": "Baseball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/stolafbaseball",
+            "label": "Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/baseball/schedule",
+            "label": "Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/StOlafMBB",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/StOlafMBB",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/StOlafMXCTF",
+            "label": "Cross Country: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/StOlafMXCTF",
+            "label": "Cross Country: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/StOlafFB",
+            "label": "Football: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/stolaffb",
+            "label": "Football: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/football/schedule",
+            "label": "Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/football/roster",
+            "label": "Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/stolafmgolf",
+            "label": "Golf: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/StOlafMHockey",
+            "label": "Hockey: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/stolafmhockey",
+            "label": "Hockey: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-ice-hockey/schedule",
+            "label": "Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-ice-hockey/roster",
+            "label": "Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/stolafnordic",
+            "label": "Nordic Skiing: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-nordic-skiing/schedule",
+            "label": "Nordic Skiing: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-nordic-skiing/roster",
+            "label": "Nordic Skiing: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/StOlafMSOC",
+            "label": "Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/StOlafMSOC",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/stolafswimdive",
+            "label": "Swimming and Diving: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-swimming-and-diving/schedule",
+            "label": "Swimming and Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-swimming-and-diving/roster",
+            "label": "Swimming and Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/stolafmtennis",
+            "label": "Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-track-and-field/schedule",
+            "label": "Track and Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-track-and-field/roster",
+            "label": "Track and Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-alpine-skiing/schedule",
+            "label": "Alpine Skiing: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-alpine-skiing/roster",
+            "label": "Alpine Skiing: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/StOlafWBB",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/stolafwbb",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/StOlafWXCTF",
+            "label": "Cross Country: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/stolafwgolf",
+            "label": "Golf: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/StOlafWHockey",
+            "label": "Hockey: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/StOlafWHockey",
+            "label": "Hockey: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-ice-hockey/schedule",
+            "label": "Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-ice-hockey/roster",
+            "label": "Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-nordic-skiing/schedule",
+            "label": "Nordic Skiing: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-nordic-skiing/roster",
+            "label": "Nordic Skiing: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/stolafwsoccer",
+            "label": "Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/stolafwsoccer",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/StOlafSoftball",
+            "label": "Softball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/stolafsoftball",
+            "label": "Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-swimming-and-diving/schedule",
+            "label": "Swimming and Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-swimming-and-diving/roster",
+            "label": "Swimming and Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/stolafwtennis",
+            "label": "Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-track-and-field/schedule",
+            "label": "Track and Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-track-and-field/roster",
+            "label": "Track and Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/StOlafVB",
+            "label": "Volleyball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/stolafvb",
+            "label": "Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory",
+            "label": "Athletics Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.givecampus.com/schools/StOlafCollege/one-hill-one-team-2026?path=general",
+            "label": "One Hill, One Team",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/socialaccounts.aspx?path=general",
+            "label": "Social Media Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://wp.stolaf.edu/facultystaff",
+            "label": "Faculty & Staff",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/baseball-department/7",
+            "label": "Coaches",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/2016/9/14/baseball-recruit-questionnaire",
+            "label": "Recruit Questionnaire",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.stolafbaseballcamps.com/",
+            "label": "St. Olaf Baseball Camps",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://athletics.stolaf.edu/sports/baseball/schedule",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/st-olaf-college-1.html",
+        "sha256": "5b6ba24216390dcfcd39094f9afad3e9ef847a5cdd9e741813e6bd874b2159f0",
+        "url": "https://athletics.stolaf.edu/sports/baseball/schedule",
+        "label": "Baseball: Schedule"
+      },
+      "status": 200,
+      "finalUrl": "https://athletics.stolaf.edu/sports/baseball/schedule",
+      "checkedAtUtc": "2026-11-17T20:37:33.244Z",
+      "sourcePath": "sources/st-olaf-college-1.html",
+      "sha256": "ec615a42554bbc897fe7edc0966f92050f132276cbdec10282c3b13891e1628f",
+      "parsed": {
+        "title": "2026 Baseball Schedule - St. Olaf College Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "St. Olaf College Athletics",
+          "Main",
+          "Scoreboard",
+          "Main",
+          "Sport",
+          "2026 Baseball Schedule",
+          "Season Record",
+          "Scheduled Games",
+          "Footer",
+          "Main"
+        ],
+        "links": [
+          {
+            "url": "https://athletics.stolaf.edu/sports/baseball/schedule",
+            "label": "Skip To Main Content",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/st.olafalpine",
+            "label": "Alpine Skiing: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-alpine-skiing/schedule",
+            "label": "Alpine Skiing: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-alpine-skiing/roster",
+            "label": "Alpine Skiing: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/stolafbaseball",
+            "label": "Baseball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/stolafbaseball",
+            "label": "Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/StOlafMBB",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/StOlafMBB",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/StOlafMXCTF",
+            "label": "Cross Country: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/StOlafMXCTF",
+            "label": "Cross Country: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/StOlafFB",
+            "label": "Football: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/stolaffb",
+            "label": "Football: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/football/schedule",
+            "label": "Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/football/roster",
+            "label": "Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/stolafmgolf",
+            "label": "Golf: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/StOlafMHockey",
+            "label": "Hockey: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/stolafmhockey",
+            "label": "Hockey: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-ice-hockey/schedule",
+            "label": "Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-ice-hockey/roster",
+            "label": "Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/stolafnordic",
+            "label": "Nordic Skiing: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-nordic-skiing/schedule",
+            "label": "Nordic Skiing: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-nordic-skiing/roster",
+            "label": "Nordic Skiing: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/StOlafMSOC",
+            "label": "Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/StOlafMSOC",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/stolafswimdive",
+            "label": "Swimming and Diving: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-swimming-and-diving/schedule",
+            "label": "Swimming and Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-swimming-and-diving/roster",
+            "label": "Swimming and Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/stolafmtennis",
+            "label": "Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-track-and-field/schedule",
+            "label": "Track and Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-track-and-field/roster",
+            "label": "Track and Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-alpine-skiing/schedule",
+            "label": "Alpine Skiing: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-alpine-skiing/roster",
+            "label": "Alpine Skiing: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/StOlafWBB",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/stolafwbb",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/StOlafWXCTF",
+            "label": "Cross Country: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/stolafwgolf",
+            "label": "Golf: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/StOlafWHockey",
+            "label": "Hockey: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/StOlafWHockey",
+            "label": "Hockey: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-ice-hockey/schedule",
+            "label": "Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-ice-hockey/roster",
+            "label": "Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-nordic-skiing/schedule",
+            "label": "Nordic Skiing: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-nordic-skiing/roster",
+            "label": "Nordic Skiing: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/stolafwsoccer",
+            "label": "Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/stolafwsoccer",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/StOlafSoftball",
+            "label": "Softball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/stolafsoftball",
+            "label": "Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-swimming-and-diving/schedule",
+            "label": "Swimming and Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-swimming-and-diving/roster",
+            "label": "Swimming and Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/stolafwtennis",
+            "label": "Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-track-and-field/schedule",
+            "label": "Track and Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-track-and-field/roster",
+            "label": "Track and Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/StOlafVB",
+            "label": "Volleyball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/stolafvb",
+            "label": "Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory",
+            "label": "Athletics Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.givecampus.com/schools/StOlafCollege/one-hill-one-team-2026?path=general",
+            "label": "One Hill, One Team",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/socialaccounts.aspx?path=general",
+            "label": "Social Media Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://wp.stolaf.edu/facultystaff",
+            "label": "Faculty & Staff",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/baseball-department/7",
+            "label": "Coaches",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/2016/9/14/baseball-recruit-questionnaire",
+            "label": "Recruit Questionnaire",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.stolafbaseballcamps.com/",
+            "label": "St. Olaf Baseball Camps",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/baseball/schedule?print=true",
+            "label": "Print Print this page",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/baseball/schedule/2026?grid=true",
+            "label": "Grid Switch to Grid View",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/services/schedule_txt.ashx?schedule=1054",
+            "label": "Text Text Format For Braille (New Tab)",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://athletics.stolaf.edu/staff-directory/baseball-department/7",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/st-olaf-college-1.html",
+        "sha256": "5b6ba24216390dcfcd39094f9afad3e9ef847a5cdd9e741813e6bd874b2159f0",
+        "url": "https://athletics.stolaf.edu/staff-directory/baseball-department/7",
+        "label": "Coaches"
+      },
+      "status": 200,
+      "finalUrl": "https://athletics.stolaf.edu/staff-directory/baseball-department/7",
+      "checkedAtUtc": "2026-11-17T20:37:33.920Z",
+      "sourcePath": "sources/st-olaf-college-2.html",
+      "sha256": "e7fb94550266c11e30ce598734b35bbeef9d53d57b960954205f4ee68c48b9b1",
+      "parsed": {
+        "title": "Staff Directory - St. Olaf College Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "St. Olaf College Athletics",
+          "Main",
+          "Scoreboard",
+          "Main",
+          "Staff Directory",
+          "Footer",
+          "Main"
+        ],
+        "links": [
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/baseball-department/7",
+            "label": "Skip To Main Content",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://instagram.com/st.olafalpine",
+            "label": "Alpine Skiing: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-alpine-skiing/schedule",
+            "label": "Alpine Skiing: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-alpine-skiing/roster",
+            "label": "Alpine Skiing: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/stolafbaseball",
+            "label": "Baseball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/stolafbaseball",
+            "label": "Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/baseball/schedule",
+            "label": "Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/StOlafMBB",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/StOlafMBB",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/StOlafMXCTF",
+            "label": "Cross Country: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/StOlafMXCTF",
+            "label": "Cross Country: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/StOlafFB",
+            "label": "Football: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/stolaffb",
+            "label": "Football: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/football/schedule",
+            "label": "Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/football/roster",
+            "label": "Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/stolafmgolf",
+            "label": "Golf: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/StOlafMHockey",
+            "label": "Hockey: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/stolafmhockey",
+            "label": "Hockey: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-ice-hockey/schedule",
+            "label": "Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-ice-hockey/roster",
+            "label": "Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/stolafnordic",
+            "label": "Nordic Skiing: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-nordic-skiing/schedule",
+            "label": "Nordic Skiing: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-nordic-skiing/roster",
+            "label": "Nordic Skiing: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/StOlafMSOC",
+            "label": "Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/StOlafMSOC",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/stolafswimdive",
+            "label": "Swimming and Diving: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-swimming-and-diving/schedule",
+            "label": "Swimming and Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-swimming-and-diving/roster",
+            "label": "Swimming and Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/stolafmtennis",
+            "label": "Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-track-and-field/schedule",
+            "label": "Track and Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-track-and-field/roster",
+            "label": "Track and Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-alpine-skiing/schedule",
+            "label": "Alpine Skiing: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-alpine-skiing/roster",
+            "label": "Alpine Skiing: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/StOlafWBB",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/stolafwbb",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/StOlafWXCTF",
+            "label": "Cross Country: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/stolafwgolf",
+            "label": "Golf: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/StOlafWHockey",
+            "label": "Hockey: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/StOlafWHockey",
+            "label": "Hockey: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-ice-hockey/schedule",
+            "label": "Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-ice-hockey/roster",
+            "label": "Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-nordic-skiing/schedule",
+            "label": "Nordic Skiing: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-nordic-skiing/roster",
+            "label": "Nordic Skiing: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/stolafwsoccer",
+            "label": "Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/stolafwsoccer",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/StOlafSoftball",
+            "label": "Softball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/stolafsoftball",
+            "label": "Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-swimming-and-diving/schedule",
+            "label": "Swimming and Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-swimming-and-diving/roster",
+            "label": "Swimming and Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/stolafwtennis",
+            "label": "Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-track-and-field/schedule",
+            "label": "Track and Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-track-and-field/roster",
+            "label": "Track and Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/StOlafVB",
+            "label": "Volleyball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/stolafvb",
+            "label": "Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory",
+            "label": "Athletics Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.givecampus.com/schools/StOlafCollege/one-hill-one-team-2026?path=general",
+            "label": "One Hill, One Team",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/socialaccounts.aspx?path=general",
+            "label": "Social Media Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://wp.stolaf.edu/facultystaff",
+            "label": "Faculty & Staff",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory?print=true",
+            "label": "Print",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/kelly-mahlum/226",
+            "label": "Kelly Mahlum Kelly Mahlum, Athletics Administration, Director of Athletics",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/connor-kern/391",
+            "label": "Connor Kern Connor Kern, Athletics Administration, Associate Athletic Director for Budget and Compliance",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/michael-abdella/177",
+            "label": "Michael Abdella Michael Abdella, Athletics Administration, Assistant Athletic Director for Strategic Communications",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/john-waters/338",
+            "label": "John Waters John Waters, Athletics Administration, Assistant Athletic Director for Athletic Performance",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/tyler-keith/178",
+            "label": "Tyler Keith Tyler Keith, Athletics Administration, Assistant Athletic Director for Sports Medicine",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/janice-manning/66",
+            "label": "Janice Manning Janice Manning, Athletics Administration, Compliance Officer / Athletics Administrative Assistant",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/charles-gray/304",
+            "label": "Charles Gray Charles Gray, Athletics Administration, Faculty Athletics Representative",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/mike-bostrom/410",
+            "label": "Mike Bostrom Mike Bostrom, Athletic Communications, Creative and Digital Media Strategist",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/cade-rickford/366",
+            "label": "Cade Rickford Cade Rickford, Athletic Performance, Assistant Director of Athletic Performance",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/brandon-koontz/192",
+            "label": "Brandon Koontz Brandon Koontz, Operations, Ice Arena and Events Manager",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/ryan-townzen/353",
+            "label": "Ryan Townzen Ryan Townzen, Recreation, Director of Recreation",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/grant-herfindahl/392",
+            "label": "Grant Herfindahl Grant Herfindahl, Recreation, Assistant Director of Recreation",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/jenny-peterson/191",
+            "label": "Jenny Peterson Jenny Peterson, Recreation, Academic Administrative Assistant - Kinesiology & Recreation",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/erin-garry/234",
+            "label": "Erin Garry Erin Garry, Sports Medicine, Athletic Trainer",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/jordy-borman/307",
+            "label": "Jordy Borman Jordy Borman, Sports Medicine, Athletic Trainer",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/riley-mauzer/393",
+            "label": "Riley Mauzer Riley Mauzer, Sports Medicine, Athletic Trainer",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/teagan-olin/381",
+            "label": "Teagan Olin Teagan Olin, Alpine Skiing, Head Mens and Womens Alpine Skiing Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/mark-moriarty/432",
+            "label": "Mark Moriarty Mark Moriarty, Baseball, Head Baseball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/joel-gotfredson/110",
+            "label": "Joel Gotfredson Joel Gotfredson, Baseball, National Recruiting Coordinator / Assistant Baseball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/matthew-kulesa/398",
+            "label": "Matthew Kulesa Matthew Kulesa, Baseball, Assistant Baseball Coach - Hitting/Infield",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/carter-richey/446",
+            "label": "Carter Richey Carter Richey, Baseball, Assistant Baseball Coach / Player Development Coordinator",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/john-cheng/429",
+            "label": "John Cheng John Cheng, Mens Basketball, Head Mens Basketball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/jon-kreidler/430",
+            "label": "Jon Kreidler Jon Kreidler, Mens Basketball, Assistant Mens Basketball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/ben-ratt-/443",
+            "label": "Ben Ratté Ben Ratté, Mens Basketball, Assistant Mens Basketball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/tom-langfeldt/9",
+            "label": "Tom Langfeldt Tom Langfeldt, Mens Basketball, Assistant Mens Basketball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/megan-lueck/365",
+            "label": "Megan Lueck Megan Lueck, Womens Basketball, Head Womens Basketball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/garrett-solis/380",
+            "label": "Garrett Solis Garrett Solis, Womens Basketball, Assistant Womens Basketball Coach / Recruiting Coordinator",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/ziling-zhen/435",
+            "label": "Ziling Zhen Ziling Zhen, Womens Basketball, Assistant Womens Basketball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/jacob-mcnamara/441",
+            "label": "Jacob McNamara Jacob McNamara, Womens Basketball, Assistant Womens Basketball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/luke-kopnick/298",
+            "label": "Luke Kopnick Luke Kopnick, Mens Cross Country, Head Mens Cross Country Coach / Distance Track & Field Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/joseph-minor/434",
+            "label": "Joseph Minor Joseph Minor, Mens Cross Country, Assistant Mens and Womens Cross Country Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/erica-maker/175",
+            "label": "Erica Maker Erica Maker, Womens Cross Country, Head Womens Cross Country Coach / Distance Track & Field Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/james-kilian/140",
+            "label": "James Kilian James Kilian, Football, Head Football Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/lucas-kleinschrodt/291",
+            "label": "Lucas Kleinschrodt Lucas Kleinschrodt, Football, Assistant Football Coach - Defensive Coordinator",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/matthew-paulson/228",
+            "label": "Matthew Paulson Matthew Paulson, Football, Assistant Football Coach - Offensive Coordinator / Offensive Line",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/mitchell-kleinschrodt/333",
+            "label": "Mitchell Kleinschrodt Mitchell Kleinschrodt, Football, Assistant Football Coach - Special Teams Coordinator / Cornerbacks",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/eric-pulley/181",
+            "label": "Eric Pulley Eric Pulley, Football, Assistant Football Coach - Running Backs",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/eric-mattson/335",
+            "label": "Eric Mattson Eric Mattson, Football, Assistant Football Coach - Safeties",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/billy-raible/336",
+            "label": "Billy Raible Billy Raible, Football, Assistant Football Coach - Tight Ends",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/tony-barnack/394",
+            "label": "Tony Barnack Tony Barnack, Football, Assistant Football Coach - Wide Receivers",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/jon-chhay/400",
+            "label": "Jon Chhay Jon Chhay, Football, Assistant Football Coach - Cornerbacks",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/noah-parker/342",
+            "label": "Noah Parker Noah Parker, Mens Golf, Head Mens Golf Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/matt-ostdiek/409",
+            "label": "Matt Ostdiek Matt Ostdiek, Mens Golf, Assistant Mens Golf Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/brian-stevens/352",
+            "label": "Brian Stevens Brian Stevens, Womens Golf, Head Womens Golf Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/molly-erickson/436",
+            "label": "Molly Erickson Molly Erickson, Womens Golf, Assistant Womens Golf Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/kyle-scanlon/437",
+            "label": "Kyle Scanlon Kyle Scanlon, Womens Golf, Assistant Womens Golf Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/tyler-lindstrom/315",
+            "label": "Tyler Lindstrom Tyler Lindstrom, Mens Hockey, Head Mens Hockey Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/tyler-ebner/428",
+            "label": "Tyler Ebner Tyler Ebner, Mens Hockey, Assistant Mens Hockey Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/terry-vandewalker/297",
+            "label": "Terry VanDeWalker Terry VanDeWalker, Mens Hockey, Assistant Mens Hockey Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/tracy-johnson/206",
+            "label": "Tracy Johnson Tracy Johnson, Womens Hockey, Head Womens Hockey Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/ashley-holmes/390",
+            "label": "Ashley Holmes Ashley Holmes, Womens Hockey, Assistant Womens Hockey Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/olivia-spellmire/323",
+            "label": "Olivia Spellmire Olivia Spellmire, Womens Hockey, Assistant Womens Hockey Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/kasi-peterson/388",
+            "label": "Kasi Peterson Kasi Peterson, Womens Hockey, Assistant Womens Hockey Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/annie-rydel/412",
+            "label": "Annie Rydel Annie Rydel, Womens Hockey, Assistant Womens Hockey Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/tor-hanson/367",
+            "label": "Tor Hanson Tor Hanson, Nordic Skiing, Head Mens and Womens Nordic Skiing Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/ellen-mccarthy/421",
+            "label": "Ellen McCarthy Ellen McCarthy, Nordic Skiing, Assistant Mens and Womens Nordic Skiing Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/justin-oliver/201",
+            "label": "Justin Oliver Justin Oliver, Mens Soccer, Head Mens Soccer Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/matthew-gibbons/340",
+            "label": "Matthew Gibbons Matthew Gibbons, Mens Soccer, Assistant Mens and Womens Soccer Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/shea-bechtel/423",
+            "label": "Shea Bechtel Shea Bechtel, Mens Soccer, Assistant Mens Soccer Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/jack-hobday/431",
+            "label": "Jack Hobday Jack Hobday, Mens Soccer, Assistant Mens and Womens Soccer Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/molly-fiedler/308",
+            "label": "Molly Fiedler Molly Fiedler, Womens Soccer, Head Womens Soccer Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/olivia-moore/376",
+            "label": "Olivia Moore Olivia Moore, Womens Soccer, Assistant Womens Soccer Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/tori-burnett/442",
+            "label": "Tori Burnett Tori Burnett, Womens Soccer, Assistant Womens Soccer Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/kayla-hatting/126",
+            "label": "Kayla Hatting Kayla Hatting, Softball, Head Softball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/julie-graf/309",
+            "label": "Julie Graf Julie Graf, Softball, Assistant Softball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/anne-fossum/383",
+            "label": "Anne Fossum Anne Fossum, Softball, Assistant Softball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/patrick-wadzinski/273",
+            "label": "Patrick Wadzinski Patrick Wadzinski, Softball, Assistant Softball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/jordyn-mccormack/433",
+            "label": "Jordyn McCormack Jordyn McCormack, Softball, Assistant Softball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/bob-hauck/47",
+            "label": "Bob Hauck Bob Hauck, Swimming and Diving, Head Swimming and Diving Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/gabe-kortuem/49",
+            "label": "Gabe Kortuem Gabe Kortuem, Swimming and Diving, Diving Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/victoria-campbell/240",
+            "label": "Victoria Campbell Victoria Campbell, Swimming and Diving, Assistant Swimming and Diving Coach",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/nathan-france/171",
+            "label": "Nathan France Nathan France, Swimming and Diving, Assistant Swimming and Diving Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/kristi-kortuem/422",
+            "label": "Kristi Kortuem Kristi Kortuem, Swimming and Diving, Assistant Swimming and Diving Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/joey-kronzer/239",
+            "label": "Joey Kronzer Joey Kronzer, Mens Tennis, Head Mens and Womens Tennis Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/nick-hupton/218",
+            "label": "Nick Hupton Nick Hupton, Mens Tennis, Assistant Mens Tennis Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/dave-olson/52",
+            "label": "Dave Olson Dave Olson, Mens Tennis, Assistant Mens Tennis Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/ben-carlson/369",
+            "label": "Ben Carlson Ben Carlson, Mens Tennis, Assistant Mens Tennis Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/elliot-schneider/426",
+            "label": "Elliot Schneider Elliot Schneider, Mens Tennis, Assistant Mens and Womens Tennis Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/margaret-kelley/370",
+            "label": "Margaret Kelley Margaret Kelley, Womens Tennis, Assistant Womens Tennis Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/maddie-scheffley/371",
+            "label": "Maddie Scheffley Maddie Scheffley, Womens Tennis, Assistant Womens Tennis Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/bailey-bergh/387",
+            "label": "Bailey Bergh Bailey Bergh, Womens Tennis, Assistant Womens Tennis Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/antone-truss/327",
+            "label": "Antone Truss Antone Truss, Mens Track & Field, Head Mens Track & Field Coach - Combined Events/Vertical Jumps",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/john-hartpence/382",
+            "label": "John Hartpence John Hartpence, Mens Track & Field, Assistant Mens and Womens Track & Field Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/luke-vanzuilen/295",
+            "label": "Luke VanZuilen Luke VanZuilen, Mens Track & Field, Assistant Mens and Womens Track & Field Coach - Horizontal Jumps",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/kendall-mueller/296",
+            "label": "Kendall Mueller Kendall Mueller, Mens Track & Field, Assistant Mens and Womens Track & Field Coach - Vertical Jumps",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/patti-bayer/305",
+            "label": "Patti Bayer Patti Bayer, Womens Track & Field, Head Womens Track & Field Coach - Sprints",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/emma-nelson/427",
+            "label": "Emma Nelson Emma Nelson, Volleyball, Head Volleyball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/dawn-cherwinka/411",
+            "label": "Dawn Cherwinka Dawn Cherwinka, Volleyball, Assistant Volleyball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/kyah-olson-sola/438",
+            "label": "Kyah Olson-Sola Kyah Olson-Sola, Volleyball, Assistant Volleyball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/jaci-winchell/444",
+            "label": "Jaci Winchell Jaci Winchell, Volleyball, Assistant Volleyball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/karin-fowler/447",
+            "label": "Karin Fowler Karin Fowler, Volleyball, Assistant Volleyball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://athletics.stolaf.edu/sports/2016/9/14/baseball-recruit-questionnaire",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/st-olaf-college-1.html",
+        "sha256": "5b6ba24216390dcfcd39094f9afad3e9ef847a5cdd9e741813e6bd874b2159f0",
+        "url": "https://athletics.stolaf.edu/sports/2016/9/14/baseball-recruit-questionnaire",
+        "label": "Recruit Questionnaire"
+      },
+      "status": 200,
+      "finalUrl": "https://athletics.stolaf.edu/sports/2016/9/14/baseball-recruit-questionnaire",
+      "checkedAtUtc": "2026-11-17T20:37:34.799Z",
+      "sourcePath": "sources/st-olaf-college-3.html",
+      "sha256": "5e7f1c573e85c1c7f013977f39fbf2eb315bc5e16791fa3ccadd20e89986db12",
+      "parsed": {
+        "title": "Baseball Recruit Questionnaire - St. Olaf College Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "St. Olaf College Athletics",
+          "Main",
+          "Scoreboard",
+          "Main",
+          "Sport",
+          "Baseball Recruit Questionnaire",
+          "Footer",
+          "Main"
+        ],
+        "links": [
+          {
+            "url": "https://athletics.stolaf.edu/sports/2016/9/14/baseball-recruit-questionnaire",
+            "label": "Skip To Main Content",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://instagram.com/st.olafalpine",
+            "label": "Alpine Skiing: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-alpine-skiing/schedule",
+            "label": "Alpine Skiing: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-alpine-skiing/roster",
+            "label": "Alpine Skiing: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/stolafbaseball",
+            "label": "Baseball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/stolafbaseball",
+            "label": "Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/baseball/schedule",
+            "label": "Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/StOlafMBB",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/StOlafMBB",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/StOlafMXCTF",
+            "label": "Cross Country: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/StOlafMXCTF",
+            "label": "Cross Country: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/StOlafFB",
+            "label": "Football: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/stolaffb",
+            "label": "Football: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/football/schedule",
+            "label": "Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/football/roster",
+            "label": "Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/stolafmgolf",
+            "label": "Golf: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/StOlafMHockey",
+            "label": "Hockey: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/stolafmhockey",
+            "label": "Hockey: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-ice-hockey/schedule",
+            "label": "Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-ice-hockey/roster",
+            "label": "Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/stolafnordic",
+            "label": "Nordic Skiing: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-nordic-skiing/schedule",
+            "label": "Nordic Skiing: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-nordic-skiing/roster",
+            "label": "Nordic Skiing: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/StOlafMSOC",
+            "label": "Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/StOlafMSOC",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/stolafswimdive",
+            "label": "Swimming and Diving: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-swimming-and-diving/schedule",
+            "label": "Swimming and Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-swimming-and-diving/roster",
+            "label": "Swimming and Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/stolafmtennis",
+            "label": "Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-track-and-field/schedule",
+            "label": "Track and Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/mens-track-and-field/roster",
+            "label": "Track and Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-alpine-skiing/schedule",
+            "label": "Alpine Skiing: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-alpine-skiing/roster",
+            "label": "Alpine Skiing: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/StOlafWBB",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/stolafwbb",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/StOlafWXCTF",
+            "label": "Cross Country: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/stolafwgolf",
+            "label": "Golf: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/StOlafWHockey",
+            "label": "Hockey: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/StOlafWHockey",
+            "label": "Hockey: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-ice-hockey/schedule",
+            "label": "Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-ice-hockey/roster",
+            "label": "Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-nordic-skiing/schedule",
+            "label": "Nordic Skiing: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-nordic-skiing/roster",
+            "label": "Nordic Skiing: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/stolafwsoccer",
+            "label": "Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/stolafwsoccer",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/StOlafSoftball",
+            "label": "Softball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/stolafsoftball",
+            "label": "Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-swimming-and-diving/schedule",
+            "label": "Swimming and Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-swimming-and-diving/roster",
+            "label": "Swimming and Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/stolafwtennis",
+            "label": "Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-track-and-field/schedule",
+            "label": "Track and Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-track-and-field/roster",
+            "label": "Track and Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/StOlafVB",
+            "label": "Volleyball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/stolafvb",
+            "label": "Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/sports/womens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory",
+            "label": "Athletics Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.givecampus.com/schools/StOlafCollege/one-hill-one-team-2026?path=general",
+            "label": "One Hill, One Team",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/socialaccounts.aspx?path=general",
+            "label": "Social Media Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://wp.stolaf.edu/facultystaff",
+            "label": "Faculty & Staff",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.stolaf.edu/staff-directory/baseball-department/7",
+            "label": "Coaches",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.stolafbaseballcamps.com/",
+            "label": "St. Olaf Baseball Camps",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          }
+        ]
+      }
+    }
+  ],
+  "status": "EVIDENCE_CAPTURED_REQUIRES_REVIEW"
+}

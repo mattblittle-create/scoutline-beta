@@ -1,0 +1,939 @@
+<!DOCTYPE HTML><html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      <title>SUNY Ulster</title>
+      <link rel="canonical" href="https://www.sunyulster.edu/index.php">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      
+<!-- this is the headcode include -->
+ <link rel="icon" type="image/x-icon" href="/_resources/favicon/favicon.ico">
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+  <link rel="stylesheet" href="https://use.typekit.net/iki4kuq.css">
+  <link rel="stylesheet" href="https://www.sunyulster.edu/_resources/css/main.css">
+  <!-- OmniUpdate developer stylesheet --> 
+<link rel="stylesheet" href="https://www.sunyulster.edu/_resources/css/oustyles.css" />
+<!-- Google Tag Manager (noscript) --><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TXR9ST6T"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><!-- End Google Tag Manager (noscript) -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F9C9JSGHK0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-F9C9JSGHK0');
+</script>
+<!-- Insert google analytics here -->
+</head>
+   <body>
+<!-- <script type="text/javascript">
+	function googleTranslateElementInit() {
+		new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_dropdown');
+	}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
+
+<script>
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement(
+      {
+        pageLanguage: 'en',
+        autoDisplay: false
+      },
+      'google_translate_dropdown'
+    );
+  }
+
+  window.addEventListener('pageshow', function (event) {
+    if (event.persisted) {
+      window.location.reload();
+    }
+  });
+</script>
+
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><header role="banner">
+   <div class="header">
+      <div class="header__inner"><a href="https://www.sunyulster.edu/" class="header__logo"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="100%" viewBox="0 0 1538 372" version="1.1" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+               							
+               <title>SUNY Ulster logo Start Here. Go Far.</title>
+               							
+               <g transform="matrix(4.16667,0,0,4.16667,0,0)">
+                  								
+                  <path d="M11.108,18.076C10.608,17.686 9.536,17.492 7.891,17.492C6.268,17.492 5.185,17.701 4.643,18.12C4.1,18.539 3.828,19.375 3.828,20.627C3.828,22.433 4.761,23.4 6.626,23.529L7.851,23.594L9.141,23.658C9.85,23.701 10.316,23.834 10.539,24.057C10.762,24.28 10.874,24.728 10.874,25.399C10.874,26.436 10.71,27.075 10.382,27.314C10.054,27.553 9.178,27.672 7.754,27.672C6.513,27.672 5.742,27.553 5.441,27.314C5.14,27.075 4.989,26.463 4.989,25.48L4.989,25.206L3.756,25.206L3.764,25.698C3.764,26.912 4.026,27.72 4.55,28.12C5.074,28.52 6.128,28.72 7.714,28.72C9.541,28.72 10.722,28.522 11.257,28.124C11.791,27.726 12.059,26.85 12.059,25.496C12.059,24.244 11.826,23.438 11.361,23.078C10.897,22.718 9.807,22.5 8.093,22.425C6.631,22.355 5.752,22.223 5.457,22.03C5.161,21.836 5.013,21.296 5.013,20.41C5.013,19.62 5.201,19.11 5.578,18.882C5.954,18.654 6.792,18.539 8.093,18.539C9.189,18.539 9.885,18.659 10.181,18.898C10.476,19.137 10.624,19.7 10.624,20.587L11.857,20.587C11.857,19.303 11.607,18.466 11.108,18.076ZM14.73,20.901L14.73,19.047L13.601,19.047L13.601,20.901L12.537,20.901L12.537,21.836L13.601,21.836L13.601,26.826C13.601,28.089 14.345,28.72 15.834,28.72C17.274,28.72 17.994,27.963 17.994,26.447L17.986,25.875L16.938,25.875L16.922,26.302L16.914,26.681C16.914,27.417 16.551,27.785 15.826,27.785C15.095,27.785 14.73,27.374 14.73,26.552L14.73,21.836L17.696,21.836L17.696,20.901L14.73,20.901ZM20.27,22.836C20.27,22.057 20.963,21.667 22.35,21.667C23.167,21.667 23.696,21.797 23.938,22.058C24.18,22.319 24.301,22.89 24.301,23.771L24.301,24.706L24.276,24.714C24.008,24.182 23.196,23.916 21.842,23.916C20.703,23.916 19.915,24.093 19.48,24.448C19.045,24.803 18.827,25.445 18.827,26.375C18.827,27.938 19.8,28.72 21.745,28.72C23.062,28.72 23.935,28.403 24.365,27.769L24.389,27.777L24.301,28.608L25.429,28.608L25.429,23.521C25.429,22.457 25.203,21.736 24.752,21.357C24.301,20.978 23.433,20.788 22.148,20.788C20.966,20.788 20.172,20.943 19.766,21.252C19.361,21.561 19.158,22.164 19.158,23.062L20.278,23.062C20.273,22.949 20.27,22.874 20.27,22.836ZM23.894,25.109C24.202,25.319 24.357,25.727 24.357,26.334C24.357,27.302 23.562,27.785 21.971,27.785C21.181,27.785 20.657,27.685 20.399,27.483C20.141,27.281 20.012,26.869 20.012,26.246C20.012,25.644 20.142,25.252 20.403,25.069C20.664,24.886 21.227,24.795 22.092,24.795C22.984,24.795 23.584,24.899 23.894,25.109ZM27.745,28.608L28.874,28.608L28.874,23.989C28.874,22.436 29.503,21.659 30.76,21.659C31.62,21.659 32.05,22.054 32.05,22.844C32.05,22.914 32.042,23.051 32.026,23.255L32.001,23.449L33.114,23.449L33.122,22.917C33.122,21.455 32.412,20.724 30.994,20.724C29.967,20.724 29.231,21.087 28.785,21.812L28.761,21.788L28.874,20.901L27.745,20.901L27.745,28.608ZM35.446,20.901L35.446,19.047L34.318,19.047L34.318,20.901L33.254,20.901L33.254,21.836L34.318,21.836L34.318,26.826C34.318,28.089 35.062,28.72 36.551,28.72C37.991,28.72 38.711,27.963 38.711,26.447L38.703,25.875L37.655,25.875L37.639,26.302L37.631,26.681C37.631,27.417 37.268,27.785 36.542,27.785C35.812,27.785 35.446,27.374 35.446,26.552L35.446,21.836L38.413,21.836L38.413,20.901L35.446,20.901ZM51.676,17.604L51.676,22.457L45.243,22.457L45.243,17.604L44.002,17.604L44.002,28.608L45.243,28.608L45.243,23.505L51.676,23.505L51.676,28.608L52.917,28.608L52.917,17.604L51.676,17.604ZM60.144,26.52C60.144,27.046 60.008,27.389 59.737,27.548C59.465,27.706 58.875,27.785 57.967,27.785C57.011,27.785 56.402,27.619 56.141,27.286C55.881,26.952 55.75,26.179 55.75,24.964L61.296,24.964L61.296,24.359C61.296,22.892 61.076,21.93 60.635,21.474C60.195,21.017 59.265,20.788 57.846,20.788C56.546,20.788 55.673,21.052 55.227,21.578C54.78,22.105 54.557,23.137 54.557,24.674C54.557,26.334 54.779,27.424 55.223,27.942C55.666,28.461 56.597,28.72 58.016,28.72C59.235,28.72 60.089,28.561 60.575,28.241C61.061,27.921 61.304,27.361 61.304,26.56L61.296,26.278L60.144,26.278L60.144,26.52ZM55.767,24.085C55.767,23.097 55.902,22.456 56.174,22.163C56.445,21.87 57.037,21.723 57.951,21.723C58.859,21.723 59.45,21.848 59.725,22.098C59.999,22.348 60.136,22.89 60.136,23.723L60.144,24.085L55.767,24.085ZM63.191,28.608L64.319,28.608L64.319,23.989C64.319,22.436 64.948,21.659 66.206,21.659C67.065,21.659 67.495,22.054 67.495,22.844C67.495,22.914 67.487,23.051 67.471,23.255L67.447,23.449L68.559,23.449L68.567,22.917C68.567,21.455 67.858,20.724 66.439,20.724C65.413,20.724 64.677,21.087 64.231,21.812L64.206,21.788L64.319,20.901L63.191,20.901L63.191,28.608ZM75.016,26.52C75.016,27.046 74.88,27.389 74.609,27.548C74.338,27.706 73.748,27.785 72.84,27.785C71.883,27.785 71.274,27.619 71.014,27.286C70.753,26.952 70.623,26.179 70.623,24.964L76.169,24.964L76.169,24.359C76.169,22.892 75.948,21.93 75.508,21.474C75.067,21.017 74.137,20.788 72.719,20.788C71.418,20.788 70.545,21.052 70.099,21.578C69.653,22.105 69.43,23.137 69.43,24.674C69.43,26.334 69.652,27.424 70.095,27.942C70.538,28.461 71.469,28.72 72.888,28.72C74.108,28.72 74.961,28.561 75.447,28.241C75.934,27.921 76.177,27.361 76.177,26.56L76.169,26.278L75.016,26.278L75.016,26.52ZM70.639,24.085C70.639,23.097 70.775,22.456 71.046,22.163C71.317,21.87 71.91,21.723 72.824,21.723C73.732,21.723 74.323,21.848 74.597,22.098C74.871,22.348 75.008,22.89 75.008,23.723L75.016,24.085L70.639,24.085ZM77.62,27.124L77.62,28.608L78.861,28.608L78.861,27.124L77.62,27.124ZM89.227,24.295L91.992,24.295L91.983,24.746C91.983,25.687 91.829,26.283 91.52,26.536C91.211,26.789 90.487,26.915 89.348,26.915C88.176,26.915 87.429,26.766 87.107,26.467C86.784,26.169 86.623,25.475 86.623,24.384L86.607,22.973L86.615,21.869C86.615,20.756 86.777,20.05 87.103,19.749C87.428,19.448 88.195,19.297 89.404,19.297C90.516,19.297 91.211,19.385 91.488,19.559C91.764,19.734 91.922,20.181 91.959,20.901L94.071,20.901C94.071,19.472 93.786,18.549 93.217,18.132C92.647,17.716 91.384,17.508 89.428,17.508C87.934,17.508 86.876,17.642 86.252,17.911C85.629,18.179 85.164,18.701 84.858,19.474C84.61,20.109 84.487,21.63 84.487,24.037C84.487,25.923 84.796,27.173 85.414,27.785C86.032,28.398 87.292,28.704 89.194,28.704C91.269,28.704 92.605,28.475 93.205,28.015C93.804,27.556 94.104,26.531 94.104,24.94L94.071,22.755L89.227,22.755L89.227,24.295ZM96.033,21.538C95.576,22.022 95.348,23.072 95.348,24.69C95.348,26.372 95.58,27.46 96.045,27.955C96.51,28.449 97.529,28.696 99.104,28.696C100.555,28.696 101.507,28.43 101.958,27.898C102.409,27.366 102.635,26.246 102.635,24.537C102.635,23.005 102.404,22.002 101.942,21.526C101.48,21.05 100.504,20.813 99.015,20.813C97.484,20.813 96.489,21.054 96.033,21.538ZM100.451,22.683C100.66,22.957 100.765,23.586 100.765,24.569C100.765,25.735 100.664,26.471 100.463,26.778C100.261,27.084 99.776,27.237 99.007,27.237C98.212,27.237 97.715,27.092 97.516,26.802C97.317,26.512 97.218,25.786 97.218,24.625C97.218,23.61 97.323,22.964 97.532,22.687C97.742,22.41 98.231,22.272 98.999,22.272C99.757,22.272 100.241,22.409 100.451,22.683ZM115.596,19.362L115.596,17.604L108.309,17.604L108.309,28.608L110.397,28.608L110.397,24.085L115.33,24.085L115.33,22.328L110.397,22.328L110.397,19.362L115.596,19.362ZM120.258,22.054C120.908,22.054 121.338,22.152 121.548,22.348C121.757,22.544 121.862,22.943 121.862,23.545L121.862,24.795L121.83,24.795C121.556,24.209 120.782,23.916 119.508,23.916C117.6,23.916 116.647,24.717 116.647,26.318C116.647,27.904 117.579,28.696 119.444,28.696C120.728,28.696 121.548,28.312 121.902,27.543L121.951,27.552L121.862,28.608L123.708,28.608L123.708,23.569C123.708,22.495 123.463,21.767 122.974,21.385C122.485,21.003 121.548,20.813 120.161,20.813C118.887,20.813 118.036,20.969 117.606,21.28C117.176,21.592 116.961,22.21 116.961,23.134L118.847,23.134C118.847,22.414 119.317,22.054 120.258,22.054ZM121.878,26.318C121.878,27.076 121.316,27.455 120.193,27.455C119.505,27.455 119.054,27.377 118.839,27.221C118.624,27.065 118.517,26.737 118.517,26.238C118.517,25.518 119.038,25.157 120.08,25.157C121.279,25.157 121.878,25.544 121.878,26.318ZM125.71,28.608L127.556,28.608L127.556,24.069C127.556,22.849 128.011,22.239 128.925,22.239C129.565,22.239 129.884,22.65 129.884,23.473C129.884,23.537 129.873,23.674 129.853,23.884L131.594,23.884L131.594,23.344C131.594,21.635 130.917,20.78 129.563,20.78C128.617,20.78 127.924,21.183 127.483,21.99L127.443,21.981L127.556,20.901L125.71,20.901L125.71,28.608ZM131.052,26.625L131.052,28.608L132.897,28.608L132.897,26.625L131.052,26.625Z" style="fill-rule:nonzero;" fill="currentColor"/>
+                  								
+                  <path d="M33.544,52.731L21.043,52.731L21.043,49.051C21.043,47.335 20.881,46.242 20.559,45.771C20.237,45.3 19.7,45.064 18.951,45.064C18.134,45.064 17.516,45.382 17.098,46.016C16.679,46.651 16.471,47.612 16.471,48.901C16.471,50.558 16.704,51.808 17.172,52.646C17.618,53.485 18.889,54.496 20.983,55.68C26.986,59.09 30.766,61.888 32.326,64.075C33.884,66.264 34.664,69.79 34.664,74.655C34.664,78.191 34.231,80.798 33.365,82.473C32.499,84.15 30.828,85.556 28.35,86.689C25.872,87.822 22.987,88.391 19.697,88.391C16.085,88.391 13.003,87.736 10.451,86.43C7.897,85.124 6.224,83.459 5.434,81.437C4.644,79.414 4.249,76.545 4.249,72.827L4.249,69.58L16.751,69.58L16.751,75.624C16.751,77.485 16.926,78.682 17.277,79.214C17.627,79.746 18.25,80.01 19.143,80.01C20.035,80.01 20.699,79.672 21.134,78.995C21.57,78.318 21.789,77.314 21.789,75.979C21.789,73.047 21.377,71.129 20.557,70.226C19.714,69.324 17.623,67.826 14.278,65.733C10.934,63.621 8.72,62.085 7.637,61.124C6.552,60.163 5.654,58.834 4.943,57.137C4.232,55.44 3.876,53.274 3.876,50.636C3.876,46.835 4.382,44.055 5.396,42.297C6.409,40.539 8.047,39.164 10.309,38.172C12.57,37.18 15.3,36.685 18.501,36.685C22,36.685 24.983,37.227 27.446,38.307C29.91,39.39 31.543,40.752 32.343,42.395C33.144,44.039 33.544,46.832 33.544,50.771L33.544,52.731Z" style="fill-rule:nonzero;" fill="currentColor"/>
+                  								
+                  <path d="M68.245,37.665L68.245,70.869C68.245,74.634 68.117,77.277 67.86,78.801C67.603,80.325 66.844,81.891 65.583,83.497C64.321,85.103 62.659,86.32 60.596,87.148C58.533,87.975 56.102,88.391 53.301,88.391C50.201,88.391 47.464,87.899 45.092,86.918C42.718,85.937 40.944,84.659 39.769,83.083C38.593,81.508 37.897,79.846 37.685,78.096C37.47,76.347 37.363,72.67 37.363,67.063L37.363,37.665L50.892,37.665L50.892,74.944C50.892,77.115 51.013,78.501 51.255,79.105C51.497,79.71 51.988,80.01 52.726,80.01C53.568,80.01 54.111,79.679 54.353,79.013C54.595,78.347 54.717,76.776 54.717,74.299L54.717,37.665L68.245,37.665Z" style="fill-rule:nonzero;" fill="currentColor"/>
+                  								
+                  <path d="M101.492,37.665L101.492,87.321L89.643,87.321L82.646,64.747L82.646,87.321L71.357,87.321L71.357,37.665L82.646,37.665L90.203,60.025L90.203,37.665L101.492,37.665Z" style="fill-rule:nonzero;" fill="currentColor"/>
+                  								
+                  <path d="M135.424,37.665L125.535,69.348L125.535,87.321L113.033,87.321L113.033,69.348L103.517,37.665L115.902,37.665C117.83,47.396 118.937,53.937 119.22,57.292C120.033,52.005 121.306,45.463 123.04,37.665L135.424,37.665Z" style="fill-rule:nonzero;" fill="currentColor"/>
+                  								
+                  <path d="M192.436,1.56L192.436,58.863C192.436,65.36 192.211,69.926 191.768,72.555C191.322,75.185 190.007,77.888 187.82,80.657C185.634,83.429 182.75,85.529 179.173,86.958C175.593,88.388 171.377,89.104 166.522,89.104C161.146,89.104 156.4,88.254 152.285,86.563C148.169,84.869 145.093,82.66 143.052,79.941C141.011,77.222 139.807,74.355 139.437,71.335C139.066,68.318 138.883,61.972 138.883,52.296L138.883,1.56L162.208,1.56L162.208,65.914C162.208,69.661 162.426,72.057 162.864,73.099C163.301,74.141 164.184,74.661 165.517,74.661C167.039,74.661 168.018,74.088 168.455,72.94C168.893,71.792 169.111,69.079 169.111,64.802L169.111,1.56L192.436,1.56Z" style="fill-rule:nonzero;" fill="currentColor"/>
+                  								
+                  <rect x="196.952" y="15.646" width="19.219" height="71.675" fill="currentColor"/>
+                  								
+                  <path d="M258.245,48.63L242.198,48.63L242.198,45.556C242.198,42.939 242.041,41.281 241.727,40.584C241.412,39.887 240.628,39.537 239.372,39.537C238.354,39.537 237.59,39.859 237.083,40.503C236.574,41.146 236.32,42.11 236.32,43.394C236.32,45.138 236.447,46.417 236.701,47.231C236.954,48.045 237.717,48.938 238.988,49.909C240.259,50.881 242.869,52.295 246.816,54.151C252.079,56.608 255.532,58.923 257.178,61.093C258.821,63.265 259.644,66.421 259.644,70.564C259.644,75.192 259.015,78.684 257.759,81.041C256.502,83.398 254.399,85.213 251.452,86.483C248.505,87.754 244.95,88.391 240.791,88.391C236.182,88.391 232.24,87.705 228.963,86.339C225.686,84.971 223.434,83.118 222.206,80.781C220.979,78.443 220.367,74.91 220.367,70.176L220.367,67.44L236.414,67.44L236.414,71.023C236.414,74.065 236.617,76.042 237.026,76.952C237.434,77.863 238.241,78.317 239.452,78.317C240.752,78.317 241.659,78.01 242.173,77.396C242.686,76.783 242.945,75.491 242.945,73.518C242.945,70.805 242.615,69.104 241.956,68.418C241.267,67.733 237.748,65.704 231.401,62.333C226.069,59.477 222.82,56.885 221.653,54.556C220.483,52.227 219.9,49.463 219.9,46.262C219.9,41.721 220.527,38.371 221.784,36.214C223.039,34.058 225.168,32.393 228.174,31.222C231.179,30.05 234.67,29.464 238.647,29.464C242.593,29.464 245.949,29.942 248.714,30.897C251.48,31.853 253.603,33.114 255.083,34.683C256.562,36.252 257.459,37.707 257.773,39.047C258.088,40.388 258.245,42.485 258.245,45.336L258.245,48.63Z" style="fill-rule:nonzero;" fill="currentColor"/>
+                  								
+                  <path d="M283.545,22.867L283.545,31.871L288.489,31.871L288.489,40.875L283.545,40.875L283.545,71.323C283.545,75.069 283.747,77.155 284.154,77.584C284.561,78.013 286.254,78.228 289.236,78.228L289.236,87.321L281.933,87.321C277.81,87.321 274.868,87.158 273.105,86.829C271.343,86.502 269.791,85.746 268.447,84.561C267.102,83.378 266.266,82.021 265.938,80.494C265.609,78.968 265.445,75.379 265.445,69.728L265.445,40.875L261.527,40.875L261.527,31.871L265.445,31.871L265.445,22.867L283.545,22.867Z" style="fill-rule:nonzero;" fill="currentColor"/>
+                  								
+                  <path d="M308.555,50.681L308.555,46.523C308.555,43.324 308.705,41.36 309.005,40.631C309.306,39.903 310.087,39.538 311.349,39.538C312.37,39.538 313.046,39.967 313.377,40.823C313.706,41.681 313.873,43.581 313.873,46.523L313.873,50.681L308.555,50.681ZM331.972,52.406C331.972,46.888 331.308,42.608 329.98,39.563C328.65,36.518 326.337,34.074 323.038,32.23C319.738,30.386 315.551,29.464 310.475,29.464C306.325,29.464 302.652,30.229 299.457,31.758C296.261,33.288 293.963,35.487 292.56,38.358C291.156,41.23 290.455,45.151 290.455,50.121L290.455,66.707C290.455,70.936 290.769,74.156 291.396,76.371C292.022,78.586 293.149,80.614 294.776,82.457C296.403,84.3 298.68,85.75 301.607,86.805C304.533,87.861 307.906,88.391 311.729,88.391C315.67,88.391 318.947,87.854 321.56,86.783C324.172,85.711 326.328,84.103 328.031,81.959C329.733,79.816 330.815,77.8 331.279,75.914C331.741,74.028 331.972,71.326 331.972,67.81L331.972,63.607L314.806,63.607L314.806,71.113C314.806,73.943 314.574,75.851 314.113,76.838C313.653,77.824 312.737,78.317 311.368,78.317C310.267,78.317 309.521,77.946 309.135,77.204C308.747,76.463 308.555,74.807 308.555,72.238L308.555,59.952L331.972,59.952L331.972,52.406Z" style="fill-rule:nonzero;" fill="currentColor"/>
+                  								
+                  <path d="M354.486,30.445L353.833,37.947C356.473,32.606 360.298,29.779 365.308,29.464L365.308,49.433C361.985,49.433 359.547,49.862 357.99,50.719C356.433,51.577 355.476,52.769 355.117,54.297C354.758,55.827 354.579,59.348 354.579,64.862L354.579,87.321L336.479,87.321L336.479,30.445L354.486,30.445Z" style="fill-rule:nonzero;" fill="currentColor"/>
+                  							</g>
+               						</svg></a><div class="header--mobile">
+            <nav aria-label="Full"><button class="primary-nav__toggle" aria-expanded="false"><span></span><span></span><span></span><span class="visually-hidden">Open Menu</span></button></nav>
+            <div class="primary-nav">
+               <nav aria-label="Primary">
+                  <ul class="primary-nav__main">
+                     <li class="primary-nav__main-item"><a href="https://www.sunyulster.edu/learn-at-suny-ulster/index.php" class="primary-nav__main-item-link">Learn at SUNY Ulster</a><button class="primary-nav__submenu-toggle" aria-expanded="false"><span class="visually-hidden">Expand Submenu</span></button><ul class="primary-nav__submenu">
+                           <li><a href="https://www.sunyulster.edu/learn-at-suny-ulster/explore-all-programs/index.php">Explore All Programs</a></li>
+                           <li><a href="https://www.sunyulster.edu/learn-at-suny-ulster/areas-of-study/index.php">Areas of Study</a></li>
+                           <li><a href="https://www.sunyulster.edu/learn-at-suny-ulster/special-programs/index.php">Special Programs</a></li>
+                           <li><a href="https://www.sunyulster.edu/learn-at-suny-ulster/online-learning/index.php">Online Learning</a></li>
+                           <li><a href="https://www.sunyulster.edu/learn-at-suny-ulster/continuing-education-professional-development/index.php">Continuing Education &amp; Professional Development</a></li>
+                           <li><a href="https://www.sunyulster.edu/learn-at-suny-ulster/classes-registration/index.php">Classes &amp; Registration</a></li>
+                           <li><a href="https://www.sunyulster.edu/learn-at-suny-ulster/internships-apprenticeships/index.php">Internships &amp; Apprenticeships</a></li>
+                           <li><a href="https://www.sunyulster.edu/learn-at-suny-ulster/library/index.php">Library</a></li>
+                        </ul>
+                     </li>
+                     <li class="primary-nav__main-item"><a href="https://www.sunyulster.edu/apply-aid/index.php" class="primary-nav__main-item-link">Apply &amp; Aid</a><button class="primary-nav__submenu-toggle" aria-expanded="false"><span class="visually-hidden">Expand Submenu</span></button><ul class="primary-nav__submenu">
+                           <li><a href="https://www.sunyulster.edu/apply-aid/how-to-apply/index.php">How to Apply</a></li>
+                           <li><a href="https://www.sunyulster.edu/apply-aid/how-to-apply/next-steps-accepted-students.php">Next Steps for Accepted Students</a></li>
+                           <li><a href="https://www.sunyulster.edu/apply-aid/high-school-student-programs/index.php">High School Student Programs</a></li>
+                           <li><a href="https://www.sunyulster.edu/apply-aid/enrollment-success-team.php">Enrollment &amp; Success Team</a></li>
+                           <li><a href="https://discover.sunyulster.edu/register/inquire" target="_blank" rel="noopener">Request More Information</a></li>
+                           <li><a href="https://www.sunyulster.edu/apply-aid/paying-for-college/index.php">Paying for College</a></li>
+                           <li><a href="https://www.sunyulster.edu/apply-aid/tuition-fees/index.php">Tuition &amp; Fees</a></li>
+                           <li><a href="https://www.sunyulster.edu/apply-aid/visit-us/index.php">Visiting Us</a></li>
+                        </ul>
+                     </li>
+                     <li class="primary-nav__main-item"><a href="https://www.sunyulster.edu/campus-life/index.php" class="primary-nav__main-item-link">Campus Life</a><button class="primary-nav__submenu-toggle" aria-expanded="false"><span class="visually-hidden">Expand Submenu</span></button><ul class="primary-nav__submenu">
+                           <li><a href="https://www.sunyulster.edu/campus-life/clubs.php">Clubs</a></li>
+                           <li><a href="https://www.sunyulster.edu/campus-life/visual-performing-arts/index.php">Visual &amp; Performing Arts</a></li>
+                           <li><a href="https://www.sunyulster.edu/campus-life/visual-performing-arts/sparrow-magazine.php">Sparrow Magazine</a></li>
+                           <li><a href="https://www.sunyulster.edu/campus-life/campus-resources/computers-internet.php">Computers &amp; Internet</a></li>
+                           <li><a href="https://athletics.sunyulster.edu/">Athletics</a></li>
+                           <li><a href="https://sunyulster.bncollege.com/" target="_blank" rel="noopener">Bookstore</a></li>
+                           <li><a href="https://www.sunyulster.edu/campus-life/campus-resources/dining.php">Dining</a></li>
+                           <li><a href="https://www.sunyulster.edu/campus-life/news-events/events.php">Calendar of Events</a></li>
+                           <li><a href="https://blog.sunyulster.edu/" target="_blank" rel="noopener">News</a></li>
+                           <li><a href="https://www.sunyulster.edu/campus-life/graduation/index.php">Graduation Ceremonies</a></li>
+                           <li><a href="https://www.sunyulster.edu/about/administration/public-safety/index.php">Campus Public Safety</a></li>
+                           <li><a href="https://www.sunyulster.edu/campus-life/student-handbook/index.php">Student Handbook</a></li>
+                        </ul>
+                     </li>
+                     <li class="primary-nav__main-item"><a href="https://www.sunyulster.edu/student-support/index.php" class="primary-nav__main-item-link">Student Support</a><button class="primary-nav__submenu-toggle" aria-expanded="false"><span class="visually-hidden">Expand Submenu</span></button><ul class="primary-nav__submenu">
+                           <li><a href="https://www.sunyulster.edu/student-support/academic-support/index.php">Academic Support</a></li>
+                           <li><a href="https://www.sunyulster.edu/student-support/support-programs/index.php">Support Programs</a></li>
+                           <li><a href="https://www.sunyulster.edu/student-support/career-services/index.php">Career Services</a></li>
+                           <li><a href="https://www.sunyulster.edu/student-support/health-wellness/index.php">Health &amp; Wellness</a></li>
+                        </ul>
+                     </li>
+                     <li class="primary-nav__main-item"><a href="https://www.sunyulster.edu/about/index.php" class="primary-nav__main-item-link">About</a><button class="primary-nav__submenu-toggle" aria-expanded="false"><span class="visually-hidden">Expand Submenu</span></button><ul class="primary-nav__submenu">
+                           <li><a href="https://www.sunyulster.edu/about/index.php">Why SUNY Ulster</a></li>
+                           <li><a href="https://www.sunyulster.edu/about/suny-ulster-history.php">SUNY Ulster History</a></li>
+                           <li><a href="https://www.sunyulster.edu/about/mission-vision.php">Mission &amp; Vision</a></li>
+                           <li><a href="https://www.sunyulster.edu/about/leadership/index.php">Leadership</a></li>
+                           <li><a href="https://www.sunyulster.edu/about/administration/index.php">Administration</a></li>
+                           <li><a href="#6">Accreditations</a></li>
+                           <li><a href="https://www.sunyulster.edu/about/faculty-directory/index.php">Faculty Directory</a></li>
+                        </ul>
+                     </li>
+                  </ul>
+               </nav>
+               <nav class="primary-nav__ancillary" aria-label="Ancillary">
+                  <ul>
+                     <li><a href="https://my.sunyulster.edu" target="_blank" rel="noopener">My SUNY Ulster</a></li>
+                     <li><a href="https://www.sunyulster.edu/foundation/alumni/index.php">Alumni</a></li>
+                     <li><a href="https://www.sunyulster.edu/foundation/index.php">SUNY Ulster Foundation</a></li>
+                     <li><a href="https://athletics.sunyulster.edu/" target="_blank" rel="noopener">Athletics</a></li>
+                  </ul>
+               </nav>
+            </div>
+            <div role="search"><button class="search__toggle" aria-expanded="false"><span class="visually-hidden">Open Search</span><svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 27 27" fill="none">
+                     <path d="M11.4231 21.8462C17.1796 21.8462 21.8462 17.1796 21.8462 11.4231C21.8462 5.66657 17.1796 1 11.4231 1C5.66657 1 1 5.66657 1 11.4231C1 17.1796 5.66657 21.8462 11.4231 21.8462Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                     <path d="M26.0006 26L18.7891 18.7885" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+            <form class="search" action="https://www.sunyulster.edu/search/index.php"><label class="visually-hidden" for="search__input--mobile">Search</label><input type="search" name="ousearchq" class="search__input" id="search__input--mobile" placeholder="Search"><button type="submit" class="search__submit"><span class="visually-hidden">Submit</span><svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 27 27" fill="none">
+                     <path d="M11.4231 21.8462C17.1796 21.8462 21.8462 17.1796 21.8462 11.4231C21.8462 5.66657 17.1796 1 11.4231 1C5.66657 1 1 5.66657 1 11.4231C1 17.1796 5.66657 21.8462 11.4231 21.8462Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                     <path d="M26.0006 26L18.7891 18.7885" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></form>
+         </div>
+         <div class="header--desktop">
+            <div class="header__top">
+               <div id="google_translate_dropdown" class="google-translate__dropdown-box js-active"></div>
+               <nav aria-label="Ancillary">
+                  <ul class="header__ancillary">
+                     <li><a href="https://my.sunyulster.edu" target="_blank" rel="noopener">My SUNY Ulster</a></li>
+                     <li><a href="https://www.sunyulster.edu/foundation/alumni/index.php">Alumni</a></li>
+                     <li><a href="https://www.sunyulster.edu/foundation/index.php">SUNY Ulster Foundation</a></li>
+                     <li><a href="https://athletics.sunyulster.edu/" target="_blank" rel="noopener">Athletics</a></li>
+                  </ul>
+               </nav>
+               <div role="search"><button class="search__toggle" aria-expanded="false"><span class="visually-hidden">Open Search</span><svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 27 27" fill="none">
+                        <path d="M11.4231 21.8462C17.1796 21.8462 21.8462 17.1796 21.8462 11.4231C21.8462 5.66657 17.1796 1 11.4231 1C5.66657 1 1 5.66657 1 11.4231C1 17.1796 5.66657 21.8462 11.4231 21.8462Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M26.0006 26L18.7891 18.7885" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+               <form class="search" action="https://www.sunyulster.edu/search/index.php"><label class="visually-hidden" for="search__input--desktop">Search</label><input type="search" class="search__input" id="search__input--desktop" placeholder="Search" name="ousearchq"><button type="submit" class="search__submit"><span class="visually-hidden">Submit</span><svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 27 27" fill="none">
+                        <path d="M11.4231 21.8462C17.1796 21.8462 21.8462 17.1796 21.8462 11.4231C21.8462 5.66657 17.1796 1 11.4231 1C5.66657 1 1 5.66657 1 11.4231C1 17.1796 5.66657 21.8462 11.4231 21.8462Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M26.0006 26L18.7891 18.7885" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></form>
+            </div>
+            <nav aria-label="Primary">
+               <ul class="header__main">
+                  <li class="header__main-item header__main-item--with-children"><a href="https://www.sunyulster.edu/learn-at-suny-ulster/index.php" class="header__main-item-link">Learn at SUNY Ulster</a><button class="header__submenu-toggle" aria-expanded="false"><span class="visually-hidden">Expand Submenu</span></button><ul class="header__submenu">
+                        <li><a href="https://www.sunyulster.edu/learn-at-suny-ulster/explore-all-programs/index.php">Explore All Programs</a></li>
+                        <li><a href="https://www.sunyulster.edu/learn-at-suny-ulster/areas-of-study/index.php">Areas of Study</a></li>
+                        <li><a href="https://www.sunyulster.edu/learn-at-suny-ulster/special-programs/index.php">Special Programs</a></li>
+                        <li><a href="https://www.sunyulster.edu/learn-at-suny-ulster/online-learning/index.php">Online Learning</a></li>
+                        <li><a href="https://www.sunyulster.edu/learn-at-suny-ulster/continuing-education-professional-development/index.php">Continuing Education &amp; Professional Development</a></li>
+                        <li><a href="https://www.sunyulster.edu/learn-at-suny-ulster/classes-registration/index.php">Classes &amp; Registration</a></li>
+                        <li><a href="https://www.sunyulster.edu/learn-at-suny-ulster/internships-apprenticeships/index.php">Internships &amp; Apprenticeships</a></li>
+                        <li><a href="https://www.sunyulster.edu/learn-at-suny-ulster/library/index.php">Library</a></li>
+                     </ul>
+                  </li>
+                  <li class="header__main-item header__main-item--with-children"><a href="https://www.sunyulster.edu/apply-aid/index.php" class="header__main-item-link">Apply &amp; Aid</a><button class="header__submenu-toggle" aria-expanded="false"><span class="visually-hidden">Expand Submenu</span></button><ul class="header__submenu">
+                        <li><a href="https://www.sunyulster.edu/apply-aid/how-to-apply/index.php">How to Apply</a></li>
+                        <li><a href="https://www.sunyulster.edu/apply-aid/how-to-apply/next-steps-accepted-students.php">Next Steps for Accepted Students</a></li>
+                        <li><a href="https://www.sunyulster.edu/apply-aid/high-school-student-programs/index.php">High School Student Programs</a></li>
+                        <li><a href="https://www.sunyulster.edu/apply-aid/enrollment-success-team.php">Enrollment &amp; Success Team</a></li>
+                        <li><a href="https://discover.sunyulster.edu/register/inquire" target="_blank" rel="noopener">Request More Information</a></li>
+                        <li><a href="https://www.sunyulster.edu/apply-aid/paying-for-college/index.php">Paying for College</a></li>
+                        <li><a href="https://www.sunyulster.edu/apply-aid/tuition-fees/index.php">Tuition &amp; Fees</a></li>
+                        <li><a href="https://www.sunyulster.edu/apply-aid/visit-us/index.php">Visiting Us</a></li>
+                     </ul>
+                  </li>
+                  <li class="header__main-item header__main-item--with-children"><a href="https://www.sunyulster.edu/campus-life/index.php" class="header__main-item-link">Campus Life</a><button class="header__submenu-toggle" aria-expanded="false"><span class="visually-hidden">Expand Submenu</span></button><ul class="header__submenu">
+                        <li><a href="https://www.sunyulster.edu/campus-life/clubs.php">Clubs</a></li>
+                        <li><a href="https://www.sunyulster.edu/campus-life/visual-performing-arts/index.php">Visual &amp; Performing Arts</a></li>
+                        <li><a href="https://www.sunyulster.edu/campus-life/visual-performing-arts/sparrow-magazine.php">Sparrow Magazine</a></li>
+                        <li><a href="https://www.sunyulster.edu/campus-life/campus-resources/computers-internet.php">Computers &amp; Internet</a></li>
+                        <li><a href="https://athletics.sunyulster.edu/">Athletics</a></li>
+                        <li><a href="https://sunyulster.bncollege.com/" target="_blank" rel="noopener">Bookstore</a></li>
+                        <li><a href="https://www.sunyulster.edu/campus-life/campus-resources/dining.php">Dining</a></li>
+                        <li><a href="https://www.sunyulster.edu/campus-life/news-events/events.php">Calendar of Events</a></li>
+                        <li><a href="https://blog.sunyulster.edu/" target="_blank" rel="noopener">News</a></li>
+                        <li><a href="https://www.sunyulster.edu/campus-life/graduation/index.php">Graduation Ceremonies</a></li>
+                        <li><a href="https://www.sunyulster.edu/about/administration/public-safety/index.php">Campus Public Safety</a></li>
+                        <li><a href="https://www.sunyulster.edu/campus-life/student-handbook/index.php">Student Handbook</a></li>
+                     </ul>
+                  </li>
+                  <li class="header__main-item header__main-item--with-children"><a href="https://www.sunyulster.edu/student-support/index.php" class="header__main-item-link">Student Support</a><button class="header__submenu-toggle" aria-expanded="false"><span class="visually-hidden">Expand Submenu</span></button><ul class="header__submenu">
+                        <li><a href="https://www.sunyulster.edu/student-support/academic-support/index.php">Academic Support</a></li>
+                        <li><a href="https://www.sunyulster.edu/student-support/support-programs/index.php">Support Programs</a></li>
+                        <li><a href="https://www.sunyulster.edu/student-support/career-services/index.php">Career Services</a></li>
+                        <li><a href="https://www.sunyulster.edu/student-support/health-wellness/index.php">Health &amp; Wellness</a></li>
+                     </ul>
+                  </li>
+                  <li class="header__main-item header__main-item--with-children"><a href="https://www.sunyulster.edu/about/index.php" class="header__main-item-link">About</a><button class="header__submenu-toggle" aria-expanded="false"><span class="visually-hidden">Expand Submenu</span></button><ul class="header__submenu">
+                        <li><a href="https://www.sunyulster.edu/about/index.php">Why SUNY Ulster</a></li>
+                        <li><a href="https://www.sunyulster.edu/about/suny-ulster-history.php">SUNY Ulster History</a></li>
+                        <li><a href="https://www.sunyulster.edu/about/mission-vision.php">Mission &amp; Vision</a></li>
+                        <li><a href="https://www.sunyulster.edu/about/leadership/index.php">Leadership</a></li>
+                        <li><a href="https://www.sunyulster.edu/about/administration/index.php">Administration</a></li>
+                        <li><a href="#6">Accreditations</a></li>
+                        <li><a href="https://www.sunyulster.edu/about/faculty-directory/index.php">Faculty Directory</a></li>
+                     </ul>
+                  </li>
+               </ul>
+            </nav>
+         </div>
+      </div>
+   </div>
+</header>      <main role="main" id="main" class="main" tabindex="-1">
+         <div class="container-top">
+            <section class="hero hero--home">
+               <div class="hero__video-wrapper"><video class="hero__video" autoplay muted loop playsinline="playsinline">
+                     <source src="https://www.sunyulster.edu/_resources/videos/web-video-2.mp4" type="video/mp4"></video><span class="visually-hidden">Video</span></div><img src="https://www.sunyulster.edu/_resources/img/home-hero.jpg" alt="&#34;&#34;" class="hero__image"><div class="hero__inner"><button class="hero__controller" aria-pressed="false"><span class="visually-hidden">Pause Video</span><svg xmlns="http://www.w3.org/2000/svg" width="23" height="26" viewBox="0 0 23 26" fill="none">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M22.3333 13L0.333344 25.7018V0.29834L22.3333 13Z" fill="currentColor"/></svg></button><h1 class="hero__title"><span class="hero__title--italic">An Oasis of Opportunity</span> at Your Front Door
+                     					</h1>
+                  <div class="hero__ctas"><a href="https://www.sunyulster.edu/apply-aid/index.php">Apply</a><a href="https://www.sunyulster.edu/apply-aid/visit-us/visit-campus.php">Contact</a><a href="https://www.sunyulster.edu/apply-aid/visit-us/index.php">Visit</a></div>
+               </div>
+            </section>
+         </div>
+         <div class="container">
+            <div class="container__main">
+               
+               <section class="section home-introduction">
+                  
+                  <div class="home-introduction__arrow home-introduction__arrow--1">
+                     <svg xmlns="http://www.w3.org/2000/svg" width="37" height="85" viewBox="0 0 37 85" fill="none" class="arrow arrow--sm">
+                        	
+                        <path d="M28.1658 67.8228L34.7846 74.9114M28.1658 82L34.7846 74.9114M34.7846 74.9114H21.5C10.4543 74.9114 1.5 65.9571 1.5 54.9114V2" stroke="currentColor" stroke-width="3" stroke-linecap="square"/>
+                        </svg>
+                     <svg xmlns="http://www.w3.org/2000/svg" width="62" height="116" viewBox="0 0 62 116" fill="none" class="arrow arrow--md">
+                        	
+                        <path d="M52.2417 99L59 106M52.2417 113L59 106M59 106H31.5C14.9315 106 1.5 92.5685 1.5 76V1.5" stroke="currentColor" stroke-width="3" stroke-linecap="square"/>
+                        </svg>
+                     <svg xmlns="http://www.w3.org/2000/svg" width="130" height="208" viewBox="0 0 130 208" fill="none" class="arrow arrow--lg">
+                        	
+                        <path d="M116.459 184.5L127 195M116.459 205.5L127 195M127 195H42C19.9086 195 2 177.091 2 155V1.5" stroke="currentColor" stroke-width="3" stroke-linecap="square"/>
+                        </svg>
+                     </div>
+                  
+                  <div class="home-introduction__content">
+                     
+                     <h2 class="home-introduction__heading">Take a campus tour, learn about academic pathways, receive an overview of our application
+                        process and more! </h2>
+                     
+                     <div class="home-introduction__cta">
+                        <a href="https://discover.sunyulster.edu/register/preview2026" class="cta cta--button" target="_blank">Join us for Preview Day</a>
+                        </div>
+                     </div>
+                  
+                  <div class="home-introduction__image">
+                     <img src="https://www.sunyulster.edu/_resources/img/events/preview-day.png" alt="Join us for Preview Day Saturday, December 5 9am - 1 pm Stone Ridge Campus">
+                     </div>
+                  
+                  <div class="home-introduction__arrow home-introduction__arrow--2">
+                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="76" viewBox="0 0 20 76" fill="none" class="arrow arrow--sm">
+                        	
+                        <path d="M17 66.9002L9.91139 73.519M2.82278 66.9002L9.91139 73.519M9.91139 73.519L9.91139 2" stroke="currentColor" stroke-width="3" stroke-linecap="square"/>
+                        </svg>
+                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="114" viewBox="0 0 20 114" fill="none" class="arrow arrow--md">
+                        	
+                        <path d="M17 104.242L10 111M3 104.242L10 111M10 111L10 2" stroke="currentColor" stroke-width="3" stroke-linecap="square"/>
+                        </svg>
+                     <svg xmlns="http://www.w3.org/2000/svg" width="26" height="174" viewBox="0 0 26 174" fill="none" class="arrow arrow--lg">
+                        
+                        <path d="M23.5 160.959L13 171.5M2.5 160.959L13 171.5M13 171.5L13 1.5" stroke="currentColor" stroke-width="3" stroke-linecap="square"/>
+                        </svg>
+                     </div>
+                  </section>
+               
+               
+               <section class="path-selector">
+                  
+                  <h2>Follow <span class="home-qa__header--italic">your path</span></h2>
+                  
+                  <div class="path-selector__intro">Create a brighter future for yourself with one of our accessible and affordable programs.
+                     Explore our paths to find what works for you and meets your goals.</div>
+                  <div class="path-selector__paths">
+                     <div class="path-card"><button class="path-card__toggle" aria-expanded="false" data-dialog="dialog-1"><span aria-hidden="true"><img src="https://www.sunyulster.edu/_resources/icons/book.svg" alt="&#34;&#34;" width="33" height="40"><span class="icon"></span></span><span>
+                              					I want to explore academic opportunities
+                              					<span class="icon"></span></span></button><div class="path-card__content">
+                           <div class="path-card__text"><span style="font-weight: 400;">SUNY Ulster has over 60 programs designed for either transfer or workforce. They are
+                                 organized into pathways to make it easier to explore and choose the program that best
+                                 meets your interests. You can also explore a list of all programs.</span></div>
+                           <ul class="path-card__links">
+                              
+                              <li><a href="https://www.sunyulster.edu/learn-at-suny-ulster/areas-of-study/business-entrepreneurship-accounting/index.php">
+                                    
+                                    <p style="display: inline !important;">Business, Entrepreneurship, &amp; Accounting</p>
+                                    </a></li>
+                              
+                              <li><a href="https://www.sunyulster.edu/learn-at-suny-ulster/areas-of-study/education/index.php">
+                                    
+                                    <p style="display: inline !important;">Education</p>
+                                    </a></li>
+                              
+                              <li><a href="https://www.sunyulster.edu/learn-at-suny-ulster/areas-of-study/fine-performing-arts/index.php">
+                                    
+                                    <p style="display: inline !important;">Fine &amp; Performing Arts</p>
+                                    </a></li>
+                              
+                              <li><a href="https://www.sunyulster.edu/learn-at-suny-ulster/areas-of-study/health-sciences/index.php">
+                                    
+                                    <p style="display: inline !important;">Health Sciences</p>
+                                    </a></li>
+                              
+                              <li><a href="https://www.sunyulster.edu/learn-at-suny-ulster/areas-of-study/human-protective-services/index.php">
+                                    
+                                    <p style="display: inline !important;">Human &amp; Protective Services&nbsp;</p>
+                                    </a></li>
+                              
+                              <li><a href="https://www.sunyulster.edu/learn-at-suny-ulster/areas-of-study/individual-studies/index.php">
+                                    
+                                    <p style="display: inline !important;">Individual Studies&nbsp;</p>
+                                    </a></li>
+                              
+                              <li><a href="https://www.sunyulster.edu/learn-at-suny-ulster/areas-of-study/liberal-arts-humanities-social-sciences/index.php">
+                                    
+                                    <p style="display: inline !important;">Liberal Arts: Humanities &amp; Social Sciences</p>
+                                    </a></li>
+                              
+                              <li><a href="https://www.sunyulster.edu/learn-at-suny-ulster/areas-of-study/math-science/index.php">
+                                    
+                                    <p style="display: inline !important;">Math &amp; Sciences</p>
+                                    </a></li>
+                              
+                              <li><a href="https://www.sunyulster.edu/learn-at-suny-ulster/areas-of-study/technology/index.php">
+                                    
+                                    <p style="display: inline !important;">Technology</p>
+                                    </a></li>
+                              </ul>
+                           <div class="path-card__callout">
+                              <p></p><a href="https://www.sunyulster.edu/learn-at-suny-ulster/areas-of-study/index.php" class="cta cta--link">Find the program right for you</a></div>
+                        </div>
+                     </div>
+                     <div class="path-card"><button class="path-card__toggle" aria-expanded="false" data-dialog="dialog-2"><span aria-hidden="true"><img src="https://www.sunyulster.edu/_resources/icons/briefcase.svg" alt="&#34;&#34;" width="40" height="40"><span class="icon"></span></span><span>
+                              					I want to enhance my career
+                              					<span class="icon"></span></span></button><div class="path-card__content">
+                           <div class="path-card__text">
+                              
+                              <p><span style="font-weight: 400;">SUNY Ulster understands the need for upskilling whether you have a degree or not.
+                                    We have an array of choices to help you stay competitive in the job market whether
+                                    you’re looking for a better job, a higher salary, or a promotion.</span></p>
+                              
+                              <p>&nbsp;</p>
+                              </div>
+                           <ul class="path-card__links">
+                              
+                              <li><span style="font-weight: 400;"><a href="https://www.sunyulster.edu/learn-at-suny-ulster/special-programs/microcredentials.php">Microcredentials</a> are a quick series of courses that award a digital badge upon completion that lets
+                                    employers know that you are skilled in a particular work area such as customer service
+                                    or pet sitting.&nbsp; &nbsp;</span></li>
+                              
+                              <li><span style="font-weight: 400;"><span style="font-weight: 400;">Noncredit courses from our <a href="https://www.sunyulster.edu/learn-at-suny-ulster/continuing-education-professional-development/">Professional and Continuing Education department</a>&nbsp; offer individual classes or series of courses in topics that vary from learning
+                                       Quickbooks and How to Start a Family Child Care business to advanced manufacturing
+                                       and health services.</span></span>
+                                 
+                                 <p><a href="https://www.sunyulster.edu/learn-at-suny-ulster/continuing-education-professional-development/business-professional-development/index.php"><span style="font-weight: 400;">Business &amp; Professional Development</span></a></p>
+                                 
+                                 <p><a href="https://www.sunyulster.edu/learn-at-suny-ulster/continuing-education-professional-development/health/index.php"><span style="font-weight: 400;">Health Careers</span></a></p>
+                                 
+                                 <p><a href="https://www.sunyulster.edu/learn-at-suny-ulster/continuing-education-professional-development/industrial-technology/index.php"><span style="font-weight: 400;">Industrial Technology</span></a></p>
+                                 
+                                 <p><a href="https://www.sunyulster.edu/learn-at-suny-ulster/continuing-education-professional-development/it-web-development/index.php"><span style="font-weight: 400;">IT &amp; Web Development</span></a></p>
+                                 </li>
+                              </ul>
+                           <div class="path-card__callout">
+                              <p></p><a href="https://www.sunyulster.edu/learn-at-suny-ulster/explore-all-programs/" class="cta cta--link">Find the program right for you</a></div>
+                        </div>
+                     </div>
+                     <div class="path-card"><button class="path-card__toggle" aria-expanded="false" data-dialog="dialog-3"><span aria-hidden="true"><img src="https://www.sunyulster.edu/_resources/icons/grad-cap.svg" alt="&#34;&#34;" width="45" height="40"><span class="icon"></span></span><span>
+                              					I want to enroll
+                              					<span class="icon"></span></span></button><div class="path-card__content">
+                           <div class="path-card__text">
+                              
+                              <p><span style="font-weight: 400;">Start by filling out our application. Your acceptance packet will contain all your
+                                    next steps. </span></p>
+                              
+                              <p><a href="https://www.sunyulster.edu/apply-aid/paying-for-college/index.php">Financial Aid</a></p>
+                              
+                              <p><a href="https://www.sunyulster.edu/foundation/scholarships/index.php">Scholarships</a></p>
+                              </div>
+                           <ul class="path-card__links">
+                              
+                              <li><span style="font-weight: 400;">While waiting for your acceptance packet, you’ll want to check out <a href="https://www.sunyulster.edu/apply-aid/paying-for-college/index.php">financial aid </a>and <a href="https://www.sunyulster.edu/foundation/scholarships/index.php">scholarships</a>. By filing the FAFSA, you ensure that you are considered for all federal financial
+                                    aid for which you may be eligible. Your FAFSA will also make you eligible to receive
+                                    one or more of the $1 million in scholarships we award annually to our students. </span></li>
+                              </ul>
+                           <div class="path-card__callout">
+                              <p></p><a href="https://www.sunyulster.edu/learn-at-suny-ulster/explore-all-programs/" class="cta cta--link">Find the program right for you</a></div>
+                        </div>
+                     </div>
+                     <div class="path-card"><button class="path-card__toggle" aria-expanded="false" data-dialog="dialog-4"><span aria-hidden="true"><img src="https://www.sunyulster.edu/_resources/icons/person.svg" alt="&#34;&#34;" width="40" height="40"><span class="icon"></span></span><span>
+                              					I want to take workforce training or personal enrichment classes.
+                              					<span class="icon"></span></span></button><div class="path-card__content">
+                           <div class="path-card__text"><span style="font-weight: 400;">SUNY Ulster’s <a href="https://www.sunyulster.edu/learn-at-suny-ulster/continuing-education-professional-development/index.php">Continuing Education</a> classes offer residents the opportunity to take classes in everything from the arts
+                                 and new languages to driver’s ed, motorcycle lessons, and reiki for humans and pets.
+                                 </span></div>
+                           <ul class="path-card__links"></ul>
+                           <div class="path-card__callout">
+                              <p></p><a href="https://www.sunyulster.edu/learn-at-suny-ulster/explore-all-programs/" class="cta cta--link">Find the program right for you</a></div>
+                        </div>
+                     </div>
+                     <div class="path-card"><button class="path-card__toggle" aria-expanded="false" data-dialog="dialog-5"><span aria-hidden="true"><img src="https://www.sunyulster.edu/_resources/icons/graph.svg" alt="&#34;&#34;" width="40" height="40"><span class="icon"></span></span><span>
+                              					I want flexible learning options
+                              					<span class="icon"></span></span></button><div class="path-card__content">
+                           <div class="path-card__text"><span style="font-weight: 400;">At SUNY Ulster,&nbsp; we understand that our students often have jobs, families, and other
+                                 obligations. That’s why we offer so many ways to attend classes. </span></div>
+                           <ul class="path-card__links">
+                              
+                              <li><span style="font-weight: 400;">Face-to-face classes in Stone Ridge or our Kingston Center</span></li>
+                              
+                              <li><span style="font-weight: 400;">Day or Evening</span></li>
+                              
+                              <li><span style="font-weight: 400;">Online</span></li>
+                              
+                              <li><span style="font-weight: 400;">Hybrid&nbsp;</span></li>
+                              
+                              <li><span style="font-weight: 400;">Remote</span></li>
+                              
+                              <li><span style="font-weight: 400;">Hyflex</span></li>
+                              </ul>
+                           <div class="path-card__callout">
+                              <p></p><a href="https://www.sunyulster.edu/learn-at-suny-ulster/explore-all-programs/" class="cta cta--link">Find the program right for you</a></div>
+                        </div>
+                     </div>
+                     <div class="path-card"><button class="path-card__toggle" aria-expanded="false" data-dialog="dialog-6"><span aria-hidden="true"><img src="https://www.sunyulster.edu/_resources/icons/backpack.svg" alt="&#34;&#34;" width="40" height="40"><span class="icon"></span></span><span>
+                              					I want to take college classes in high school
+                              					<span class="icon"></span></span></button><div class="path-card__content">
+                           <div class="path-card__text">
+                              
+                              <p>The <a href="https://www.sunyulster.edu/apply-aid/high-school-student-programs/collegian.php">Collegian</a> program enables accomplished high school students to enroll in college classes taught
+                                 during the day – at their own high school by selected high school faculty – and earn
+                                 college credit for those classes.<span><span><br></span></span></p>
+                              
+                              <p><span style="font-weight: 400;">The <a href="https://www.sunyulster.edu/apply-aid/high-school-student-programs/early-admissions.php">Early College </a>program allows students to complete all or some of their remaining high school graduation
+                                    requirements at SUNY Ulster. Home-schooled students can build SUNY Ulster coursework
+                                    into an approved Individual Home Instruction Plan (IHIP).</span></p>
+                              
+                              <p>&nbsp;</p>
+                              </div>
+                           <ul class="path-card__links"></ul>
+                           <div class="path-card__callout">
+                              <p></p><a href="https://www.sunyulster.edu/learn-at-suny-ulster/explore-all-programs/" class="cta cta--link">Find the program right for you</a></div>
+                        </div>
+                     </div>
+                     <div class="dialog" id="dialog-1" role="dialog" aria-labelledby="header-1">
+                        <div class="dialog__icon"><img src="https://www.sunyulster.edu/_resources/icons/book.svg" alt="&#34;&#34;" width="33" height="40"></div><button class="dialog__close"><span class="visually-hidden">Close Dialog</span></button><h3 class="dialog__header" id="header-1">I want to explore academic opportunities</h3>
+                        <div class="dialog__text"><span style="font-weight: 400;">SUNY Ulster has over 60 programs designed for either transfer or workforce. They are
+                              organized into pathways to make it easier to explore and choose the program that best
+                              meets your interests. You can also explore a list of all programs.</span></div>
+                        <ul class="dialog__links">
+                           
+                           <li><a href="https://www.sunyulster.edu/learn-at-suny-ulster/areas-of-study/business-entrepreneurship-accounting/index.php">
+                                 
+                                 <p style="display: inline !important;">Business, Entrepreneurship, &amp; Accounting</p>
+                                 </a></li>
+                           
+                           <li><a href="https://www.sunyulster.edu/learn-at-suny-ulster/areas-of-study/education/index.php">
+                                 
+                                 <p style="display: inline !important;">Education</p>
+                                 </a></li>
+                           
+                           <li><a href="https://www.sunyulster.edu/learn-at-suny-ulster/areas-of-study/fine-performing-arts/index.php">
+                                 
+                                 <p style="display: inline !important;">Fine &amp; Performing Arts</p>
+                                 </a></li>
+                           
+                           <li><a href="https://www.sunyulster.edu/learn-at-suny-ulster/areas-of-study/health-sciences/index.php">
+                                 
+                                 <p style="display: inline !important;">Health Sciences</p>
+                                 </a></li>
+                           
+                           <li><a href="https://www.sunyulster.edu/learn-at-suny-ulster/areas-of-study/human-protective-services/index.php">
+                                 
+                                 <p style="display: inline !important;">Human &amp; Protective Services&nbsp;</p>
+                                 </a></li>
+                           
+                           <li><a href="https://www.sunyulster.edu/learn-at-suny-ulster/areas-of-study/individual-studies/index.php">
+                                 
+                                 <p style="display: inline !important;">Individual Studies&nbsp;</p>
+                                 </a></li>
+                           
+                           <li><a href="https://www.sunyulster.edu/learn-at-suny-ulster/areas-of-study/liberal-arts-humanities-social-sciences/index.php">
+                                 
+                                 <p style="display: inline !important;">Liberal Arts: Humanities &amp; Social Sciences</p>
+                                 </a></li>
+                           
+                           <li><a href="https://www.sunyulster.edu/learn-at-suny-ulster/areas-of-study/math-science/index.php">
+                                 
+                                 <p style="display: inline !important;">Math &amp; Sciences</p>
+                                 </a></li>
+                           
+                           <li><a href="https://www.sunyulster.edu/learn-at-suny-ulster/areas-of-study/technology/index.php">
+                                 
+                                 <p style="display: inline !important;">Technology</p>
+                                 </a></li>
+                           </ul>
+                        <div class="dialog__callout">
+                           <p></p><a href="https://www.sunyulster.edu/learn-at-suny-ulster/areas-of-study/index.php" class="cta cta--link">Find the program right for you</a></div>
+                     </div>
+                     <div class="dialog" id="dialog-2" role="dialog" aria-labelledby="header-2">
+                        <div class="dialog__icon"><img src="https://www.sunyulster.edu/_resources/icons/briefcase.svg" alt="&#34;&#34;" width="40" height="40"></div><button class="dialog__close"><span class="visually-hidden">Close Dialog</span></button><h3 class="dialog__header" id="header-2">I want to enhance my career</h3>
+                        <div class="dialog__text">
+                           
+                           <p><span style="font-weight: 400;">SUNY Ulster understands the need for upskilling whether you have a degree or not.
+                                 We have an array of choices to help you stay competitive in the job market whether
+                                 you’re looking for a better job, a higher salary, or a promotion.</span></p>
+                           
+                           <p>&nbsp;</p>
+                           </div>
+                        <ul class="dialog__links">
+                           
+                           <li><span style="font-weight: 400;"><a href="https://www.sunyulster.edu/learn-at-suny-ulster/special-programs/microcredentials.php">Microcredentials</a> are a quick series of courses that award a digital badge upon completion that lets
+                                 employers know that you are skilled in a particular work area such as customer service
+                                 or pet sitting.&nbsp; &nbsp;</span></li>
+                           
+                           <li><span style="font-weight: 400;"><span style="font-weight: 400;">Noncredit courses from our <a href="https://www.sunyulster.edu/learn-at-suny-ulster/continuing-education-professional-development/">Professional and Continuing Education department</a>&nbsp; offer individual classes or series of courses in topics that vary from learning
+                                    Quickbooks and How to Start a Family Child Care business to advanced manufacturing
+                                    and health services.</span></span>
+                              
+                              <p><a href="https://www.sunyulster.edu/learn-at-suny-ulster/continuing-education-professional-development/business-professional-development/index.php"><span style="font-weight: 400;">Business &amp; Professional Development</span></a></p>
+                              
+                              <p><a href="https://www.sunyulster.edu/learn-at-suny-ulster/continuing-education-professional-development/health/index.php"><span style="font-weight: 400;">Health Careers</span></a></p>
+                              
+                              <p><a href="https://www.sunyulster.edu/learn-at-suny-ulster/continuing-education-professional-development/industrial-technology/index.php"><span style="font-weight: 400;">Industrial Technology</span></a></p>
+                              
+                              <p><a href="https://www.sunyulster.edu/learn-at-suny-ulster/continuing-education-professional-development/it-web-development/index.php"><span style="font-weight: 400;">IT &amp; Web Development</span></a></p>
+                              </li>
+                           </ul>
+                        <div class="dialog__callout">
+                           <p></p><a href="https://www.sunyulster.edu/learn-at-suny-ulster/explore-all-programs/" class="cta cta--link">Find the program right for you</a></div>
+                     </div>
+                     <div class="dialog" id="dialog-3" role="dialog" aria-labelledby="header-3">
+                        <div class="dialog__icon"><img src="https://www.sunyulster.edu/_resources/icons/grad-cap.svg" alt="&#34;&#34;" width="45" height="40"></div><button class="dialog__close"><span class="visually-hidden">Close Dialog</span></button><h3 class="dialog__header" id="header-3">I want to enroll</h3>
+                        <div class="dialog__text">
+                           
+                           <p><span style="font-weight: 400;">Start by filling out our application. Your acceptance packet will contain all your
+                                 next steps. </span></p>
+                           
+                           <p><a href="https://www.sunyulster.edu/apply-aid/paying-for-college/index.php">Financial Aid</a></p>
+                           
+                           <p><a href="https://www.sunyulster.edu/foundation/scholarships/index.php">Scholarships</a></p>
+                           </div>
+                        <ul class="dialog__links">
+                           
+                           <li><span style="font-weight: 400;">While waiting for your acceptance packet, you’ll want to check out <a href="https://www.sunyulster.edu/apply-aid/paying-for-college/index.php">financial aid </a>and <a href="https://www.sunyulster.edu/foundation/scholarships/index.php">scholarships</a>. By filing the FAFSA, you ensure that you are considered for all federal financial
+                                 aid for which you may be eligible. Your FAFSA will also make you eligible to receive
+                                 one or more of the $1 million in scholarships we award annually to our students. </span></li>
+                           </ul>
+                        <div class="dialog__callout">
+                           <p></p><a href="https://www.sunyulster.edu/learn-at-suny-ulster/explore-all-programs/" class="cta cta--link">Find the program right for you</a></div>
+                     </div>
+                     <div class="dialog" id="dialog-4" role="dialog" aria-labelledby="header-4">
+                        <div class="dialog__icon"><img src="https://www.sunyulster.edu/_resources/icons/person.svg" alt="&#34;&#34;" width="40" height="40"></div><button class="dialog__close"><span class="visually-hidden">Close Dialog</span></button><h3 class="dialog__header" id="header-4">I want to take workforce training or personal enrichment classes.</h3>
+                        <div class="dialog__text"><span style="font-weight: 400;">SUNY Ulster’s <a href="https://www.sunyulster.edu/learn-at-suny-ulster/continuing-education-professional-development/index.php">Continuing Education</a> classes offer residents the opportunity to take classes in everything from the arts
+                              and new languages to driver’s ed, motorcycle lessons, and reiki for humans and pets.
+                              </span></div>
+                        <ul class="dialog__links"></ul>
+                        <div class="dialog__callout">
+                           <p></p><a href="https://www.sunyulster.edu/learn-at-suny-ulster/explore-all-programs/" class="cta cta--link">Find the program right for you</a></div>
+                     </div>
+                     <div class="dialog" id="dialog-5" role="dialog" aria-labelledby="header-5">
+                        <div class="dialog__icon"><img src="https://www.sunyulster.edu/_resources/icons/graph.svg" alt="&#34;&#34;" width="40" height="40"></div><button class="dialog__close"><span class="visually-hidden">Close Dialog</span></button><h3 class="dialog__header" id="header-5">I want flexible learning options</h3>
+                        <div class="dialog__text"><span style="font-weight: 400;">At SUNY Ulster,&nbsp; we understand that our students often have jobs, families, and other
+                              obligations. That’s why we offer so many ways to attend classes. </span></div>
+                        <ul class="dialog__links">
+                           
+                           <li><span style="font-weight: 400;">Face-to-face classes in Stone Ridge or our Kingston Center</span></li>
+                           
+                           <li><span style="font-weight: 400;">Day or Evening</span></li>
+                           
+                           <li><span style="font-weight: 400;">Online</span></li>
+                           
+                           <li><span style="font-weight: 400;">Hybrid&nbsp;</span></li>
+                           
+                           <li><span style="font-weight: 400;">Remote</span></li>
+                           
+                           <li><span style="font-weight: 400;">Hyflex</span></li>
+                           </ul>
+                        <div class="dialog__callout">
+                           <p></p><a href="https://www.sunyulster.edu/learn-at-suny-ulster/explore-all-programs/" class="cta cta--link">Find the program right for you</a></div>
+                     </div>
+                     <div class="dialog" id="dialog-6" role="dialog" aria-labelledby="header-6">
+                        <div class="dialog__icon"><img src="https://www.sunyulster.edu/_resources/icons/backpack.svg" alt="&#34;&#34;" width="40" height="40"></div><button class="dialog__close"><span class="visually-hidden">Close Dialog</span></button><h3 class="dialog__header" id="header-6">I want to take college classes in high school</h3>
+                        <div class="dialog__text">
+                           
+                           <p>The <a href="https://www.sunyulster.edu/apply-aid/high-school-student-programs/collegian.php">Collegian</a> program enables accomplished high school students to enroll in college classes taught
+                              during the day – at their own high school by selected high school faculty – and earn
+                              college credit for those classes.<span><span><br></span></span></p>
+                           
+                           <p><span style="font-weight: 400;">The <a href="https://www.sunyulster.edu/apply-aid/high-school-student-programs/early-admissions.php">Early College </a>program allows students to complete all or some of their remaining high school graduation
+                                 requirements at SUNY Ulster. Home-schooled students can build SUNY Ulster coursework
+                                 into an approved Individual Home Instruction Plan (IHIP).</span></p>
+                           
+                           <p>&nbsp;</p>
+                           </div>
+                        <ul class="dialog__links"></ul>
+                        <div class="dialog__callout">
+                           <p></p><a href="https://www.sunyulster.edu/learn-at-suny-ulster/explore-all-programs/" class="cta cta--link">Find the program right for you</a></div>
+                     </div>
+                  </div>
+               </section>
+               <section class="home-qa">
+                  <div class="home-qa__content">
+                     <div class="home-qa__image"><img src="https://www.sunyulster.edu/_resources/img/home-qa.jpg" alt="Campus Library buildling" data-original-src="https://www.sunyulster.edu/_resources/img/home-qa.jpg"></div>
+                     <h2 class="home-qa__header">
+                        
+                        <h2>Make college work <span class="home-qa__header--italic">for you</span></h2>
+                        </h2>
+                     <div class="home-qa__intro">College <span style="font-weight: 400;">isn't one-size-fits-all;</span> you can make it work for you, and we’re here to help you find your best fit</div>
+                     <ul class="home-qa__links">
+                        <li><span aria-hidden="true"><svg width="33" height="40" viewBox="0 0 33 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+	<path d="M30.3571 0H6.07143C2.63081 0 0 2.59986 0 6V34C0 37.4001 2.63081 40 6.07143 40H30.3571C31.5715 40 32.381 39.2001 32.381 38V2C32.381 0.799929 31.5715 0 30.3571 0ZM6.07143 4H28.3333V8H6.07143C4.85707 8 4.04762 7 4.04762 6C4.04762 4.79993 4.85707 4 6.07143 4ZM4.04762 34V11.6C4.65465 11.8001 5.46443 12.0001 6.07143 12.0001H8.09524V36.0001H6.07143C4.85707 36.0001 4.04762 35.2002 4.04762 34.0001V34ZM28.3333 36H12.1429V12H28.3333V36Z" fill="currentColor" />
+</svg>
+</span><a href="https://www.sunyulster.edu/student-support/academic-support/index.php" class="cta cta--link">Academic Support</a></li>
+                        <li><span aria-hidden="true"><svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+	<path d="M38 8H28V6C28 2.59986 25.4001 0 22 0H18C14.5999 0 12 2.59986 12 6V8H2C0.799929 8 0 8.79993 0 10V38C0 39.2001 0.799929 40 2 40H38C39.2001 40 40 39.2001 40 38V10C40 8.79993 39.2001 8 38 8ZM16 6C16 4.79993 16.7999 4 18 4H22C23.2001 4 24 4.79993 24 6V8H16V6ZM36 36H4V24.6C5 24.8001 6.40014 25.0001 8 25.1999V26.0001C8 27.2002 8.79993 28.0001 10 28.0001C11 28.0001 12 27.2002 12 25.6C17.5999 26.1998 22.8 26.0001 28 25.6C28 28.8 32 28.3999 32 26.0001V25.2001C33.4001 25.0001 34.5999 24.8 36 24.6003V36ZM36 20.4C34.5999 20.6001 33.4001 20.9999 32 21.1999V19.9999C32 18.7998 31.2001 17.9999 30 17.9999C28.7999 17.9999 28 18.7998 28 19.9999V21.5997C21.7999 22.1996 16.4 21.9998 12 21.5997V19.9999C12 18.7998 11.2001 17.9999 10 17.9999C8.79993 17.9999 8 18.7998 8 19.9999V21.1999C6.20007 20.9999 5 20.6 4 20.4V12H36V20.4Z" fill="currentColor" />
+</svg>
+</span><a href="https://www.sunyulster.edu/student-support/career-services/index.php" class="cta cta--link">Career Services</a></li>
+                        <li><span aria-hidden="true"><svg width="26" height="23" viewBox="0 0 26 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+	<path d="M17.8988 0.143296C15.8152 0.143296 13.8911 1.01831 12.5601 2.50778C9.78596 -0.530489 5.05907 -0.678638 2.13403 2.31856C-0.713153 5.21841 -0.708479 9.93671 2.13086 12.8283L11.705 22.646C12.1654 23.1178 12.9094 23.117 13.3689 22.6493L23.0136 12.8282C24.3893 11.4185 25.146 9.55011 25.1428 7.56546C25.136 3.46771 21.8872 0.142822 17.8985 0.142822L17.8988 0.143296ZM21.3502 11.1169L12.5422 20.0861L3.79618 11.1169C1.8846 9.17114 1.87287 5.98961 3.7986 4.02862C6.05582 1.71644 9.93488 2.16974 11.5462 5.15321C12.0011 5.99367 13.1874 5.98091 13.622 5.1282C14.4305 3.54308 16.0702 2.55921 17.9 2.55921C20.5933 2.55921 22.7827 4.81259 22.7875 7.56971C22.7888 8.90623 22.278 10.1669 21.3503 11.117L21.3502 11.1169Z" fill="currentColor" />
+</svg>
+</span><a href="https://www.sunyulster.edu/student-support/health-wellness/index.php" class="cta cta--link">Health &amp; Wellness</a></li>
+                     </ul>
+                  </div>
+                  <div class="home-qa__scroller">
+                     <div class="home-qa__question-cards">
+                        <div class="question-card" data-hero-image-src="https://www.sunyulster.edu/_resources/img/home-qa-hero-1.jpg">
+                           <div class="question-card__inner">
+                              <div class="question-card__top">
+                                 <h3 class="question-card__question">
+                                    										I work during the day. How do I balance work &amp; school?
+                                    									</h3>
+                                 <div class="question-card__answer-wrapper">
+                                    <div class="question-card__answer">
+                                       											As a busy working professional and volunteer, I’ve benefited from SUNY Ulster’s flexible
+                                       scheduling and variety of class types. By graduation, I will have taken day and evening
+                                       classes, as well as on-campus, online, and hybrid classes. The ability to choose courses
+                                       that fit my schedule has been invaluable.
+                                       										</div>
+                                    <div class="question-card__link"><a href="https://www.sunyulster.edu/student-support/academic-support/index.php" class="cta cta--link">Center for Academic Planning &amp; Support</a></div>
+                                 </div>
+                              </div>
+                              <div class="question-card__bottom">
+                                 <div class="question-card__title">
+                                    										Audrey Pottinger '16 Business: Accounting
+                                    									</div><button class="question-card__toggle"><span>Answer</span><span aria-hidden="true"></span></button><img src="https://www.sunyulster.edu/_resources/img/audrey-pottinger.png" alt="portrait of Audrey Pottinger" class="question-card__image"></div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="home-qa__question-cards">
+                        <div class="question-card" data-hero-image-src="https://www.sunyulster.edu/_resources/img/home-hero.jpg">
+                           <div class="question-card__inner">
+                              <div class="question-card__top">
+                                 <h3 class="question-card__question">
+                                    										No one in my family has ever gone to college. How do I get help?
+                                    									</h3>
+                                 <div class="question-card__answer-wrapper">
+                                    <div class="question-card__answer">
+                                       											Since I was the first in my family to attend college, the higher education system
+                                       was foreign to me and my family. I received tremendous support at SUNY Ulster. Not
+                                       only did Ulster challenge me intellectually, but it also gave me the foundation I
+                                       needed to succeed throughout my educational career.
+                                       										</div>
+                                    <div class="question-card__link"><a href="https://www.sunyulster.edu/student-support/support-programs/trio.php" class="cta cta--link">TRIO</a></div>
+                                 </div>
+                              </div>
+                              <div class="question-card__bottom">
+                                 <div class="question-card__title">
+                                    										Victor Cueva ‘09 Liberal Arts: Humanities &amp; Social Science
+                                    									</div><button class="question-card__toggle"><span>Answer</span><span aria-hidden="true"></span></button><img src="https://www.sunyulster.edu/_resources/img/victor-cueva2.png" alt="Portrait of Victor Cueva" class="question-card__image"></div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="home-qa__question-cards">
+                        <div class="question-card" data-hero-image-src="https://www.sunyulster.edu/_resources/img/pattern-hero.jpg">
+                           <div class="question-card__inner">
+                              <div class="question-card__top">
+                                 <h3 class="question-card__question">
+                                    										What if I don’t know what I want to study?
+                                    									</h3>
+                                 <div class="question-card__answer-wrapper">
+                                    <div class="question-card__answer">
+                                       											My son found his passion for history at SUNY Ulster through the dedication and inspiration
+                                       of professors who inspired and motivated him. They do much more than teach; they lit
+                                       a spark in Vincenzo that led him to find his career path.
+                                       										</div>
+                                    <div class="question-card__link"><a href="https://www.sunyulster.edu/learn-at-suny-ulster/areas-of-study/index.php" class="cta cta--link">Learning Pathways</a></div>
+                                 </div>
+                              </div>
+                              <div class="question-card__bottom">
+                                 <div class="question-card__title">
+                                    										Vincenzo Agostaro ‘16 Individual Studies shown with his father Rosario Agostaro, Retired
+                                    Superintendent
+                                    									</div><button class="question-card__toggle"><span>Answer</span><span aria-hidden="true"></span></button><img src="https://www.sunyulster.edu/_resources/img/agostarosar-2.png" alt="portraits of Rosario and Vincenzo " class="question-card__image"></div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="home-qa__contact">
+                        
+                        <h3>Have more questions?</h3>
+                        
+                        <p>Get in touch with one of our advisors to get started.</p>
+                        
+                        <ul>
+                           <li><span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                    <path d="M19.3729 14.4L15.9626 11C15.1603 10.2 13.6557 10.2 12.8532 11L11.5493 12.2999H11.449C10.9475 12.2999 10.0448 11.8999 9.14208 11C7.93837 9.7999 7.73787 8.70004 7.83807 8.49996L9.04178 7.20003C9.44296 6.80006 9.64363 6.20002 9.64363 5.59998C9.74396 4.99994 9.5433 4.49994 9.04178 4.09997L5.63151 0.59995C4.82916 -0.199983 3.32461 -0.199983 2.52208 0.59995L1.21821 1.89989C-1.3897 4.49994 0.315521 10.1999 5.13003 14.9C8.23946 18 11.9506 20 14.8594 20C16.1633 20 17.367 19.6 18.0692 18.7999L19.3731 17.5C19.7742 17.1 19.9749 16.5 19.9749 15.8999C20.0752 15.2999 19.8746 14.7999 19.3731 14.3999L19.3729 14.4ZM17.9687 16.1L16.6648 17.4C16.2636 17.7999 15.6618 18 14.8594 18C12.5525 18 9.24245 16.2001 6.53427 13.5C2.32118 9.39997 1.1179 4.79994 2.62245 3.29993L3.92632 1.99999H4.12698C4.12698 1.99999 4.22731 1.99999 4.32764 2.10002L7.73791 5.50001C7.83824 5.60004 7.83824 5.60004 7.83824 5.70007C7.83824 5.70007 7.83824 5.8001 7.73791 5.90013L6.33356 7.10006C5.23019 8.2001 5.73171 10.5 7.63743 12.4001C9.44281 14.2 11.8502 14.8001 12.9535 13.7L14.2574 12.4001C14.3577 12.3001 14.458 12.3001 14.5582 12.4001L17.9685 15.8001C18.0688 15.9001 18.0688 15.9001 18.0688 16.0001C18.0691 16.0001 18.0691 16.0001 17.9688 16.1002L17.9687 16.1Z" fill="currentColor"/></svg><span class="visually-hidden">phone icon</span></span><a href="tel:(845) 687-5022">(845) 687-5022</a></li>
+                           <li><span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="14" viewBox="0 0 20 14" fill="none">
+                                    <path d="M17 0H3C1.29993 0 0 1.27061 0 2.93233V10.7519C0 12.4136 1.29993 13.6842 3 13.6842H17C18.7001 13.6842 20 12.4136 20 10.7519V2.93233C20 1.27061 18.7001 0 17 0ZM16.1 1.95489L10.6 6.15789C10.2001 6.45107 9.70007 6.45107 9.39997 6.15789L3.89996 1.95489H16.1ZM17 11.7293H3C2.39996 11.7293 2 11.3384 2 10.7519V2.93233L8.2 7.62406C9.30004 8.40594 10.8 8.40594 11.9 7.62406L18 2.93233V10.7519C18 11.3384 17.6 11.7293 17 11.7293Z" fill="currentColor"/></svg><span class="visually-hidden">email icon</span></span><a href="mailto:admissions@sunyulster.edu">admissions@sunyulster.edu</a></li>
+                        </ul>
+                     </div>
+                  </div>
+               </section>
+               
+               
+               	
+               <section class="image-gallery section">
+                  		
+                  <div class="image-gallery__inner">
+                     
+                     			
+                     <div class="image-gallery__arrow image-gallery__arrow--1">
+                        				<svg xmlns="http://www.w3.org/2000/svg" width="26" height="174" viewBox="0 0 26 174" fill="none" class="arrow arrow--xl">
+                           					
+                           <path d="M23.5 160.959L13 171.5M2.5 160.959L13 171.5M13 171.5L13 1.5" stroke="currentColor" stroke-width="3" stroke-linecap="square"/>
+                           				</svg>
+                        			</div>
+                     			
+                     <div class="image-gallery__content">
+                        				
+                        <div class="image-gallery__top">
+                           					
+                           <h2 class="image-gallery__header section__header">
+                              						<span>Discover where</span>
+                              						<span class="italic">you belong</span>
+                              					</h2>
+                           					
+                           <div class="section__intro image-gallery__intro">
+                              						Explore our activities, organizations, and clubs to see where you fit in on
+                              campus.
+                              					</div>
+                           					<a href="/campus-life/index.php" class="cta cta--button">Campus Life</a>
+                           				</div>
+                        
+                        				
+                        <div class="image-gallery__images">
+                           					
+                           <figure tabindex="0">
+                              	<img src="/_resources/img/home-gallery-1.png" alt="Chemistry student with faculty in a lab.">
+                              	
+                              <figcaption>Student working with a Chemistry Professor</figcaption>
+                              </figure>
+                           
+                           <figure tabindex="0">
+                              	<img src="https://www.sunyulster.edu/_resources/img/ulster_group_grads.png" alt="graduation photo with faculty and family">
+                              	
+                              <figcaption>Commencement</figcaption>
+                              </figure>
+                           
+                           <figure tabindex="0">
+                              	<img src="/_resources/img/home-gallery-3.png" alt="SUNY Ulster Campus in springtime with a view of the Library">
+                              	
+                              <figcaption>SUNY Ulster's Campus</figcaption>
+                              </figure>
+                           
+                           <figure tabindex="0">
+                              	<img src="/_resources/img/home-gallery-4.png" alt="three students jumping joyfully">
+                              	
+                              <figcaption>Student Activities</figcaption>
+                              </figure>
+                           
+                           <figure tabindex="0">
+                              	<img src="/_resources/img/home-gallery-5.png" alt="Advanced Manufacturing student with instructor">
+                              	
+                              <figcaption>Advanced Manufacturing </figcaption>
+                              </figure>
+                           
+                           <figure tabindex="0">
+                              	<img src="/_resources/img/home-gallery-6.png" alt="SUNY Ulster sports fans">
+                              	
+                              <figcaption>Athletics</figcaption>
+                              </figure>
+                           
+                           				</div>
+                        			</div>
+                     		</div>
+                  	</section>
+                
+               
+               
+               <section class="section events3up">
+                  <div class="events3up__top">
+                     <div class="section__header events3up__header">
+                        <h2>
+                           <heading>
+                              <h2>Dive into<span>&nbsp;</span><strong><em>what's happening</em></strong></h2>
+                           </heading>
+                        </h2>
+                     </div>
+                  </div>
+                  <div class="column column--three events3up__items"><div class="column__col events3up__item">	<div class="events3up__date">		<div class="events3up__day">12		</div>		<div class="events3up__month">JAN		</div>	</div> 	<h3 class="events3up__title">		<a href="https://www.sunyulster.edu/campus-life/news-events/events.php#event-details/28135dcd-3086-4b70-a1a8-3876be2f1227">Board of Trustees Committee Meetings: Tuesday, January 12, 2027 – 8:00 a.m. – 9 a.m.</a>	</h3>	<div class="events3up__data">	<span class="events3up__time">8:00 am - 9:00 am</span>	<span class="events3up__location">SUNY Ulster Stone Ridge Campus</span>	</div> </div><div class="column__col events3up__item">	<div class="events3up__date">		<div class="events3up__day">12		</div>		<div class="events3up__month">JAN		</div>	</div> 	<h3 class="events3up__title">		<a href="https://www.sunyulster.edu/campus-life/news-events/events.php#event-details/9a972541-9fde-4471-ad0c-3eb423b776a9">Board of Trustees Committee Meetings: Tuesday, January 12, 2027 – 9:00 a.m. – 10 a.m.</a>	</h3>	<div class="events3up__data">	<span class="events3up__time">9:00 am - 10:00 am</span>	<span class="events3up__location">SUNY Ulster Stone Ridge Campus</span>	</div> </div><div class="column__col events3up__item">	<div class="events3up__date">		<div class="events3up__day">19		</div>		<div class="events3up__month">JAN		</div>	</div> 	<h3 class="events3up__title">		<a href="https://www.sunyulster.edu/campus-life/news-events/events.php#event-details/cf25f2b2-d303-45df-88f0-42d8cfdd8594">SUNY Ulster Board of Trustees Meeting: Tuesday, January 19, 2027 Board Meeting – 3:00 p.m.</a>	</h3>	<div class="events3up__data">	<span class="events3up__time">3:00 pm - 5:30 pm</span>	<span class="events3up__location">SUNY Ulster Stone Ridge Campus</span>	</div> </div></div>
+               </section>
+            </div>
+         </div>
+         <div class="footer-sock"><img src="https://www.sunyulster.edu/_resources/img/footer-sock.jpg" alt="Graduating students with faculty at graduation" class="footer-sock__image"><div class="footer-sock__inner"><button class="footer-sock__back-to-top"><span class="visually-hidden">Back to Top</span><span class="footer-sock__back-to-top-icon"></span></button><h2 class="footer-sock__header">
+         					Start Here.<em>Go Far.<span class="footer-sock__arrow"></span></em></h2>
+      <div class="footer-sock__cta-wrapper">
+         <div class="footer-sock__arrow"></div>
+         <div class="footer-sock__ctas"><a href="https://www.sunyulster.edu/apply-aid/index.php">Apply</a><a href="https://www.sunyulster.edu/apply-aid/visit-us/visit-campus.php">Contact</a><a href="https://www.sunyulster.edu/apply-aid/visit-us/index.php">Visit</a></div>
+      </div>
+   </div>
+</div></main>
+      <footer class="footer" role="contentinfo"><button class="footer__back-to-top"><span class="visually-hidden">Back to Top</span><span class="footer__back-to-top-icon"></span></button><div class="footer__left">
+      <ul class="footer__links">
+         <li><a href="https://www.sunyulster.edu/about/administration/public-safety/2024-annual-securityreport.pdf">Annual Security Report (CLERY)</a></li>
+         <li><a href="https://www.sunyulster.edu/about/administration/policies/title-ix.php">Title IX</a></li>
+         <li><a href="https://www.sunyulster.edu/nondiscrimination-notice.php">Nondiscrimination Notice</a></li>
+         <li><a href="https://www.sunyulster.edu/privacy-policy.php">Privacy Policy</a></li>
+         <li><a href="https://www.sunyulster.edu/jobs-at-suny-ulster/index.php">Jobs at SUNY Ulster</a></li>
+         <li><a href="https://blog.sunyulster.edu/" target="_blank" rel="noopener">News</a></li>
+         <li><a href="https://www.sunyulster.edu/transcript-request.php">Transcript Requests</a></li>
+         <li><a href="https://www.sunyulster.edu/about/leadership/board-of-trustees/bot-meetings.php">Board of Trustees Meetings</a></li>
+         <li><a href="https://www.sunyulster.edu/consumer-information/index.php">Consumer Information</a></li>
+         <li><a href="https://www.sunyulster.edu/foundation/ways-to-give/index.php">Ways to Give</a></li>
+         <li><a href="https://www.sunyulster.edu/about/snapshot-of-success.php">A Snapshot of Our Success</a></li>
+      </ul>
+   </div>
+   <div class="footer__campus footer__campus--main"><strong>Main Campus</strong><address>
+         					491 Cottekill Road,
+         					Stone Ridge, NY 12484
+         				</address>
+      <ul class="footer__contact">
+         <li><a href="tel:845-687-5000">845-687-5000</a></li>
+         <li><a href="mailto:esc@sunyulster.edu">esc@sunyulster.edu</a></li>
+      </ul>
+   </div>
+   <div class="footer__campus footer__campus--kingston"><strong>Kingston Center</strong><address>
+         					94 Mary's Ave.,
+         					Kingston, NY 12401
+         				</address>
+      <ul class="footer__contact">
+         <li><a href="tel:845-339-2025">845-339-2025</a></li>
+         <li><a href="mailto:cereg@sunyulster.edu">cereg@sunyulster.edu</a></li>
+      </ul>
+      <p>Copyright <span id="directedit">©</span> 2026 SUNY Ulster.</p>
+   </div>
+   <div class="footer__right">
+      <div class="footer__logo"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="100%" viewBox="0 0 1538 372" version="1.1" xml:space="preserve" style="         fill-rule: evenodd;         clip-rule: evenodd;         stroke-linejoin: round;         stroke-miterlimit: 2;         ">
+            						
+            <title>SUNY Ulster logo Start Here. Go Far.</title>
+            						
+            <g transform="matrix(4.16667,0,0,4.16667,0,0)">
+               							
+               <path d="M11.108,18.076C10.608,17.686 9.536,17.492 7.891,17.492C6.268,17.492 5.185,17.701 4.643,18.12C4.1,18.539 3.828,19.375 3.828,20.627C3.828,22.433 4.761,23.4 6.626,23.529L7.851,23.594L9.141,23.658C9.85,23.701 10.316,23.834 10.539,24.057C10.762,24.28 10.874,24.728 10.874,25.399C10.874,26.436 10.71,27.075 10.382,27.314C10.054,27.553 9.178,27.672 7.754,27.672C6.513,27.672 5.742,27.553 5.441,27.314C5.14,27.075 4.989,26.463 4.989,25.48L4.989,25.206L3.756,25.206L3.764,25.698C3.764,26.912 4.026,27.72 4.55,28.12C5.074,28.52 6.128,28.72 7.714,28.72C9.541,28.72 10.722,28.522 11.257,28.124C11.791,27.726 12.059,26.85 12.059,25.496C12.059,24.244 11.826,23.438 11.361,23.078C10.897,22.718 9.807,22.5 8.093,22.425C6.631,22.355 5.752,22.223 5.457,22.03C5.161,21.836 5.013,21.296 5.013,20.41C5.013,19.62 5.201,19.11 5.578,18.882C5.954,18.654 6.792,18.539 8.093,18.539C9.189,18.539 9.885,18.659 10.181,18.898C10.476,19.137 10.624,19.7 10.624,20.587L11.857,20.587C11.857,19.303 11.607,18.466 11.108,18.076ZM14.73,20.901L14.73,19.047L13.601,19.047L13.601,20.901L12.537,20.901L12.537,21.836L13.601,21.836L13.601,26.826C13.601,28.089 14.345,28.72 15.834,28.72C17.274,28.72 17.994,27.963 17.994,26.447L17.986,25.875L16.938,25.875L16.922,26.302L16.914,26.681C16.914,27.417 16.551,27.785 15.826,27.785C15.095,27.785 14.73,27.374 14.73,26.552L14.73,21.836L17.696,21.836L17.696,20.901L14.73,20.901ZM20.27,22.836C20.27,22.057 20.963,21.667 22.35,21.667C23.167,21.667 23.696,21.797 23.938,22.058C24.18,22.319 24.301,22.89 24.301,23.771L24.301,24.706L24.276,24.714C24.008,24.182 23.196,23.916 21.842,23.916C20.703,23.916 19.915,24.093 19.48,24.448C19.045,24.803 18.827,25.445 18.827,26.375C18.827,27.938 19.8,28.72 21.745,28.72C23.062,28.72 23.935,28.403 24.365,27.769L24.389,27.777L24.301,28.608L25.429,28.608L25.429,23.521C25.429,22.457 25.203,21.736 24.752,21.357C24.301,20.978 23.433,20.788 22.148,20.788C20.966,20.788 20.172,20.943 19.766,21.252C19.361,21.561 19.158,22.164 19.158,23.062L20.278,23.062C20.273,22.949 20.27,22.874 20.27,22.836ZM23.894,25.109C24.202,25.319 24.357,25.727 24.357,26.334C24.357,27.302 23.562,27.785 21.971,27.785C21.181,27.785 20.657,27.685 20.399,27.483C20.141,27.281 20.012,26.869 20.012,26.246C20.012,25.644 20.142,25.252 20.403,25.069C20.664,24.886 21.227,24.795 22.092,24.795C22.984,24.795 23.584,24.899 23.894,25.109ZM27.745,28.608L28.874,28.608L28.874,23.989C28.874,22.436 29.503,21.659 30.76,21.659C31.62,21.659 32.05,22.054 32.05,22.844C32.05,22.914 32.042,23.051 32.026,23.255L32.001,23.449L33.114,23.449L33.122,22.917C33.122,21.455 32.412,20.724 30.994,20.724C29.967,20.724 29.231,21.087 28.785,21.812L28.761,21.788L28.874,20.901L27.745,20.901L27.745,28.608ZM35.446,20.901L35.446,19.047L34.318,19.047L34.318,20.901L33.254,20.901L33.254,21.836L34.318,21.836L34.318,26.826C34.318,28.089 35.062,28.72 36.551,28.72C37.991,28.72 38.711,27.963 38.711,26.447L38.703,25.875L37.655,25.875L37.639,26.302L37.631,26.681C37.631,27.417 37.268,27.785 36.542,27.785C35.812,27.785 35.446,27.374 35.446,26.552L35.446,21.836L38.413,21.836L38.413,20.901L35.446,20.901ZM51.676,17.604L51.676,22.457L45.243,22.457L45.243,17.604L44.002,17.604L44.002,28.608L45.243,28.608L45.243,23.505L51.676,23.505L51.676,28.608L52.917,28.608L52.917,17.604L51.676,17.604ZM60.144,26.52C60.144,27.046 60.008,27.389 59.737,27.548C59.465,27.706 58.875,27.785 57.967,27.785C57.011,27.785 56.402,27.619 56.141,27.286C55.881,26.952 55.75,26.179 55.75,24.964L61.296,24.964L61.296,24.359C61.296,22.892 61.076,21.93 60.635,21.474C60.195,21.017 59.265,20.788 57.846,20.788C56.546,20.788 55.673,21.052 55.227,21.578C54.78,22.105 54.557,23.137 54.557,24.674C54.557,26.334 54.779,27.424 55.223,27.942C55.666,28.461 56.597,28.72 58.016,28.72C59.235,28.72 60.089,28.561 60.575,28.241C61.061,27.921 61.304,27.361 61.304,26.56L61.296,26.278L60.144,26.278L60.144,26.52ZM55.767,24.085C55.767,23.097 55.902,22.456 56.174,22.163C56.445,21.87 57.037,21.723 57.951,21.723C58.859,21.723 59.45,21.848 59.725,22.098C59.999,22.348 60.136,22.89 60.136,23.723L60.144,24.085L55.767,24.085ZM63.191,28.608L64.319,28.608L64.319,23.989C64.319,22.436 64.948,21.659 66.206,21.659C67.065,21.659 67.495,22.054 67.495,22.844C67.495,22.914 67.487,23.051 67.471,23.255L67.447,23.449L68.559,23.449L68.567,22.917C68.567,21.455 67.858,20.724 66.439,20.724C65.413,20.724 64.677,21.087 64.231,21.812L64.206,21.788L64.319,20.901L63.191,20.901L63.191,28.608ZM75.016,26.52C75.016,27.046 74.88,27.389 74.609,27.548C74.338,27.706 73.748,27.785 72.84,27.785C71.883,27.785 71.274,27.619 71.014,27.286C70.753,26.952 70.623,26.179 70.623,24.964L76.169,24.964L76.169,24.359C76.169,22.892 75.948,21.93 75.508,21.474C75.067,21.017 74.137,20.788 72.719,20.788C71.418,20.788 70.545,21.052 70.099,21.578C69.653,22.105 69.43,23.137 69.43,24.674C69.43,26.334 69.652,27.424 70.095,27.942C70.538,28.461 71.469,28.72 72.888,28.72C74.108,28.72 74.961,28.561 75.447,28.241C75.934,27.921 76.177,27.361 76.177,26.56L76.169,26.278L75.016,26.278L75.016,26.52ZM70.639,24.085C70.639,23.097 70.775,22.456 71.046,22.163C71.317,21.87 71.91,21.723 72.824,21.723C73.732,21.723 74.323,21.848 74.597,22.098C74.871,22.348 75.008,22.89 75.008,23.723L75.016,24.085L70.639,24.085ZM77.62,27.124L77.62,28.608L78.861,28.608L78.861,27.124L77.62,27.124ZM89.227,24.295L91.992,24.295L91.983,24.746C91.983,25.687 91.829,26.283 91.52,26.536C91.211,26.789 90.487,26.915 89.348,26.915C88.176,26.915 87.429,26.766 87.107,26.467C86.784,26.169 86.623,25.475 86.623,24.384L86.607,22.973L86.615,21.869C86.615,20.756 86.777,20.05 87.103,19.749C87.428,19.448 88.195,19.297 89.404,19.297C90.516,19.297 91.211,19.385 91.488,19.559C91.764,19.734 91.922,20.181 91.959,20.901L94.071,20.901C94.071,19.472 93.786,18.549 93.217,18.132C92.647,17.716 91.384,17.508 89.428,17.508C87.934,17.508 86.876,17.642 86.252,17.911C85.629,18.179 85.164,18.701 84.858,19.474C84.61,20.109 84.487,21.63 84.487,24.037C84.487,25.923 84.796,27.173 85.414,27.785C86.032,28.398 87.292,28.704 89.194,28.704C91.269,28.704 92.605,28.475 93.205,28.015C93.804,27.556 94.104,26.531 94.104,24.94L94.071,22.755L89.227,22.755L89.227,24.295ZM96.033,21.538C95.576,22.022 95.348,23.072 95.348,24.69C95.348,26.372 95.58,27.46 96.045,27.955C96.51,28.449 97.529,28.696 99.104,28.696C100.555,28.696 101.507,28.43 101.958,27.898C102.409,27.366 102.635,26.246 102.635,24.537C102.635,23.005 102.404,22.002 101.942,21.526C101.48,21.05 100.504,20.813 99.015,20.813C97.484,20.813 96.489,21.054 96.033,21.538ZM100.451,22.683C100.66,22.957 100.765,23.586 100.765,24.569C100.765,25.735 100.664,26.471 100.463,26.778C100.261,27.084 99.776,27.237 99.007,27.237C98.212,27.237 97.715,27.092 97.516,26.802C97.317,26.512 97.218,25.786 97.218,24.625C97.218,23.61 97.323,22.964 97.532,22.687C97.742,22.41 98.231,22.272 98.999,22.272C99.757,22.272 100.241,22.409 100.451,22.683ZM115.596,19.362L115.596,17.604L108.309,17.604L108.309,28.608L110.397,28.608L110.397,24.085L115.33,24.085L115.33,22.328L110.397,22.328L110.397,19.362L115.596,19.362ZM120.258,22.054C120.908,22.054 121.338,22.152 121.548,22.348C121.757,22.544 121.862,22.943 121.862,23.545L121.862,24.795L121.83,24.795C121.556,24.209 120.782,23.916 119.508,23.916C117.6,23.916 116.647,24.717 116.647,26.318C116.647,27.904 117.579,28.696 119.444,28.696C120.728,28.696 121.548,28.312 121.902,27.543L121.951,27.552L121.862,28.608L123.708,28.608L123.708,23.569C123.708,22.495 123.463,21.767 122.974,21.385C122.485,21.003 121.548,20.813 120.161,20.813C118.887,20.813 118.036,20.969 117.606,21.28C117.176,21.592 116.961,22.21 116.961,23.134L118.847,23.134C118.847,22.414 119.317,22.054 120.258,22.054ZM121.878,26.318C121.878,27.076 121.316,27.455 120.193,27.455C119.505,27.455 119.054,27.377 118.839,27.221C118.624,27.065 118.517,26.737 118.517,26.238C118.517,25.518 119.038,25.157 120.08,25.157C121.279,25.157 121.878,25.544 121.878,26.318ZM125.71,28.608L127.556,28.608L127.556,24.069C127.556,22.849 128.011,22.239 128.925,22.239C129.565,22.239 129.884,22.65 129.884,23.473C129.884,23.537 129.873,23.674 129.853,23.884L131.594,23.884L131.594,23.344C131.594,21.635 130.917,20.78 129.563,20.78C128.617,20.78 127.924,21.183 127.483,21.99L127.443,21.981L127.556,20.901L125.71,20.901L125.71,28.608ZM131.052,26.625L131.052,28.608L132.897,28.608L132.897,26.625L131.052,26.625Z" style="fill-rule: nonzero" fill="currentColor"/>
+               							
+               <path d="M33.544,52.731L21.043,52.731L21.043,49.051C21.043,47.335 20.881,46.242 20.559,45.771C20.237,45.3 19.7,45.064 18.951,45.064C18.134,45.064 17.516,45.382 17.098,46.016C16.679,46.651 16.471,47.612 16.471,48.901C16.471,50.558 16.704,51.808 17.172,52.646C17.618,53.485 18.889,54.496 20.983,55.68C26.986,59.09 30.766,61.888 32.326,64.075C33.884,66.264 34.664,69.79 34.664,74.655C34.664,78.191 34.231,80.798 33.365,82.473C32.499,84.15 30.828,85.556 28.35,86.689C25.872,87.822 22.987,88.391 19.697,88.391C16.085,88.391 13.003,87.736 10.451,86.43C7.897,85.124 6.224,83.459 5.434,81.437C4.644,79.414 4.249,76.545 4.249,72.827L4.249,69.58L16.751,69.58L16.751,75.624C16.751,77.485 16.926,78.682 17.277,79.214C17.627,79.746 18.25,80.01 19.143,80.01C20.035,80.01 20.699,79.672 21.134,78.995C21.57,78.318 21.789,77.314 21.789,75.979C21.789,73.047 21.377,71.129 20.557,70.226C19.714,69.324 17.623,67.826 14.278,65.733C10.934,63.621 8.72,62.085 7.637,61.124C6.552,60.163 5.654,58.834 4.943,57.137C4.232,55.44 3.876,53.274 3.876,50.636C3.876,46.835 4.382,44.055 5.396,42.297C6.409,40.539 8.047,39.164 10.309,38.172C12.57,37.18 15.3,36.685 18.501,36.685C22,36.685 24.983,37.227 27.446,38.307C29.91,39.39 31.543,40.752 32.343,42.395C33.144,44.039 33.544,46.832 33.544,50.771L33.544,52.731Z" style="fill-rule: nonzero" fill="currentColor"/>
+               							
+               <path d="M68.245,37.665L68.245,70.869C68.245,74.634 68.117,77.277 67.86,78.801C67.603,80.325 66.844,81.891 65.583,83.497C64.321,85.103 62.659,86.32 60.596,87.148C58.533,87.975 56.102,88.391 53.301,88.391C50.201,88.391 47.464,87.899 45.092,86.918C42.718,85.937 40.944,84.659 39.769,83.083C38.593,81.508 37.897,79.846 37.685,78.096C37.47,76.347 37.363,72.67 37.363,67.063L37.363,37.665L50.892,37.665L50.892,74.944C50.892,77.115 51.013,78.501 51.255,79.105C51.497,79.71 51.988,80.01 52.726,80.01C53.568,80.01 54.111,79.679 54.353,79.013C54.595,78.347 54.717,76.776 54.717,74.299L54.717,37.665L68.245,37.665Z" style="fill-rule: nonzero" fill="currentColor"/>
+               							
+               <path d="M101.492,37.665L101.492,87.321L89.643,87.321L82.646,64.747L82.646,87.321L71.357,87.321L71.357,37.665L82.646,37.665L90.203,60.025L90.203,37.665L101.492,37.665Z" style="fill-rule: nonzero" fill="currentColor"/>
+               							
+               <path d="M135.424,37.665L125.535,69.348L125.535,87.321L113.033,87.321L113.033,69.348L103.517,37.665L115.902,37.665C117.83,47.396 118.937,53.937 119.22,57.292C120.033,52.005 121.306,45.463 123.04,37.665L135.424,37.665Z" style="fill-rule: nonzero" fill="currentColor"/>
+               							
+               <path d="M192.436,1.56L192.436,58.863C192.436,65.36 192.211,69.926 191.768,72.555C191.322,75.185 190.007,77.888 187.82,80.657C185.634,83.429 182.75,85.529 179.173,86.958C175.593,88.388 171.377,89.104 166.522,89.104C161.146,89.104 156.4,88.254 152.285,86.563C148.169,84.869 145.093,82.66 143.052,79.941C141.011,77.222 139.807,74.355 139.437,71.335C139.066,68.318 138.883,61.972 138.883,52.296L138.883,1.56L162.208,1.56L162.208,65.914C162.208,69.661 162.426,72.057 162.864,73.099C163.301,74.141 164.184,74.661 165.517,74.661C167.039,74.661 168.018,74.088 168.455,72.94C168.893,71.792 169.111,69.079 169.111,64.802L169.111,1.56L192.436,1.56Z" style="fill-rule: nonzero" fill="currentColor"/>
+               							
+               <rect x="196.952" y="15.646" width="19.219" height="71.675" fill="currentColor"/>
+               							
+               <path d="M258.245,48.63L242.198,48.63L242.198,45.556C242.198,42.939 242.041,41.281 241.727,40.584C241.412,39.887 240.628,39.537 239.372,39.537C238.354,39.537 237.59,39.859 237.083,40.503C236.574,41.146 236.32,42.11 236.32,43.394C236.32,45.138 236.447,46.417 236.701,47.231C236.954,48.045 237.717,48.938 238.988,49.909C240.259,50.881 242.869,52.295 246.816,54.151C252.079,56.608 255.532,58.923 257.178,61.093C258.821,63.265 259.644,66.421 259.644,70.564C259.644,75.192 259.015,78.684 257.759,81.041C256.502,83.398 254.399,85.213 251.452,86.483C248.505,87.754 244.95,88.391 240.791,88.391C236.182,88.391 232.24,87.705 228.963,86.339C225.686,84.971 223.434,83.118 222.206,80.781C220.979,78.443 220.367,74.91 220.367,70.176L220.367,67.44L236.414,67.44L236.414,71.023C236.414,74.065 236.617,76.042 237.026,76.952C237.434,77.863 238.241,78.317 239.452,78.317C240.752,78.317 241.659,78.01 242.173,77.396C242.686,76.783 242.945,75.491 242.945,73.518C242.945,70.805 242.615,69.104 241.956,68.418C241.267,67.733 237.748,65.704 231.401,62.333C226.069,59.477 222.82,56.885 221.653,54.556C220.483,52.227 219.9,49.463 219.9,46.262C219.9,41.721 220.527,38.371 221.784,36.214C223.039,34.058 225.168,32.393 228.174,31.222C231.179,30.05 234.67,29.464 238.647,29.464C242.593,29.464 245.949,29.942 248.714,30.897C251.48,31.853 253.603,33.114 255.083,34.683C256.562,36.252 257.459,37.707 257.773,39.047C258.088,40.388 258.245,42.485 258.245,45.336L258.245,48.63Z" style="fill-rule: nonzero" fill="currentColor"/>
+               							
+               <path d="M283.545,22.867L283.545,31.871L288.489,31.871L288.489,40.875L283.545,40.875L283.545,71.323C283.545,75.069 283.747,77.155 284.154,77.584C284.561,78.013 286.254,78.228 289.236,78.228L289.236,87.321L281.933,87.321C277.81,87.321 274.868,87.158 273.105,86.829C271.343,86.502 269.791,85.746 268.447,84.561C267.102,83.378 266.266,82.021 265.938,80.494C265.609,78.968 265.445,75.379 265.445,69.728L265.445,40.875L261.527,40.875L261.527,31.871L265.445,31.871L265.445,22.867L283.545,22.867Z" style="fill-rule: nonzero" fill="currentColor"/>
+               							
+               <path d="M308.555,50.681L308.555,46.523C308.555,43.324 308.705,41.36 309.005,40.631C309.306,39.903 310.087,39.538 311.349,39.538C312.37,39.538 313.046,39.967 313.377,40.823C313.706,41.681 313.873,43.581 313.873,46.523L313.873,50.681L308.555,50.681ZM331.972,52.406C331.972,46.888 331.308,42.608 329.98,39.563C328.65,36.518 326.337,34.074 323.038,32.23C319.738,30.386 315.551,29.464 310.475,29.464C306.325,29.464 302.652,30.229 299.457,31.758C296.261,33.288 293.963,35.487 292.56,38.358C291.156,41.23 290.455,45.151 290.455,50.121L290.455,66.707C290.455,70.936 290.769,74.156 291.396,76.371C292.022,78.586 293.149,80.614 294.776,82.457C296.403,84.3 298.68,85.75 301.607,86.805C304.533,87.861 307.906,88.391 311.729,88.391C315.67,88.391 318.947,87.854 321.56,86.783C324.172,85.711 326.328,84.103 328.031,81.959C329.733,79.816 330.815,77.8 331.279,75.914C331.741,74.028 331.972,71.326 331.972,67.81L331.972,63.607L314.806,63.607L314.806,71.113C314.806,73.943 314.574,75.851 314.113,76.838C313.653,77.824 312.737,78.317 311.368,78.317C310.267,78.317 309.521,77.946 309.135,77.204C308.747,76.463 308.555,74.807 308.555,72.238L308.555,59.952L331.972,59.952L331.972,52.406Z" style="fill-rule: nonzero" fill="currentColor"/>
+               							
+               <path d="M354.486,30.445L353.833,37.947C356.473,32.606 360.298,29.779 365.308,29.464L365.308,49.433C361.985,49.433 359.547,49.862 357.99,50.719C356.433,51.577 355.476,52.769 355.117,54.297C354.758,55.827 354.579,59.348 354.579,64.862L354.579,87.321L336.479,87.321L336.479,30.445L354.486,30.445Z" style="fill-rule: nonzero" fill="currentColor"/>
+               						</g>
+            					</svg></div>
+      <ul class="footer__social">
+         <li><a href="https://www.facebook.com/sunyulster/"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+                  <path d="M36 18C36 8.05887 27.9411 0 18 0C8.05887 0 0 8.05887 0 18C0 26.9842 6.5823 34.431 15.1875 35.7813V23.2031H10.6172V18H15.1875V14.0344C15.1875 9.52313 17.8748 7.03125 21.9864 7.03125C23.9551 7.03125 26.0156 7.38281 26.0156 7.38281V11.8125H23.7459C21.51 11.8125 20.8125 13.2001 20.8125 14.625V18H25.8047L25.0066 23.2031H20.8125V35.7813C29.4177 34.431 36 26.9842 36 18Z" fill="currentColor"/></svg><span class="visually-hidden">Facebook</span></a></li>
+         <li><a href="https://x.com/sunyulster"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                  <path d="M19.0475 13.5514L30.9621 0H28.1397L17.7899 11.7641L9.5296 0H0L12.4939 17.791L0 32H2.8224L13.7451 19.5741L22.4704 32H32M3.84107 2.08253H8.17707L28.1376 30.0198H23.8005" fill="currentColor"/></svg><span class="visually-hidden">X- Twitter</span></a></li>
+         <li><a href="https://www.instagram.com/SUNYUlster/"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+                  <path d="M18 3.24141C22.8094 3.24141 23.3789 3.2625 25.2703 3.34687C27.0281 3.42422 27.9773 3.71953 28.6102 3.96563C29.4469 4.28906 30.0516 4.68281 30.6773 5.30859C31.3102 5.94141 31.6969 6.53906 32.0203 7.37578C32.2664 8.00859 32.5617 8.96484 32.6391 10.7156C32.7234 12.6141 32.7445 13.1836 32.7445 17.9859C32.7445 22.7953 32.7234 23.3648 32.6391 25.2563C32.5617 27.0141 32.2664 27.9633 32.0203 28.5961C31.6969 29.4328 31.3031 30.0375 30.6773 30.6633C30.0445 31.2961 29.4469 31.6828 28.6102 32.0063C27.9773 32.2523 27.0211 32.5477 25.2703 32.625C23.3719 32.7094 22.8023 32.7305 18 32.7305C13.1906 32.7305 12.6211 32.7094 10.7297 32.625C8.97188 32.5477 8.02266 32.2523 7.38984 32.0063C6.55313 31.6828 5.94844 31.2891 5.32266 30.6633C4.68984 30.0305 4.30313 29.4328 3.97969 28.5961C3.73359 27.9633 3.43828 27.007 3.36094 25.2563C3.27656 23.3578 3.25547 22.7883 3.25547 17.9859C3.25547 13.1766 3.27656 12.607 3.36094 10.7156C3.43828 8.95781 3.73359 8.00859 3.97969 7.37578C4.30313 6.53906 4.69688 5.93438 5.32266 5.30859C5.95547 4.67578 6.55313 4.28906 7.38984 3.96563C8.02266 3.71953 8.97891 3.42422 10.7297 3.34687C12.6211 3.2625 13.1906 3.24141 18 3.24141ZM18 0C13.1133 0 12.5016 0.0210937 10.582 0.105469C8.66953 0.189844 7.35469 0.499219 6.21563 0.942188C5.02734 1.40625 4.02188 2.01797 3.02344 3.02344C2.01797 4.02188 1.40625 5.02734 0.942188 6.20859C0.499219 7.35469 0.189844 8.6625 0.105469 10.575C0.0210938 12.5016 0 13.1133 0 18C0 22.8867 0.0210938 23.4984 0.105469 25.418C0.189844 27.3305 0.499219 28.6453 0.942188 29.7844C1.40625 30.9727 2.01797 31.9781 3.02344 32.9766C4.02188 33.975 5.02734 34.5938 6.20859 35.0508C7.35469 35.4938 8.6625 35.8031 10.575 35.8875C12.4945 35.9719 13.1062 35.993 17.993 35.993C22.8797 35.993 23.4914 35.9719 25.4109 35.8875C27.3234 35.8031 28.6383 35.4938 29.7773 35.0508C30.9586 34.5938 31.9641 33.975 32.9625 32.9766C33.9609 31.9781 34.5797 30.9727 35.0367 29.7914C35.4797 28.6453 35.7891 27.3375 35.8734 25.425C35.9578 23.5055 35.9789 22.8938 35.9789 18.007C35.9789 13.1203 35.9578 12.5086 35.8734 10.5891C35.7891 8.67656 35.4797 7.36172 35.0367 6.22266C34.5938 5.02734 33.982 4.02188 32.9766 3.02344C31.9781 2.025 30.9727 1.40625 29.7914 0.949219C28.6453 0.50625 27.3375 0.196875 25.425 0.1125C23.4984 0.0210938 22.8867 0 18 0Z" fill="currentColor"/>
+                  <path d="M18 8.75391C12.8953 8.75391 8.75391 12.8953 8.75391 18C8.75391 23.1047 12.8953 27.2461 18 27.2461C23.1047 27.2461 27.2461 23.1047 27.2461 18C27.2461 12.8953 23.1047 8.75391 18 8.75391ZM18 23.9977C14.6883 23.9977 12.0023 21.3117 12.0023 18C12.0023 14.6883 14.6883 12.0023 18 12.0023C21.3117 12.0023 23.9977 14.6883 23.9977 18C23.9977 21.3117 21.3117 23.9977 18 23.9977Z" fill="currentColor"/>
+                  <path d="M29.7703 8.38809C29.7703 9.5834 28.8 10.5467 27.6117 10.5467C26.4164 10.5467 25.4531 9.57637 25.4531 8.38809C25.4531 7.19277 26.4234 6.22949 27.6117 6.22949C28.8 6.22949 29.7703 7.19981 29.7703 8.38809Z" fill="currentColor"/></svg><span class="visually-hidden">Instagram</span></a></li>
+         <li><a href="https://www.youtube.com/sunyulster"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="26" viewBox="0 0 36 26" fill="none">
+                  <path d="M35.6414 5.8002C35.6414 5.8002 35.2898 3.31816 34.207 2.22832C32.8359 0.793945 31.3031 0.786914 30.6 0.702539C25.5656 0.336914 18.007 0.336914 18.007 0.336914H17.993C17.993 0.336914 10.4344 0.336914 5.4 0.702539C4.69688 0.786914 3.16406 0.793945 1.79297 2.22832C0.710156 3.31816 0.365625 5.8002 0.365625 5.8002C0.365625 5.8002 0 8.71816 0 11.6291V14.3572C0 17.2682 0.358594 20.1861 0.358594 20.1861C0.358594 20.1861 0.710156 22.6682 1.78594 23.758C3.15703 25.1924 4.95703 25.1432 5.75859 25.2979C8.64141 25.5721 18 25.6564 18 25.6564C18 25.6564 25.5656 25.6424 30.6 25.2838C31.3031 25.1994 32.8359 25.1924 34.207 23.758C35.2898 22.6682 35.6414 20.1861 35.6414 20.1861C35.6414 20.1861 36 17.2752 36 14.3572V11.6291C36 8.71816 35.6414 5.8002 35.6414 5.8002ZM14.2805 17.6689V7.55098L24.0047 12.6275L14.2805 17.6689Z" fill="currentColor"/></svg><span class="visually-hidden">YouTube</span></a></li>
+         <li><a href="https://www.tiktok.com/@suny.ulster" class="social_icon_new"><span class="visually-hidden">TikTok</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                  <path d="M448 209.9a210.1 210.1 0 0 1 -122.8-39.3V349.4A162.6 162.6 0 1 1 185 188.3V278.2a74.6 74.6 0 1 0 52.2 71.2V0l88 0a121.2 121.2 0 0 0 1.9 22.2h0A122.2 122.2 0 0 0 381 102.4a121.4 121.4 0 0 0 67 20.1z"/></svg></a></li>
+         <li><a href="https://www.flickr.com/photos/sunyulsterphotos/albums/" class="social_icon_new"><span class="visually-hidden">flickr</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                  <path d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zM144.5 319c-35.1 0-63.5-28.4-63.5-63.5s28.4-63.5 63.5-63.5 63.5 28.4 63.5 63.5-28.4 63.5-63.5 63.5zm159 0c-35.1 0-63.5-28.4-63.5-63.5s28.4-63.5 63.5-63.5 63.5 28.4 63.5 63.5-28.4 63.5-63.5 63.5z"/></svg></a></li>
+         <li><a href="https://www.linkedin.com/school/suny-ulster" class="social_icon_new"><span class="visually-hidden">LinkedIn</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                  <path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg></a></li>
+      </ul>
+   </div>
+</footer><script type="text/javascript" src="https://ai.ocelotbot.com/embed/standard/12b782da-da68-403b-b70f-fb075df655bf"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.15/lodash.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script> <!-- needed for twitter -->
+<script src="https://www.sunyulster.edu/_resources/js/main.js"></script>
+      <div id="ou-hidden" style="display:none;"><a id="de" rel="nofollow" href="https://a.cms.omniupdate.com/11/?skin=oucampus&amp;account=suny-ulster&amp;site=www-2023&amp;action=de&amp;path=/index.pcf">&copy;</a></div><script>
+			if(document.getElementById("de") != null && document.getElementById("directedit")) {
+				var link = document.getElementById("de").parentNode.innerHTML;
+				document.getElementById("de").parentNode.innerHTML = "";
+				document.getElementById("directedit").innerHTML = link.replace(/^\s+|\s+$/gm,'');
+			}
+		</script><!-- ouc:info uuid="e0519d5c-5988-4976-b745-be1445c7eb8b"/ --></body>
+</html>

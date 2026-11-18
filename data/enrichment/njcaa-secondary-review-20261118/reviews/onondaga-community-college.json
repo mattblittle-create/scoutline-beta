@@ -1,0 +1,66 @@
+{
+  "slug": "onondaga-community-college",
+  "programId": "cmox2o2z50055qtbk386foz0n",
+  "collegeId": "cmox2o2ye0053qtbkw0avx34g",
+  "checkedAtUtc": "2026-11-18T14:43:39.302Z",
+  "sourcePath": "../njcaa-discovery-20261118/sources/onondaga-community-college-1.source",
+  "sourceSHA256": "53fc6a13e70d5492e68168696c119d76827b10bc73d616f463bff0a9c44a1a69",
+  "sourceUrl": "https://onondagalazers.com/sports/baseball",
+  "socialLeads": [
+    {
+      "url": "https://x.com/baseball_occ",
+      "label": "Baseball: X",
+      "context": "",
+      "kind": "HTML"
+    },
+    {
+      "url": "https://instagram.com/onondagabsb",
+      "label": "Baseball: Instagram",
+      "context": "",
+      "kind": "HTML"
+    }
+  ],
+  "recruitingLeads": [
+    {
+      "url": "https://onondagalazers.com/sb_output.aspx?form=104",
+      "label": "Prospect Questionnaire",
+      "context": "",
+      "kind": "QUESTIONNAIRE"
+    }
+  ],
+  "logoLeads": [
+    {
+      "url": "https://onondagalazers.com/images/logos/site/site.png?height=84&mode=crop&quality=80",
+      "label": "Onondaga Community College undefined"
+    }
+  ],
+  "captures": [
+    {
+      "requestedUrl": "https://onondagalazers.com/sb_output.aspx?form=104",
+      "kind": "QUESTIONNAIRE",
+      "status": 200,
+      "finalUrl": "https://onondagalazers.com/sb_output.aspx?form=104",
+      "sourcePath": "../njcaa-core-review-20261118/sources/onondaga-community-college-4.source",
+      "sha256": "b4df951571311a7c9b683217e14198446f65b3d095e2047647e9125ab4647391",
+      "reusedEvidence": true
+    },
+    {
+      "requestedUrl": "https://onondagalazers.com/images/logos/site/site.png?height=84&mode=crop&quality=80",
+      "kind": "LOGO_ASSET",
+      "status": 200,
+      "finalUrl": "https://images.sidearmdev.com/resize?url=https%3a%2f%2fdxbhsrqyrr690.cloudfront.net%2fsidearm.nextgen.sites%2fsunyocc.sidearmsports.com%2fimages%2flogos%2fsite%2fsite.png&height=84&type=webp",
+      "contentType": "image/webp",
+      "sourcePath": "sources/onondaga-community-college-1.source",
+      "sha256": "a2dd64ac6f700115e1eb2bb99d6d6efa3057dc733689a4b1314cd76d8a8411b9",
+      "decoded": {
+        "format": "webp",
+        "width": 84,
+        "height": 84
+      },
+      "assetDecoded": true
+    }
+  ],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED"
+}

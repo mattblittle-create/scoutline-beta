@@ -1,0 +1,1224 @@
+<!doctype html>
+<html lang="en-US" class="no-js">
+
+<head>
+   <!-- Google Tag Manager -->
+ <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-WHBSTZ4');</script>
+    <!-- End Google Tag Manager -->  <meta charset="UTF-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge"><script type="text/javascript">(window.NREUM||(NREUM={})).init={"ajax":{"deny_list":["bam.nr-data.net"]},"feature_flags":["rum_v2"]};(window.NREUM||(NREUM={})).loader_config={"licenseKey":"NRJS-1a844bd82fa948822a1","applicationID":"569812001","browserID":"594557489"};;/*! For license information please see nr-loader-rum-1.324.1.min.js.LICENSE.txt */
+(()=>{var e={8122(e,t,r){"use strict";r.d(t,{a:()=>i});var n=r(944);function i(e,t){try{if(!e||"object"!=typeof e)return(0,n.R)(3);if(!t||"object"!=typeof t)return(0,n.R)(4);const r=Object.create(Object.getPrototypeOf(t),Object.getOwnPropertyDescriptors(t)),a=0===Object.keys(r).length?e:r;for(let s in a)if(void 0!==e[s])try{if(null===e[s]){r[s]=null;continue}Array.isArray(e[s])&&Array.isArray(t[s])?r[s]=Array.from(new Set([...e[s],...t[s]])):e[s]instanceof Map||e[s]instanceof Set||e[s]instanceof Date||e[s]instanceof RegExp?r[s]=e[s]:"object"==typeof e[s]&&null!==t[s]&&"object"==typeof t[s]?r[s]=i(e[s],t[s]):r[s]=e[s]}catch(e){r[s]||(0,n.R)(1,e)}return r}catch(e){(0,n.R)(2,e)}}},2555(e,t,r){"use strict";r.d(t,{f:()=>s});var n=r(384),i=r(8122);const a={beacon:n.NT.beacon,errorBeacon:n.NT.errorBeacon,licenseKey:void 0,applicationID:void 0,sa:void 0,queueTime:void 0,applicationTime:void 0,ttGuid:void 0,user:void 0,account:void 0,product:void 0,extra:void 0,jsAttributes:{},userAttributes:void 0,atts:void 0,transactionName:void 0,tNamePlain:void 0};function s(e){try{return!!e.licenseKey&&!!e.errorBeacon&&!!e.applicationID}catch(e){return!1}}r.d(t,["D",0,e=>(0,i.a)(e,a)])},7699(e,t,r){"use strict";var n=r(860);const i=1e6,a={[n.K7.logging]:!0,[n.K7.genericEvents]:!0,[n.K7.jserrors]:!0,[n.K7.ajax]:!0};r.d(t,["It",0,i,"KC",0,a,"qh",0,"SESSION_ERROR","zd",0,5e5])},9324(e,t,r){"use strict";r.d(t,["xv",0,"1.324.1"])},981(e,t,r){"use strict";r.d(t,["R",0,{AJAX:"AjaxRequest",PA:"PageAction",UA:"UserAction",BP:"BrowserPerformance",WS:"WebSocket",SPV:"SecurityPolicyViolation",JSE:"JavaScriptError",LOG:"Log",PVE:"PageView",PVT:"PageViewTiming",SR:"SessionReplay",ST:"SessionTrace",BI:"BrowserInteraction"}])},6154(e,t,r){"use strict";var n=r(1863);const i="undefined"!=typeof window&&!!window.document,a="undefined"!=typeof WorkerGlobalScope&&("undefined"!=typeof self&&self instanceof WorkerGlobalScope&&self.navigator instanceof WorkerNavigator||"undefined"!=typeof globalThis&&globalThis instanceof WorkerGlobalScope&&globalThis.navigator instanceof WorkerNavigator),s=i?window:"undefined"!=typeof WorkerGlobalScope&&("undefined"!=typeof self&&self instanceof WorkerGlobalScope&&self||"undefined"!=typeof globalThis&&globalThis instanceof WorkerGlobalScope&&globalThis),o=Boolean("hidden"===s?.document?.visibilityState),c=""+s?.location,u=/iPad|iPhone|iPod/.test(s.navigator?.userAgent),d=u&&"undefined"==typeof SharedWorker,l=((()=>{const e=s.navigator?.userAgent?.match(/Firefox[/\s](\d+\.\d+)/);Array.isArray(e)&&e.length>=2&&e[1]})(),Date.now()-(0,n.t)());r.d(t,["OF",0,u,"RI",0,i,"WN",0,l,"bv",0,a,"gm",0,s,"m",0,c,"mw",0,o,"sb",0,d,"zk",0,()=>{const e=s?.performance?.getEntriesByType?.("navigation")?.[0];if(e&&e.responseStart>0&&e.responseStart<s.performance.now())return e}])},3241(e,t,r){"use strict";r.d(t,{W:()=>i});var n=r(6154);function i(e={}){try{n.gm.dispatchEvent(new CustomEvent("newrelic",{detail:e}))}catch(e){}}},1687(e,t,r){"use strict";r.d(t,{Ak:()=>o,Ze:()=>u,x3:()=>c});var n=r(3241),i=r(3606),a=r(860),s=r(2646);function o(e,t){if(!e)return;const r={staged:!1,priority:a.P3[t]||0};e.runtime.drainRegistry.get(t)||e.runtime.drainRegistry.set(t,r)}function c(e,t){if(!e)return;const r=e.runtime.drainRegistry;r&&(r.get(t)&&r.delete(t),l(e,t,!1),r.size&&d(e))}function u(e,t="feature",r=!1){if(e){if(!e.runtime.drainRegistry.get(t)||r)return l(e,t);e.runtime.drainRegistry.get(t).staged=!0,d(e)}}function d(e){if(!e)return;const t=Array.from(e.runtime.drainRegistry);t.every(([e,t])=>t.staged)&&(t.sort((e,t)=>e[1].priority-t[1].priority),t.forEach(([t])=>{e.runtime.drainRegistry.delete(t),l(e,t)}))}function l(e,t,r=!0){if(!e)return;const a=e.ee,o=i.i.handlers;if(a&&!a.aborted&&a.backlog&&o){if((0,n.W)({type:"lifecycle",name:"drain",feature:t}),r){const e=a.backlog[t],r=o[t];if(r){for(let t=0;e&&t<e.length;++t)f(e[t],r);Object.entries(r).forEach(([e,t])=>{Object.values(t||{}).forEach(t=>{t[0]?.on&&t[0].context()instanceof s.y&&!t[0].listeners(e).includes(t[1])&&t[0].on(e,t[1])})})}}a.isolatedBacklog||delete o[t],a.backlog[t]=null,a.emit("drain-"+t,[])}}function f(e,t){var r=e[1];Object.values(t[r]||{}).forEach(t=>{var r=e[0];if(t[0]===r){var n=t[1],i=e[3],a=e[2];n.apply(i,a)}})}},7836(e,t,r){"use strict";var n=r(384),i=r(8990),a=r(2646),s=r(5607);const o="nr@context:".concat(s.W),c=function e(t,r){var n={},s={},d={},l=!1;try{l=16===r.length&&u.initializedAgents?.[r]?.runtime.isolatedBacklog}catch(e){}var f={on:p,addEventListener:p,removeEventListener:function(e,t){var r=n[e];if(!r)return;for(var i=0;i<r.length;i++)r[i]===t&&r.splice(i,1)},emit:function(e,r,n,i,a){!1!==a&&(a=!0);if(c.aborted&&!i)return;t&&a&&t.emit(e,r,n);var o=g(n);m(e).forEach(e=>{e.apply(o,r)});var u=v()[s[e]];u&&u.push([f,e,r,o]);return o},get:h,listeners:m,context:g,buffer:function(e,t){const r=v();if(t=t||"feature",f.aborted)return;Object.entries(e||{}).forEach(([e,n])=>{s[n]=t,t in r||(r[t]=[])})},abort:function(){f._aborted=!0,Object.keys(f.backlog).forEach(e=>{delete f.backlog[e]})},isBuffering:function(e){return!!v()[s[e]]},debugId:r,backlog:l?{}:t&&"object"==typeof t.backlog?t.backlog:{},isolatedBacklog:l};return Object.defineProperty(f,"aborted",{get:()=>{let e=f._aborted||!1;return e||(t&&(e=t.aborted),e)}}),f;function g(e){return e&&e instanceof a.y?e:e?(0,i.I)(e,o,()=>new a.y(o)):new a.y(o)}function p(e,t){n[e]=m(e).concat(t)}function m(e){return n[e]||[]}function h(t){return d[t]=d[t]||e(f,t)}function v(){return f.backlog}}(void 0,"globalEE"),u=(0,n.Zm)();u.ee||(u.ee=c),r.d(t,["P",0,o,"ee",0,c])},2646(e,t,r){"use strict";r.d(t,{y:()=>n});class n{constructor(e){this.contextId=e}}},9908(e,t,r){"use strict";r.d(t,{d:()=>n,p:()=>i});var n=r(7836).ee.get("handle");function i(e,t,r,i,a){a?(a.buffer([e],i),a.emit(e,t,r)):(n.buffer([e],i),n.emit(e,t,r))}},3606(e,t,r){"use strict";r.d(t,{i:()=>a});var n=r(9908);a.on=s;var i=a.handlers={};function a(e,t,r,a){s(a||n.d,i,e,t,r)}function s(e,t,r,i,a){a||(a="feature"),e||(e=n.d);var s=t[a]=t[a]||{};(s[r]=s[r]||[]).push([e,i])}},3878(e,t,r){"use strict";function n(e,t){return{capture:e,passive:!1,signal:t}}function i(e,t,r=!1,i){window.addEventListener(e,t,n(r,i))}function a(e,t,r=!1,i){document.addEventListener(e,t,n(r,i))}r.d(t,{DD:()=>a,jT:()=>n,sp:()=>i})},5607(e,t,r){"use strict";const n=(0,r(9566).bz)();r.d(t,["W",0,n])},9566(e,t,r){"use strict";r.d(t,{LA:()=>s,bz:()=>a});var n=r(6154);function i(e,t){return e?15&e[t]:16*Math.random()|0}function a(){const e=n.gm?.crypto||n.gm?.msCrypto;let t,r=0;return e&&e.getRandomValues&&(t=e.getRandomValues(new Uint8Array(30))),"xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".split("").map(e=>"x"===e?i(t,r++).toString(16):"y"===e?(3&i()|8).toString(16):e).join("")}function s(e){const t=n.gm?.crypto||n.gm?.msCrypto;let r,a=0;t&&t.getRandomValues&&(r=t.getRandomValues(new Uint8Array(e)));const s=[];for(var o=0;o<e;o++)s.push(i(r,a++).toString(16));return s.join("")}},2614(e,t,r){"use strict";r.d(t,["BB",0,18e5,"Wt",0,"NRBA_SESSION::","iL",0,{SAME_TAB:"same-tab",CROSS_TAB:"cross-tab"},"tS",0,{STARTED:"session-started",PAUSE:"session-pause",RESET:"session-reset",RESUME:"session-resume",UPDATE:"session-update"},"wk",0,144e5])},1863(e,t,r){"use strict";function n(){return Math.floor(performance.now())}r.d(t,{t:()=>n})},944(e,t,r){"use strict";r.d(t,{R:()=>i});var n=r(3241);function i(e,t){"function"==typeof console.debug&&(console.debug("New Relic Warning: https://github.com/newrelic/newrelic-browser-agent/blob/main/docs/warning-codes.md#".concat(e),t),(0,n.W)({drained:null,type:"data",name:"warn",feature:"warn",data:{code:e,secondary:t}}))}},8990(e,t,r){"use strict";r.d(t,{I:()=>i});var n=Object.prototype.hasOwnProperty;function i(e,t,r){if(n.call(e,t))return e[t];var i=r();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,t,{value:i,writable:!0,enumerable:!1}),i}catch(e){}return e[t]=i,i}},6389(e,t,r){"use strict";function n(e,t=500,r={}){const n=r?.leading||!1;let i;return(...r)=>{n&&void 0===i&&(e.apply(this,r),i=setTimeout(()=>{i=clearTimeout(i)},t)),n||(clearTimeout(i),i=setTimeout(()=>{e.apply(this,r)},t))}}function i(e){let t=!1;return(...r)=>{t||(t=!0,e.apply(this,r))}}r.d(t,{J:()=>i,s:()=>n})},1910(e,t,r){"use strict";r.d(t,{i:()=>a});var n=r(944);const i=new Map;function a(...e){return e.every(e=>{if(i.has(e))return i.get(e);const t="function"==typeof e?e.toString():"",r=t.includes("[native code]"),a=t.includes("nrWrapper");return r||a||(0,n.R)(64,e?.name||t),i.set(e,r),r})}},5289(e,t,r){"use strict";r.d(t,{GG:()=>s,Qr:()=>c,sB:()=>o});var n=r(3878),i=r(6389);function a(){return"undefined"==typeof document||"complete"===document.readyState}function s(e,t){if(a())return e();const r=(0,i.J)(e),s=setInterval(()=>{a()&&(clearInterval(s),r())},500);(0,n.sp)("load",r,t)}function o(e){if(a())return e();(0,n.DD)("DOMContentLoaded",e)}function c(e){if(a())return e();(0,n.sp)("popstate",e)}},384(e,t,r){"use strict";r.d(t,{Zm:()=>c,bQ:()=>d,dV:()=>u,pV:()=>l});var n=r(6154),i=r(1863),a=r(944),s=r(1910);const o={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net"};function c(){return n.gm.NREUM||(n.gm.NREUM={}),void 0===n.gm.newrelic&&(n.gm.newrelic=n.gm.NREUM),n.gm.NREUM}function u(){let e=c();return e.o||(e.o={ST:n.gm.setTimeout,SI:n.gm.setImmediate||n.gm.setInterval,CT:n.gm.clearTimeout,XHR:n.gm.XMLHttpRequest,REQ:n.gm.Request,EV:n.gm.Event,PR:n.gm.Promise,MO:n.gm.MutationObserver,FETCH:n.gm.fetch,WS:n.gm.WebSocket},(0,s.i)(...Object.values(e.o))),e}function d(e,t){let r=c();r.initializedAgents??={},t.initializedAt={ms:(0,i.t)(),date:new Date},r.initializedAgents[e]=t,2===Object.keys(r.initializedAgents).length&&(0,a.R)(69)}function l(){return function(){let e=c();const t=e.info||{};e.info={beacon:o.beacon,errorBeacon:o.errorBeacon,...t}}(),function(){let e=c();const t=e.init||{};e.init={...t}}(),u(),function(){let e=c();const t=e.loader_config||{};e.loader_config={...t}}(),c()}r.d(t,["NT",0,o])},2843(e,t,r){"use strict";r.d(t,{G:()=>a,u:()=>i});var n=r(3878);function i(e,t=!1,r,i){(0,n.DD)("visibilitychange",function(){if(t)return void("hidden"===document.visibilityState&&e());e(document.visibilityState)},r,i)}function a(e,t,r){(0,n.sp)("pagehide",e,t,r)}},9300(e,t,r){"use strict";r(860).K7.ajax;r.d(t,["mo",0,{NONE:"none",FAILURES:"failures",ALL:"all"}])},3969(e,t,r){"use strict";const n=r(860).K7.metrics;r.d(t,["TZ",0,n,"XG",0,"storeEventMetrics","xV",0,"storeSupportabilityMetrics"])},6630(e,t,r){"use strict";const n=r(860).K7.pageViewEvent;r.d(t,["T",0,n])},782(e,t,r){"use strict";const n=r(860).K7.pageViewTiming;r.d(t,["T",0,n])},4234(e,t,r){"use strict";r.d(t,{W:()=>i});var n=r(1687);class i{constructor(e,t){this.agentRef=e,this.ee=e?.ee,this.featureName=t,this.blocked=!1}deregisterDrain(){(0,n.x3)(this.agentRef,this.featureName)}}},7767(e,t,r){"use strict";var n=r(6154);r.d(t,["V",0,e=>n.RI&&!0===e?.privacy.cookies_enabled])},8362(e,t,r){"use strict";r.d(t,{d:()=>a});var n=r(9566),i=r(1741);class a extends i.W{agentIdentifier=(0,n.LA)(16)}},1741(e,t,r){"use strict";r.d(t,{W:()=>a});var n=r(944),i=r(4261);class a{#e(e,...t){if(this[e]!==a.prototype[e])return this[e](...t);(0,n.R)(35,e)}addPageAction(e,t){return this.#e(i.hG,e,t)}register(e){return this.#e(i.eY,e)}recordCustomEvent(e,t){return this.#e(i.fF,e,t)}setPageViewName(e,t){return this.#e(i.Fw,e,t)}setCustomAttribute(e,t,r){return this.#e(i.cD,e,t,r)}noticeError(e,t){return this.#e(i.o5,e,t)}setUserId(e,t=!1){return this.#e(i.Dl,e,t)}setApplicationVersion(e){return this.#e(i.nb,e)}setErrorHandler(e){return this.#e(i.bt,e)}addRelease(e,t){return this.#e(i.k6,e,t)}log(e,t){return this.#e("log",e,t)}start(){return this.#e("start")}finished(e){return this.#e(i.BL,e)}recordReplay(){return this.#e(i.CH)}pauseReplay(){return this.#e(i.Tb)}addToTrace(e){return this.#e(i.U2,e)}setCurrentRouteName(e){return this.#e(i.PA,e)}interaction(e){return this.#e(i.dT,e)}wrapLogger(e,t,r){return this.#e(i.Wb,e,t,r)}measure(e,t){return this.#e(i.V1,e,t)}consent(e){return this.#e(i.Pv,e)}}},4261(e,t,r){"use strict";r.d(t,["BL",0,"finished","CH",0,"recordReplay","Dl",0,"setUserId","Fw",0,"setPageViewName","PA",0,"setCurrentRouteName","Pv",0,"consent","Tb",0,"pauseReplay","U2",0,"addToTrace","V1",0,"measure","Wb",0,"wrapLogger","bt",0,"setErrorHandler","cD",0,"setCustomAttribute","dT",0,"interaction","eY",0,"register","fF",0,"recordCustomEvent","hG",0,"addPageAction","k6",0,"addRelease","nb",0,"setApplicationVersion","o5",0,"noticeError"])},1738(e,t,r){"use strict";r.d(t,{U:()=>l,Y:()=>d});var n=r(3241),i=r(9908),a=r(1863),s=r(944),o=r(3969),c=r(8362),u=r(860);function d(e,t,r,a){const d=a||r;!d||d[e]&&d[e]!==c.d.prototype[e]||(d[e]=function(){(0,i.p)(o.xV,["API/"+e+"/called"],void 0,u.K7.metrics,r.ee),(0,n.W)({drained:!!r.runtime?.activatedFeatures,type:"data",name:"api",feature:"api-"+e,data:{}});try{return t.apply(this,arguments)}catch(e){(0,s.R)(23,e)}})}function l(e,t,r,n,s){const o=e.info;null===r?delete o.jsAttributes[t]:o.jsAttributes[t]=r,(s||null===r)&&(0,i.p)("api-"+n,[(0,a.t)(),t,r],void 0,"session",e.ee)}},8374(e,t,r){r.nc=(()=>{try{return document?.currentScript?.nonce}catch(e){}return""})()},860(e,t,r){"use strict";const n="events",i="jserrors",a="browser/blobs",s="browser/logs",o={ajax:"ajax",genericEvents:"generic_events",jserrors:i,logging:"logging",metrics:"metrics",pageAction:"page_action",pageViewEvent:"page_view_event",pageViewTiming:"page_view_timing",sessionReplay:"session_replay",sessionTrace:"session_trace",softNav:"soft_navigations"},c={[o.pageViewEvent]:1,[o.pageViewTiming]:2,[o.metrics]:3,[o.jserrors]:4,[o.softNav]:5,[o.ajax]:6,[o.sessionTrace]:7,[o.sessionReplay]:8,[o.logging]:9,[o.genericEvents]:10},u={[o.pageViewEvent]:"rum",[o.pageViewTiming]:n,[o.ajax]:n,[o.softNav]:n,[o.metrics]:i,[o.jserrors]:i,[o.sessionTrace]:a,[o.sessionReplay]:a,[o.logging]:s,[o.genericEvents]:"ins"};r.d(t,["$J",0,u,"K7",0,o,"P3",0,c,"XX",0,i,"Yy",0,s,"df",0,a,"hg",0,"connect"])}};const t={};function r(n){const i=t[n];if(void 0!==i)return i.exports;const a=t[n]={exports:{}};return e[n](a,a.exports,r),a.exports}r.m=e,r.d=(e,t)=>{if(Array.isArray(t))for(var n=0;n<t.length;){var i=t[n++],a=t[n++];r.o(e,i)?0===a&&n++:0===a?Object.defineProperty(e,i,{enumerable:!0,value:t[n++]}):Object.defineProperty(e,i,{enumerable:!0,get:a})}else for(var i in t)r.o(t,i)&&!r.o(e,i)&&Object.defineProperty(e,i,{enumerable:!0,get:t[i]})},r.f={},r.e=e=>Promise.all(Object.keys(r.f).reduce((t,n)=>(r.f[n](e,t),t),[])),r.u=e=>"nr-rum-1.324.1.min.js",r.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t),(()=>{const e={},t="NRBA-1.324.1.PROD:";r.l=(n,i,a,s)=>{if(e[n])return void e[n].push(i);let o,c;if(void 0!==a){const e=document.getElementsByTagName("script");for(var u=0;u<e.length;u++){const r=e[u];if(r.getAttribute("src")==n||r.getAttribute("data-webpack")==t+a){o=r;break}}}if(!o){c=!0;var d={296:"sha512-zuv39xzZ8AH/HwpVrtkixvcBuOFo2ydcFzMtXjx+3Iwr5g++inX+6YDH7J/8fOCAtBetz8aDyaYCRkGy2nnG/w=="};o=document.createElement("script"),o.charset="utf-8",r.nc&&o.setAttribute("nonce",r.nc),o.setAttribute("data-webpack",t+a),o.src=n,0!==o.src.indexOf(window.location.origin+"/")&&(o.crossOrigin="anonymous"),d[s]&&(o.integrity=d[s])}e[n]=[i];const l=(t,r)=>{o.onerror=o.onload=null,clearTimeout(f);const i=e[n];if(delete e[n],o.parentNode?.removeChild(o),i?.forEach(e=>e(r)),t)return t(r)},f=setTimeout(l.bind(null,void 0,{type:"timeout",target:o}),12e4);o.onerror=l.bind(null,o.onerror),o.onload=l.bind(null,o.onload),c&&document.head.appendChild(o)}})(),r.r=e=>{Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},r.p="https://js-agent.newrelic.com/",(()=>{const e={374:0,840:0};r.f.j=(t,n)=>{let i=r.o(e,t)?e[t]:void 0;if(0!==i)if(i)n.push(i[2]);else{const a=new Promise((r,n)=>i=e[t]=[r,n]);n.push(i[2]=a);const s=r.p+r.u(t),o=new Error,c=n=>{if(r.o(e,t)&&(i=e[t],0!==i&&(e[t]=void 0),i)){const e=n&&("load"===n.type?"missing":n.type),r=n&&n.target&&n.target.src;o.message="Loading chunk "+t+" failed: ("+e+": "+r+")",o.name="ChunkLoadError",o.type=e,o.request=r,i[1](o)}};r.l(s,c,"chunk-"+t,t)}};const t=(t,n)=>{let[i,a,s]=n;var o,c,u=0;if(i.some(t=>0!==e[t])){for(o in a)r.o(a,o)&&(r.m[o]=a[o]);if(s)s(r)}for(t&&t(n);u<i.length;u++)c=i[u],r.o(e,c)&&e[c]&&e[c][0](),e[c]=0},n=self["webpackChunk:NRBA-1.324.1.PROD"]=self["webpackChunk:NRBA-1.324.1.PROD"]||[];n.forEach(t.bind(null,0)),n.push=t.bind(null,n.push.bind(n))})(),(()=>{"use strict";r(8374);var e=r(8362),t=r(860);const n=Object.values(t.K7);var i=r(384),a=r(1741);var s=r(2555),o=r(981);t.K7.genericEvents,o.R.PA,o.R.UA,o.R.BP;const c={RESOURCES:"experimental.resources",REGISTER:"register"};var u=r(9300);const d=e=>{if(!e||"string"!=typeof e)return!1;try{document.createDocumentFragment().querySelector(e)}catch{return!1}return!0};var l=r(2614),f=r(944),g=r(8122);const p="[data-nr-mask]",m=e=>(0,g.a)(e,(()=>{const e={feature_flags:[],experimental:{register:!1,resources:!1,iframe_bridge:!1,iframe_domains:[]},mask_selector:"*",block_selector:"[data-nr-block]",mask_input_options:{color:!1,date:!1,"datetime-local":!1,email:!1,month:!1,number:!1,range:!1,search:!1,tel:!1,text:!1,time:!1,url:!1,week:!1,textarea:!1,select:!1,password:!0}};return{ajax:{deny_list:void 0,block_internal:!0,enabled:!0,autoStart:!0,capture_payloads:u.mo.NONE},api:{register:{get enabled(){return e.feature_flags.includes(c.REGISTER)||e.experimental.register},set enabled(t){e.experimental.register=t},duplicate_data_to_container:!1,get allow_iframe_bridge(){return e.feature_flags.includes(c.IFRAME_BRIDGE)||e.experimental.iframe_bridge},set allow_iframe_bridge(t){e.experimental.iframe_bridge=t},get iframe_domains(){return e.experimental.iframe_domains},set iframe_domains(t){Array.isArray(t)?e.experimental.iframe_domains=t:(0,f.R)(1,t)}}},browser_consent_mode:{enabled:!1},distributed_tracing:{enabled:void 0,exclude_newrelic_header:void 0,cors_use_newrelic_header:void 0,cors_use_tracecontext_headers:void 0,allowed_origins:void 0},get feature_flags(){return e.feature_flags},set feature_flags(t){e.feature_flags=t},generic_events:{enabled:!0,autoStart:!0},harvest:{interval:30},jserrors:{enabled:!0,autoStart:!0},logging:{enabled:!0,autoStart:!0},metrics:{enabled:!0,autoStart:!0},obfuscate:void 0,page_action:{enabled:!0},page_view_event:{enabled:!0,autoStart:!0},page_view_timing:{enabled:!0,autoStart:!0},performance:{capture_marks:!1,capture_measures:!1,capture_detail:!0,resources:{get enabled(){return e.feature_flags.includes(c.RESOURCES)||e.experimental.resources},set enabled(t){e.experimental.resources=t},asset_types:[],first_party_domains:[],ignore_newrelic:!0}},privacy:{cookies_enabled:!0},proxy:{assets:void 0,beacon:void 0},session:{expiresMs:l.wk,inactiveMs:l.BB},session_replay:{autoStart:!0,enabled:!1,preload:!1,collect_fonts:!1,inline_images:!1,fix_stylesheets:!0,mask_all_inputs:!0,get mask_text_selector(){return e.mask_selector},set mask_text_selector(t){d(t)?e.mask_selector="".concat(t,",").concat(p):""===t||null===t?e.mask_selector=p:(0,f.R)(5,t)},get block_class(){return"nr-block"},get ignore_class(){return"nr-ignore"},get mask_text_class(){return"nr-mask"},get block_selector(){return e.block_selector},set block_selector(t){d(t)?e.block_selector+=",".concat(t):""!==t&&(0,f.R)(6,t)},get mask_input_options(){return e.mask_input_options},set mask_input_options(t){t&&"object"==typeof t?e.mask_input_options={...t,password:!0}:(0,f.R)(7,t)}},session_trace:{enabled:!0,autoStart:!0},soft_navigations:{enabled:!0,autoStart:!0},ssl:void 0,user_actions:{enabled:!0,elementAttributes:["id","className","tagName","type"]},web_sockets:{enabled:!1}}})());var h=r(6154),v=r(9324);let b=0;const y={buildEnv:"PROD",distMethod:"CDN",version:v.xv,originTime:h.WN},_={consented:!1},w={activatedFeatures:void 0,appMetadata:{},configured:!1,get consented(){return this.session?.state?.consent||_.consented},set consented(e){_.consented=e},customTransaction:void 0,denyList:[],disabled:!1,drainRegistry:new Map,connector:void 0,harvester:void 0,v2Target:void 0,isolatedBacklog:!1,isRecording:!1,loaderType:void 0,maxBytes:3e4,obfuscator:void 0,onerror:void 0,ptid:void 0,releaseIds:{},session:void 0,timeKeeper:void 0,registeredEntities:[],jsAttributesMetadata:{bytes:0},get harvestCount(){return++b},listeningForIframeMessages:!1},R="BA";var A=r(7836),x=r(3241);const E={accountID:void 0,trustKey:void 0,agentID:void 0,licenseKey:void 0,applicationID:void 0,xpid:void 0};var S=r(9908);const k="newrelic-iframe-";function T(e,t={},n,o){let{init:c,info:u,loader_config:d,runtime:l={},exposed:f=!0}=t;if(!u){const e=(0,i.pV)();c=e.init,u=e.info,d=e.loader_config}var p;e.init=m(c||{}),e.loader_config=(p=d||{},(0,g.a)(p,E)),u.jsAttributes??={},h.bv&&(u.jsAttributes.isWorker=!0),e.info=(0,s.D)(u);const v=e.init;e.runtime??=(e=>{const t=(0,g.a)(e,w),r=Object.keys(y).reduce((e,t)=>(e[t]={value:y[t],writable:!1,configurable:!0,enumerable:!0},e),{});return Object.defineProperties(t,r)})(l),e.runtime.v2Target??={type:R,instance:e.agentIdentifier,get id(){return e.runtime.appMetadata?.agents?.[0]?.entityGuid},get attributes(){return{"entity.guid":this.id,appId:e.info.applicationID}}},v.proxy.assets&&(e=>{const t=e.startsWith("http");e+="/",r.p=t?e:"https://"+e})(v.proxy.assets),e.runtime.configured||(Object.defineProperty(e,"beacons",{get:()=>[e.info.beacon,e.info.errorBeacon,e.init.proxy.assets,e.init.proxy.beacon].filter(Boolean)}),Object.defineProperty(e.runtime,"denyList",{get:()=>[...e.init.ajax.deny_list||[],...e.init.ajax.block_internal?e.beacons:[]]}),e.runtime.ptid=e.agentIdentifier,function(e){const t=(0,i.pV)();Object.getOwnPropertyNames(a.W.prototype).forEach(r=>{const n=a.W.prototype[r];if("function"!=typeof n||"constructor"===n)return;let i=t[r];e[r]&&!1!==e.exposed&&"micro-agent"!==e.runtime?.loaderType&&(t[r]=(...t)=>{const n=e[r](...t);return i?i(...t):n})})}(e),e.runtime.loaderType=n,e.ee=A.ee.get(e.agentIdentifier),e.exposed=f,(0,x.W)({drained:!!e.runtime.activatedFeatures,type:"lifecycle",name:"initialize",feature:void 0,data:e.config}),e.init.api.register.allow_iframe_bridge&&h.gm.addEventListener("message",t=>{"string"==typeof t.data?.type&&t.data.type.startsWith(k)&&(0,S.p)("iframe-message",[t],void 0,"IFRAME",e.ee)}),e.runtime.configured=!0)}var j=r(1863),P=r(4261),N=r(1738);var O=r(1687),M=r(4234),I=r(5289),D=r(7767);function V(e){return!!(0,i.dV)().o.MO&&(0,D.V)(e)&&!0===e?.session_trace.enabled}var W=r(6389),B=r(7699);const C=new WeakSet,K=new WeakMap;class U extends M.W{constructor(e,t){super(e,t),this.abortHandler=void 0,this.featAggregate=void 0,this.loadedSuccessfully=void 0,this.onAggregateImported=new Promise(e=>{this.loadedSuccessfully=e}),this.deferred=Promise.resolve(),!1===e.init[this.featureName].autoStart?this.deferred=new Promise((t,r)=>{this.ee.on("manual-start-all",(0,W.J)(()=>{(0,O.Ak)(e,this.featureName),t()}))}):(0,O.Ak)(e,t)}importAggregator(e,t,n={}){if(this.featAggregate)return;const i=async()=>{if(await this.deferred,this.#t(e),!(0,s.f)(e.info))return(0,f.R)(43),e.ee.abort(),void this.loadedSuccessfully(!1);try{await async function(e,t,n){if(K.has(e))return K.get(e);const i=(async()=>{if((0,D.V)(e.init))try{const{setupAgentSession:t}=await r.e(296).then(r.bind(r,1768));t(e)}catch(e){(0,f.R)(20,e),t.emit("internal-error",[e]),(0,S.p)(B.qh,[e],void 0,n,t)}if(e.init.api.register.allow_iframe_bridge)try{const{setupIframeMFEMessageListener:t}=await Promise.resolve().then(function(){const e=new Error("Cannot find module '../../loaders/configure/iframe-message-handler'");throw e.code="MODULE_NOT_FOUND",e});t(e)}catch(e){(0,f.R)(23,e)}const[{Connector:i},{Harvester:a}]=await Promise.all([r.e(296).then(r.bind(r,6589)),r.e(296).then(r.bind(r,5237))]);e.runtime.connector=new i(e),e.runtime.harvester=new a(e);const s=Object.values(e.features).filter(t=>e.runtime.drainRegistry.has(t.featureName));Promise.all(s.map(e=>e.onAggregateImported)).then(()=>e.runtime.harvester.startTimer())})();K.set(e,i),await i}(e,this.ee,this.featureName)}catch(e){return(0,f.R)(79,e),this.ee.abort(),void this.loadedSuccessfully(!1)}try{if(!this.#r(this.featureName,e.runtime.session,e.init))return this.abortHandler?.(),(0,O.Ze)(this.agentRef,this.featureName),void this.loadedSuccessfully(!1);const{Aggregate:r}=await t();this.featAggregate=new r(e,n),e.runtime.harvester.initializedAggregates.push(this.featAggregate),this.loadedSuccessfully(!0)}catch(e){(0,f.R)(34,e),this.abortHandler?.(),(0,O.Ze)(this.agentRef,this.featureName,!0),this.loadedSuccessfully(!1)}};h.RI?(0,I.GG)(()=>i(),!0):i()}#r(e,r,n){if(this.blocked)return!1;switch(e){case t.K7.sessionReplay:return V(n)&&!!r;case t.K7.sessionTrace:return!!r;default:return!0}}#t(e){if(!C.has(e)&&(C.add(e),!(0,s.f)(e.info))){const t=(0,i.pV)();let r={...t.info?.jsAttributes};try{r={...r,...e.info?.jsAttributes}}catch(e){}T(e,{...t,info:{...t.info,jsAttributes:r},runtime:e.runtime},e.runtime.loaderType)}}}var L=r(6630);class F extends U{static featureName=L.T;constructor(e){var t;super(e,L.T),this.setupInspectionEvents(),t=e,(0,N.Y)(P.Fw,function(e,r){"string"==typeof e&&("/"!==e.charAt(0)&&(e="/"+e),t.runtime.customTransaction=(r||"http://custom.transaction")+e,(0,S.p)("api-"+P.Fw,[(0,j.t)()],void 0,void 0,t.ee))},t),this.importAggregator(e,()=>e.init.feature_flags.includes("rum_v2")?r.e(296).then(r.bind(r,908)):r.e(296).then(r.bind(r,7927)))}setupInspectionEvents(){const e=(e,t)=>{e&&(0,x.W)({timeStamp:e.timeStamp,loaded:"complete"===e.target.readyState,type:"window",name:t,data:e.target.location+""})};(0,I.sB)(t=>{e(t,"DOMContentLoaded")}),(0,I.GG)(t=>{e(t,"load")}),(0,I.Qr)(t=>{e(t,"navigate")}),this.ee.on(l.tS.UPDATE,(e,t)=>{(0,x.W)({type:"lifecycle",name:"session",data:t})})}}class G extends e.d{constructor(e){var t;(super(),h.gm)?(this.features={},(0,i.bQ)(this.agentIdentifier,this),this.desiredFeatures=new Set(e.features||[]),this.desiredFeatures.add(F),T(this,e,e.loaderType||"agent"),t=this,(0,N.Y)(P.cD,function(e,r,n=!1){if("string"==typeof e){if(["string","number","boolean"].includes(typeof r)||null===r)return(0,N.U)(t,e,r,P.cD,n);(0,f.R)(40,typeof r)}else(0,f.R)(39,typeof e)},t),function(e){(0,N.Y)(P.Dl,function(t,r=!1){if("string"!=typeof t&&null!==t)return void(0,f.R)(41,typeof t);const n=e.info.jsAttributes["enduser.id"];r&&null!=n&&n!==t?(0,S.p)("api-setUserIdAndResetSession",[t],void 0,"session",e.ee):(0,N.U)(e,"enduser.id",t,P.Dl,!0)},e)}(this),function(e){(0,N.Y)(P.nb,function(t){if("string"==typeof t||null===t)return(0,N.U)(e,"application.version",t,P.nb,!1);(0,f.R)(42,typeof t)},e)}(this),function(e){(0,N.Y)("start",function(){e.ee.emit("manual-start-all")},e)}(this),function(e){(0,N.Y)(P.Pv,function(t=!0){if("boolean"==typeof t){if((0,S.p)("api-"+P.Pv,[t],void 0,"session",e.ee),e.runtime.consented=t,t){const t=e.features.page_view_event;t.onAggregateImported.then(e=>{const r=t.featAggregate;e&&!r.sentRum&&r.sendRum?.()})}}else(0,f.R)(65,typeof t)},e)}(this),this.run()):(0,f.R)(21)}get config(){return{info:this.info,init:this.init,loader_config:this.loader_config,runtime:this.runtime}}get api(){return this}run(){try{const e=function(e){const t={};return n.forEach(r=>{t[r]=!!e[r]?.enabled}),t}(this.init),r=[...this.desiredFeatures],i=this.init.feature_flags.includes("rum_v2");r.sort((e,r)=>t.P3[e.featureName]-t.P3[r.featureName]),r.forEach(r=>{if(!e[r.featureName]&&(i||r.featureName!==t.K7.pageViewEvent))return;const n=function(e){switch(e){case t.K7.ajax:return[t.K7.jserrors];case t.K7.sessionTrace:return[t.K7.ajax,t.K7.pageViewEvent];case t.K7.sessionReplay:return[t.K7.sessionTrace];case t.K7.pageViewTiming:return[t.K7.pageViewEvent];default:return[]}}(r.featureName).filter(e=>!(e in this.features));n.length>0&&(0,f.R)(36,{targetFeature:r.featureName,missingDependencies:n}),this.features[r.featureName]=new r(this)})}catch(e){(0,f.R)(22,e);for(const e in this.features)this.features[e].abortHandler?.();const t=(0,i.Zm)();delete t.initializedAgents[this.agentIdentifier]?.features,delete this.sharedAggregator;return t.ee.get(this.agentIdentifier).abort(),!1}}}var H=r(2843),z=r(782);class Y extends U{static featureName=z.T;constructor(e){super(e,z.T),h.RI&&((0,H.u)(()=>(0,S.p)("docHidden",[(0,j.t)()],void 0,z.T,this.ee),!0),(0,H.G)(()=>(0,S.p)("winPagehide",[(0,j.t)()],void 0,z.T,this.ee)),this.importAggregator(e,()=>r.e(296).then(r.bind(r,9981))))}}var Z=r(3969);class q extends U{static featureName=Z.TZ;constructor(e){super(e,Z.TZ),this.importAggregator(e,()=>r.e(296).then(r.bind(r,9623)))}}new G({features:[F,Y,q],loaderType:"lite"})})()})();</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="pageID" content="2529">
+    <link rel="profile" href="https://gmpg.org/xfn/11">
+
+
+  <link href="//www.google-analytics.com/" rel="dns-prefetch">
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <!-- icons -->
+  <link rel="icon" href="https://www.dccc.edu/wp-content/themes/wp-dccc/img/favicon/favicon.ico" type="image/x-icon">
+
+  <link rel="apple-touch-icon" href="https://www.dccc.edu/wp-content/themes/wp-dccc/img/favicon/apple-touch-icon.png">
+
+  <link rel="icon" href="https://www.dccc.edu/wp-content/themes/wp-dccc/img/favicon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" href="https://www.dccc.edu/wp-content/themes/wp-dccc/img/favicon/favicon.svg" type="image/svg+xml">
+
+
+  <!--[if lt IE 9]>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/selectivizr/1.0.2/selectivizr-min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <script type="application/javascript">(function(w,d,t,r,u){w[u]=w[u]||[];w[u].push({'projectId':'10000','properties':{'pixelId':'10208229','he': '<email_address>','hph': '<phone_number>'}});var s=d.createElement(t);s.src=r;s.async=true;s.onload=s.onreadystatechange=function(){var y,rs=this.readyState,c=w[u];if(rs&&rs!="complete"&&rs!="loaded"){return}try{y=YAHOO.ywa.I13N.fireBeacon;w[u]=[];w[u].push=function(p){y([p])};y(c)}catch(e){}};var scr=d.getElementsByTagName(t)[0],par=scr.parentNode;par.insertBefore(s,scr)})(window,document,"script","https://s.yimg.com/wi/ytc.js","dotq");</script>
+
+  <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+<script id="cookieyes" type="text/javascript" nitro-exclude src="https://cdn-cookieyes.com/client_data/540b3b1d3b0639b76d2cefa07ca811c1/script.js"></script>
+	<!-- This site is optimized with the Yoast SEO plugin v28.8 - https://yoast.com/product/yoast-seo-wordpress/ -->
+	<title>Campus Life and Athletics - Delaware County Community College</title>
+	<meta name="description" content="Explore DCCC’s Campus Life &amp; Athletics—offering student clubs, intercollegiate sports, fitness facilities, and cultural events to enrich your college experience." />
+	<link rel="canonical" href="https://www.dccc.edu/campus-life-and-athletics/" />
+	<meta property="og:locale" content="en_US" />
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="Campus Life and Athletics - Delaware County Community College" />
+	<meta property="og:description" content="Explore DCCC’s Campus Life &amp; Athletics—offering student clubs, intercollegiate sports, fitness facilities, and cultural events to enrich your college experience." />
+	<meta property="og:url" content="https://www.dccc.edu/campus-life-and-athletics/" />
+	<meta property="og:site_name" content="Delaware County Community College" />
+	<meta property="article:modified_time" content="2026-06-20T10:25:44+00:00" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:label1" content="Est. reading time" />
+	<meta name="twitter:data1" content="1 minute" />
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https:\/\/schema.org","@graph":[{"@type":"WebPage","@id":"https:\/\/www.dccc.edu\/campus-life-and-athletics\/","url":"https:\/\/www.dccc.edu\/campus-life-and-athletics\/","name":"Campus Life and Athletics - Delaware County Community College","isPartOf":{"@id":"https:\/\/www.dccc.edu\/#website"},"datePublished":"2024-11-18T17:38:20+00:00","dateModified":"2026-06-20T10:25:44+00:00","description":"Explore DCCC’s Campus Life & Athletics—offering student clubs, intercollegiate sports, fitness facilities, and cultural events to enrich your college experience.","breadcrumb":{"@id":"https:\/\/www.dccc.edu\/campus-life-and-athletics\/#breadcrumb"},"inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["https:\/\/www.dccc.edu\/campus-life-and-athletics\/"]}]},{"@type":"BreadcrumbList","@id":"https:\/\/www.dccc.edu\/campus-life-and-athletics\/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https:\/\/www.dccc.edu\/"},{"@type":"ListItem","position":2,"name":"Campus Life and Athletics"}]},{"@type":"WebSite","@id":"https:\/\/www.dccc.edu\/#website","url":"https:\/\/www.dccc.edu\/","name":"Delaware County Community College","description":"Empowering Minds, Transforming Lives","publisher":{"@id":"https:\/\/www.dccc.edu\/#organization"},"potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https:\/\/www.dccc.edu\/?s={search_term_string}"},"query-input":{"@type":"PropertyValueSpecification","valueRequired":true,"valueName":"search_term_string"}}],"inLanguage":"en-US"},{"@type":"Organization","@id":"https:\/\/www.dccc.edu\/#organization","name":"Delaware County Community College","url":"https:\/\/www.dccc.edu\/","logo":{"@type":"ImageObject","inLanguage":"en-US","@id":"https:\/\/www.dccc.edu\/#\/schema\/logo\/image\/","url":"https:\/\/www.dccc.edu\/wp-content\/uploads\/2025\/09\/NASAD.png","contentUrl":"https:\/\/www.dccc.edu\/wp-content\/uploads\/2025\/09\/NASAD.png","width":538,"height":94,"caption":"Delaware County Community College"},"image":{"@id":"https:\/\/www.dccc.edu\/#\/schema\/logo\/image\/"}}]}</script>
+	<!-- / Yoast SEO plugin. -->
+
+
+<link rel='dns-prefetch' href='//cdnjs.cloudflare.com' />
+<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="https://www.dccc.edu/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.dccc.edu%2Fcampus-life-and-athletics%2F" />
+<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="https://www.dccc.edu/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.dccc.edu%2Fcampus-life-and-athletics%2F&#038;format=xml" />
+<style id="wp-img-auto-sizes-contain-inline-css">
+img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
+/*# sourceURL=wp-img-auto-sizes-contain-inline-css */
+</style>
+<link rel='stylesheet' id='dccc-components-extra-block-styles-css' href='https://www.dccc.edu/wp-content/plugins/dccc-components-extra/dist/dist.css?ver=1795012723' media='all' />
+<style id="wp-block-library-inline-css">
+:root{--wp-block-synced-color:#7a00df;--wp-block-synced-color--rgb:122,0,223;--wp-bound-block-color:var(--wp-block-synced-color);--wp-editor-canvas-background:#ddd;--wp-admin-theme-color:#007cba;--wp-admin-theme-color--rgb:0,124,186;--wp-admin-theme-color-darker-10:#006ba1;--wp-admin-theme-color-darker-10--rgb:0,107,160.5;--wp-admin-theme-color-darker-20:#005a87;--wp-admin-theme-color-darker-20--rgb:0,90,135;--wp-admin-border-width-focus:2px}@media (min-resolution:192dpi){:root{--wp-admin-border-width-focus:1.5px}}.wp-element-button{cursor:pointer}:root .has-very-light-gray-background-color{background-color:#eee}:root .has-very-dark-gray-background-color{background-color:#313131}:root .has-very-light-gray-color{color:#eee}:root .has-very-dark-gray-color{color:#313131}:root .has-vivid-green-cyan-to-vivid-cyan-blue-gradient-background{background:linear-gradient(135deg,#00d084,#0693e3)}:root .has-purple-crush-gradient-background{background:linear-gradient(135deg,#34e2e4,#4721fb 50%,#ab1dfe)}:root .has-hazy-dawn-gradient-background{background:linear-gradient(135deg,#faaca8,#dad0ec)}:root .has-subdued-olive-gradient-background{background:linear-gradient(135deg,#fafae1,#67a671)}:root .has-atomic-cream-gradient-background{background:linear-gradient(135deg,#fdd79a,#004a59)}:root .has-nightshade-gradient-background{background:linear-gradient(135deg,#330968,#31cdcf)}:root .has-midnight-gradient-background{background:linear-gradient(135deg,#020381,#2874fc)}:root{--wp--preset--font-size--normal:16px;--wp--preset--font-size--huge:42px}.has-regular-font-size{font-size:1em}.has-larger-font-size{font-size:2.625em}.has-normal-font-size{font-size:var(--wp--preset--font-size--normal)}.has-huge-font-size{font-size:var(--wp--preset--font-size--huge)}:root .has-text-align-center{text-align:center}:root .has-text-align-left{text-align:left}:root .has-text-align-right{text-align:right}.has-fit-text{white-space:nowrap!important}#end-resizable-editor-section{display:none}.aligncenter{clear:both}.items-justified-left{justify-content:flex-start}.items-justified-center{justify-content:center}.items-justified-right{justify-content:flex-end}.items-justified-space-between{justify-content:space-between}.screen-reader-text{word-wrap:normal!important;border:0;clip-path:inset(50%);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px;word-break:normal!important}.screen-reader-text:focus{background-color:#ddd;clip-path:none;color:#444;display:block;font-size:1em;height:auto;left:5px;line-height:normal;padding:15px 23px 14px;text-decoration:none;top:5px;width:auto;z-index:100000}html :where(.has-border-color){border-style:solid}html :where([style^=border-color],[style*=";border-color"],[style*="; border-color"]){border-style:solid}html :where([style^=border-top-color],[style*=";border-top-color"],[style*="; border-top-color"]){border-top-style:solid}html :where([style^=border-right-color],[style*=";border-right-color"],[style*="; border-right-color"]){border-right-style:solid}html :where([style^=border-bottom-color],[style*=";border-bottom-color"],[style*="; border-bottom-color"]){border-bottom-style:solid}html :where([style^=border-left-color],[style*=";border-left-color"],[style*="; border-left-color"]){border-left-style:solid}html :where([style^=border-width],[style*=";border-width"],[style*="; border-width"]){border-style:solid}html :where([style^=border-top-width],[style*=";border-top-width"],[style*="; border-top-width"]){border-top-style:solid}html :where([style^=border-right-width],[style*=";border-right-width"],[style*="; border-right-width"]){border-right-style:solid}html :where([style^=border-bottom-width],[style*=";border-bottom-width"],[style*="; border-bottom-width"]){border-bottom-style:solid}html :where([style^=border-left-width],[style*=";border-left-width"],[style*="; border-left-width"]){border-left-style:solid}html :where(img[class*=wp-image-]){height:auto;max-width:100%}:where(figure){margin:0 0 1em}html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:var(--wp-admin--admin-bar--height,0px)}@media screen and (max-width:600px){html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:0px}}
+
+/*# sourceURL=/wp-includes/css/dist/block-library/common.min.css */
+</style>
+<style id="wp-block-list-inline-css">
+ol,ul{box-sizing:border-box}:root :where(.wp-block-list.has-background){padding:1.25em 2.375em}
+/*# sourceURL=https://www.dccc.edu/wp-includes/blocks/list/style.min.css */
+</style>
+<style id="wp-block-paragraph-inline-css">
+.is-small-text{font-size:.875em}.is-regular-text{font-size:1em}.is-large-text{font-size:2.25em}.is-larger-text{font-size:3em}.has-drop-cap:not(:focus):first-letter{float:left;font-size:8.4em;font-style:normal;font-weight:100;line-height:.68;margin:.05em .1em 0 0;text-transform:uppercase}body.rtl .has-drop-cap:not(:focus):first-letter{float:none;margin-left:.1em}p.has-drop-cap.has-background{overflow:hidden}:root :where(p.has-background){padding:1.25em 2.375em}:where(p.has-text-color:not(.has-link-color)) a{color:inherit}p.has-text-align-left[style*="writing-mode:vertical-lr"],p.has-text-align-right[style*="writing-mode:vertical-rl"]{rotate:180deg}
+/*# sourceURL=https://www.dccc.edu/wp-includes/blocks/paragraph/style.min.css */
+</style>
+<style id="wp-block-columns-inline-css">
+.wp-block-columns{box-sizing:border-box;display:flex;flex-wrap:wrap!important}@media (min-width:782px){.wp-block-columns{flex-wrap:nowrap!important}}.wp-block-columns{align-items:normal!important}.wp-block-columns.are-vertically-aligned-top{align-items:flex-start}.wp-block-columns.are-vertically-aligned-center{align-items:center}.wp-block-columns.are-vertically-aligned-bottom{align-items:flex-end}@media (max-width:781px){.wp-block-columns:not(.is-not-stacked-on-mobile)>.wp-block-column{flex-basis:100%!important}}@media (min-width:782px){.wp-block-columns:not(.is-not-stacked-on-mobile)>.wp-block-column{flex-basis:0;flex-grow:1}.wp-block-columns:not(.is-not-stacked-on-mobile)>.wp-block-column[style*=flex-basis]{flex-grow:0}}.wp-block-columns.is-not-stacked-on-mobile{flex-wrap:nowrap!important}.wp-block-columns.is-not-stacked-on-mobile>.wp-block-column{flex-basis:0;flex-grow:1}.wp-block-columns.is-not-stacked-on-mobile>.wp-block-column[style*=flex-basis]{flex-grow:0}:where(.wp-block-columns){margin-bottom:1.75em}:where(.wp-block-columns.has-background){padding:1.25em 2.375em}.wp-block-column{flex-grow:1;min-width:0;overflow-wrap:break-word;word-break:break-word}.wp-block-column.is-vertically-aligned-top{align-self:flex-start}.wp-block-column.is-vertically-aligned-center{align-self:center}.wp-block-column.is-vertically-aligned-bottom{align-self:flex-end}.wp-block-column.is-vertically-aligned-stretch{align-self:stretch}.wp-block-column.is-vertically-aligned-bottom,.wp-block-column.is-vertically-aligned-center,.wp-block-column.is-vertically-aligned-top{width:100%}
+/*# sourceURL=https://www.dccc.edu/wp-includes/blocks/columns/style.min.css */
+</style>
+<style id="wp-block-group-inline-css">
+.wp-block-group{box-sizing:border-box}:where(.wp-block-group.wp-block-group-is-layout-constrained){position:relative}
+/*# sourceURL=https://www.dccc.edu/wp-includes/blocks/group/style.min.css */
+</style>
+
+
+<link rel='stylesheet' id='slick-css-css' href='https://www.dccc.edu/wp-content/themes/wp-dccc/css/slick/slick.css?ver=1.8.1' media='all' />
+<link rel='stylesheet' id='slick-theme-css-css' href='https://www.dccc.edu/wp-content/themes/wp-dccc/css/slick/slick-theme.css?ver=1.8.1' media='all' />
+<link rel='stylesheet' id='fontawesome-css' href='https://www.dccc.edu/wp-content/themes/wp-dccc/css/fontawesome/all.min.css?ver=5.15.4' media='all' />
+<link rel='stylesheet' id='dccc-page-template-with-left-right-sidebar-css' href='https://www.dccc.edu/wp-content/themes/wp-dccc/css/page-templates/dccc-page-template-with-left-right-sidebar.css?ver=1.0.6' media='all' />
+<link rel='stylesheet' id='dccc-page-template-with-right-sidebar-css' href='https://www.dccc.edu/wp-content/themes/wp-dccc/css/page-templates/dccc-page-template-with-right-sidebar.css?ver=1.0.6' media='all' />
+<link rel='stylesheet' id='button-css' href='https://www.dccc.edu/wp-content/themes/wp-dccc/css/global/button/button.css?ver=1.0.6' media='all' />
+<link rel='stylesheet' id='title-css' href='https://www.dccc.edu/wp-content/themes/wp-dccc/css/global/title/title.css?ver=1.0.9' media='all' />
+<style id="global-styles-inline-css">
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--color--primary-yellow: #FACA23;--wp--preset--color--primary-blue: #003E72;--wp--preset--color--dark: #0F1844;--wp--preset--color--light-background: #F3F5F6;--wp--preset--color--white-background-divider: #E7E8EC;--wp--preset--color--dark-background-divider: rgba(241, 243, 251, 0.1);--wp--preset--color--dark-secondary: #4B5273;--wp--preset--color--dark-border: #A5A5A5;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgb(6,147,227) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgb(252,185,0) 0%,rgb(255,105,0) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgb(255,105,0) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--font-family--figtree: Figtree, sans-serif;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgb(255, 255, 255), 6px 6px rgb(0, 0, 0);--wp--preset--shadow--crisp: 6px 6px 0px rgb(0, 0, 0);}.wp-block-button{--wp--preset--dimension--25: 25%;--wp--preset--dimension--50: 50%;--wp--preset--dimension--75: 75%;--wp--preset--dimension--100: 100%;}:where(body) { margin: 0; }.wp-site-blocks > .alignleft { float: left; margin-right: 2em; }.wp-site-blocks > .alignright { float: right; margin-left: 2em; }.wp-site-blocks > .aligncenter { justify-content: center; margin-left: auto; margin-right: auto; }:where(.wp-site-blocks) > * { margin-block-start: 24px; margin-block-end: 0; }:where(.wp-site-blocks) > :first-child { margin-block-start: 0; }:where(.wp-site-blocks) > :last-child { margin-block-end: 0; }:root { --wp--style--block-gap: 24px; }:root :where(.is-layout-flow) > :first-child{margin-block-start: 0;}:root :where(.is-layout-flow) > :last-child{margin-block-end: 0;}:root :where(.is-layout-flow) > *{margin-block-start: 24px;margin-block-end: 0;}:root :where(.is-layout-constrained) > :first-child{margin-block-start: 0;}:root :where(.is-layout-constrained) > :last-child{margin-block-end: 0;}:root :where(.is-layout-constrained) > *{margin-block-start: 24px;margin-block-end: 0;}:root :where(.is-layout-flex){gap: 24px;}:root :where(.is-layout-grid){gap: 24px;}.is-layout-flow > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}.is-layout-flow > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}.is-layout-flow > .aligncenter{margin-left: auto !important;margin-right: auto !important;}.is-layout-constrained > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}.is-layout-constrained > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}.is-layout-constrained > .aligncenter{margin-left: auto !important;margin-right: auto !important;}.is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)){margin-left: auto !important;margin-right: auto !important;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}body{padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;}:root :where(.wp-element-button, .wp-block-button__link){background-color: #32373c;border-width: 0;color: #fff;font-family: inherit;font-size: inherit;font-style: inherit;font-weight: inherit;letter-spacing: inherit;line-height: inherit;padding-top: calc(0.667em + 2px);padding-right: calc(1.333em + 2px);padding-bottom: calc(0.667em + 2px);padding-left: calc(1.333em + 2px);text-decoration: none;text-transform: inherit;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-primary-yellow-color{color: var(--wp--preset--color--primary-yellow) !important;}.has-primary-blue-color{color: var(--wp--preset--color--primary-blue) !important;}.has-dark-color{color: var(--wp--preset--color--dark) !important;}.has-light-background-color{color: var(--wp--preset--color--light-background) !important;}.has-white-background-divider-color{color: var(--wp--preset--color--white-background-divider) !important;}.has-dark-background-divider-color{color: var(--wp--preset--color--dark-background-divider) !important;}.has-dark-secondary-color{color: var(--wp--preset--color--dark-secondary) !important;}.has-dark-border-color{color: var(--wp--preset--color--dark-border) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-primary-yellow-background-color{background-color: var(--wp--preset--color--primary-yellow) !important;}.has-primary-blue-background-color{background-color: var(--wp--preset--color--primary-blue) !important;}.has-dark-background-color{background-color: var(--wp--preset--color--dark) !important;}.has-light-background-background-color{background-color: var(--wp--preset--color--light-background) !important;}.has-white-background-divider-background-color{background-color: var(--wp--preset--color--white-background-divider) !important;}.has-dark-background-divider-background-color{background-color: var(--wp--preset--color--dark-background-divider) !important;}.has-dark-secondary-background-color{background-color: var(--wp--preset--color--dark-secondary) !important;}.has-dark-border-background-color{background-color: var(--wp--preset--color--dark-border) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-primary-yellow-border-color{border-color: var(--wp--preset--color--primary-yellow) !important;}.has-primary-blue-border-color{border-color: var(--wp--preset--color--primary-blue) !important;}.has-dark-border-color{border-color: var(--wp--preset--color--dark) !important;}.has-light-background-border-color{border-color: var(--wp--preset--color--light-background) !important;}.has-white-background-divider-border-color{border-color: var(--wp--preset--color--white-background-divider) !important;}.has-dark-background-divider-border-color{border-color: var(--wp--preset--color--dark-background-divider) !important;}.has-dark-secondary-border-color{border-color: var(--wp--preset--color--dark-secondary) !important;}.has-dark-border-border-color{border-color: var(--wp--preset--color--dark-border) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}.has-figtree-font-family{font-family: var(--wp--preset--font-family--figtree) !important;}
+/*# sourceURL=global-styles-inline-css */
+</style>
+
+<link rel='stylesheet' id='contact-form-7-css' href='https://www.dccc.edu/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=6.1.7' media='all' />
+<link rel='stylesheet' id='ep_general_styles-css' href='https://www.dccc.edu/wp-content/plugins/elasticpress/dist/css/general-styles.css?ver=66295efe92a630617c00' media='all' />
+<link rel='stylesheet' id='vanillajs-datepicker-css' href='https://www.dccc.edu/wp-content/themes/wp-dccc/css/datepicker/datepicker.min.css?ver=1.3.4' media='all' />
+<link rel='stylesheet' id='owl-css' href='https://www.dccc.edu/wp-content/themes/wp-dccc/css/owlcarousel/owl.carousel.min.css?ver=2.3.4' media='all' />
+<link rel='stylesheet' id='owl-theme-css' href='https://www.dccc.edu/wp-content/themes/wp-dccc/css/owlcarousel/owl.theme.default.min.css?ver=2.3.4' media='all' />
+<link rel='stylesheet' id='dccc-style-css' href='https://www.dccc.edu/wp-content/themes/wp-dccc/css/main.css?ver=2024.08.28' media='all' />
+<link rel='stylesheet' id='dashicons-css' href='https://www.dccc.edu/wp-includes/css/dashicons.min.css?ver=7.1.4' media='all' />
+<link rel='stylesheet' id='searchterm-highlighting-css' href='https://www.dccc.edu/wp-content/plugins/elasticpress/dist/css/highlighting-styles.css?ver=252562c4ed9241547293' media='all' />
+<script id="jquery-core-js" src="https://www.dccc.edu/wp-includes/js/jquery/jquery.min.js?ver=3.7.1"></script>
+<script id="jquery-migrate-js" src="https://www.dccc.edu/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1"></script>
+<link rel="https://api.w.org/" href="https://www.dccc.edu/wp-json/" /><link rel="alternate" title="JSON" type="application/json" href="https://www.dccc.edu/wp-json/wp/v2/pages/2529" /><link rel="prefetch" href="https://www.dccc.edu/wp-includes/js/jquery/jquery.min.js" as="script"><meta name="generator" content="speculation-rules 1.7.0">
+<style class="wp-fonts-local">
+@font-face{font-family:Figtree;font-style:normal;font-weight:300;font-display:fallback;src:url('https://www.dccc.edu/wp-content/uploads/fonts/Xmz-HUzqDCFdgfMsYiV_F7wfS-Bs_chQF5bwkEU4HTy.woff2') format('woff2');}
+@font-face{font-family:Figtree;font-style:normal;font-weight:400;font-display:fallback;src:url('https://www.dccc.edu/wp-content/uploads/fonts/Xmz-HUzqDCFdgfMsYiV_F7wfS-Bs_d_QF5bwkEU4HTy.woff2') format('woff2');}
+@font-face{font-family:Figtree;font-style:normal;font-weight:500;font-display:fallback;src:url('https://www.dccc.edu/wp-content/uploads/fonts/Xmz-HUzqDCFdgfMsYiV_F7wfS-Bs_dNQF5bwkEU4HTy.woff2') format('woff2');}
+@font-face{font-family:Figtree;font-style:normal;font-weight:600;font-display:fallback;src:url('https://www.dccc.edu/wp-content/uploads/fonts/Xmz-HUzqDCFdgfMsYiV_F7wfS-Bs_ehR15bwkEU4HTy.woff2') format('woff2');}
+@font-face{font-family:Figtree;font-style:normal;font-weight:700;font-display:fallback;src:url('https://www.dccc.edu/wp-content/uploads/fonts/Xmz-HUzqDCFdgfMsYiV_F7wfS-Bs_eYR15bwkEU4HTy.woff2') format('woff2');}
+@font-face{font-family:Figtree;font-style:normal;font-weight:800;font-display:fallback;src:url('https://www.dccc.edu/wp-content/uploads/fonts/Xmz-HUzqDCFdgfMsYiV_F7wfS-Bs_f_R15bwkEU4HTy.woff2') format('woff2');}
+@font-face{font-family:Figtree;font-style:normal;font-weight:900;font-display:fallback;src:url('https://www.dccc.edu/wp-content/uploads/fonts/Xmz-HUzqDCFdgfMsYiV_F7wfS-Bs_fWR15bwkEU4HTy.woff2') format('woff2');}
+@font-face{font-family:Figtree;font-style:italic;font-weight:300;font-display:fallback;src:url('https://www.dccc.edu/wp-content/uploads/fonts/Xm9-HUzqDCFdgfMm4GnA4aZFrUvtOK3A-gdyEA25WTybO8.woff2') format('woff2');}
+@font-face{font-family:Figtree;font-style:italic;font-weight:400;font-display:fallback;src:url('https://www.dccc.edu/wp-content/uploads/fonts/Xm9-HUzqDCFdgfMm4GnA4aZFrUvtOK3A7YdyEA25WTybO8.woff2') format('woff2');}
+@font-face{font-family:Figtree;font-style:italic;font-weight:500;font-display:fallback;src:url('https://www.dccc.edu/wp-content/uploads/fonts/Xm9-HUzqDCFdgfMm4GnA4aZFrUvtOK3A4QdyEA25WTybO8.woff2') format('woff2');}
+@font-face{font-family:Figtree;font-style:italic;font-weight:600;font-display:fallback;src:url('https://www.dccc.edu/wp-content/uploads/fonts/Xm9-HUzqDCFdgfMm4GnA4aZFrUvtOK3A2gayEA25WTybO8.woff2') format('woff2');}
+@font-face{font-family:Figtree;font-style:italic;font-weight:700;font-display:fallback;src:url('https://www.dccc.edu/wp-content/uploads/fonts/Xm9-HUzqDCFdgfMm4GnA4aZFrUvtOK3A1EayEA25WTybO8.woff2') format('woff2');}
+@font-face{font-family:Figtree;font-style:italic;font-weight:800;font-display:fallback;src:url('https://www.dccc.edu/wp-content/uploads/fonts/Xm9-HUzqDCFdgfMm4GnA4aZFrUvtOK3AzYayEA25WTybO8.woff2') format('woff2');}
+@font-face{font-family:Figtree;font-style:italic;font-weight:900;font-display:fallback;src:url('https://www.dccc.edu/wp-content/uploads/fonts/Xm9-HUzqDCFdgfMm4GnA4aZFrUvtOK3Ax8ayEA25WTybO8.woff2') format('woff2');}
+</style>
+<style id="wp-custom-css">
+*:focus {
+  /* outline: 2px solid #003E72!important;
+  box-shadow: 0 0 10px rgba(250, 202, 35, 0.3); */
+	outline: 2px solid #000000!important;
+}
+
+.slick-list {
+	padding: 2px!important;
+}
+
+.slick-slide {
+	margin-right: 5px;
+}
+
+
+.dccc-image-with-navigation-links-block-item__link:hover {
+	color: #4b5273;
+}
+
+
+.dccc-contact-us-block__form .wpcf7-not-valid-tip {
+	color: red!important;
+}
+
+.gfield_select {
+	  padding: 8px !important;
+	  line-height: 150% !important;
+}
+
+
+.gform_wrapper .gfield {
+  margin-bottom: 20px;
+}
+
+.gform_wrapper .gfield .gform-field-label {
+  font-family: 'Figtree', sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 18px !important;
+  line-height: 27px !important;
+  color: #0F1844 !important;
+  margin-bottom: 8px !important;
+  display: block !important;
+}
+
+.gform_wrapper .gfield .gform-field-label--type-inline {
+  display: inline-block !important;
+  margin-left: 8px !important;
+}
+
+.gform_wrapper .gfield .gform-field-label--type-sub {
+  font-size: 16px !important;
+  line-height: 24px !important;
+  margin-bottom: 4px !important;
+}
+
+.gform_wrapper .name_first,
+.gform_wrapper .name_last,
+.gform_wrapper .name_middle,
+.gform_wrapper .name_prefix,
+.gform_wrapper .name_suffix {
+  position: relative !important;
+  margin-bottom: 16px !important;
+}
+
+.gform_wrapper .name_first input,
+.gform_wrapper .name_last input,
+.gform_wrapper .name_middle input,
+.gform_wrapper .name_prefix input,
+.gform_wrapper .name_suffix input {
+  width: 100% !important;
+}
+
+.gform_wrapper .gform-grid-col {
+  margin-bottom: 16px !important;
+}
+
+.gform_wrapper .gform-grid-col--size-auto {
+  flex: 1 !important;
+}
+
+.gform_wrapper .ginput_container input[type="text"],
+.gform_wrapper .ginput_container input[type="email"],
+.gform_wrapper .ginput_container input[type="tel"],
+.gform_wrapper .ginput_container input[type="url"],
+.gform_wrapper .ginput_container input[type="password"],
+.gform_wrapper .ginput_container input[type="search"],
+.gform_wrapper .ginput_container input[type="number"],
+.gform_wrapper .ginput_container input[type="date"],
+.gform_wrapper .ginput_container textarea {
+  border: 1px solid #A5A5A5 !important;
+  background: #FFFFFF !important;
+  border-radius: 2px !important;
+  //padding: 12px !important;
+  width: 100% !important;
+  font-family: 'Figtree', sans-serif !important;
+}
+
+.gform_wrapper .ginput_container input[type="text"]::placeholder,
+.gform_wrapper .ginput_container input[type="email"]::placeholder,
+.gform_wrapper .ginput_container input[type="tel"]::placeholder,
+.gform_wrapper .ginput_container input[type="url"]::placeholder,
+.gform_wrapper .ginput_container input[type="password"]::placeholder,
+.gform_wrapper .ginput_container input[type="search"]::placeholder,
+.gform_wrapper .ginput_container input[type="number"]::placeholder,
+.gform_wrapper .ginput_container input[type="date"]::placeholder,
+.gform_wrapper .ginput_container select::placeholder,
+.gform_wrapper .ginput_container textarea::placeholder {
+  font-family: 'Figtree', sans-serif !important;
+  font-weight: 500 !important;
+  font-size: 18px !important;
+  line-height: 27px !important;
+  color: #4B5273 !important;
+}
+
+.gform_wrapper .ginput_container input[type="text"]:focus,
+.gform_wrapper .ginput_container input[type="email"]:focus,
+.gform_wrapper .ginput_container input[type="tel"]:focus,
+.gform_wrapper .ginput_container input[type="url"]:focus,
+.gform_wrapper .ginput_container input[type="password"]:focus,
+.gform_wrapper .ginput_container input[type="search"]:focus,
+.gform_wrapper .ginput_container input[type="number"]:focus,
+.gform_wrapper .ginput_container input[type="date"]:focus,
+.gform_wrapper .ginput_container select:focus,
+.gform_wrapper .ginput_container textarea:focus {
+  outline: none !important;
+  border-color: #0F1844 !important;
+}
+
+.gform_wrapper .ginput_container textarea {
+  width: 466px !important;
+  height: 51px !important;
+  resize: vertical !important;
+  min-height: 51px !important;
+}
+
+.gform_wrapper .gfield--type-radio .gfield_radio {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.gform_wrapper .gfield--type-radio .gfield_radio .gchoice {
+  margin-bottom: 12px;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.gform_wrapper .gfield--type-radio .gfield_radio .gchoice input[type="radio"] {
+  margin: 0 !important;
+  appearance: none !important;
+  width: 20px !important;
+  height: 20px !important;
+  border: 2px solid #A5A5A5 !important;
+  border-radius: 50% !important;
+  position: relative !important;
+}
+
+.gform_wrapper .gfield--type-radio .gfield_radio .gchoice input[type="radio"]:checked {
+  border-color: #0F1844 !important;
+}
+
+.gform_wrapper .gfield--type-radio .gfield_radio .gchoice input[type="radio"]:checked:after {
+  content: '';
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  width: 10px !important;
+  height: 10px !important;
+  background: #0F1844 !important;
+  border-radius: 50% !important;
+}
+
+.gform_wrapper .gfield--type-radio .gfield_radio .gchoice label {
+  margin-left: 8px !important;
+  cursor: pointer !important;
+}
+
+.gform_wrapper .ginput_container_consent,
+.gform_wrapper .gfield--type-checkbox {
+  display: flex;
+  align-items: flex-start !important;
+}
+
+.gform_wrapper .ginput_container_consent input[type="checkbox"],
+.gform_wrapper .gfield--type-checkbox input[type="checkbox"] {
+  appearance: none !important;
+  width: 20px !important;
+  height: 20px !important;
+  border: 2px solid #A5A5A5 !important;
+  border-radius: 2px !important;
+  margin: 0 !important;
+  //position: relative !important;
+  flex-shrink: 0 !important;
+}
+
+.gform_wrapper .ginput_container_consent input[type="checkbox"]:checked,
+.gform_wrapper .gfield--type-checkbox input[type="checkbox"]:checked {
+  border-color: #0F1844 !important;
+  //background: #0F1844 !important;
+}
+
+.gform_wrapper .ginput_container_consent input[type="checkbox"]:checked:after,
+.gform_wrapper .gfield--type-checkbox input[type="checkbox"]:checked:after {
+  content: '';
+  position: absolute;
+  top: 2px !important;
+  left: 6px !important;
+  width: 5px !important;
+  height: 10px !important;
+  border: solid #FFFFFF !important;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg) !important;
+}
+
+.gform_wrapper .ginput_container_consent label,
+.gform_wrapper .gfield--type-checkbox label {
+  margin-left: 8px;
+  cursor: pointer;
+}
+
+.ginput_container {
+	min-width: 100% !important;
+}
+.gform_wrapper .gform_footer {
+  margin-top: 24px;
+}
+
+.gform_wrapper .gform_footer .gform_button,
+.gform_wrapper .gform_footer input[type="submit"] {
+  font-family: 'Figtree', sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 18px !important;
+  line-height: 26px !important;
+  color: #0F1844 !important;
+  background: #FACA23 !important;
+  padding: 10px 20px !important;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer !important;
+  display: inline-block !important;
+  width: auto !important;
+  transition: background-color 0.3s ease !important;
+}
+
+.gform_wrapper .gform_footer .gform_button:hover,
+.gform_wrapper .gform_footer input[type="submit"]:hover {
+  background: #e1b51f !important;
+}
+
+.gform_wrapper .gform_footer .gform_button:focus,
+.gform_wrapper .gform_footer input[type="submit"]:focus {
+  outline: none !important;
+  box-shadow: 0 0 0 2px rgba(250, 202, 35, 0.5) !important;
+}
+
+.gform_wrapper .gfield_error input,
+.gform_wrapper .gfield_error select,
+.gform_wrapper .gfield_error textarea {
+  border-color: #FF4D4F !important;
+}
+
+.gform_wrapper .gfield_error .validation_message {
+  color: #FF4D4F !important;
+  font-size: 14px !important;
+  margin-top: 4px !important;
+}
+
+.gform_wrapper .gfield_required { 
+  color: #FF4D4F !important;
+  margin-left: 4px !important;
+}
+
+.gform_wrapper .ginput_complex {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 16px !important;
+}
+
+.gform_wrapper .ginput_complex > span {
+  flex: 1 !important;
+  min-width: 250px !important;
+}
+
+@media screen and (max-width: 768px) {
+  .gform_wrapper .ginput_container textarea {
+    width: 100% !important;
+  }
+  
+  .gform_wrapper .ginput_complex > span {
+    min-width: 100% !important;
+  }
+}
+.gform_title {
+	display: none !important;
+}
+.gfield_required_text {
+	font-size: 0 !important;
+}
+.gfield_required_text:before {
+		content: '*' !important;
+    font-size: 25px;
+    margin-left: -4px;
+    height: 6px;
+    display: inline-block;
+    margin-top: -10px;
+}
+
+.otgs-development-site-front-end {
+	display: none;
+}
+
+.gfield-choice-input:before {
+	color: #0F1844 !important;
+}
+</style>
+<link rel='stylesheet' id='block-acf-dccc-hero-block-css' href='https://www.dccc.edu/wp-content/themes/wp-dccc/css/blocks/dccc-hero-block.css?ver=6.8.11' media='all' />
+<style id="dccc-acfdccc-hero-block-style-inline-css">
+.dccc-hero-block{padding-top:0!important;padding-bottom:0!important;position:relative;overflow:hidden;background-repeat:no-repeat;background-position:center;background-size:cover;color:#f3f5f6}.dccc-hero-block .container{padding:0 30px!important}.dccc-hero-block.has-video-background{background-image:none!important}.dccc-hero-block.has-image-background .hero-overlay,.dccc-hero-block.has-video-background .hero-overlay{position:absolute;top:0;left:0;width:100vw;height:100%;background-color:#003e72;z-index:1;left:50%;transform:translateX(-50%)}.dccc-hero-block .hero-background-video{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;overflow:hidden}.dccc-hero-block .hero-background-video::before{content:"";position:absolute;top:0;left:0;width:100%;height:100%;background-color:rgba(0,62,114,.7);z-index:1}.dccc-hero-block .hero-background-video video{position:absolute;top:50%;left:50%;min-width:100%;min-height:100%;width:auto;height:auto;transform:translateX(-50%) translateY(-50%);object-fit:cover}.dccc-hero-block .container{position:relative;z-index:2}.dccc-hero-block .grid{display:flex}.dccc-hero-block .hero-content{padding-top:calc(2rem + 9vw);padding-bottom:calc(2rem + 9vw)}@media (min-width:1200px){.dccc-hero-block .hero-content{padding-top:8.75rem}}@media (min-width:1200px){.dccc-hero-block .hero-content{padding-bottom:8.75rem}}.dccc-hero-block .hero-content__align-left .hero-content-inner{align-items:flex-start}.dccc-hero-block .hero-content__align-middle .hero-content-inner{align-items:center}.dccc-hero-block .hero-content__align-right .hero-content-inner{align-items:flex-end}.dccc-hero-block .hero-content-inner{display:flex;flex-direction:column;width:100%}.dccc-hero-block .hero-content__align-left .hero-title{text-align:left}.dccc-hero-block .hero-content__align-middle .hero-title{text-align:center}.dccc-hero-block .hero-content__align-right .hero-title{text-align:right}.dccc-hero-block .hero-title{width:100%;font-weight:800;margin-bottom:0;font-size:calc(1.5rem + 3vw);line-height:calc(1.6875rem + 5.25vw)}@media (min-width:1200px){.dccc-hero-block .hero-title{font-size:3.75rem}}@media (min-width:1200px){.dccc-hero-block .hero-title{line-height:5.625rem}}.dccc-hero-block .hero-text{margin-top:16px;font-style:normal;font-weight:500;line-height:28px;max-width:750px;max-height:112px;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;text-overflow:ellipsis;font-size:1.125rem}.hero-content__align-left .dccc-hero-block .hero-text{text-align:left;margin-left:0;margin-right:auto}.hero-content__align-middle .dccc-hero-block .hero-text{text-align:center;margin-left:auto;margin-right:auto}.hero-content__align-right .dccc-hero-block .hero-text{text-align:right;margin-left:auto;margin-right:0}.dccc-hero-block .button-list{display:flex;flex-direction:row;flex-wrap:nowrap;justify-content:flex-start;align-content:stretch;width:100%;margin-top:30px}.dccc-hero-block .button-list .dccc-button{margin-right:1.25rem}.dccc-hero-block .button-list .dccc-button:last-child{margin-right:0}.dccc-hero-block .button-list.button-list__align-left{justify-content:flex-start}.dccc-hero-block .button-list.button-list__align-left .dccc-button{margin-right:1.25rem}.dccc-hero-block .button-list.button-list__align-left .dccc-button:last-child{margin-right:0}.dccc-hero-block .button-list.button-list__align-middle{justify-content:center}.dccc-hero-block .button-list.button-list__align-middle .dccc-button:first-child{margin-left:0}.dccc-hero-block .button-list.button-list__align-middle .dccc-button:last-child{margin-right:0}.dccc-hero-block .button-list.button-list__align-right{justify-content:flex-end}.dccc-hero-block .button-list.button-list__align-right .dccc-button{margin-left:1.25rem;margin-right:0}.dccc-hero-block .button-list.button-list__align-right .dccc-button:first-child{margin-left:0}.dccc-hero-block .hero-image{display:flex;align-items:center;overflow:hidden;padding:0;margin:0;position:relative}.dccc-hero-block .hero-image.col-sm-6{width:calc(50% + 15px)}.dccc-hero-block .hero-image.col-sm-6:first-child{margin-left:-15px}.dccc-hero-block .hero-image.col-sm-6:last-child{margin-right:-15px;right:-15px}.dccc-hero-block .hero-image img{display:block;height:100%;min-width:100%;width:auto;margin:0;object-position:center;max-height:570px}.dccc-hero-block.dccc-hero-block--white .hero-text,.dccc-hero-block.dccc-hero-block--white .hero-title{color:#0f1844}.dccc-hero-block.dccc-hero-block--blue{background-color:#003e72;color:#fff}.dccc-hero-block.dccc-hero-block--light{background-color:#f3f5f6;color:#0f1844}@media (max-width:767px){.dccc-hero-block .hero-image{margin-top:0!important}.dccc-hero-block .hero-image.col-sm-6{width:100%;margin:0 -15px}.dccc-hero-block .container{padding:0 15px!important}.dccc-hero-block .hero-content{padding:30px}.dccc-hero-block .hero-text{max-height:none;-webkit-line-clamp:none}.dccc-hero-block .hero-content-inner{align-items:center!important}.dccc-hero-block .hero-text,.dccc-hero-block .hero-title{text-align:center!important}.dccc-hero-block .button-list{justify-content:center!important}}
+/*# sourceURL=https://www.dccc.edu/wp-content/themes/wp-dccc/css/blocks/dccc-hero-block.css */
+</style>
+<link rel='stylesheet' id='block-acf-dccc-left-menu-block-css' href='https://www.dccc.edu/wp-content/themes/wp-dccc/css/blocks/dccc-left-menu-block.css?ver=6.8.11' media='all' />
+<style id="dccc-acfdccc-left-menu-block-style-inline-css">
+@media (max-width:1024px){.dccc-page-template-with-left-right-sidebar .sidebar_left{margin:0;padding:0;background:unset;margin-top:24px}}.dccc-left-menu-block ul>li{list-style:none}.dccc-left-menu-block .icon-more{width:30px;height:20px;display:block;background-image:url(/wp-content/themes/wp-dccc/img/icons/icon-left-menu-open.svg);background-position:center;background-size:14px;background-repeat:no-repeat}@media (min-width:768px){.dccc-left-menu-block .icon-more{background-size:17px}}@media (min-width:1025px){.dccc-left-menu-block .icon-more{cursor:pointer;transition:opacity .2s ease}.dccc-left-menu-block .icon-more:hover{opacity:.7}}.dccc-left-menu-block .left-menu-list .menu-item{padding:10px;display:flex;align-items:center;justify-content:space-between;font-weight:500;line-height:150%;color:#0f1844;text-decoration:none;font-size:14px}@media screen and (min-width:768px){.dccc-left-menu-block .left-menu-list .menu-item{font-size:16px}}@media screen and (min-width:1440px){.dccc-left-menu-block .left-menu-list .menu-item{font-size:16px}}@media screen and (min-width:1920px){.dccc-left-menu-block .left-menu-list .menu-item{font-size:18px}}.dccc-left-menu-block .left-menu-list .menu-item.main-item{padding:6px 10px;font-weight:700;margin-bottom:4px;font-size:16px}@media screen and (min-width:768px){.dccc-left-menu-block .left-menu-list .menu-item.main-item{font-size:18px}}@media screen and (min-width:1440px){.dccc-left-menu-block .left-menu-list .menu-item.main-item{font-size:20px}}@media screen and (min-width:1920px){.dccc-left-menu-block .left-menu-list .menu-item.main-item{font-size:24px}}.dccc-left-menu-block .left-menu-list .menu-item.act:not(.main-item){font-weight:600;background-color:#faca23}.dccc-left-menu-block .left-menu-list .menu-item.open .icon-more{background-image:url(/wp-content/themes/wp-dccc/img/icons/icon-left-menu-close.svg)}.dccc-left-menu-block .left-menu-list .menu-wrapper{border-radius:2px;background-color:#fff;box-shadow:0 2px 5px 2px rgba(0,0,0,.1294117647);max-height:340px;overflow-y:auto;padding-top:8px;padding-bottom:8px}.dccc-left-menu-block .left-menu-list .menu-wrapper:not(.act){display:none}.dccc-left-menu-block .left-menu-list .menu-wrapper::-webkit-scrollbar{width:8px;background-color:none}.dccc-left-menu-block .left-menu-list .menu-wrapper::-webkit-scrollbar-track{border-radius:20px;background-color:#f3f5f6}.dccc-left-menu-block .left-menu-list .menu-wrapper::-webkit-scrollbar-thumb{border-radius:20px;background-color:#4b5273}.dccc-left-menu-block .left-menu-list .menu-item--mob{padding:12px;display:flex;align-items:center;justify-content:space-between;background-color:#faca23;font-size:14px;font-weight:600;line-height:150%}.dccc-left-menu-block .left-menu-list .menu-item--mob:focus,.dccc-left-menu-block .left-menu-list .menu-item--mob:focus-visible{outline:3px solid #003e72!important;outline-offset:-3px}.dccc-left-menu-block .left-menu-list .menu-item--mob .icon-more{background-size:20px}.dccc-left-menu-block .left-menu-list .menu-item--mob.open{margin-bottom:8px}.dccc-left-menu-block .left-menu-list .menu-item--mob.open .icon-more{background-image:url(/wp-content/themes/wp-dccc/img/icons/icon-left-menu-close.svg)}.dccc-left-menu-block .left-menu-list .has-submenu ul{padding:0 10px}.dccc-left-menu-block .left-menu-list .has-submenu ul:not(.act){display:none}@media (min-width:1025px){.dccc-left-menu-block .left-menu-list .menu-item{padding:8px;margin-top:8px}.dccc-left-menu-block .left-menu-list .menu-item.main-item{margin:0;padding:8px}.dccc-left-menu-block .left-menu-list .menu-item:hover{font-weight:600;background-color:#faca23}.dccc-left-menu-block .left-menu-list .has-submenu ul{padding:0 12px}.dccc-left-menu-block .left-menu-list .menu-wrapper{background:0 0;box-shadow:none;border-radius:0;max-height:unset;overflow-y:unset;padding-top:0;padding-bottom:0}.dccc-left-menu-block .left-menu-list .menu-wrapper:not(.act){display:block}.dccc-left-menu-block .left-menu-list .menu-item--mob{display:none}}
+/*# sourceURL=https://www.dccc.edu/wp-content/themes/wp-dccc/css/blocks/dccc-left-menu-block.css */
+</style>
+<link rel='stylesheet' id='block-acf-dccc-breadcrumb-block-css' href='https://www.dccc.edu/wp-content/themes/wp-dccc/css/blocks/dccc-breadcrumb-block.css?ver=6.8.11' media='all' />
+<style id="dccc-acfdccc-breadcrumb-block-style-inline-css">
+.dccc-breadcrumb-block{padding:12px 0}.dccc-breadcrumb-block li,.dccc-breadcrumb-block ul{margin:0;padding:0;list-style:none}.dccc-breadcrumb-block ul{display:flex;flex-flow:row nowrap;justify-content:flex-start;align-items:center}.dccc-breadcrumb-block li{display:flex;flex-flow:row nowrap;justify-content:flex-start;align-items:center}.dccc-breadcrumb-block li:after{content:"/";padding:0 8px;font-family:Figtree,sans-serif;font-style:normal;font-weight:600;font-size:18px;line-height:27px;color:#4b5273}.dccc-breadcrumb-block img,.dccc-breadcrumb-block svg{max-width:24px;width:100%;min-width:24px;height:24px;position:relative;top:-4px}.dccc-breadcrumb-block a{display:flex;flex-direction:row;align-items:flex-start;padding:8px 0;gap:10px;font-family:Figtree,sans-serif;font-style:normal;font-weight:600;font-size:18px;line-height:28px;color:#4b5273;white-space:nowrap;text-overflow:ellipsis}.dccc-breadcrumb-block li:last-child a{font-family:Figtree,sans-serif;font-style:normal;font-weight:600;font-size:18px;line-height:28px;color:#0f1844}.dccc-breadcrumb-block li:last-child:after{display:none}.dccc-breadcrumb-block .breadcrumb{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}@media (max-width:991px){.dccc-breadcrumb-block .breadcrumb{display:none}}.dccc-breadcrumb-block .breadcrumb-mobile{position:relative;display:none;flex-flow:row nowrap;justify-content:flex-start;align-items:center}@media (max-width:991px){.dccc-breadcrumb-block .breadcrumb-mobile{display:flex}}.dccc-breadcrumb-block .breadcrumb-mobile:before{content:"";width:17px;height:22px;margin:0 5px 0 0;display:flex;flex-flow:row nowrap;justify-content:center;align-items:center;background-image:url(/wp-content/themes/wp-dccc/css/blocks/../../img/icons/icon-accordion-arrow.svg);background-position:center;background-repeat:no-repeat;background-size:17px;transform:rotate(-90deg);transition:all .3s ease-in-out}
+/*# sourceURL=https://www.dccc.edu/wp-content/themes/wp-dccc/css/blocks/dccc-breadcrumb-block.css */
+</style>
+<link rel='stylesheet' id='block-acf-dccc-photo-button-directory-css' href='https://www.dccc.edu/wp-content/themes/wp-dccc/css/blocks/dccc-photo-button-directory.css?ver=6.8.11' media='all' />
+<style id="dccc-acfdccc-photo-button-directory-style-inline-css">
+.dccc-photo-button-directory{background-color:#fff}.dccc-photo-button-directory--title{margin-bottom:45px;font-family:Figtree,sans-serif;font-style:normal;font-weight:800;color:#0f1844}.dccc-photo-button-directory--list{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;justify-content:flex-start}@media (max-width:768px){.dccc-photo-button-directory--list{grid-template-columns:repeat(2,1fr)}}@media (max-width:450px){.dccc-photo-button-directory--list{grid-template-columns:repeat(1,1fr)}}.dccc-photo-button-directory-item{box-sizing:border-box;display:flex;flex-direction:column;align-items:flex-start;padding:24px;gap:12px;background-color:#f3f5f6;border:1px solid #e7e8ec;border-radius:2px}.dccc-photo-button-directory-item--img{display:block;max-width:100%;width:100%;height:280px;border-radius:2px}.dccc-photo-button-directory-item--img img{max-width:100%;width:100%;height:100%;margin-bottom:0;object-fit:cover;object-position:center}.dccc-photo-button-directory-item--title{font-family:Figtree,sans-serif;font-style:normal;font-weight:600;font-size:24px;line-height:36px;color:#0f1844}.dccc-photo-button-directory-item--content{font-family:Figtree,sans-serif;font-style:normal;font-weight:500;font-size:18px;line-height:28px;color:#0f1844}.dccc-photo-button-directory-item .dccc-button{max-width:100%;width:100%;margin:auto 0 0}.dccc-photo-button-directory--gray{background-color:#f3f5f6}.dccc-photo-button-directory--gray .dccc-photo-button-directory-item{background:#fff;border:1px solid #e7e8ec}.dccc-photo-button-directory--small .dccc-photo-button-directory-item--img{display:none}
+/*# sourceURL=https://www.dccc.edu/wp-content/themes/wp-dccc/css/blocks/dccc-photo-button-directory.css */
+</style>
+<style id="core-block-supports-inline-css">
+.wp-elements-1 a:where(:not(.wp-element-button)){color:var(--wp--preset--color--dark);}.wp-elements-2 a:where(:not(.wp-element-button)){color:var(--wp--preset--color--dark);}.wp-container-core-columns-is-layout-7387b849{flex-wrap:nowrap;}
+/*# sourceURL=core-block-supports-inline-css */
+</style>
+
+</head>
+
+<body class="wp-singular page-template-default page page-id-2529 page-parent wp-custom-logo wp-embed-responsive wp-theme-wp-dccc campus-life-and-athletics" itemscope itemtype="https://schema.org/WebPage">
+   <!-- Google Tag Manager (noscript) -->
+ <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WHBSTZ4"
+  height="0" width="0" title="Google Tag Manager" aria-hidden="true" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->  <script type="text/javascript" src="https://dccc-wp.atlassian.net/s/d41d8cd98f00b204e9800998ecf8427e-T/xghl7j/b/9/c95134bc67d3a521bb3f4331beb9b804/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector.js?locale=en-US&collectorId=e1aed750"></script>    <a class="skip-link screen-reader-text" href="#main-content">Skip to main content</a>
+  <!-- wrapper -->
+  <div class="wrapper">
+
+    <header id="masthead" class="site-header has-logo" role="banner">
+
+    <div class="emergency-notifications"></div>
+<div class="emergency-notification-modal-wrapper"></div>
+
+    <div class="container">
+        <div class="grid">
+          <div class="header__logo col-7 col-xs-7 col-sm-7 col-md-7 col-lg-7">
+            <a href="https://www.dccc.edu/" class="logo-home" rel="home">
+                                            <img
+              src="https://www.dccc.edu/wp-content/themes/wp-dccc/img/logo.svg"
+              alt="Delaware County Community College"
+              class="header-logo-img"
+              />
+              <img
+              src="https://www.dccc.edu/wp-content/themes/wp-dccc/img/logo.svg"
+              alt="Delaware County Community College"
+              class="header-logo-img--small"
+              />
+            </a>
+          </div><!-- /.header__logo -->
+
+          <div class="header__nav-top col-3 col-lg-3">
+            <ul id="menu-top-header-navigation" class="menu"><li id="menu-item-119" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-119"><a href="https://www.dccc.edu/apply-now/">Apply</a></li>
+<li id="menu-item-120" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-120"><a href="https://www.dccc.edu/support-college/">Give</a></li>
+<li id="menu-item-15769" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-15769"><a href="https://www.dccc.edu/dccc-engage-app-instructions/">Engage</a></li>
+<li id="menu-item-11059" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-11059"><a target="_blank" href="https://delagate.dccc.edu/">delaGATE</a></li>
+</ul>          </div>
+          <!-- /.header__nav-top -->
+
+          <div class="header__search col-2 col-lg-2">
+            <span class="sticky-search-background"></span>
+            <form class="search-form" method="get" action="https://www.dccc.edu/" role="search">
+              <input class="search-field"
+                type="search"
+                name="s"
+                autocomplete="off"
+                aria-label="Site Search"
+                placeholder="Search"
+                value="" >
+                <span class="close-btn" aria-label="Close search">&times;</span>
+            </form>
+          </div>
+          <!-- /.header__search -->
+
+          <nav class="header__nav col-5 col-xs-12 col-sm-12 col-md-12 col-lg-12" role="navigation">
+            <ul id="menu-header-navigation" class="menu"><li id="menu-item-15235" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-15235"><a href="https://www.dccc.edu/admissions-and-financial-aid">Admissions &#038; Financial Aid</a>
+<ul class="sub-menu">
+	<li id="menu-item-15291" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15291"><a href="https://www.dccc.edu/admissions-and-financial-aid/admissions/"><img src="https://www.dccc.edu/wp-content/uploads/2026/06/library_books.png" alt="Admissions ">Admissions </a></li>
+	<li id="menu-item-15239" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15239"><a href="https://www.dccc.edu/admissions-and-financial-aid/financial-aid/"><img src="https://www.dccc.edu/wp-content/uploads/2026/06/account_balance_wallet.png" alt="Financial Aid">Financial Aid</a></li>
+</ul>
+</li>
+<li id="menu-item-15240" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-15240"><a href="https://www.dccc.edu/academics/">Academics</a>
+<ul class="sub-menu">
+	<li id="menu-item-15254" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15254"><a href="https://www.dccc.edu/academics/academic-divisions/"><img src="https://www.dccc.edu/wp-content/uploads/2026/06/dashboard.png" alt="Academic Divisions">Academic Divisions</a></li>
+	<li id="menu-item-15255" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15255"><a href="https://www.dccc.edu/academics/academic-support-resources/"><img src="https://www.dccc.edu/wp-content/uploads/2026/06/support.png" alt="Academic Support Resources">Academic Support Resources</a></li>
+	<li id="menu-item-20490" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-20490"><a href="https://catalog.dccc.edu/"><div class="dashicons dashicons-book"></div>College Catalog</a></li>
+	<li id="menu-item-15890" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15890"><a href="https://www.dccc.edu/academics/academic-support-resources/learning-commons/"><img src="https://www.dccc.edu/wp-content/uploads/2025/02/forum.png" alt="Learning Commons">Learning Commons</a></li>
+	<li id="menu-item-15252" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-15252"><a href="https://catalog.dccc.edu/calendar/"><img src="https://www.dccc.edu/wp-content/uploads/2025/01/bookmark.png" alt="Academic Calendar">Academic Calendar</a></li>
+	<li id="menu-item-15253" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15253"><a href="https://www.dccc.edu/academics/program-search/"><img src="https://www.dccc.edu/wp-content/uploads/2026/06/account_box-1.png" alt="Program Search">Program Search</a></li>
+	<li id="menu-item-15250" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15250"><a href="https://www.dccc.edu/academics/course-information/"><img src="https://www.dccc.edu/wp-content/uploads/2026/06/book.png" alt="Course Search / Information">Course Search / Information</a></li>
+	<li id="menu-item-15247" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15247"><a href="https://www.dccc.edu/academics/online-learning/"><img src="https://www.dccc.edu/wp-content/uploads/2026/06/cast_for_education.png" alt="Online Learning">Online Learning</a></li>
+	<li id="menu-item-15256" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15256"><a href="https://www.dccc.edu/admissions-and-financial-aid/admissions/english-language-learners/"><img src="https://www.dccc.edu/wp-content/uploads/2026/06/language.png" alt="English Language Learners">English Language Learners</a></li>
+	<li id="menu-item-15251" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15251"><a href="https://www.dccc.edu/academics/municipal-police-academy/"><img src="https://www.dccc.edu/wp-content/uploads/2026/06/local_police.png" alt="Municipal Police Academy">Municipal Police Academy</a></li>
+	<li id="menu-item-15246" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15246"><a href="https://www.dccc.edu/academics/beyond-associate-degrees/"><img src="https://www.dccc.edu/wp-content/uploads/2026/06/school.png" alt="Beyond Associate Degrees">Beyond Associate Degrees</a></li>
+	<li id="menu-item-15249" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15249"><a href="https://www.dccc.edu/academics/cooperative-education-internships/"><img src="https://www.dccc.edu/wp-content/uploads/2026/06/work.png" alt="Cooperative Education &amp; Internships">Cooperative Education &amp; Internships</a></li>
+	<li id="menu-item-18695" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-18695"><a href="https://www.dccc.edu/academics/presidents-deans-lists/"><div class="dashicons dashicons-star-filled"></div>President’s &#038; Dean’s Lists</a></li>
+</ul>
+</li>
+<li id="menu-item-15283" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-15283"><a href="https://www.dccc.edu/student-support-services/">Student Support Services</a>
+<ul class="sub-menu">
+	<li id="menu-item-15272" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15272"><a href="https://www.dccc.edu/student-support-services/academic-advising/"><img src="https://www.dccc.edu/wp-content/uploads/2026/06/contact_mail-1.png" alt="Academic Advising">Academic Advising</a></li>
+	<li id="menu-item-15273" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15273"><a href="https://www.dccc.edu/student-support-services/act-101-program/"><img src="https://www.dccc.edu/wp-content/uploads/2026/06/money-1.png" alt="Act 101 Program">Act 101 Program</a></li>
+	<li id="menu-item-23136" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-23136"><a href="https://www.dccc.edu/student-support-services/assessment-services/"><div class="dashicons dashicons-businessman"></div>Assessment Services</a></li>
+	<li id="menu-item-21922" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-21922"><a href="https://www.dccc.edu/student-support-services/counseling-services/"><div class="dashicons dashicons-businesswoman"></div>Counseling Services</a></li>
+	<li id="menu-item-15276" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15276"><a href="https://www.dccc.edu/student-support-services/care-team/"><img src="https://www.dccc.edu/wp-content/uploads/2026/07/maps_ugc.png" alt="CARE Team">CARE Team</a></li>
+	<li id="menu-item-21776" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-21776"><a href="https://www.dccc.edu/student-support-services/disability-services/"><div class="dashicons dashicons-image-filter"></div>Disability Services</a></li>
+	<li id="menu-item-15278" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15278"><a href="https://www.dccc.edu/student-support-services/keys/"><img src="https://www.dccc.edu/wp-content/uploads/2026/06/vpn_key.png" alt="KEYS">KEYS</a></li>
+	<li id="menu-item-15280" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15280"><a href="https://www.dccc.edu/student-support-services/parenting-students-resources/"><img src="https://www.dccc.edu/wp-content/uploads/2025/01/bookmarks.png" alt="Parenting Students Resources">Parenting Students Resources</a></li>
+	<li id="menu-item-15281" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15281"><a href="https://www.dccc.edu/admissions-and-financial-aid/admissions/english-language-learners/"><img src="https://www.dccc.edu/wp-content/uploads/2026/06/language.png" alt="English Language Learners">English Language Learners</a></li>
+	<li id="menu-item-15285" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15285"><a href="https://www.dccc.edu/student-support-services/transfer/"><img src="https://www.dccc.edu/wp-content/uploads/2026/06/transfer_within_a_station.png" alt="Transfer and Articulation">Transfer and Articulation</a></li>
+	<li id="menu-item-15287" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15287"><a href="https://www.dccc.edu/student-support-services/student-employment-services/"><img src="https://www.dccc.edu/wp-content/uploads/2026/06/work_outline.png" alt="Student Employment Services">Student Employment Services</a></li>
+	<li id="menu-item-15288" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15288"><a href="https://www.dccc.edu/student-support-services/student-records/"><img src="https://www.dccc.edu/wp-content/uploads/2026/06/notes.png" alt="Student Records">Student Records</a></li>
+	<li id="menu-item-15282" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15282"><a href="https://www.dccc.edu/student-support-services/student-resource-center/"><img src="https://www.dccc.edu/wp-content/uploads/2026/06/card_membership.png" alt="Student Resource Center">Student Resource Center</a></li>
+	<li id="menu-item-22731" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-22731"><a href="https://www.dccc.edu/veteran-and-military-services/"><div class="dashicons dashicons-money"></div>Veteran and Military Services</a></li>
+</ul>
+</li>
+<li id="menu-item-15266" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-2529 current_page_item menu-item-has-children menu-item-15266"><a href="https://www.dccc.edu/campus-life-and-athletics/" aria-current="page">Campus Life and Athletics</a>
+<ul class="sub-menu">
+	<li id="menu-item-15290" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-15290"><a href="https://www.dcccphantoms.com/"><img src="https://www.dccc.edu/wp-content/uploads/2025/01/directions_walk.png" alt="Athletics">Athletics</a></li>
+	<li id="menu-item-15271" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15271"><a href="https://www.dccc.edu/campus-life-and-athletics/campus-life/"><img src="https://www.dccc.edu/wp-content/uploads/2026/06/sports_handball.png" alt="Campus Life">Campus Life</a></li>
+	<li id="menu-item-17652" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-17652"><a href="https://www.dccc.edu/campus-life-and-athletics/commencement/"><img src="https://www.dccc.edu/wp-content/uploads/2026/06/school-1.png" alt="Commencement">Commencement</a></li>
+	<li id="menu-item-26255" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-26255"><a href="https://www.dccc.edu/about-dccc/diversity/"><div class="dashicons dashicons-editor-justify"></div>Equity</a></li>
+	<li id="menu-item-15270" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15270"><a href="https://www.dccc.edu/campus-life-and-athletics/new-student-orientation/"><img src="https://www.dccc.edu/wp-content/uploads/2026/06/show_chart.png" alt="New Student Orientation (NSO)">New Student Orientation (NSO)</a></li>
+</ul>
+</li>
+<li id="menu-item-15258" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-15258"><a href="https://www.dccc.edu/continuing-education/">Continuing Education</a>
+<ul class="sub-menu">
+	<li id="menu-item-15261" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15261"><a href="https://www.dccc.edu/continuing-education/online-classes/"><img src="https://www.dccc.edu/wp-content/uploads/2026/06/personal_video.png" alt="Online Classes">Online Classes</a></li>
+	<li id="menu-item-15262" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15262"><a href="https://www.dccc.edu/continuing-education/professional-development/"><img src="https://www.dccc.edu/wp-content/uploads/2026/07/card_travel.png" alt="Professional Development">Professional Development</a></li>
+	<li id="menu-item-15259" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15259"><a href="https://www.dccc.edu/continuing-education/community-education/"><img src="https://www.dccc.edu/wp-content/uploads/2026/06/groups.png" alt="Community Education">Community Education</a></li>
+	<li id="menu-item-15260" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15260"><a href="https://www.dccc.edu/continuing-education/training-certification/"><img src="https://www.dccc.edu/wp-content/uploads/2026/07/done_outline.png" alt="Training &amp; Certification">Training &amp; Certification</a></li>
+	<li id="menu-item-22702" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-22702"><a href="https://www.dccc.edu/course/army-credentialing-program/"><div class="dashicons dashicons-airplane"></div>Army Credentialing Program</a></li>
+	<li id="menu-item-20827" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20827"><a href="https://www.dccc.edu/corporate-college/"><div class="dashicons dashicons-chart-bar"></div>Corporate College – Business Training</a></li>
+</ul>
+</li>
+<li id="menu-item-15237" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-15237"><a href="#">Information For</a>
+<ul class="sub-menu">
+	<li id="menu-item-15243" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15243"><a href="https://www.dccc.edu/alumni-giving/"><img src="https://www.dccc.edu/wp-content/uploads/2024/12/supervised_user_circle.png" alt="Alumni and Giving">Alumni and Giving</a></li>
+	<li id="menu-item-30596" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-30596"><a href="https://www.dccc.edu/student-support-services/new-students/"><img src="https://www.dccc.edu/wp-content/uploads/2024/12/fiber_new.png" alt="New Students">New Students</a></li>
+	<li id="menu-item-15241" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15241"><a href="https://www.dccc.edu/prospective-students/"><img src="https://www.dccc.edu/wp-content/uploads/2024/12/person_pin.png" alt="Prospective Students">Prospective Students</a></li>
+	<li id="menu-item-15245" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15245"><a href="https://www.dccc.edu/parents-family/"><img src="https://www.dccc.edu/wp-content/uploads/2024/12/escalator_warning.png" alt="Parents &amp; Family">Parents &amp; Family</a></li>
+	<li id="menu-item-15244" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15244"><a href="https://www.dccc.edu/veteran-and-military-services/"><img src="https://www.dccc.edu/wp-content/uploads/2024/12/military_tech.png" alt="Veteran and Military Services">Veteran and Military Services</a></li>
+</ul>
+</li>
+</ul>            <button
+              class="header__nav-mobile"
+              type="button"
+              aria-controls="header-mobile-navigation"
+              aria-expanded="false"
+              aria-label="Open main navigation"
+            ></button>
+          </nav><!-- /.header__nav -->
+
+          <div id="header-mobile-navigation" class="header__mobile_nav col-12">
+          <form class="search-form" method="get" action="https://www.dccc.edu/" role="search">
+              <input class="search-field"
+                type="search"
+                name="s"
+                autocomplete="off"
+                aria-label="Mobile Site Search"
+                placeholder="Search"
+                value="" >
+            </form>
+            <ul id="menu-header-navigation-1" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-15235"><a href="https://www.dccc.edu/admissions-and-financial-aid">Admissions &#038; Financial Aid</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15291"><a href="https://www.dccc.edu/admissions-and-financial-aid/admissions/"><img src="https://www.dccc.edu/wp-content/uploads/2026/06/library_books.png" alt="Admissions ">Admissions </a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15239"><a href="https://www.dccc.edu/admissions-and-financial-aid/financial-aid/"><img src="https://www.dccc.edu/wp-content/uploads/2026/06/account_balance_wallet.png" alt="Financial Aid">Financial Aid</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-15240"><a href="https://www.dccc.edu/academics/">Academics</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15254"><a href="https://www.dccc.edu/academics/academic-divisions/"><img src="https://www.dccc.edu/wp-content/uploads/2026/06/dashboard.png" alt="Academic Divisions">Academic Divisions</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15255"><a href="https://www.dccc.edu/academics/academic-support-resources/"><img src="https://www.dccc.edu/wp-content/uploads/2026/06/support.png" alt="Academic Support Resources">Academic Support Resources</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-20490"><a href="https://catalog.dccc.edu/"><div class="dashicons dashicons-book"></div>College Catalog</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15890"><a href="https://www.dccc.edu/academics/academic-support-resources/learning-commons/"><img src="https://www.dccc.edu/wp-content/uploads/2025/02/forum.png" alt="Learning Commons">Learning Commons</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-15252"><a href="https://catalog.dccc.edu/calendar/"><img src="https://www.dccc.edu/wp-content/uploads/2025/01/bookmark.png" alt="Academic Calendar">Academic Calendar</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15253"><a href="https://www.dccc.edu/academics/program-search/"><img src="https://www.dccc.edu/wp-content/uploads/2026/06/account_box-1.png" alt="Program Search">Program Search</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15250"><a href="https://www.dccc.edu/academics/course-information/"><img src="https://www.dccc.edu/wp-content/uploads/2026/06/book.png" alt="Course Search / Information">Course Search / Information</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15247"><a href="https://www.dccc.edu/academics/online-learning/"><img src="https://www.dccc.edu/wp-content/uploads/2026/06/cast_for_education.png" alt="Online Learning">Online Learning</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15256"><a href="https://www.dccc.edu/admissions-and-financial-aid/admissions/english-language-learners/"><img src="https://www.dccc.edu/wp-content/uploads/2026/06/language.png" alt="English Language Learners">English Language Learners</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15251"><a href="https://www.dccc.edu/academics/municipal-police-academy/"><img src="https://www.dccc.edu/wp-content/uploads/2026/06/local_police.png" alt="Municipal Police Academy">Municipal Police Academy</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15246"><a href="https://www.dccc.edu/academics/beyond-associate-degrees/"><img src="https://www.dccc.edu/wp-content/uploads/2026/06/school.png" alt="Beyond Associate Degrees">Beyond Associate Degrees</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15249"><a href="https://www.dccc.edu/academics/cooperative-education-internships/"><img src="https://www.dccc.edu/wp-content/uploads/2026/06/work.png" alt="Cooperative Education &amp; Internships">Cooperative Education &amp; Internships</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-18695"><a href="https://www.dccc.edu/academics/presidents-deans-lists/"><div class="dashicons dashicons-star-filled"></div>President’s &#038; Dean’s Lists</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-15283"><a href="https://www.dccc.edu/student-support-services/">Student Support Services</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15272"><a href="https://www.dccc.edu/student-support-services/academic-advising/"><img src="https://www.dccc.edu/wp-content/uploads/2026/06/contact_mail-1.png" alt="Academic Advising">Academic Advising</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15273"><a href="https://www.dccc.edu/student-support-services/act-101-program/"><img src="https://www.dccc.edu/wp-content/uploads/2026/06/money-1.png" alt="Act 101 Program">Act 101 Program</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-23136"><a href="https://www.dccc.edu/student-support-services/assessment-services/"><div class="dashicons dashicons-businessman"></div>Assessment Services</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-21922"><a href="https://www.dccc.edu/student-support-services/counseling-services/"><div class="dashicons dashicons-businesswoman"></div>Counseling Services</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15276"><a href="https://www.dccc.edu/student-support-services/care-team/"><img src="https://www.dccc.edu/wp-content/uploads/2026/07/maps_ugc.png" alt="CARE Team">CARE Team</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-21776"><a href="https://www.dccc.edu/student-support-services/disability-services/"><div class="dashicons dashicons-image-filter"></div>Disability Services</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15278"><a href="https://www.dccc.edu/student-support-services/keys/"><img src="https://www.dccc.edu/wp-content/uploads/2026/06/vpn_key.png" alt="KEYS">KEYS</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15280"><a href="https://www.dccc.edu/student-support-services/parenting-students-resources/"><img src="https://www.dccc.edu/wp-content/uploads/2025/01/bookmarks.png" alt="Parenting Students Resources">Parenting Students Resources</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15281"><a href="https://www.dccc.edu/admissions-and-financial-aid/admissions/english-language-learners/"><img src="https://www.dccc.edu/wp-content/uploads/2026/06/language.png" alt="English Language Learners">English Language Learners</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15285"><a href="https://www.dccc.edu/student-support-services/transfer/"><img src="https://www.dccc.edu/wp-content/uploads/2026/06/transfer_within_a_station.png" alt="Transfer and Articulation">Transfer and Articulation</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15287"><a href="https://www.dccc.edu/student-support-services/student-employment-services/"><img src="https://www.dccc.edu/wp-content/uploads/2026/06/work_outline.png" alt="Student Employment Services">Student Employment Services</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15288"><a href="https://www.dccc.edu/student-support-services/student-records/"><img src="https://www.dccc.edu/wp-content/uploads/2026/06/notes.png" alt="Student Records">Student Records</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15282"><a href="https://www.dccc.edu/student-support-services/student-resource-center/"><img src="https://www.dccc.edu/wp-content/uploads/2026/06/card_membership.png" alt="Student Resource Center">Student Resource Center</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-22731"><a href="https://www.dccc.edu/veteran-and-military-services/"><div class="dashicons dashicons-money"></div>Veteran and Military Services</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-2529 current_page_item menu-item-has-children menu-item-15266"><a href="https://www.dccc.edu/campus-life-and-athletics/" aria-current="page">Campus Life and Athletics</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-15290"><a href="https://www.dcccphantoms.com/"><img src="https://www.dccc.edu/wp-content/uploads/2025/01/directions_walk.png" alt="Athletics">Athletics</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15271"><a href="https://www.dccc.edu/campus-life-and-athletics/campus-life/"><img src="https://www.dccc.edu/wp-content/uploads/2026/06/sports_handball.png" alt="Campus Life">Campus Life</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-17652"><a href="https://www.dccc.edu/campus-life-and-athletics/commencement/"><img src="https://www.dccc.edu/wp-content/uploads/2026/06/school-1.png" alt="Commencement">Commencement</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-26255"><a href="https://www.dccc.edu/about-dccc/diversity/"><div class="dashicons dashicons-editor-justify"></div>Equity</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15270"><a href="https://www.dccc.edu/campus-life-and-athletics/new-student-orientation/"><img src="https://www.dccc.edu/wp-content/uploads/2026/06/show_chart.png" alt="New Student Orientation (NSO)">New Student Orientation (NSO)</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-15258"><a href="https://www.dccc.edu/continuing-education/">Continuing Education</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15261"><a href="https://www.dccc.edu/continuing-education/online-classes/"><img src="https://www.dccc.edu/wp-content/uploads/2026/06/personal_video.png" alt="Online Classes">Online Classes</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15262"><a href="https://www.dccc.edu/continuing-education/professional-development/"><img src="https://www.dccc.edu/wp-content/uploads/2026/07/card_travel.png" alt="Professional Development">Professional Development</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15259"><a href="https://www.dccc.edu/continuing-education/community-education/"><img src="https://www.dccc.edu/wp-content/uploads/2026/06/groups.png" alt="Community Education">Community Education</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15260"><a href="https://www.dccc.edu/continuing-education/training-certification/"><img src="https://www.dccc.edu/wp-content/uploads/2026/07/done_outline.png" alt="Training &amp; Certification">Training &amp; Certification</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-22702"><a href="https://www.dccc.edu/course/army-credentialing-program/"><div class="dashicons dashicons-airplane"></div>Army Credentialing Program</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20827"><a href="https://www.dccc.edu/corporate-college/"><div class="dashicons dashicons-chart-bar"></div>Corporate College – Business Training</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-15237"><a href="#">Information For</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15243"><a href="https://www.dccc.edu/alumni-giving/"><img src="https://www.dccc.edu/wp-content/uploads/2024/12/supervised_user_circle.png" alt="Alumni and Giving">Alumni and Giving</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-30596"><a href="https://www.dccc.edu/student-support-services/new-students/"><img src="https://www.dccc.edu/wp-content/uploads/2024/12/fiber_new.png" alt="New Students">New Students</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15241"><a href="https://www.dccc.edu/prospective-students/"><img src="https://www.dccc.edu/wp-content/uploads/2024/12/person_pin.png" alt="Prospective Students">Prospective Students</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15245"><a href="https://www.dccc.edu/parents-family/"><img src="https://www.dccc.edu/wp-content/uploads/2024/12/escalator_warning.png" alt="Parents &amp; Family">Parents &amp; Family</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15244"><a href="https://www.dccc.edu/veteran-and-military-services/"><img src="https://www.dccc.edu/wp-content/uploads/2024/12/military_tech.png" alt="Veteran and Military Services">Veteran and Military Services</a></li>
+</ul>
+</li>
+</ul>            <ul id="menu-top-header-navigation-1" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-119"><a href="https://www.dccc.edu/apply-now/">Apply</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-120"><a href="https://www.dccc.edu/support-college/">Give</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-15769"><a href="https://www.dccc.edu/dccc-engage-app-instructions/">Engage</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-11059"><a target="_blank" href="https://delagate.dccc.edu/">delaGATE</a></li>
+</ul>          </div>
+          <!-- /.header__mobile_nav -->
+
+        </div><!-- /.grid -->
+      </div>
+      <!-- /.container -->
+
+    </header><!-- /header -->
+    <main>
+
+
+  
+<section id="hero-block-block_b72321315b634a82517c3f6d9badd8fe" class="dccc-hero-block has-image-background" style="background-image: url(https://www.dccc.edu/wp-content/uploads/2025/01/5N5A9998_lo.jpg); background-size: cover; background-color: #494a44;">
+      <div class="hero-overlay" style="opacity: 0.9;"></div>
+  
+  
+  <div class="container">
+    <div class="grid">
+              <div class="hero-content hero-content__align-middle col-12">
+          <div class="hero-content-inner">
+            <h1 class="hero-title">Campus Life and Athletics</h1>
+                          <p class="hero-text">At Delaware County Community College, we believe that your college experience is about much more than your time in the classroom or library.</p>
+                                  </div>
+        </div>
+          </div>
+  </div>
+</section>
+
+
+
+<div class="wp-block-group dccc-page-template-with-left-right-sidebar is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-columns container is-layout-flex wp-container-core-columns-is-layout-7387b849 wp-block-columns-is-layout-flex dccc-wp-block-columns-wrapper">
+<div class="wp-block-column sidebar sidebar_left is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:33.33%">
+<div id="dccc-left-menu-block-block_0a8db3e7b780190fdc7793baf2269a6c" class="dccc-left-menu-block" style="">
+
+  <div id="breadcrumbs-mob-container"></div>
+
+  <div class="left-menu-list">
+    <button type="button" class="menu-item--mob" aria-expanded="false" aria-label="Toggle section menu">
+      <span class="left-menu-active"></span>
+      <span class="lm-btn-more icon-more" aria-hidden="true"></span>
+    </button>
+
+    <ul class="menu-wrapper"><li class=""><a class="menu-item main-item act" href="https://www.dccc.edu/campus-life-and-athletics/"><span>Campus Life and Athletics</span></a><ul class=""><li class=""><a class="menu-item " href="https://www.dcccphantoms.com/"><span>Athletics</span></a></li><li class=""><a class="menu-item " href="https://www.dccc.edu/campus-life-and-athletics/campus-life/"><span>Campus Life</span></a></li><li class=""><a class="menu-item " href="https://www.dccc.edu/campus-life-and-athletics/commencement/"><span>Commencement</span></a></li><li class=""><a class="menu-item " href="https://www.dccc.edu/campus-life-and-athletics/new-student-orientation/"><span>New Student Orientation (NSO)</span></a></li></ul></li></ul>  </div>
+</div>
+</div>
+
+
+
+<div class="wp-block-column content-main is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:66.66%">
+<div id="dccc-breadcrumb-block-block_feecd0a0c9448bcb66af6b957e974b4f"
+     class="dccc-breadcrumb-block" style="">
+  <div class="container">
+          <nav class="breadcrumb" aria-label="breadcrumb">
+        <ul itemscope itemtype="https://schema.org/BreadcrumbList">
+                      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+              <a href="https://www.dccc.edu" aria-label="Home" itemprop="item">
+                <span itemprop="name">
+                                      <svg focusable="false" width="20" height="17" viewBox="0 0 20 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <title>Home</title>
+                <path d="M10 2.69L15 7.19V15H13V9H7V15H5V7.19L10 2.69ZM10 0L0 9H3V17H9V11H11V17H17V9H20L10 0Z" fill="#4B5273"/>
+                </svg> Back to Home                                  </span>
+              </a>
+              <meta itemprop="position" content="1"/>
+            </li>
+                  </ul>
+      </nav>
+      <div class="breadcrumb-mobile">
+                  <a href="https://www.dccc.edu">
+            <svg focusable="false" width="20" height="17" viewBox="0 0 20 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <title>Home</title>
+                <path d="M10 2.69L15 7.19V15H13V9H7V15H5V7.19L10 2.69ZM10 0L0 9H3V17H9V11H11V17H17V9H20L10 0Z" fill="#4B5273"/>
+                </svg> Back to Home          </a>
+              </div>
+      </div>
+</div>
+
+
+<section class="dccc-paragraph"> <div class="container">
+<p class="has-dark-color has-text-color has-link-color wp-elements-1 wp-block-paragraph" style="margin-top:0;margin-bottom:0;padding-right:0"><br>DCCC offers a wide range of student activities, including:</p>
+</div></section>
+
+<section class="dccc-list"> <div class="container">
+<ul class="wp-block-list has-dark-color has-text-color has-link-color wp-elements-2">
+<li>Athletic and recreational activities, from intercollegiate teams to intramural sports</li>
+
+
+
+<li>Student clubs and organizations, including a student newspaper (<em>The Communitarian</em>), literary magazine (<em>Pegasus</em>) and podcasts through the New Media Lab. </li>
+
+
+
+<li>A Marple Campus&nbsp;Art Gallery</li>
+
+
+
+<li>Student Theatre</li>
+
+
+
+<li>Student Government Association</li>
+
+
+
+<li>Events and cultural programs</li>
+</ul>
+</div></section>
+
+<section class="dccc-paragraph"> <div class="container">
+<p class="wp-block-paragraph">Take a moment to learn more and get involved! Extracurricular activities improve your learning experience, help you develop skills that will serve you in both school and work, and create a sense of community with other students.</p>
+</div></section>
+
+<section class="dccc-paragraph"> <div class="container">
+<p class="wp-block-paragraph">The Office of Campus Engagement&nbsp;coordinates most student activities. To join a club or organization, or form a new one, contact us via&nbsp;email&nbsp;or stop by.</p>
+</div></section>
+
+    <style>
+      #dccc-photo-button-directory-block_4469a94c9ca5686c7d96d3e9c63f7b91      .dccc-photo-button-directory--list {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      @media (max-width: 1440px) {
+      #dccc-photo-button-directory-block_4469a94c9ca5686c7d96d3e9c63f7b91        .dccc-photo-button-directory--list {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 1024px) {
+      #dccc-photo-button-directory-block_4469a94c9ca5686c7d96d3e9c63f7b91        .dccc-photo-button-directory--list {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      @media (max-width: 768px) {
+      #dccc-photo-button-directory-block_4469a94c9ca5686c7d96d3e9c63f7b91        .dccc-photo-button-directory--list {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 449px) {
+      #dccc-photo-button-directory-block_4469a94c9ca5686c7d96d3e9c63f7b91        .dccc-photo-button-directory--list {
+          grid-template-columns: repeat(1, 1fr);
+        }
+      }
+    </style>
+    
+<section id="dccc-photo-button-directory-block_4469a94c9ca5686c7d96d3e9c63f7b91" class="dccc-photo-button-directory dccc-photo-button-directory--"
+         style="margin-top: 60px; margin-bottom: 60px; ">
+  <div class="container">
+        <div class="dccc-photo-button-directory--list">
+                        <div
+            class="dccc-photo-button-directory--item dccc-photo-button-directory-item">
+                                          <a href="https://www.dcccphantoms.com/"
+                   target="_blank" rel="noopener noreferrer"                   class="dccc-photo-button-directory-item--img">
+                  <img decoding="async" src="https://www.dccc.edu/wp-content/uploads/2025/01/athletics_lo.jpg"
+                       alt="College soccer player kicking the ball mid-game" />
+                </a>
+                          
+                                          <a href="https://www.dcccphantoms.com/"
+                   target="_blank" rel="noopener noreferrer">
+                  <h4 class="dccc-photo-button-directory-item--title">Athletics</h4>
+                </a>
+                          
+                          <div
+                class="dccc-photo-button-directory-item--content">We offer a wide range of intercollegiate sports, recreational activities, and fitness opportunities for students.</div>
+            
+            <a href="https://www.dcccphantoms.com/" target="_blank" rel="noopener noreferrer"               class="dccc-button dccc-button-secondary_color_blue">
+              Visit the DCCC Phantoms Athletics website              <svg width="25" height="24" viewBox="0 0 25 24" fill="none"
+                   xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_951_47214)">
+                  <path
+                    d="M7.35602 5.87082L7.18223 7.85727L15.0499 8.5527L5.72718 16.3754L7.01275 17.9075L16.3355 10.0848L15.6401 17.9525L17.6406 18.1275L18.6267 6.85687L7.35602 5.87082Z"
+                    fill="#003E72" />
+                </g>
+                <defs>
+                  <clipPath id="clip0_951_47214">
+                    <rect width="24" height="24" fill="white"
+                          transform="translate(0.5)" />
+                  </clipPath>
+                </defs>
+              </svg>
+            </a>
+
+          </div>
+          <!-- /.dccc-photo-button-directory-item--item -->
+                  <div
+            class="dccc-photo-button-directory--item dccc-photo-button-directory-item">
+                                          <a href="https://www.dccc.edu/campus-life-and-athletics/campus-life/student-clubs-and-activities/"
+                   target="_blank" rel="noopener noreferrer"                   class="dccc-photo-button-directory-item--img">
+                  <img decoding="async" src="https://www.dccc.edu/wp-content/uploads/2025/01/clubs_organizations_lo.jpg"
+                       alt="Students smiling as they visit a table during the multicultural festival" />
+                </a>
+                          
+                                          <a href="https://www.dccc.edu/campus-life-and-athletics/campus-life/student-clubs-and-activities/"
+                   target="_blank" rel="noopener noreferrer">
+                  <h4 class="dccc-photo-button-directory-item--title">Student Clubs and Activities</h4>
+                </a>
+                          
+                          <div
+                class="dccc-photo-button-directory-item--content">We offer a full range of clubs and organizations that cover our students’ many interests—both inside and outside the classroom.</div>
+            
+            <a href="https://www.dccc.edu/campus-life-and-athletics/campus-life/student-clubs-and-activities/" target="_blank" rel="noopener noreferrer"               class="dccc-button dccc-button-secondary_color_blue">
+              Learn more about Clubs and Activites              <svg width="25" height="24" viewBox="0 0 25 24" fill="none"
+                   xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_951_47214)">
+                  <path
+                    d="M7.35602 5.87082L7.18223 7.85727L15.0499 8.5527L5.72718 16.3754L7.01275 17.9075L16.3355 10.0848L15.6401 17.9525L17.6406 18.1275L18.6267 6.85687L7.35602 5.87082Z"
+                    fill="#003E72" />
+                </g>
+                <defs>
+                  <clipPath id="clip0_951_47214">
+                    <rect width="24" height="24" fill="white"
+                          transform="translate(0.5)" />
+                  </clipPath>
+                </defs>
+              </svg>
+            </a>
+
+          </div>
+          <!-- /.dccc-photo-button-directory-item--item -->
+                  <div
+            class="dccc-photo-button-directory--item dccc-photo-button-directory-item">
+                                          <a href="https://www.dccc.edu/the-arts/"
+                   target="_blank" rel="noopener noreferrer"                   class="dccc-photo-button-directory-item--img">
+                  <img decoding="async" src="https://www.dccc.edu/wp-content/uploads/2025/01/Theatre-Page-Banner-24.avif"
+                       alt="A group of actors in colorful costumes taking a bow on stage, with a blue and purple lit background, during a performance." />
+                </a>
+                          
+                                          <a href="https://www.dccc.edu/the-arts/"
+                   target="_blank" rel="noopener noreferrer">
+                  <h4 class="dccc-photo-button-directory-item--title">The Arts</h4>
+                </a>
+                          
+            
+            <a href="https://www.dccc.edu/the-arts/" target="_blank" rel="noopener noreferrer"               class="dccc-button dccc-button-secondary_color_blue">
+              Learn more about The Arts at DCCC              <svg width="25" height="24" viewBox="0 0 25 24" fill="none"
+                   xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_951_47214)">
+                  <path
+                    d="M7.35602 5.87082L7.18223 7.85727L15.0499 8.5527L5.72718 16.3754L7.01275 17.9075L16.3355 10.0848L15.6401 17.9525L17.6406 18.1275L18.6267 6.85687L7.35602 5.87082Z"
+                    fill="#003E72" />
+                </g>
+                <defs>
+                  <clipPath id="clip0_951_47214">
+                    <rect width="24" height="24" fill="white"
+                          transform="translate(0.5)" />
+                  </clipPath>
+                </defs>
+              </svg>
+            </a>
+
+          </div>
+          <!-- /.dccc-photo-button-directory-item--item -->
+                  </div>
+  </div><!-- /.container -->
+</section><!-- /.dccc-photo-button-directory dccc-photo-button-directory-- -->
+</div>
+</div>
+</div>
+
+  
+
+</main>
+<footer class="" role="contentinfo">
+  <div class="container">
+
+    <div class="footer-top">
+      <div class="footer-col footer-widget--logo">
+        <a href="https://www.dccc.edu" class="footer-logo">
+          <img
+            src="https://www.dccc.edu/wp-content/themes/wp-dccc/img/logo-white.svg"
+            alt="Empowering Minds, Transforming Lives">
+        </a>
+
+        <ul id="menu-social-menu" class="footer--nav-social"><li id="menu-item-112" class="menu-item menu-item-type-custom menu-item-object-custom custom-menu-item"><a href="https://www.facebook.com/DelawareCountyCommunityCollege"><img src="https://www.dccc.edu/wp-content/uploads/2026/06/icon-fb-1.svg" alt="Facebook"></a></li>
+<li id="menu-item-113" class="menu-item menu-item-type-custom menu-item-object-custom custom-menu-item"><a href="https://x.com/i/flow/login?redirect_after_login=%2FdelawareCCC"><img src="https://www.dccc.edu/wp-content/uploads/2026/06/icon-tw-1.svg" alt="X"></a></li>
+<li id="menu-item-114" class="menu-item menu-item-type-custom menu-item-object-custom custom-menu-item"><a href="https://www.instagram.com/delawareCCC/#"><img src="https://www.dccc.edu/wp-content/uploads/2026/06/icon-in-1.svg" alt="Instagram"></a></li>
+<li id="menu-item-115" class="menu-item menu-item-type-custom menu-item-object-custom custom-menu-item"><a href="https://www.youtube.com/user/DelawareCtyCommCol"><img src="https://www.dccc.edu/wp-content/uploads/2026/06/icon-yt-1.svg" alt="Youtube"></a></li>
+<li id="menu-item-116" class="menu-item menu-item-type-custom menu-item-object-custom custom-menu-item"><a href="https://www.linkedin.com/school/delaware-county-community-college/"><img src="https://www.dccc.edu/wp-content/uploads/2026/06/icon-ln-1.svg" alt="LinkedIn"></a></li>
+</ul>
+      </div>
+      <!-- /.footer-col footer-widget--logo col-4 -->
+      <div class="footer-col footer-widget--menu">
+                  <section id="nav_menu-6" class="footer-col footer-widget--nav footer-widget--nav-1 widget_nav_menu col-12 col-xs-12 col-sm-12 col-md-3 col-lg-3"><h2 class="w-title">Discover DCCC</h2><ul id="menu-footer-navigation-1" class="menu"><li id="menu-item-85" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-85"><a href="https://www.dccc.edu/">Home</a></li>
+<li id="menu-item-4956" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4956"><a href="https://www.dccc.edu/about-dccc/">About DCCC</a></li>
+<li id="menu-item-87" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-87"><a href="https://www.dccc.edu/news/">News</a></li>
+<li id="menu-item-31842" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-31842"><a href="https://www.dccc.edu/blog/">DCCC Ignite Blog</a></li>
+<li id="menu-item-111" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-111"><a href="https://www.dccc.edu/contact/">Contact</a></li>
+<li id="menu-item-89" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-89"><a href="https://www.dccc.edu/locations/">Locations</a></li>
+<li id="menu-item-17922" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-17922"><a href="https://www.dccc.edu/registration-tips/">Class Search</a></li>
+</ul></section>        
+                  <section id="nav_menu-4" class="footer-col footer-widget--nav footer-widget--nav-2 widget_nav_menu col-12 col-xs-12 col-sm-12 col-md-3 col-lg-3"><h2 class="w-title">Opportunities</h2><ul id="menu-footer-navigation-2" class="menu"><li id="menu-item-90" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-90"><a href="https://www.dccc.edu/employment-at-dccc/">Employment at DCCC</a></li>
+<li id="menu-item-91" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-91"><a href="https://dccc.my.salesforce-sites.com/form/TargetX_Base__InquiryForm#?formId=a2MRh000002EPDVMA4&#038;formType=general">Request Info</a></li>
+<li id="menu-item-93" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-93"><a href="https://catalog.dccc.edu/calendar/">Academic Calendar</a></li>
+<li id="menu-item-94" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-94"><a href="/wp-admin">Login</a></li>
+</ul></section>        
+                  <section id="nav_menu-5" class="footer-col footer-widget--nav footer-widget--nav-3 widget_nav_menu col-12 col-xs-12 col-sm-12 col-md-3 col-lg-3"><h2 class="w-title">Information Center</h2><ul id="menu-footer-navigation-3" class="menu"><li id="menu-item-95" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-95"><a href="https://www.dccc.edu/safety-security/">Safety and Security</a></li>
+<li id="menu-item-96" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-96"><a href="https://www.dccc.edu/notice-of-non-discrimination/">Notice of Non-Discrimination</a></li>
+<li id="menu-item-98" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-98"><a href="https://www.dccc.edu/web-accessibility/">Web Accessibility</a></li>
+<li id="menu-item-99" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-99"><a href="https://www.dccc.edu/student-consumer-information/">Consumer Info</a></li>
+<li id="menu-item-15596" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15596"><a href="https://www.dccc.edu/online-privacy-statement-of-dccc/">Online Privacy Statement of DCCC</a></li>
+</ul></section>              </div>
+    </div><!-- /.grid -->
+
+    <div class="footer-bottom">
+      <p class="copyright col-12 col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      901 S. Media Line Rd, Media, PA 19063 - Copyright 2026 All rights
+        reserved
+      </p><!-- /copyright -->
+
+      <button id="back-to-top" class="back-to-top" aria-label="Back to top"
+              aria-live="polite" aria-hidden="true">
+        <img
+          src="https://www.dccc.edu/wp-content/themes/wp-dccc/img/icons/icon-arrow-up.svg"
+          alt="Back to top">
+      </button>
+    </div><!-- /.grid -->
+
+  </div><!-- /.container -->
+</footer><!-- /footer -->
+
+</div><!-- /.wrapper -->
+
+<script type="speculationrules">
+{"prerender":[{"source":"document","where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/wp-*.php","/wp-admin/*","/wp-content/uploads/*","/wp-content/*","/wp-content/plugins/*","/wp-content/themes/wp-dccc/*","/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prerender, .no-prerender a"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"moderate"}]}
+</script>
+<script>
+// Copyright Allied Pixel 2025
+
+(() => {
+  'use strict';
+
+  let ready = false;
+
+  const poll = setInterval(() => {
+    const iframe   = document.getElementById('alliedpixel-iframe');
+    const modal    = document.getElementById('alliedpixel-modal');
+    const overlay  = document.getElementById('alliedpixel-overlay');
+    const button   = document.getElementById('alliedpixel-vertical-button');
+    const closeBtn = document.getElementById('alliedpixel-modal-close');
+
+    if (!iframe || !modal || !overlay) return;
+    if (ready) return;
+    ready = true;
+    clearInterval(poll);
+
+    // Pass parent URL to iframe
+    const url = new URL(iframe.src);
+    url.searchParams.set('parentUrl', window.location.href);
+    iframe.src = url.toString();
+
+    // Open / close helpers
+    const open = () => {
+      overlay.style.display = 'block';
+      modal.style.display   = 'block';
+    };
+
+    const close = () => {
+      overlay.style.display = 'none';
+      modal.style.display   = 'none';
+    };
+
+    // Close on overlay, close button, or clicking outside content
+    overlay.addEventListener('click', close);
+    if (closeBtn) closeBtn.addEventListener('click', close);
+    modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
+
+    // Re-open button
+    if (button) button.addEventListener('click', open);
+
+    // Listen for close from iframe
+    window.addEventListener('message', (e) => {
+      if (e.data && e.data.action === 'CLOSE_ALLIEDPIXEL_MODAL') close();
+    });
+
+    // Show on first visit (cookie check)
+    const hasCookie = document.cookie.includes('alliedpixelrapidvideo=true');
+    if (!hasCookie) {
+      open();
+      const now    = new Date();
+      const expiry = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 0);
+      document.cookie = 'alliedpixelrapidvideo=true; expires=' + expiry.toUTCString() + '; path=/';
+    }
+  }, 200);
+})();
+
+</script><script id="wp-importmap" type="importmap">
+{"imports":{"@wordpress/route":"https://www.dccc.edu/wp-includes/js/dist/script-modules/route/index.min.js?ver=ef851c0f4dda0d1dd359","@wordpress/video-conversion/worker":"https://www.dccc.edu/wp-includes/js/dist/script-modules/video-conversion/worker.min.js?ver=4d3627c45251ceb4f9a2","@wordpress/vips/worker":"https://www.dccc.edu/wp-includes/js/dist/script-modules/vips/worker.min.js?ver=7e33cd8c4128731126e8"}}
+</script>
+        <span class="pp-hide-empty-menu-config" data-hide-parent-div="0" hidden></span>
+        <script id="slick-js-js" src="https://www.dccc.edu/wp-content/themes/wp-dccc/js/slick/slick.min.js?ver=1.8.1"></script>
+<script id="wp-hooks-js" src="https://www.dccc.edu/wp-includes/js/dist/hooks.min.js?ver=f0f188028580e8dc1255"></script>
+<script id="wp-i18n-js" src="https://www.dccc.edu/wp-includes/js/dist/i18n.min.js?ver=1dfe7db3940c23ea9216"></script>
+<script id="wp-i18n-js-after">
+wp.i18n.setLocaleData( { 'text direction\u0004ltr': [ 'ltr' ] } );
+//# sourceURL=wp-i18n-js-after
+</script>
+<script id="swv-js" src="https://www.dccc.edu/wp-content/plugins/contact-form-7/includes/swv/js/index.js?ver=6.1.7"></script>
+<script id="contact-form-7-js-before">
+var wpcf7 = {
+    "api": {
+        "root": "https:\/\/www.dccc.edu\/wp-json\/",
+        "namespace": "contact-form-7\/v1"
+    }
+};
+//# sourceURL=contact-form-7-js-before
+</script>
+<script id="contact-form-7-js" src="https://www.dccc.edu/wp-content/plugins/contact-form-7/includes/js/index.js?ver=6.1.7"></script>
+<script id="dccc-components-extra-frontend-js" src="https://www.dccc.edu/wp-content/plugins/dccc-components-extra/dist/frontend.js?ver=1795012723"></script>
+<script id="back-to-top-js" src="https://www.dccc.edu/wp-content/themes/wp-dccc/js/back-to-top.js"></script>
+<script id="vanillajs-datepicker-js" src="https://www.dccc.edu/wp-content/themes/wp-dccc/js/datepicker/datepicker-full.min.js?ver=1.3.4"></script>
+<script id="owl-js" src="//cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js?ver=2.3.4"></script>
+<script id="dccc-scripts-js-extra">
+var adminAjax = {"ajaxurl":"https://www.dccc.edu/wp-admin/admin-ajax.php","templatePath":"https://www.dccc.edu/wp-content/themes/wp-dccc","posts_per_page":"10"};
+var dcccObj = {"ajaxurl":"https://www.dccc.edu/wp-admin/admin-ajax.php","nonce":"c1461ddd71"};
+//# sourceURL=dccc-scripts-js-extra
+</script>
+<script id="dccc-scripts-js" src="https://www.dccc.edu/wp-content/themes/wp-dccc/js/scripts.js?ver=2024.08.28"></script>
+<script id="dccc-header-scripts-js" src="https://www.dccc.edu/wp-content/themes/wp-dccc/js/patterns/header.js?ver=2024.08.28"></script>
+<script id="react-js" src="https://www.dccc.edu/wp-includes/js/dist/vendor/react.min.js?ver=18.3.1.1"></script>
+<script id="react-jsx-runtime-js" src="https://www.dccc.edu/wp-includes/js/dist/vendor/react-jsx-runtime.min.js?ver=18.3.1"></script>
+<script id="wp-autop-js" src="https://www.dccc.edu/wp-includes/js/dist/autop.min.js?ver=4e10a18cb6f21a043fc0"></script>
+<script id="wp-blob-js" src="https://www.dccc.edu/wp-includes/js/dist/blob.min.js?ver=c7582a735ddd2edc9731"></script>
+<script id="wp-block-serialization-default-parser-js" src="https://www.dccc.edu/wp-includes/js/dist/block-serialization-default-parser.min.js?ver=fc209395a022242d64aa"></script>
+<script id="wp-deprecated-js" src="https://www.dccc.edu/wp-includes/js/dist/deprecated.min.js?ver=fe587bac92b7d0ef760e"></script>
+<script id="wp-dom-js" src="https://www.dccc.edu/wp-includes/js/dist/dom.min.js?ver=c95f94cbbc1ac3fde84f"></script>
+<script id="react-dom-js" src="https://www.dccc.edu/wp-includes/js/dist/vendor/react-dom.min.js?ver=18.3.1.1"></script>
+<script id="wp-escape-html-js" src="https://www.dccc.edu/wp-includes/js/dist/escape-html.min.js?ver=87ebe53e97bba59805a5"></script>
+<script id="wp-element-js" src="https://www.dccc.edu/wp-includes/js/dist/element.min.js?ver=4a4370b2b349066fd440"></script>
+<script id="wp-is-shallow-equal-js" src="https://www.dccc.edu/wp-includes/js/dist/is-shallow-equal.min.js?ver=7ad271045c1fe60f5496"></script>
+<script id="wp-keycodes-js" src="https://www.dccc.edu/wp-includes/js/dist/keycodes.min.js?ver=d0b4204e4bbeb412df6e"></script>
+<script id="wp-priority-queue-js" src="https://www.dccc.edu/wp-includes/js/dist/priority-queue.min.js?ver=6c0aa59b65d55dfd509b"></script>
+<script id="wp-private-apis-js" src="https://www.dccc.edu/wp-includes/js/dist/private-apis.min.js?ver=eb85f28c4c729bb4f002"></script>
+<script id="wp-undo-manager-js" src="https://www.dccc.edu/wp-includes/js/dist/undo-manager.min.js?ver=4554fce6276d8910a4ae"></script>
+<script id="wp-compose-js" src="https://www.dccc.edu/wp-includes/js/dist/compose.min.js?ver=0e8bde2a499ea6073b42"></script>
+<script id="wp-redux-routine-js" src="https://www.dccc.edu/wp-includes/js/dist/redux-routine.min.js?ver=acca2b4857d83ad1790e"></script>
+<script id="wp-data-js" src="https://www.dccc.edu/wp-includes/js/dist/data.min.js?ver=14a216e0932d72c22976"></script>
+<script id="wp-data-js-after">
+( function() {
+	var userId = 0;
+	var storageKey = "WP_DATA_USER_" + userId;
+	wp.data
+		.use( wp.data.plugins.persistence, { storageKey: storageKey } );
+} )();
+//# sourceURL=wp-data-js-after
+</script>
+<script id="wp-html-entities-js" src="https://www.dccc.edu/wp-includes/js/dist/html-entities.min.js?ver=a976ff3a0f00bc2999a3"></script>
+<script id="wp-dom-ready-js" src="https://www.dccc.edu/wp-includes/js/dist/dom-ready.min.js?ver=3fe927cab37bf38d6a23"></script>
+<script id="wp-a11y-js" src="https://www.dccc.edu/wp-includes/js/dist/a11y.min.js?ver=31c6cec5a4ff7aff483d"></script>
+<script id="wp-rich-text-js" src="https://www.dccc.edu/wp-includes/js/dist/rich-text.min.js?ver=3e5852e42cee1c239bae"></script>
+<script id="wp-shortcode-js" src="https://www.dccc.edu/wp-includes/js/dist/shortcode.min.js?ver=f6273476300cc5fad4cd"></script>
+<script id="wp-warning-js" src="https://www.dccc.edu/wp-includes/js/dist/warning.min.js?ver=a0978839debc564a6608"></script>
+<script id="wp-blocks-js" src="https://www.dccc.edu/wp-includes/js/dist/blocks.min.js?ver=c0e57a630a0b6f6c3bb5"></script>
+<script id="wp-url-js" src="https://www.dccc.edu/wp-includes/js/dist/url.min.js?ver=7b0de086d4ae11d55704"></script>
+<script id="wp-api-fetch-js" src="https://www.dccc.edu/wp-includes/js/dist/api-fetch.min.js?ver=6f2a4faeee3c722b1e57"></script>
+<script id="wp-api-fetch-js-after">
+wp.apiFetch.use( wp.apiFetch.createRootURLMiddleware( "https://www.dccc.edu/wp-json/" ) );
+wp.apiFetch.nonceMiddleware = wp.apiFetch.createNonceMiddleware( "fb443d9d85" );
+wp.apiFetch.use( wp.apiFetch.nonceMiddleware );
+wp.apiFetch.use( wp.apiFetch.mediaUploadMiddleware );
+wp.apiFetch.nonceEndpoint = "https://www.dccc.edu/wp-admin/admin-ajax.php?action=rest-nonce";
+//# sourceURL=wp-api-fetch-js-after
+</script>
+<script id="moment-js" src="https://www.dccc.edu/wp-includes/js/dist/vendor/moment.min.js?ver=2.30.1"></script>
+<script id="moment-js-after">
+moment.updateLocale( 'en_US', {"months":["January","February","March","April","May","June","July","August","September","October","November","December"],"monthsShort":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"weekdaysShort":["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],"week":{"dow":1},"longDateFormat":{"LT":"g:i a","LTS":null,"L":null,"LL":"F j, Y","LLL":"F j, Y g:i a","LLLL":null}} );
+//# sourceURL=moment-js-after
+</script>
+<script id="wp-date-js" src="https://www.dccc.edu/wp-includes/js/dist/date.min.js?ver=8173fc0fc12b7bb7eaf0"></script>
+<script id="wp-date-js-after">
+wp.date.setSettings( {"l10n":{"locale":"en_US","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"monthsShort":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"weekdaysShort":["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],"meridiem":{"am":"am","pm":"pm","AM":"AM","PM":"PM"},"relative":{"future":"%s from now","past":"%s ago","s":"a second","ss":"%d seconds","m":"a minute","mm":"%d minutes","h":"an hour","hh":"%d hours","d":"a day","dd":"%d days","M":"a month","MM":"%d months","y":"a year","yy":"%d years"},"startOfWeek":1},"formats":{"time":"g:i a","date":"F j, Y","datetime":"F j, Y g:i a","datetimeAbbreviated":"M j, Y g:i a"},"timezone":{"offset":-4,"offsetFormatted":"-4","string":"","abbr":""}} );
+//# sourceURL=wp-date-js-after
+</script>
+<script id="wp-primitives-js" src="https://www.dccc.edu/wp-includes/js/dist/primitives.min.js?ver=44cc5a35c7b9fe07a838"></script>
+<script id="wp-theme-js" src="https://www.dccc.edu/wp-includes/js/dist/theme.min.js?ver=56a75cc08ae66c1fcb7a"></script>
+<script id="wp-components-js" src="https://www.dccc.edu/wp-includes/js/dist/components.min.js?ver=9b751f17060211272a5c"></script>
+<script id="wp-keyboard-shortcuts-js" src="https://www.dccc.edu/wp-includes/js/dist/keyboard-shortcuts.min.js?ver=37da95806f2339bc80d0"></script>
+<script id="wp-preferences-persistence-js" src="https://www.dccc.edu/wp-includes/js/dist/preferences-persistence.min.js?ver=a34abbdacd8f50f9acb1"></script>
+<script id="wp-preferences-js" src="https://www.dccc.edu/wp-includes/js/dist/preferences.min.js?ver=5a169e3fc0e657f74172"></script>
+<script id="wp-preferences-js-after">
+( function() {
+				var serverData = false;
+				var userId = "0";
+				var persistenceLayer = wp.preferencesPersistence.__unstableCreatePersistenceLayer( serverData, userId );
+				var preferencesStore = wp.preferences.store;
+				wp.data.dispatch( preferencesStore ).setPersistenceLayer( persistenceLayer );
+			} ) ();
+//# sourceURL=wp-preferences-js-after
+</script>
+<script id="wp-commands-js" src="https://www.dccc.edu/wp-includes/js/dist/commands.min.js?ver=1a4910212c7ed2355300"></script>
+<script id="wp-notices-js" src="https://www.dccc.edu/wp-includes/js/dist/notices.min.js?ver=c09a068fdab0eb465e14"></script>
+<script id="wp-style-engine-js" src="https://www.dccc.edu/wp-includes/js/dist/style-engine.min.js?ver=914befb08774033e6265"></script>
+<script id="wp-token-list-js" src="https://www.dccc.edu/wp-includes/js/dist/token-list.min.js?ver=e86ab419d8302d57822c"></script>
+<script id="wp-upload-media-js" src="https://www.dccc.edu/wp-includes/js/dist/upload-media.min.js?ver=a2c026d433c295fd5145"></script>
+<script id="wp-block-editor-js" src="https://www.dccc.edu/wp-includes/js/dist/block-editor.min.js?ver=37e58da384b2558bd479"></script>
+<script id="wp-core-data-js" src="https://www.dccc.edu/wp-includes/js/dist/core-data.min.js?ver=573f98dbff9f49ffeb0b"></script>
+<script id="wp-media-utils-js" src="https://www.dccc.edu/wp-includes/js/dist/media-utils.min.js?ver=07c1c94f9b21baa97a96"></script>
+<script id="wp-patterns-js" src="https://www.dccc.edu/wp-includes/js/dist/patterns.min.js?ver=be5af192f57cc14d340f"></script>
+<script id="wp-plugins-js" src="https://www.dccc.edu/wp-includes/js/dist/plugins.min.js?ver=673d1e05ca49004ab160"></script>
+<script id="wp-server-side-render-js" src="https://www.dccc.edu/wp-includes/js/dist/server-side-render.min.js?ver=83e806a0634df6b93530"></script>
+<script id="wp-viewport-js" src="https://www.dccc.edu/wp-includes/js/dist/viewport.min.js?ver=a56e3489ed4faeac7720"></script>
+<script id="wp-wordcount-js" src="https://www.dccc.edu/wp-includes/js/dist/wordcount.min.js?ver=f0b1f0e977b2ff6e0132"></script>
+<script id="wp-editor-js" src="https://www.dccc.edu/wp-includes/js/dist/editor.min.js?ver=af070cfff88093363220"></script>
+<script id="wp-editor-js-after">
+Object.assign( window.wp.editor, window.wp.oldEditor );
+//# sourceURL=wp-editor-js-after
+</script>
+<script id="dccc-map-with-campuses-block-logic-js" src="https://www.dccc.edu/wp-content/themes/wp-dccc/blocks-gutenberg/dccc-map-with-campuses/logic.js?ver=1795012726"></script>
+<script id="block-acf-dccc-hero-block-js" src="https://www.dccc.edu/wp-content/themes/wp-dccc/js/blocks/dccc-hero-block.js?ver=6.8.11"></script>
+<script id="block-acf-dccc-left-menu-block-js" src="https://www.dccc.edu/wp-content/themes/wp-dccc/js/blocks/dccc-left-menu-block.js?ver=6.8.11"></script>
+<script id="block-acf-dccc-breadcrumb-block-js" src="https://www.dccc.edu/wp-content/themes/wp-dccc/blocks/dccc-breadcrumb-block/dccc-breadcrumb-block.js?ver=6.8.11"></script>
+<script id="block-acf-dccc-photo-button-directory-js" src="https://www.dccc.edu/wp-content/themes/wp-dccc/js/blocks/dccc-photo-button-directory.js?ver=6.8.11"></script>
+<script id="presspermit-front-js" src="https://www.dccc.edu/wp-content/plugins/presspermit-pro/lib/vendor/publishpress/publishpress-permissions/common/js/frontend.js?ver=4.9.1"></script>
+
+<script>
+(function() {
+  var observer = new MutationObserver(function(mutations) {
+    var trigger = document.getElementById('atlwdg-trigger');
+    if (trigger && !trigger.hasAttribute('role')) {
+      trigger.setAttribute('role', 'region');
+      trigger.setAttribute('aria-label', 'Feedback');
+    }
+  });
+  observer.observe(document.documentElement, { childList: true, subtree: true });
+})();
+</script>
+<style>
+  #messenger-root iframe {min-height: 0 !important;}
+</style>
+<script type="text/javascript" async src="https://dccc.shell.451.io/" data-shell451></script>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"NRJS-1a844bd82fa948822a1","applicationID":"569812001","transactionName":"NlQANxBQCBZTU0IKVw8eIwAWWAkLHUBXBF0=","queueTime":0,"applicationTime":1228,"atts":"GhMDQVhKGxg=","errorBeacon":"bam.nr-data.net","agent":""}</script></body>
+</html>
+
+<!-- plugin=object-cache-pro client=phpredis metric#hits=14366 metric#misses=14 metric#hit-ratio=99.9 metric#bytes=3136084 metric#prefetches=494 metric#store-reads=31 metric#store-writes=117 metric#store-hits=507 metric#store-misses=6 metric#sql-queries=40 metric#ms-total=1224.38 metric#ms-cache=68.56 metric#ms-cache-avg=0.4664 metric#ms-cache-ratio=5.6 -->

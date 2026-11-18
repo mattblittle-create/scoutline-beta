@@ -1,0 +1,53 @@
+{
+  "slug": "patrick-and-henry-community-college",
+  "programId": "cmorj0hgb003wqtio85jnnxjz",
+  "collegeId": "cmorj0hfm003uqtiog7x8nfgh",
+  "checkedAtUtc": "2026-11-18T14:43:27.449Z",
+  "sourcePath": "../njcaa-core-review-20261118/sources/patrick-and-henry-community-college-1.source",
+  "sourceSHA256": "47d0b037a5f94a575d1594b496073786068f689403c865b5549f8e2a8616efbe",
+  "sourceUrl": "https://www.phccsports.com/sports/bsb/index",
+  "socialLeads": [],
+  "recruitingLeads": [
+    {
+      "url": "https://www.phccsports.com/information/Recruiting",
+      "label": "Recruiting",
+      "context": "",
+      "kind": "QUESTIONNAIRE"
+    }
+  ],
+  "logoLeads": [
+    {
+      "url": "https://www.phccsports.com/assets/LOGO_-7-.png",
+      "label": "Navigation undefined"
+    }
+  ],
+  "captures": [
+    {
+      "requestedUrl": "https://www.phccsports.com/information/Recruiting",
+      "kind": "QUESTIONNAIRE",
+      "status": 200,
+      "finalUrl": "https://www.phccsports.com/information/Recruiting",
+      "contentType": "text/html; charset=UTF-8",
+      "sourcePath": "sources/patrick-and-henry-community-college-0.source",
+      "sha256": "2c582ca3391dd207377631e00f24a8edfbaa35c5835de692e0e044b6bd87bbbc"
+    },
+    {
+      "requestedUrl": "https://www.phccsports.com/assets/LOGO_-7-.png",
+      "kind": "LOGO_ASSET",
+      "status": 200,
+      "finalUrl": "https://d2o2figo6ddd0g.cloudfront.net/d/p/char5da0u41pzp/LOGO_-7-.png",
+      "contentType": "image/png",
+      "sourcePath": "sources/patrick-and-henry-community-college-1.source",
+      "sha256": "68a9477e1221c324c1428fa3d4b3b130c6619c4dc03eafd7789057584511b52e",
+      "decoded": {
+        "format": "png",
+        "width": 800,
+        "height": 800
+      },
+      "assetDecoded": true
+    }
+  ],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED"
+}

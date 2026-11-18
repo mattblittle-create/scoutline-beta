@@ -1,0 +1,1 @@
+Public institutional discovery across all403 stored NJCAA programs using bundled IPEDS2024 unique exact name/alias+state matches as leads only. Run collect-institutions.cjs --preflight then noargs on success. No database access/writes/import approval. See NEXT-SESSION-NOTES.md for scope and holds.

@@ -1,0 +1,1219 @@
+<!DOCTYPE HTML><html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <title>Home</title>
+      <link rel="canonical" href="https://www.navarrocollege.edu/index.html">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+      
+<!-- this is the headcode include -->
+<link rel="icon" href="https://www.navarrocollege.edu/favicon.ico" type="image/x-icon" />
+<link rel="stylesheet" href="https://www.navarrocollege.edu/_resources/fonts/font-awesome/css/font-awesome.css">
+<link rel="stylesheet" href="https://www.navarrocollege.edu/_resources/fonts/antonio/stylesheet.css">
+<link rel="stylesheet" href="https://www.navarrocollege.edu/_resources/fonts/roboto/stylesheet.css">
+<link rel="stylesheet" href="https://www.navarrocollege.edu/_resources/lib/flexslider/flexslider.css">
+<link rel="stylesheet" href="https://www.navarrocollege.edu/_resources/lib/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="https://www.navarrocollege.edu/_resources/lib/sidr/jquery.sidr.bare.css">
+<link rel="stylesheet" href="https://www.navarrocollege.edu/_resources/css/jssocials.css">
+<link rel="stylesheet" href="https://www.navarrocollege.edu/_resources/css/jssocials-theme-classic.css">
+<script src="https://js.ipredictive.com/viant_universal_pixel.js" type="text/javascript"></script>
+<script type="text/javascript">
+    new ViantUniversalPixel(116212, 'https://ad.ipredictive.com/d/track/event',
+    {
+  "ps": "0"
+}).fire();
+</script>
+<noscript>
+    <img src="https://ad.ipredictive.com/d/track/event?upid=116212&url=[url]&cache_buster=[timestamp]&ps=1" height="1" width="1" style="display:none" />
+</noscript>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '2272687206303943');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2272687206303943&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code --><link href="https://www.navarrocollege.edu/ou-alerts/alerts-config.alerts.css?v=2.1-20260924083602" rel="stylesheet">      <link rel="stylesheet" href="/_resources/css/style.css">
+      <link rel="stylesheet" href="/_resources/css/oustyles.css">
+      		<script src="https://navarrocollege.edu/_resources/lib/jquery-3.4.1.min.js"></script> 
+      		<script src="https://navarrocollege.edu/_resources/lib/flexslider/jquery.flexslider-min.js"></script>
+      		<!-- mobile 	 -->
+      
+      		
+      <style>
+
+			#home_slider_vid {
+			width: 100%;
+			top: -300px;
+			position: relative;
+
+			}
+			@media (max-width:1195px){	
+			#home_slider_vid {
+			width: 100%;
+			top: -200px;
+			position: relative;
+
+			}
+			}
+			@media (max-width:840px){	
+			#home_slider_vid {
+			width: 100%;
+			top: -100px;
+			position: relative;
+
+			}
+			}
+			@media (max-width:740px){	
+			#home_slider_vid {
+			width: 100%;
+			top: -50px;
+			position: relative;
+
+			}
+			}
+			@media (max-width:620px){	
+			#home_slider_vid {
+			width: 100%;
+			top: -25px;
+			position: relative;
+
+			}
+			}
+			.home_slider_cover {
+			height: 25vh;
+			object-fit: cover;
+			}	
+
+			h2, h2 a, .h2, .h2 a {
+			color: #000000;
+			font-size: 30px;
+			line-height: 38px;
+			font-weight: 400;
+			text-transform: none;
+			}
+
+			p {
+			color: white;
+			font-size: 15px;
+			line-height: 22px;
+			font-style: normal;
+			font-weight: 400;
+			}
+			.flex-caption-vid.black {
+			background-color: rgba(0, 0, 0, 0.6);
+			}
+			.flexslider .slides iframe {
+			width: 100%;
+			height: 31vw !important;
+			display: block;
+			}
+
+			@media screen and (max-width: 600px) {
+			.flexslider .slides li {
+			position: relative;
+			overflow: hidden;
+			}
+
+
+			.flexslider .slides iframe {
+			width: auto;
+			height: 66vw !important;
+			position: relative;
+			left: 50%;
+			-webkit-transform: translate(-50%, 0);
+			-moz-transform: translate(-50%, 0);
+			-ms-transform: translate(-50%, 0);
+			-o-transform: translate(-50%, 0);
+			transform: translate(-50%, 0);
+			}
+			}
+
+			.flex-caption-vid {
+			width: 100%;
+			padding: .4%;
+			color: #fff;
+			text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
+			font-size: 14px;
+			line-height: 18px;
+			position: absolute;
+			left: 0;
+			right: 0;
+			bottom: 0;
+
+			box-sizing: border-box;
+			}
+
+			.flex-caption-vid.black {
+			background-color: rgba(0, 0, 0, 0.6);
+			}
+
+
+
+			.flex-caption.black{
+			background-color: rgba (0, 0, 0, 0.6);
+			display: none;
+			}
+
+			@media (max-width: 600px){
+			.flex-viewport {
+			max-height: 160px;
+			}
+			.flexslider .slides img {
+			width: 100%;
+
+			height:auto !important;
+			}
+			#home_slider_vid {
+			width: 600px;
+
+			overflow: hidden;
+			left: -70px;
+			top: -40px;
+			}
+
+			}
+			
+			.flexslider.hide-direction-nav .slides > li > a {
+			display: block;
+			aspect-ratio: 19 / 6;
+			overflow: hidden;
+			}
+
+			.flexslider.hide-direction-nav .slides > li > a > img {
+			display: block;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			}
+		</style>
+      
+      
+      	</head>
+   <body><script src="https://www.navarrocollege.edu/ou-alerts/alerts-config.alerts.js?v=2.1-20260924083602"></script>
+<script>
+	// archive alert processing
+	if (document.getElementById(ouEmergencyAlerts.archivedAlertDivId)) {
+		ouEmergencyAlerts.loadAlertFeed("processAlertFeedForArchivePage", "activeAlertFeed", "archiveActiveAlertHeading");  
+		setTimeout(function() {
+			ouEmergencyAlerts.loadAlertFeed("processAlertFeedForArchivePage", "archiveAlertFeed", "archiveAlertHeading");
+		}, 200);
+	}
+	// active alert processing
+	ouEmergencyAlerts.determineActiveAlertOutput();
+</script><script type="text/template" id="oualerts-active-announcement">
+<div id="oualerts-active-alert-display" class="oualerts-notify oualerts-notify-announcement oualerts-top oualerts-top-fixed ouAlertsFadeInDown oualerts-animated-fast" role="alert">
+	<div class="oualerts-notify-body">
+		{% if (o.showDate) { %}
+		<div class="oualerts-notify-date">{%=ouEmergencyAlerts.alertDateFormat("F d, Y h:i A",o.pubDate)%}</div>
+		{% } %}
+		<h3 class="oualerts-notify-title">
+			
+			{%=o.title%}
+		</h3>
+		{% if (o.subtitle) { %}
+		<p class="oualerts-notify-subtitle"><strong>{%=o.subtitle %}</strong></p>
+		{% } %}
+		{% if (o.description) { %}
+		<p class="oualerts-notify-msg">{%=o.description %}
+			{% } %}
+			{% if (o.guid) { %}
+			<br>
+			<a href="{%=o.guid %}" class="oualerts-notify-link">#ffffff</a>
+			{% } %}
+			{% if (o.description) { %}
+		</p>
+		{% } %}
+		<p class="oualerts-notify-footer">
+			<button class="oualerts-close-button" id="oualerts-close-button">#ffffff</button>
+		</p>
+	</div>
+</div>
+
+</script>
+<script type="text/template" id="oualerts-active-warning">
+<div id="oualerts-active-alert-display" class="oualerts-notify oualerts-notify-warning oualerts-top oualerts-top-fixed ouAlertsFadeInDown oualerts-animated-fast" role="alert">
+	<div class="oualerts-notify-body">
+		{% if (o.showDate) { %}
+		<div class="oualerts-notify-date">{%=ouEmergencyAlerts.alertDateFormat("F d, Y h:i A",o.pubDate)%}</div>
+		{% } %}
+		<h3 class="oualerts-notify-title">
+			
+						<svg class="oualerts-notify-icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 273 273"><path fill-rule="evenodd" d="M273 136.5c0 75.387-61.113 136.5-136.5 136.5C61.1131 273 0 211.887 0 136.5 0 61.1131 61.1131 0 136.5 0 211.887 0 273 61.1131 273 136.5zM123 58v105h27V58h-27zm0 157v-26.5h27V215h-27z" clip-rule="evenodd"/></svg>
+					
+			{%=o.title%}
+		</h3>
+		{% if (o.subtitle) { %}
+		<p class="oualerts-notify-subtitle"><strong>{%=o.subtitle %}</strong></p>
+		{% } %}
+		{% if (o.description) { %}
+		<p class="oualerts-notify-msg">{%=o.description %}
+			{% } %}
+			{% if (o.guid) { %}
+			<br>
+			<a href="{%=o.guid %}" class="oualerts-notify-link">Read More...</a>
+			{% } %}
+			{% if (o.description) { %}
+		</p>
+		{% } %}
+		<p class="oualerts-notify-footer">
+			<button class="oualerts-close-button" id="oualerts-close-button">Close</button>
+		</p>
+	</div>
+</div>
+
+</script>
+<script type="text/template" id="oualerts-active-emergency">
+<div id="oualerts-active-alert-display" class="oualerts-notify oualerts-notify-emergency oualerts-top oualerts-top-fixed ouAlertsFadeInDown oualerts-animated-fast" role="alert">
+	<div class="oualerts-notify-body">
+		{% if (o.showDate) { %}
+		<div class="oualerts-notify-date">{%=ouEmergencyAlerts.alertDateFormat("F d, Y h:i A",o.pubDate)%}</div>
+		{% } %}
+		<h3 class="oualerts-notify-title">
+			
+						<svg class="oualerts-notify-icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 298 273"><path fill-rule="evenodd" d="M137.626 7.553c4.947-8.9403 17.801-8.9403 22.748 0l135.948 245.652c4.795 8.665-1.471 19.295-11.374 19.295H13.0524c-9.903 0-16.1695-10.63-11.3744-19.295L137.626 7.553zM136.5 85v100h25V85h-25zm0 149.5v-24h25v24h-25z" clip-rule="evenodd"/></svg>
+					
+			{%=o.title%}
+		</h3>
+		{% if (o.subtitle) { %}
+		<p class="oualerts-notify-subtitle"><strong>{%=o.subtitle %}</strong></p>
+		{% } %}
+		{% if (o.description) { %}
+		<p class="oualerts-notify-msg">{%=o.description %}
+			{% } %}
+			{% if (o.guid) { %}
+			<br>
+			<a href="{%=o.guid %}" class="oualerts-notify-link">Read More...</a>
+			{% } %}
+			{% if (o.description) { %}
+		</p>
+		{% } %}
+		<p class="oualerts-notify-footer">
+			<button class="oualerts-close-button" id="oualerts-close-button">Close</button>
+		</p>
+	</div>
+</div>
+
+</script>
+<script type="text/template" id="oualerts-archived-template">
+{% if (o[0].htmlHeading) { %}
+<h2 class="oualerts-archive-main-heading">{%=o[0].htmlHeading %}</h2>
+{% } %}
+<ul class="oualerts-achive-list">
+	{% for (var i=0; o.length > i; i++) { %}
+	<li class="oualerts-achive-list-item oualerts-archive-type-{%=o[i].severity%}">
+		<div class="oualerts-achive-list-item-inner">
+			<h3 class="oualerts-archive-title">{%=o[i].title%}</h3>
+			<div class="oualerts-archive-date">{%=ouEmergencyAlerts.alertDateFormat("F d, Y h:i A",o[i].pubDate)%}</div>
+			{% if (o[i].subtitle) { %}
+			<p class="oualerts-archive-subtitle"><strong>{%=o[i].subtitle %}</strong></p>
+			{% } %}
+			{% if (o[i].description) { %}
+			<p class="oualerts-archive-msg">{%=o[i].description %}
+				{% } %}
+				{% if (o[i].guid) { %}
+				<a href="{%=o[i].guid %}" class="oualerts-archive-link">{%=ouEmergencyAlerts[o[i].severity + "Archive"].readMoreText%}</a>
+				{% } %}
+				{% if (o[i].description) { %}
+			</p>
+			{% } %}
+			{% if (o[i].updates) { %}
+			<h4 class="oualerts-archive-list-update-header">{%=ouEmergencyAlerts[o[i].severity + "Archive"].updateText %}</h4>
+			<ul class="oualerts-achive-list-update">
+				{% for (var k=0; o[i].updates.length > k; k++) { %}
+				<li class="oualerts-achive-list-item-update">
+					<div class="oualerts-achive-list-item-update-inner">
+						<h5 class="oualerts-archive-title-update">{%=o[i].updates[k].title%}</h5>
+						<div class="oualerts-archive-date-update">{%=ouEmergencyAlerts.alertDateFormat("F d, Y h:i A",o[i].updates[k].pubDate)%}</div>
+						{% if (o[i].updates[k].subtitle) { %}
+						<p class="oualerts-archive-subtitle-update"><strong>{%=o[i].updates[k].subtitle %}</strong></p>
+						{% } %}
+						{% if (o[i].updates[k].description) { %}
+						<p class="oualerts-archive-msg-update">{%=o[i].updates[k].description %}
+							{% } %}
+							{% if (o[i].updates[k].guid) { %}
+							<a href="{%=o[i].updates[k].guid %}" class="oualerts-archive-link-update">{%=ouEmergencyAlerts[o[i].severity + "Archive"].readMoreText%}</a>
+							{% } %}
+							{% if (o[i].updates[k].description) { %}
+						</p>
+						{% } %}
+					</div>
+				</li>
+				{% } %}
+			</ul>
+			{% } %}
+		</div>
+	</li>
+	{% } %}
+</ul>
+</script>
+<div class="back-to-top"><span class="fa fa-arrow-up"></span></div><div role="navigation" class="navarro-header sticky">
+   <div class="top-bar">
+      <div class="bar-container">
+         <div class="bar-left">
+            <ul>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/current-students.html">STUDENTS</a></li>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/parents/index.html">PARENTS</a></li>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/alumni/index.html">ALUMNI</a></li>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/dual-credit/index.html">DUAL CREDIT</a></li>
+            </ul>
+         </div>
+         <div class="bar-right">
+            <ul>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="http://mync.navarrocollege.edu/">MYNC</a></li>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://selfservice.navarrocollege.edu/">SELF-SERVICE</a></li>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="http://canvas.navarrocollege.edu/">CANVAS</a></li>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/registration-calendar.html">SCHEDULE</a></li>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/office-directory/index.html">DIRECTORY</a></li>
+               <li><a href="https://www.navarrocollege.edu/search/"><strong>s</strong><span class="fa fa-search"></span></a></li>
+            </ul>
+         </div>
+      </div>
+   </div>
+   <div class="header-navigation">
+      <div class="header-navigation-center"><a href="https://www.navarrocollege.edu/" class="home-link"><img xmlns:ouc="http://omniupdate.com/XSL/Variables" src="https://www.navarrocollege.edu/_resources/images/NCLogo_Web300.png" alt="Navarro"></a><div class="main-search">
+            <form action="https://www.navarrocollege.edu/search/"><label for="search-mobile-2" class="main-search-label"><strong>l</strong></label><input type="search" id="search-mobile-2" class="main-search-input" name="q" placeholder="Search web or people"><button type="submit" class="main-search-button"><strong>s</strong><span class="fa fa-search"></span></button></form>
+         </div>
+      </div>
+      <div class="main-nav">
+         <ul class="navaro-menu">
+            <li id="menu-1"><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/about/">About Navarro</a><div id="menu-1-dropdown" class="navaro-menu-dropdown">
+                  <div class="dropdown-col">
+                     <div class="dropdown-col-center">
+                        
+                        <p class="col-text">Learn about Navarro’s rich<br xmlns:ouc="http://omniupdate.com/XSL/Variables">history and what sets us apart</p><a class="col-button" href="https://www.navarrocollege.edu/about/index.html">Go to About ›</a></div>
+                  </div>
+                  <div class="dropdown-col">
+                     <div class="col-title">In this section</div>
+                     <ul>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/iro/quick-facts.html">Navarro at Glance</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/about/history.html">Navarro History</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/about/mission.html">Our Mission</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/about/leadership.html">Leadership &amp; Administration</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/trustees/index.html">Board of Trustees</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/boardpolicies/index.html">Board Policy and Administrative Procedures</a></li>
+                     </ul>
+                  </div>
+                  <div class="dropdown-col">
+                     <div class="col-title">Related Links</div>
+                     <ul>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/office-directory/index.html">Office and Department Directory</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/calendar.html">College Events</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/campus-tours/index.html">College Tours</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/about/campuses.html">Our Locations</a></li>
+                     </ul>
+                  </div>
+               </div>
+            </li>
+            <li id="menu-2"><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/admissions/index.html">Admission</a><div id="menu-2-dropdown" class="navaro-menu-dropdown">
+                  <div class="dropdown-col">
+                     <div class="dropdown-col-center">
+                        
+                        <p class="col-text">There's a Bulldog in all us&nbsp;<br xmlns:ouc="http://omniupdate.com/XSL/Variables">Find your purpose at NC!</p><a class="col-button" href="https://www.navarrocollege.edu/admissions/index.html">Go to Admission ›</a></div>
+                  </div>
+                  <div class="dropdown-col">
+                     <div class="col-title">In this section</div>
+                     <ul>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/admissions/index.html">Undergraduate Admissions</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/campus-tours/index.html">Visit Navarro</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/veterans/index.html">Military and Veterans</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/international/index.html">International</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/dual-credit/index.html">High School Programs</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/registrar/index.html">Registrar</a></li>
+                     </ul>
+                  </div>
+                  <div class="dropdown-col">
+                     <div class="col-title">Related links</div>
+                     <ul>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/campus-tours/index.html">College Tours</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/orientation/index.html">Student Orientations</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/transitions.html">Transitions</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/parents/index.html">Resources for Parents</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/bulldogbound.html" target="_blank" rel="noopener">Request Information</a></li>
+                     </ul>
+                  </div>
+               </div>
+            </li>
+            <li id="menu-3"><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/costs-aid/index.html">Cost and Aid</a><div id="menu-3-dropdown" class="navaro-menu-dropdown">
+                  <div class="dropdown-col">
+                     <div class="dropdown-col-center">
+                        
+                        <p class="col-text">Making your college education<br xmlns:ouc="http://omniupdate.com/XSL/Variables">more affordable and accessible</p><a class="col-button" href="https://www.navarrocollege.edu/costs-aid/index.html">Go to Cost and Aid ›</a></div>
+                  </div>
+                  <div class="dropdown-col">
+                     <div class="col-title">In this section</div>
+                     <ul>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/costs-aid/apply-for-aid.html">Applying for Financial Aid</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/costs-aid/tuition-rates.html">Tuition and Fees</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/scholarships/index.html">Scholarships</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/cashiers/payment-options.html">Payment Plan and Options</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/costs-aid/index.html">Forms and Resources</a></li>
+                     </ul>
+                  </div>
+                  <div class="dropdown-col">
+                     <div class="col-title">Related Links</div>
+                     <ul>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/finance-administration/index.html">Business Office</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/cashiers/index.html">Cashier's Office</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/perkins/index.html">CTE Success Center</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/trio/index.html">TRiO Support Services</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/costs-aid/cares-act.html">Higher Education Emergency Relief Funds (HEERF)</a></li>
+                     </ul>
+                  </div>
+               </div>
+            </li>
+            <li id="menu-4"><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/academics/index.html">Degrees and Majors</a><div id="menu-4-dropdown" class="navaro-menu-dropdown">
+                  <div class="dropdown-col">
+                     <div class="dropdown-col-center">
+                        
+                        <p class="col-text">Explore our programs to learn&nbsp;<br xmlns:ouc="http://omniupdate.com/XSL/Variables">more about career opportunities</p><a class="col-button" href="https://www.navarrocollege.edu/academics/index.html">Go to Degrees and Majors ›</a></div>
+                  </div>
+                  <div class="dropdown-col">
+                     <div class="col-title">In this section</div>
+                     <ul>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/academics/index.html">Program Finder</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/academic-advising/index.html">Academic Advising</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/registration-calendar.html">Registration</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/online-learning/index.html">Online Learning</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/ce/index.html">Continuing Education</a></li>
+                     </ul>
+                  </div>
+                  <div class="dropdown-col">
+                     <div class="col-title">Related links</div>
+                     <ul>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/registration-calendar.html">Class Schedule</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://catalog.navarrocollege.edu/">College Catalog</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://academic-calendar.navarrocollege.edu" target="_blank" rel="noopener">Academic Calendar</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/library/index.html">Libraries</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/academic-advising/transfer-opportunities.html">Transfer Opportunities</a></li>
+                     </ul>
+                  </div>
+               </div>
+            </li>
+            <li id="menu-5"><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/ce/index.html">Continuing Education</a><div id="menu-5-dropdown" class="navaro-menu-dropdown">
+                  <div class="dropdown-col">
+                     <div class="dropdown-col-center">
+                        
+                        <p class="col-text"><span xmlns:ouc="http://omniupdate.com/XSL/Variables"><span>Courses and programs to keep <br>you well informed and&nbsp;up-to-date.</span></span></p><a class="col-button" href="#">Go to Continuing Education ›</a></div>
+                  </div>
+                  <div class="dropdown-col">
+                     <div class="col-title">In this section</div>
+                     <ul>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/ce/health-programs/index.html">Allied Health and Medical</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.ed2go.com/navarrocollege/" target="_blank" rel="noopener">Professional Development</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://careertraining.ed2go.com/navarrocollege/" target="_blank" rel="noopener">Career Training Programs</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/ce/ce-online-courses.html">Online Continuing Education Courses</a></li>
+                     </ul>
+                  </div>
+                  <div class="dropdown-col">
+                     <div class="col-title">Related links</div>
+                     <ul>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/ce/protective-services/index.html">Continuing Education: Protective Services</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/adult-education/index.html">Adult Education</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/youth-programs/index.html">Youth Programs</a></li>
+                     </ul>
+                  </div>
+               </div>
+            </li>
+            <li id="menu-6"><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/student-life/index.html">Student Life</a><div id="menu-6-dropdown" class="navaro-menu-dropdown">
+                  <div class="dropdown-col">
+                     <div class="dropdown-col-center">
+                        
+                        <p class="col-text">Information about dining, activities,<br xmlns:ouc="http://omniupdate.com/XSL/Variables">support services, recreation, and more</p><a class="col-button" href="https://www.navarrocollege.edu/student-life/index.html">Go to Student Life ›</a></div>
+                  </div>
+                  <div class="dropdown-col">
+                     <div class="col-title">In this section</div>
+                     <ul>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/student-life/student-activities-calendar.html">Student Activities Calendar</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/support-services/index.html">Support Services</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/student-life/clubs-organizations.html">Clubs and Organizations</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/student-life/facilities.html">Centers and Facilities</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/residence/index.html">Housing and Residence Life</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/support-services/health-mental-wellness.html">Health and Mental Wellness</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/campus-safety/index.html">Campus Safety and Parking</a></li>
+                     </ul>
+                  </div>
+                  <div class="dropdown-col">
+                     <div class="col-title">Related links</div>
+                     <ul>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/information-technology/index.html">Information Technology</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/bulldog-life/index.html">Bulldog Life</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/news/index.html">NavarroNews</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/fine-arts/index.html">Fine Arts</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/library/index.html">Libraries</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/ptk/index.html">Phi Theta Kappa (PTK)</a></li>
+                     </ul>
+                  </div>
+               </div>
+            </li>
+            <li id="menu-7"><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://navarrobulldogs.com/">Athletics</a><div id="menu-7-dropdown" class="navaro-menu-dropdown">
+                  <div class="dropdown-col">
+                     <div class="dropdown-col-center">
+                        
+                        <p class="col-text">We know how to turn up the heat. <br>Here at NC, Bulldogs just win.</p><a class="col-button" href="https://athletics.navarrocollege.edu">Athletics.NavarroCollege.edu</a></div>
+                  </div>
+                  <div class="dropdown-col">
+                     <div class="col-title">Men's Sports</div>
+                     <ul>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://baseball.navarrocollege.edu">Baseball</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://basketball.navarrocollege.edu">Basketball</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://football.navarrocollege.edu">Football</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://esports.navarrocollege.edu">ESPORTS (Co-Ed)</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://cheer.navarrocollege.edu">Cheerleading (Co-Ed)</a></li>
+                     </ul>
+                  </div>
+                  <div class="dropdown-col">
+                     <div class="col-title">Women's Sports</div>
+                     <ul>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://soccer.navarrocollege.edu">Soccer</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://softball.navarrocollege.edu">Softball</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://volleyball.navarrocollege.edu">Volleyball</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://esports.navarrocollege.edu">ESPORTS (Co-Ed)</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://cheer.navarrocollege.edu">Cheerleading (Co-Ed)</a></li>
+                     </ul>
+                  </div>
+               </div>
+            </li>
+            <li id="menu-8"><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/quicklinks.html">Quick Links</a><div id="menu-8-dropdown" class="navaro-menu-dropdown">
+                  <div class="dropdown-col">
+                     <div class="dropdown-col-center">
+                        
+                        <p class="col-text">Collection of popular website links<br xmlns:ouc="http://omniupdate.com/XSL/Variables">for students and faculty</p><a class="col-button" href="https://www.navarrocollege.edu/quicklinks.html">More Quick Links ›</a></div>
+                  </div>
+                  <div class="dropdown-col">
+                     <div class="col-title">In this section</div>
+                     <ul>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="http://academic-calendar.navarrocollege.edu/" target="_blank" rel="noopener">Academic Calendar</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/bookstore/index.html">Bookstore</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/office-directory/index.html">Office and Department Directory</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/registration-calendar.html">Class Schedule</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/campus-safety/index.html">Department of Campus Safety</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/hr/index.html">Employment Opportunities</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/contact-center.html">Contact Center (HelpDesk)</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/handbook/index.html">Student Handbook</a></li>
+                     </ul>
+                  </div>
+                  <div class="dropdown-col">
+                     <div class="col-title">Related links</div>
+                     <ul>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/cook-education-center/index.html">Cook Education Center</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/foundation/index.html">Navarro College Foundation</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="http://www.pearcemuseum.com/" target="_blank" rel="noopener">Pearce Museum</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/planetarium/index.html">Planetarium</a></li>
+                        <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/alumni/index.html">Alumni Association</a></li>
+                     </ul>
+                  </div>
+               </div>
+            </li>
+         </ul>
+      </div>
+   </div>
+</div><div role="mobile navigation" class="mobile-header sticky">
+   <div class="top-bar">
+      <div class="top-bar-right"><span class="mobile-menu-toggle accordion-toggle" aria-label="Mobile Menu" data-opens="bottom-mobile"><span class="fa fa-bars" title="Toggle menu"></span></span>|
+         					<span class="mobile-search-toggle accordion-toggle" aria-label="Search Box" data-opens="top-mobile"><span class="fa fa-search" title="Toggle search box"></span></span></div>
+   </div>
+   <div class="mobile-top"><a href="https://www.navarrocollege.edu/" class="home-link"><img style="filter:invert(1);" src="https://www.navarrocollege.edu/_resources/images/NCLogo_Web300.png" alt="Navarro" title="Navarro College - Home"></a></div>
+   <div class="top-mobile">
+      <ul class="mobile-menu">
+         <li class="mobile-search">
+            <form action="https://www.navarrocollege.edu/search/"><label for="search-mobile" class="search-label"><strong>l</strong></label><input type="search" id="search-mobile" name="q" placeholder="Search"><button type="submit" class="search-button"><strong>s</strong><span class="fa fa-search"></span></button></form>
+         </li>
+      </ul>
+   </div>
+   <div class="bottom-mobile">
+      <div class="tools-and-resources-wrapper">
+         <h4 class="accordion-toggle" data-opens="tools-and-resources"><span class="fa fa-gears"></span>&nbsp; TOOLS &amp; RESOURCES <span class="fa fa-chevron-circle-down fa-lg open-indicator"></span></h4>
+         <div class="tools-and-resources container">
+            <div class="row">
+               <div class="col-6"><a href="http://mync.navarrocollege.edu/" title="MyNC"><img src="https://www.navarrocollege.edu/_resources/images/icons/mync.png" alt="MyNC Logo" class="img-fluid" aria-hidden="true"><span class="tool-label">MyNC</span></a></div>
+               <div class="col-6"><a href="https://selfservice.navarrocollege.edu/" title="Self-Service"><img src="https://www.navarrocollege.edu/_resources/images/icons/self-service.png" alt="Self Service Icon" class="img-fluid" aria-hidden="true"><span class="tool-label">Self-Service</span></a></div>
+               <div class="col-6"><a href="http://mail.nc.navarrocollege.edu/" title="Email"><img src="https://www.navarrocollege.edu/_resources/images/icons/email.png" alt="Email icon" class="img-fluid" aria-hidden="true"><span class="tool-label">Email</span></a></div>
+               <div class="col-6"><a href="http://canvas.navarrocollege.edu/" title="Canvas"><img src="https://www.navarrocollege.edu/_resources/images/icons/canvas.png" alt="MyNC Logo" class="img-fluid" aria-hidden="true"><span class="tool-label">Canvas</span></a></div>
+            </div>
+            <div class="row">
+               <div class="col-6"><a href="#" title="Resources"><img src="https://www.navarrocollege.edu/_resources/images/icons/resources.png" alt="Resources icon" class="img-fluid" aria-hidden="true"><span class="tool-label">Student Resources</span></a></div>
+               <div class="col-6"><a href="https://www.navarrocollege.edu/contact-center.html" title="Contact Center"><img src="https://www.navarrocollege.edu/_resources/images/icons/contact-agent.png" alt="Contact Center icon" class="img-fluid" aria-hidden="true"><span class="tool-label">Contact Center</span></a></div>
+               <div class="col-6"><a href="https://www.navarrocollege.edu/library/" title="Library"><img src="https://www.navarrocollege.edu/_resources/images/icons/library.png" alt="Library icon" class="img-fluid" aria-hidden="true"><span class="tool-label">Library</span></a></div>
+               <div class="col-6"><a href="https://www.navarrocollege.edu/office-directory/index.html" title="Staff Directory"><img src="https://www.navarrocollege.edu/_resources/images/icons/staff-directory.png" alt="Staff Directory icon" class="img-fluid" aria-hidden="true"><span class="tool-label">Staff Directory</span></a></div>
+            </div>
+         </div>
+      </div>
+      <ul>
+         <li><a href="https://www.navarrocollege.edu/about/index.html">About</a><ul class="answer">
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/iro/quick-facts.html">Navarro at Glance</a></li>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/about/history.html">Navarro History</a></li>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/about/mission.html">Our Mission</a></li>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/about/leadership.html">Leadership &amp; Administration</a></li>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/trustees/index.html">Board of Trustees</a></li>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/boardpolicies/index.html">Board Policy and Administrative Procedures</a></li>
+            </ul>
+         </li>
+         <li><a href="https://www.navarrocollege.edu/admissions/index.html">Admission</a><ul class="answer">
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/admissions/index.html">Undergraduate Admissions</a></li>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/campus-tours/index.html">Visit Navarro</a></li>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/veterans/index.html">Military and Veterans</a></li>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/international/index.html">International</a></li>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/dual-credit/index.html">High School Programs</a></li>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/registrar/index.html">Registrar</a></li>
+            </ul>
+         </li>
+         <li><a href="https://www.navarrocollege.edu/costs-aid/index.html">Cost and Aid</a><ul class="answer">
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/costs-aid/apply-for-aid.html">Applying for Financial Aid</a></li>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/costs-aid/tuition-rates.html">Tuition and Fees</a></li>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/scholarships/index.html">Scholarships</a></li>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/cashiers/payment-options.html">Payment Plan and Options</a></li>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/costs-aid/index.html">Forms and Resources</a></li>
+            </ul>
+         </li>
+         <li><a href="https://www.navarrocollege.edu/academics/index.html">Degrees and Majors</a><ul class="answer">
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/academics/index.html">Program Finder</a></li>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/academic-advising/index.html">Academic Advising</a></li>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/registration-calendar.html">Registration</a></li>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/online-learning/index.html">Online Learning</a></li>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/ce/index.html">Continuing Education</a></li>
+            </ul>
+         </li>
+         <li><a href="#">Continuing Education</a><ul class="answer">
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/ce/health-programs/index.html">Allied Health and Medical</a></li>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.ed2go.com/navarrocollege/" target="_blank" rel="noopener">Professional Development</a></li>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://careertraining.ed2go.com/navarrocollege/" target="_blank" rel="noopener">Career Training Programs</a></li>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/ce/ce-online-courses.html">Online Continuing Education Courses</a></li>
+            </ul>
+         </li>
+         <li><a href="https://www.navarrocollege.edu/student-life/index.html">Student Life</a><ul class="answer">
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/student-life/student-activities-calendar.html">Student Activities Calendar</a></li>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/support-services/index.html">Support Services</a></li>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/student-life/clubs-organizations.html">Clubs and Organizations</a></li>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/student-life/facilities.html">Centers and Facilities</a></li>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/residence/index.html">Housing and Residence Life</a></li>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/support-services/health-mental-wellness.html">Health and Mental Wellness</a></li>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/campus-safety/index.html">Campus Safety and Parking</a></li>
+            </ul>
+         </li>
+         <li><a href="https://athletics.navarrocollege.edu">Men's Sports</a><ul class="answer">
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://baseball.navarrocollege.edu">Baseball</a></li>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://basketball.navarrocollege.edu">Basketball</a></li>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://football.navarrocollege.edu">Football</a></li>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://esports.navarrocollege.edu">ESPORTS (Co-Ed)</a></li>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://cheer.navarrocollege.edu">Cheerleading (Co-Ed)</a></li>
+            </ul>
+         </li>
+         <li><a href="https://athletics.navarrocollege.edu">Women's Sports</a><ul class="answer">
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://soccer.navarrocollege.edu">Soccer</a></li>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://softball.navarrocollege.edu">Softball</a></li>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://volleyball.navarrocollege.edu">Volleyball</a></li>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://esports.navarrocollege.edu">ESPORTS (Co-Ed)</a></li>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://cheer.navarrocollege.edu">Cheerleading (Co-Ed)</a></li>
+            </ul>
+         </li>
+         <li><a href="https://www.navarrocollege.edu/quicklinks.html">More Quick Links</a><ul class="answer">
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="http://academic-calendar.navarrocollege.edu/" target="_blank" rel="noopener">Academic Calendar</a></li>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/bookstore/index.html">Bookstore</a></li>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/office-directory/index.html">Office and Department Directory</a></li>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/registration-calendar.html">Class Schedule</a></li>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/campus-safety/index.html">Department of Campus Safety</a></li>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/hr/index.html">Employment Opportunities</a></li>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/contact-center.html">Contact Center (HelpDesk)</a></li>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/handbook/index.html">Student Handbook</a></li>
+            </ul>
+         </li>
+      </ul>
+   </div>
+</div>      <div class="main-content">
+         <div class="homepage-upper">
+            <p>
+               <script>
+
+
+	$(document).ready(function() {
+		$('.flexslider').flexslider({
+			animation: "slide",
+			slideshowSpeed: 6000
+
+		});
+	});
+
+	console.log('reached here');
+</script> 
+               </p>
+            
+            <div class="flexslider hide-direction-nav">
+               <ul class="slides">
+                  <li><a href=""><img title="Too Darn Hot Jazz Concert" src="/_resources/images/homepage/too-darn-hot-jazz-concert.jpg" alt="Too Darn Hot Jazz Concert Slider" width="1900" height="600"></a><div class="flex-caption black">&nbsp;</div>
+                  </li>
+                  <li><a href=""><img title="80th Anniversary " src="/_resources/images/homepage/80th-anniversary-slider.png" alt="80th Anniversary Slider" width="1900" height="600"></a><div class="flex-caption black">&nbsp;</div>
+                  </li>
+                  <li><a href=""><img title="Festival of Trees 2026" src="/_resources/images/homepage/festival-of-trees-slider.jpg" alt="Festival of Trees 2026 Slider" width="1900" height="600"></a><div class="flex-caption black">&nbsp;</div>
+                  </li>
+                  <li><a href=""><img title="Thanksgiving Closure 2026" src="/_resources/images/homepage/thanksgiving-closure-slider-2026.jpg" alt="Thanksgiving Closure 2026 Slider" width="1900" height="600"></a><div class="flex-caption black">&nbsp;</div>
+                  </li>
+                  <li><a href=""><img title="Great Colleges 2026" src="/_resources/images/homepage/great-colleges-2026-2.jpg" alt="Great Colleges 2026 Slider" width="1900" height="600"></a><div class="flex-caption black">&nbsp;</div>
+                  </li>
+               </ul>
+            </div>
+            <div xmlns:ouc="http://omniupdate.com/XSL/Variables" class="full-banner-secondary"><span>Explore What Makes Us Navarro</span> <span>-</span> <a href="https://www.txhighereddata.org/institution-overviews/institutional-online-resumes/"> View the Institutional Resume </a></div>
+            <div class="homepage-tiles generic-block block-3-col">
+               <div class="block-container">
+                  <div class="row">
+                     <div class="single-col">
+                        <div class="col-inner"><img class="col-img" src="/_resources/images/homepage/344x385_careers.jpg" alt="Careers" width="344" height="385"><div class="col-text">
+                              <div class="h2">Explore Careers</div>
+                              
+                              <p>Explore a range of programs across the disciplines, and consider how you might combine
+                                 your interests.</p>
+                              </div><a class="col-link" title="Link to Majors and Degrees page" href="/academics/index.html"><span>Explore our majors &amp; degree plans</span></a></div>
+                     </div>
+                     <div class="single-col">
+                        <div class="col-inner"><img class="col-img" src="/_resources/images/homepage/344x385_started.jpg" alt="Get Started" width="344" height="385"><div class="col-text">
+                              <div class="h2">Get Started</div>
+                              
+                              <p>Where your journey begins.<br>Discover why Navarro is the perfect place for you!</p>
+                              </div><a class="col-link" title="Link to Admissions page" href="/admissions/index.html"><span>Apply to Navarro</span></a></div>
+                     </div>
+                     <div class="single-col">
+                        <div class="col-inner"><img class="col-img" src="/_resources/images/homepage/344x385_focus.jpg" alt="Focus" width="400" height="385"><div class="col-text">
+                              <div class="h2">Focus on the Finish</div>
+                              
+                              <p>Let us help you get to the finish line with support services and resources available
+                                 to you.</p>
+                              </div><a class="col-link" title="Link to current students page" href="/current-students.html"><span>Learn about Services &amp; Resources</span></a></div>
+                     </div>
+                     <div class="single-col">
+                        <div class="col-inner"><img class="col-img" src="/_resources/images/program-of-week/john-deere.jpg" alt="John Deere" width="344" height="385"><div class="col-text">
+                              <h4>POWER UP YOUR TECHNICAL SKILLS</h4>Wide Range of Careers &amp; Specific Fields</div><a class="col-link" title="Link to John Deere Tech Program website" href="/academics/john-deere-tech/index.html"><span>John Deere Tech Program</span></a></div>
+                     </div>
+                     <section class="explore-navarro" style="width: min-content; flex-grow: 1;">
+                        <div class="explore-center">
+                           <div class="student-stories">
+                              <div class="testimonials-slider testimonial">
+                                 <ul class="slides">
+                                    <li>
+                                       <div class="single-testimonial">
+                                          <div class="testimonial-top"><img title="Faith Boyd" src="/stories/images/feature-faith-boyd-thumbnail.png" alt="Headshot of Faith Boyd" width="505" height="481"></div>
+                                          <div class="testimonial-content">
+                                             <div class="testimonial-text">"Learning American Sign Language was a really big help in my job with the Sheriff's
+                                                Department."</div>
+                                             <div><strong>Faith Boyd</strong>, Class of 2001</div><a title="Link to Faith Boyd's Story" href="/stories/feature/faith-boyd.html">READ STORY</a></div>
+                                       </div>
+                                    </li>
+                                    <li>
+                                       <div class="single-testimonial">
+                                          <div class="testimonial-top"><img title="Timothy Williams" src="/stories/images/feature-timothy-williams-thumbnail.png" alt="Headshot of Timothy Williams" width="506" height="502"></div>
+                                          <div class="testimonial-content">
+                                             <div class="testimonial-text">"Navarro College poured into me and showed me how to pour into others."</div>
+                                             <div><strong>Timothy Williams</strong>, Class of 1976</div><a title="Link to Timothy Williams's Story" href="/stories/feature/timothy-williams.html">READ STORY</a></div>
+                                       </div>
+                                    </li>
+                                    <li>
+                                       <div class="single-testimonial">
+                                          <div class="testimonial-top"><img title="Morris Pevehouse" src="/stories/images/feature-morris-pevehouse-thumbnail.png" alt="Headshot of Morris Pevehouse" width="400" height="374"></div>
+                                          <div class="testimonial-content">
+                                             <div class="testimonial-text">"I enjoyed the camaraderie of the students."</div>
+                                             <div><strong>Morris Pevehouse</strong>, Class of 1968</div><a title="Link to website: Morris Pevehouse's story" href="/stories/feature/morris-pevehouse.html">READ STORY</a></div>
+                                       </div>
+                                    </li>
+                                    <li>
+                                       <div class="single-testimonial">
+                                          <div class="testimonial-top"><img title="Lindsey Barak" src="/stories/images/feature-lindsey-barak-thumbnail.png" alt="headshot of Lindsey Barak" width="400" height="379"></div>
+                                          <div class="testimonial-content">
+                                             <div class="testimonial-text">"The program made me a better nurse and a better person."</div>
+                                             <div><strong>Dr. Lindsey Barak</strong>, Class of 2000</div><a href="/stories/feature/lindsey-barak.html">READ STORY</a></div>
+                                       </div>
+                                    </li>
+                                    <li>
+                                       <div class="single-testimonial">
+                                          <div class="testimonial-top"><img title="Brianna Smith" src="/stories/images/feature-brianna-smith-thumbnail.jpg" alt="headshot of Brianna Smith" width="400" height="383"></div>
+                                          <div class="testimonial-content">
+                                             <div class="testimonial-text">"Throughout my journey at Navarro, I received so much support."</div>
+                                             <div><strong>Brianna Smith</strong>, Class of 2022</div><a title="Link to Brianna Smith's story" href="/stories/feature/brainna-smith.html">READ STORY</a></div>
+                                       </div>
+                                    </li>
+                                    <li>
+                                       <div class="single-testimonial">
+                                          <div class="testimonial-top"><img title="Tim Moody" src="/stories/images/feature-tim-moody-thumbnail.png" alt="Headshot of Tim Moody" width="400" height="406"></div>
+                                          <div class="testimonial-content">
+                                             <div class="testimonial-text">"We have a legacy built around Navarro College as a family."</div>
+                                             <div><strong>Tim Moody</strong>, Class of 1988</div><a title="Link to Tim Moody's story" href="/stories/feature/tim-moody.html">READ STORY</a></div>
+                                       </div>
+                                    </li>
+                                    <li>
+                                       <div class="single-testimonial">
+                                          <div class="testimonial-top"><img title="Aaron Myers" src="/stories/images/feature-aaron-myers-thumbnail.png" alt="headshot of Aaron Myers" width="400" height="407"></div>
+                                          <div class="testimonial-content">
+                                             <div class="testimonial-text">"I learned the sense of community...of pride in the journey of exploration...the meaning
+                                                of chosen family (at Navarro)."</div>
+                                             <div><strong>Aaron Myers</strong>, Class of 2005</div><a title="Link to Aaron Myers's story" href="/stories/feature/aaron-myers.html">READ STORY</a></div>
+                                       </div>
+                                    </li>
+                                    <li>
+                                       <div class="single-testimonial">
+                                          <div class="testimonial-top"><img title="Nancy Chaney" src="/stories/images/feature-nancy-chaney-thumbnail.png" alt="Headshot of Nancy Chaney" width="400" height="401"></div>
+                                          <div class="testimonial-content">
+                                             <div class="testimonial-text">"I'm blessed and priviledged to be a Bulldog."</div>
+                                             <div><strong>Nancy Chaney</strong>, Class of 2000</div><a title="Link to Nancy Chaney's story" href="/stories/feature/nancy-chaney.html">READ STORY</a></div>
+                                       </div>
+                                    </li>
+                                    <li>
+                                       <div class="single-testimonial">
+                                          <div class="testimonial-top"><img title="Brian Pillans" src="/stories/images/feature-brian-pillans-thumbnail.png" alt="Headshot of Brian Pillans" width="345" height="348"></div>
+                                          <div class="testimonial-content">
+                                             <div class="testimonial-text">"Several Navarro professors...truly helped prepare me for the difficult work in the
+                                                real world."</div>
+                                             <div><strong>Brian Pillans</strong>, Class of 2002</div><a title="Link to Brian Pillans's story" href="/stories/feature/brian-pillans.html">READ STORY</a></div>
+                                       </div>
+                                    </li>
+                                    <li>
+                                       <div class="single-testimonial">
+                                          <div class="testimonial-top"><img title="Amanda Glassburner" src="/stories/images/feature-amanda-glassburner-thumbnail.png" alt="Headshot of Amanda Glassburner" width="345" height="347"></div>
+                                          <div class="testimonial-content">
+                                             <div class="testimonial-text">"Navarro reinforced the value of community, support, and strong relationships - principles
+                                                that continue to guide me in life."</div>
+                                             <div><strong>Amanda Glassburner</strong>, Class of 2005</div><a title="Link to Amanda Glassburner's story" href="/stories/feature/amanda-glassburner.html">READ STORY</a></div>
+                                       </div>
+                                    </li>
+                                    <li>
+                                       <div class="single-testimonial">
+                                          <div class="testimonial-top"><img title="Teri Stewart" src="/stories/images/feature-teri-stewart-thumbnail.jpg" alt="Headshot of Teri Stewart" width="400" height="405"></div>
+                                          <div class="testimonial-content">
+                                             <div class="testimonial-text">"Navarro College is like an extended family and that is very special to me."</div>
+                                             <div><strong>Teri Stewart</strong></div><a title="Link to Teri Stewart's story" href="/stories/feature/teri-stewart.html">READ STORY</a></div>
+                                       </div>
+                                    </li>
+                                    <li>
+                                       <div class="single-testimonial">
+                                          <div class="testimonial-top"><img title="Devin Lennon-Davey" src="/stories/images/feature-devin-lennon-davey-thumbnail.png" alt="Headshot of Devin Lennon-Davey" width="400" height="402"></div>
+                                          <div class="testimonial-content">
+                                             <div class="testimonial-text">"Dr. Shellie O'Neal's incredible ability to teach and foster confidence in her students
+                                                is what helped me find my footing."</div>
+                                             <div><strong>Devin Lennon-Davey</strong>, Class of 2008</div><a title="Link to Devin Lennon-Davey's story" href="/stories/feature/devin-lennon-davey.html">READ STORY</a></div>
+                                       </div>
+                                    </li>
+                                    <li>
+                                       <div class="single-testimonial">
+                                          <div class="testimonial-top"><img title="Carlton McDaniel" src="/stories/images/feature-carlton-mcdaniel-thumbnail.png" alt="Headshot of Carlton McDaniel" width="400" height="403"></div>
+                                          <div class="testimonial-content">
+                                             <div class="testimonial-text">"Navarro College made all the difference in my journey."</div>
+                                             <div><strong>Carlton McDaniel</strong>, Class of 2019</div><a title="Link to Carlton McDaniel's story" href="/stories/feature/carlton-mcdaniel.html">READ STORY</a></div>
+                                       </div>
+                                    </li>
+                                    <li>
+                                       <div class="single-testimonial">
+                                          <div class="testimonial-top"><img title="Madison Thompson" src="/stories/images/feature-madison-thompson-thumbnail.png" alt="Headshot of Madison Thompson" width="400" height="403"></div>
+                                          <div class="testimonial-content">
+                                             <div class="testimonial-text">"I had the most amazing teachers and friends while going to Navarro College."</div>
+                                             <div><strong>Madison Thompson</strong>, Class of 2024</div><a title="Link to Madison Thompson's story" href="/stories/feature/madison-thompson.html" target="_blank" rel="noopener">READ STORY</a></div>
+                                       </div>
+                                    </li>
+                                    <li>
+                                       <div class="single-testimonial">
+                                          <div class="testimonial-top"><img title="Debbie Valek" src="/stories/images/feature-debbie-valek-thumbnail.png" alt="Headshot of Debbie Valek" width="400" height="409"></div>
+                                          <div class="testimonial-content">
+                                             <div class="testimonial-text">"Navarro is like a big family!"</div>
+                                             <div><strong>Debbie Valek</strong></div><a title="Link to Debbie Valek's story" href="/stories/feature/debbie-valek.html" target="_blank" rel="noopener">READ STORY</a></div>
+                                       </div>
+                                    </li>
+                                    <li>
+                                       <div class="single-testimonial">
+                                          <div class="testimonial-top"><img title="Ming Yuan Low" src="/stories/images/feature-ming-yuan-thumbnail.png" alt="Headshot of Ming Yuan Low" width="400" height="406"></div>
+                                          <div class="testimonial-content">
+                                             <div class="testimonial-text">"Transfer credits into a 4-year university for a fraction of the price"</div>
+                                             <div><strong>Ming Yuan, Low, Ph.D</strong>, Class of 2006</div><a title="Link to Ming Yuan Low's story" href="/stories/feature/ming-yuan-low.html">READ STORY</a></div>
+                                       </div>
+                                    </li>
+                                    <li>
+                                       <div class="single-testimonial">
+                                          <div class="testimonial-top"><img title="Terri Mitchell" src="/stories/images/feature-terri-mitchell-thumbnail.png" alt="Headshot of Terri Mitchell" width="400" height="404"></div>
+                                          <div class="testimonial-content">
+                                             <div class="testimonial-text">"I've had many opportunities to give back because of Navarro College."</div>
+                                             <div><strong>Terri Mitchell</strong>, Class of 2017</div><a title="Link to Terri Mitchell's story" href="/stories/feature/terri-mitchell.html">READ STORY</a></div>
+                                       </div>
+                                    </li>
+                                    <li>
+                                       <div class="single-testimonial">
+                                          <div class="testimonial-top"><img title="Russell Montfort" src="/stories/images/feature-russell-montfort-thumbnail.png" alt="Headshot of Russell Montfort" width="400" height="395"></div>
+                                          <div class="testimonial-content">
+                                             <div class="testimonial-text">"Navarro College is here to support the community around it and they back that up."</div>
+                                             <div><strong>Russell Montfort</strong>, Class of 2006</div><a title="Link to Russell Montfort's story" href="/stories/feature/russell-montfort.html">READ STORY</a></div>
+                                       </div>
+                                    </li>
+                                    <li>
+                                       <div class="single-testimonial">
+                                          <div class="testimonial-top"><img title="Kenneth Briggs" src="/stories/images/feature-ken-briggs-thumbnail.png" alt="Headshot of Kenneth Briggs" width="400" height="382"></div>
+                                          <div class="testimonial-content">
+                                             <div class="testimonial-text">"Navarro College wants to help and will open doors you may not know exist yet."</div>
+                                             <div><strong>Ken Briggs, MS, PE</strong>, Class of 2011</div><a title="Link to Kenneth Briggs's story" href="/stories/feature/kenneth-briggs.html">READ STORY</a></div>
+                                       </div>
+                                    </li>
+                                    <li>
+                                       <div class="single-testimonial">
+                                          <div class="testimonial-top"><img title="Jasmine Saunders" src="/stories/images/feature-jasmine-saunders-thumbnail.jpg" alt="Headshot of Jasmine Saunders" width="400" height="400"></div>
+                                          <div class="testimonial-content">
+                                             <div class="testimonial-text">"The business classes that I took at Navarro were amazing!"</div>
+                                             <div><strong>Jasmine Saunders</strong>, Class of 2017</div><a title="Link to Jasmine Saunders's story" href="/stories/feature/jasmine-saunders.html">READ STORY</a></div>
+                                       </div>
+                                    </li>
+                                    <li>
+                                       <div class="single-testimonial">
+                                          <div class="testimonial-top"><img title="Kyle Buckley" src="/stories/images/feature-kyle-buckley-thumbnail.jpg" alt="Headshot of Kyle Buckley" width="400" height="400"></div>
+                                          <div class="testimonial-content">
+                                             <div class="testimonial-text">"A tight-knit community filled with staff and professors to support you every step
+                                                of the way, Navarro College is the place to be."</div>
+                                             <div><strong>Kyle Buckley</strong>, Class of 2015</div><a title="Link to Kyle Buckley's story" href="/stories/feature/kyle-buckley.html">READ STORY</a></div>
+                                       </div>
+                                    </li>
+                                    <li>
+                                       <div class="single-testimonial">
+                                          <div class="testimonial-top"><img title="Jessica Sustaita-Monroe" src="/stories/images/feature-jessica-sustaita-monroe-thumbnail.png" alt="Headshot of Jessica Sustaita-Monroe" width="400" height="409"></div>
+                                          <div class="testimonial-content">
+                                             <div class="testimonial-text">"Navarro College is a great place to start - especially for first generation students."</div>
+                                             <div><strong>Jessica Sustaita-Monroe</strong>, Class of 2015</div><a title="Link to Jessica Sustaita-Monroe's story" href="/stories/feature/jessica-sustaita-monroe.html">READ STORY</a></div>
+                                       </div>
+                                    </li>
+                                    <li>
+                                       <div class="single-testimonial">
+                                          <div class="testimonial-top"><img title="Canice Eshiebor" src="/stories/images/feature-canice-eshiebor-thumbnail.png" alt="Headshot of Canice Eshiebor" width="400" height="406"></div>
+                                          <div class="testimonial-content">
+                                             <div class="testimonial-text">"Navarro provided an environment where everything was possible if you wanted it to
+                                                be."</div>
+                                             <div><strong>Canice Eshiebor, PharmD</strong>, Class of 2016</div><a title="Link to Canice Eshiebor's story" href="/stories/feature/canice-eshiebor.html">READ STORY</a></div>
+                                       </div>
+                                    </li>
+                                    <li>
+                                       <div class="single-testimonial">
+                                          <div class="testimonial-top"><img title="Samantha Teakel-Stalcup" src="/stories/images/feature-samantha-stalcup-thumbnail.png" alt="Headshot of Samantha Teakel-Stalcup" width="400" height="406"></div>
+                                          <div class="testimonial-content">
+                                             <div class="testimonial-text">"Navarro truly makes you feel at home."</div>
+                                             <div><strong>Samantha Teakell-Stalcup</strong>, Class of 2021</div><a title="Link to Samantha Teakel-Stalcup's story" href="/stories/feature/samantha-stalcup.html">READ STORY</a></div>
+                                       </div>
+                                    </li>
+                                    <li>
+                                       <div class="single-testimonial">
+                                          <div class="testimonial-top"><img title="Monique Brand" src="/stories/images/monique-brand-thumbnail.png" alt="Headshot of Monique Brand" width="400" height="402"></div>
+                                          <div class="testimonial-content">
+                                             <div class="testimonial-text">"I'm a proud Navarro College Bulldog and forever grateful for this experience."</div>
+                                             <div><strong>Monique Brand</strong>, Class of 2004</div><a title="Link to Monique Brand's story" href="/stories/feature/monique-brand.html">READ STORY</a></div>
+                                       </div>
+                                    </li>
+                                    <li>
+                                       <div class="single-testimonial">
+                                          <div class="testimonial-top"><img title="Dr. Ed Childs" src="/stories/images/feature-ed-childs-thumbnail.png" alt="Headshot of Dr. Ed Childs" width="467" height="468"></div>
+                                          <div class="testimonial-content">
+                                             <div class="testimonial-text">"As far as I'm concerned, Navarro College is the gateway to the world."</div>
+                                             <div><strong>Ed W. Childs, MD, FACS</strong>, Class of 1983</div><a title="Link to Dr. Ed Childs's story" href="/stories/feature/edward-childs.html">READ STORY</a></div>
+                                       </div>
+                                    </li>
+                                 </ul>
+                              </div>
+                           </div>
+                        </div>
+                     </section>
+                  </div>
+               </div>
+            </div>
+            
+            <p>&nbsp;</p>
+            
+            <div class="full-banner">See what's happening today</div>
+            
+            <section class="homepage-events">
+               <div class="inner-wrapper">
+                  <div class="upcoming-events">
+                     <div class="box-header">
+                        						Upcoming events  
+                        					</div>
+                     <div class="event-listing">
+                        <div class="event-listing-wrapper">		<div class="single-event">			<div class="event-date">				<span class="event-month">Nov</span>				<div class="event-day">18</div>			</div>			<div class="event-details">				<div class="event-single">					<h3><a href="https://www.navarrocollege.edu/calendar.html#event-details/786fcdd2-7bb2-4f82-9a81-88478b5a48e8">Soccer Nationals</a></h3>					<p><strong> - </strong></p>					<p><span class="event-category-title" style="color: green"></span> - <em></em></p>				</div>				<div class="event-single">					<h3><a href="https://www.navarrocollege.edu/calendar.html#event-details/9ab7239f-b1d6-423e-a1f8-da283627efa0">Volleyball National Junior College Athletic Association (NJCAA) National Tournament</a></h3>					<p><strong> - </strong></p>					<p><span class="event-category-title" style="color: green">Philip Nickel</span> - <em></em></p>				</div>				<div class="event-single">					<h3><a href="https://www.navarrocollege.edu/calendar.html#event-details/278f3cc5-df48-48ca-a869-ec38922cab07">Harvest Gathering-Midlothian</a></h3>					<p><strong>11:00 AM - 11:00 AM</strong></p>					<p><span class="event-category-title" style="color: green">Kim Marcheselli</span> - <em>Midlothian Building 1 Lobby</em></p>				</div>				<div class="event-single">					<h3><a href="https://www.navarrocollege.edu/calendar.html#event-details/4bdd435c-8382-4a38-8bc3-160cae5cc915">Waxahachie Thanksgiving Student Lunch</a></h3>					<p><strong>11:30 AM - 12:30 PM</strong></p>					<p><span class="event-category-title" style="color: green">Felicia Snell</span> - <em>Beau's Place Building A</em></p>				</div></div></div><a class="view-all" href="/calendar.html">
+                              								View All
+                              							</a></div>
+                     </div>
+                  </div>
+                  
+<div class="homepage-social-media">
+	<ul class="nav nav-tabs" id="myTab" role="tablist">
+		<li class="nav-item">
+			<a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><span class="fa fa-x-twitter"></span></a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"><span class="fa fa-facebook"></span></a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false"><span class="fa fa-instagram"></span></a>
+		</li>
+	</ul>
+	<div class="tab-content" id="myTabContent">
+		<div class="tab-pane" id="home" role="tabpanel" aria-labelledby="home-tab">
+			<center><a href="https://twitter.com/i/flow/login?redirect_after_login=%2Fintent%2Ffollow%3Fscreen_name%3DNavarroCollege"><img src="https://www.navarrocollege.edu/_resources/images/social-media/x-windows-full-092923.jpg"></a></center>
+		</div>
+		<div class="tab-pane show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+			<center><iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FNavarroCollege&amp;tabs=timeline&amp;width=400&amp;height=400&amp;small_header=true&amp;adapt_container_width=true&amp;hide_cover=true&amp;show_facepile=false&amp;appId=336177147329266" width="500" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe></center>
+		</div>
+		<div class="tab-pane" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+			<center><a href="https://www.instagram.com/navarrocollege/?hl=en"><img src="https://www.navarrocollege.edu/_resources/images/social-media/instagram-profile.png"></a></center>
+			<center><a href="https://www.instagram.com/p/CEVFugUntnQ/?utm_source=ig_web_copy_link"><img src="https://www.navarrocollege.edu/_resources/images/social-media/nc-instagram-061021.jpg"></a></center>
+		</div>
+		</div>
+	</div></div>
+               <div class="inner-wrapper">
+                  <div class="navarro-news">
+                     <div class="box-header">
+                        						Navarro news
+                        					</div>
+                     <div class="homepage-news-wrapper">
+                        <div class="news-thumb"><div class="thumbs-col">			<img src="https://www.navarrocollege.edu/_resources/images/news/bot-meeting.png" alt="Notice of Board of Trustees Meeting on November 19, 2026" />	<a href="https://www.navarrocollege.edu/news/trustees/notice-november-19-2026.html" class="news-text">Notice of Board of Trustees Meeting on November 19, 2026</a></div><div class="thumbs-col">			<img src="https://www.navarrocollege.edu/_resources/images/news/bot-meeting.png" alt="Notice of Board of Trustees Meeting on October 29, 2026" />	<a href="https://www.navarrocollege.edu/news/trustees/notice-october-29-2026.html" class="news-text">Notice of Board of Trustees Meeting on October 29, 2026</a></div><div class="thumbs-col">			<img src="https://www.navarrocollege.edu/news/accolades/2026-honor-roll1.jpg" alt="Navarro College named a "2026 Great College to Work For"" />	<a href="https://www.navarrocollege.edu/news/accolades/2026-great-colleges-honor-roll.html" class="news-text">Navarro College named a "2026 Great College to Work For"</a></div></div>
+                        <div class="news-right">	<a href="https://www.navarrocollege.edu/news/trustees/notice-september-17-2026.html" class="news-title">Notice of Board of Trustees Meeting on September 17, 2026</a>	<a href="https://www.navarrocollege.edu/news/trustees/notice-tax-hearing-2026.html" class="news-title">Notice of Board of Trustees Meeting Tax Hearing September 8, 2026</a>	<a href="https://www.navarrocollege.edu/news/trustees/notice-august-27-2026.html" class="news-title">Notice of Board of Trustees Meeting on August 27, 2026</a><a href="/news/index.html" class="more-news">More news</a></div>
+                     </div>
+                  </div>
+               </div>
+            </section>
+            <!-- Start of HubSpot Embed Code -->  <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/426632.js"></script>
+            <!-- End of HubSpot Embed Code -->
+            
+            <p>&nbsp;</p>
+            
+            <p>&nbsp;</p>
+         </div>
+      </div>
+      <footer class="footer">
+   <div class="pre-footer no-print">
+      <div class="container">
+         <div class="row">
+            <div class="col-12 col-lg-3 text-center text-lg-left">
+               <div class="row">
+                  <div class="col-12"><a href="https://www.navarrocollege.edu/"><img src="https://www.navarrocollege.edu/_resources/css/img/icons/nclogo_web300.png" class="img-fluid" alt="Navarro Logo"></a></div>
+               </div>
+               <div class="row social-media-icons py-3">
+                  <div class="col-3"><a href="https://www.facebook.com/NavarroCollege/"><img src="https://www.navarrocollege.edu/_resources/css/img/icons/facebook.png" class="img-fluid" alt="Facebook Logo"></a></div>
+                  <div class="col-3"><a href="https://twitter.com/NavarroCollege"><img src="https://www.navarrocollege.edu/_resources/css/img/icons/twitter.png" class="img-fluid" alt="Twitter Logo"></a></div>
+                  <div class="col-3"><a href="https://www.instagram.com/navarrocollege/"><img src="https://www.navarrocollege.edu/_resources/css/img/icons/instagram.png" class="img-fluid" alt="Instagram Logo"></a></div>
+                  <div class="col-3"><a href="https://www.youtube.com/navarrocollegemedia"><img src="https://www.navarrocollege.edu/_resources/css/img/icons/youtube.png" class="img-fluid" alt="YouTube Logo"></a></div>
+               </div>
+               <div class="row address">
+                  <div class="col-12">
+                     <address>
+                        <p>Navarro College</p>
+                        <p>3200 W. 7th Avenue</p>
+                        <p>Corsicana, TX 75110</p>
+                     </address>
+                  </div>
+               </div>
+               <div class="row telephone">
+                  <div class="col-12"><a href="tel:1-800-NAVARRO">1-800-NAVARRO</a></div>
+               </div>
+            </div>
+            <div class="col-12 col-lg-3 pt-4 text-center text-lg-left">
+               <h5>CAMPUS</h5>
+               <ul>
+                  <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/maps.html">Location Maps</a></li>
+                  <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/campus-tours/index.html">Student Tours</a></li>
+                  <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://academic-calendar.navarrocollege.edu/">Academic Calendar</a></li>
+                  <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/calendar.html">Events Calendar</a></li>
+                  <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/bookstore/index.html">College Bookstores</a></li>
+                  <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/office-directory/index.html">Office Directory</a></li>
+               </ul>
+            </div>
+            <div class="col-12 col-lg-3 pt-4 text-center text-lg-left">
+               <h5>RESOURCES</h5>
+               <ul>
+                  <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="http://mync.navarrocollege.edu/">MyNC</a></li>
+                  <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="http://www.office.com/" target="_blank" rel="noopener">Office 365</a></li>
+                  <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://selfservice.navarrocollege.edu/">Self-Service</a></li>
+                  <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="http://canvas.navarrocollege.edu/">Canvas</a></li>
+                  <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/support-services/index.html">Student Services</a></li>
+                  <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/contact-center.html">Contact Center</a></li>
+               </ul>
+            </div>
+            <div class="col-12 col-lg-3 pt-4 text-center text-lg-left">
+               <h5>COMPLIANCE</h5>
+               <ul>
+                  <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/about/disclosures/index.html">Legal and Financial Disclosures</a></li>
+                  <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/bmwc/suicide-prevention.html">Mental Health Resources</a></li>
+                  <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/title-ix/policies-processes.html">Sexual Misconduct Policy</a></li>
+                  <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/finance-administration/open-records.html">Open Records</a></li>
+                  <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/title-ix/index.html">Title IX</a></li>
+                  <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.txhighereddata.org/institution-overviews/institutional-online-resumes/" target="_blank" rel="noopener">Institutional Resume</a></li>
+                  <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" title="Fiscal Year Proposed Budget" href="https://www.navarrocollege.edu/finance-administration/reports/annual-budget.html"><span>Fiscal Year Proposed Budget</span></a></li>
+                  <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" title="Taxpayer Impact Statement&nbsp;" href="https://www.navarrocollege.edu/attachments/business-office/2026-budget-impact-statement.docx" target="_blank" rel="noopener"><span>Taxpayer Impact Statement&nbsp;</span></a></li>
+                  <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/attachments/cteopportunities.pdf"><span>CTE Opportunities</span></a></li>
+               </ul>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="footer-container"><a href="#" class="mobile-footer-logo"><img src="https://www.navarrocollege.edu/_resources/images/navaro-logo-grey.png" alt="Navarro college"></a><div class="footer-cols">
+         <div class="footer-col">
+            <ul>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/about/sacs.html">Accreditation</a></li>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="http://transparency.navarrocollege.edu/">Financial Transparency</a></li>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/boardpolicies/index.html">Policies and Procedures</a></li>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/finance-administration/reports/annual-budget.html">Annual Budget Reports</a></li>
+            </ul>
+         </div>
+         <div class="footer-col">
+            <ul>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/information-technology/accessibility.html">Accessibility</a></li>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/information-technology/disclaimer.html">Disclaimer</a></li>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/quicklinks.html">Wesite Listing</a></li>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="mailto:marketing@navarrocollege.edu?subject=">Webmaster</a></li>
+            </ul>
+         </div>
+         <div class="footer-col">
+            <ul>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://navarrocollege.campusconcourse.com/search?search_performed=1&amp;timeframe=current_future&amp;template=non" target="_blank" rel="noopener">Courses,Syllabi,Curriculum Vitae</a></li>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/campus-safety/index.html">Campus Safety</a></li>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/support-services/grievance/index.html">Report Incident/Complaint</a></li>
+               <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="https://www.navarrocollege.edu/hr/index.html" target="_blank" rel="noopener">Employment</a></li>
+            </ul>
+         </div>
+      </div>
+   </div>
+   <div class="footer-bottom">
+      <p xmlns:ouc="http://omniupdate.com/XSL/Variables">Navarro College is committed to providing a safe and nondiscriminatory employment
+         and educational environment. The College does not discriminate on the basis of race,
+         color, national origin, sex, disability, religion, age, veteran status, or other status
+         protected by the law in its programs, activities or in the content of employment.
+         Inquiries regarding non-discrimination may be directed to the Title IX Coordinator
+         or the Section 504/ADA Title II Coordinator at 3200 W. 7th Avenue, Corsicana, Texas
+         75110 OR 1-800-NAVARRO.</p>
+      <div class="copyright">
+         <p>Copyright <span id="directedit">©</span> <span id="footerCurrentYear">2026</span>&nbsp;<a href="http://www.navarrocollege.edu">Navarro College</a>. All Rights Reserved.</p>
+      </div>
+   </div>
+</footer>
+<script src="https://www.navarrocollege.edu/_resources/lib/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script src="https://www.navarrocollege.edu/_resources/lib/bootstrap/bootstrap.min.js"></script>
+<script src="https://www.navarrocollege.edu/_resources/lib/flexslider/jquery.flexslider-min.js"></script>
+<script src="https://www.navarrocollege.edu/_resources/lib/sidr/jquery.sidr.min.js"></script>
+<script src="https://www.navarrocollege.edu/_resources/js/athletics-script.js"></script>
+<script src="https://www.navarrocollege.edu/_resources/js/jssocials.min.js"></script>
+<script src="https://www.navarrocollege.edu/_resources/js/script.js"></script>
+<script src="https://www.navarrocollege.edu/_resources/js/jplist.js"></script>
+<script src="https://www.navarrocollege.edu/_resources/js/ou.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-43004504-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-43004504-1');
+</script>
+
+      <div id="ou-hidden" style="display:none;"><a style="color:white" id="de" rel="nofollow" href="https://a.cms.omniupdate.com/11/?skin=oucampus&amp;account=navarrocollege&amp;site=www&amp;action=de&amp;path=/index.pcf">©</a></div><script>
+			if(document.getElementById("de") != null && document.getElementById("directedit")) {
+				var link = document.getElementById("de").parentNode.innerHTML;
+				document.getElementById("de").parentNode.innerHTML = "";
+				document.getElementById("directedit").innerHTML = link.replace(/^\s+|\s+$/gm,'');
+			}
+		</script></body>
+</html>

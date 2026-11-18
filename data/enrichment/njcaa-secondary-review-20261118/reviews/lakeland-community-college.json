@@ -1,0 +1,48 @@
+{
+  "slug": "lakeland-community-college",
+  "programId": "cmox237ux006wqtfk6eobgjo3",
+  "collegeId": "cmox237u9006uqtfkmz4ptqzv",
+  "checkedAtUtc": "2026-11-18T14:43:34.941Z",
+  "sourcePath": "../njcaa-discovery-20261118/sources/lakeland-community-college-1.source",
+  "sourceSHA256": "88fcbebc9259afebb42d62fab2996e09809fdd06640f422e50a58886f99c922a",
+  "sourceUrl": "https://www.lakelandcc.edu/web/about/mens-baseball-athletics",
+  "socialLeads": [],
+  "recruitingLeads": [
+    {
+      "url": "https://www.lakelandcc.edu/web/about/clinic-dental",
+      "label": "Dental Hygiene Clinic",
+      "context": "",
+      "kind": "CAMP"
+    },
+    {
+      "url": "https://www.lakelandcc.edu/camps",
+      "label": "Summer Camps",
+      "context": "",
+      "kind": "CAMP"
+    }
+  ],
+  "logoLeads": [],
+  "captures": [
+    {
+      "requestedUrl": "https://www.lakelandcc.edu/web/about/clinic-dental",
+      "kind": "CAMP",
+      "status": 200,
+      "finalUrl": "https://www.lakelandcc.edu/web/about/clinic-dental",
+      "sourcePath": "../njcaa-core-review-20261118/sources/lakeland-community-college-2.source",
+      "sha256": "daeebdc3d8c60e37ba1b56e89392b9fe4ec64096bc3def20658bb7d511d3ebfc",
+      "reusedEvidence": true
+    },
+    {
+      "requestedUrl": "https://www.lakelandcc.edu/camps",
+      "kind": "CAMP",
+      "status": 200,
+      "finalUrl": "https://www.lakelandcc.edu/web/about/continuing-education-departments#camps",
+      "contentType": "text/html;charset=UTF-8",
+      "sourcePath": "sources/lakeland-community-college-1.source",
+      "sha256": "07e715c52fc338b2e7e70fb7f39d39fbd94c1ed96279e75ba345b17282788a2f"
+    }
+  ],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED"
+}

@@ -1,0 +1,41 @@
+{
+  "slug": "cc-of-allegheny-county",
+  "collegeId": "cmox2359d001fqtfkt0k7hmwr",
+  "programId": "cmox235a0001hqtfk9wdh5i7s",
+  "name": "CC of Allegheny County",
+  "state": "PA",
+  "storedDivision": "NJCAA_D2",
+  "pages": [
+    {
+      "requestedUrl": "https://njcaastats.prestosports.com/sports/bsb/2024-25/div2/teams/ccofalleghenycounty",
+      "kind": "STORED_URL_UNVERIFIED",
+      "checkedAtUtc": "2026-11-18T14:16:37.742Z",
+      "status": "HELD_ACCESS_NOT_RETRIED",
+      "finalUrl": "https://njcaastats.prestosports.com/sports/bsb/2024-25/div2/teams/ccofalleghenycounty"
+    },
+    {
+      "requestedUrl": "https://www.ccac.edu/student-life/be-active/ccac-athletics.php",
+      "kind": "DISCOVERY_LEAD_NOT_CAMPUS_VERIFIED",
+      "checkedAtUtc": "2026-11-18T14:16:37.744Z",
+      "status": 404,
+      "finalUrl": "https://www.ccac.edu/student-life/be-active/ccac-athletics.php",
+      "contentType": "text/html; charset=iso-8859-1",
+      "sourcePath": "sources/cc-of-allegheny-county-1.source",
+      "sha256": "80c3fe2ae1062abf56456f52518bd670f9ec3917b7f85e152b347ac6b6faf880"
+    }
+  ],
+  "thirdPartyExactNameLeads": [
+    {
+      "url": "https://www.ccac.edu/student-life/be-active/ccac-athletics.php",
+      "label": "CC of Allegheny County (PA)",
+      "parentSourcePath": "sources/directory-d3.source",
+      "parentSHA256": "3888c2777289f782525671d17b3faadb0f9e289d4cea1ba375ac777b58c7203b",
+      "parentUrl": "https://www.thebaseballobserver.com/njcaa-diii-baseball"
+    }
+  ],
+  "currentMembershipVerified": false,
+  "campusIdentityVerified": false,
+  "importApproval": "NOT_GRANTED",
+  "databaseAccess": false,
+  "databaseWrites": 0
+}

@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+    <link href="/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="/Content/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="/Content/jasny-bootstrap.min.css" rel="stylesheet" />
+    <link href="/Content/jquery.bxslider.css" rel="stylesheet" />
+    <link href="/Content/fullcalendar.css" rel="stylesheet" />
+    <link href="/Content/jquery-ui-1.12.1.custom/jquery-ui.css" rel="stylesheet" />
+    <link href="/Styles/site.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Oswald:400,500,700" rel="stylesheet" />
+    <link rel="shortcut icon" type="image/png" href="/Content/images/favicon-Sussex.png" />
+    <link rel="stylesheet" href="https://catalog.sussex.edu/widget-api/widget-api.min.css">
+
+    <meta name="viewport" content="width=device-width" />
+    <!-- This site uses the Google Analytics by MonsterInsights plugin v6.1.10 - Using Analytics tracking - https://www.monsterinsights.com/ -->
+    <script type="text/javascript" data-cfasync="false">
+        /* Function to detect opted out users */
+        function __gaTrackerIsOptedOut() {
+            return document.cookie.indexOf(disableStr + '=true') > -1;
+        }
+
+        /* Disable tracking if the opt-out cookie exists. */
+        var disableStr = 'ga-disable-UA-21616630-1';
+        if (__gaTrackerIsOptedOut()) {
+            window[disableStr] = true;
+        }
+
+        /* Opt-out function */
+        function __gaTrackerOptout() {
+            document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+            window[disableStr] = true;
+        }
+
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', '__gaTracker');
+
+        __gaTracker('create', 'UA-21616630-1', 'auto');
+        __gaTracker('set', 'forceSSL', true);
+        __gaTracker('send', 'pageview');
+    </script>
+    <!-- / Google Analytics by MonsterInsights -->
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KZXW7LV0WE"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-KZXW7LV0WE');
+    </script>
+    <!-- / Google tag (gtag.js) -->
+    <!--
+    Start of global snippet: Please do not remove
+    Place this snippet between the <head> and </head> tags on every page of your site.
+    -->
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=DC-13100450"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'DC-13100450');
+    </script>
+    <!-- End of global snippet: Please do not remove  -->
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11295031302"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'AW-11295031302');
+    </script>
+
+
+
+    <title>Sussex County Community College | Quality Education in NJ</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="SCCC is a community college offering quality degrees and certificates at an affordable tuition on a beautiful campus in NJ. Start a great career with Sussex." />
+
+    <meta property="og:title" content="Fast-Track to a College Degree &#x2013; Sussex County Community College" />
+    <meta property="og:description" content="Fast-track your career with a wide range of academic programs &amp; degrees, online degrees, professional certificates, &amp; Workforce Development classes." />
+    <meta property="og:site_name" content="Sussex County Community College" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:url" content="https://sussex.edu/" />
+    <meta property="og:type" content="website" />
+
+        <meta property="og:image" content="https://sussex.edu/media/10244/sussex_og.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+
+
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Fast-Track to a College Degree &#x2013; Sussex County Community College">
+    <meta name="twitter:description" content="Fast-track your career with a wide range of academic programs &amp; degrees, online degrees, professional certificates, &amp; Workforce Development classes.">
+        <meta name="twitter:image" content="https://sussex.edu/media/10243/sussex-twitter.jpg">
+    <meta name="facebook-domain-verification" content="m78hz2hd5ard9yry1wq0pt2qcwn5cc" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.10/jquery.validate.unobtrusive.min.js"></script>
+    <script type='text/javascript'>
+        (function (d, t) {
+            var bh = d.createElement(t), s = d.getElementsByTagName(t)[0];
+            bh.type = 'text/javascript';
+            bh.src = 'https://www.bugherd.com/sidebarv2.js?apikey=8dooksins4yhk3dtfb9zba';
+            s.parentNode.insertBefore(bh, s);
+        })(document, 'script');
+    </script>
+
+    <!-- Facebook Pixel Code -->
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+            n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '409710975900484');
+        fbq('track', 'PageView');
+    </script>
+    <noscript>
+        <img height="1" width="1" style="display:none"
+             src="https://www.facebook.com/tr?id=409710975900484&ev=PageView&noscript=1" />
+    </noscript>
+    <!-- End Facebook Pixel Code -->
+    <!-- Twitter universal website tag code -->
+    <script>
+        !function (e, t, n, s, u, a) {
+            e.twq || (s = e.twq = function () {
+                s.exe ? s.exe.apply(s, arguments) : s.queue.push(arguments);
+            }, s.version = '1.1', s.queue = [], u = t.createElement(n), u.async = !0, u.src = '//static.ads-twitter.com/uwt.js',
+                a = t.getElementsByTagName(n)[0], a.parentNode.insertBefore(u, a))
+        }(window, document, 'script');
+        // Insert Twitter Pixel ID and Standard Event data below
+        twq('init', 'o04ss');
+        twq('track', 'PageView');
+    </script>
+    <!-- End Twitter universal website tag code -->
+
+    <script async referrerpolicy="no-referrer-when-downgrade" src='https://tag.simpli.fi/sifitag/73e3cf30-6b6b-0136-ef97-06659b33d47c'></script>
+
+    <!-- JS added for ReadSpeaker 5/23/2022-->
+    <script src="https://cdn-na.readspeaker.com/script/8541/webReader/webReader.js?pids=wr" type="text/javascript" id="rs_req_Init"></script>
+    <!-- next-generation tracking on your LOCALiQ campaign -->
+    <script type="text/javascript" src="////cdn.rlets.com/capture_configs/bb8/746/d5f/d00441582bcde9c13b3072c.js" async="async"></script>
+
+    <!--Local Business Schema-->
+
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "One College Hill Road",
+            "addressLocality": "Newton",
+            "addressRegion": "NJ",
+            "postalCode": "07860",
+            "addressCountry": "US"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 41.0682595,
+            "longitude": -74.7605134
+          },
+          "description": "An affordable and high-quality college offering academic, career, and technical education programs in northern New Jersey.",
+          "name": "Sussex County Community College",
+          "telephone": "973-300-2100",
+          "image": "https://www.sussex.edu/media/10244/sussex_og.jpg",
+          "@id": "https://www.sussex.edu",
+          "url": "https://www.sussex.edu",
+          "sameAs": [
+            "https://www.facebook.com/sussexcountycc",
+            "https://twitter.com/sussexedu",
+            "https://www.linkedin.com/school/sussex-county-community-college/",
+            "https://www.youtube.com/sussexedu"
+          ],
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": "Monday",
+              "opens": "08:00",
+              "closes": "17:00"
+            },
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": "Tuesday",
+              "opens": "08:00",
+              "closes": "17:00"
+            },
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": "Wednesday",
+              "opens": "08:00",
+              "closes": "17:00"
+            },
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": "Thursday",
+              "opens": "08:00",
+              "closes": "17:00"
+            },
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": "Friday",
+              "opens": "08:00",
+              "closes": "17:00"
+            }
+          ]
+        }
+    </script>
+
+
+
+    <!--College Info Schema-->
+
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org/",
+          "@type": "CollegeOrUniversity",
+          "name": "Sussex County Community College",
+          "image": "https://www.sussex.edu/media/10244/sussex_og.jpg",
+          "@id": "https://www.sussex.edu",
+          "url": "https://www.sussex.edu",
+          "hasCredential": {
+            "@type": "EducationalOccupationalCredential",
+            "credentialCategory": "Accreditation",
+            "recognizedBy": {
+              "@type": "Organization",
+              "name": "Middle States Commission on Higher Education"
+            }
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+1-973-300-2100",
+            "contactType": "Welcome Center"
+          },
+          "sameAs": [
+            "https://www.facebook.com/sussexcountycc",
+            "https://twitter.com/sussexedu",
+            "https://www.linkedin.com/school/sussex-county-community-college/",
+            "https://www.youtube.com/sussexedu"
+          ]
+        }
+    </script>
+
+
+
+</head>
+<body>
+
+<div class="headerWrapper mainNav navbar-fixed-top">
+    <header class="siteNavRight">
+        <div class="header-group logoWrapper pull-left">
+            <div class="header-item">
+                <a href="/"><img class="img-responsive siteLogo" src="/media/zbina11k/sussex-logo-hp.png" alt="Sussex County Community College" /></a>
+            </div>
+        </div>
+
+        <div class="header-group logoWrapper pull-left mobileLogo">
+            <div class="header-item">
+                <a href="/"><img class="img-responsive siteLogo" src="/media/wwndx5k2/sussex-logo-hp.png" alt="Sussex County Community College" /></a>
+            </div>
+        </div>
+        <div class="header-group pull-right">
+            <div class="header-group text-right searchWrapper">
+                <div class="header-item search">
+                    <button class="search-link" name="Search" title="Open Search Form">Search</button>
+                    <div class="search-slider row hidden-sm hidden-xs" style="display:none">
+                        <form class="search-form" action="/search-results/" method="get">
+                            <label for="searchfield" style="display:none">Search</label><input title="Search Textbox" type="text" aria-label="Search" class="col-xs-10" placeholder="Search" name="q" id="searchfield" />
+                            <input title="Search" name="Search" type="image" class="col-xs-2 search-button" src="/Content/images/icon-search-white.png" alt="Search" />
+                        </form>
+                    </div>
+                </div>
+                <div class="header-item applyButton">
+                    <a href="https://my.sussex.edu/ICS/Admissions" class="applyNowButton" data-canvas="body">Apply Now</a>
+                </div>
+            </div>
+        </div>
+        <div class="header-group quickNavWrapper pull-right">
+
+
+<div class="header-group text-right quickLinks hidden-xs hidden-sm">
+            <a href="/current-students/" class="quickLink">Current Students</a>
+            <a href="/admissions/" class="quickLink">Future Students</a>
+            <a href="/employees/" class="quickLink">Employees</a>
+            <a href="/about-sussex/alumni-association/" class="quickLink">Alumni</a>
+            <a href="/about-sussex/college-foundation/" class="quickLink">Donate</a>
+</div>
+        </div>
+        <div class="header-item pull-right mobileMenu">
+            <button class="nav-menu-button h4" data-toggle="offcanvas" data-target="#mainMenuNav" data-canvas="body"><img class="hamburger" src="/Content/Images/Sussex_mobile_nav_hamburger.png" alt="Navigation" /></button>
+        </div>
+    </header>
+    <nav id="mainMenuNav" class="navmenu navmenu-default navmenu-fixed-right offcanvas" role="navigation">
+        <div class="SlideMenuClose menuItem">
+    <button class="closeButton h4" data-toggle="offcanvas" data-target="#mainMenuNav" data-canvas="body"><img class="close-x" alt="Close" src="/Content/images/Sussex_close_x_white.png" /></button>
+</div>
+<div class="SlideMenuItems">
+    <div class="mobileNav">
+    </div>
+</div>
+
+    </nav>
+</div>
+
+<div class="headerWrapper quickNav navbar-fixed-top">
+    <header class="navbar-fixed-top siteNavRight">
+
+
+<div class="header-group primaryNav">
+        <a href="/admissions/" class="navLink "><span>Admissions</span></a>
+        <a href="/academics/" class="navLink "><span>Academics</span></a>
+        <a href="/campus-life/" class="navLink "><span>Campus Life</span></a>
+        <a href="/community-education/" class="navLink "><span>Community</span></a>
+        <a href="/student-support/" class="navLink "><span>Student Support</span></a>
+        <a href="/about-sussex/" class="navLink "><span>About Sussex</span></a>
+</div>    </header>
+</div>
+    
+    <div id="HomepageSlider">
+        <div class="videoWrapper">
+            <video playsinline class="homepagevideo" loop muted poster="/media/bedp1vwm/sussex-campus.jpg">
+                <source src="/media/3u4b1g1l/sccc-homepage-video.mp4" type="video/webm" />
+                <source src="/media/jwsf3llj/sccc-homepage-video.mp4" type="video/mp4" />
+            </video>
+        </div>
+        <div class="videotext">
+                <div class="caption Center">Register today for the spring semester!</div>
+
+                <div class="cta Center"><a class="button" href="https://my.sussex.edu/ICS/Admissions/Admissions_Homepage.jnz?portlet=Student_Registration&amp;screen=StudentRegistrationPortlet_CourseSearchView&amp;screenType=next">View Courses</a></div>
+        </div>
+    </div>
+<div class="container home-page">
+    <div class="homePathwayNavWrapper full-width">
+        <div class="homePathwayNav container">
+            <div class="row">
+                    <style type="text/css">
+                        .navIcon1{
+                            background-image:url('/media/ikbi2dzw/icon-apply.svg');
+                        }
+                    </style>
+                    <div class="col-sm-5ths  col-xs-4 pathwayNavItem">
+                        <div class="navIconWrapper">
+                               <a title="Apply" name="Apply" href="/admissions/">
+                                    <div class="navIcon1 navIcon"></div>
+                               </a>
+                        </div>
+                        <div class="navText">
+                              <a href="/admissions/">
+                                <h3>Apply</h3>
+                               </a>
+
+                        </div>
+                    </div>
+                    <style type="text/css">
+                        .navIcon2{
+                            background-image:url('/media/ctjfdyp3/icon-programs.svg');
+                        }
+                    </style>
+                    <div class="col-sm-5ths  col-xs-4 pathwayNavItem">
+                        <div class="navIconWrapper">
+                               <a title="Programs" name="Programs" href="/academics/degrees/">
+                                    <div class="navIcon2 navIcon"></div>
+                               </a>
+                        </div>
+                        <div class="navText">
+                              <a href="/academics/degrees/">
+                                <h3>Programs</h3>
+                               </a>
+
+                        </div>
+                    </div>
+                    <style type="text/css">
+                        .navIcon3{
+                            background-image:url('/media/5xhjj4zz/icon-register.svg');
+                        }
+                    </style>
+                    <div class="col-sm-5ths  col-xs-4 pathwayNavItem">
+                        <div class="navIconWrapper">
+                               <a title="Register" name="Register" href="/current-students/register-for-classes/">
+                                    <div class="navIcon3 navIcon"></div>
+                               </a>
+                        </div>
+                        <div class="navText">
+                              <a href="/current-students/register-for-classes/">
+                                <h3>Register</h3>
+                               </a>
+
+                        </div>
+                    </div>
+                    <style type="text/css">
+                        .navIcon4{
+                            background-image:url('/media/i0fd01fv/icon-cost.svg');
+                        }
+                    </style>
+                    <div class="col-sm-5ths  col-xs-5 col-xs-offset-1 col-sm-offset-0 col-md-offset-0 col-lg-offset-0 pathwayNavItem">
+                        <div class="navIconWrapper">
+                               <a title="Cost" name="Cost" href="/admissions/paying-for-college/">
+                                    <div class="navIcon4 navIcon"></div>
+                               </a>
+                        </div>
+                        <div class="navText">
+                              <a href="/admissions/paying-for-college/">
+                                <h3>Cost</h3>
+                               </a>
+
+                        </div>
+                    </div>
+                    <style type="text/css">
+                        .navIcon5{
+                            background-image:url('/media/y3un2cxn/icon-information.svg');
+                        }
+                    </style>
+                    <div class="col-sm-5ths  col-xs-5 pathwayNavItem">
+                        <div class="navIconWrapper">
+                               <a title="Information" name="Information" href="/about-sussex/request-information/?portlet=Request_Information&amp;screen=FormView&amp;screenType=change&amp;form=201c0dba-5323-446f-a782-b76d7398246a">
+                                    <div class="navIcon5 navIcon"></div>
+                               </a>
+                        </div>
+                        <div class="navText">
+                              <a href="/about-sussex/request-information/?portlet=Request_Information&amp;screen=FormView&amp;screenType=change&amp;form=201c0dba-5323-446f-a782-b76d7398246a">
+                                <h3>Information</h3>
+                               </a>
+
+                        </div>
+                    </div>
+            </div>
+        </div>
+        
+    </div>
+        <div class="clearfix"></div>
+    <div class="homePageStatsWrapper full-width parallax" style="background-image: url(/media/yhsejorj/graduates-bg.jpg);">
+        <div class="homePageStatsWrapper full-width" style="background: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85))">
+            <div class="homePageStats   container ">
+            <div class="row">
+                    <h1 class="homePageStatsHeader">THE SKY&#x2019;S THE LIMIT AT SUSSEX</h1>
+
+                    <div class="col-sm-5ths col-xs-6 homePageStatsItem">
+
+                        <a href="/academics/">
+                            <div class="textContainer"> 
+                                <div class="statNumber">
+                                    <span>100&#x2B;</span>
+                                </div>
+                                <div class="statDescription">
+                                    <span>Academic Programs</span>
+                                </div>
+                            </div>
+                       </a>
+                    </div>
+                    <div class="col-sm-5ths col-xs-6 homePageStatsItem">
+
+                        <a href="/admissions/the-skys-the-limit-at-sussex/">
+                            <div class="textContainer"> 
+                                <div class="statNumber">
+                                    <span>72%</span>
+                                </div>
+                                <div class="statDescription">
+                                    <span>Graduate Debt-Free</span>
+                                </div>
+                            </div>
+                       </a>
+                    </div>
+                    <div class="col-sm-5ths col-xs-6 homePageStatsItem">
+
+                        <a href="/admissions/paying-for-college/financial-aid/">
+                            <div class="textContainer"> 
+                                <div class="statNumber">
+                                    <span>65%</span>
+                                </div>
+                                <div class="statDescription">
+                                    <span>Receive Financial Aid</span>
+                                </div>
+                            </div>
+                       </a>
+                    </div>
+                    <div class="col-sm-5ths col-xs-6 homePageStatsItem">
+
+                        <a href="https://www.sussexskylanders.com/" target="_blank">
+                            <div class="textContainer"> 
+                                <div class="statNumber">
+                                    <span>13&#x2B;</span>
+                                </div>
+                                <div class="statDescription">
+                                    <span>Athletic Teams</span>
+                                </div>
+                            </div>
+                       </a>
+                    </div>
+            </div>
+        </div>
+        </div>
+
+    </div>
+
+<script>
+    $(document).ready(function () {
+        $(window).scroll(function () {
+            if ($(window).width() >= 992) {
+                var scrollPosition = $(this).scrollTop();
+                $('.parallax').css({
+                    'background-position-y': (-(scrollPosition / 2)) + 'px' // Adjust the divisor to change the speed of parallax
+                });
+            } else {
+                // Reset the background position for mobile devices
+                $('.parallax').css({
+                    'background-position-y': 'center'
+                });
+            }
+        });
+    });
+</script>        <div class="clearfix"></div>
+
+<div class="newsGrid contentBlock">
+        <div id="readspeaker_button1" class="rs_skip rsbtn rs_preserve">
+        <a rel="nofollow" class="rsbtn_play" accesskey="L" title="Listen to this page using ReadSpeaker" href="https://app-na.readspeaker.com/cgi-bin/rsent?customerid=8541&amp;lang=en_us&amp;readclass=home-page&amp;url=https://sussex.edu/">
+            <span class="rsbtn_left rsimg rspart"><span class="rsbtn_text"><span>Listen</span></span></span>
+            <span class="rsbtn_right rsimg rsplay rspart"></span>
+        </a>
+    </div>
+
+
+
+            <h2 class="h1 news-heading">News &amp; Announcements</h2>
+
+    <div class="viewAllNewsButtonWrapper">
+                <a href="/about-sussex/news-announcements/" class="button viewAllNewsButton" role="button">View All News</a>
+    </div>
+    <div class="clearfix"></div>
+    <div>
+        <div id="homeNewsGrid" class="">
+            <div class="homeNewsItem" role="listbox">
+                    <div class="item active">
+                        <div class="col-md-4">
+                            <div class="newsGridItemBox">
+                                <div class="newsThumbnail">
+                                     <a href="/current-students/register-for-classes/spring-semester/"><img alt="A montage of student images." src="/media/2gljozil/spring-materials.jpg" /></a>
+                                    </div>
+                                <div class="details">
+                                    <div class="title">
+                                        <h3><a href="/current-students/register-for-classes/spring-semester/">Register Early for the Spring Semester!</a></h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item ">
+                        <div class="col-md-4">
+                            <div class="newsGridItemBox">
+                                <div class="newsThumbnail">
+                                     <a href="/about-sussex/news-announcements/news/dr-homer-award/"><img alt="Man in business attire." src="/media/pgldn4aq/president-homer.jpg" /></a>
+                                    </div>
+                                <div class="details">
+                                    <div class="title">
+                                        <h3><a href="/about-sussex/news-announcements/news/dr-homer-award/">SCCC President, Dr. Cory Homer, Receives Distinctive Leadership Award</a></h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item ">
+                        <div class="col-md-4">
+                            <div class="newsGridItemBox">
+                                <div class="newsThumbnail">
+                                     <a href="/about-sussex/news-announcements/news/firing-range/"><img alt="Firing range" src="/media/xfmmvc5t/untitled-design-16.jpg" /></a>
+                                    </div>
+                                <div class="details">
+                                    <div class="title">
+                                        <h3><a href="/about-sussex/news-announcements/news/firing-range/">PSTA Opens Advanced Firing Range for Law Enforcement Training</a></h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item ">
+                        <div class="col-md-4">
+                            <div class="newsGridItemBox">
+                                <div class="newsThumbnail">
+                                     <a href="/about-sussex/news-announcements/news/alumni-fundraiser/"><img alt="Sharing a Pizza" src="/media/ixuniozw/pizza-fundraiser.jpg" /></a>
+                                    </div>
+                                <div class="details">
+                                    <div class="title">
+                                        <h3><a href="/about-sussex/news-announcements/news/alumni-fundraiser/">Dine Local to Support SCCC&#x27;s Alumni Association</a></h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item ">
+                        <div class="col-md-4">
+                            <div class="newsGridItemBox">
+                                <div class="newsThumbnail">
+                                     <a href="/about-sussex/news-announcements/news/servant-heart/"><img alt="Three professionals in a building construction classroom." src="/media/dppbpi2p/untitled-design-26.jpg" /></a>
+                                    </div>
+                                <div class="details">
+                                    <div class="title">
+                                        <h3><a href="/about-sussex/news-announcements/news/servant-heart/">SCCC and Servant&#x27;s Heart Announce New Building Construction Pathway</a></h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item ">
+                        <div class="col-md-4">
+                            <div class="newsGridItemBox">
+                                <div class="newsThumbnail">
+                                     <a href="/about-sussex/news-announcements/news/newsletter/"><img alt="Montage of College pictures" src="/media/hapaxi0i/newsletter-2026-561-x-317-px.jpg" /></a>
+                                    </div>
+                                <div class="details">
+                                    <div class="title">
+                                        <h3><a href="/about-sussex/news-announcements/news/newsletter/">Stay Informed with the October Newsletter</a></h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+        <div class="clearfix"></div>
+
+<div class="UpcomingEventsBackground full-width">
+     <div class="UpcomingEventsWrapper container" id="calendarListing">
+
+                <h2 class="h1 calendar-heading">Upcoming Events</h2>
+
+        <div class="viewAllEventsButtonWrapper">
+                    <a href="/about-sussex/event-calendar/" class="button viewAllEventsButton" role="button">View All Events</a>
+         </div>
+        <div class="clearfix"></div>
+
+            <div class="FeaturedEventsWrapper">
+                <div class="FeaturedImage">
+                     <a href="/about-sussex/news-announcements/news/holiday-concert/"><img alt="SCCC&#x27;s Holiday Concert" src="/media/myncobjn/holiday-upcoming-event.jpg" width="100%"/></a>
+                </div>
+                <div class="FeaturedEventsDetail">
+                    <h3 class="h3 ">SCCC Presents a Holiday Concert</h3>
+                    <h4 class="h4 ">December 4</h4>
+                    <h4 class="h4 ">7:00 pm</h4>
+                    <h4 class="h4 ">Performing Arts Center</h4>
+                    <p class="FeaturedEventSummary">Attendees can look forward to an evening of piano performances, operatic selections, and vocal favorites, all celebrating the spirit of the season.</p>
+                    <p><a href="/about-sussex/news-announcements/news/holiday-concert/">Get your tickets »</a></p>
+                </div>
+            </div>
+
+            <div  class="EventListWrapper">
+                <ul id="eventlist" class="event-list"></ul>
+                <div class="clearfix"></div>
+            </div>
+
+    </div>
+</div>
+        <div class="clearfix"></div>
+    <div class="homePageAthleticSpotlightsWrapper full-width">
+        <div class="homeAthleticSpotlights container " >
+            <div class="row">
+
+                <div class="col-md-4 athletics">
+                    <h2 class="h2">Athletics</h2>
+
+                    <div class="verticalRule"></div>
+                    <div class="athleticSpotlightImage">
+                        <a href="https://www.sussexskylanders.com/general/2024-25/releases/20240807eubrxc" target="_blank"><img alt="" src="/media/mprhz3sk/athletic-generic-web-image.jpg" /></a>
+                    </div>
+                    <div class="athleticLink">
+                        <a href="https://www.sussexskylanders.com/general/2024-25/releases/20240807eubrxc" target="_blank">SCCC Student-athletes Named to NJCAA Academic Teams</a>
+                    </div>
+
+                    <a href="https://www.sussexskylanders.com/landing/index" class="button" target="_blank">Athletic News</a>
+                </div>
+
+                <div class="col-md-4 athletics">
+                    <h2 class="h2">Skylander Spirit</h2>
+
+                    <div class="verticalRule"></div>
+                    <div class="skylanderImage">
+                        <a href="/campus-life/" target="_blank"><img alt="" src="/media/dndf1hnv/become-a-skylander.png" /></a>
+                    </div>
+                    <div class="athleticLink">
+                        <a href="/campus-life/">Catch the Skylander Spirit</a>
+                    </div>
+
+
+                    <a href="/campus-life/" class="button">Become a Skylander</a>
+
+                </div>
+
+                <div class="col-md-4 athletics">
+                    <h2 class="h2">Spotlights</h2>
+
+                    <div class="spotlightsImage">
+                        <a href="https://sussex.edu/admissions/the-skys-the-limit-at-sussex/student-alumni-spotlights#emma-rumpeltin"><img alt="" src="/media/xnxbot3q/emma-rumpeltin.jpg" /></a>
+                    </div>
+                    <div class="athleticLink">
+                        <a href="https://sussex.edu/admissions/the-skys-the-limit-at-sussex/student-alumni-spotlights#emma-rumpeltin">Emma Rumpeltin</a>
+                    </div>
+
+                    <a href="/admissions/the-skys-the-limit-at-sussex/student-alumni-spotlights/" class="button">View Stories</a>
+
+                </div>
+
+
+            </div>
+        </div>
+        
+    </div>
+        <div class="clearfix"></div>
+    <div class="homePageJuicerFeedWrapper full-width">
+        <div class="homePageJuicerFeed container ">
+            <div class="row">
+                    <h2 class="h1 homePageJuicerFeedHeader">The Skylander Experience</h2>
+                <script src="https://assets.juicer.io/embed.js" type="text/javascript"></script>
+                <link href="https://assets.juicer.io/embed.css" media="all" rel="stylesheet" type="text/css" />
+
+                <style>
+
+                    .juicer-feed .j-paginate {
+                        font-size: 15px;
+                        font-family: "Montserrat", sans-serif;
+                        font-weight: bold;
+                        text-transform: uppercase;
+                        text-align: center;
+                        border: 4px solid #8CC740 !important;
+                        border-radius: 4px;
+                        padding: 12px;
+                        color: #1C386B;
+                        text-decoration: none;
+                        background-color: #ffffff;
+                    }
+                    .juicer-feed .j-paginate:hover {
+                            color: #fff;
+                            border: 4px solid #8CC740;
+                            background-color: #8CC740;
+                    }
+                </style>
+
+                    <div class="col-md-12 juicer-desktop">
+                        <ul class="juicer-feed" data-feed-id="sussexcountycc" data-per="8" data-columns="4" data-gutter="10"></ul>
+
+                    </div>
+                    <div class="col-sm-12 juicer-mobile">
+                        <ul class="juicer-feed" data-feed-id="sussexcountycc" data-per="3" data-columns="1" data-gutter="30"></ul>
+
+                    </div>
+
+            </div>
+        </div>
+        
+    </div>
+
+        <div class="clearfix"></div>
+</div>
+
+
+
+    <footer class="full-width">
+        <div class="footer container">
+            <div class="row mainFooter">
+                <div class="col-md-3 footerSection">
+                    <div class="footerSocial">
+                            <a target="_blank" title="Facebook Link" class="social" href="https://www.facebook.com/sussexcountycc "
+                               style="background-image:url('/media/1027/sussex_social_icon_facebook.png')">
+
+                            </a>
+                            <a target="_blank" title="Twitter Link" class="social" href="https://twitter.com/sussexedu "
+                               style="background-image:url('/media/1028/sussex_social_icon_twitter.png')">
+
+                            </a>
+                            <a target="_blank" title="YouTube Link" class="social" href="https://www.youtube.com/sussexedu "
+                               style="background-image:url('/media/1025/sussex_social_icon_youtube.png')">
+
+                            </a>
+                            <a target="_blank" title="Instagram Link" class="social" href="https://www.instagram.com/sussexcountycc/"
+                               style="background-image:url('/media/1026/sussex_social_icon_instagram.png')">
+
+                            </a>
+                            <a target="_blank" title="LinkedIn Link" class="social" href="https://www.linkedin.com/school/sussex-county-community-college/"
+                               style="background-image:url('/media/4568/sussex_social_icon_linkedin.png')">
+
+                            </a>
+                    </div>
+                    <div class="footerAddress">
+                        <div>One College Hill Road</div>
+                        <div>Newton, New Jersey 07860</div>
+                        <div>Phone: 973-300-2100</div>
+                    </div>
+                </div>
+                <div class="col-md-9 footerRight footerSection">
+                    <div class="row">
+                        <div class="col-md-4 footerLinks">
+                                        <a class="footerLink" href="/academics/academic-calendar/">Academic Calendar</a>
+                                        <a class="footerLink" href="https://my.sussex.edu/">my.Sussex Portal</a>
+                                        <a class="footerLink" href="https://sussex.edu/current-students/canvas-online-learning/">Canvas Online Learning</a>
+                        </div>
+                        <div class="col-md-4 footerLinks">
+                                        <a class="footerLink h4" href="http://catalog.sussex.edu">College Catalog</a>
+                                        <a class="footerLink h4" href="/admissions/campus-tour/">Campus Tour</a>
+                                        <a class="footerLink h4" href="/about-sussex/contact-us/">Contact Us</a>
+                        </div>
+                        <div class="col-md-4 footerLinks">
+                                    <a class="footerLink h4" href="/about-sussex/jobs/">Employment Opportunities</a>
+                                    <a class="footerLink h4" href="/about-sussex/college-foundation/">College Foundation</a>
+                                    <a class="footerLink h4" href="/site-map/">Site Map</a>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 footerLiveChat">
+                            <p><strong>Start here, go anywhere!</strong></p>
+                            &nbsp;
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="clearfix"></div>
+            <div class="row copyrightLine small">
+                <div class="col-xs-12">
+                    <p style="text-align: left;">©2026 Sussex County Community College</p>
+<p>Sussex County Community College does not discriminate in admissions or access to, or treatment or employment on the basis of race, color, national origin, sex, disability, or age in its programs and activities. The following persons have been designated to handle inquires/complaints regarding non-discrimination policies:<br>Title IX: <a href="/cdn-cgi/l/email-protection#06756567767372694675737575637e28636273">Stacie Caputo</a>, Executive Director of HR, 973-300-2772, Student Center, Rm D313, Sussex Campus and Section 504: <a href="/cdn-cgi/l/email-protection#6b071c02050f19041c2b181e18180e13450e0f1e">Lauren Windrow</a>, Student Accessibility Support Coordinator, Administration Bldg, Rm B206, 973-300-2153.</p>
+<p><strong><a href="/about-sussex/policies/annual-public-notice/" title="Annual Public Notice">Annual Public Notice</a></strong> | <a href="/about-sussex/legal-notices/" title="Legal Notices" data-anchor="#"><strong>Legal Notices</strong></a> |&nbsp;<a href="/community/purchasing-department/vendor-opportunities/" title="Vendor Opportunities"></a><strong><a href="/privacy-statement/" title="Privacy Statement">Privacy Statement</a></strong></p>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="text/javascript" src="/Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/Scripts/jasny-bootstrap.min.js"></script>
+    <script src="/Scripts/jquery.easing.1.3.js"></script>
+    <script src="/Scripts/jquery.fitvids.js"></script>
+    <script src="/Scripts/jquery.bxslider.min.js"></script>
+    <script src="/Content/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+    <script src="/Scripts/js-cookie/js.cookie-2.2.0.min.js"></script>
+    <script src="/Scripts/nav.js"></script>
+    <script src="https://catalog.sussex.edu/widget-api/widget-api.min.js"></script>
+
+    <script type="text/javascript">
+
+        RenderNav("1149", 1);
+    </script>
+    
+        <div class="scripts">
+            
+    <script type="text/javascript">
+        $(document).ready(function () {
+            if ($(window).width() >= 1024) {
+                $(".homepagevideo").attr("autoplay", "autoplay");
+            }
+            else {
+                $(".homepagevideo").click(function () {
+                    this.paused ? playVid(this) : pauseVid(this);
+                });
+            }
+        })
+
+        function playVid(video) {
+            video.play();
+            $(".playButton").hide();
+        }
+
+        function pauseVid(video) {
+            video.pause();
+            $(".playButton").show();
+        }
+    </script>
+
+        </div>
+        <div class="scripts">
+            
+        </div>
+        <div class="scripts">
+            
+<script>
+    $(document).ready(function () {
+        $(window).scroll(function () {
+            if ($(window).width() >= 992) {
+                var scrollPosition = $(this).scrollTop();
+                $('.parallax').css({
+                    'background-position-y': (-(scrollPosition / 2)) + 'px' // Adjust the divisor to change the speed of parallax
+                });
+            } else {
+                // Reset the background position for mobile devices
+                $('.parallax').css({
+                    'background-position-y': 'center'
+                });
+            }
+        });
+    });
+</script>
+        </div>
+        <div class="scripts">
+            
+
+        </div>
+        <div class="scripts">
+            
+    <script src="/Scripts/moment.min.js"></script>
+    <script src="/Scripts/fullcalendar/fullcalendar.min.js"></script>
+    <script src="/Scripts/fullcalendar/gcal.min.js"></script>
+    <script type="text/javascript" src="/Scripts/googlecalreader/jquery.googlecalreader-1.1-se.js"></script>
+    <script>
+        $('#eventlist').gCalReaderMulti({
+            calendarId: ['sussexccc@gmail.com','jij5dc1iipomjv800an50ks0is@group.calendar.google.com','c96kpdv18mcs2odnl7ab8nuapk@group.calendar.google.com','igvi7cvu11gp9hkm267bt7qjf8@group.calendar.google.com','gf99qm4jc0b2jt6m57sgj32jo4@group.calendar.google.com'],
+            apiKey: 'AIzaSyDVAg6NN8k6tlYQX9cik9zqo3-IPc38JtE',
+            dateFormat: 'VeryShortDate',
+            errorMsg: 'No upcoming events',
+            futureEventsOnly: true,
+            sortDescending: false,
+            maxEvents: 4
+        });
+    </script>
+
+        </div>
+        <div class="scripts">
+            
+        </div>
+        <div class="scripts">
+            
+
+        </div>
+
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"49a668df0d334b77a02073a6f4b896ad","r":1,"spa":2}' crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+{
+  "slug": "rock-valley-college",
+  "programId": "cmox239wu00b8qtfke3ujq6zk",
+  "collegeId": "cmox239w500b6qtfk3p4wbg4k",
+  "checkedAtUtc": "2026-11-18T14:43:36.760Z",
+  "sourcePath": "../njcaa-discovery-20261118/sources/rock-valley-college-1.source",
+  "sourceSHA256": "92f6fbb2fa22061ea755792712cb5fc2efcca87eaab9c4109070227b565f0406",
+  "sourceUrl": "https://rvcsports.com/sports/baseball",
+  "socialLeads": [],
+  "recruitingLeads": [
+    {
+      "url": "https://rvcsports.com/sports/2017/6/22/baseball-camps.aspx",
+      "label": "Baseball Camps",
+      "context": "",
+      "kind": "CAMP"
+    },
+    {
+      "url": "https://www.ussportscamps.com/volleyball/nike/volleyball-camp-rock-valley-college",
+      "label": "Nike Volleyball Camp at Rock Valley",
+      "context": "",
+      "kind": "CAMP"
+    }
+  ],
+  "logoLeads": [
+    {
+      "url": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/rockvalley.sidearmsports.com/images/responsive_2019/main_logo.svg",
+      "label": "Rock Valley College Athletics undefined"
+    }
+  ],
+  "captures": [
+    {
+      "requestedUrl": "https://rvcsports.com/sports/2017/6/22/baseball-camps.aspx",
+      "kind": "CAMP",
+      "status": 200,
+      "finalUrl": "https://rvcsports.com/sports/2017/6/22/baseball-camps.aspx",
+      "sourcePath": "../njcaa-core-review-20261118/sources/rock-valley-college-5.source",
+      "sha256": "c7a3ab55885a8ad1b973644fdbd65986e44489155f3bd516c093631428ec097d",
+      "reusedEvidence": true
+    },
+    {
+      "requestedUrl": "https://www.ussportscamps.com/volleyball/nike/volleyball-camp-rock-valley-college",
+      "kind": "CAMP",
+      "status": 200,
+      "finalUrl": "https://www.ussportscamps.com/volleyball/nike/volleyball-camp-rock-valley-college",
+      "contentType": "text/html; charset=UTF-8",
+      "sourcePath": "sources/rock-valley-college-1.source",
+      "sha256": "142e7e9af62273d3efed9df115c196c355f4fa0f94d3fdce2ca84f2f74cb2483"
+    },
+    {
+      "requestedUrl": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/rockvalley.sidearmsports.com/images/responsive_2019/main_logo.svg",
+      "kind": "LOGO_ASSET",
+      "status": 200,
+      "finalUrl": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/rockvalley.sidearmsports.com/images/responsive_2019/main_logo.svg",
+      "contentType": "image/svg+xml",
+      "sourcePath": "sources/rock-valley-college-2.source",
+      "sha256": "400e3d74d5f680d3d223868c23d9399607a909a1cc5b997ac5c8f27d37960f52",
+      "decoded": {
+        "format": "svg",
+        "width": 190,
+        "height": 146
+      },
+      "assetDecoded": true
+    }
+  ],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED"
+}

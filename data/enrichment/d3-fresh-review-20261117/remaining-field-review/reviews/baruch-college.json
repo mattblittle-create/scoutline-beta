@@ -1,0 +1,948 @@
+{
+  "slug": "baruch-college",
+  "collegeId": "cmw26eg2d0002qtwgdsns6efj",
+  "programId": "cmw26eg2d0003qtwgd9vajtvr",
+  "checkedAtUtc": "2026-11-17T20:35:05.654Z",
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED",
+  "missingFields": [
+    "rosterUrl",
+    "questionnaireUrl",
+    "campsUrl",
+    "generalContactEmail",
+    "programXUrl"
+  ],
+  "pages": [
+    {
+      "requestedUrl": "https://athletics.baruch.cuny.edu/sports/baseball",
+      "kind": "baseball-home",
+      "parent": null,
+      "status": 200,
+      "finalUrl": "https://athletics.baruch.cuny.edu/sports/baseball",
+      "sourcePath": "../sources/baruch-college-1.html",
+      "sha256": "11b6e23652a9bf6b43946a00c798d8ad729bf054a1a1cbbd311c412029d58beb",
+      "reusedEvidence": true,
+      "originalCheckedAtUtc": "2026-11-17T17:29:32.948Z",
+      "parsed": {
+        "title": "Baseball - Baruch College Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "Baruch College Athletics",
+          "Bearcats Schedule",
+          "Main",
+          "Sport",
+          "Recent Galleries",
+          "Bearcats Schedule",
+          "Instagram",
+          "Latest Video",
+          "Footer",
+          "sponsor"
+        ],
+        "links": [
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/baseball/schedule",
+            "label": "Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/mens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/mens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/mens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/mens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/mens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/mens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/mens-swimming-and-diving/schedule",
+            "label": "Swimming & Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/mens-swimming-and-diving/roster",
+            "label": "Swimming & Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/mens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/mens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/mens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/mens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/womens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/womens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/womens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/womens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/womens-swimming-and-diving/schedule",
+            "label": "Swimming & Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/womens-swimming-and-diving/roster",
+            "label": "Swimming & Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/womens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/womens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/womens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/womens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/calendar",
+            "label": "Composite Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/staff-directory",
+            "label": "Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/2025/2/13/coaches-staff-login.aspx",
+            "label": "Staff Login",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/2019/8/29/yoga",
+            "label": "Faculty/Staff Yoga",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/2006/1/9/Facilities_and_Schedules.aspx",
+            "label": "FACILITIES & ARC SCHEDULES/CLOSINGS",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sb_output.aspx?form=3",
+            "label": "Prospective Student-Athlete Questionnaire",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/historicalroster?page=2",
+            "label": "Athletes Since 2006",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/2019/8/29/yoga.aspx",
+            "label": "Faculty/Staff Yoga & Pilates",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/baseball/coaches/2024",
+            "label": "Coaches",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/baseball/schedule/2026",
+            "label": "'26 Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/baseball/roster/2026",
+            "label": "'26 Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/baruchathletics/",
+            "label": "@BaruchAthletics",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://athletics.baruch.cuny.edu/sports/baseball/schedule",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/baruch-college-1.html",
+        "sha256": "11b6e23652a9bf6b43946a00c798d8ad729bf054a1a1cbbd311c412029d58beb",
+        "url": "https://athletics.baruch.cuny.edu/sports/baseball/schedule",
+        "label": "Baseball: Schedule"
+      },
+      "status": 200,
+      "finalUrl": "https://athletics.baruch.cuny.edu/sports/baseball/schedule",
+      "checkedAtUtc": "2026-11-17T20:35:07.265Z",
+      "sourcePath": "sources/baruch-college-1.html",
+      "sha256": "5c0109df8416a65b25db5008298ee6a667845dda982fb20b8f07bea92ca65b6b",
+      "parsed": {
+        "title": "2026 Baseball Schedule - Baruch College Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "Baruch College Athletics",
+          "Bearcats Schedule",
+          "Main",
+          "Sport",
+          "2026 Baseball Schedule",
+          "Season Record",
+          "Scheduled Games",
+          "Footer",
+          "sponsor"
+        ],
+        "links": [
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/baseball/schedule",
+            "label": "Skip To Main Content",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/mens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/mens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/mens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/mens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/mens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/mens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/mens-swimming-and-diving/schedule",
+            "label": "Swimming & Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/mens-swimming-and-diving/roster",
+            "label": "Swimming & Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/mens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/mens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/mens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/mens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/womens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/womens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/womens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/womens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/womens-swimming-and-diving/schedule",
+            "label": "Swimming & Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/womens-swimming-and-diving/roster",
+            "label": "Swimming & Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/womens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/womens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/womens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/womens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/calendar",
+            "label": "Composite Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/staff-directory",
+            "label": "Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/2025/2/13/coaches-staff-login.aspx",
+            "label": "Staff Login",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/2019/8/29/yoga",
+            "label": "Faculty/Staff Yoga",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/2006/1/9/Facilities_and_Schedules.aspx",
+            "label": "FACILITIES & ARC SCHEDULES/CLOSINGS",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sb_output.aspx?form=3",
+            "label": "Prospective Student-Athlete Questionnaire",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/historicalroster?page=2",
+            "label": "Athletes Since 2006",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/2019/8/29/yoga.aspx",
+            "label": "Faculty/Staff Yoga & Pilates",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/baseball/coaches/2024",
+            "label": "Coaches",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/baseball/schedule/2026",
+            "label": "'26 Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/baseball/roster/2026",
+            "label": "'26 Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/baseball/schedule?print=true",
+            "label": "Print Print this page",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/baseball/schedule/2026?grid=true",
+            "label": "Grid Switch to Grid View",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/services/schedule_txt.ashx?schedule=342",
+            "label": "Text Text Format For Braille (New Tab)",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://athletics.baruch.cuny.edu/sports/baseball/coaches/2024",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/baruch-college-1.html",
+        "sha256": "11b6e23652a9bf6b43946a00c798d8ad729bf054a1a1cbbd311c412029d58beb",
+        "url": "https://athletics.baruch.cuny.edu/sports/baseball/coaches/2024",
+        "label": "Coaches"
+      },
+      "status": 200,
+      "finalUrl": "https://athletics.baruch.cuny.edu/sports/baseball/coaches/2024",
+      "checkedAtUtc": "2026-11-17T20:35:08.220Z",
+      "sourcePath": "sources/baruch-college-2.html",
+      "sha256": "61b57cb8648d711149c2e3f398b17091325b136533002e85754d0110b47996c5",
+      "parsed": {
+        "title": "Baseball Coaches - Baruch College Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "Baruch College Athletics",
+          "Bearcats Schedule",
+          "Main",
+          "Sport",
+          "2024 Baseball Coaching Staff",
+          "Footer",
+          "sponsor"
+        ],
+        "links": [
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/baseball/coaches/2024",
+            "label": "Skip To Main Content",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/baseball/schedule",
+            "label": "Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/mens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/mens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/mens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/mens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/mens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/mens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/mens-swimming-and-diving/schedule",
+            "label": "Swimming & Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/mens-swimming-and-diving/roster",
+            "label": "Swimming & Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/mens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/mens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/mens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/mens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/womens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/womens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/womens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/womens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/womens-swimming-and-diving/schedule",
+            "label": "Swimming & Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/womens-swimming-and-diving/roster",
+            "label": "Swimming & Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/womens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/womens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/womens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/womens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/calendar",
+            "label": "Composite Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/staff-directory",
+            "label": "Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/2025/2/13/coaches-staff-login.aspx",
+            "label": "Staff Login",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/baseball/coaches/Information",
+            "label": "INTRAMURALS/RECREATION",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/2019/8/29/yoga",
+            "label": "Faculty/Staff Yoga",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/2006/1/9/Facilities_and_Schedules.aspx",
+            "label": "FACILITIES & ARC SCHEDULES/CLOSINGS",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sb_output.aspx?form=3",
+            "label": "Prospective Student-Athlete Questionnaire",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/historicalroster?page=2",
+            "label": "Athletes Since 2006",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/2019/8/29/yoga.aspx",
+            "label": "Faculty/Staff Yoga & Pilates",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/baseball/schedule/2026",
+            "label": "'26 Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/baseball/roster/2026",
+            "label": "'26 Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/baseball/coaches/2024?print=true",
+            "label": "Print",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/baseball/roster/coaches/jose-torres/817",
+            "label": "Jose Torres",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "mailto:Jose.Torres@baruch.cuny.edu",
+            "label": "Jose.Torres@baruch.cuny.edu",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/baseball/roster/coaches/oswaldo-roman/818",
+            "label": "Oswaldo Roman",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "mailto:Oswaldo.Roman@baruch.cuny.edu",
+            "label": "Oswaldo.Roman@baruch.cuny.edu",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://athletics.baruch.cuny.edu/sports/baseball/schedule/2026",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/baruch-college-1.html",
+        "sha256": "11b6e23652a9bf6b43946a00c798d8ad729bf054a1a1cbbd311c412029d58beb",
+        "url": "https://athletics.baruch.cuny.edu/sports/baseball/schedule/2026",
+        "label": "'26 Schedule"
+      },
+      "status": 200,
+      "finalUrl": "https://athletics.baruch.cuny.edu/sports/baseball/schedule/2026",
+      "checkedAtUtc": "2026-11-17T20:35:08.371Z",
+      "sourcePath": "sources/baruch-college-3.html",
+      "sha256": "3b6b8b8a8152cf5bdd2b526b5af3df89d2fb171c3ad46b0cd70535e7737a812f",
+      "parsed": {
+        "title": "2026 Baseball Schedule - Baruch College Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "Baruch College Athletics",
+          "Bearcats Schedule",
+          "Main",
+          "Sport",
+          "2026 Baseball Schedule",
+          "Season Record",
+          "Scheduled Games",
+          "Footer",
+          "sponsor"
+        ],
+        "links": [
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/baseball/schedule/2026",
+            "label": "Skip To Main Content",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/baseball/schedule",
+            "label": "Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/mens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/mens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/mens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/mens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/mens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/mens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/mens-swimming-and-diving/schedule",
+            "label": "Swimming & Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/mens-swimming-and-diving/roster",
+            "label": "Swimming & Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/mens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/mens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/mens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/mens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/womens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/womens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/womens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/womens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/womens-swimming-and-diving/schedule",
+            "label": "Swimming & Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/womens-swimming-and-diving/roster",
+            "label": "Swimming & Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/womens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/womens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/womens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/womens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/calendar",
+            "label": "Composite Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/staff-directory",
+            "label": "Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/2025/2/13/coaches-staff-login.aspx",
+            "label": "Staff Login",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/baseball/schedule/Information",
+            "label": "INTRAMURALS/RECREATION",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/2019/8/29/yoga",
+            "label": "Faculty/Staff Yoga",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/2006/1/9/Facilities_and_Schedules.aspx",
+            "label": "FACILITIES & ARC SCHEDULES/CLOSINGS",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sb_output.aspx?form=3",
+            "label": "Prospective Student-Athlete Questionnaire",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/historicalroster?page=2",
+            "label": "Athletes Since 2006",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/2019/8/29/yoga.aspx",
+            "label": "Faculty/Staff Yoga & Pilates",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/baseball/coaches/2024",
+            "label": "Coaches",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/baseball/roster/2026",
+            "label": "'26 Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/baseball/schedule/2026?print=true",
+            "label": "Print Print this page",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/sports/baseball/schedule/2026?grid=true",
+            "label": "Grid Switch to Grid View",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.baruch.cuny.edu/services/schedule_txt.ashx?schedule=342",
+            "label": "Text Text Format For Braille (New Tab)",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          }
+        ]
+      }
+    }
+  ],
+  "status": "EVIDENCE_CAPTURED_REQUIRES_REVIEW"
+}

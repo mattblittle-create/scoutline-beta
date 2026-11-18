@@ -1,0 +1,1945 @@
+{
+  "slug": "rowan-university",
+  "collegeId": "cmovorvvf00k9qt7gqqa41pr8",
+  "programId": "cmovorvw400kbqt7g1s5eusvf",
+  "checkedAtUtc": "2026-11-17T20:37:14.611Z",
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED",
+  "missingFields": [
+    "rosterUrl",
+    "scheduleUrl",
+    "campsUrl",
+    "generalContactEmail"
+  ],
+  "pages": [
+    {
+      "requestedUrl": "https://www.rowanathletics.com/sports/baseball",
+      "kind": "baseball-home",
+      "parent": null,
+      "status": 200,
+      "finalUrl": "https://www.rowanathletics.com/sports/baseball",
+      "sourcePath": "../sources/rowan-university-1.html",
+      "sha256": "4dcc464ef4881b2e5d5d406e5484f8e52557c6d3a11e8462ccad3ac2065f12c0",
+      "reusedEvidence": true,
+      "originalCheckedAtUtc": "2026-11-17T17:25:29.456Z",
+      "parsed": {
+        "title": "Baseball - Rowan University Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "Smith College",
+          "Main",
+          "Sport",
+          "Top Stories",
+          "Events",
+          "Video Zone",
+          "Featured athlete",
+          "Photo Galleries",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://x.com/@RowanBaseball_",
+            "label": "Baseball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/rowan_baseball",
+            "label": "Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/baseball/schedule",
+            "label": "Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/@RowanMBB",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/rowanmbb",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/mens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/mens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/@RowanMXC_Track",
+            "label": "Cross Country: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/rowanmxc_track",
+            "label": "Cross Country: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/mens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/mens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/@Rowan_Football",
+            "label": "#24 Football: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/rowanfootball",
+            "label": "#24 Football: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/football/schedule",
+            "label": "#24 Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/football/roster",
+            "label": "#24 Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/@RowanMSoccer",
+            "label": "#6 Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/rowanmsoccer",
+            "label": "#6 Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/mens-soccer/schedule",
+            "label": "#6 Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/mens-soccer/roster",
+            "label": "#6 Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/rowan_mswim",
+            "label": "Swimming: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/mens-swimming-and-diving/schedule",
+            "label": "Swimming: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/mens-swimming-and-diving/roster",
+            "label": "Swimming: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/RowanMXC_Track",
+            "label": "Indoor Track & Field: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/RowanMXC_Track",
+            "label": "Indoor Track & Field: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/mens-indoor-track/schedule",
+            "label": "Indoor Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/mens-indoor-track/roster",
+            "label": "Indoor Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/mens-track-and-field/schedule",
+            "label": "Outdoor Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/mens-track-and-field/roster",
+            "label": "Outdoor Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/@rowanwbb",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/rowanwbb",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/@rowanwxc_track",
+            "label": "Cross Country: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/rowanwxc_track",
+            "label": "Cross Country: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/@RowanFH",
+            "label": "#10 Field Hockey: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/rowanfieldhockey",
+            "label": "#10 Field Hockey: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/field-hockey/schedule",
+            "label": "#10 Field Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/field-hockey/roster",
+            "label": "#10 Field Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/@rowanwlax",
+            "label": "Lacrosse: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/rowanwlax",
+            "label": "Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/@RowanWSoccer",
+            "label": "#1 Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/RowanWSoccer",
+            "label": "#1 Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-soccer/schedule",
+            "label": "#1 Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-soccer/roster",
+            "label": "#1 Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/@rowanusoftball",
+            "label": "Softball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/rowansoftball",
+            "label": "Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/rowan_wswim",
+            "label": "Swimming: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-swimming-and-diving/schedule",
+            "label": "Swimming: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-swimming-and-diving/roster",
+            "label": "Swimming: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/rowanwxc_track",
+            "label": "Indoor Track & Field: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-indoor-track/schedule",
+            "label": "Indoor Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-indoor-track/roster",
+            "label": "Indoor Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-track-and-field/schedule",
+            "label": "Outdoor Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-track-and-field/roster",
+            "label": "Outdoor Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/rowanvolleyball",
+            "label": "(RV) Volleyball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/rowanvolleyball",
+            "label": "(RV) Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-volleyball/schedule",
+            "label": "(RV) Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-volleyball/roster",
+            "label": "(RV) Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/staff-directory",
+            "label": "Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/2023/4/13/athletic-staff-login.aspx",
+            "label": "Staff Login",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/2010/9/22/GEN_0922101308.aspx?id=1078",
+            "label": "Athletic Alumni Questionnaire",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.rowanathletics.com/calendar",
+            "label": "Composite Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://my.armssoftware.com/arms/public/questionnaire/2f00fbda3246?path=baseball",
+            "label": "Baseball",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://my.armssoftware.com/arms/public/questionnaire/d7cce2355239?path=mbball",
+            "label": "Basketball (Men's)",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://my.armssoftware.com/arms/public/questionnaire/60955dcbd294?path=wbball",
+            "label": "Basketball (Women's)",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://questionnaires.armssoftware.com/d977e189ddc1?path=mcross",
+            "label": "Cross Country (Men's)",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://questionnaires.armssoftware.com/a08c0a2eb3da?path=wcross",
+            "label": "Cross Country (Women's)",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://my.armssoftware.com/arms/public/questionnaire/7c977974624c?path=fhock",
+            "label": "Field Hockey",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://my.armssoftware.com/arms/public/questionnaire/f7989855e660?path=football",
+            "label": "Football",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://my.armssoftware.com/arms/public/questionnaire/2073cca67ba5?path=wlax",
+            "label": "Lacrosse (Women's)",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://my.armssoftware.com/arms/public/questionnaire/aa713992530b?path=msoc",
+            "label": "Soccer (Men's)",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://questionnaires.armssoftware.com/74aaa4062668?path=wsoc",
+            "label": "Soccer (Women's)",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://questionnaires.armssoftware.com/74f679944355?path=softball",
+            "label": "Softball",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://questionnaires.armssoftware.com/254d74546531?path=mswim",
+            "label": "Swimming (Men's)",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://questionnaires.armssoftware.com/46b404f25bdf?path=wswim",
+            "label": "Swimming (Women's)",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://my.armssoftware.com/arms/public/questionnaire/cd4d8b214b39?path=mtrack",
+            "label": "Track and Field (Men's)",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://questionnaires.armssoftware.com/a08c0a2eb3da?path=wtrack",
+            "label": "Track and Field (Women's)",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://questionnaires.armssoftware.com/7b8664e0e46d?path=wvball",
+            "label": "Volleyball (Women's)",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/baseball/coaches",
+            "label": "Coaching Staff",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.rowanathletics.com/schedule.aspx?path=baseball",
+            "label": "Composite Calendar",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://www.rowanathletics.com/sports/baseball/schedule",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/rowan-university-1.html",
+        "sha256": "4dcc464ef4881b2e5d5d406e5484f8e52557c6d3a11e8462ccad3ac2065f12c0",
+        "url": "https://www.rowanathletics.com/sports/baseball/schedule",
+        "label": "Baseball: Schedule"
+      },
+      "status": 200,
+      "finalUrl": "https://www.rowanathletics.com/sports/baseball/schedule",
+      "checkedAtUtc": "2026-11-17T20:37:15.110Z",
+      "sourcePath": "sources/rowan-university-1.html",
+      "sha256": "4642262fc73437f68ff70d8d4f198d11c043b1cff3459712d2eadc51cf91c89e",
+      "parsed": {
+        "title": "2026 Baseball Schedule - Rowan University Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "Smith College",
+          "Main",
+          "Sport",
+          "2026 Baseball Schedule",
+          "Season Record",
+          "Scheduled Games",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://www.rowanathletics.com/sports/baseball/schedule",
+            "label": "Skip To Main Content",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/@RowanBaseball_",
+            "label": "Baseball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/rowan_baseball",
+            "label": "Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/@RowanMBB",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/rowanmbb",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/mens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/mens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/@RowanMXC_Track",
+            "label": "Cross Country: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/rowanmxc_track",
+            "label": "Cross Country: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/mens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/mens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/@Rowan_Football",
+            "label": "#24 Football: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/rowanfootball",
+            "label": "#24 Football: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/football/schedule",
+            "label": "#24 Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/football/roster",
+            "label": "#24 Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/@RowanMSoccer",
+            "label": "#6 Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/rowanmsoccer",
+            "label": "#6 Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/mens-soccer/schedule",
+            "label": "#6 Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/mens-soccer/roster",
+            "label": "#6 Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/rowan_mswim",
+            "label": "Swimming: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/mens-swimming-and-diving/schedule",
+            "label": "Swimming: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/mens-swimming-and-diving/roster",
+            "label": "Swimming: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/RowanMXC_Track",
+            "label": "Indoor Track & Field: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/RowanMXC_Track",
+            "label": "Indoor Track & Field: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/mens-indoor-track/schedule",
+            "label": "Indoor Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/mens-indoor-track/roster",
+            "label": "Indoor Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/mens-track-and-field/schedule",
+            "label": "Outdoor Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/mens-track-and-field/roster",
+            "label": "Outdoor Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/@rowanwbb",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/rowanwbb",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/@rowanwxc_track",
+            "label": "Cross Country: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/rowanwxc_track",
+            "label": "Cross Country: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/@RowanFH",
+            "label": "#10 Field Hockey: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/rowanfieldhockey",
+            "label": "#10 Field Hockey: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/field-hockey/schedule",
+            "label": "#10 Field Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/field-hockey/roster",
+            "label": "#10 Field Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/@rowanwlax",
+            "label": "Lacrosse: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/rowanwlax",
+            "label": "Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/@RowanWSoccer",
+            "label": "#1 Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/RowanWSoccer",
+            "label": "#1 Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-soccer/schedule",
+            "label": "#1 Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-soccer/roster",
+            "label": "#1 Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/@rowanusoftball",
+            "label": "Softball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/rowansoftball",
+            "label": "Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/rowan_wswim",
+            "label": "Swimming: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-swimming-and-diving/schedule",
+            "label": "Swimming: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-swimming-and-diving/roster",
+            "label": "Swimming: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/rowanwxc_track",
+            "label": "Indoor Track & Field: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-indoor-track/schedule",
+            "label": "Indoor Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-indoor-track/roster",
+            "label": "Indoor Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-track-and-field/schedule",
+            "label": "Outdoor Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-track-and-field/roster",
+            "label": "Outdoor Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/rowanvolleyball",
+            "label": "(RV) Volleyball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/rowanvolleyball",
+            "label": "(RV) Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-volleyball/schedule",
+            "label": "(RV) Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-volleyball/roster",
+            "label": "(RV) Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/staff-directory",
+            "label": "Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/2023/4/13/athletic-staff-login.aspx",
+            "label": "Staff Login",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/2010/9/22/GEN_0922101308.aspx?id=1078",
+            "label": "Athletic Alumni Questionnaire",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.rowanathletics.com/calendar",
+            "label": "Composite Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://my.armssoftware.com/arms/public/questionnaire/2f00fbda3246?path=baseball",
+            "label": "Baseball",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://my.armssoftware.com/arms/public/questionnaire/d7cce2355239?path=mbball",
+            "label": "Basketball (Men's)",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://my.armssoftware.com/arms/public/questionnaire/60955dcbd294?path=wbball",
+            "label": "Basketball (Women's)",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://questionnaires.armssoftware.com/d977e189ddc1?path=mcross",
+            "label": "Cross Country (Men's)",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://questionnaires.armssoftware.com/a08c0a2eb3da?path=wcross",
+            "label": "Cross Country (Women's)",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://my.armssoftware.com/arms/public/questionnaire/7c977974624c?path=fhock",
+            "label": "Field Hockey",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://my.armssoftware.com/arms/public/questionnaire/f7989855e660?path=football",
+            "label": "Football",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://my.armssoftware.com/arms/public/questionnaire/2073cca67ba5?path=wlax",
+            "label": "Lacrosse (Women's)",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://my.armssoftware.com/arms/public/questionnaire/aa713992530b?path=msoc",
+            "label": "Soccer (Men's)",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://questionnaires.armssoftware.com/74aaa4062668?path=wsoc",
+            "label": "Soccer (Women's)",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://questionnaires.armssoftware.com/74f679944355?path=softball",
+            "label": "Softball",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://questionnaires.armssoftware.com/254d74546531?path=mswim",
+            "label": "Swimming (Men's)",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://questionnaires.armssoftware.com/46b404f25bdf?path=wswim",
+            "label": "Swimming (Women's)",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://my.armssoftware.com/arms/public/questionnaire/cd4d8b214b39?path=mtrack",
+            "label": "Track and Field (Men's)",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://questionnaires.armssoftware.com/a08c0a2eb3da?path=wtrack",
+            "label": "Track and Field (Women's)",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://questionnaires.armssoftware.com/7b8664e0e46d?path=wvball",
+            "label": "Volleyball (Women's)",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/baseball/coaches",
+            "label": "Coaching Staff",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/baseball/schedule?print=true",
+            "label": "Print Print this page",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/baseball/schedule/2026?grid=true",
+            "label": "Grid Switch to Grid View",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/services/schedule_txt.ashx?schedule=511",
+            "label": "Text Text Format For Braille (New Tab)",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/2025/9/4/2015promoschedule.aspx",
+            "label": "Profs at the Ballpark",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/2025/9/4/2015promoschedule.aspx",
+            "label": "Faculty & Staff Appreciation",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://www.rowanathletics.com/sports/baseball/coaches",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/rowan-university-1.html",
+        "sha256": "4dcc464ef4881b2e5d5d406e5484f8e52557c6d3a11e8462ccad3ac2065f12c0",
+        "url": "https://www.rowanathletics.com/sports/baseball/coaches",
+        "label": "Coaching Staff"
+      },
+      "status": 200,
+      "finalUrl": "https://www.rowanathletics.com/sports/baseball/coaches",
+      "checkedAtUtc": "2026-11-17T20:37:15.837Z",
+      "sourcePath": "sources/rowan-university-2.html",
+      "sha256": "56dd4095a20f1530e0e355cb1a73683e4cabe0c85274481425334d6e9b0f8eb0",
+      "parsed": {
+        "title": "Baseball Coaches - Rowan University Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "Smith College",
+          "Main",
+          "Sport",
+          "2026 Baseball Coaching Staff",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://www.rowanathletics.com/sports/baseball/coaches",
+            "label": "Skip To Main Content",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://x.com/@RowanBaseball_",
+            "label": "Baseball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/rowan_baseball",
+            "label": "Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/baseball/schedule",
+            "label": "Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/@RowanMBB",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/rowanmbb",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/mens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/mens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/@RowanMXC_Track",
+            "label": "Cross Country: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/rowanmxc_track",
+            "label": "Cross Country: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/mens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/mens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/@Rowan_Football",
+            "label": "#24 Football: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/rowanfootball",
+            "label": "#24 Football: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/football/schedule",
+            "label": "#24 Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/football/roster",
+            "label": "#24 Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/@RowanMSoccer",
+            "label": "#6 Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/rowanmsoccer",
+            "label": "#6 Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/mens-soccer/schedule",
+            "label": "#6 Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/mens-soccer/roster",
+            "label": "#6 Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/rowan_mswim",
+            "label": "Swimming: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/mens-swimming-and-diving/schedule",
+            "label": "Swimming: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/mens-swimming-and-diving/roster",
+            "label": "Swimming: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/RowanMXC_Track",
+            "label": "Indoor Track & Field: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/RowanMXC_Track",
+            "label": "Indoor Track & Field: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/mens-indoor-track/schedule",
+            "label": "Indoor Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/mens-indoor-track/roster",
+            "label": "Indoor Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/mens-track-and-field/schedule",
+            "label": "Outdoor Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/mens-track-and-field/roster",
+            "label": "Outdoor Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/@rowanwbb",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/rowanwbb",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/@rowanwxc_track",
+            "label": "Cross Country: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/rowanwxc_track",
+            "label": "Cross Country: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/@RowanFH",
+            "label": "#10 Field Hockey: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/rowanfieldhockey",
+            "label": "#10 Field Hockey: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/field-hockey/schedule",
+            "label": "#10 Field Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/field-hockey/roster",
+            "label": "#10 Field Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/@rowanwlax",
+            "label": "Lacrosse: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/rowanwlax",
+            "label": "Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/@RowanWSoccer",
+            "label": "#1 Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/RowanWSoccer",
+            "label": "#1 Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-soccer/schedule",
+            "label": "#1 Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-soccer/roster",
+            "label": "#1 Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/@rowanusoftball",
+            "label": "Softball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/rowansoftball",
+            "label": "Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/rowan_wswim",
+            "label": "Swimming: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-swimming-and-diving/schedule",
+            "label": "Swimming: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-swimming-and-diving/roster",
+            "label": "Swimming: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/rowanwxc_track",
+            "label": "Indoor Track & Field: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-indoor-track/schedule",
+            "label": "Indoor Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-indoor-track/roster",
+            "label": "Indoor Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-track-and-field/schedule",
+            "label": "Outdoor Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-track-and-field/roster",
+            "label": "Outdoor Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/rowanvolleyball",
+            "label": "(RV) Volleyball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/rowanvolleyball",
+            "label": "(RV) Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-volleyball/schedule",
+            "label": "(RV) Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-volleyball/roster",
+            "label": "(RV) Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/staff-directory",
+            "label": "Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/2023/4/13/athletic-staff-login.aspx",
+            "label": "Staff Login",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/2010/9/22/GEN_0922101308.aspx?id=1078",
+            "label": "Athletic Alumni Questionnaire",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.rowanathletics.com/calendar",
+            "label": "Composite Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://my.armssoftware.com/arms/public/questionnaire/2f00fbda3246?path=baseball",
+            "label": "Baseball",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://my.armssoftware.com/arms/public/questionnaire/d7cce2355239?path=mbball",
+            "label": "Basketball (Men's)",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://my.armssoftware.com/arms/public/questionnaire/60955dcbd294?path=wbball",
+            "label": "Basketball (Women's)",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://questionnaires.armssoftware.com/d977e189ddc1?path=mcross",
+            "label": "Cross Country (Men's)",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://questionnaires.armssoftware.com/a08c0a2eb3da?path=wcross",
+            "label": "Cross Country (Women's)",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://my.armssoftware.com/arms/public/questionnaire/7c977974624c?path=fhock",
+            "label": "Field Hockey",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://my.armssoftware.com/arms/public/questionnaire/f7989855e660?path=football",
+            "label": "Football",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://my.armssoftware.com/arms/public/questionnaire/2073cca67ba5?path=wlax",
+            "label": "Lacrosse (Women's)",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://my.armssoftware.com/arms/public/questionnaire/aa713992530b?path=msoc",
+            "label": "Soccer (Men's)",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://questionnaires.armssoftware.com/74aaa4062668?path=wsoc",
+            "label": "Soccer (Women's)",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://questionnaires.armssoftware.com/74f679944355?path=softball",
+            "label": "Softball",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://questionnaires.armssoftware.com/254d74546531?path=mswim",
+            "label": "Swimming (Men's)",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://questionnaires.armssoftware.com/46b404f25bdf?path=wswim",
+            "label": "Swimming (Women's)",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://my.armssoftware.com/arms/public/questionnaire/cd4d8b214b39?path=mtrack",
+            "label": "Track and Field (Men's)",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://questionnaires.armssoftware.com/a08c0a2eb3da?path=wtrack",
+            "label": "Track and Field (Women's)",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://questionnaires.armssoftware.com/7b8664e0e46d?path=wvball",
+            "label": "Volleyball (Women's)",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/baseball/coaches?print=true",
+            "label": "Print",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/baseball/roster/coaches/mike-dickson/2341",
+            "label": "Mike Dickson",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "mailto:dickson@rowan.edu",
+            "label": "dickson@rowan.edu",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/baseball/roster/coaches/jordan-friedman/2344",
+            "label": "Jordan Friedman",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "mailto:friedmanj1@rowan.edu",
+            "label": "friedmanj1@rowan.edu",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/baseball/roster/coaches/chris-rollins/2342",
+            "label": "Chris Rollins",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/baseball/roster/coaches/jason-o-neill/2343",
+            "label": "Jason O'Neill",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/baseball/roster/coaches/gary-herron/2345",
+            "label": "Gary Herron",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://www.rowanathletics.com/schedule.aspx?path=baseball",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/rowan-university-1.html",
+        "sha256": "4dcc464ef4881b2e5d5d406e5484f8e52557c6d3a11e8462ccad3ac2065f12c0",
+        "url": "https://www.rowanathletics.com/schedule.aspx?path=baseball",
+        "label": "Composite Calendar"
+      },
+      "status": 200,
+      "finalUrl": "https://www.rowanathletics.com/sports/baseball/schedule",
+      "checkedAtUtc": "2026-11-17T20:37:16.424Z",
+      "sourcePath": "sources/rowan-university-3.html",
+      "sha256": "4642262fc73437f68ff70d8d4f198d11c043b1cff3459712d2eadc51cf91c89e",
+      "parsed": {
+        "title": "2026 Baseball Schedule - Rowan University Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "Smith College",
+          "Main",
+          "Sport",
+          "2026 Baseball Schedule",
+          "Season Record",
+          "Scheduled Games",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://www.rowanathletics.com/sports/baseball/schedule",
+            "label": "Skip To Main Content",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/@RowanBaseball_",
+            "label": "Baseball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/rowan_baseball",
+            "label": "Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/@RowanMBB",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/rowanmbb",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/mens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/mens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/@RowanMXC_Track",
+            "label": "Cross Country: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/rowanmxc_track",
+            "label": "Cross Country: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/mens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/mens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/@Rowan_Football",
+            "label": "#24 Football: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/rowanfootball",
+            "label": "#24 Football: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/football/schedule",
+            "label": "#24 Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/football/roster",
+            "label": "#24 Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/@RowanMSoccer",
+            "label": "#6 Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/rowanmsoccer",
+            "label": "#6 Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/mens-soccer/schedule",
+            "label": "#6 Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/mens-soccer/roster",
+            "label": "#6 Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/rowan_mswim",
+            "label": "Swimming: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/mens-swimming-and-diving/schedule",
+            "label": "Swimming: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/mens-swimming-and-diving/roster",
+            "label": "Swimming: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/RowanMXC_Track",
+            "label": "Indoor Track & Field: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/RowanMXC_Track",
+            "label": "Indoor Track & Field: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/mens-indoor-track/schedule",
+            "label": "Indoor Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/mens-indoor-track/roster",
+            "label": "Indoor Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/mens-track-and-field/schedule",
+            "label": "Outdoor Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/mens-track-and-field/roster",
+            "label": "Outdoor Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/@rowanwbb",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/rowanwbb",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/@rowanwxc_track",
+            "label": "Cross Country: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/rowanwxc_track",
+            "label": "Cross Country: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/@RowanFH",
+            "label": "#10 Field Hockey: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/rowanfieldhockey",
+            "label": "#10 Field Hockey: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/field-hockey/schedule",
+            "label": "#10 Field Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/field-hockey/roster",
+            "label": "#10 Field Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/@rowanwlax",
+            "label": "Lacrosse: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/rowanwlax",
+            "label": "Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/@RowanWSoccer",
+            "label": "#1 Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/RowanWSoccer",
+            "label": "#1 Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-soccer/schedule",
+            "label": "#1 Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-soccer/roster",
+            "label": "#1 Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/@rowanusoftball",
+            "label": "Softball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/rowansoftball",
+            "label": "Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/rowan_wswim",
+            "label": "Swimming: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-swimming-and-diving/schedule",
+            "label": "Swimming: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-swimming-and-diving/roster",
+            "label": "Swimming: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/rowanwxc_track",
+            "label": "Indoor Track & Field: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-indoor-track/schedule",
+            "label": "Indoor Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-indoor-track/roster",
+            "label": "Indoor Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-track-and-field/schedule",
+            "label": "Outdoor Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-track-and-field/roster",
+            "label": "Outdoor Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/rowanvolleyball",
+            "label": "(RV) Volleyball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/rowanvolleyball",
+            "label": "(RV) Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-volleyball/schedule",
+            "label": "(RV) Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/womens-volleyball/roster",
+            "label": "(RV) Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/staff-directory",
+            "label": "Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/2023/4/13/athletic-staff-login.aspx",
+            "label": "Staff Login",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/2010/9/22/GEN_0922101308.aspx?id=1078",
+            "label": "Athletic Alumni Questionnaire",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.rowanathletics.com/calendar",
+            "label": "Composite Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://my.armssoftware.com/arms/public/questionnaire/2f00fbda3246?path=baseball",
+            "label": "Baseball",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://my.armssoftware.com/arms/public/questionnaire/d7cce2355239?path=mbball",
+            "label": "Basketball (Men's)",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://my.armssoftware.com/arms/public/questionnaire/60955dcbd294?path=wbball",
+            "label": "Basketball (Women's)",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://questionnaires.armssoftware.com/d977e189ddc1?path=mcross",
+            "label": "Cross Country (Men's)",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://questionnaires.armssoftware.com/a08c0a2eb3da?path=wcross",
+            "label": "Cross Country (Women's)",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://my.armssoftware.com/arms/public/questionnaire/7c977974624c?path=fhock",
+            "label": "Field Hockey",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://my.armssoftware.com/arms/public/questionnaire/f7989855e660?path=football",
+            "label": "Football",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://my.armssoftware.com/arms/public/questionnaire/2073cca67ba5?path=wlax",
+            "label": "Lacrosse (Women's)",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://my.armssoftware.com/arms/public/questionnaire/aa713992530b?path=msoc",
+            "label": "Soccer (Men's)",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://questionnaires.armssoftware.com/74aaa4062668?path=wsoc",
+            "label": "Soccer (Women's)",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://questionnaires.armssoftware.com/74f679944355?path=softball",
+            "label": "Softball",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://questionnaires.armssoftware.com/254d74546531?path=mswim",
+            "label": "Swimming (Men's)",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://questionnaires.armssoftware.com/46b404f25bdf?path=wswim",
+            "label": "Swimming (Women's)",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://my.armssoftware.com/arms/public/questionnaire/cd4d8b214b39?path=mtrack",
+            "label": "Track and Field (Men's)",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://questionnaires.armssoftware.com/a08c0a2eb3da?path=wtrack",
+            "label": "Track and Field (Women's)",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://questionnaires.armssoftware.com/7b8664e0e46d?path=wvball",
+            "label": "Volleyball (Women's)",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/baseball/coaches",
+            "label": "Coaching Staff",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/baseball/schedule?print=true",
+            "label": "Print Print this page",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/baseball/schedule/2026?grid=true",
+            "label": "Grid Switch to Grid View",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/services/schedule_txt.ashx?schedule=511",
+            "label": "Text Text Format For Braille (New Tab)",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/2025/9/4/2015promoschedule.aspx",
+            "label": "Profs at the Ballpark",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.rowanathletics.com/sports/2025/9/4/2015promoschedule.aspx",
+            "label": "Faculty & Staff Appreciation",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          }
+        ]
+      }
+    }
+  ],
+  "status": "EVIDENCE_CAPTURED_REQUIRES_REVIEW"
+}

@@ -1,0 +1,1191 @@
+<!DOCTYPE html><html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      <title>Athletics - Walters State Community College</title>
+      <link rel="canonical" href="https://ws.edu/about/offices/athletics/index.aspx">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="Description" content="The office of Athletics at Walters State Community College.">
+      <meta name="Keywords" content="athletics, senators, offices, walters state community college">
+      
+<!-- this is the headcode include -->
+<style>
+	#sticky ul.dropdown,
+	#sticky ul.dropdown a {
+		height: auto !important;
+	}
+	.dropdown-check-list {
+		display: inline-block;
+	}
+
+	.dropdown-check-list .anchor {
+		position: relative;
+		cursor: pointer;
+		display: inline-block;
+		padding: 5px 50px 5px 10px;
+		border: 1px solid #ccc;
+	}
+
+	.dropdown-check-list .anchor:after {
+		position: absolute;
+		content: "";
+		border-left: 2px solid black;
+		border-top: 2px solid black;
+		padding: 5px;
+		right: 10px;
+		top: 20%;
+		-moz-transform: rotate(-135deg);
+		-ms-transform: rotate(-135deg);
+		-o-transform: rotate(-135deg);
+		-webkit-transform: rotate(-135deg);
+		transform: rotate(-135deg);
+	}
+
+	.dropdown-check-list .anchor:active:after {
+		right: 8px;
+		top: 21%;
+	}
+
+	.dropdown-check-list ul.items {
+		padding: 2px;
+		display: none;
+		margin: 0;
+		border: 1px solid #ccc;
+		border-top: none;
+	}
+
+	.dropdown-check-list ul.items li {
+		list-style: none;
+	}
+
+	.dropdown-check-list.visible .anchor {
+		color: #0094ff;
+	}
+
+	.dropdown-check-list.visible .items {
+		display: block;
+	}
+	.dropdown-check-list .anchor {
+		display: block;
+		width: 100%;
+		padding: 0.375rem 0.75rem;
+		font-size: 1rem;
+		font-weight: 400;
+		line-height: 1.5;
+		color: #212529;
+		background-color: #fff;
+		background-clip: padding-box;
+		border: 1px solid #ced4da;
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+		border-radius: 0.375rem;
+		transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+		width: 614px;
+	}
+
+	.responsive-div {
+		/* Set initial styles */
+		width: 100%;
+		max-width: 800px;
+		/* Other styles... */
+	}
+
+	@media (min-width: 768px) {
+		.responsive-div {
+			width: 50%;
+		}
+	}
+
+	@media (min-width: 992px) {
+		.responsive-div {
+			width: 33.33%;
+		}
+	}
+
+	@media (min-width: 1200px) {
+		.responsive-div {
+			width: 25%;
+		}
+	}
+	.table-sortable > thead > tr > th {
+		cursor: pointer;
+		position: relative;
+	}
+
+	.table-sortable > thead > tr > th:after,
+	.table-sortable > thead > tr > th:after,
+	.table-sortable > thead > tr > th:after {
+		content: ' ';
+		position: absolute;
+		height: 0;
+		width: 0;
+		right: 10px;
+		top: 16px;
+	}
+
+	.table-sortable > thead > tr > th:after {
+		border-left: 5px solid transparent;
+		border-right: 5px solid transparent;
+		border-top: 5px solid #ccc;
+		border-bottom: 0px solid transparent;
+	}
+
+	.table-sortable > thead > tr > th:hover:after {
+		border-top: 5px solid #888;
+	}
+
+	.table-sortable > thead > tr > th.asc:after {
+		border-left: 5px solid transparent;
+		border-right: 5px solid transparent;
+		border-top: 0px solid transparent;
+		border-bottom: 5px solid #333;
+	}
+	.table-sortable > thead > tr > th.asc:hover:after {
+		border-bottom: 5px solid #888;
+	}
+
+	.table-sortable > thead > tr > th.desc:after {    
+		border-left: 5px solid transparent;
+		border-right: 5px solid transparent;
+		border-top: 5px solid #333;
+		border-bottom: 5px solid transparent;
+	}
+	th.header {
+		padding: 13px 10px !important;
+		font-family: auto !important;
+		font-weight: bold !important;
+		FONT-SIZE: 17PX!important;
+	}
+
+	#sticky ul.dropdown,#sticky ul.dropdown a {
+		height: auto !important;
+	}
+
+	/* .pagination li.page-item.active {
+
+	background-color: #001641;
+	color: #ffffff;
+	} */
+	.pagination > .page-item.active .page-link {
+		background-color: #001641 !important;
+		color: #ffffff !important;
+	}
+	a.clear-program {
+		margin: 0 5px;
+	}
+	.clear_second {
+		padding: 15px 0px;
+		margin-right: -4px;
+	}
+	.clear-filter .text {
+		text-decoration: underline;
+	}
+
+</style>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="/_resources/build/css/main.css">
+<link rel="apple-touch-icon-precomposed" sizes="57x57" href="https://ws.edu/_resources/favicon/apple-touch-icon-57x57.png" />
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://ws.edu/_resources/favicon/apple-touch-icon-114x114.png" />
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://ws.edu/_resources/favicon/apple-touch-icon-72x72.png" />
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://ws.edu/_resources/favicon/apple-touch-icon-144x144.png" />
+<link rel="apple-touch-icon-precomposed" sizes="60x60" href="https://ws.edu/_resources/favicon/apple-touch-icon-60x60.png" />
+<link rel="apple-touch-icon-precomposed" sizes="120x120" href="https://ws.edu/_resources/favicon/apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon-precomposed" sizes="76x76" href="https://ws.edu/_resources/favicon/apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon-precomposed" sizes="152x152" href="https://ws.edu/_resources/favicon/apple-touch-icon-152x152.png" />
+<link rel="icon" href="https://ws.edu/_resources/favicon/favicon.png"/>
+<meta name="application-name" content="&nbsp;"/>
+<meta name="msapplication-TileColor" content="#FFFFFF" />
+<meta name="msapplication-TileImage" content="/_resources/favicon/mstile-144x144.png" />
+<meta name="msapplication-square70x70logo" content="/_resources/favicon/mstile-70x70.png" />
+<meta name="msapplication-square150x150logo" content="/_resources/favicon/mstile-150x150.png" />
+<meta name="msapplication-wide310x150logo" content="/_resources/favicon/mstile-310x150.png" />
+<meta name="msapplication-square310x310logo" content="/_resources/favicon/mstile-310x310.png" />
+<link rel="stylesheet" href="/_resources/css/oustyles.css" />
+<link rel="stylesheet" href="/_resources/css/ws-styles.css" />
+
+
+<!-- <script async src="https://cse.google.com/cse.js?cx=8239fbddcee7b4f15">
+</script> -->
+
+<!-- Google Programable Search -->
+<script async src="https://cse.google.com/cse.js?cx=017279646654647498605:wxgrj1geaku">
+</script>
+
+<!-- Google Tag Manager Regular Analytics -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NHHNCWZQ');</script>
+<!-- End Google Tag Manager -->
+
+<!-- Google Tag Manager 2024 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1BEKBYMT6L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-1BEKBYMT6L');
+</script>
+<!-- End Google Tag Manager -->
+
+<!-- Microsoft Clarity script for Walters State --> 
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "j19gf71593");
+</script>
+<!-- End Microsoft Clarity -->
+
+<!-- fontawesome -->
+<!-- <script src="https://kit.fontawesome.com/687a22eb56.js" crossorigin="anonymous"></script> -->
+<!-- end of fontawesome -->
+
+<link href="https://ws.edu/ou-alerts/alerts-config.alerts.css?v=2.1-20260908125137" rel="stylesheet">
+<!-- Insert google analytics here -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1BEKBYMT6L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-1BEKBYMT6L');
+</script>
+      <meta property="og:title" content="Athletics - Walters State Community College">
+      <meta property="og:url" content="https://ws.edu/about/offices/athletics/index.aspx">
+      <meta property="og:description" content="">
+      <meta property="og:type" content="website">
+      <meta name="twitter:card" content="summary">
+   <meta name="dynamicContentTracking" data-modern-campus-p13n-account="36147e1f-53d8-4f16-bb41-6579a09486c9" data-dynamic-content='{"dynamicContent":[]}'>
+<script type="text/javascript" src="https://ws.edu/cms-p13n.js"></script>
+<script type="text/javascript" src="https://matomo.personalization.moderncampus.net/matomo.js"></script>
+</head>
+   <body>
+ <!-- Tracking tag. Place in the <body> section of webpage -->
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NHHNCWZQ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<!-- Privacy policy at http://tag.brandcdn.com/privacy -->
+<script type="text/javascript" src="//tag.brandcdn.com/autoscript/waltersstatecommunitycollege_vfzsrmvvntnqvda9/WaltersStateCommunityCollege.js"></script>
+<!-- Accessibe -->
+ <script> (function(){ var s = document.createElement('script'); var h = document.querySelector('head') || document.body; s.src = 'https://acsbapp.com/apps/app/dist/js/app.js'; s.async = true; s.onload = function(){ acsbJS.init(); }; h.appendChild(s); })(); </script>
+<!-- End Accessibe --><header id="header-wrap-id" class="header-wrap">
+   <div class="utility-bar-wrap">
+      <div class="utility-bar-center">
+         <div class="gcse-search"></div>
+         <div class="utility-bar-nav-position">
+            <nav class="utility-bar-nav" role="navigation">
+               <ul class="clearfix">
+                  <li class="ws-wft"><a href="/workforce-training/index.aspx">Workforce Training</a></li>
+                  <li class="my-ws"><a href="https://my.ws.edu">MyWS</a></li>
+                  <li><a href="/info-for/index.aspx">Info for:</a><ul>
+                        <li><a href="/info-for/prospective/index.aspx">Prospective Students</a></li>
+                        <li><a href="/info-for/current/index.aspx">Current Students</a></li>
+                        <li><a href="/info-for/counselors/index.aspx"><span><span class="ui-provider gs b c d e f g h i j k l m n o p q r s t u v w x y z ab ac ae af ag ah ai aj ak" dir="ltr">High School Counselors</span></span></a></li>
+                        <li><a href="/info-for/adult-learner/index.aspx">Adult Learners</a></li>
+                        <li><a href="/info-for/family/index.aspx">Parents &amp; Family</a></li>
+                        <li><a href="/info-for/staff/index.aspx">Faculty &amp; Staff</a></li>
+                     </ul>
+                  </li>
+                  <li><a href="">Resources</a><ul>
+                        <li><a title="Academic Calendar" href="/calendar/index.aspx">Academic Calendar</a></li>
+                        <li><a href="/_events/events-calendar/index.aspx">Events Calendar</a></li>
+                        <li><a href="https://www.wsccathletics.com/" target="_blank" rel="noopener">Athletics</a></li>
+                        <li><a href="https://map.ws.edu" target="_blank" rel="noopener">Campus Map</a></li>
+                        <li><a href="/directory/index.aspx">Directory</a></li>
+                        <li><a title="Library" href="/library/index.aspx">Library</a></li>
+                        <li><a href="https://prodssb.ws.edu/StudentRegistrationSsb/ssb/term/termSelection?mode=search">Class Schedule</a></li>
+                        <li><a href="https://catalog.ws.edu" target="_blank" rel="noopener">College Catalog</a></li>
+                        <li><a href="/student-services/bookstore/index.aspx">Bookstore</a></li>
+                        <li><a href="/expo/index.aspx">Expo Center</a></li>
+                        <li><a href="/helpdesk/index.aspx">Help Desk</a></li>
+                     </ul>
+                  </li>
+               </ul>
+            </nav>
+         </div>
+         <div class="clear-fix"></div>
+      </div>
+   </div>
+   <div class="header-center-white">
+      <div id="sticky" class="header-center">
+         <div class="logo-wrap"><a href="/" class="site-logo">Walters State Community College</a></div>
+         <div class="menu-item-float-right">
+            <nav id="nav" aria-label="Header Navigation">
+               <ul class="dropdown">
+                  <li id="toggleMenu" aria-haspopup="true"><a href="#"><span aria-hidden="true" class="fa fa-bars"></span><span aria-hidden="true" class="fa fa-times"></span><span id="toggleMenu-text">Toggle Navigation</span></a></li>
+                  <li class="parentMenu-item"><a href="/academics/index.aspx">Academics</a><ul>
+                        <li><a href="/academics/index.aspx">Academics</a></li>
+                        <li><a href="/academics/programs/index.aspx">Areas of Study</a></li>
+                        <li><a href="/academics/academic-divisions/index.aspx">Academic Divisions</a><ul>
+                              <li><a href="/academics/academic-divisions/index.aspx">Academic Divisions</a></li>
+                              <li><a href="/academics/academic-divisions/behavioral-science/index.aspx">Behavioral &amp; Social Sciences</a></li>
+                              <li><a href="/academics/academic-divisions/business-technical-ed/index.aspx">Business and Technical Education</a></li>
+                              <li><a href="/academics/academic-divisions/health/index.aspx">Health Programs</a></li>
+                              <li><a href="/academics/academic-divisions/humanities/index.aspx">Humanities</a></li>
+                              <li><a href="/academics/academic-divisions/mathematics/index.aspx">Mathematics</a></li>
+                              <li><a href="/academics/academic-divisions/natural-science/index.aspx">Natural Science</a></li>
+                              <li><a href="/academics/academic-divisions/public-safety/index.aspx">Public Safety</a></li>
+                           </ul>
+                        </li>
+                        <li><a href="/academics/transfer/index.aspx">Transfer Programs</a><ul>
+                              <li><a href="/academics/transfer/index.aspx">Transfer Programs</a></li>
+                              <li><a href="/academics/transfer/tn-transfer-pathway/index.aspx">Tennessee Transfer Pathways</a></li>
+                              <li><a href="/academics/transfer/reverse-transfer/index.aspx">Reverse Tennessee Transfer</a></li>
+                              <li><a href="/academics/transfer/articulation-agreements/index.aspx">Articulation Agreements</a></li>
+                              <li><a href="/academics/transfer/equivalency-tables/index.aspx">Course Equivalency Tables</a></li>
+                           </ul>
+                        </li>
+                        <li><a href="/academics/career/index.aspx">Career Ready Programs</a></li>
+                        <li><a href="/academics/class-formats/index.aspx">Class Formats</a></li>
+                        <li><a href="/academics/enrichment/index.aspx">Academic Enrichment</a><ul>
+                              <li><a href="/academics/enrichment/index.aspx">Academic Enrichment</a></li>
+                              <li><a href="/academics/enrichment/learning-support/index.aspx">Learning Support</a></li>
+                              <li><a href="/academics/enrichment/english-second/index.aspx">English as a Second Language</a></li>
+                              <li><a href="/academics/enrichment/honors-program/index.aspx">Honors Program</a></li>
+                           </ul>
+                        </li>
+                     </ul>
+                  </li>
+                  <li class="parentMenu-item"><a href="/admissions/index.aspx">Admissions</a><ul>
+                        <li><a href="/admissions/index.aspx">Admissions</a></li>
+                        <li><a href="/admissions/apply/index.aspx">Apply Now</a></li>
+                        <li><a href="/admissions/admitted/index.aspx">Admitted Students</a></li>
+                        <li><a href="/admissions/high-school-programs/index.aspx">High School Programs</a><ul>
+                              <li><a href="/admissions/high-school-programs/index.aspx">High School Programs</a></li>
+                              <li><a href="/admissions/high-school-programs/dual-enrollment/index.aspx">Dual Enrollment</a></li>
+                              <li><a href="/admissions/high-school-programs/middle-college/index.aspx">Middle College</a></li>
+                              <li><a href="/admissions/prior-learning/dual-credit/index.aspx">Dual Credit</a></li>
+                              <li><a href="/admissions/high-school-programs/staff/index.aspx">Staff</a></li>
+                           </ul>
+                        </li>
+                        <li><a href="/admissions/faq/index.aspx">Admissions FAQs</a></li>
+                        <li><a href="/admissions/prior-learning/index.aspx">Prior Learning Assessment</a><ul>
+                              <li><a href="/admissions/prior-learning/index.aspx">Prior Learning Assessment</a></li>
+                              <li><a href="/admissions/prior-learning/exams/index.aspx">Exams and Tests</a></li>
+                              <li><a href="/admissions/prior-learning/departmental/index.aspx">Departmental Assessment</a></li>
+                              <li><a href="/admissions/prior-learning/dual-credit/index.aspx">Dual Credit</a></li>
+                              <li><a href="/admissions/prior-learning/military/index.aspx">Military Experience</a></li>
+                              <li><a href="/admissions/prior-learning/certifications/index.aspx">Certifications &amp; Licensures</a></li>
+                              <li><a title="Technology Center" href="/admissions/prior-learning/technology-center/index.aspx">TN Technology Center</a></li>
+                           </ul>
+                        </li>
+                     </ul>
+                  </li>
+                  <li class="parentMenu-item"><a href="/cost-aid/index.aspx">Cost &amp; Aid</a><ul>
+                        <li><a href="/cost-aid/index.aspx">Cost &amp; Aid</a></li>
+                        <li><a href="/cost-aid/cost-of-attendance/index.aspx">Cost of Attendance</a></li>
+                        <li><a href="/cost-aid/start/index.aspx">Financial Aid 101</a></li>
+                        <li><a href="/cost-aid/apply-for-aid/index.aspx">Apply for Financial Aid</a><ul>
+                              <li><a href="/cost-aid/apply-for-aid/index.aspx">Apply for Financial Aid</a></li>
+                              <li><a href="/cost-aid/apply-for-aid/links/index.aspx">Helpful Links</a></li>
+                           </ul>
+                        </li>
+                        <li><a href="/cost-aid/tuition-fees/index.aspx">Tuition &amp; Fees</a><ul>
+                              <li><a href="/cost-aid/tuition-fees/index.aspx">Tuition &amp; Fees</a></li>
+                              <li><a href="/cost-aid/tuition-fees/payments/index.aspx">Payment Options</a></li>
+                              <li><a href="/cost-aid/tuition-fees/refunds/index.aspx">Refunds</a></li>
+                              <li><a href="/cost-aid/tuition-fees/registration-fees/index.aspx">Registration Fees</a></li>
+                           </ul>
+                        </li>
+                        <li><a href="/cost-aid/types/index.aspx">Types of Financial Aid</a><ul>
+                              <li><a href="/cost-aid/types/index.aspx">Types of Financial Aid</a></li>
+                              <li><a href="/cost-aid/types/grants/index.aspx">Grants</a></li>
+                              <li><a href="/cost-aid/types/loans/index.aspx">Loans</a></li>
+                              <li><a href="/cost-aid/types/scholarships/index.aspx">Scholarships</a></li>
+                              <li><a href="/cost-aid/types/work-study/index.aspx">Work Study</a></li>
+                              <li><a href="/cost-aid/types/cares/index.aspx">CARES Act</a></li>
+                              <li><a href="/cost-aid/types/scams/index.aspx">Financial Aid Scams</a></li>
+                           </ul>
+                        </li>
+                        <li><a href="/cost-aid/dates-deadlines/index.aspx">Dates &amp; Deadlines</a></li>
+                        <li><a href="/cost-aid/eligibility-verification/index.aspx">Eligibility&nbsp;&amp; Verification</a><ul>
+                              <li><a href="/cost-aid/eligibility-verification/index.aspx">Eligibility&nbsp;&amp; Verification</a></li>
+                              <li><a href="/cost-aid/eligibility-verification/changes-enrollment/index.aspx">Changes in Enrollment</a></li>
+                              <li><a href="/cost-aid/eligibility-verification/fafsa/index.aspx">Complete the FAFSA</a></li>
+                              <li><a href="/cost-aid/eligibility-verification/maintain/index.aspx">Satisfactory Academic Progress (SAP)</a></li>
+                              <li><a href="/cost-aid/eligibility-verification/rights-responsibilities/index.aspx">Rights and Responsibilities</a></li>
+                              <li><a href="/cost-aid/eligibility-verification/tax/index.aspx">Tax Transcripts and IRS Data</a></li>
+                              <li><a href="/cost-aid/eligibility-verification/verification/index.aspx">Financial Aid Verification</a></li>
+                              <li><a href="/cost-aid/eligibility-verification/withdrawals/index.aspx">Financial Aid Withdrawals</a></li>
+                              <li><a href="/cost-aid/eligibility-verification/circumstance/index.aspx">Unusual Circumstances</a></li>
+                           </ul>
+                        </li>
+                        <li><a href="/cost-aid/faq/index.aspx">Cost &amp; Aid FAQ</a></li>
+                        <li><a href="/cost-aid/forms/index.aspx">Forms</a></li>
+                        <li><a href="/cost-aid/contact/index.aspx">Contact Us</a></li>
+                        <li><a href="/cost-aid/staff/index.aspx">Cashier Office Staff</a></li>
+                     </ul>
+                  </li>
+                  <li class="parentMenu-item edge"><a href="/student-services/index.aspx">Student Services</a><ul>
+                        <li><a href="/student-services/index.aspx">Student Services</a></li>
+                        <li><a href="/senators-central/index.aspx">Senators Central</a><ul>
+                              <li><a href="/senators-central/index.aspx">Senators Central</a></li>
+                              <li><a href="/senators-central/visits-tours/index.aspx">Visit Campus</a></li>
+                              <li><a href="/senators-central/navigators/index.aspx">Navigators</a></li>
+                              <li><a href="/senators-central/orientation/index.aspx">Student Orientation</a></li>
+                           </ul>
+                        </li>
+                        <li><a title="Academic Advising" href="/student-services/success-center/index.aspx">Student Success Advising Center</a><ul>
+                              <li><a title="Academic Advising" href="/student-services/success-center/index.aspx">Student Success Advising Center</a></li>
+                              <li><a href="/student-services/success-center/registration/index.aspx">Registration</a></li>
+                              <li><a href="/student-services/success-center/meet-advisor/index.aspx">Academic Advisors</a></li>
+                              <li><a href="/student-services/success-center/resources/index.aspx">Advising Resources</a></li>
+                              <li><a href="/student-services/success-center/faq/index.aspx">Advising FAQ</a></li>
+                              <li><a href="/student-services/success-center/change-major/index.aspx">Change of Major</a></li>
+                              <li><a href="/student-services/success-center/career/index.aspx">Career Explorer and Resources</a></li>
+                              <li><a href="/student-services/success-center/staff/index.aspx">Staff</a></li>
+                           </ul>
+                        </li>
+                        <li><a href="/student-services/tutoring/index.aspx">Tutoring</a><ul>
+                              <li><a href="/student-services/tutoring/index.aspx">Tutoring</a></li>
+                              <li><a href="/student-services/tutoring/after-hours-tutoring/index.aspx">After-Hours Tutoring</a></li>
+                              <li><a href="/student-services/tutoring/faq/index.aspx">Tutoring FAQ</a></li>
+                              <li><a href="/student-services/tutoring/staff/index.aspx">Tutoring Staff</a></li>
+                           </ul>
+                        </li>
+                        <li><a href="/student-services/disability/index.aspx">Disability Services</a><ul>
+                              <li><a href="/student-services/disability/index.aspx">Disability Services</a></li>
+                              <li><a href="/student-services/disability/services/index.aspx">Services Available</a></li>
+                              <li><a href="/student-services/disability/qualifications/index.aspx">Disability Qualification</a></li>
+                              <li><a href="/student-services/disability/forms/index.aspx">Forms</a></li>
+                              <li><a href="/student-services/disability/staff/index.aspx">Staff</a></li>
+                              <li><a href="/student-services/disability/teaching/index.aspx">Teaching Strategies</a></li>
+                           </ul>
+                        </li>
+                        <li><a href="/student-services/veteran-services/index.aspx">Veteran Services</a><ul>
+                              <li><a href="/student-services/veteran-services/index.aspx">Veteran Services</a></li>
+                              <li><a href="/student-services/veteran-services/new-students/index.aspx">New VA Students</a></li>
+                              <li><a href="/student-services/veteran-services/deferment/index.aspx">VA Payment Deferment</a></li>
+                              <li><a href="/student-services/veteran-services/certifying/index.aspx">Certifying Process</a></li>
+                              <li><a href="/student-services/veteran-services/responsibilities/index.aspx">Student Responsibilities</a></li>
+                              <li><a href="/student-services/veteran-services/termination/index.aspx">Termination of VA Benefits</a></li>
+                              <li><a href="/student-services/veteran-services/faq/index.aspx">Veteran Services FAQ</a></li>
+                              <li><a href="/student-services/veteran-services/task-force/index.aspx">Task Force</a></li>
+                           </ul>
+                        </li>
+                        <li><a href="/student-services/campus-safety/index.aspx">Campus Safety / Police</a><ul>
+                              <li><a href="/student-services/campus-safety/index.aspx">Campus Safety / Police</a></li>
+                              <li><a href="/student-services/campus-safety/parking/index.aspx">Parking Information</a></li>
+                              <li><a href="/student-services/campus-safety/police-personnel/index.aspx">Police Personnel</a></li>
+                              <li><a href="/student-services/campus-safety/behavioral-intervention/index.aspx">Behavioral Intervention</a></li>
+                              <li><a href="/student-services/campus-safety/prevention/index.aspx">Crime Prevention &amp; Safety</a></li>
+                              <li><a href="/student-services/campus-safety/crime-reports/index.aspx">Crime Reports</a></li>
+                              <li><a href="/student-services/campus-safety/crime-watch/index.aspx">Crime Watch</a></li>
+                              <li><a href="/student-services/campus-safety/emergency/index.aspx">Emergency Preparedness</a></li>
+                              <li><a href="/student-services/campus-safety/authorities/index.aspx">Campus Security Authorities</a></li>
+                              <li><a href="/student-services/campus-safety/carry-permit/index.aspx">Carry Permit</a></li>
+                              <li><a href="/student-services/campus-safety/forms/index.aspx">Forms</a></li>
+                              <li><a href="/student-services/campus-safety/cameras/index.aspx">Safety Cameras</a></li>
+                           </ul>
+                        </li>
+                        <li><a href="/student-services/counseling-testing/index.aspx">Counseling &amp; Testing Center</a><ul>
+                              <li><a href="/student-services/counseling-testing/index.aspx">Counseling &amp; Testing Center</a></li>
+                              <li><a href="/student-services/counseling-testing/employment-resources/index.aspx">Employment Resources</a></li>
+                              <li><a href="/student-services/counseling-testing/employment-resources/index.aspx">Career Planning Resources</a></li>
+                              <li><a href="/student-services/counseling-testing/personal-counseling/index.aspx">Personal Counseling</a></li>
+                              <li><a href="/student-services/counseling-testing/testing-info/index.aspx">Testing Information</a></li>
+                              <li><a href="/student-services/counseling-testing/testing-schedule/index.aspx">Testing Schedule</a></li>
+                              <li><a href="/student-services/counseling-testing/staff/index.aspx">Staff</a></li>
+                           </ul>
+                        </li>
+                        <li><a href="/student-services/student-outreach/index.aspx">Student Outreach</a></li>
+                        <li><a href="/student-services/org/index.aspx">Clubs and Organizations</a></li>
+                        <li><a title="Library" href="/library/index.aspx">Library</a></li>
+                        <li><a href="/student-services/records/index.aspx">Student Records</a><ul>
+                              <li><a href="/student-services/records/index.aspx">Student Records</a></li>
+                              <li><a href="/student-services/records/directory/index.aspx">Directory Information</a></li>
+                              <li><a href="/student-services/records/transcripts/index.aspx">Transcripts</a></li>
+                              <li><a href="/student-services/records/graduation/index.aspx">Graduation</a></li>
+                              <li><a href="/student-services/records/staff/index.aspx">Staff</a></li>
+                           </ul>
+                        </li>
+                     </ul>
+                  </li>
+                  <li class="parentMenu-item edge"><a href="/about/index.aspx">About Us</a><ul>
+                        <li><a href="/about/index.aspx">About Us</a></li>
+                        <li><a href="/about/history/index.aspx">History</a></li>
+                        <li><a href="/about/quick-facts/index.aspx">Quick Facts</a></li>
+                        <li><a href="/campuses/index.aspx">Campus Locations</a><ul>
+                              <li><a href="/campuses/index.aspx">Campus Locations</a></li>
+                              <li><a href="/campuses/morristown/index.aspx">Morristown</a></li>
+                              <li><a href="/campuses/greeneville/index.aspx">Greeneville</a></li>
+                              <li><a href="/campuses/sevier/index.aspx">Sevierville</a></li>
+                              <li><a href="/campuses/claiborne/index.aspx">Tazewell</a></li>
+                              <li><a href="/campuses/newport-center/index.aspx">Newport</a></li>
+                           </ul>
+                        </li>
+                        <li><a href="/news/index.aspx">News</a></li>
+                        <li><a href="/about/offices/index.aspx">Offices</a><ul>
+                              <li><a href="/about/offices/index.aspx">Offices</a></li>
+                              <li><a href="/about/offices/academic-affairs/index.aspx">Academic Affairs</a></li>
+                              <li><a href="/about/offices/athletics/index.aspx">Athletics</a></li>
+                              <li><a href="/about/offices/business-affairs/index.aspx">Business &amp; Finance Office</a></li>
+                              <li><a href="/about/offices/college-advancement/index.aspx">College Advancement</a></li>
+                              <li><a href="/about/offices/communications-marketing/index.aspx">Communications and Marketing</a></li>
+                              <li><a href="/about/offices/facilities-management/index.aspx">Facilities Management</a></li>
+                              <li><a href="/about/offices/human-resources/index.aspx">Human Resources</a></li>
+                              <li><a href="/about/offices/ideas/index.aspx">IDEAS</a></li>
+                              <li><a href="/about/offices/it/index.aspx">Information Technology (IT)</a></li>
+                              <li><a href="/about/offices/institutional-effectiveness-compliance/index.aspx">Institutional Effectiveness and Compliance (IEC)</a></li>
+                              <li><a href="/about/offices/internal-auditing/index.aspx">Internal Auditing</a></li>
+                              <li><a href="/about/offices/presidents-office/index.aspx">Office of the President</a></li>
+                              <li><a href="/about/offices/student-affairs/index.aspx">Student Services</a></li>
+                           </ul>
+                        </li>
+                        <li><a href="/about/foundation/index.aspx">Foundation</a><ul>
+                              <li><a href="/about/foundation/index.aspx">Foundation</a></li>
+                              <li><a href="/about/foundation/executive-committee/index.aspx">Executive Committee</a></li>
+                              <li><a href="/about/foundation/planned-giving/index.aspx">Planned Giving</a></li>
+                              <li><a href="/about/foundation/scholarships/index.aspx">Scholarships</a></li>
+                              <li><a href="/about/foundation/tree-program/index.aspx">Honor/Memorial Tree Program</a></li>
+                              <li><a href="/about/foundation/staff/index.aspx">Staff</a></li>
+                           </ul>
+                        </li>
+                        <li><a href="/alumni/index.aspx">Alumni</a><ul>
+                              <li><a href="/alumni/index.aspx">Alumni</a></li>
+                              <li><a href="/alumni/benefits/index.aspx">Benefits</a></li>
+                              <li><a href="/alumni/distinguished-alumni/index.aspx">Distinguished Alumni</a></li>
+                              <li><a href="/alumni/events/index.aspx">Alumni Events</a></li>
+                              <li><a href="/alumni/staff/index.aspx">Staff</a></li>
+                           </ul>
+                        </li>
+                        <li><a href="/about/inclement-weather/index.aspx">Weather Policy</a><ul>
+                              <li><a href="/about/inclement-weather/index.aspx">Weather Policy</a></li>
+                           </ul>
+                        </li>
+                        <li><a href="/about/accreditation/index.aspx">Accreditation</a><ul>
+                              <li><a href="/about/accreditation/index.aspx">Accreditation</a></li>
+                           </ul>
+                        </li>
+                     </ul>
+                  </li>
+               </ul>
+            </nav><a href="https://connect.ws.edu/portal/app_creation" class="btn-apply">Apply</a><div class="clear-fix"></div>
+         </div>
+         <div class="mobile-menu-hamburger"><button class="hamburger hamburger--3dy"><span class="hamburger-box"><span class="hamburger-inner"></span><span class="visually-hidden">Menu</span></span></button></div>
+         <div class="clear-fix"></div>
+      </div>
+   </div>
+</header><div id="mobile-menu-id" class="mobile-menu">
+   <div class="utility-bar-wrap">
+      <div class="utility-bar-center">
+         <div class="gcse-search"></div>
+         <div class="clear-fix"></div>
+      </div>
+   </div>
+   <div class="clear-fix"></div>
+   <div class="mobile-menu-items-mobile">
+      <div class="accordion-menu-wrapper active" id="menu-parent" data-accordion-wrapper="">
+         <nav aria-label="Navigation" class="accordion-menu">
+            <ul class="accordion-menu__list">
+               <li class="accordion-menu__item"><a href="#menu-1" class="accordion-menu__link" data-accordion-menu=""><span>Academics</span><span class="accordion-menu__icon"></span></a><ul class="accordion-menu__sublist accordion-menu--hidden" id="menu-1">
+                     <li><a href="/academics/index.aspx" class="accordion-menu__sublink">Academics</a></li>
+                     <li><a href="/academics/programs/index.aspx" class="accordion-menu__sublink">Areas of Study</a></li>
+                     <li><a href="#menu-1-d30e49" class="accordion-menu__link" data-accordion-menu=""><span>Academic Divisions</span><span class="accordion-menu__icon"></span></a><ul class="accordion-menu__sublist accordion-menu--hidden" id="menu-1-d30e49">
+                           <li><a href="/academics/academic-divisions/index.aspx" class="accordion-menu__sublink">Academic Divisions</a></li>
+                           <li><a href="/academics/academic-divisions/behavioral-science/index.aspx" class="accordion-menu__sublink">Behavioral &amp; Social Sciences</a></li>
+                           <li><a href="/academics/academic-divisions/business-technical-ed/index.aspx" class="accordion-menu__sublink">Business and Technical Education</a></li>
+                           <li><a href="/academics/academic-divisions/health/index.aspx" class="accordion-menu__sublink">Health Programs</a></li>
+                           <li><a href="/academics/academic-divisions/humanities/index.aspx" class="accordion-menu__sublink">Humanities</a></li>
+                           <li><a href="/academics/academic-divisions/mathematics/index.aspx" class="accordion-menu__sublink">Mathematics</a></li>
+                           <li><a href="/academics/academic-divisions/natural-science/index.aspx" class="accordion-menu__sublink">Natural Science</a></li>
+                           <li><a href="/academics/academic-divisions/public-safety/index.aspx" class="accordion-menu__sublink">Public Safety</a></li>
+                        </ul>
+                     </li>
+                     <li><a href="#menu-1-d30e77" class="accordion-menu__link" data-accordion-menu=""><span>Transfer Programs</span><span class="accordion-menu__icon"></span></a><ul class="accordion-menu__sublist accordion-menu--hidden" id="menu-1-d30e77">
+                           <li><a href="/academics/transfer/index.aspx" class="accordion-menu__sublink">Transfer Programs</a></li>
+                           <li><a href="/academics/transfer/tn-transfer-pathway/index.aspx" class="accordion-menu__sublink">Tennessee Transfer Pathways</a></li>
+                           <li><a href="/academics/transfer/reverse-transfer/index.aspx" class="accordion-menu__sublink">Reverse Tennessee Transfer</a></li>
+                           <li><a href="/academics/transfer/articulation-agreements/index.aspx" class="accordion-menu__sublink">Articulation Agreements</a></li>
+                           <li><a href="/academics/transfer/equivalency-tables/index.aspx" class="accordion-menu__sublink">Course Equivalency Tables</a></li>
+                        </ul>
+                     </li>
+                     <li><a href="/academics/career/index.aspx" class="accordion-menu__sublink">Career Ready Programs</a></li>
+                     <li><a href="/academics/class-formats/index.aspx" class="accordion-menu__sublink">Class Formats</a></li>
+                     <li><a href="#menu-1-d30e102" class="accordion-menu__link" data-accordion-menu=""><span>Academic Enrichment</span><span class="accordion-menu__icon"></span></a><ul class="accordion-menu__sublist accordion-menu--hidden" id="menu-1-d30e102">
+                           <li><a href="/academics/enrichment/index.aspx" class="accordion-menu__sublink">Academic Enrichment</a></li>
+                           <li><a href="/academics/enrichment/learning-support/index.aspx" class="accordion-menu__sublink">Learning Support</a></li>
+                           <li><a href="/academics/enrichment/english-second/index.aspx" class="accordion-menu__sublink">English as a Second Language</a></li>
+                           <li><a href="/academics/enrichment/honors-program/index.aspx" class="accordion-menu__sublink">Honors Program</a></li>
+                        </ul>
+                     </li>
+                  </ul>
+               </li>
+               <li class="accordion-menu__item"><a href="#menu-2" class="accordion-menu__link" data-accordion-menu=""><span>Admissions</span><span class="accordion-menu__icon"></span></a><ul class="accordion-menu__sublist accordion-menu--hidden" id="menu-2">
+                     <li><a href="/admissions/index.aspx" class="accordion-menu__sublink">Admissions</a></li>
+                     <li><a href="/admissions/apply/index.aspx" class="accordion-menu__sublink">Apply Now</a></li>
+                     <li><a href="/admissions/admitted/index.aspx" class="accordion-menu__sublink">Admitted Students</a></li>
+                     <li><a href="#menu-2-d30e130" class="accordion-menu__link" data-accordion-menu=""><span>High School Programs</span><span class="accordion-menu__icon"></span></a><ul class="accordion-menu__sublist accordion-menu--hidden" id="menu-2-d30e130">
+                           <li><a href="/admissions/high-school-programs/index.aspx" class="accordion-menu__sublink">High School Programs</a></li>
+                           <li><a href="/admissions/high-school-programs/dual-enrollment/index.aspx" class="accordion-menu__sublink">Dual Enrollment</a></li>
+                           <li><a href="/admissions/high-school-programs/middle-college/index.aspx" class="accordion-menu__sublink">Middle College</a></li>
+                           <li><a href="/admissions/prior-learning/dual-credit/index.aspx" class="accordion-menu__sublink">Dual Credit</a></li>
+                           <li><a href="/admissions/high-school-programs/staff/index.aspx" class="accordion-menu__sublink">Staff</a></li>
+                        </ul>
+                     </li>
+                     <li><a href="/admissions/faq/index.aspx" class="accordion-menu__sublink">Admissions FAQs</a></li>
+                     <li><a href="#menu-2-d30e152" class="accordion-menu__link" data-accordion-menu=""><span>Prior Learning Assessment</span><span class="accordion-menu__icon"></span></a><ul class="accordion-menu__sublist accordion-menu--hidden" id="menu-2-d30e152">
+                           <li><a href="/admissions/prior-learning/index.aspx" class="accordion-menu__sublink">Prior Learning Assessment</a></li>
+                           <li><a href="/admissions/prior-learning/exams/index.aspx" class="accordion-menu__sublink">Exams and Tests</a></li>
+                           <li><a href="/admissions/prior-learning/departmental/index.aspx" class="accordion-menu__sublink">Departmental Assessment</a></li>
+                           <li><a href="/admissions/prior-learning/dual-credit/index.aspx" class="accordion-menu__sublink">Dual Credit</a></li>
+                           <li><a href="/admissions/prior-learning/military/index.aspx" class="accordion-menu__sublink">Military Experience</a></li>
+                           <li><a href="/admissions/prior-learning/certifications/index.aspx" class="accordion-menu__sublink">Certifications &amp; Licensures</a></li>
+                           <li><a href="/admissions/prior-learning/technology-center/index.aspx" class="accordion-menu__sublink">TN Technology Center</a></li>
+                        </ul>
+                     </li>
+                  </ul>
+               </li>
+               <li class="accordion-menu__item"><a href="#menu-3" class="accordion-menu__link" data-accordion-menu=""><span>Cost &amp; Aid</span><span class="accordion-menu__icon"></span></a><ul class="accordion-menu__sublist accordion-menu--hidden" id="menu-3">
+                     <li><a href="/cost-aid/index.aspx" class="accordion-menu__sublink">Cost &amp; Aid</a></li>
+                     <li><a href="/cost-aid/cost-of-attendance/index.aspx" class="accordion-menu__sublink">Cost of Attendance</a></li>
+                     <li><a href="/cost-aid/start/index.aspx" class="accordion-menu__sublink">Financial Aid 101</a></li>
+                     <li><a href="#menu-3-d30e189" class="accordion-menu__link" data-accordion-menu=""><span>Apply for Financial Aid</span><span class="accordion-menu__icon"></span></a><ul class="accordion-menu__sublist accordion-menu--hidden" id="menu-3-d30e189">
+                           <li><a href="/cost-aid/apply-for-aid/index.aspx" class="accordion-menu__sublink">Apply for Financial Aid</a></li>
+                           <li><a href="/cost-aid/apply-for-aid/links/index.aspx" class="accordion-menu__sublink">Helpful Links</a></li>
+                        </ul>
+                     </li>
+                     <li><a href="#menu-3-d30e199" class="accordion-menu__link" data-accordion-menu=""><span>Tuition &amp; Fees</span><span class="accordion-menu__icon"></span></a><ul class="accordion-menu__sublist accordion-menu--hidden" id="menu-3-d30e199">
+                           <li><a href="/cost-aid/tuition-fees/index.aspx" class="accordion-menu__sublink">Tuition &amp; Fees</a></li>
+                           <li><a href="/cost-aid/tuition-fees/payments/index.aspx" class="accordion-menu__sublink">Payment Options</a></li>
+                           <li><a href="/cost-aid/tuition-fees/refunds/index.aspx" class="accordion-menu__sublink">Refunds</a></li>
+                           <li><a href="/cost-aid/tuition-fees/registration-fees/index.aspx" class="accordion-menu__sublink">Registration Fees</a></li>
+                        </ul>
+                     </li>
+                     <li><a href="#menu-3-d30e215" class="accordion-menu__link" data-accordion-menu=""><span>Types of Financial Aid</span><span class="accordion-menu__icon"></span></a><ul class="accordion-menu__sublist accordion-menu--hidden" id="menu-3-d30e215">
+                           <li><a href="/cost-aid/types/index.aspx" class="accordion-menu__sublink">Types of Financial Aid</a></li>
+                           <li><a href="/cost-aid/types/grants/index.aspx" class="accordion-menu__sublink">Grants</a></li>
+                           <li><a href="/cost-aid/types/loans/index.aspx" class="accordion-menu__sublink">Loans</a></li>
+                           <li><a href="/cost-aid/types/scholarships/index.aspx" class="accordion-menu__sublink">Scholarships</a></li>
+                           <li><a href="/cost-aid/types/work-study/index.aspx" class="accordion-menu__sublink">Work Study</a></li>
+                           <li><a href="/cost-aid/types/cares/index.aspx" class="accordion-menu__sublink">CARES Act</a></li>
+                           <li><a href="/cost-aid/types/scams/index.aspx" class="accordion-menu__sublink">Financial Aid Scams</a></li>
+                        </ul>
+                     </li>
+                     <li><a href="/cost-aid/dates-deadlines/index.aspx" class="accordion-menu__sublink">Dates &amp; Deadlines</a></li>
+                     <li><a href="#menu-3-d30e243" class="accordion-menu__link" data-accordion-menu=""><span>Eligibility&nbsp;&amp; Verification</span><span class="accordion-menu__icon"></span></a><ul class="accordion-menu__sublist accordion-menu--hidden" id="menu-3-d30e243">
+                           <li><a href="/cost-aid/eligibility-verification/index.aspx" class="accordion-menu__sublink">Eligibility&nbsp;&amp; Verification</a></li>
+                           <li><a href="/cost-aid/eligibility-verification/changes-enrollment/index.aspx" class="accordion-menu__sublink">Changes in Enrollment</a></li>
+                           <li><a href="/cost-aid/eligibility-verification/fafsa/index.aspx" class="accordion-menu__sublink">Complete the FAFSA</a></li>
+                           <li><a href="/cost-aid/eligibility-verification/maintain/index.aspx" class="accordion-menu__sublink">Satisfactory Academic Progress (SAP)</a></li>
+                           <li><a href="/cost-aid/eligibility-verification/rights-responsibilities/index.aspx" class="accordion-menu__sublink">Rights and Responsibilities</a></li>
+                           <li><a href="/cost-aid/eligibility-verification/tax/index.aspx" class="accordion-menu__sublink">Tax Transcripts and IRS Data</a></li>
+                           <li><a href="/cost-aid/eligibility-verification/verification/index.aspx" class="accordion-menu__sublink">Financial Aid Verification</a></li>
+                           <li><a href="/cost-aid/eligibility-verification/withdrawals/index.aspx" class="accordion-menu__sublink">Financial Aid Withdrawals</a></li>
+                           <li><a href="/cost-aid/eligibility-verification/circumstance/index.aspx" class="accordion-menu__sublink">Unusual Circumstances</a></li>
+                        </ul>
+                     </li>
+                     <li><a href="/cost-aid/faq/index.aspx" class="accordion-menu__sublink">Cost &amp; Aid FAQ</a></li>
+                     <li><a href="/cost-aid/forms/index.aspx" class="accordion-menu__sublink">Forms</a></li>
+                     <li><a href="/cost-aid/contact/index.aspx" class="accordion-menu__sublink">Contact Us</a></li>
+                     <li><a href="/cost-aid/staff/index.aspx" class="accordion-menu__sublink">Cashier Office Staff</a></li>
+                  </ul>
+               </li>
+               <li class="accordion-menu__item"><a href="#menu-4" class="accordion-menu__link" data-accordion-menu=""><span>Student Services</span><span class="accordion-menu__icon"></span></a><ul class="accordion-menu__sublist accordion-menu--hidden" id="menu-4">
+                     <li><a href="/student-services/index.aspx" class="accordion-menu__sublink">Student Services</a></li>
+                     <li><a href="#menu-4-d30e293" class="accordion-menu__link" data-accordion-menu=""><span>Senators Central</span><span class="accordion-menu__icon"></span></a><ul class="accordion-menu__sublist accordion-menu--hidden" id="menu-4-d30e293">
+                           <li><a href="/senators-central/index.aspx" class="accordion-menu__sublink">Senators Central</a></li>
+                           <li><a href="/senators-central/visits-tours/index.aspx" class="accordion-menu__sublink">Visit Campus</a></li>
+                           <li><a href="/senators-central/navigators/index.aspx" class="accordion-menu__sublink">Navigators</a></li>
+                           <li><a href="/senators-central/orientation/index.aspx" class="accordion-menu__sublink">Student Orientation</a></li>
+                        </ul>
+                     </li>
+                     <li><a href="#menu-4-d30e309" class="accordion-menu__link" data-accordion-menu=""><span>Student Success Advising Center</span><span class="accordion-menu__icon"></span></a><ul class="accordion-menu__sublist accordion-menu--hidden" id="menu-4-d30e309">
+                           <li><a href="/student-services/success-center/index.aspx" class="accordion-menu__sublink">Student Success Advising Center</a></li>
+                           <li><a href="/student-services/success-center/registration/index.aspx" class="accordion-menu__sublink">Registration</a></li>
+                           <li><a href="/student-services/success-center/meet-advisor/index.aspx" class="accordion-menu__sublink">Academic Advisors</a></li>
+                           <li><a href="/student-services/success-center/resources/index.aspx" class="accordion-menu__sublink">Advising Resources</a></li>
+                           <li><a href="/student-services/success-center/faq/index.aspx" class="accordion-menu__sublink">Advising FAQ</a></li>
+                           <li><a href="/student-services/success-center/change-major/index.aspx" class="accordion-menu__sublink">Change of Major</a></li>
+                           <li><a href="/student-services/success-center/career/index.aspx" class="accordion-menu__sublink">Career Explorer and Resources</a></li>
+                           <li><a href="/student-services/success-center/staff/index.aspx" class="accordion-menu__sublink">Staff</a></li>
+                        </ul>
+                     </li>
+                     <li><a href="#menu-4-d30e337" class="accordion-menu__link" data-accordion-menu=""><span>Tutoring</span><span class="accordion-menu__icon"></span></a><ul class="accordion-menu__sublist accordion-menu--hidden" id="menu-4-d30e337">
+                           <li><a href="/student-services/tutoring/index.aspx" class="accordion-menu__sublink">Tutoring</a></li>
+                           <li><a href="/student-services/tutoring/after-hours-tutoring/index.aspx" class="accordion-menu__sublink">After-Hours Tutoring</a></li>
+                           <li><a href="/student-services/tutoring/faq/index.aspx" class="accordion-menu__sublink">Tutoring FAQ</a></li>
+                           <li><a href="/student-services/tutoring/staff/index.aspx" class="accordion-menu__sublink">Tutoring Staff</a></li>
+                        </ul>
+                     </li>
+                     <li><a href="#menu-4-d30e353" class="accordion-menu__link" data-accordion-menu=""><span>Disability Services</span><span class="accordion-menu__icon"></span></a><ul class="accordion-menu__sublist accordion-menu--hidden" id="menu-4-d30e353">
+                           <li><a href="/student-services/disability/index.aspx" class="accordion-menu__sublink">Disability Services</a></li>
+                           <li><a href="/student-services/disability/services/index.aspx" class="accordion-menu__sublink">Services Available</a></li>
+                           <li><a href="/student-services/disability/qualifications/index.aspx" class="accordion-menu__sublink">Disability Qualification</a></li>
+                           <li><a href="/student-services/disability/forms/index.aspx" class="accordion-menu__sublink">Forms</a></li>
+                           <li><a href="/student-services/disability/staff/index.aspx" class="accordion-menu__sublink">Staff</a></li>
+                           <li><a href="/student-services/disability/teaching/index.aspx" class="accordion-menu__sublink">Teaching Strategies</a></li>
+                        </ul>
+                     </li>
+                     <li><a href="#menu-4-d30e375" class="accordion-menu__link" data-accordion-menu=""><span>Veteran Services</span><span class="accordion-menu__icon"></span></a><ul class="accordion-menu__sublist accordion-menu--hidden" id="menu-4-d30e375">
+                           <li><a href="/student-services/veteran-services/index.aspx" class="accordion-menu__sublink">Veteran Services</a></li>
+                           <li><a href="/student-services/veteran-services/new-students/index.aspx" class="accordion-menu__sublink">New VA Students</a></li>
+                           <li><a href="/student-services/veteran-services/deferment/index.aspx" class="accordion-menu__sublink">VA Payment Deferment</a></li>
+                           <li><a href="/student-services/veteran-services/certifying/index.aspx" class="accordion-menu__sublink">Certifying Process</a></li>
+                           <li><a href="/student-services/veteran-services/responsibilities/index.aspx" class="accordion-menu__sublink">Student Responsibilities</a></li>
+                           <li><a href="/student-services/veteran-services/termination/index.aspx" class="accordion-menu__sublink">Termination of VA Benefits</a></li>
+                           <li><a href="/student-services/veteran-services/faq/index.aspx" class="accordion-menu__sublink">Veteran Services FAQ</a></li>
+                           <li><a href="/student-services/veteran-services/task-force/index.aspx" class="accordion-menu__sublink">Task Force</a></li>
+                        </ul>
+                     </li>
+                     <li><a href="#menu-4-d30e403" class="accordion-menu__link" data-accordion-menu=""><span>Campus Safety / Police</span><span class="accordion-menu__icon"></span></a><ul class="accordion-menu__sublist accordion-menu--hidden" id="menu-4-d30e403">
+                           <li><a href="/student-services/campus-safety/index.aspx" class="accordion-menu__sublink">Campus Safety / Police</a></li>
+                           <li><a href="/student-services/campus-safety/parking/index.aspx" class="accordion-menu__sublink">Parking Information</a></li>
+                           <li><a href="/student-services/campus-safety/police-personnel/index.aspx" class="accordion-menu__sublink">Police Personnel</a></li>
+                           <li><a href="/student-services/campus-safety/behavioral-intervention/index.aspx" class="accordion-menu__sublink">Behavioral Intervention</a></li>
+                           <li><a href="/student-services/campus-safety/prevention/index.aspx" class="accordion-menu__sublink">Crime Prevention &amp; Safety</a></li>
+                           <li><a href="/student-services/campus-safety/crime-reports/index.aspx" class="accordion-menu__sublink">Crime Reports</a></li>
+                           <li><a href="/student-services/campus-safety/crime-watch/index.aspx" class="accordion-menu__sublink">Crime Watch</a></li>
+                           <li><a href="/student-services/campus-safety/emergency/index.aspx" class="accordion-menu__sublink">Emergency Preparedness</a></li>
+                           <li><a href="/student-services/campus-safety/authorities/index.aspx" class="accordion-menu__sublink">Campus Security Authorities</a></li>
+                           <li><a href="/student-services/campus-safety/carry-permit/index.aspx" class="accordion-menu__sublink">Carry Permit</a></li>
+                           <li><a href="/student-services/campus-safety/forms/index.aspx" class="accordion-menu__sublink">Forms</a></li>
+                           <li><a href="/student-services/campus-safety/cameras/index.aspx" class="accordion-menu__sublink">Safety Cameras</a></li>
+                        </ul>
+                     </li>
+                     <li><a href="#menu-4-d30e444" class="accordion-menu__link" data-accordion-menu=""><span>Counseling &amp; Testing Center</span><span class="accordion-menu__icon"></span></a><ul class="accordion-menu__sublist accordion-menu--hidden" id="menu-4-d30e444">
+                           <li><a href="/student-services/counseling-testing/index.aspx" class="accordion-menu__sublink">Counseling &amp; Testing Center</a></li>
+                           <li><a href="/student-services/counseling-testing/employment-resources/index.aspx" class="accordion-menu__sublink">Employment Resources</a></li>
+                           <li><a href="/student-services/counseling-testing/employment-resources/index.aspx" class="accordion-menu__sublink">Career Planning Resources</a></li>
+                           <li><a href="/student-services/counseling-testing/personal-counseling/index.aspx" class="accordion-menu__sublink">Personal Counseling</a></li>
+                           <li><a href="/student-services/counseling-testing/testing-info/index.aspx" class="accordion-menu__sublink">Testing Information</a></li>
+                           <li><a href="/student-services/counseling-testing/testing-schedule/index.aspx" class="accordion-menu__sublink">Testing Schedule</a></li>
+                           <li><a href="/student-services/counseling-testing/staff/index.aspx" class="accordion-menu__sublink">Staff</a></li>
+                        </ul>
+                     </li>
+                     <li><a href="/student-services/student-outreach/index.aspx" class="accordion-menu__sublink">Student Outreach</a></li>
+                     <li><a href="/student-services/org/index.aspx" class="accordion-menu__sublink">Clubs and Organizations</a></li>
+                     <li><a href="/library/index.aspx" class="accordion-menu__sublink">Library</a></li>
+                     <li><a href="#menu-4-d30e479" class="accordion-menu__link" data-accordion-menu=""><span>Student Records</span><span class="accordion-menu__icon"></span></a><ul class="accordion-menu__sublist accordion-menu--hidden" id="menu-4-d30e479">
+                           <li><a href="/student-services/records/index.aspx" class="accordion-menu__sublink">Student Records</a></li>
+                           <li><a href="/student-services/records/directory/index.aspx" class="accordion-menu__sublink">Directory Information</a></li>
+                           <li><a href="/student-services/records/transcripts/index.aspx" class="accordion-menu__sublink">Transcripts</a></li>
+                           <li><a href="/student-services/records/graduation/index.aspx" class="accordion-menu__sublink">Graduation</a></li>
+                           <li><a href="/student-services/records/staff/index.aspx" class="accordion-menu__sublink">Staff</a></li>
+                        </ul>
+                     </li>
+                  </ul>
+               </li>
+               <li class="accordion-menu__item"><a href="#menu-5" class="accordion-menu__link" data-accordion-menu=""><span>About Us</span><span class="accordion-menu__icon"></span></a><ul class="accordion-menu__sublist accordion-menu--hidden" id="menu-5">
+                     <li><a href="/about/index.aspx" class="accordion-menu__sublink">About Us</a></li>
+                     <li><a href="/about/history/index.aspx" class="accordion-menu__sublink">History</a></li>
+                     <li><a href="/about/quick-facts/index.aspx" class="accordion-menu__sublink">Quick Facts</a></li>
+                     <li><a href="#menu-5-d30e510" class="accordion-menu__link" data-accordion-menu=""><span>Campus Locations</span><span class="accordion-menu__icon"></span></a><ul class="accordion-menu__sublist accordion-menu--hidden" id="menu-5-d30e510">
+                           <li><a href="/campuses/index.aspx" class="accordion-menu__sublink">Campus Locations</a></li>
+                           <li><a href="/campuses/morristown/index.aspx" class="accordion-menu__sublink">Morristown</a></li>
+                           <li><a href="/campuses/greeneville/index.aspx" class="accordion-menu__sublink">Greeneville</a></li>
+                           <li><a href="/campuses/sevier/index.aspx" class="accordion-menu__sublink">Sevierville</a></li>
+                           <li><a href="/campuses/claiborne/index.aspx" class="accordion-menu__sublink">Tazewell</a></li>
+                           <li><a href="/campuses/newport-center/index.aspx" class="accordion-menu__sublink">Newport</a></li>
+                        </ul>
+                     </li>
+                     <li><a href="/news/index.aspx" class="accordion-menu__sublink">News</a></li>
+                     <li><a href="#menu-5-d30e535" class="accordion-menu__link" data-accordion-menu=""><span>Offices</span><span class="accordion-menu__icon"></span></a><ul class="accordion-menu__sublist accordion-menu--hidden" id="menu-5-d30e535">
+                           <li><a href="/about/offices/index.aspx" class="accordion-menu__sublink">Offices</a></li>
+                           <li><a href="/about/offices/academic-affairs/index.aspx" class="accordion-menu__sublink">Academic Affairs</a></li>
+                           <li><a href="/about/offices/athletics/index.aspx" class="accordion-menu__sublink">Athletics</a></li>
+                           <li><a href="/about/offices/business-affairs/index.aspx" class="accordion-menu__sublink">Business &amp; Finance Office</a></li>
+                           <li><a href="/about/offices/college-advancement/index.aspx" class="accordion-menu__sublink">College Advancement</a></li>
+                           <li><a href="/about/offices/communications-marketing/index.aspx" class="accordion-menu__sublink">Communications and Marketing</a></li>
+                           <li><a href="/about/offices/facilities-management/index.aspx" class="accordion-menu__sublink">Facilities Management</a></li>
+                           <li><a href="/about/offices/human-resources/index.aspx" class="accordion-menu__sublink">Human Resources</a></li>
+                           <li><a href="/about/offices/ideas/index.aspx" class="accordion-menu__sublink">IDEAS</a></li>
+                           <li><a href="/about/offices/it/index.aspx" class="accordion-menu__sublink">Information Technology (IT)</a></li>
+                           <li><a href="/about/offices/institutional-effectiveness-compliance/index.aspx" class="accordion-menu__sublink">Institutional Effectiveness and Compliance (IEC)</a></li>
+                           <li><a href="/about/offices/internal-auditing/index.aspx" class="accordion-menu__sublink">Internal Auditing</a></li>
+                           <li><a href="/about/offices/presidents-office/index.aspx" class="accordion-menu__sublink">Office of the President</a></li>
+                           <li><a href="/about/offices/student-affairs/index.aspx" class="accordion-menu__sublink">Student Services</a></li>
+                        </ul>
+                     </li>
+                     <li><a href="#menu-5-d30e582" class="accordion-menu__link" data-accordion-menu=""><span>Foundation</span><span class="accordion-menu__icon"></span></a><ul class="accordion-menu__sublist accordion-menu--hidden" id="menu-5-d30e582">
+                           <li><a href="/about/foundation/index.aspx" class="accordion-menu__sublink">Foundation</a></li>
+                           <li><a href="/about/foundation/executive-committee/index.aspx" class="accordion-menu__sublink">Executive Committee</a></li>
+                           <li><a href="/about/foundation/planned-giving/index.aspx" class="accordion-menu__sublink">Planned Giving</a></li>
+                           <li><a href="/about/foundation/scholarships/index.aspx" class="accordion-menu__sublink">Scholarships</a></li>
+                           <li><a href="/about/foundation/tree-program/index.aspx" class="accordion-menu__sublink">Honor/Memorial Tree Program</a></li>
+                           <li><a href="/about/foundation/staff/index.aspx" class="accordion-menu__sublink">Staff</a></li>
+                        </ul>
+                     </li>
+                     <li><a href="#menu-5-d30e604" class="accordion-menu__link" data-accordion-menu=""><span>Alumni</span><span class="accordion-menu__icon"></span></a><ul class="accordion-menu__sublist accordion-menu--hidden" id="menu-5-d30e604">
+                           <li><a href="/alumni/index.aspx" class="accordion-menu__sublink">Alumni</a></li>
+                           <li><a href="/alumni/benefits/index.aspx" class="accordion-menu__sublink">Benefits</a></li>
+                           <li><a href="/alumni/distinguished-alumni/index.aspx" class="accordion-menu__sublink">Distinguished Alumni</a></li>
+                           <li><a href="/alumni/events/index.aspx" class="accordion-menu__sublink">Alumni Events</a></li>
+                           <li><a href="/alumni/staff/index.aspx" class="accordion-menu__sublink">Staff</a></li>
+                        </ul>
+                     </li>
+                     <li><a href="#menu-5-d30e623" class="accordion-menu__link" data-accordion-menu=""><span>Weather Policy</span><span class="accordion-menu__icon"></span></a><ul class="accordion-menu__sublist accordion-menu--hidden" id="menu-5-d30e623">
+                           <li><a href="/about/inclement-weather/index.aspx" class="accordion-menu__sublink">Weather Policy</a></li>
+                        </ul>
+                     </li>
+                     <li><a href="#menu-5-d30e630" class="accordion-menu__link" data-accordion-menu=""><span>Accreditation</span><span class="accordion-menu__icon"></span></a><ul class="accordion-menu__sublist accordion-menu--hidden" id="menu-5-d30e630">
+                           <li><a href="/about/accreditation/index.aspx" class="accordion-menu__sublink">Accreditation</a></li>
+                        </ul>
+                     </li>
+                  </ul>
+               </li>
+            </ul>
+         </nav>
+      </div>
+      <div class="mobile-menu-quicklinks">
+         <div class="apply-mobile-wrap"><a href="https://connect.ws.edu/portal/app_creation" class="btn-apply">Apply</a></div><a href="/workforce-training/index.aspx" class="btn-myws btn-ws-wft">Workforce Training</a><a href="https://my.ws.edu" class="btn-myws">MyWS</a><div class="dropdown"><button class="dropdown-toggle dropdown-toggle-btn" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">Info for:</button><ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+               <li><a class="dropdown-item" href="/info-for/prospective/index.aspx">Prospective Students</a></li>
+               <li><a class="dropdown-item" href="/info-for/current/index.aspx">Current Students</a></li>
+               <li><a class="dropdown-item" href="/info-for/counselors/index.aspx">High School Counselors</a></li>
+               <li><a class="dropdown-item" href="/info-for/adult-learner/index.aspx">Adult Learners</a></li>
+               <li><a class="dropdown-item" href="/info-for/family/index.aspx">Parents &amp; Family</a></li>
+               <li><a class="dropdown-item" href="/info-for/staff/index.aspx">Faculty &amp; Staff</a></li>
+            </ul>
+         </div>
+         <div class="dropdown"><button class="dropdown-toggle dropdown-toggle-btn" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">Resources</button><ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+               <li><a class="dropdown-item" href="/calendar/index.aspx">Academic Calendar</a></li>
+               <li><a class="dropdown-item" href="/_events/events-calendar/index.aspx">Events Calendar</a></li>
+               <li><a class="dropdown-item" href="https://www.wsccathletics.com/">Athletics</a></li>
+               <li><a class="dropdown-item" href="https://map.ws.edu">Campus Map</a></li>
+               <li><a class="dropdown-item" href="/directory/index.aspx">Directory</a></li>
+               <li><a class="dropdown-item" href="/library/index.aspx">Library</a></li>
+               <li><a class="dropdown-item" href="https://prodssb.ws.edu/StudentRegistrationSsb/ssb/term/termSelection?mode=search">Class Schedule</a></li>
+               <li><a class="dropdown-item" href="https://catalog.ws.edu">College Catalog</a></li>
+               <li><a class="dropdown-item" href="/student-services/bookstore/index.aspx">Bookstore</a></li>
+               <li><a class="dropdown-item" href="/expo/index.aspx">Expo Center</a></li>
+               <li><a class="dropdown-item" href="/helpdesk/index.aspx">Help Desk</a></li>
+            </ul>
+         </div>
+      </div>
+   </div>
+</div>
+      <main id="main-content">
+         <div class="container">
+            <nav class="breadcrumbs" aria-label="breadcrumb">
+               <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="https://ws.edu/index.aspx">VPMU</a></li>
+                  <li class="breadcrumb-item"><a href="https://ws.edu/about/index.aspx">About</a></li>
+                  <li class="breadcrumb-item"><a href="https://ws.edu/about/offices/index.aspx">Offices</a></li>
+                  <li class="breadcrumb-item active">Athletics</li>
+               </ol>
+            </nav>
+         </div>
+         <div class="container page-heading">
+            <h1 class="border-bottom">Athletics</h1>
+         </div>
+         <div class="featured-image" style="background-image: url(/_resources/images/standard-inner-feat-img.png)"></div>
+         <div class="container">
+            <div class="row">
+               <div class="col-md-4">
+                  <div class="sidebar-offset">
+                     <div class="sidebar-menu-wrap">
+                        <p class="h3">In This Section</p><ul class="sidebar-menu"><li><a href="/about/index.aspx">About Us</a></li><li><a href="/about/offices/index.aspx">Offices</a></li><li><a class="active"  href="/about/offices/athletics/index.aspx">Athletics</a></li></ul><div class="select-hamburger"></div><label for="select-dropdown-url" class="visually-hidden" aria-hidden="true">Search</label><select id="select-dropdown-url" name="select-dropdown-url" class="select-hamburger">    <option selected="" disabled="" value="">In This Section</option><li><a href="/about/index.aspx">About Us</a></li><li><a href="/about/offices/index.aspx">Offices</a></li><li><a class="active"  href="/about/offices/athletics/index.aspx">Athletics</a></li><option value="/about/index.aspx">About Us</option><option value="/about/offices/index.aspx">Offices</option><option value="/about/offices/athletics/index.aspx">Athletics</option></select></div>
+                     <div class="mobile-display-none">
+                        <div class="secondaryblue-bg p-4">
+                           <td data-type="wysiwyg" data-name="content">
+                              
+                              <h2><span style="font-size: 24px;">Contact Us</span></h2>
+                              
+                              <div class="facultyColumn">
+                                 
+                                 <div><a tabindex="-1" href="SPECIAL_LINKderek.creechFREEWS" data-values-rep-one="KNIL_LAICEPS" data-values-rep-two="EERF" data-values-rep-three="ude.sw" data-values-rep-four="SW" data-values-rep-five="@" data-values-rep-six=":otliam" data-values-do-something="true">Derek%20Creech</a><br tabindex="-1">Athletic Director<br tabindex="-1">423.585.6759</div>
+                                 </div>
+                              </td>
+                        </div>
+                        
+                        <p>&nbsp;</p>
+                        
+                        <p>&nbsp;</p>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-8 pt-5">
+                  <div id="contentNarrow">
+                     
+                     <div id="pageName">
+                        
+                        <div class="clear">
+                           
+                           <h2>The Athletics Office</h2>
+                           
+                           <hr>
+                           
+                           <p>The official <a href="https://www.wsccathletics.com/landing/index">Walters State Community College athletics website</a>&nbsp;serves as the primary digital home for the Senators and Lady Senators. Designed for
+                              student-athletes, alumni, and fans, the portal delivers up-to-the-minute coverage
+                              of the college's NJCAA and TCCAA sports programs, including real-time scoreboards,
+                              full season schedules, and game recaps. Visitors can stream live events, explore championship
+                              history, track NIL guidelines, and support the college's athletic tradition through
+                              the Senators Club.</p>
+                           
+                           <p><span>
+                                 <a href="https://www.wsccathletics.com/landing/index" target="_self" rel="noopener" class="btn btn-specialty-primary  ">Visit the Athletics Page</a> 
+                                 </span></p>
+                           
+                           <p>&nbsp;</p>
+                           
+                           <h3>Contact Information</h3>
+                           
+                           <p>Walters State Athletic Dept<br>500 S. Davy Crockett Pkwy<br>Morristown, TN 37813<br>Fax: 423.318.2579</p>
+                           
+                           <p>&nbsp;</p>
+                           </div>
+                        </div>
+                     <!-- InstanceEndEditable --></div>
+                  <div class="mobile-display-block">
+                     <div class="secondaryblue-bg p-4">
+                        <td data-type="wysiwyg" data-name="content">
+                           
+                           <h2><span style="font-size: 24px;">Contact Us</span></h2>
+                           
+                           <div class="facultyColumn">
+                              
+                              <div><a tabindex="-1" href="SPECIAL_LINKderek.creechFREEWS" data-values-rep-one="KNIL_LAICEPS" data-values-rep-two="EERF" data-values-rep-three="ude.sw" data-values-rep-four="SW" data-values-rep-five="@" data-values-rep-six=":otliam" data-values-do-something="true">Derek%20Creech</a><br tabindex="-1">Athletic Director<br tabindex="-1">423.585.6759</div>
+                              </div>
+                           </td>
+                     </div>
+                     
+                     <p>&nbsp;</p>
+                     
+                     <p>&nbsp;</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </main>
+      <div id="mountains-scroll" class="mountains-wrap">
+   <div class="mountains"><span class="one"></span><span class="two"></span><span class="three"></span><span class="four"></span><span class="five"></span></div>
+</div><div class="mountains-mobile"></div><footer id="footer" aria-label="Footer" class="site-footer">
+   <div class="primary-footer-wrap">
+      <div class="container">
+         <div class="row">
+            <div class="col-md-4 footer-info-col-left">
+               <p class="footer-heading">Walters State Community College</p>
+               <address class="footer-address"><span>500 South Davy Crockett Parkway</span> Morristown, TN 37813-6899</address>
+               <p class="footer-phone">Phone: <a href="tel:423.585.2600">423.585.2600</a></p>
+               <p class="footer-email"><a href="https://www.ws.edu/contact/">Contact Us</a></p>
+            </div>
+            <div class="col-md-8 footer-info-col-right">
+               <div class="row">
+                  <div class="col-lg-9 col-md-8">
+                     <ul class="footer-primary-menu">
+                        <li><a title="Campus Locations" href="/campuses/index.aspx">Campus Locations</a></li>
+                        <li><a title="Accreditation" href="/about/accreditation/index.aspx">Accreditation</a></li>
+                        <li><a title="Foundation" href="/give/" target="_blank" rel="noopener">Give</a></li>
+                        <li><a title="Employment &amp; Job Opportunities" href="/about/offices/human-resources/jobs/index.aspx">Employment &amp; Job Opportunities</a></li>
+                        <li><a title="Offices" href="/about/offices/index.aspx">Offices</a></li>
+                        <li><a href="/about/index.aspx#mission-vision">Mission &amp; Vision</a></li>
+                        <li><a href="/about/offices/human-resources/non-discrimination/index.aspx">Non-Discrimination</a></li>
+                        <li><a title="Student Right to Know" href="/cost-aid/consumer-information/index.aspx">Student Right to Know</a></li>
+                     </ul>
+                  </div>
+                  <div class="col-lg-3 col-md-4">
+                     <div class="footer-social">
+                        <div class="social-icon">
+                           <ul>
+                              <li><a title="Facebook" href="https://www.facebook.com/WaltersState" aria-label="Walters State on Facebook" target="_blank"><span class="fa-brands fa-facebook-f"></span></a></li>
+                              <li><a title="Twitter" href="https://twitter.com/WaltersState" aria-label="Walters State on Twitter X" target="_blank"><span class="fa-brands fa-x-twitter"><svg xmlns="http://www.w3.org/2000/svg" id="twitter-x-icon" height="1em" viewBox="0 0 512 512">
+                                          <path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg></span></a></li>
+                              <li><a title="Instagram" href="https://www.instagram.com/walters_state/?hl=en" aria-label="Walters State on Instagram" target="_blank"><span class="fa-brands fa-instagram"></span></a></li>
+                              <li><a title="Youtube" href="https://www.youtube.com/c/WaltersStateCommunityCollege" aria-label="Walters State on YouTube" target="_blank"><span class="fa-brands fa-youtube"></span></a></li>
+                           </ul>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="secondary-footer-wrap">
+      <div class="container" data-nosnippet="true">
+         <ul class="footer-logos" aria-hidden="true"></ul>
+         <ul class="footer-copyright">
+            <li><span id="directedit">©</span> 2026 Walters State Community College - All rights reserved</li>
+            <li><a href="/privacy/index.aspx">Privacy Policy</a> • <a href="/student-services/disability/index.aspx">Accessibility Standards</a></li>
+         </ul>
+         <p>Walters State does not discriminate on the basis of race, color, religion, creed,
+            ethnicity, or national origin, sex, disability, age, status as a protected veteran
+            or any other class protected by Federal or State laws and regulations and by Tennessee
+            Board of Regents policies with respect to employment, programs, and activities. The
+            following person has been designated to handle inquiries regarding non-discrimination
+            policies: Jarvis Jennings, Executive Director of Human Resources and Compliance Officer,
+            423.585.6845, jarvis.jennings@ws.edu, Walters State Community College, 500 S. Davy
+            Crockett Pkwy Morristown, TN 37813, 423.585.2600.</p>
+      </div>
+   </div>
+</footer>
+<script src="/_resources/build/js/libs.js"></script> <!-- lib.js imports jQuery. all jQuery dependencies must load after lib.js -->
+<script src="/_resources/build/js/main.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js"></script>
+<!-- script for PTA CAPTE accredidation image -->
+<!-- <script type="text/javascript" src="https://cdn.yoshki.com/yoshki-library.js"></script> -->
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NHHNCWZQ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<script src="https://ws.edu/ou-alerts/alerts-config.alerts.js?v=2.1-20260908125136"></script>
+<script>
+	// archive alert processing
+	if (document.getElementById(ouEmergencyAlerts.archivedAlertDivId)) {
+		ouEmergencyAlerts.loadAlertFeed("processAlertFeedForArchivePage", "activeAlertFeed", "archiveActiveAlertHeading");  
+		setTimeout(function() {
+			ouEmergencyAlerts.loadAlertFeed("processAlertFeedForArchivePage", "archiveAlertFeed", "archiveAlertHeading");
+		}, 200);
+	}
+	// active alert processing
+	ouEmergencyAlerts.determineActiveAlertOutput();
+</script>
+<script type="text/template" id="oualerts-active-announcement">
+<div class="alert alert-info alert-dismissible fade show" role="alert">
+    <strong class="me-4">{%=o.title%}</strong> 
+	{% if (o.guid) { %}
+    <a href="{%=o.guid %}">More Information</a>
+	{% } %}
+	<button id="oualerts-close-button" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+</script>
+
+<script type="text/template" id="oualerts-active-warning">
+<div id="alert-warning-id" class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong class="me-4">{%=o.title%}</strong> 
+	{% if (o.guid) { %}
+    <a href="{%=o.guid %}">More Information</a>
+	{% } %}
+    <button id="oualerts-close-button" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+</script>
+
+<script type="text/template" id="oualerts-active-emergency">
+<div class="oualerts-notify-modal-overlay">
+	<div id="oualerts-active-alert-display" class="oualerts-notify oualerts-notify-emergency oualerts-modal oualerts-modal-medium ouAlertsFadeInDown oualerts-animated-fast">
+		<div class="oualerts-notify-body">
+			{% if (o.showDate) { %}
+			<div class="oualerts-notify-date">{%=ouEmergencyAlerts.alertDateFormat("F d, Y h:i A",o.pubDate)%}</div>
+			{% } %}
+			<h3 class="oualerts-notify-title">
+				
+						<svg class="oualerts-notify-icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 298 273"><path fill-rule="evenodd" d="M137.626 7.553c4.947-8.9403 17.801-8.9403 22.748 0l135.948 245.652c4.795 8.665-1.471 19.295-11.374 19.295H13.0524c-9.903 0-16.1695-10.63-11.3744-19.295L137.626 7.553zM136.5 85v100h25V85h-25zm0 149.5v-24h25v24h-25z" clip-rule="evenodd"/></svg>
+					
+				{%=o.title%}
+			</h3><br />
+			{% if (o.subtitle) { %}
+			<p class="oualerts-notify-subtitle"><strong>{%=o.subtitle %}</strong></p>
+			{% } %}
+
+			<p><a href="{%=o.guid %}" class="oualerts-notify-link" stle="padding-top: 10px;">More Information >></a>
+
+			<p class="oualerts-notify-footer">
+				<button class="oualerts-close-button" id="oualerts-close-button">Close</button>
+			</p>
+		</div>
+	</div>
+</div>
+</script>
+<script type="text/template" id="oualerts-archived-template">
+{% if (o[0].htmlHeading) { %}
+<h2 class="oualerts-archive-main-heading">{%=o[0].htmlHeading %}</h2>
+{% } %}
+<ul class="oualerts-achive-list">
+	{% for (var i=0; o.length > i; i++) { %}
+	<li class="oualerts-achive-list-item oualerts-archive-type-{%=o[i].severity%}">
+		<div class="oualerts-achive-list-item-inner">
+			<h3 class="oualerts-archive-title">{%=o[i].title%}</h3>
+			<div class="oualerts-archive-date">{%=ouEmergencyAlerts.alertDateFormat("F d, Y h:i A",o[i].pubDate)%}</div>
+			{% if (o[i].subtitle) { %}
+			<p class="oualerts-archive-subtitle"><strong>{%=o[i].subtitle %}</strong></p>
+			{% } %}
+			{% if (o[i].description) { %}
+			<p class="oualerts-archive-msg">{%=o[i].description %}
+				{% } %}
+				{% if (o[i].guid) { %}
+				<a href="{%=o[i].guid %}" class="oualerts-archive-link">{%=ouEmergencyAlerts[o[i].severity + "Archive"].readMoreText%}</a>
+				{% } %}
+				{% if (o[i].description) { %}
+			</p>
+			{% } %}
+			{% if (o[i].updates) { %}
+			<h4 class="oualerts-archive-list-update-header">{%=ouEmergencyAlerts[o[i].severity + "Archive"].updateText %}</h4>
+			<ul class="oualerts-achive-list-update">
+				{% for (var k=0; o[i].updates.length > k; k++) { %}
+				<li class="oualerts-achive-list-item-update">
+					<div class="oualerts-achive-list-item-update-inner">
+						<h5 class="oualerts-archive-title-update">{%=o[i].updates[k].title%}</h5>
+						<div class="oualerts-archive-date-update">{%=ouEmergencyAlerts.alertDateFormat("F d, Y h:i A",o[i].updates[k].pubDate)%}</div>
+						{% if (o[i].updates[k].subtitle) { %}
+						<p class="oualerts-archive-subtitle-update"><strong>{%=o[i].updates[k].subtitle %}</strong></p>
+						{% } %}
+						{% if (o[i].updates[k].description) { %}
+						<p class="oualerts-archive-msg-update">{%=o[i].updates[k].description %}
+							{% } %}
+							{% if (o[i].updates[k].guid) { %}
+							<a href="{%=o[i].updates[k].guid %}" class="oualerts-archive-link-update">{%=ouEmergencyAlerts[o[i].severity + "Archive"].readMoreText%}</a>
+							{% } %}
+							{% if (o[i].updates[k].description) { %}
+						</p>
+						{% } %}
+					</div>
+				</li>
+				{% } %}
+			</ul>
+			{% } %}
+		</div>
+	</li>
+	{% } %}
+</ul>
+</script>
+
+      <div id="ou-hidden" style="display:none;"><a id="de" rel="nofollow" href="https://a.cms.omniupdate.com/11/?skin=oucampus&amp;account=ws&amp;site=www&amp;action=de&amp;path=/about/offices/athletics/index.pcf">&copy;</a></div><script>
+			if(document.getElementById("de") != null && document.getElementById("directedit")) {
+				var link = document.getElementById("de").parentNode.innerHTML;
+				document.getElementById("de").parentNode.innerHTML = "";
+				document.getElementById("directedit").innerHTML = link.replace(/^\s+|\s+$/gm,'');
+			}
+		</script><script>
+            function ouEncodingLinkReady(fn) {
+			  if (document.readyState !== "loading"){
+			    fn();
+			  }
+			  else if (document.addEventListener) {
+			    document.addEventListener("DOMContentLoaded", fn);
+			  }
+			  else {
+			    document.attachEvent("onreadystatechange", function() {
+			      if (document.readyState !== "loading") {
+			        fn();
+			      }
+			    });
+			  }
+			}
+			function ouEncodingLinkFunction() {
+			    var items = document.querySelectorAll("a[data-values-do-something='true']");
+			    var i;
+			    var valueOne;
+			    var valueTwo;
+			    var valueThree;
+			    var valueFour;
+			    var valueFive;
+			    var valueSix;
+			    var final;
+			    var text;
+			    for (i = 0; i < items.length; i += 1) {
+			        valueOne = decodeURIComponent(items[i].getAttribute("data-values-rep-one").split("").reverse().join(""));
+			        valueTwo = decodeURIComponent(items[i].getAttribute("data-values-rep-two").split("").reverse().join(""));
+			        valueThree = decodeURIComponent(items[i].getAttribute("data-values-rep-three").split("").reverse().join(""));
+			        valueFour = decodeURIComponent(items[i].getAttribute("data-values-rep-four").split("").reverse().join(""));
+			        valueFive = items[i].getAttribute("data-values-rep-five");
+			        valueSix = decodeURIComponent(items[i].getAttribute("data-values-rep-six").split("").reverse().join(""));
+
+			        final = items[i].getAttribute("href").replace(valueFour, valueThree).replace(valueTwo, valueFive).replace(valueOne, valueSix);
+			        text = decodeURIComponent(items[i].innerHTML.replace(valueFour, valueThree).replace(valueTwo, valueFive).replace(valueOne, valueSix));
+
+			        items[i].setAttribute("href", final);
+			        items[i].innerHTML = text;
+			    }
+			}
+			ouEncodingLinkReady(ouEncodingLinkFunction());
+        </script></body>
+</html>

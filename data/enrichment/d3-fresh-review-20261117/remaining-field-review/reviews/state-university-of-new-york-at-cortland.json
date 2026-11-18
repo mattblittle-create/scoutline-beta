@@ -1,0 +1,1977 @@
+{
+  "slug": "state-university-of-new-york-at-cortland",
+  "collegeId": "cmovorx5200mrqt7ghsja9u59",
+  "programId": "cmovorx5s00mtqt7gsr6bsp0p",
+  "checkedAtUtc": "2026-11-17T20:37:37.631Z",
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED",
+  "missingFields": [
+    "rosterUrl",
+    "questionnaireUrl",
+    "campsUrl",
+    "generalContactEmail",
+    "programXUrl"
+  ],
+  "pages": [
+    {
+      "requestedUrl": "https://www.cortlandreddragons.com/sports/baseball",
+      "kind": "baseball-home",
+      "parent": null,
+      "status": 200,
+      "finalUrl": "https://www.cortlandreddragons.com/sports/baseball",
+      "sourcePath": "../sources/state-university-of-new-york-at-cortland-1.html",
+      "sha256": "1c1de3c56c3cfb831a4ec57fb0e21c0c4598ee1c55dc0d4e16e6def3e8a2161d",
+      "reusedEvidence": true,
+      "originalCheckedAtUtc": "2026-11-17T17:26:33.390Z",
+      "parsed": {
+        "title": "Baseball - SUNY Cortland Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "SUNY Cortland Athletics",
+          "Main",
+          "Sport",
+          "Top Stories",
+          "More Headlines",
+          "Events",
+          "Results",
+          "Cortland Red Dragons Promo Slider",
+          "Featured Stories",
+          "Athletes of the Week",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://instagram.com/cortlandbaseball",
+            "label": "Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/baseball/schedule",
+            "label": "Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/sunycortland_mbb",
+            "label": "Basketball (M): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/mens-basketball/schedule",
+            "label": "Basketball (M): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/mens-basketball/roster",
+            "label": "Basketball (M): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cortlandwomensbasketball",
+            "label": "Basketball (W): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-basketball/schedule",
+            "label": "Basketball (W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-basketball/roster",
+            "label": "Basketball (W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cortland.xctf",
+            "label": "Cross Country (M/W): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/cross-country/schedule",
+            "label": "Cross Country (M/W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/cross-country/roster",
+            "label": "Cross Country (M/W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cortlandfieldhockey",
+            "label": "Field Hockey: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/field-hockey/schedule",
+            "label": "Field Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/field-hockey/roster",
+            "label": "Field Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/sunycortlandfootball",
+            "label": "Football: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/football/schedule",
+            "label": "Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/football/roster",
+            "label": "Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cortlandwgolf",
+            "label": "Golf (W): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-golf/schedule",
+            "label": "Golf (W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-golf/roster",
+            "label": "Golf (W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cortlandgymnastics",
+            "label": "Gymnastics (W): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-gymnastics/schedule",
+            "label": "Gymnastics (W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-gymnastics/roster",
+            "label": "Gymnastics (W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cortlandhockey",
+            "label": "Ice Hockey (M): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/mens-ice-hockey/schedule",
+            "label": "Ice Hockey (M): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/mens-ice-hockey/roster",
+            "label": "Ice Hockey (M): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cortland_whockey",
+            "label": "Ice Hockey (W): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-ice-hockey/schedule",
+            "label": "Ice Hockey (W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-ice-hockey/roster",
+            "label": "Ice Hockey (W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cortlandmlax",
+            "label": "Lacrosse (M): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/mens-lacrosse/schedule",
+            "label": "Lacrosse (M): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/mens-lacrosse/roster",
+            "label": "Lacrosse (M): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/reddragonlax",
+            "label": "Lacrosse (W): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-lacrosse/schedule",
+            "label": "Lacrosse (W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-lacrosse/roster",
+            "label": "Lacrosse (W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cortlandsoccer",
+            "label": "Soccer (M): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/mens-soccer/schedule",
+            "label": "Soccer (M): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/mens-soccer/roster",
+            "label": "Soccer (M): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cortlandwsoccer",
+            "label": "Soccer (W): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-soccer/schedule",
+            "label": "Soccer (W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-soccer/roster",
+            "label": "Soccer (W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cortlandsoftball",
+            "label": "Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cortlandwetdragons",
+            "label": "Swimming and Diving (M/W): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/swimming-and-diving/schedule",
+            "label": "Swimming and Diving (M/W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/swimming-and-diving/roster",
+            "label": "Swimming and Diving (M/W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-tennis/schedule",
+            "label": "Tennis (W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-tennis/roster",
+            "label": "Tennis (W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/track-and-field/schedule",
+            "label": "Track and Field (M/W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/track-and-field/roster",
+            "label": "Track and Field (M/W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cortlandvolleyball",
+            "label": "Volleyball (W): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-volleyball/schedule",
+            "label": "Volleyball (W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-volleyball/roster",
+            "label": "Volleyball (W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cortlandwrestling",
+            "label": "Wrestling (M): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/wrestling/schedule",
+            "label": "Wrestling (M): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/wrestling/roster",
+            "label": "Wrestling (M): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory",
+            "label": "Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/2020/2/6/2023-suny-cortland-summer-sports-camps.aspx",
+            "label": "Summer Sports Camps",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/calendar",
+            "label": "Composite Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/cortlandreddragons/",
+            "label": "Athletics Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://twitter.com/reddragonpride",
+            "label": "Athletics X/Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/baseball-department/19",
+            "label": "Coaches",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://www.cortlandreddragons.com/sports/baseball/schedule",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/state-university-of-new-york-at-cortland-1.html",
+        "sha256": "1c1de3c56c3cfb831a4ec57fb0e21c0c4598ee1c55dc0d4e16e6def3e8a2161d",
+        "url": "https://www.cortlandreddragons.com/sports/baseball/schedule",
+        "label": "Baseball: Schedule"
+      },
+      "status": 200,
+      "finalUrl": "https://www.cortlandreddragons.com/sports/baseball/schedule",
+      "checkedAtUtc": "2026-11-17T20:37:43.767Z",
+      "sourcePath": "sources/state-university-of-new-york-at-cortland-1.html",
+      "sha256": "e3fc4e90c8bea6c93dcfe29d7fe8893541c3c555612c42b59b757160d4ae95a7",
+      "parsed": {
+        "title": "2027 Baseball Schedule - SUNY Cortland Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "SUNY Cortland Athletics",
+          "Main",
+          "Sport",
+          "2027 Baseball Schedule",
+          "Season Record",
+          "Scheduled Games",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://www.cortlandreddragons.com/sports/baseball/schedule",
+            "label": "Skip To Main Content",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cortlandbaseball",
+            "label": "Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/sunycortland_mbb",
+            "label": "Basketball (M): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/mens-basketball/schedule",
+            "label": "Basketball (M): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/mens-basketball/roster",
+            "label": "Basketball (M): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cortlandwomensbasketball",
+            "label": "Basketball (W): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-basketball/schedule",
+            "label": "Basketball (W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-basketball/roster",
+            "label": "Basketball (W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cortland.xctf",
+            "label": "Cross Country (M/W): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/cross-country/schedule",
+            "label": "Cross Country (M/W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/cross-country/roster",
+            "label": "Cross Country (M/W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cortlandfieldhockey",
+            "label": "Field Hockey: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/field-hockey/schedule",
+            "label": "Field Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/field-hockey/roster",
+            "label": "Field Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/sunycortlandfootball",
+            "label": "Football: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/football/schedule",
+            "label": "Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/football/roster",
+            "label": "Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cortlandwgolf",
+            "label": "Golf (W): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-golf/schedule",
+            "label": "Golf (W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-golf/roster",
+            "label": "Golf (W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cortlandgymnastics",
+            "label": "Gymnastics (W): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-gymnastics/schedule",
+            "label": "Gymnastics (W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-gymnastics/roster",
+            "label": "Gymnastics (W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cortlandhockey",
+            "label": "Ice Hockey (M): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/mens-ice-hockey/schedule",
+            "label": "Ice Hockey (M): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/mens-ice-hockey/roster",
+            "label": "Ice Hockey (M): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cortland_whockey",
+            "label": "Ice Hockey (W): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-ice-hockey/schedule",
+            "label": "Ice Hockey (W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-ice-hockey/roster",
+            "label": "Ice Hockey (W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cortlandmlax",
+            "label": "Lacrosse (M): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/mens-lacrosse/schedule",
+            "label": "Lacrosse (M): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/mens-lacrosse/roster",
+            "label": "Lacrosse (M): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/reddragonlax",
+            "label": "Lacrosse (W): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-lacrosse/schedule",
+            "label": "Lacrosse (W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-lacrosse/roster",
+            "label": "Lacrosse (W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cortlandsoccer",
+            "label": "Soccer (M): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/mens-soccer/schedule",
+            "label": "Soccer (M): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/mens-soccer/roster",
+            "label": "Soccer (M): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cortlandwsoccer",
+            "label": "Soccer (W): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-soccer/schedule",
+            "label": "Soccer (W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-soccer/roster",
+            "label": "Soccer (W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cortlandsoftball",
+            "label": "Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cortlandwetdragons",
+            "label": "Swimming and Diving (M/W): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/swimming-and-diving/schedule",
+            "label": "Swimming and Diving (M/W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/swimming-and-diving/roster",
+            "label": "Swimming and Diving (M/W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-tennis/schedule",
+            "label": "Tennis (W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-tennis/roster",
+            "label": "Tennis (W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/track-and-field/schedule",
+            "label": "Track and Field (M/W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/track-and-field/roster",
+            "label": "Track and Field (M/W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cortlandvolleyball",
+            "label": "Volleyball (W): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-volleyball/schedule",
+            "label": "Volleyball (W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-volleyball/roster",
+            "label": "Volleyball (W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cortlandwrestling",
+            "label": "Wrestling (M): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/wrestling/schedule",
+            "label": "Wrestling (M): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/wrestling/roster",
+            "label": "Wrestling (M): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory",
+            "label": "Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/2020/2/6/2023-suny-cortland-summer-sports-camps.aspx",
+            "label": "Summer Sports Camps",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/calendar",
+            "label": "Composite Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/cortlandreddragons/",
+            "label": "Athletics Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://twitter.com/reddragonpride",
+            "label": "Athletics X/Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/baseball-department/19",
+            "label": "Coaches",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/baseball/schedule?print=true",
+            "label": "Print Print this page",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/baseball/schedule/2027?grid=true",
+            "label": "Grid Switch to Grid View",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/services/schedule_txt.ashx?schedule=483",
+            "label": "Text Text Format For Braille (New Tab)",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://www.cortlandreddragons.com/staff-directory/baseball-department/19",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/state-university-of-new-york-at-cortland-1.html",
+        "sha256": "1c1de3c56c3cfb831a4ec57fb0e21c0c4598ee1c55dc0d4e16e6def3e8a2161d",
+        "url": "https://www.cortlandreddragons.com/staff-directory/baseball-department/19",
+        "label": "Coaches"
+      },
+      "status": 200,
+      "finalUrl": "https://www.cortlandreddragons.com/staff-directory/baseball-department/19",
+      "checkedAtUtc": "2026-11-17T20:37:44.267Z",
+      "sourcePath": "sources/state-university-of-new-york-at-cortland-2.html",
+      "sha256": "af446a285a881c277047d2eb538a4a3235625634f7c9c1cea5a82cc9cf6acbde",
+      "parsed": {
+        "title": "Staff Directory - SUNY Cortland Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "SUNY Cortland Athletics",
+          "Main",
+          "Staff Directory",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/baseball-department/19",
+            "label": "Skip To Main Content",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://instagram.com/cortlandbaseball",
+            "label": "Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/baseball/schedule",
+            "label": "Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/sunycortland_mbb",
+            "label": "Basketball (M): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/mens-basketball/schedule",
+            "label": "Basketball (M): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/mens-basketball/roster",
+            "label": "Basketball (M): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cortlandwomensbasketball",
+            "label": "Basketball (W): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-basketball/schedule",
+            "label": "Basketball (W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-basketball/roster",
+            "label": "Basketball (W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cortland.xctf",
+            "label": "Cross Country (M/W): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/cross-country/schedule",
+            "label": "Cross Country (M/W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/cross-country/roster",
+            "label": "Cross Country (M/W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cortlandfieldhockey",
+            "label": "Field Hockey: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/field-hockey/schedule",
+            "label": "Field Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/field-hockey/roster",
+            "label": "Field Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/sunycortlandfootball",
+            "label": "Football: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/football/schedule",
+            "label": "Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/football/roster",
+            "label": "Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cortlandwgolf",
+            "label": "Golf (W): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-golf/schedule",
+            "label": "Golf (W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-golf/roster",
+            "label": "Golf (W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cortlandgymnastics",
+            "label": "Gymnastics (W): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-gymnastics/schedule",
+            "label": "Gymnastics (W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-gymnastics/roster",
+            "label": "Gymnastics (W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cortlandhockey",
+            "label": "Ice Hockey (M): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/mens-ice-hockey/schedule",
+            "label": "Ice Hockey (M): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/mens-ice-hockey/roster",
+            "label": "Ice Hockey (M): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cortland_whockey",
+            "label": "Ice Hockey (W): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-ice-hockey/schedule",
+            "label": "Ice Hockey (W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-ice-hockey/roster",
+            "label": "Ice Hockey (W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cortlandmlax",
+            "label": "Lacrosse (M): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/mens-lacrosse/schedule",
+            "label": "Lacrosse (M): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/mens-lacrosse/roster",
+            "label": "Lacrosse (M): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/reddragonlax",
+            "label": "Lacrosse (W): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-lacrosse/schedule",
+            "label": "Lacrosse (W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-lacrosse/roster",
+            "label": "Lacrosse (W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cortlandsoccer",
+            "label": "Soccer (M): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/mens-soccer/schedule",
+            "label": "Soccer (M): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/mens-soccer/roster",
+            "label": "Soccer (M): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cortlandwsoccer",
+            "label": "Soccer (W): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-soccer/schedule",
+            "label": "Soccer (W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-soccer/roster",
+            "label": "Soccer (W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cortlandsoftball",
+            "label": "Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cortlandwetdragons",
+            "label": "Swimming and Diving (M/W): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/swimming-and-diving/schedule",
+            "label": "Swimming and Diving (M/W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/swimming-and-diving/roster",
+            "label": "Swimming and Diving (M/W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-tennis/schedule",
+            "label": "Tennis (W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-tennis/roster",
+            "label": "Tennis (W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/track-and-field/schedule",
+            "label": "Track and Field (M/W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/track-and-field/roster",
+            "label": "Track and Field (M/W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cortlandvolleyball",
+            "label": "Volleyball (W): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-volleyball/schedule",
+            "label": "Volleyball (W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-volleyball/roster",
+            "label": "Volleyball (W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cortlandwrestling",
+            "label": "Wrestling (M): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/wrestling/schedule",
+            "label": "Wrestling (M): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/wrestling/roster",
+            "label": "Wrestling (M): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory",
+            "label": "Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/2020/2/6/2023-suny-cortland-summer-sports-camps.aspx",
+            "label": "Summer Sports Camps",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/calendar",
+            "label": "Composite Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/cortlandreddragons/",
+            "label": "Athletics Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://twitter.com/reddragonpride",
+            "label": "Athletics X/Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory?print=true",
+            "label": "Print",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/mike-urtz/1",
+            "label": "Mike Urtz Mike Urtz, Administration, Director of Athletics",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/tom-cranfield/4",
+            "label": "Tom Cranfield Tom Cranfield, Administration, Senior Associate Director of Athletics<br>(Budget/Transportation)",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/courtney-wormuth/219",
+            "label": "Courtney Wormuth Courtney Wormuth, Administration, Associate Director of Athletics (Compliance/Scheduling)<br>Athletics Coordinator for Student Services<br>Senior Woman Administrator",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/jaclyn-lawrence/322",
+            "label": "Jaclyn Lawrence Jaclyn Lawrence, Administration, Associate Director of Athletics<br>(Events/Marketing/Development)",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/erin-morris/773",
+            "label": "Erin Morris Erin Morris, Faculty Athletics Representative, Faculty Athletics Representative",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/kalin-merkley/648",
+            "label": "Kalin Merkley Kalin Merkley, Academic Advisement, Head Womens Golf Coach/Coordinator of Academic Support",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/bonnie-eldred-kress/7",
+            "label": "Bonnie Eldred-Kress Bonnie Eldred-Kress, Support Personnel, Athletics Accountant",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/julie-randall/6",
+            "label": "Julie Randall Julie Randall, Support Personnel, Athletic Dept. Administrative Assistant",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/aaron-taff/804",
+            "label": "Aaron Taff Aaron Taff, Support Personnel, Equipment Room Supervisor",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/harry-campbell/716",
+            "label": "Harry Campbell Harry Campbell, Athletic Training, Head Athletic Trainer (Football, Womens Gymnastics)",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/sonya-comins/9",
+            "label": "Sonya Comins Sonya Comins, Athletic Training, Athletic Trainer (Baseball, Womens Volleyball)",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/trisha-donnelly/100",
+            "label": "Trisha Donnelly Trisha Donnelly, Athletic Training, Athletic Trainer (Swimming and Diving, Cross Country)",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/lacy-gunn/261",
+            "label": "Lacy Gunn Lacy Gunn, Athletic Training, Athletic Trainer (Mens Soccer, Womens Lacrosse)",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/brian-hebbard/650",
+            "label": "Brian Hebbard Brian Hebbard, Athletic Training, Athletic Trainer (Field Hockey, Womens Ice Hockey)",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/kyle-liang/561",
+            "label": "Kyle Liang Kyle Liang, Athletic Training, Athletic Trainer (Womens Soccer, Mens Ice Hockey)",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/hannah-miller/774",
+            "label": "Hannah Miller Hannah Miller, Athletic Training, Athletic Trainer (Wrestling, Track and Field)",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/molly-potvin/688",
+            "label": "Molly Potvin Molly Potvin, Athletic Training, Athletic Trainer (Mens Lacrosse, Basketball)",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/amber-rice/715",
+            "label": "Amber Rice Amber Rice, Athletic Training, Athletic Trainer (Football, Softball)",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/phill-wiltshire/482",
+            "label": "Phill Wiltshire Phill Wiltshire, Strength and Conditioning, Strength and Conditioning Coordinator",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/fran-elia/10",
+            "label": "Fran Elia Fran Elia, Sports Information, Sports Information Director",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/mitchell-binda/722",
+            "label": "Mitchell Binda Mitchell Binda, Sports Information, Assistant Sports Information Director<br>(Primary Contact for: Soccer, Field Hockey, Ice Hockey, Lacrosse, Wrestling)",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/erin-locascio/675",
+            "label": "Erin Locascio Erin Locascio, Sports Information, Creative Content Coordinator",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/liam-sample/795",
+            "label": "Liam Sample Liam Sample, Sports Information, Sports Information Coordinator/Director of Broadcasting",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/joe-brown/26",
+            "label": "Joe Brown Joe Brown, Baseball, Head Baseball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/zack-durant/681",
+            "label": "Zack Durant Zack Durant, Baseball, Assistant Baseball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/matt-valin/789",
+            "label": "Matt Valin Matt Valin, Baseball, Assistant Baseball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/frank-paino/242",
+            "label": "Frank Paino Frank Paino, Baseball, Volunteer Asst. Baseball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/stefan-sabol/649",
+            "label": "Stefan Sabol Stefan Sabol, Baseball, Volunteer Asst. Baseball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/mat-bruno/777",
+            "label": "Mat Bruno Mat Bruno, Baseball, Volunteer Asst. Baseball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/maurice-kearney/363",
+            "label": "Maurice Kearney Maurice Kearney, Mens Basketball, Head Mens Basketball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/ben-walters/670",
+            "label": "Ben Walters Ben Walters, Mens Basketball, Assistant Mens Basketball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/gus-o-connell/738",
+            "label": "Gus O'Connell Gus OConnell, Mens Basketball, Assistant Mens Basketball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/andrew-durr/703",
+            "label": "Andrew Durr Andrew Durr, Mens Basketball, Mens Basketball Student Asst. Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/colleen-ames/686",
+            "label": "Colleen Ames Colleen Ames, Womens Basketball, Head Womens Basketball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/madison-shea/735",
+            "label": "Madison Shea Madison Shea, Womens Basketball, Assistant Womens Basketball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/diana-ter-bush/737",
+            "label": "Diana Ter Bush Diana Ter Bush, Womens Basketball, Assistant Womens Basketball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/jake-fusilli/810",
+            "label": "Jake Fusilli Jake Fusilli, Womens Basketball, Assistant Womens Basketball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/chad-dunham/656",
+            "label": "Chad Dunham Chad Dunham, Mens/Womens Cross Country, Head Cross Country Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/helen-shearer/797",
+            "label": "Helen Shearer Helen Shearer, Mens/Womens Cross Country, Assistant Cross Country Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/marissa-formes-patrick/352",
+            "label": "Marissa Formes-Patrick Marissa Formes-Patrick, Mens/Womens Cross Country, Volunteer Assistant Coach (Distance)",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/steve-patrick/24",
+            "label": "Steve Patrick Steve Patrick, Mens/Womens Cross Country, Director of Cross Country/Track & Field; Head Track and Field Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/tiffany-hubbard/415",
+            "label": "Tiffany Hubbard Tiffany Hubbard, Field Hockey, Head Field Hockey Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/jessica-lawrence/624",
+            "label": "Jessica Lawrence Jessica Lawrence, Field Hockey, Field Hockey Associate Head Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/sue-carlin/371",
+            "label": "Sue Carlin Sue Carlin, Field Hockey, Assistant Field Hockey Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/tom-blumenauer/752",
+            "label": "Tom Blumenauer Tom Blumenauer, Football, Head Football Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/leondre-simmon/755",
+            "label": "Leondre Simmon Leondre Simmon, Football, Football Associate Head Coach/Co-Defensive Coordinator (Safeties)",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/jack-mrozinski-jr-/756",
+            "label": "Jack Mrozinski, Jr. Jack Mrozinski, Jr., Football, Asst. Football Coach (Defensive Coordinator/Special Teams/CBs and LBs/Recruiting Coordinator))",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/eric-bunker/758",
+            "label": "Eric Bunker Eric Bunker, Football, Asst. Football Coach (Offensive Coordinator/Quarterbacks)",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/chyron-brown-wallace/759",
+            "label": "Chyron Brown-Wallace Chyron Brown-Wallace, Football, Asst. Football Coach (Defensive Line)",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/joe-mack/677",
+            "label": "Joe Mack Joe Mack, Football, Asst. Football Coach (Wide Receivers)",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/mark-sanchez/760",
+            "label": "Mark Sanchez Mark Sanchez, Football, Asst. Football Coach (Offensive Line)",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/bill-spicer/646",
+            "label": "Bill Spicer Bill Spicer, Football, Asst. Football Coach (Tight Ends/Asst. Offensive Line)",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/sulekha-modi/558",
+            "label": "Sulekha Modi Sulekha Modi, Womens Gymnastics, Head Womens Gymnastics Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/nicole-jackson/667",
+            "label": "Nicole Jackson Nicole Jackson, Womens Gymnastics, Assistant Womens Gymnastics Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/grace-murray/811",
+            "label": "Grace Murray Grace Murray, Womens Gymnastics, Assistant Womens Gymnastics Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/joe-cardarelli/321",
+            "label": "Joe Cardarelli Joe Cardarelli, Mens Ice Hockey, Head Mens Ice Hockey Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/dan-menges/794",
+            "label": "Dan Menges Dan Menges, Mens Ice Hockey, Assistant Mens Hockey Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/nick-harper/582",
+            "label": "Nick Harper Nick Harper, Mens Ice Hockey, Mens Ice Hockey Goaltender Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/paul-quinlan/719",
+            "label": "Paul Quinlan Paul Quinlan, Mens Ice Hockey, Assistant Mens Ice Hockey Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/rick-filighera/443",
+            "label": "Rick Filighera Rick Filighera, Womens Ice Hockey, Head Womens Ice Hockey Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/emma-peterson/762",
+            "label": "Emma Peterson Emma Peterson, Womens Ice Hockey, Assistant Womens Hockey Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/pat-conoboy/765",
+            "label": "Pat Conoboy Pat Conoboy, Womens Ice Hockey, Assistant Womens Hockey Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/lelan-rogers/695",
+            "label": "Lelan Rogers Lelan Rogers, Mens Lacrosse, Head Mens Lacrosse Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/sean-eccles/803",
+            "label": "Sean Eccles Sean Eccles, Mens Lacrosse, Assistant Mens Lacrosse Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/caden-hallinan/796",
+            "label": "Caden Hallinan Caden Hallinan, Mens Lacrosse, Assistant Mens Lacrosse Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/tom-hart/710",
+            "label": "Tom Hart Tom Hart, Mens Lacrosse, Volunteer Assistant Mens Lacrosse Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/al-roth/711",
+            "label": "Al Roth Al Roth, Mens Lacrosse, Mens Lacrosse Director of Relations",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/kelsey-van-alstyne/621",
+            "label": "Kelsey Van Alstyne Kelsey Van Alstyne, Womens Lacrosse, Womens Lacrosse Head Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/mackenna-brown/792",
+            "label": "Mackenna Brown Mackenna Brown, Womens Lacrosse, Assistant Womens Lacrosse Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/deanna-loukas/805",
+            "label": "Deanna Loukas Deanna Loukas, Womens Lacrosse, Assistant Womens Lacrosse Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/tom-schwan/707",
+            "label": "Tom Schwan Tom Schwan, Womens Lacrosse, Volunteer Assistant Womens Lacrosse Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/dave-bates/787",
+            "label": "Dave Bates Dave Bates, Womens Lacrosse, Volunteer Assistant Womens Lacrosse Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/steve-axtell/47",
+            "label": "Steve Axtell Steve Axtell, Mens Soccer, Head Mens Soccer Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/andrew-taylor/766",
+            "label": "Andrew Taylor Andrew Taylor, Mens Soccer, Assistant Mens Soccer Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/cason-stafford/799",
+            "label": "Cason Stafford Cason Stafford, Mens Soccer, Assistant Mens and Womens Soccer Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/caleb-rogati/772",
+            "label": "Caleb Rogati Caleb Rogati, Mens Soccer, Assistant Mens Soccer Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/scott-schuyler/802",
+            "label": "Scott Schuyler Scott Schuyler, Mens Soccer, Assistant Mens Soccer Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/peter-reynolds/800",
+            "label": "Peter Reynolds Peter Reynolds, Mens Soccer, Mens Soccer Student Assistant",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/heidi-axtell/16",
+            "label": "Heidi Axtell Heidi Axtell, Womens Soccer, Head Womens Soccer Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/craig-thomas/568",
+            "label": "Craig Thomas Craig Thomas, Womens Soccer, Womens Soccer Associate Head Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/mia-hosbach/801",
+            "label": "Mia Hosbach Mia Hosbach, Womens Soccer, Womens Soccer Student Assistant",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/womens-soccer-recruiting-email/757",
+            "label": "Women's Soccer Recruiting Email Womens Soccer Recruiting Email, Womens Soccer,",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/molly-o-donnell/557",
+            "label": "Molly O'Donnell Molly ODonnell, Softball, Head Softball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/lainie-ornstein/785",
+            "label": "Lainie Ornstein Lainie Ornstein, Softball, Assistant Softball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/deb-pallozzi/679",
+            "label": "Deb Pallozzi Deb Pallozzi, Softball, Assistant Softball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/shannon-scotto/790",
+            "label": "Shannon Scotto Shannon Scotto, Softball, Volunteer Assistant Softball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/brian-tobin/23",
+            "label": "Brian Tobin Brian Tobin, Mens/Womens Swimming and Diving, Head Swimming and Diving Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/veronica-ribot-canales/631",
+            "label": "Veronica Ribot-Canales Veronica Ribot-Canales, Mens/Womens Swimming and Diving, Diving Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/beth-tomlinson/747",
+            "label": "Beth Tomlinson Beth Tomlinson, Mens/Womens Swimming and Diving, Assistant Swimming and Diving Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/alex-zelinske/781",
+            "label": "Alex Zelinske Alex Zelinske, Mens/Womens Swimming and Diving, Assistant Swimming and Diving Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/tom-eickelberg/264",
+            "label": "Tom Eickelberg Tom Eickelberg, Mens/Womens Swimming and Diving, Volunteer Swimming Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/tom-spanbauer/32",
+            "label": "Tom Spanbauer Tom Spanbauer, Womens Tennis, Head Womens Tennis Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/bryce-farrell/775",
+            "label": "Bryce Farrell Bryce Farrell, Womens Tennis, Assistant Womens Tennis Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/tyler-dillingham/730",
+            "label": "Tyler Dillingham Tyler Dillingham, Womens Tennis, Student Asst. Womens Tennis Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/chad-dunham/659",
+            "label": "Chad Dunham Chad Dunham, Mens/Womens Track and Field, Assistant Track and Field Coach (Distance)",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/peter-mcginnis/59",
+            "label": "Peter McGinnis Peter McGinnis, Mens/Womens Track and Field, Assistant Track and Field Coach (Pole Vault)",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/curtis-merrick/238",
+            "label": "Curtis Merrick Curtis Merrick, Mens/Womens Track and Field, Assistant Track and Field Coach<br>(Sprints/Hurdles/Horizontal Jumps)",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/mitch-makowski/721",
+            "label": "Mitch Makowski Mitch Makowski, Mens/Womens Track and Field, Assistant Track and Field Coach<br>(Throws)",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/helen-shearer/798",
+            "label": "Helen Shearer Helen Shearer, Mens/Womens Track and Field, Assistant Track and Field Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/kristin-baker/788",
+            "label": "Kristin Baker Kristin Baker, Womens Volleyball, Head Womens Volleyball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/kaia-hubbard/791",
+            "label": "Kaia Hubbard Kaia Hubbard, Womens Volleyball, Assistant Womens Volleyball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/bridgette-moran/806",
+            "label": "Bridgette Moran Bridgette Moran, Womens Volleyball, Womens Volleyball Volunteer Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/bodey-goff/807",
+            "label": "Bodey Goff Bodey Goff, Womens Volleyball, Womens Volleyball Volunteer Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/tommy-prairie/647",
+            "label": "Tommy Prairie Tommy Prairie, Wrestling, Head Wrestling Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/anthony-miraglia/699",
+            "label": "Anthony Miraglia Anthony Miraglia, Wrestling, Assistant Wrestling Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/leo-rabinovich/748",
+            "label": "Leo Rabinovich Leo Rabinovich, Wrestling, Assistant Wrestling Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://www.cortlandreddragons.com/sports/mens-basketball/schedule",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/state-university-of-new-york-at-cortland-1.html",
+        "sha256": "1c1de3c56c3cfb831a4ec57fb0e21c0c4598ee1c55dc0d4e16e6def3e8a2161d",
+        "url": "https://www.cortlandreddragons.com/sports/mens-basketball/schedule",
+        "label": "Basketball (M): Schedule"
+      },
+      "status": 200,
+      "finalUrl": "https://www.cortlandreddragons.com/sports/mens-basketball/schedule",
+      "checkedAtUtc": "2026-11-17T20:37:45.555Z",
+      "sourcePath": "sources/state-university-of-new-york-at-cortland-3.html",
+      "sha256": "e6bfc14e61afe2d9e3449c11bc7119365e85fd26a6f2ea33c52124f94eeee9f9",
+      "parsed": {
+        "title": "2026-27 Men's Basketball Schedule - SUNY Cortland Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "SUNY Cortland Athletics",
+          "Main",
+          "Sport",
+          "2026-27 Men's Basketball Schedule",
+          "Season Record",
+          "Scheduled Games",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://www.cortlandreddragons.com/sports/mens-basketball/schedule",
+            "label": "Skip To Main Content",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cortlandbaseball",
+            "label": "Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/baseball/schedule",
+            "label": "Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/sunycortland_mbb",
+            "label": "Basketball (M): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/mens-basketball/roster",
+            "label": "Basketball (M): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cortlandwomensbasketball",
+            "label": "Basketball (W): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-basketball/schedule",
+            "label": "Basketball (W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-basketball/roster",
+            "label": "Basketball (W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cortland.xctf",
+            "label": "Cross Country (M/W): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/cross-country/schedule",
+            "label": "Cross Country (M/W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/cross-country/roster",
+            "label": "Cross Country (M/W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cortlandfieldhockey",
+            "label": "Field Hockey: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/field-hockey/schedule",
+            "label": "Field Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/field-hockey/roster",
+            "label": "Field Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/sunycortlandfootball",
+            "label": "Football: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/football/schedule",
+            "label": "Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/football/roster",
+            "label": "Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cortlandwgolf",
+            "label": "Golf (W): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-golf/schedule",
+            "label": "Golf (W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-golf/roster",
+            "label": "Golf (W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cortlandgymnastics",
+            "label": "Gymnastics (W): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-gymnastics/schedule",
+            "label": "Gymnastics (W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-gymnastics/roster",
+            "label": "Gymnastics (W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cortlandhockey",
+            "label": "Ice Hockey (M): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/mens-ice-hockey/schedule",
+            "label": "Ice Hockey (M): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/mens-ice-hockey/roster",
+            "label": "Ice Hockey (M): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cortland_whockey",
+            "label": "Ice Hockey (W): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-ice-hockey/schedule",
+            "label": "Ice Hockey (W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-ice-hockey/roster",
+            "label": "Ice Hockey (W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cortlandmlax",
+            "label": "Lacrosse (M): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/mens-lacrosse/schedule",
+            "label": "Lacrosse (M): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/mens-lacrosse/roster",
+            "label": "Lacrosse (M): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/reddragonlax",
+            "label": "Lacrosse (W): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-lacrosse/schedule",
+            "label": "Lacrosse (W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-lacrosse/roster",
+            "label": "Lacrosse (W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cortlandsoccer",
+            "label": "Soccer (M): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/mens-soccer/schedule",
+            "label": "Soccer (M): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/mens-soccer/roster",
+            "label": "Soccer (M): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cortlandwsoccer",
+            "label": "Soccer (W): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-soccer/schedule",
+            "label": "Soccer (W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-soccer/roster",
+            "label": "Soccer (W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cortlandsoftball",
+            "label": "Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cortlandwetdragons",
+            "label": "Swimming and Diving (M/W): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/swimming-and-diving/schedule",
+            "label": "Swimming and Diving (M/W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/swimming-and-diving/roster",
+            "label": "Swimming and Diving (M/W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-tennis/schedule",
+            "label": "Tennis (W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-tennis/roster",
+            "label": "Tennis (W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/track-and-field/schedule",
+            "label": "Track and Field (M/W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/track-and-field/roster",
+            "label": "Track and Field (M/W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cortlandvolleyball",
+            "label": "Volleyball (W): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-volleyball/schedule",
+            "label": "Volleyball (W): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/womens-volleyball/roster",
+            "label": "Volleyball (W): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/cortlandwrestling",
+            "label": "Wrestling (M): Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/wrestling/schedule",
+            "label": "Wrestling (M): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/wrestling/roster",
+            "label": "Wrestling (M): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory",
+            "label": "Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/2020/2/6/2023-suny-cortland-summer-sports-camps.aspx",
+            "label": "Summer Sports Camps",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/calendar",
+            "label": "Composite Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/cortlandreddragons/",
+            "label": "Athletics Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://twitter.com/reddragonpride",
+            "label": "Athletics X/Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/staff-directory/mens-basketball-department/11",
+            "label": "Coaches",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/mens-basketball/schedule?print=true",
+            "label": "Print Print this page",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/sports/mens-basketball/schedule/2026-27?grid=true",
+            "label": "Grid Switch to Grid View",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.cortlandreddragons.com/services/schedule_txt.ashx?schedule=479",
+            "label": "Text Text Format For Braille (New Tab)",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          }
+        ]
+      }
+    }
+  ],
+  "status": "EVIDENCE_CAPTURED_REQUIRES_REVIEW"
+}

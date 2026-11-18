@@ -1,0 +1,48 @@
+{
+  "slug": "borough-of-manhattan-community-college",
+  "name": "Borough of Manhattan Community College",
+  "collegeId": "cmox2o0mg000cqtbk6xnygyvm",
+  "programId": "cmox2o0n7000eqtbknrpfdkgn",
+  "storedState": "NY",
+  "storedDivision": "NJCAA_D3",
+  "directoryMatch": {
+    "unitid": "190521",
+    "name": "CUNY Borough of Manhattan Community College",
+    "aliases": [
+      "BMCC",
+      "Borough of Manhattan CC",
+      "Borough of Manhattan Community College"
+    ],
+    "state": "NY",
+    "city": "New York",
+    "host": "bmcc.cuny.edu",
+    "decision": "UNIQUE_EXACT_NAME_OR_ALIAS_AND_STATE_DISCOVERY_LEAD_ONLY"
+  },
+  "directoryMatchStatus": "DISCOVERY_LEAD_NOT_CURRENT_CAMPUS_VERIFIED",
+  "needsHeadCoach": false,
+  "needs2027Roster": true,
+  "newPagesAttempted": 1,
+  "pages": [
+    {
+      "requestedUrl": "https://bmcc.cuny.edu/",
+      "checkedAtUtc": "2026-11-18T16:21:45.545Z",
+      "status": "FAILED",
+      "errorType": "Error",
+      "kind": "INSTITUTIONAL_DIRECTORY_HOST_LEAD",
+      "parent": {
+        "sourcePath": "../../geography/us-college-locations-ipeds2024.json",
+        "unitid": "190521",
+        "publishedName": "CUNY Borough of Manhattan Community College",
+        "state": "NY",
+        "city": "New York"
+      }
+    }
+  ],
+  "unfetchedPublishedLeads": [],
+  "publishedLeads": [],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "campusIdentityReviewRequired": true,
+  "currentMembershipVerified": false,
+  "importApproval": "NOT_GRANTED"
+}

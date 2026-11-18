@@ -1,0 +1,2051 @@
+{
+  "slug": "guilford-college",
+  "collegeId": "cmovorq6j0096qt7grkke0x2c",
+  "programId": "cmovorq790098qt7g5e2ydzq9",
+  "checkedAtUtc": "2026-11-17T20:36:01.402Z",
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED",
+  "missingFields": [
+    "rosterUrl",
+    "questionnaireUrl",
+    "generalContactEmail",
+    "programXUrl",
+    "programInstagramUrl"
+  ],
+  "pages": [
+    {
+      "requestedUrl": "https://guilfordquakers.com/sports/baseball",
+      "kind": "baseball-home",
+      "parent": null,
+      "status": 200,
+      "finalUrl": "https://guilfordquakers.com/sports/baseball",
+      "sourcePath": "../sources/guilford-college-1.html",
+      "sha256": "b471f7fbdf902028b5fad828de0388916bb8413e5f4720ff90a03ede4afda6db",
+      "reusedEvidence": true,
+      "originalCheckedAtUtc": "2026-11-17T17:22:31.904Z",
+      "parsed": {
+        "title": "Baseball - Guilford College Sidearm Sports, opens a new window",
+        "headings": [
+          "Guilford College",
+          "Scoreboard",
+          "Main",
+          "Scoreboard",
+          "Sport",
+          "Sport Icons",
+          "Top Stories",
+          "Videos",
+          "Content Stream",
+          "Slideshow",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://guilfordquakers.com/sports/baseball/schedule",
+            "label": "Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/GCQuakersoftball",
+            "label": "Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/GuilfordMBB",
+            "label": "Men's Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/mens-basketball/schedule",
+            "label": "Men's Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/mens-basketball/roster",
+            "label": "Men's Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-basketball/schedule",
+            "label": "Women's Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-basketball/roster",
+            "label": "Women's Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/QXctf",
+            "label": "Men's Cross Country: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/quakersxctf",
+            "label": "Men's Cross Country: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/mens-cross-country/schedule",
+            "label": "Men's Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/mens-cross-country/roster",
+            "label": "Men's Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-cross-country/schedule",
+            "label": "Women's Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-cross-country/roster",
+            "label": "Women's Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/GuilfordFB",
+            "label": "Football: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/GuilfordCollegeFB",
+            "label": "Football: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/football/schedule",
+            "label": "Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/football/roster",
+            "label": "Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-flag-football/schedule",
+            "label": "Flag Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-flag-football/roster",
+            "label": "Flag Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/quakergolf",
+            "label": "Men's Golf: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/gcquakergolf",
+            "label": "Men's Golf: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/mens-golf/schedule",
+            "label": "Men's Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/mens-golf/roster",
+            "label": "Men's Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/GuilfordMensLax",
+            "label": "Men's Lacrosse: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/guilfordmlax",
+            "label": "Men's Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/mens-lacrosse/schedule",
+            "label": "Men's Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/mens-lacrosse/roster",
+            "label": "Men's Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/guilfordwlax",
+            "label": "Women's Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-lacrosse/schedule",
+            "label": "Women's Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-lacrosse/roster",
+            "label": "Women's Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/gcwrugby",
+            "label": "Women's Rugby: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-rugby/schedule",
+            "label": "Women's Rugby: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-rugby/roster",
+            "label": "Women's Rugby: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/guilford_soccer",
+            "label": "Men's Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/guilfordsoccer",
+            "label": "Men's Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/mens-soccer/schedule",
+            "label": "Men's Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/mens-soccer/roster",
+            "label": "Men's Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/guilfordwsoccer",
+            "label": "Women's Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-soccer/schedule",
+            "label": "Women's Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-soccer/roster",
+            "label": "Women's Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/gcquakermtennis",
+            "label": "Men's Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/mens-tennis/schedule",
+            "label": "Men's Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/mens-tennis/roster",
+            "label": "Men's Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/guilfordwomenstennis",
+            "label": "Women's Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-tennis/schedule",
+            "label": "Women's Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-tennis/roster",
+            "label": "Women's Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/mens-track-and-field/schedule",
+            "label": "Men's Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/mens-track-and-field/roster",
+            "label": "Men's Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-track-and-field/schedule",
+            "label": "Women's Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-track-and-field/roster",
+            "label": "Women's Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/quakers_triathlon",
+            "label": "Women's Triathlon: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/triathlon/schedule",
+            "label": "Women's Triathlon: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/triathlon/roster",
+            "label": "Women's Triathlon: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/guilford_college_volleyball",
+            "label": "Women's Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-volleyball/schedule",
+            "label": "Women's Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-volleyball/roster",
+            "label": "Women's Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/cheerleading/schedule",
+            "label": "Cheerleading: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/cheerleading/roster",
+            "label": "Cheerleading: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory",
+            "label": "Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.givecampus.com/campaigns/65060/donations/new",
+            "label": "Donate",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "http://www.guilfordbaseballcamps.com/?path=baseball",
+            "label": "Baseball",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "http://www.guilfordbasketballcamps.com/?path=mbball",
+            "label": "Men's Basketball",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "http://www.guilfordwbbcamps.com/?path=wbball",
+            "label": "Women's Basketball",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://guilfordquakers.com/documents/2021/11/5/Prospect_Camp_Brochure_2018.pdf?path=football",
+            "label": "Football",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.guilfordmenslacrossecamps.com/?path=mlax",
+            "label": "Men's Lacrosse",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.guilfordrugbycamps.com/?path=wrugby",
+            "label": "Women's Rugby",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.guilfordsoftballcamps.com/prospect-day.cfm?path=softball",
+            "label": "Softball",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.guilfordsoccercamps.com/index.cfm?path=msoc",
+            "label": "Men's Soccer",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.guilfordwomenssoccercamps.com/?path=wsoc",
+            "label": "Women's Soccer",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.guilfordswimcamps.com/?path=wswim",
+            "label": "Women's Swimming",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "http://www.guilfordvbcamps.com/?path=wvball",
+            "label": "Volleyball",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/baseball-department/26",
+            "label": "Staff",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://guilfordquakers.com/sports/baseball/schedule",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/guilford-college-1.html",
+        "sha256": "b471f7fbdf902028b5fad828de0388916bb8413e5f4720ff90a03ede4afda6db",
+        "url": "https://guilfordquakers.com/sports/baseball/schedule",
+        "label": "Baseball: Schedule"
+      },
+      "status": 200,
+      "finalUrl": "https://guilfordquakers.com/sports/baseball/schedule",
+      "checkedAtUtc": "2026-11-17T20:36:02.958Z",
+      "sourcePath": "sources/guilford-college-1.html",
+      "sha256": "4c98802cf93d731591b1cf5d87b8bcb5e833badb8475aff1e0a15276ad830451",
+      "parsed": {
+        "title": "2027 Baseball Schedule - Guilford College Sidearm Sports, opens a new window",
+        "headings": [
+          "Guilford College",
+          "Scoreboard",
+          "Main",
+          "Scoreboard",
+          "Sport",
+          "Sport Icons",
+          "2027 Baseball Schedule",
+          "Season Record",
+          "Scheduled Games",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://guilfordquakers.com/sports/baseball/schedule",
+            "label": "Skip To Main Content",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/GCQuakersoftball",
+            "label": "Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/GuilfordMBB",
+            "label": "Men's Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/mens-basketball/schedule",
+            "label": "Men's Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/mens-basketball/roster",
+            "label": "Men's Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-basketball/schedule",
+            "label": "Women's Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-basketball/roster",
+            "label": "Women's Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/QXctf",
+            "label": "Men's Cross Country: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/quakersxctf",
+            "label": "Men's Cross Country: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/mens-cross-country/schedule",
+            "label": "Men's Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/mens-cross-country/roster",
+            "label": "Men's Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-cross-country/schedule",
+            "label": "Women's Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-cross-country/roster",
+            "label": "Women's Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/GuilfordFB",
+            "label": "Football: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/GuilfordCollegeFB",
+            "label": "Football: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/football/schedule",
+            "label": "Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/football/roster",
+            "label": "Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-flag-football/schedule",
+            "label": "Flag Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-flag-football/roster",
+            "label": "Flag Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/quakergolf",
+            "label": "Men's Golf: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/gcquakergolf",
+            "label": "Men's Golf: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/mens-golf/schedule",
+            "label": "Men's Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/mens-golf/roster",
+            "label": "Men's Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/GuilfordMensLax",
+            "label": "Men's Lacrosse: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/guilfordmlax",
+            "label": "Men's Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/mens-lacrosse/schedule",
+            "label": "Men's Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/mens-lacrosse/roster",
+            "label": "Men's Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/guilfordwlax",
+            "label": "Women's Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-lacrosse/schedule",
+            "label": "Women's Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-lacrosse/roster",
+            "label": "Women's Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/gcwrugby",
+            "label": "Women's Rugby: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-rugby/schedule",
+            "label": "Women's Rugby: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-rugby/roster",
+            "label": "Women's Rugby: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/guilford_soccer",
+            "label": "Men's Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/guilfordsoccer",
+            "label": "Men's Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/mens-soccer/schedule",
+            "label": "Men's Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/mens-soccer/roster",
+            "label": "Men's Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/guilfordwsoccer",
+            "label": "Women's Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-soccer/schedule",
+            "label": "Women's Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-soccer/roster",
+            "label": "Women's Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/gcquakermtennis",
+            "label": "Men's Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/mens-tennis/schedule",
+            "label": "Men's Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/mens-tennis/roster",
+            "label": "Men's Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/guilfordwomenstennis",
+            "label": "Women's Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-tennis/schedule",
+            "label": "Women's Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-tennis/roster",
+            "label": "Women's Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/mens-track-and-field/schedule",
+            "label": "Men's Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/mens-track-and-field/roster",
+            "label": "Men's Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-track-and-field/schedule",
+            "label": "Women's Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-track-and-field/roster",
+            "label": "Women's Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/quakers_triathlon",
+            "label": "Women's Triathlon: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/triathlon/schedule",
+            "label": "Women's Triathlon: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/triathlon/roster",
+            "label": "Women's Triathlon: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/guilford_college_volleyball",
+            "label": "Women's Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-volleyball/schedule",
+            "label": "Women's Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-volleyball/roster",
+            "label": "Women's Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/cheerleading/schedule",
+            "label": "Cheerleading: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/cheerleading/roster",
+            "label": "Cheerleading: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory",
+            "label": "Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.givecampus.com/campaigns/65060/donations/new",
+            "label": "Donate",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "http://www.guilfordbaseballcamps.com/?path=baseball",
+            "label": "Baseball",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "http://www.guilfordbasketballcamps.com/?path=mbball",
+            "label": "Men's Basketball",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "http://www.guilfordwbbcamps.com/?path=wbball",
+            "label": "Women's Basketball",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://guilfordquakers.com/documents/2021/11/5/Prospect_Camp_Brochure_2018.pdf?path=football",
+            "label": "Football",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.guilfordmenslacrossecamps.com/?path=mlax",
+            "label": "Men's Lacrosse",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.guilfordrugbycamps.com/?path=wrugby",
+            "label": "Women's Rugby",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.guilfordsoftballcamps.com/prospect-day.cfm?path=softball",
+            "label": "Softball",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.guilfordsoccercamps.com/index.cfm?path=msoc",
+            "label": "Men's Soccer",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.guilfordwomenssoccercamps.com/?path=wsoc",
+            "label": "Women's Soccer",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.guilfordswimcamps.com/?path=wswim",
+            "label": "Women's Swimming",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "http://www.guilfordvbcamps.com/?path=wvball",
+            "label": "Volleyball",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/baseball-department/26",
+            "label": "Staff",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/baseball/schedule?print=true",
+            "label": "Print Print this page",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/baseball/schedule/2027?grid=true",
+            "label": "Grid Switch to Grid View",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/services/schedule_txt.ashx?schedule=497",
+            "label": "Text Text Format For Braille (New Tab)",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://guilfordquakers.com/staff-directory/baseball-department/26",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/guilford-college-1.html",
+        "sha256": "b471f7fbdf902028b5fad828de0388916bb8413e5f4720ff90a03ede4afda6db",
+        "url": "https://guilfordquakers.com/staff-directory/baseball-department/26",
+        "label": "Staff"
+      },
+      "status": 200,
+      "finalUrl": "https://guilfordquakers.com/staff-directory/baseball-department/26",
+      "checkedAtUtc": "2026-11-17T20:36:03.433Z",
+      "sourcePath": "sources/guilford-college-2.html",
+      "sha256": "992a751e8562e73e2cb526d1f56d5f71a44f922783764fb4df2f751585d1400d",
+      "parsed": {
+        "title": "Staff Directory - Guilford College Sidearm Sports, opens a new window",
+        "headings": [
+          "Guilford College",
+          "Scoreboard",
+          "Main",
+          "Scoreboard",
+          "Sport Icons",
+          "Staff Directory",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://guilfordquakers.com/staff-directory/baseball-department/26",
+            "label": "Skip To Main Content",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/baseball/schedule",
+            "label": "Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/GCQuakersoftball",
+            "label": "Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/GuilfordMBB",
+            "label": "Men's Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/mens-basketball/schedule",
+            "label": "Men's Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/mens-basketball/roster",
+            "label": "Men's Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-basketball/schedule",
+            "label": "Women's Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-basketball/roster",
+            "label": "Women's Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/QXctf",
+            "label": "Men's Cross Country: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/quakersxctf",
+            "label": "Men's Cross Country: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/mens-cross-country/schedule",
+            "label": "Men's Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/mens-cross-country/roster",
+            "label": "Men's Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-cross-country/schedule",
+            "label": "Women's Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-cross-country/roster",
+            "label": "Women's Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/baseball-department/Guilford%20College%20Football",
+            "label": "Football: Facebook",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://x.com/GuilfordFB",
+            "label": "Football: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/GuilfordCollegeFB",
+            "label": "Football: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/football/schedule",
+            "label": "Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/football/roster",
+            "label": "Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-flag-football/schedule",
+            "label": "Flag Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-flag-football/roster",
+            "label": "Flag Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/quakergolf",
+            "label": "Men's Golf: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/gcquakergolf",
+            "label": "Men's Golf: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/mens-golf/schedule",
+            "label": "Men's Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/mens-golf/roster",
+            "label": "Men's Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/GuilfordMensLax",
+            "label": "Men's Lacrosse: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/guilfordmlax",
+            "label": "Men's Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/mens-lacrosse/schedule",
+            "label": "Men's Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/mens-lacrosse/roster",
+            "label": "Men's Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/guilfordwlax",
+            "label": "Women's Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-lacrosse/schedule",
+            "label": "Women's Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-lacrosse/roster",
+            "label": "Women's Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/gcwrugby",
+            "label": "Women's Rugby: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-rugby/schedule",
+            "label": "Women's Rugby: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-rugby/roster",
+            "label": "Women's Rugby: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/guilford_soccer",
+            "label": "Men's Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/guilfordsoccer",
+            "label": "Men's Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/mens-soccer/schedule",
+            "label": "Men's Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/mens-soccer/roster",
+            "label": "Men's Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/guilfordwsoccer",
+            "label": "Women's Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-soccer/schedule",
+            "label": "Women's Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-soccer/roster",
+            "label": "Women's Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/gcquakermtennis",
+            "label": "Men's Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/mens-tennis/schedule",
+            "label": "Men's Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/mens-tennis/roster",
+            "label": "Men's Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/guilfordwomenstennis",
+            "label": "Women's Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-tennis/schedule",
+            "label": "Women's Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-tennis/roster",
+            "label": "Women's Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/mens-track-and-field/schedule",
+            "label": "Men's Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/mens-track-and-field/roster",
+            "label": "Men's Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-track-and-field/schedule",
+            "label": "Women's Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-track-and-field/roster",
+            "label": "Women's Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/quakers_triathlon",
+            "label": "Women's Triathlon: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/triathlon/schedule",
+            "label": "Women's Triathlon: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/triathlon/roster",
+            "label": "Women's Triathlon: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/guilford_college_volleyball",
+            "label": "Women's Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-volleyball/schedule",
+            "label": "Women's Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-volleyball/roster",
+            "label": "Women's Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/cheerleading/schedule",
+            "label": "Cheerleading: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/cheerleading/roster",
+            "label": "Cheerleading: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory",
+            "label": "Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.givecampus.com/campaigns/65060/donations/new",
+            "label": "Donate",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "http://www.guilfordbaseballcamps.com/?path=baseball",
+            "label": "Baseball",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "http://www.guilfordbasketballcamps.com/?path=mbball",
+            "label": "Men's Basketball",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "http://www.guilfordwbbcamps.com/?path=wbball",
+            "label": "Women's Basketball",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://guilfordquakers.com/documents/2021/11/5/Prospect_Camp_Brochure_2018.pdf?path=football",
+            "label": "Football",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.guilfordmenslacrossecamps.com/?path=mlax",
+            "label": "Men's Lacrosse",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.guilfordrugbycamps.com/?path=wrugby",
+            "label": "Women's Rugby",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.guilfordsoftballcamps.com/prospect-day.cfm?path=softball",
+            "label": "Softball",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.guilfordsoccercamps.com/index.cfm?path=msoc",
+            "label": "Men's Soccer",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.guilfordwomenssoccercamps.com/?path=wsoc",
+            "label": "Women's Soccer",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.guilfordswimcamps.com/?path=wswim",
+            "label": "Women's Swimming",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "http://www.guilfordvbcamps.com/?path=wvball",
+            "label": "Volleyball",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory?print=true",
+            "label": "Print",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/bill-foti/29",
+            "label": "Bill Foti Bill Foti, Administration, Director of Athletics",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/craig-eilbacher/26",
+            "label": "Craig Eilbacher Craig Eilbacher, Administration, Faculty Athletics Representative",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/will-esten/27",
+            "label": "Will Esten Will Esten, Administration, Assistant Athletic Director for Sports Medicine / Head Athletic Trainer (MSOC, MBB, FLAG)",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/bryce-johnson/225",
+            "label": "Bryce Johnson Bryce Johnson, Administration, Director of Athletic Communications (BASE, FLAG, FOOT, GOLF, MBB, M/WXC/T&F, MLAX, WSOC, WTEN)",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/kim-kleimeier-13/55",
+            "label": "Kim Kleimeier '13 Kim Kleimeier 13, Administration, Head Womens Tennis Coach / Compliance Coordinator / ADID Representative",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/sarah-mathews/77",
+            "label": "Sarah Mathews Sarah Mathews, Administration, Head Womens Basketball Coach / Senior Woman Administrator",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/katie-cristina-21/277",
+            "label": "Katie Cristina '21 Katie Cristina 21, Administration, Business Manager for Athletics",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/delaney-nightingale-23-mism-24/244",
+            "label": "Delaney Nightingale '23, MISM '24 Delaney Nightingale 23, MISM 24, Administration, Assistant Athletic Director for Facilities, Operations and Intramurals",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/ryan-jaworski-26/298",
+            "label": "Ryan Jaworski '26 Ryan Jaworski 26, Administration, Athletic Facilities Graduate Assistant",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/ray-babnik/183",
+            "label": "Ray Babnik Ray Babnik, Sports Medicine, Head Football Athletic Trainer (FOOT, SOFT, MTEN)",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/robby-wise/285",
+            "label": "Robby Wise Robby Wise, Sports Medicine, Athletic Trainer (WSOC, MLAX, GOLF)",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/amber-teffeau/268",
+            "label": "Amber Teffeau Amber Teffeau, Sports Medicine, Athletic Trainer (VB, WLAX, XC/T&F, WTEN)",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/sophia-bavisotto/286",
+            "label": "Sophia Bavisotto Sophia Bavisotto, Sports Medicine, Athletic Trainer (RUGBY, WBB, BASE)",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/dr-alan-reynolds-md-caq-sm/287",
+            "label": "Dr. Alan Reynolds, MD, CAQ-SM Dr. Alan Reynolds, MD, CAQ-SM, Sports Medicine, Medical Director, Orthopaedic Surgeon",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/dr-marc-edwin-saint-louis-md-mph-caq-sm/288",
+            "label": "Dr. Marc-Edwin Saint-Louis, MD, MPH, CAQ-SM Dr. Marc-Edwin Saint-Louis, MD, MPH, CAQ-SM, Sports Medicine, Team Physician, Non-Surgical Primary Care & Sports Medicine",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/karli-sewell/306",
+            "label": "Karli Sewell Karli Sewell, Strength and Conditioning, Strength and Conditioning Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/megan-raymond/294",
+            "label": "Megan Raymond Megan Raymond, Athletic Communications, Assistant Director of Athletic Communications (MSOC, MTEN, RUGBY, SOFT, TRI, WBB, WLAX, VB)",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/zach-booker/3",
+            "label": "Zach Booker Zach Booker, Baseball, Head Baseball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/hayes-henderson-23/216",
+            "label": "Hayes Henderson '23 Hayes Henderson 23, Baseball, Assistant Baseball Coach | Recruiting Coordinator",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/aaron-williams-mba-24-mism-25/271",
+            "label": "Aaron Williams MBA '24, MISM '25 Aaron Williams MBA 24, MISM 25, Baseball, Volunteer Assistant Coach | Director of Baseball Analytics & Player Development",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/derrick-walker/279",
+            "label": "Derrick Walker Derrick Walker, Flag Football, Head Flag Football Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/alain-valaka/309",
+            "label": "Alain Valaka Alain Valaka, Flag Football, Assistant Flag Football Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/brad-davis-08/58",
+            "label": "Brad Davis '08 Brad Davis 08, Football, Head Football Coach - Offensive Line Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/khalid-jones/181",
+            "label": "Khalid Jones Khalid Jones, Football, Associate Head Football Coach- Defensive Coordinator/Recruiting Coordinator",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/josh-baker/257",
+            "label": "Josh Baker Josh Baker, Football, Assistant Football Coach - Offensive Coordinator / Quarterbacks Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/jamel-warren/236",
+            "label": "Jamel Warren Jamel Warren, Football, Assistant Football Coach - Special Teams Coordinator/ Linebackers Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/sean-alexander/297",
+            "label": "Sean Alexander Sean Alexander, Football, Assistant Football Coach - Tight Ends Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/tre-alexander-22/238",
+            "label": "Tre Alexander '22 Tre Alexander 22, Football, Assistant Football Coach - Running Backs Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/jerrod-best/62",
+            "label": "Jerrod Best Jerrod Best, Football, Assistant Football Coach - Wide Receivers Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/charles-evans/265",
+            "label": "Charles Evans Charles Evans, Football, Assistant Football Coach - Defensive Line Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/rod-hedrick-26/292",
+            "label": "Rod Hedrick '26 Rod Hedrick 26, Football, Assistant Football Coach - Outside Linebackers/Special Teams Assistant",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/jahmari-chandler-26/291",
+            "label": "Jahmari Chandler '26 Jahmari Chandler 26, Football, Student Assistant Football Coach - Assistant Cornerbacks Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/jaylen-moore-26/290",
+            "label": "Jaylen Moore '26 Jaylen Moore 26, Football, Student Assistant Football Coach - Assistant Safeties Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/leo-cardelli-26/307",
+            "label": "Leo Cardelli '26 Leo Cardelli 26, Football, Student Assistant Football Coach - Assistant Quarterbacks Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/jesse-deloof/260",
+            "label": "Jesse DeLoof Jesse DeLoof, Mens Basketball, Head Mens Basketball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/bryce-butler/301",
+            "label": "Bryce Butler Bryce Butler, Mens Basketball, Assistant Mens Basketball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/bryan-mathews/177",
+            "label": "Bryan Mathews Bryan Mathews, Mens Basketball, Assistant Mens Basketball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/kevin-scola/198",
+            "label": "Kevin Scola Kevin Scola, Mens Cross Country, Head Cross Country Coach / Head Track and Field Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/ben-potter/243",
+            "label": "Ben Potter Ben Potter, Mens Golf, Head Mens Golf Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/michael-allen/308",
+            "label": "Michael Allen Michael Allen, Mens Golf, Volunteer Assistant Mens Golf Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/dylan-neisler/264",
+            "label": "Dylan Neisler Dylan Neisler, Mens Lacrosse, Head Mens Lacrosse Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/cam-walters-25/300",
+            "label": "Cam Walters '25 Cam Walters 25, Mens Lacrosse, Assistant Mens Lacrosse Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/sean-reilly/280",
+            "label": "Sean Reilly Sean Reilly, Mens Soccer, Head Mens Soccer Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/trevor-henderson/295",
+            "label": "Trevor Henderson Trevor Henderson, Mens Soccer, Assistant Mens Soccer Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/bert-poole/283",
+            "label": "Bert Poole Bert Poole, Mens Tennis, Head Mens Tennis Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/mark-lapierre/73",
+            "label": "Mark Lapierre Mark Lapierre, Mens Tennis, Assistant Mens Tennis Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/ranicha-sargeant-22/213",
+            "label": "Ranicha Sargeant '22 Ranicha Sargeant 22, Mens Track & Field, Head Triathlon Coach / Assistant Track & Field Coach - Jumps, Sprints",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/jimmy-lamour/214",
+            "label": "Jimmy Lamour Jimmy Lamour, Mens Track & Field, Assistant Track & Field Coach - Sprints",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/chris-scola/215",
+            "label": "Chris Scola Chris Scola, Mens Track & Field, Volunteer Assistant Cross Country/Track & Field Coach - Distance",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/charissa-duncan-10/194",
+            "label": "Charissa Duncan '10 Charissa Duncan 10, Softball, Head Softball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/kasey-locke/218",
+            "label": "Kasey Locke Kasey Locke, Softball, Assistant Softball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/sarah-cutright-13/221",
+            "label": "Sarah Cutright '13 Sarah Cutright 13, Softball, Volunteer Assistant Softball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/grace-calus-23-mba-24/233",
+            "label": "Grace Calus '23, MBA '24 Grace Calus 23, MBA 24, Softball, Volunteer Assistant Softball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/ken-carlyle/304",
+            "label": "Ken Carlyle Ken Carlyle, Softball, Assistant Softball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/reggie-blackmon/234",
+            "label": "Reggie Blackmon Reggie Blackmon, Womens Basketball, Assistant Womens Basketball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/alfonzo-duncan/278",
+            "label": "Alfonzo Duncan Alfonzo Duncan, Womens Basketball, Assistant Womens Basketball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/christine-newcomb/196",
+            "label": "Christine Newcomb Christine Newcomb, Womens Basketball, Head Womens Rugby Coach | Assistant Womens Basketball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/lauren-di-puorto/296",
+            "label": "Lauren Di Puorto Lauren Di Puorto, Womens Lacrosse, Head Womens Lacrosse Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/becki-haislip-99/78",
+            "label": "Becki Haislip '99 Becki Haislip 99, Womens Lacrosse, Assistant Womens Lacrosse Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/kayla-pecarina/275",
+            "label": "Kayla Pecarina Kayla Pecarina, Womens Rugby, Assistant Womens Rugby Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/josh-nowak/276",
+            "label": "Josh Nowak Josh Nowak, Womens Rugby, Assistant Womens Rugby Coach/Club Mens Rugby Head Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/randy-little/201",
+            "label": "Randy Little Randy Little, Womens Rugby, Assistant Womens Rugby Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/dakota-rock-15/253",
+            "label": "Dakota Rock '15 Dakota Rock 15, Womens Soccer, Head Womens Soccer Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/scott-neely/175",
+            "label": "Scott Neely Scott Neely, Womens Soccer, Assistant Womens Soccer Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/quinton-hurdle/289",
+            "label": "Quinton Hurdle Quinton Hurdle, Womens Soccer, Assistant Womens Soccer Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/ady-franken-23-mba-24/282",
+            "label": "Ady Franken '23, MBA '24 Ady Franken 23, MBA 24, Womens Soccer, Volunteer Assistant Womens Soccer Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/angie-donadio/302",
+            "label": "Angie Donadio Angie Donadio, Womens Soccer, Assistant Womens Soccer Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/gregory-vickrey/303",
+            "label": "Gregory Vickrey Gregory Vickrey, Womens Soccer, Assistant Womens Soccer Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/alex-dunzweiler/281",
+            "label": "Alex Dunzweiler Alex Dunzweiler, Womens Tennis, Assistant Womens Tennis Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/sonny-nhouyvanisvong/227",
+            "label": "Sonny Nhouyvanisvong Sonny Nhouyvanisvong, Womens Tennis, Volunteer Assistant Tennis Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/chris-miron/251",
+            "label": "Chris Miron Chris Miron, Womens Volleyball, Head Volleyball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/addie-sellars/272",
+            "label": "Addie Sellars Addie Sellars, Womens Volleyball, Volunteer Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/sydney-crews/310",
+            "label": "Sydney Crews Sydney Crews, Womens Volleyball, Assistant Volleyball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/zoe-whisnant-26/312",
+            "label": "Zoe Whisnant '26 Zoe Whisnant 26, Womens Volleyball, Volunteer Assistant Volleyball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://guilfordquakers.com/sports/softball/schedule",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/guilford-college-1.html",
+        "sha256": "b471f7fbdf902028b5fad828de0388916bb8413e5f4720ff90a03ede4afda6db",
+        "url": "https://guilfordquakers.com/sports/softball/schedule",
+        "label": "Softball: Schedule"
+      },
+      "status": 200,
+      "finalUrl": "https://guilfordquakers.com/sports/softball/schedule",
+      "checkedAtUtc": "2026-11-17T20:36:04.364Z",
+      "sourcePath": "sources/guilford-college-3.html",
+      "sha256": "cbe2500f81da931223059a3e160a92c7dfa4504f0affc3ba7df8329655ec9e38",
+      "parsed": {
+        "title": "2027 Softball Schedule - Guilford College Sidearm Sports, opens a new window",
+        "headings": [
+          "Guilford College",
+          "Scoreboard",
+          "Main",
+          "Scoreboard",
+          "Sport",
+          "Sport Icons",
+          "2027 Softball Schedule",
+          "Season Record",
+          "Scheduled Games",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://guilfordquakers.com/sports/softball/schedule",
+            "label": "Skip To Main Content",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/baseball/schedule",
+            "label": "Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/GCQuakersoftball",
+            "label": "Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/GuilfordMBB",
+            "label": "Men's Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/mens-basketball/schedule",
+            "label": "Men's Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/mens-basketball/roster",
+            "label": "Men's Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-basketball/schedule",
+            "label": "Women's Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-basketball/roster",
+            "label": "Women's Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/QXctf",
+            "label": "Men's Cross Country: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/quakersxctf",
+            "label": "Men's Cross Country: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/mens-cross-country/schedule",
+            "label": "Men's Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/mens-cross-country/roster",
+            "label": "Men's Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-cross-country/schedule",
+            "label": "Women's Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-cross-country/roster",
+            "label": "Women's Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/GuilfordFB",
+            "label": "Football: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/GuilfordCollegeFB",
+            "label": "Football: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/football/schedule",
+            "label": "Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/football/roster",
+            "label": "Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-flag-football/schedule",
+            "label": "Flag Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-flag-football/roster",
+            "label": "Flag Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/quakergolf",
+            "label": "Men's Golf: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/gcquakergolf",
+            "label": "Men's Golf: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/mens-golf/schedule",
+            "label": "Men's Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/mens-golf/roster",
+            "label": "Men's Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/GuilfordMensLax",
+            "label": "Men's Lacrosse: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/guilfordmlax",
+            "label": "Men's Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/mens-lacrosse/schedule",
+            "label": "Men's Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/mens-lacrosse/roster",
+            "label": "Men's Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/guilfordwlax",
+            "label": "Women's Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-lacrosse/schedule",
+            "label": "Women's Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-lacrosse/roster",
+            "label": "Women's Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/gcwrugby",
+            "label": "Women's Rugby: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-rugby/schedule",
+            "label": "Women's Rugby: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-rugby/roster",
+            "label": "Women's Rugby: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/guilford_soccer",
+            "label": "Men's Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/guilfordsoccer",
+            "label": "Men's Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/mens-soccer/schedule",
+            "label": "Men's Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/mens-soccer/roster",
+            "label": "Men's Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/guilfordwsoccer",
+            "label": "Women's Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-soccer/schedule",
+            "label": "Women's Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-soccer/roster",
+            "label": "Women's Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/gcquakermtennis",
+            "label": "Men's Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/mens-tennis/schedule",
+            "label": "Men's Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/mens-tennis/roster",
+            "label": "Men's Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/guilfordwomenstennis",
+            "label": "Women's Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-tennis/schedule",
+            "label": "Women's Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-tennis/roster",
+            "label": "Women's Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/mens-track-and-field/schedule",
+            "label": "Men's Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/mens-track-and-field/roster",
+            "label": "Men's Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-track-and-field/schedule",
+            "label": "Women's Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-track-and-field/roster",
+            "label": "Women's Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/quakers_triathlon",
+            "label": "Women's Triathlon: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/triathlon/schedule",
+            "label": "Women's Triathlon: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/triathlon/roster",
+            "label": "Women's Triathlon: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/guilford_college_volleyball",
+            "label": "Women's Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-volleyball/schedule",
+            "label": "Women's Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/womens-volleyball/roster",
+            "label": "Women's Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/cheerleading/schedule",
+            "label": "Cheerleading: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/cheerleading/roster",
+            "label": "Cheerleading: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory",
+            "label": "Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.givecampus.com/campaigns/65060/donations/new",
+            "label": "Donate",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "http://www.guilfordbaseballcamps.com/?path=baseball",
+            "label": "Baseball",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "http://www.guilfordbasketballcamps.com/?path=mbball",
+            "label": "Men's Basketball",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "http://www.guilfordwbbcamps.com/?path=wbball",
+            "label": "Women's Basketball",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://guilfordquakers.com/documents/2021/11/5/Prospect_Camp_Brochure_2018.pdf?path=football",
+            "label": "Football",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.guilfordmenslacrossecamps.com/?path=mlax",
+            "label": "Men's Lacrosse",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.guilfordrugbycamps.com/?path=wrugby",
+            "label": "Women's Rugby",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.guilfordsoftballcamps.com/prospect-day.cfm?path=softball",
+            "label": "Softball",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.guilfordsoccercamps.com/index.cfm?path=msoc",
+            "label": "Men's Soccer",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.guilfordwomenssoccercamps.com/?path=wsoc",
+            "label": "Women's Soccer",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.guilfordswimcamps.com/?path=wswim",
+            "label": "Women's Swimming",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "http://www.guilfordvbcamps.com/?path=wvball",
+            "label": "Volleyball",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://guilfordquakers.com/staff-directory/softball-department/34",
+            "label": "Staff",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/softball/schedule?print=true",
+            "label": "Print Print this page",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/sports/softball/schedule/2027?grid=true",
+            "label": "Grid Switch to Grid View",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://guilfordquakers.com/services/schedule_txt.ashx?schedule=493",
+            "label": "Text Text Format For Braille (New Tab)",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          }
+        ]
+      }
+    }
+  ],
+  "status": "EVIDENCE_CAPTURED_REQUIRES_REVIEW"
+}

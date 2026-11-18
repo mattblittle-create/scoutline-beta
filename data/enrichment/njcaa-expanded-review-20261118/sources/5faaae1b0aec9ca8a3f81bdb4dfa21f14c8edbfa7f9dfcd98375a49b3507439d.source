@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>2026-27 Baseball Roster - Louisburg College- Print Version</title>
+        <meta name="robots" content="NOINDEX" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="https://cdn.prestosports.com/action/cdn/info/theme/slick-theme-bs.css"/>
+                                                                                                                                                    				
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" data-body="'Lato', sans-serif" data-headings="'Lato', sans-serif" data-links="'Lato', sans-serif" data-buttons="'Lato', sans-serif">         
+
+
+
+
+
+<style>
+:root {
+    --font-body:'Lato', sans-serif;
+    --font-headings:'Lato', sans-serif;
+    --font-links:'Lato', sans-serif;
+    --font-buttons:'Lato', sans-serif;
+	
+    							--sitelogo:"/assets/images/Louisburg logo.png";
+			    							--color-primary:#05446B;
+			    							--color-secondary:#DB2B27;
+			    							--color-success:#006149;
+			    							--color-danger:#D10B0B;
+			    							--color-warning:#e85d04;
+			    							--color-info:#3498DB;
+			    							--color-light:#f8f9fa;
+			    							--color-dark:#222222;
+			    
+    							--featuredathlete-order:initial;
+			    							--newsrotator-order:3;
+			    							--scoreboard-order:5;
+			    							--recentnews-order:4;
+			    							--featuredathlete-order:initial;
+			    							--nextevent-order:2;
+			    							--recentvideos-order:6;
+			    							--banner-order:10;
+			    						    							--parallax-order:initial;
+			    							--photogallery-order:initial;
+			    							--sponsors-order:9;
+			    							--standings-order:7;
+			    						    							--socialstream-order:8;
+			    							--partnerlogos-order:initial;
+			    							--affiliatelogos-order:10;
+			    
+    										--global-fontcolor:#222;
+										--global-linkcolor:#c7102d;
+										--global-linkhovercolor:#c7102d;
+																																	--global-backgroundurl:url(https://cdn.prestosports.com/action/cdn/ol92eixptc1fo8uinone);
+										--global-backgroundposition:left top;
+										--global-backgroundrepeat:no-repeat;
+																--global-backgroundsize:auto;
+					    										--navigation-primary-fontcolor:#05446B;
+										--navigation-primary-linkcolor:#05446B;
+										--navigation-primary-linkhovercolor:#05446B;
+																																										--navigation-primary-backgroundcolor:transparent;
+											--navigation-primary-backgroundurl:url(${value});
+																													    										--navigation-primarydropdown-fontcolor:#05446B;
+										--navigation-primarydropdown-linkcolor:#05446B;
+										--navigation-primarydropdown-linkhovercolor:#05446B;
+																																										--navigation-primarydropdown-backgroundcolor:#E3E3E3;
+											--navigation-primarydropdown-backgroundurl:url(https://cdn.prestosports.com/action/cdn/ol92eixptc1fo8uinone);
+										--navigation-primarydropdown-backgroundposition:left top;
+										--navigation-primarydropdown-backgroundrepeat:no-repeat;
+										--navigation-primarydropdown-backgroundattachment:scroll;
+										--navigation-primarydropdown-backgroundsize:auto;
+					    																																																												--navigation-secondary-backgroundcolor:transparent;
+											--navigation-secondary-backgroundurl:url(${value});
+																													    																																																												--navigation-secondarydropdown-backgroundcolor:transparent;
+											--navigation-secondarydropdown-backgroundurl:url(${value});
+																													    																																																																			--navigation-sidebar-backgroundurl:url(${value});
+																													    																																																																			--navigation-quicklinks-backgroundurl:url(${value});
+																													    																																																																			--navigation-sitelinks-backgroundurl:url(${value});
+																													    										--header-fontcolor:#ffffff;
+										--header-linkcolor:#ffffff;
+										--header-linkhovercolor:#dddddd;
+																										--header-backgroundcolor:transparent;
+											--header-backgroundurl:url(https://cdn.prestosports.com/action/cdn/ol92eixptc1fo8uinone);
+										--header-backgroundposition:left top;
+										--header-backgroundrepeat:no-repeat;
+																--header-backgroundsize:auto;
+					    																																												--hero-backgroundcolor:transparent;
+											--hero-backgroundurl:url(https://cdn.prestosports.com/action/cdn/ol92eixptc1fo8uinone);
+										--hero-backgroundposition:left top;
+										--hero-backgroundrepeat:no-repeat;
+																--hero-backgroundsize:auto;
+					    																																												--main-backgroundcolor:transparent;
+											--main-backgroundurl:url(https://cdn.prestosports.com/action/cdn/ol92eixptc1fo8uinone);
+										--main-backgroundposition:left top;
+										--main-backgroundrepeat:no-repeat;
+																--main-backgroundsize:auto;
+					    										--footer-fontcolor:#05446B;
+										--footer-linkcolor:#05446B;
+										--footer-linkhovercolor:#DD2A26;
+																										--footer-backgroundcolor:#D8D9DA;
+											--footer-backgroundurl:url(https://cdn.prestosports.com/action/cdn/ol92eixptc1fo8uinone);
+										--footer-backgroundposition:left top;
+										--footer-backgroundrepeat:no-repeat;
+										--footer-backgroundattachment:scroll;
+										--footer-backgroundsize:auto;
+					    										--developer-fontcolor:#fff;
+										--developer-linkcolor:#fff;
+																--developer-textalign:center;
+																				--developer-backgroundcolor:transparent;
+											--developer-backgroundurl:url(https://cdn.prestosports.com/action/cdn/ol92eixptc1fo8uinone);
+										--developer-backgroundposition:left top;
+										--developer-backgroundrepeat:no-repeat;
+																--developer-backgroundsize:auto;
+					    																																																			--newsrotator-backgroundurl:url(${value});
+																													    										--scoreboard-fontcolor:#002d5b;
+										--scoreboard-linkcolor:#002d5b;
+										--scoreboard-linkhovercolor:#c7102d;
+																																	--scoreboard-backgroundurl:url(${value});
+																													    										--recentnews-fontcolor:#151515;
+										--recentnews-linkcolor:#151515;
+										--recentnews-linkhovercolor:#c7102d;
+																																	--recentnews-backgroundurl:url(${value});
+																													    										--featuredathlete-fontcolor:#c7102d;
+										--featuredathlete-linkcolor:#c7102d;
+																																							--featuredathlete-backgroundurl:url(${value});
+																													    										--nextevent-fontcolor:#002d5b;
+																						--nextevent-textalign:center;
+										--nextevent-texttransform:uppercase;
+																					--nextevent-backgroundurl:url(${value});
+																													    																																																			--recentvideos-backgroundurl:url(${value});
+																													    																																																			--banner-backgroundurl:url(${value});
+																													    																																																			--htmlembed-backgroundurl:url(${value});
+																													    																																																			--parallax-backgroundurl:url(${value});
+																													    																																																			--photogallery-backgroundurl:url(${value});
+																													    																																												--sponsors-backgroundcolor:#ffffff;
+											--sponsors-backgroundurl:url(https://cdn.prestosports.com/action/cdn/ol92eixptc1fo8uinone);
+										--sponsors-backgroundposition:left top;
+										--sponsors-backgroundrepeat:no-repeat;
+										--sponsors-backgroundattachment:scroll;
+										--sponsors-backgroundsize:auto;
+					    																																																			--standings-backgroundurl:url(${value});
+																													    																																																			--socialicons-backgroundurl:url(${value});
+																													    																																																			--socialstream-backgroundurl:url(${value});
+																													    																																																			--partnerlogos-backgroundurl:url(${value});
+																													    																																												--affiliatelogos-backgroundcolor:#D8D9DA;
+											--affiliatelogos-backgroundurl:url(https://cdn.prestosports.com/action/cdn/ol92eixptc1fo8uinone);
+										--affiliatelogos-backgroundposition:left top;
+										--affiliatelogos-backgroundrepeat:no-repeat;
+										--affiliatelogos-backgroundattachment:scroll;
+										--affiliatelogos-backgroundsize:auto;
+					    }
+</style>
+         <link rel="stylesheet" href="https://cdn.prestosports.com/action/cdn/info/theme/global-reset.css" type="text/css" />
+        <link rel="stylesheet" href="https://cdn.prestosports.com/action/cdn/info/yamm/css/yamm.css" type="text/css" />
+        <link rel="stylesheet" href="https://cdn.prestosports.com/action/cdn/info/theme/global-theme-reset.css" type="text/css" />
+
+        <!-- no rum header -->
+    </head>
+    <body onload="print()" class="printer-body">
+        <div class="page-content roster-content" data-module="bs-scripts/roster-layout" data-page-url="/sports/bsb/2026-27/roster" data-page-title="2026-27 Baseball Roster - Louisburg College">
+
+
+				        <h1 class="page-heading">2026-27 Baseball Roster</h1>
+		
+
+	
+
+    	
+
+    <div class="d-flex flex-column-reverse justify-content-between flex-md-row gap-3 py-3 my-3 border-top border-bottom">
+        <div class="d-flex gap-3 flex-fill">
+            <a href="/sports/bsb/2026-27/roster?dec=printer-decorator" class="btn btn-outline-secondary" aria-label="Print friendly version"><span class="fa fa-print"></span> Print</a>
+        
+				
+        </div>
+                            			
+				
+        <div id="roster-archive-switcher" class="archive-roster-switcher-template flex-fill">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="$id-options">Archive Rosters</label>
+                </div>
+                <select class="custom-select" id="roster-archive-switcher-options" onchange="location=this.value;" aria-label="Change the season by selecting an option from the list below">
+																		                                <option value="/sports/bsb/2019-20/roster" data-url="/sports/bsb/2019-20/roster" data-title="2019-20">2019-20</option>
+																															                                <option value="/sports/bsb/2018-19/roster" data-url="/sports/bsb/2018-19/roster" data-title="2018-19">2018-19</option>
+																															                                <option value="/sports/bsb/2017-18/roster" data-url="/sports/bsb/2017-18/roster" data-title="2017-18">2017-18</option>
+																															                                <option value="/sports/bsb/2016-17/roster" data-url="/sports/bsb/2016-17/roster" data-title="2016-17">2016-17</option>
+																															                                <option value="/sports/bsb/2015-16/roster" data-url="/sports/bsb/2015-16/roster" data-title="2015-16">2015-16</option>
+																															                                <option value="/sports/bsb/2014-15/roster" data-url="/sports/bsb/2014-15/roster" data-title="2014-15">2014-15</option>
+																															                                <option value="/sports/bsb/2013-14/roster" data-url="/sports/bsb/2013-14/roster" data-title="2013-14">2013-14</option>
+																															                                <option value="/sports/bsb/2012-13/roster" data-url="/sports/bsb/2012-13/roster" data-title="2012-13">2012-13</option>
+																															                                <option value="/sports/bsb/2011-12/roster" data-url="/sports/bsb/2011-12/roster" data-title="2011-12">2011-12</option>
+																		                </select>
+            </div>
+        </div>
+			
+            </div>
+
+	
+				
+				
+        <div class="roster-data style-list">
+	
+		
+		
+					
+		
+		
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead class="thead-dark">
+        <tr>
+			
+																																																				
+								
+												
+                <th scope="col" class="text-nowrap w-1 col1 sortable  ">
+
+					                        <a href="/sports/bsb/2026-27/roster?sort=number" title="Sort using this column" class="sortable text-reset" role="button" >No.
+							                                <span class="fa fa-sort text-muted" aria-hidden="true"></span>
+							                        </a>
+					                </th>
+			
+																																																				
+								
+								
+                <th scope="col" class="text-nowrap  col2 sortable  ">
+
+					                        <a href="/sports/bsb/2026-27/roster?sort=last_name" title="Sort using this column" class="sortable text-reset" role="button" >Name
+							                                <span class="fa fa-sort text-muted" aria-hidden="true"></span>
+							                        </a>
+					                </th>
+			
+																																																				
+								
+								
+                <th scope="col" class="text-nowrap  col3 sortable  ">
+
+					                        <a href="/sports/bsb/2026-27/roster?sort=position" title="Sort using this column" class="sortable text-reset" role="button" >Pos.
+							                                <span class="fa fa-sort text-muted" aria-hidden="true"></span>
+							                        </a>
+					                </th>
+			
+																																														
+								
+								
+                <th scope="col" class="text-nowrap  col4   sorted ">
+
+											Yr.
+					                </th>
+			
+																																														
+								
+								
+                <th scope="col" class="text-nowrap  col5   sorted ">
+
+											Ht.
+					                </th>
+			
+																																														
+								
+								
+                <th scope="col" class="text-nowrap  col6   sorted ">
+
+											Wt.
+					                </th>
+			
+																																														
+								
+								
+                <th scope="col" class="text-nowrap  col7   sorted ">
+
+											Hometown/Prev. School
+					                </th>
+			        </tr>
+        </thead>
+        <tbody>
+			        </tbody>
+    </table>
+</div>
+</div>
+
+	 
+		</div> 
+				                
+
+        
+        <div id='roster_3ab4256d-b558-41dc-a413-b7a3d29e5b39' key='googleAdContainer' adSpot='PS_WEB/PS_WEB_INTERNAL_LEADERBOARD' sizes='[[728,90],[300,250]]' ></div>
+
+	
+ 
+<script type="text/javascript">
+    $(".vm-btn").click(function(e){
+        $('.player-card.flipped').removeClass('flipped');
+        $(this).closest('.player-card').addClass('flipped');
+        e.stopPropagation();
+    });
+
+    $(document).on("click", function(e) {
+        if ($(e.target).is(".player-card") === false) {
+            $(".player-card").removeClass("flipped");
+        }
+    });
+
+    $(".card-back .close").click(function(){
+        $(".player-card").removeClass("flipped");
+    });
+</script>
+ 
+
+<link rel="alternate" type="application/rss+xml" title="2026-27 Baseball Roster" href="/sports/bsb/2026-27/roster?feed=rss_2.0">
+
+
+
+<!-- from: generic theme --><script type='text/javascript' src='/info/ga/include.js' async data-uid='UA-1939879-1'></script>
+        <!-- from: generic-bootstrap theme -->
+        
+                <!-- no rum footer -->
+    </body>
+</html>

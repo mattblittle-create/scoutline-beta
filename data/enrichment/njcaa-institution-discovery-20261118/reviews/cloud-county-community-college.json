@@ -1,0 +1,44 @@
+{
+  "slug": "cloud-county-community-college",
+  "name": "Cloud County Community College",
+  "collegeId": "cmox1gfnw001lqtsg7fvs7z66",
+  "programId": "cmox1gfoj001nqtsg9k78ft65",
+  "storedState": "KS",
+  "storedDivision": "NJCAA_D1",
+  "directoryMatch": {
+    "unitid": "154907",
+    "name": "Cloud County Community College",
+    "aliases": [],
+    "state": "KS",
+    "city": "Concordia",
+    "host": "cloud.edu",
+    "decision": "UNIQUE_EXACT_NAME_OR_ALIAS_AND_STATE_DISCOVERY_LEAD_ONLY"
+  },
+  "directoryMatchStatus": "DISCOVERY_LEAD_NOT_CURRENT_CAMPUS_VERIFIED",
+  "needsHeadCoach": false,
+  "needs2027Roster": false,
+  "newPagesAttempted": 1,
+  "pages": [
+    {
+      "requestedUrl": "https://cloud.edu/",
+      "checkedAtUtc": "2026-11-18T16:09:39.602Z",
+      "status": "FAILED",
+      "errorType": "TypeError",
+      "kind": "INSTITUTIONAL_DIRECTORY_HOST_LEAD",
+      "parent": {
+        "sourcePath": "../../geography/us-college-locations-ipeds2024.json",
+        "unitid": "154907",
+        "publishedName": "Cloud County Community College",
+        "state": "KS",
+        "city": "Concordia"
+      }
+    }
+  ],
+  "unfetchedPublishedLeads": [],
+  "publishedLeads": [],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "campusIdentityReviewRequired": true,
+  "currentMembershipVerified": false,
+  "importApproval": "NOT_GRANTED"
+}

@@ -1,0 +1,68 @@
+{
+  "slug": "college-of-dupage",
+  "programId": "cmox2o11y0018qtbkktweb1a7",
+  "collegeId": "cmox2o1170016qtbkgk4vxtdy",
+  "checkedAtUtc": "2026-11-18T14:43:37.818Z",
+  "sourcePath": "../njcaa-discovery-20261118/sources/college-of-dupage-1.source",
+  "sourceSHA256": "7fa3f20114c987ca5b29a04390e744d330d576eeb01082074b18c7a477e83cbf",
+  "sourceUrl": "https://gochapsgo.com/sports/baseball",
+  "socialLeads": [],
+  "recruitingLeads": [
+    {
+      "url": "https://gochapsgo.com/sb_output.aspx?form=3",
+      "label": "Prospective Student-Athlete Questionnaire",
+      "context": "",
+      "kind": "QUESTIONNAIRE"
+    },
+    {
+      "url": "https://gochapsgo.com/sb_output.aspx?form=4",
+      "label": "Student-Athlete Media Questionnaire",
+      "context": "",
+      "kind": "QUESTIONNAIRE"
+    }
+  ],
+  "logoLeads": [
+    {
+      "url": "https://gochapsgo.com/images/logos/site/site.png",
+      "label": "College of DuPage, go to homepage main-header-img"
+    }
+  ],
+  "captures": [
+    {
+      "requestedUrl": "https://gochapsgo.com/sb_output.aspx?form=3",
+      "kind": "QUESTIONNAIRE",
+      "status": 200,
+      "finalUrl": "https://gochapsgo.com/sb_output.aspx?form=3",
+      "sourcePath": "../njcaa-core-review-20261118/sources/college-of-dupage-4.source",
+      "sha256": "5b311fed9470f81ea94d4d18efbf50c3aa538ef762bce6e220f76d825ac795dd",
+      "reusedEvidence": true
+    },
+    {
+      "requestedUrl": "https://gochapsgo.com/sb_output.aspx?form=4",
+      "kind": "QUESTIONNAIRE",
+      "status": 200,
+      "finalUrl": "https://gochapsgo.com/sb_output.aspx?form=4",
+      "contentType": "text/html; charset=utf-8",
+      "sourcePath": "sources/college-of-dupage-1.source",
+      "sha256": "681422fa4ad6679385e70d4d706d661c43208895073ddfa4fc270e6cc753b9f6"
+    },
+    {
+      "requestedUrl": "https://gochapsgo.com/images/logos/site/site.png",
+      "kind": "LOGO_ASSET",
+      "status": 200,
+      "finalUrl": "https://images.sidearmdev.com/convert?url=https%3a%2f%2fdxbhsrqyrr690.cloudfront.net%2fsidearm.nextgen.sites%2fcod.sidearmsports.com%2fimages%2flogos%2fsite%2fsite.png&type=webp",
+      "contentType": "image/webp",
+      "sourcePath": "sources/college-of-dupage-2.source",
+      "sha256": "4b34b2dada790d2fb84fb0de7bc3d0291a6a750dd54ea0cadce8510111e74de6",
+      "decoded": {
+        "format": "webp",
+        "width": 200,
+        "height": 200
+      },
+      "assetDecoded": true
+    }
+  ],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED"
+}

@@ -1,0 +1,41 @@
+{
+  "slug": "rochester-community-and-technical-college",
+  "collegeId": "cmox2o378005lqtbk8ffxza60",
+  "programId": "cmox2o380005nqtbk88jug78h",
+  "name": "Rochester Community and Technical College",
+  "storedState": "MN",
+  "storedDivision": "NJCAA_D3",
+  "checkedAtUtc": "2026-11-18T14:21:39.326Z",
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "currentMembershipVerified": false,
+  "campusIdentityVerified": false,
+  "importApproval": "NOT_GRANTED",
+  "pages": [
+    {
+      "requestedUrl": "http://www.rctcyellowjackets.com/sports/bsb/index",
+      "kind": "DIRECTORY_ALIAS_REQUIRES_CAMPUS_REVIEW",
+      "parent": {
+        "sourcePath": "../njcaa-discovery-20261118/sources/directory-d3.source",
+        "sha256": "3888c2777289f782525671d17b3faadb0f9e289d4cea1ba375ac777b58c7203b",
+        "label": "Rochester Community"
+      },
+      "status": 202,
+      "finalUrl": "https://www.rctcyellowjackets.com/sports/bsb/index",
+      "checkedAtUtc": "2026-11-18T14:21:39.627Z",
+      "sourcePath": "sources/rochester-community-and-technical-college-0.source",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "discoveryAliases": [
+    {
+      "url": "http://www.rctcyellowjackets.com/sports/bsb/index",
+      "label": "Rochester Community",
+      "parentSourcePath": "sources/directory-d3.source",
+      "parentSHA256": "3888c2777289f782525671d17b3faadb0f9e289d4cea1ba375ac777b58c7203b",
+      "parentUrl": "https://www.thebaseballobserver.com/njcaa-diii-baseball",
+      "status": "UNVERIFIED_NORMALIZED_NAME_LEAD"
+    }
+  ],
+  "status": "HELD_NO_READABLE_SOURCE"
+}

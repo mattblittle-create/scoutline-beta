@@ -1,0 +1,1915 @@
+{
+  "slug": "king-s-college-pennsylvania",
+  "collegeId": "cmovorroo00c6qt7gq91ntim0",
+  "programId": "cmovorrpe00c8qt7gb1ftbr4r",
+  "checkedAtUtc": "2026-11-17T20:36:22.573Z",
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED",
+  "missingFields": [
+    "rosterUrl",
+    "scheduleUrl",
+    "questionnaireUrl",
+    "campsUrl",
+    "generalContactEmail",
+    "programXUrl",
+    "programInstagramUrl"
+  ],
+  "pages": [
+    {
+      "requestedUrl": "https://kingscollegeathletics.com/sports/baseball",
+      "kind": "baseball-home",
+      "parent": null,
+      "status": 200,
+      "finalUrl": "https://kingscollegeathletics.com/sports/baseball",
+      "sourcePath": "../sources/king-s-college-pennsylvania-1.html",
+      "sha256": "a401b382673f975654252f52c4661f694474eff916d6a1d27063aec357ab9a54",
+      "reusedEvidence": true,
+      "originalCheckedAtUtc": "2026-11-17T17:23:29.834Z",
+      "parsed": {
+        "title": "Baseball - King's College Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "King's College Athletics",
+          "Main Navigation Menu",
+          "Sport Navigation Menu",
+          "Top Stories",
+          "Calendar",
+          "Scoreboard",
+          "Athlete Awards",
+          "Footer",
+          "Sticky bar"
+        ],
+        "links": [
+          {
+            "url": "https://kingscollegeathletics.com/sports/baseball/schedule",
+            "label": "Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/esports/schedule",
+            "label": "Esports: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/esports/roster",
+            "label": "Esports: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/football/schedule",
+            "label": "Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/football/roster",
+            "label": "Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-ice-hockey/schedule",
+            "label": "Ice Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-ice-hockey/roster",
+            "label": "Ice Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-swimming-and-diving/schedule",
+            "label": "Swimming: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-swimming-and-diving/roster",
+            "label": "Swimming: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-track-and-field/schedule",
+            "label": "Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-track-and-field/roster",
+            "label": "Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/wrestling/schedule",
+            "label": "Wrestling: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/wrestling/roster",
+            "label": "Wrestling: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/cheerleading/schedule",
+            "label": "Cheerleading: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/cheerleading/roster",
+            "label": "Cheerleading: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/field-hockey/schedule",
+            "label": "Field Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/field-hockey/roster",
+            "label": "Field Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-ice-hockey/schedule",
+            "label": "Ice Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-ice-hockey/roster",
+            "label": "Ice Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-swimming-and-diving/schedule",
+            "label": "Swimming: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-swimming-and-diving/roster",
+            "label": "Swimming: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-track-and-field/schedule",
+            "label": "Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-track-and-field/roster",
+            "label": "Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/2008/10/9/FB_10_09_08_Kings_Sports_Camps.aspx",
+            "label": "Camps and Clinics",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory",
+            "label": "Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/baseball-department/25",
+            "label": "Coaches",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.frontrush.com/FR_Web_App/Player/PlayerSubmit.aspx?sid=MjI4Njk=-7AHOaI+Ru+o=&ptype=Recruit",
+            "label": "Recruiting Questionnaire",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/calendar.aspx",
+            "label": "Composite Schedule + Full +",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://kingscollegeathletics.com/sports/baseball/schedule",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/king-s-college-pennsylvania-1.html",
+        "sha256": "a401b382673f975654252f52c4661f694474eff916d6a1d27063aec357ab9a54",
+        "url": "https://kingscollegeathletics.com/sports/baseball/schedule",
+        "label": "Baseball: Schedule"
+      },
+      "status": 200,
+      "finalUrl": "https://kingscollegeathletics.com/sports/baseball/schedule",
+      "checkedAtUtc": "2026-11-17T20:36:22.962Z",
+      "sourcePath": "sources/king-s-college-pennsylvania-1.html",
+      "sha256": "998d3ae7aca07acf9d854be4f31d65198ce762b5c7a1378dd2af5a153c3cc43c",
+      "parsed": {
+        "title": "2026 Baseball Schedule - King's College Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "King's College Athletics",
+          "Main Navigation Menu",
+          "Sport Navigation Menu",
+          "2026 King's College Monarchs Baseball Schedule",
+          "Season Record",
+          "Scheduled Games",
+          "Footer",
+          "Sticky bar"
+        ],
+        "links": [
+          {
+            "url": "https://kingscollegeathletics.com/sports/baseball/schedule",
+            "label": "Skip To Main Content",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/esports/schedule",
+            "label": "Esports: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/esports/roster",
+            "label": "Esports: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/football/schedule",
+            "label": "Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/football/roster",
+            "label": "Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-ice-hockey/schedule",
+            "label": "Ice Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-ice-hockey/roster",
+            "label": "Ice Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-swimming-and-diving/schedule",
+            "label": "Swimming: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-swimming-and-diving/roster",
+            "label": "Swimming: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-track-and-field/schedule",
+            "label": "Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-track-and-field/roster",
+            "label": "Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/wrestling/schedule",
+            "label": "Wrestling: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/wrestling/roster",
+            "label": "Wrestling: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/cheerleading/schedule",
+            "label": "Cheerleading: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/cheerleading/roster",
+            "label": "Cheerleading: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/field-hockey/schedule",
+            "label": "Field Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/field-hockey/roster",
+            "label": "Field Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-ice-hockey/schedule",
+            "label": "Ice Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-ice-hockey/roster",
+            "label": "Ice Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-swimming-and-diving/schedule",
+            "label": "Swimming: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-swimming-and-diving/roster",
+            "label": "Swimming: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-track-and-field/schedule",
+            "label": "Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-track-and-field/roster",
+            "label": "Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/2008/10/9/FB_10_09_08_Kings_Sports_Camps.aspx",
+            "label": "Camps and Clinics",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory",
+            "label": "Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/baseball-department/25",
+            "label": "Coaches",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.frontrush.com/FR_Web_App/Player/PlayerSubmit.aspx?sid=MjI4Njk=-7AHOaI+Ru+o=&ptype=Recruit",
+            "label": "Recruiting Questionnaire",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/baseball/schedule?print=true",
+            "label": "Print Print this page",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/baseball/schedule/2026?grid=true",
+            "label": "Grid Switch to Grid View",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/services/schedule_txt.ashx?schedule=524",
+            "label": "Text Text Format For Braille (New Tab)",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "http://wilsonphoenix.com/",
+            "label": "Wilson College Wilson College on March 11 12:00 PM",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://kingscollegeathletics.com/staff-directory/baseball-department/25",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/king-s-college-pennsylvania-1.html",
+        "sha256": "a401b382673f975654252f52c4661f694474eff916d6a1d27063aec357ab9a54",
+        "url": "https://kingscollegeathletics.com/staff-directory/baseball-department/25",
+        "label": "Coaches"
+      },
+      "status": 200,
+      "finalUrl": "https://kingscollegeathletics.com/staff-directory/baseball-department/25",
+      "checkedAtUtc": "2026-11-17T20:36:23.108Z",
+      "sourcePath": "sources/king-s-college-pennsylvania-2.html",
+      "sha256": "4dadc0e7bd6f71fae1b9c9ee4f16a34ad2c302456e996fd842eb625fcbe21419",
+      "parsed": {
+        "title": "Staff Directory - King's College Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "King's College Athletics",
+          "Main Navigation Menu",
+          "Staff Directory",
+          "Footer",
+          "Sticky bar"
+        ],
+        "links": [
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/baseball-department/25",
+            "label": "Skip To Main Content",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/baseball/schedule",
+            "label": "Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/esports/schedule",
+            "label": "Esports: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/esports/roster",
+            "label": "Esports: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/football/schedule",
+            "label": "Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/football/roster",
+            "label": "Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-ice-hockey/schedule",
+            "label": "Ice Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-ice-hockey/roster",
+            "label": "Ice Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-swimming-and-diving/schedule",
+            "label": "Swimming: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-swimming-and-diving/roster",
+            "label": "Swimming: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-track-and-field/schedule",
+            "label": "Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-track-and-field/roster",
+            "label": "Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/wrestling/schedule",
+            "label": "Wrestling: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/wrestling/roster",
+            "label": "Wrestling: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/cheerleading/schedule",
+            "label": "Cheerleading: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/cheerleading/roster",
+            "label": "Cheerleading: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/field-hockey/schedule",
+            "label": "Field Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/field-hockey/roster",
+            "label": "Field Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-ice-hockey/schedule",
+            "label": "Ice Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-ice-hockey/roster",
+            "label": "Ice Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-swimming-and-diving/schedule",
+            "label": "Swimming: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-swimming-and-diving/roster",
+            "label": "Swimming: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-track-and-field/schedule",
+            "label": "Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-track-and-field/roster",
+            "label": "Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/2008/10/9/FB_10_09_08_Kings_Sports_Camps.aspx",
+            "label": "Camps and Clinics",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory",
+            "label": "Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory?print=true",
+            "label": "Print",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/andy-orlowski/111",
+            "label": "ANDY ORLOWSKI ANDY ORLOWSKI, ATHLETICS DEPARTMENT, Executive Director of Athletics and Recreation",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/bridget-walsh/381",
+            "label": "BRIDGET WALSH BRIDGET WALSH, ATHLETICS DEPARTMENT, Assistant Athletic Director",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/elena-borshchevsky/534",
+            "label": "ELENA BORSHCHEVSKY ELENA BORSHCHEVSKY, ATHLETICS DEPARTMENT, Coordinator of NCAA Compliance and Student Engagement/ Assistant Field Hockey Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/caitlin-hadzimichalis/165",
+            "label": "CAITLIN HADZIMICHALIS CAITLIN HADZIMICHALIS, ATHLETICS DEPARTMENT, Head Womens Basketball Coach / Senior Woman Administrator",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/ross-bowsher/543",
+            "label": "ROSS BOWSHER ROSS BOWSHER, ATHLETICS DEPARTMENT, Director of Sports Performance",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/patrick-simmers/188",
+            "label": "PATRICK SIMMERS PATRICK SIMMERS, ATHLETICS DEPARTMENT, Equipment Manager",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/ethan-poor/592",
+            "label": "ETHAN POOR ETHAN POOR, ATHLETICS DEPARTMENT, Intramural Coordinator/Athletics Graduate Assistant",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/athletic-office-phone/186",
+            "label": "ATHLETIC OFFICE PHONE ATHLETIC OFFICE PHONE, ATHLETICS DEPARTMENT,",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/athletic-office-fax-/157",
+            "label": "ATHLETIC OFFICE FAX: ATHLETIC OFFICE FAX:, ATHLETICS DEPARTMENT,",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/scandlon-gymnasium-front-desk/100",
+            "label": "SCANDLON GYMNASIUM FRONT DESK SCANDLON GYMNASIUM FRONT DESK, ATHLETICS DEPARTMENT,",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/noah-fritz/580",
+            "label": "NOAH FRITZ NOAH FRITZ, ATHLETIC COMMUNICATIONS, Director of Athletic Communications",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/justin-lock/604",
+            "label": "JUSTIN LOCK JUSTIN LOCK, ATHLETIC COMMUNICATIONS, Assistant Director of Athletic Communications",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/james-schneider/564",
+            "label": "JAMES SCHNEIDER JAMES SCHNEIDER, ATHLETIC COMMUNICATIONS, Athletic Communications Assistant",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/john-syms/569",
+            "label": "JOHN SYMS JOHN SYMS, ATHLETIC COMMUNICATIONS, Athletic Communications Assistant",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/jerry-greeley/114",
+            "label": "JERRY GREELEY JERRY GREELEY, BASEBALL, Head Baseball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/jerry-bavitz/251",
+            "label": "JERRY BAVITZ JERRY BAVITZ, BASEBALL, Associate Head Baseball Coach / Scouting Coordinator",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/steve-sulcoski/513",
+            "label": "STEVE SULCOSKI STEVE SULCOSKI, BASEBALL, Assistant Baseball Coach / Hitting Coach / Mental Performance Coordinator",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/dr-matt-kaster/550",
+            "label": "DR. MATT KASTER DR. MATT KASTER, BASEBALL, Assistant Baseball Coach / Pitching Coach / Academic Enhancement Coordinator",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/ryan-whetstone/472",
+            "label": "RYAN WHETSTONE RYAN WHETSTONE, BASEBALL, Assistant Baseball Coach / Director of Recruiting and Program Operations",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/marianne-paige/375",
+            "label": "MARIANNE PAIGE MARIANNE PAIGE, BASEBALL, Extra Inning Community Outreach Program Coordinator",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/phil-pierfy/587",
+            "label": "PHIL PIERFY PHIL PIERFY, MENS BASKETBALL, Head Mens Basketball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/dom-vazquez/596",
+            "label": "DOM VAZQUEZ DOM VAZQUEZ, MENS BASKETBALL, Assistant Mens Basketball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/corey-attivo/602",
+            "label": "COREY ATTIVO COREY ATTIVO, MENS BASKETBALL, Assistant Mens Basketball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/fr-tom-o-hara-csc-ph-d-/616",
+            "label": "FR. TOM O\"HARA CSC, Ph.D. FR. TOM OHARA CSC, Ph.D., MENS BASKETBALL, Faculty Mentor",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/brady-lettieri/617",
+            "label": "BRADY LETTIERI BRADY LETTIERI, MENS BASKETBALL, Student Assistant",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/alan-yendrzeiwski/387",
+            "label": "ALAN YENDRZEIWSKI ALAN YENDRZEIWSKI, WOMENS BASKETBALL, Assistant Womens Basketball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/gabby-tucker/591",
+            "label": "GABBY TUCKER GABBY TUCKER, WOMENS BASKETBALL, Assistant Womens Basketball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/caitlin-gius/501",
+            "label": "CAITLIN GIUS CAITLIN GIUS, WOMENS BASKETBALL, Womens Basketball Student Manager",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/elizabeth-samuel/544",
+            "label": "ELIZABETH SAMUEL ELIZABETH SAMUEL, WOMENS BASKETBALL, Womens Basketball Student Manager",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/ayla-schneck-haines/615",
+            "label": "AYLA SCHNECK-HAINES AYLA SCHNECK-HAINES, WOMENS BASKETBALL, Womens Basketball Student Manager",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/tessa-romani/520",
+            "label": "TESSA ROMANI TESSA ROMANI, CHEERLEADING, Head Cheerleading Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/kiley-hardin/586",
+            "label": "KILEY HARDIN KILEY HARDIN, CHEERLEADING, Cheerleading Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/mike-kolinovsky/96",
+            "label": "MIKE KOLINOVSKY MIKE KOLINOVSKY, CROSS COUNTRY (M&W), Head Mens and Womens Cross Country Coach / Head Mens and Womens Track & Field Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/ed-kopec/388",
+            "label": "ED KOPEC ED KOPEC, CROSS COUNTRY (M&W), Assistant Cross Country Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/dave-levandoski/431",
+            "label": "DAVE LEVANDOSKI DAVE LEVANDOSKI, CROSS COUNTRY (M&W), Volunteer Assistant Cross Country Coach/Track & Field Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/chris-hine/568",
+            "label": "CHRIS HINE CHRIS HINE, CROSS COUNTRY (M&W), Assistant Cross Country / Track & Field Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/adam-sebolka/420",
+            "label": "ADAM SEBOLKA ADAM SEBOLKA, ESPORTS, Director of Esports",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/rebekka-ricca/502",
+            "label": "REBEKKA RICCA REBEKKA RICCA, ESPORTS, Head Esports Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/amy-santayana/581",
+            "label": "AMY SANTAYANA AMY SANTAYANA, ESPORTS, Assistant Esports Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/kirby-szalkowski/552",
+            "label": "KIRBY SZALKOWSKI KIRBY SZALKOWSKI, FIELD HOCKEY, Head Field Hockey Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/megan-withrow/264",
+            "label": "MEGAN WITHROW MEGAN WITHROW, FIELD HOCKEY, Assistant Field Hockey Coach / Goalies",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/caitlin-wood/481",
+            "label": "CAITLIN WOOD CAITLIN WOOD, FIELD HOCKEY, Assistant Field Hockey Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/mike-cebrosky/220",
+            "label": "MIKE CEBROSKY MIKE CEBROSKY, FOOTBALL, Head Football Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/casey-tosches/518",
+            "label": "CASEY TOSCHES CASEY TOSCHES, FOOTBALL, Assistant Football Coach / Offensive Coordinator / Quarterbacks",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/mickey-rehring/519",
+            "label": "MICKEY REHRING MICKEY REHRING, FOOTBALL, Assistant Football Coach / Defensive Coordinator / Safeties",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/ben-bakanas/397",
+            "label": "BEN BAKANAS BEN BAKANAS, FOOTBALL, Assistant Football Coach / Director of Football Operations / Academic Coordinator / Run Game Coordinator / Offensive Line",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/joe-gorton/395",
+            "label": "JOE GORTON JOE GORTON, FOOTBALL, Assistant Football Coach / Co-Defensive Coordinator / Corner Backs",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/matt-blakemore/597",
+            "label": "MATT BLAKEMORE MATT BLAKEMORE, FOOTBALL, Assistant Football Coach / Safeties",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/mike-karycinski/527",
+            "label": "MIKE KARYCINSKI MIKE KARYCINSKI, FOOTBALL, Assistant Football Coach / Special Teams Coordinator / Defensive Line",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/sean-lavine/560",
+            "label": "SEAN LAVINE SEAN LAVINE, FOOTBALL, Assistant Football Coach / Co-Special Teams Coordinator / Tight Ends",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/brennan-robinson/598",
+            "label": "BRENNAN ROBINSON BRENNAN ROBINSON, FOOTBALL, Assistant Football Coach / Running Backs",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/ethan-tallo/606",
+            "label": "ETHAN TALLO ETHAN TALLO, FOOTBALL, Assistant Football Coach / Wide Receivers",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/brendan-mozeleski/486",
+            "label": "BRENDAN MOZELESKI BRENDAN MOZELESKI, FOOTBALL, Assistant Football Coach / Defensive Assistant",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/bill-brong/239",
+            "label": "BILL BRONG BILL BRONG, FOOTBALL, Senior Consultant to the Head Coach and Staff",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/tony-grandinetti/603",
+            "label": "TONY GRANDINETTI TONY GRANDINETTI, FOOTBALL, Assistant Football Coach / Offensive Line Assistant",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/j-p-andrejko/86",
+            "label": "J.P. ANDREJKO J.P. ANDREJKO, MENS GOLF, Head Mens Golf Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/john-spencer/377",
+            "label": "JOHN SPENCER JOHN SPENCER, WOMENS GOLF, Head Womens Golf Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/race-bennett/565",
+            "label": "RACE BENNETT RACE BENNETT, MENS ICE HOCKEY, Head Mens Ice Hockey Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/jacob-smulevitch/595",
+            "label": "JACOB SMULEVITCH JACOB SMULEVITCH, MENS ICE HOCKEY, Assistant Mens Ice Hockey Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/cody-wiggins/577",
+            "label": "CODY WIGGINS CODY WIGGINS, MENS ICE HOCKEY, Assistant Mens Ice Hockey Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/justin-allen/613",
+            "label": "JUSTIN ALLEN JUSTIN ALLEN, MENS ICE HOCKEY, Mens Ice Hockey Student Manager",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/quinn-la-rock/555",
+            "label": "QUINN LA ROCK QUINN LA ROCK, WOMENS ICE HOCKEY, Head Womens Ice Hockey Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/issy-lebrun/589",
+            "label": "ISSY LEBRUN ISSY LEBRUN, WOMENS ICE HOCKEY, Assistant Womens Ice Hockey Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/amanda-sokol/593",
+            "label": "AMANDA SOKOL AMANDA SOKOL, WOMENS ICE HOCKEY, Assistant Womens Ice Hockey Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/aj-bungert/450",
+            "label": "AJ BUNGERT AJ BUNGERT, MENS LACROSSE, Head Mens Lacrosse Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/brent-cassium/517",
+            "label": "BRENT CASSIUM BRENT CASSIUM, MENS LACROSSE, Assistant Mens Lacrosse Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/jackson-campbell/548",
+            "label": "JACKSON CAMPBELL JACKSON CAMPBELL, MENS LACROSSE, Assistant Mens Lacrosse Coach",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/to-be-announced/612",
+            "label": "TO BE ANNOUNCED TO BE ANNOUNCED, WOMENS LACROSSE, Head Womens Lacrosse Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/jessica-ormrod/614",
+            "label": "JESSICA ORMROD JESSICA ORMROD, WOMENS LACROSSE, Assistant Womens Lacrosse Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/brandon-raynor/258",
+            "label": "BRANDON RAYNOR BRANDON RAYNOR, MENS SOCCER, Head Mens Soccer Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/pat-hughes/540",
+            "label": "PAT HUGHES PAT HUGHES, MENS SOCCER, Assistant Mens Soccer Coach - Goalkeepers",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/gunhvir-singh/559",
+            "label": "GUNHVIR SINGH GUNHVIR SINGH, MENS SOCCER, Assistant Mens Soccer Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/jean-baptiste-kagde/562",
+            "label": "JEAN BAPTISTE KAGDE JEAN BAPTISTE KAGDE, MENS SOCCER, Assistant Mens Soccer Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/jose-rivera/605",
+            "label": "JOSE RIVERA JOSE RIVERA, MENS SOCCER, Assistant Mens Soccer Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/evan-egnatovich/609",
+            "label": "EVAN EGNATOVICH EVAN EGNATOVICH, MENS SOCCER, Volunteer Assistant Mens Soccer Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/jessica-lingenfelter/547",
+            "label": "JESSICA LINGENFELTER JESSICA LINGENFELTER, WOMENS SOCCER, Head Womens Soccer Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/leslie-barrera/567",
+            "label": "LESLIE BARRERA LESLIE BARRERA, WOMENS SOCCER, Assistant Womens Soccer Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/steve-milutinovic/610",
+            "label": "STEVE MILUTINOVIC STEVE MILUTINOVIC, WOMENS SOCCER, Volunteer Assistant Womens Soccer Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/emily-mazella/611",
+            "label": "EMILY MAZELLA EMILY MAZELLA, WOMENS SOCCER, Student Womens Soccer Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/lisa-gigliello/120",
+            "label": "LISA GIGLIELLO LISA GIGLIELLO, SOFTBALL, Head Softball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/jordyn-bortz/477",
+            "label": "JORDYN BORTZ JORDYN BORTZ, SOFTBALL, Assistant Softball Coach / Recruiting Coordinator",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/tiffany-mulally/149",
+            "label": "TIFFANY MULALLY TIFFANY MULALLY, SOFTBALL, Strength and Conditioning Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/ashley-kowalski/146",
+            "label": "ASHLEY KOWALSKI ASHLEY KOWALSKI, SOFTBALL, Pitching Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/sage-borro/583",
+            "label": "SAGE BORRO SAGE BORRO, SOFTBALL, Softball Student Manager",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/kellyo-keane/496",
+            "label": "KELLYO KEANE KELLYO KEANE, SWIMMING (M&W), Head Mens and Womens Swimming Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/bill-eydler/119",
+            "label": "BILL EYDLER BILL EYDLER, MENS TENNIS, Director of Tennis Operations / Head Mens & Womens Tennis Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/logan-gregory/532",
+            "label": "LOGAN GREGORY LOGAN GREGORY, MENS TENNIS, Associate Head Mens & Womens Tennis Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/aidan-temple/542",
+            "label": "AIDAN TEMPLE AIDAN TEMPLE, MENS TENNIS, Assistant Tennis Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/josh-colley/590",
+            "label": "JOSH COLLEY JOSH COLLEY, TRACK & FIELD (M&W), Assistant Track & Field Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/matthew-nelson/510",
+            "label": "MATTHEW NELSON MATTHEW NELSON, TRACK & FIELD (M&W), Assistant Track & Field Coach - Jumps",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/taylor-runo/512",
+            "label": "TAYLOR RUNO TAYLOR RUNO, TRACK & FIELD (M&W), Assistant Track & Field Coach - Throws",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/jill-korgeski/553",
+            "label": "JILL KORGESKI JILL KORGESKI, TRACK & FIELD (M&W), Assistant Track & Field Coach - Throws",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/kevin-walters/554",
+            "label": "KEVIN WALTERS KEVIN WALTERS, TRACK & FIELD (M&W), Assistant Track & Field Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/bernie-kachinko/123",
+            "label": "BERNIE KACHINKO BERNIE KACHINKO, MENS VOLLEYBALL, Head Womens Volleyball Coach / Head Mens Volleyball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/danielle-kitchner/459",
+            "label": "DANIELLE KITCHNER DANIELLE KITCHNER, MENS VOLLEYBALL, Assistant Mens & Womens Volleyball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/aaron-perez/523",
+            "label": "AARON PEREZ AARON PEREZ, WRESTLING, Head Wrestling Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/christian-mazzocchi/270",
+            "label": "CHRISTIAN MAZZOCCHI CHRISTIAN MAZZOCCHI, WRESTLING, Associate Head Wrestling Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/drew-feldman/594",
+            "label": "DREW FELDMAN DREW FELDMAN, WRESTLING, Assistant Wrestling Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/mike-reilly/504",
+            "label": "MIKE REILLY MIKE REILLY, WRESTLING, Volunteer Assistant Wrestling Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/bill-grace/574",
+            "label": "BILL GRACE BILL GRACE, WRESTLING, Assistant Wrestling Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/andrew-schutz/575",
+            "label": "ANDREW SCHUTZ ANDREW SCHUTZ, WRESTLING, Assistant Wrestling Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/steven-newell/576",
+            "label": "STEVEN NEWELL STEVEN NEWELL, WRESTLING, Assistant Wrestling Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/connor-eck/607",
+            "label": "CONNOR ECK CONNOR ECK, WRESTLING, Assistant Wrestling Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/mikey-iannella/608",
+            "label": "MIKEY IANNELLA MIKEY IANNELLA, SPORTS PERFORMANCE, Sports Performance Assistant",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/garrett-thomas/588",
+            "label": "GARRETT THOMAS GARRETT THOMAS, SPORTS PERFORMANCE, Sports Performance Assistant",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/tina-seber/350",
+            "label": "TINA SEBER TINA SEBER, ATHLETIC TRAINING, Director of Athletic Training Services (MSOC, WSOC, WIH, SB, WGOLF)",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/brandon-goodlavage/492",
+            "label": "BRANDON GOODLAVAGE BRANDON GOODLAVAGE, ATHLETIC TRAINING, Athletic Trainer (FB, WREST, MXC, WXC, WLAX, MTF, WTF)",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/brandi-mcintosh/601",
+            "label": "BRANDI McINTOSH BRANDI McINTOSH, ATHLETIC TRAINING, Athletic Trainer",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/colby-toth/493",
+            "label": "COLBY TOTH COLBY TOTH, ATHLETIC TRAINING, Athletic Trainer (FH, MIH, BASE, MSWIM, WSWIM)",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/james-wright/600",
+            "label": "JAMES WRIGHT JAMES WRIGHT, ATHLETIC TRAINING, Athletic Trainer",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/dr-michael-moreland/599",
+            "label": "DR. MICHAEL MORELAND DR. MICHAEL MORELAND, ATHLETIC TRAINING, Team Physician",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/amy-brzoska/107",
+            "label": "AMY BRZOSKA AMY BRZOSKA, ATHLETIC TRAINING, Faculty Athletic Trainer",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/aaron-hand/102",
+            "label": "AARON HAND AARON HAND, ATHLETIC TRAINING, Faculty Athletic Trainer",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/greg-janik/101",
+            "label": "GREG JANIK GREG JANIK, ATHLETIC TRAINING, Faculty Athletic Trainer",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/david-marchetti/103",
+            "label": "DAVID MARCHETTI DAVID MARCHETTI, ATHLETIC TRAINING, Faculty Athletic Trainer",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/ryanne-ziobro/105",
+            "label": "RYANNE ZIOBRO RYANNE ZIOBRO, ATHLETIC TRAINING, Faculty Athletic Trainer",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/athletic-training-main-office/108",
+            "label": "ATHLETIC TRAINING MAIN OFFICE ATHLETIC TRAINING MAIN OFFICE, ATHLETIC TRAINING,",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://kingscollegeathletics.com/sports/mens-basketball/schedule",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/king-s-college-pennsylvania-1.html",
+        "sha256": "a401b382673f975654252f52c4661f694474eff916d6a1d27063aec357ab9a54",
+        "url": "https://kingscollegeathletics.com/sports/mens-basketball/schedule",
+        "label": "Basketball: Schedule"
+      },
+      "status": 200,
+      "finalUrl": "https://kingscollegeathletics.com/sports/mens-basketball/schedule",
+      "checkedAtUtc": "2026-11-17T20:36:23.191Z",
+      "sourcePath": "sources/king-s-college-pennsylvania-3.html",
+      "sha256": "ab13dd3ef01b9308991558442b5ee225da4d4f9cad28f12845b168af3ef6c6cb",
+      "parsed": {
+        "title": "2026-27 Men's Basketball Schedule - King's College Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "King's College Athletics",
+          "Main Navigation Menu",
+          "Sport Navigation Menu",
+          "2026-27 King's College Monarchs Men's Basketball Schedule",
+          "Season Record",
+          "Scheduled Games",
+          "Footer",
+          "Sticky bar"
+        ],
+        "links": [
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-basketball/schedule",
+            "label": "Skip To Main Content",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/baseball/schedule",
+            "label": "Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/esports/schedule",
+            "label": "Esports: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/esports/roster",
+            "label": "Esports: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/football/schedule",
+            "label": "Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/football/roster",
+            "label": "Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-ice-hockey/schedule",
+            "label": "Ice Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-ice-hockey/roster",
+            "label": "Ice Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-swimming-and-diving/schedule",
+            "label": "Swimming: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-swimming-and-diving/roster",
+            "label": "Swimming: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-track-and-field/schedule",
+            "label": "Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-track-and-field/roster",
+            "label": "Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/wrestling/schedule",
+            "label": "Wrestling: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/wrestling/roster",
+            "label": "Wrestling: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/cheerleading/schedule",
+            "label": "Cheerleading: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/cheerleading/roster",
+            "label": "Cheerleading: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/field-hockey/schedule",
+            "label": "Field Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/field-hockey/roster",
+            "label": "Field Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-ice-hockey/schedule",
+            "label": "Ice Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-ice-hockey/roster",
+            "label": "Ice Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-swimming-and-diving/schedule",
+            "label": "Swimming: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-swimming-and-diving/roster",
+            "label": "Swimming: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-track-and-field/schedule",
+            "label": "Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-track-and-field/roster",
+            "label": "Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/womens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/2008/10/9/FB_10_09_08_Kings_Sports_Camps.aspx",
+            "label": "Camps and Clinics",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory",
+            "label": "Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/staff-directory/mens-basketball-department/2",
+            "label": "Coaches",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-basketball/schedule?print=true",
+            "label": "Print Print this page",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/sports/mens-basketball/schedule/2026-27?grid=true",
+            "label": "Grid Switch to Grid View",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://kingscollegeathletics.com/services/schedule_txt.ashx?schedule=537",
+            "label": "Text Text Format For Braille (New Tab)",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          }
+        ]
+      }
+    }
+  ],
+  "status": "EVIDENCE_CAPTURED_REQUIRES_REVIEW"
+}

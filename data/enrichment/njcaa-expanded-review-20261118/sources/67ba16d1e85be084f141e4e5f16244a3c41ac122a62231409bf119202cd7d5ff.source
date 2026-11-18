@@ -1,0 +1,2522 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html id="ctl00_html" xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head><!-- Transcend IAB frameworks -->
+<!-- GPP -->
+<script type='text/javascript'>
+  window.__gpp_addFrame=function(e){if(!window.frames[e]){if(document.body){var t=document.createElement('iframe');t.style.cssText='display:none',t.name=e,document.body.appendChild(t)}else window.setTimeout(window.__gppaddFrame,10,e)}},window.__gpp_stub=function(){var e=arguments;if(__gpp.queue=__gpp.queue||[],!e.length)return __gpp.queue;var t=e[0],a=e.length>1?e[1]:null,n=e.length>2?e[2]:null;if('ping'===t)return{gppVersion:'1.1',cmpStatus:'stub',cmpDisplayStatus:'hidden',supportedAPIs:['2:tcfeuv2','5:tcfcav1','6:uspv1'],cmpId:31,sectionList:[],applicableSections:[-1],gppString:''};if('events'===t)return __gpp.events;if('addEventListener'===t){__gpp.events=__gpp.events||[],'lastId'in __gpp||(__gpp.lastId=0),__gpp.lastId++;var s=__gpp.lastId;return __gpp.events.push({id:s,callback:a,parameter:n}),{eventName:'listenerRegistered',listenerId:s,data:!0,pingData:{gppVersion:'1.1',cmpStatus:'stub',cmpDisplayStatus:'hidden',supportedAPIs:['2:tcfeuv2','5:tcfcav1','9:usva','7:usnat'],cmpId:31,sectionList:[],applicableSections:[-1],gppString:''}}}if('removeEventListener'===t){var p=!1;__gpp.events=__gpp.events||[];for(var i=0;i<__gpp.events.length;i++)if(__gpp.events[i].id==n){__gpp.events[i].splice(i,1),p=!0;break}return{eventName:'listenerRemoved',listenerId:n,data:p,pingData:{gppVersion:'1.1',cmpStatus:'stub',cmpDisplayStatus:'hidden',supportedAPIs:['2:tcfeuv2','5:tcfcav1','9:usva','7:usnat'],cmpId:31,sectionList:[],applicableSections:[-1],gppString:''}}}if('hasSection'===t||'getSection'===t||'getField'===t)return null;__gpp.queue.push([].slice.apply(e))},window.__gpp_msghandler=function(e){var t='string'==typeof e.data;try{var a=t?JSON.parse(e.data):e.data}catch(n){var a=null}if('object'==typeof a&&null!==a&&'__gppCall'in a){var s=a.__gppCall;window.__gpp(s.command,function(a,n){var p={__gppReturn:{returnValue:a,success:n,callId:s.callId}};e.source.postMessage(t?JSON.stringify(p):p,'*')},'parameter'in s?s.parameter:null,'version'in s?s.version:'1.1')}},'__gpp'in window&&'function'==typeof window.__gpp||(window.__gpp=window.__gpp_stub,window.addEventListener('message',window.__gpp_msghandler,!1),window.__gpp_addFrame('__gppLocator'));
+</script>
+<script data-cfasync='false' onload='window.airgapLoadEvent=event' data-sync='off' src='https://transcend-cdn.com/cm/30fbff84-b0e3-4e26-9084-0b5158fdb1ed/airgap.js'></script><script>window.client_hostname = "nccspartans.com";window.client_title = "Northampton Community College";window.server_name = "1278170-APP94";window.client_division = "NJCAA";window.targetting_criteria = {"page_template":"staff","sport_name":"0","sport_name_custom":"0","site":"northampton","cbs_site_code":"nhcc","content_id":null,"sect":"ot","gender":"0"};window.client_shortname = "northampton";window.dfp_network_code = "21708449227";window.img_dfp_unit_name = "";window.ad_full_unit_name = "SAIndependent/northampton";window.block_dfp = true;window.reactions = null;window.cbs_ads_activated = true;window.site_colors = {"safe_text_white":"#000000","safe_text_black":"#ffffff","primary_background":"#ff6600","primary_text":"#000000","secondary_background":"#000000","secondary_text":"#ffffff"};window.inactive_tab_title = "";window.site_in_dev_mode = false;window.sidearm_header_bidding_enabled = false;
+                    window.utagData = function() {
+                        return {
+                            embedPageUrl: location.href,
+                            brandPlatformId: "sidearm_site_" + (document.documentElement.clientWidth > 600 ? "desktop" : "mweb"),
+                            pageViewGuid: PageTargetting.getPageviewGuid(),
+                            _pageViewGuid: PageTargetting.getPageviewGuid() // cbs says they need it both /shrug
+                        };
+                    };
+                </script><!-- Begin comScore Tag -->
+<script>
+    var _comscore = _comscore || [];
+    _comscore.push({ c1: "2", c2: "3005086" });
+    (function() {
+      var s = document.createElement("script"), el = document.getElementsByTagName("script")[0]; s.async = true;
+      s.src = (document.location.protocol == "https:" ? "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js";
+      el.parentNode.insertBefore(s, el);
+    })();
+</script>
+<!-- End comScore Tag --><link rel="preload" as="script" href="https://dbukjj6eu5tsf.cloudfront.net/assets.sidearmsports.com/responsive/js/main.1790781000881.js"><link rel="preload" as="style" href="https://fonts.sidearmsports.com/sidearm_v2/2024-09-30-644885/sidearm_font_v2.css"><link rel="preload" as="style" href="https://fonts.sidearmsports.com/sidearm/2020-05-12-535576/sidearm_font.css"><link rel="preload" as="script" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"><link rel="preload" as="script" href="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.2.0/require.min.js"><link rel="preload" as="script" href="https://dbukjj6eu5tsf.cloudfront.net/assets.sidearmsports.com/responsive/js/bundle.1790780934610.js"><link rel="preconnect" href="https://cdnjs.cloudflare.com"><link rel="preconnect" href="https://dbukjj6eu5tsf.cloudfront.net/"><link rel="preconnect" href="http://s3.amazonaws.com"><link rel="preconnect" href="https://s3.amazonaws.com"><link rel="preconnect" href="https://fonts.gstatic.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&amp;family=Archivo:wght@400;700&amp;family=Arimo&amp;family=Barlow+Condensed:wght@500&amp;family=Rajdhani:wght@600&amp;display=swap"><link rel="stylesheet" href="https://htlbid.com/stage/v3/nccspartans.com/htlbid.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick.min.css"><link rel="stylesheet" href="https://fonts.sidearmsports.com/sidearm/2020-05-12-535576/sidearm_font.css"><link rel="stylesheet" href="https://fonts.sidearmsports.com/sidearm_v2/2024-09-30-644885/sidearm_font_v2.css"><link rel="stylesheet" href="/less/sidearm-responsive-grid.less?_=639125349377484940"><link rel="apple-touch-icon" href="/images/logos/site/site.png"><link id="ctl00_lnkStyleSheet" rel="stylesheet" type="text/css"><link rel="stylesheet" type="text/css" href="/common/css/print.css"><link id="ctl00_lnkStyleSheet_custom" rel="stylesheet" type="text/css"><link rel="shortcut icon" href="/favicon.ico" type="image/vnd.microsoft.icon">    
+	<link rel="stylesheet" href="/less/responsive/staff.less?_=638747802172161423">
+<meta name="twitter:card" content="summary"><meta name="og:title" content="Staff Directory"><meta name="description" content="The official   Roster for the Northampton Community College Spartans"><meta name="og:description" content="The official staff directory for the Northampton Community College Spartans"><meta name="og:image" content="https://images.sidearmdev.com/convert?url=https%3a%2f%2fdxbhsrqyrr690.cloudfront.net%2fsidearm.nextgen.sites%2fnccspartans.com%2fimages%2flogos%2fsite%2fsite.png&amp;type=jpeg"><meta name="og:image:alt" content="Northampton Community College Athletics Logo"><script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script><script>var require = {"config":{"options":{"sport_id":0,"dummy_ads":false,"all_ads":[]}}};
+                        var isSameOrigin = false;
+                        try { isSameOrigin = window.top.location.hostname === window.self.location.hostname; } catch(err) {}; 
+                        if (!isSameOrigin && window.top != window.self) {
+                            var makeTopLevelTimeout = setTimeout(function() {
+                                window.top.location = window.self.location;
+                            }, 250)
+                            window.top.postMessage('sidearm-iframe-interrogation', '*')
+                            window.addEventListener('message', function(ev) {
+                                if (ev.data === 'sidearm-iframe-request-allow') {
+                                    clearTimeout(makeTopLevelTimeout)
+                                }
+                            })
+                        }
+                    window.s3_bucket_path = 'https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/nccspartans.com';window.cdn_path = 'https://dbukjj6eu5tsf.cloudfront.net/';window.custom_cdn_url = '';window.urlArgs = '639027713434578885';window.cbs_school = false;window.has_alerts = false;window.disable_ad_blocker_check = false;</script><meta property="og:determiner" content="the"><meta property="og:locale" content="en_US"><meta property="og:site_name" content="Northampton Community College Athletics"><meta property="og:url" content="https://www.nccspartans.com/staff-directory?print=true"><title>
+	Staff Directory - Northampton Community College Athletics
+</title><img src="https://tags.w55c.net/rs?id=788ac2f4680a4f4488e3658aa097537d&t=marketing" style="display: none; visibility: hidden"><!-- Google Tag Manager -->           
+            <script>
+                (function(w, d, s, l, i){
+            w[l] = w[l] ||[]; w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async=true;j.src=
+            '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-K3TH4CC');
+            </script>
+            <!-- End Google Tag Manager --><!-- Google Tag Manager -->           
+            <script>
+                (function(w, d, s, l, i){
+            w[l] = w[l] ||[]; w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async=true;j.src=
+            '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-TW6R675');
+            </script>
+            <!-- End Google Tag Manager --><script> 
+                Date.prototype.to_iso_with_offset = function() {
+                    var time_zone_offset = -this.getTimezoneOffset(),
+                        time_zone_diff = time_zone_offset >= 0 ? '+' : '-',
+                        pad = function(num) {
+                            var norm = Math.floor(Math.abs(num));
+                            return (norm < 10 ? '0' : '') + norm;
+                        };
+                    return this.getFullYear() +
+                        '-' + pad(this.getMonth() + 1) +
+                        '-' + pad(this.getDate()) +
+                        'T' + pad(this.getHours()) +
+                        ':' + pad(this.getMinutes()) +
+                        ':' + pad(this.getSeconds()) +
+                        time_zone_diff + pad(time_zone_offset / 60) +
+                        ':' + pad(time_zone_offset % 60);
+                }
+             window.dataLayer = window.dataLayer || []; window.dataLayer.push({"event":"dataLayerLoaded","timestamp":new Date().to_iso_with_offset(),"non_interaction_flag":true,"page_related_sport":undefined,"gaPropertyID":"UA-195103873-7","schoolAttributes":{"Name":"Northampton Community College","Division":"NJCAA","Conference":"NJCAA","ssClientID":"269"},"pageAttributes":{"pageName":"Staff Directory - Northampton Community College Athletics","pageCategory":"staff","site":"northampton","sport_name":undefined,"sport_name_custom":undefined,"sect":"ot"},"siteAttributes":{"P5":false,"All_Access":false,"Paciolan_Marketing":false,"ticketingProvider":undefined,"region":undefined,"Fanbase_Partner":false,"SIDEARM_Extended":true,"MMR":undefined}}); window.dataLayer.push({"timestamp":new Date().to_iso_with_offset(),"non_interaction_flag":true,"page_related_sport":undefined,"ga_property_id":"UA-195103873-7","school_name":"Northampton Community College","school_division":"NJCAA","school_conference":"NJCAA","ss_client_id":"269","page_name":"Staff Directory - Northampton Community College Athletics","page_category":"staff","site_name":"northampton","site_section":"ot","power_five":false,"all_access":false,"paciolan_marketing":false,"ticketing_provider":undefined,"school_region":undefined,"fanbase_partner":false,"sidearm_extended":true,"mmr":undefined,"user_id":undefined,"logged_in_status":undefined,"membership_type":undefined,"account_signup_date":undefined,"subscription_exp_date":undefined}); </script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-8530697-2', 'auto', 'tracker0'); ga('require', 'linkid'); location.search.indexOf('dontSendPageview=1') > -1 || ga('tracker0.send', 'pageview', {'page': '/staff-directory?print=true', title: document.title });ga('create', 'UA-320809-4', 'auto', 'tracker1'); ga('require', 'linkid'); location.search.indexOf('dontSendPageview=1') > -1 || ga('tracker1.send', 'pageview', {'page': '/staff-directory?print=true', title: document.title }); window.ID5EspConfig = { partnerId: 1083 };</script></head>
+
+<body class="print"><!-- Google Tag Manager (noscript) -->
+            <noscript><iframe src='//www.googletagmanager.com/ns.html?id=GTM-K3TH4CC' title='Google Tag Manager' 
+            height ='0' width ='0' style = 'display:none;visibility:hidden'></iframe>
+            </noscript>                
+            <!-- End Google Tag Manager (noscript) --><!-- Google Tag Manager (noscript) -->
+            <noscript><iframe src='//www.googletagmanager.com/ns.html?id=GTM-TW6R675' title='Google Tag Manager' 
+            height ='0' width ='0' style = 'display:none;visibility:hidden'></iframe>
+            </noscript>                
+            <!-- End Google Tag Manager (noscript) --><div style='position: fixed; left: -10000px'></div>
+                <script>
+                    function setStylesOnSkipPauseLink(skipLink) {
+                        skipLink.style.left = '0';
+                        skipLink.style.zIndex='99999999';
+                        skipLink.style.outlineStyle='solid';
+                        skipLink.style.outlineColor='#000';
+                        skipLink.style.outlineWidth='2px';
+                        skipLink.style.outlineOffset='0';
+                        skipLink.style.transition='none';
+                        skipLink.style.border='2px solid #fff';
+                        skipLink.style.textDecoration='underline';
+                    }
+                    function removeStylesOnSkipPauseLink(skipLink) {
+                        skipLink.style.left = '-99999px';
+                        skipLink.style.zIndex='-99999';
+                    }
+                </script>
+                <section aria-label='Landmark links'>
+                    <a  
+                        href='#main-content' 
+                        tabindex='0' 
+                        style='position: absolute !important; display: inline-block !important; left: -32000px !important; top: 0; background: #000 !important; padding: 10px !important; color: #fff !important; border: 0 !important; margin: 5px !important;'
+                        onfocus = 'setStylesOnSkipPauseLink(this)'
+                        onblur = 'removeStylesOnSkipPauseLink(this)'>
+                        Skip To Main Content
+                    </a>
+                    <button 
+                        class='sidearm-accessible-slick-pause-all'
+                        id='sidearm-accessible-slick-pause-all' 
+                        aria-live='off' 
+                        tabindex='0' 
+                        style='position: absolute !important; display: inline-block !important; left: -32000px !important; top: 0; background: #000 !important; padding: 10px !important; color: #fff !important; border: 0 !important; margin: 5px !important;'
+                        onfocus = 'setStylesOnSkipPauseLink(this)'
+                        onblur = 'removeStylesOnSkipPauseLink(this)'>
+                        Pause All Rotators
+                    </button>
+                    <span 
+                        href = 'javascript:void(0);' 
+                        aria-live='polite' 
+                        tabindex='-1'  
+                        style='display: block; text-align: center; position: absolute; background-color: white; z-index: 9999;'
+                        onfocus = 'setStylesOnSkipPauseLink(this)'
+                        onblur = 'removeStylesOnSkipPauseLink(this)'>
+                    </span>
+                </section>
+            <!-- Begin comScore Tag -->
+<noscript><img src="https://sb.scorecardresearch.com/p?c1=2&c2=3005086&cv=2.0&cj=1" alt="" aria-hidden="true" /></noscript>
+<!-- End comScore Tag -->
+
+	<div id="ctl00_printButton" class="noprint"><button onclick="window.print();" class="printbutton">Print</button></div>
+    <header class="main-header">
+        <h1 id="ctl00_site_title">Northampton Community College Athletics</h1>
+        
+    </header>
+
+	<form name="aspnetForm" method="post" action="./staff.aspx?print=true" id="aspnetForm">
+<div>
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="">
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKMTk5NDk3MzA5NGQYAQUdY3RsMDAkY3BsaE1haW5Db250ZW50JG12X21haW4PD2RmZORLQAWvnP4ZseyeT70mcLk870JpsiaSdSV4438P0OSH">
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['aspnetForm'];
+if (!theForm) {
+    theForm = document.aspnetForm;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="/WebResource.axd?d=jwNbLDCI8BFRv3V7Hf6JVLJmn2Q1zjJNtYIdlIz_O7Z-85kxyBW1eQHJqICZOCxAPjpwRsg-o4DsE1JUfckZdYK1cUkuCDucAoWuT2oQb3w1&amp;t=639190653332169432" type="text/javascript"></script>
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.2.0/require.min.js" type="text/javascript"></script>
+<script src="https://dbukjj6eu5tsf.cloudfront.net/assets.sidearmsports.com/responsive/js/main.1790781000881.js" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=qvi9FaMZeImJETrlKixfKhk_1_J6UOUAfnh8NUaTWIt_oBnU2DQMdXcfDeyCB-Manb0F8foUPZ34fPgQ2eQjm7XFpYwpIUn4Vzgt00HvyHIAxP4CegfR1tMrIv_9LWNLDcj7jz3LjOfKQEPYDKC3ecXqA4L44lU7vOWGNzghTdY1&amp;t=ffffffffbec1863d" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=opmpQUAuxuh9euH0VOtfH0A5NhTkObWGhXiX6DwXB877wXJThN-A8wT1lhMOumfGxednTFsKeuwKCkEGCoHeo172zcfepxxTXPuviHq2cZN84lQE0eoMZXp1fXTz9Q6hA8pEXoWayZGCSRtJVbqfY62GBUpUw0jiG34jr3luO6ruU1YPcqRsx5ZfO5fHxl830&amp;t=ffffffffbec1863d" type="text/javascript"></script>
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="8FD2A73E">
+</div>
+    <script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('ctl00$sManager', 'aspnetForm', [], [], [], 90, 'ctl00');
+//]]>
+</script>
+
+    <main class="main-content-placeholder" id="main-content">
+        
+    
+	
+
+			<article class="sidearm-staff sidearm-common">
+
+				<div class="sidearm-common-promotion">
+                    
+
+<script>
+    var obj = {"start":0,"count":10,"name":"staff-above-header-1","sport_id":null,"count_breakpoints":null,"css_class":"","pinned_id":"","extra":{},"context":null,"dummy":false,"type":"ads","id":"7b9a8997-6fce-49c4-a4fb-f0b816cbdc8c","data":{"location":{"id":0,"title":null,"type":null,"effect":null,"fixed_image_sizes":false,"excluded_sport_ids":null,"slick":false,"dfp":false,"sidearm_dfp":false,"common_page":false,"html_template":null,"name":null,"autoplay_speed":0,"accessibility_icons":false,"sizes":null,"slick_options":null,"dfp_sizes":null},"campaigns":[],"content_id":null,"content_title":null,"content_date":null,"content_url":null,"content_image_url":null},"mode":"web"};
+    if (!("sidearmComponents" in window))
+        window.sidearmComponents = [];
+    window.sidearmComponents.push(obj);
+</script>
+
+<ads-component params="{ id: '7b9a8997-6fce-49c4-a4fb-f0b816cbdc8c' }"></ads-component>
+                    
+				</div>
+
+                
+                    <h2>Staff Directory</h2>
+                
+
+				<header class="sidearm-staff-header sidearm-common-header flex row flex-column large-flex-row large-flex-justify-between noprint">
+					<div class="sidearm-staff-share sidearm-common-header-share large-6 columns">
+						<ul class="sidearm-staff-share-list sidearm-common-header-share-list flex">
+							<li class="sidearm-staff-header-print sidearm-common-header-print flex text-no-wrap">
+								<a href="/staff-directory?print=true" onclick="window.open(this.href, null, 'menubar=no,location=no,status=no,scrollbars=yes,width=800,height=800');return false;" target="_blank">Print</a>
+							</li>
+						</ul>
+					</div>
+					<div class="sidearm-staff-select sidearm-common-header-select flex large-6 columns">
+						<ul class="sidearm-staff-select-list sidearm-common-header-select-list flex flex-column medium-flex-row flex-item-1">
+							<li class="sidearm-staff-select-search flex flex-item-1">
+								<label for="ctl00_cplhMainContent_txt_keyword_search" class="hide">Keyword Search:</label>
+								<input name="ctl00$cplhMainContent$txt_keyword_search" type="text" id="ctl00_cplhMainContent_txt_keyword_search" class="sidearm-common-header-remove-right-radius" placeholder="Search...">
+								<input type="submit" name="ctl00$cplhMainContent$btn_keyword_search" value="Go" id="ctl00_cplhMainContent_btn_keyword_search" title="Keyword Search" class="sidearm-common-header-remove-left-radius" aria-label="Go Search by Keyword">
+							</li>
+							<li class="sidearm-staff-select-filter flex flex-item-1">
+								<label for="ctl00_cplhMainContent_ddl_filter_categories" class="hide">Filter By:</label>
+								<select name="ctl00$cplhMainContent$ddl_filter_categories" id="ctl00_cplhMainContent_ddl_filter_categories" class="sidearm-common-header-remove-right-radius">
+	<option value="">All Categories
+	<option value="25">EXECUTIVE DIRECTOR OF ATHLETICS 
+	<option value="1">ATHLETIC ADMINISTRATION
+	<option value="32">FACULTY ATHLETICS REPRESENTATIVES 
+	<option value="20">SPORTS MEDICINE
+	<option value="34">WALDMAN FITNESS CENTER / SPORTS PERFORMANCE
+	<option value="43">EVENT OPERATIONS 
+	<option value="44">FACILITIES
+	<option value="9">MEN&#39;S BASKETBALL COACHING STAFF 
+	<option value="10">WOMEN&#39;S BASKETBALL COACHING STAFF
+	<option value="5">BASEBALL COACHING STAFF 
+	<option value="8">SOFTBALL COACHING STAFF 
+	<option value="11">MEN&#39;S SOCCER COACHING STAFF 
+	<option value="12">WOMEN&#39;S VOLLEYBALL COACHING STAFF
+	<option value="33">MEN&#39;S VOLLEYBALL COACHING STAFF
+	<option value="36">MEN&#39;S WRESTLING COACHING STAFF 
+	<option value="37">WOMEN&#39;S WRESTLING COACHING STAFF 
+	<option value="41">MEN&#39;S GOLF COACHING STAFF
+	<option value="42">WOMEN&#39;S GOLF COACHING STAFF
+	<option value="45">SPORTS INFORMATION 
+
+</select>
+								<input type="submit" name="ctl00$cplhMainContent$btn_filter_categories" value="Go" onclick="return false;" id="ctl00_cplhMainContent_btn_filter_categories" class="sidearm-common-header-remove-left-radius" aria-label="Go Filter by Categories">
+							</li>
+						</ul>                
+					</div>            
+				</header>
+				
+                
+				    <div class="sidearm-common-promotion">
+                        
+
+<script>
+    var obj = {"start":0,"count":10,"name":"staff-below-header-1","sport_id":null,"count_breakpoints":null,"css_class":"","pinned_id":"","extra":{},"context":null,"dummy":false,"type":"ads","id":"75bf167c-54c7-40d0-a354-952719deb95c","data":{"location":{"id":0,"title":null,"type":null,"effect":null,"fixed_image_sizes":false,"excluded_sport_ids":null,"slick":false,"dfp":false,"sidearm_dfp":false,"common_page":false,"html_template":null,"name":null,"autoplay_speed":0,"accessibility_icons":false,"sizes":null,"slick_options":null,"dfp_sizes":null},"campaigns":[],"content_id":null,"content_title":null,"content_date":null,"content_url":null,"content_image_url":null},"mode":"web"};
+    if (!("sidearmComponents" in window))
+        window.sidearmComponents = [];
+    window.sidearmComponents.push(obj);
+</script>
+
+<ads-component params="{ id: '75bf167c-54c7-40d0-a354-952719deb95c' }"></ads-component>
+                        
+				    </div>
+                
+					<div class="sidearm-staff-information">
+						<span style="color:#ff8c00;"><span style="font-size:14px;"><strong>ATHLETIC DEPARTMENT ADDRESS</strong></span></span><br>
+<span style="color:#000000;"><span style="font-size:12px;">Northampton Community College - Athletics<br>
+Arthur L. Scott Spartan Center<br>
+3835 Green Pond Road<br>
+Bethlehem, PA 18020</span></span><br>
+<br>
+All game facilities for Northampton are located on-campus
+					</div>
+				
+
+				<table class="sidearm-table">
+					<caption class="hide">Staff Directory Members By Category/Department</caption>
+					<thead class="sidearm-primary">
+						<tr>
+							
+								<th class="text-left text-uppercase" id="col-image_combined_path" scope="col">
+                                    <span class="accessible-hide">Image</span>
+								</th>
+							
+								<th class="text-left text-uppercase" id="col-fullname" scope="col">
+                                    <span class="">Name</span>
+								</th>
+							
+								<th class="text-left text-uppercase" id="col-staff_title" scope="col">
+                                    <span class="">Title</span>
+								</th>
+							
+								<th class="text-left text-uppercase" id="col-staff_email" scope="col">
+                                    <span class="">Email Address</span>
+								</th>
+							
+								<th class="text-left text-uppercase" id="col-staff_phone" scope="col">
+                                    <span class="">Phone</span>
+								</th>
+							
+						</tr>
+					</thead>
+					<tbody>
+						        
+							<tr class="sidearm-staff-category " data-category-id="25">
+								<th id="category-0" class="fake-heading" scope="colgroup" colspan="5">EXECUTIVE DIRECTOR OF ATHLETICS </th>
+							</tr>                                      
+							    
+								<tr class="sidearm-staff-member " data-member-id="1" data-category-id="25">
+									
+										<td headers="col-image_combined_path category-0" class="sidearm-staff-image-cell">
+											<img src='/images/2026/5/12/Tucker_Board_Chair.png?width=100' alt='Troy Tucker'>
+										</td>
+									
+										<td headers="col-fullname category-0" class="">
+											<a aria-label='Troy Tucker, EXECUTIVE DIRECTOR OF ATHLETICS , Executive Director of Athletics ' class='text-no-wrap' href='/staff-directory/troy-tucker/1'>Troy Tucker</a>
+                                                
+										</td>
+									
+										<td headers="col-staff_title category-0" class="">
+											Executive Director of Athletics 
+										</td>
+									
+										<td headers="col-staff_email category-0" class="">
+											
+                                                <a id="staff_email_0" href="#"></a>
+
+                                                <script type="text/javascript">
+                                                    var placeholder = document.getElementById("staff_email_0");
+                                                    var firstHalf = "tltucker";
+                                                    var secondHalf = "northampton.edu";
+                                                    var full_email = firstHalf + '@' + secondHalf;
+                                                    placeholder.href = 'mailto:' + full_email;
+                                                    placeholder.innerText = full_email;
+                                                </script>
+                                                    
+										</td>
+									
+										<td headers="col-staff_phone category-0" class="">
+											
+										</td>
+									
+								</tr>   
+							        
+							<tr class="sidearm-staff-category " data-category-id="1">
+								<th id="category-1" class="fake-heading" scope="colgroup" colspan="5">ATHLETIC ADMINISTRATION</th>
+							</tr>                                      
+							    
+								<tr class="sidearm-staff-member " data-member-id="255" data-category-id="1">
+									
+										<td headers="col-image_combined_path category-1" class="sidearm-staff-image-cell">
+											<img src='/images/2021/10/30/IMG_0078.JPG?width=100' alt='Brennan  McCarthy'>
+										</td>
+									
+										<td headers="col-fullname category-1" class="">
+											<a aria-label='Brennan  McCarthy, ATHLETIC ADMINISTRATION, Associate Athletic Director - Administration & Facilities ' class='text-no-wrap' href='/staff-directory/brennan-mccarthy/255'>Brennan  McCarthy</a>
+                                                
+										</td>
+									
+										<td headers="col-staff_title category-1" class="">
+											Associate Athletic Director - Administration & Facilities 
+										</td>
+									
+										<td headers="col-staff_email category-1" class="">
+											
+                                                <a id="staff_email_1" href="#"></a>
+
+                                                <script type="text/javascript">
+                                                    var placeholder = document.getElementById("staff_email_1");
+                                                    var firstHalf = "bmccarthy";
+                                                    var secondHalf = "northampton.edu";
+                                                    var full_email = firstHalf + '@' + secondHalf;
+                                                    placeholder.href = 'mailto:' + full_email;
+                                                    placeholder.innerText = full_email;
+                                                </script>
+                                                    
+										</td>
+									
+										<td headers="col-staff_phone category-1" class="">
+											
+													<a href="tel:610-332-6280">610-332-6280</a>
+												
+										</td>
+									
+								</tr>   
+							    
+								<tr class="sidearm-staff-member " data-member-id="2" data-category-id="1">
+									
+										<td headers="col-image_combined_path category-1" class="sidearm-staff-image-cell">
+											<img src='/images/2024/10/28/DSC_0676.JPG?width=100' alt='Adrian Yaguez'>
+										</td>
+									
+										<td headers="col-fullname category-1" class="">
+											<a aria-label='Adrian Yaguez, ATHLETIC ADMINISTRATION, Associate Athletic Director - Internal Operations & Engagement ' class='text-no-wrap' href='/staff-directory/adrian-yaguez/2'>Adrian Yaguez</a>
+                                                
+										</td>
+									
+										<td headers="col-staff_title category-1" class="">
+											Associate Athletic Director - Internal Operations & Engagement 
+										</td>
+									
+										<td headers="col-staff_email category-1" class="">
+											
+                                                <a id="staff_email_2" href="#"></a>
+
+                                                <script type="text/javascript">
+                                                    var placeholder = document.getElementById("staff_email_2");
+                                                    var firstHalf = "ayaguez";
+                                                    var secondHalf = "northampton.edu";
+                                                    var full_email = firstHalf + '@' + secondHalf;
+                                                    placeholder.href = 'mailto:' + full_email;
+                                                    placeholder.innerText = full_email;
+                                                </script>
+                                                    
+										</td>
+									
+										<td headers="col-staff_phone category-1" class="">
+											
+													<a href="tel:610-332-6559">610-332-6559</a>
+												
+										</td>
+									
+								</tr>   
+							    
+								<tr class="sidearm-staff-member " data-member-id="5" data-category-id="1">
+									
+										<td headers="col-image_combined_path category-1" class="sidearm-staff-image-cell">
+											<img src='/images/2024/10/28/DSC_0677.JPG?width=100' alt='Sheri Bollinger'>
+										</td>
+									
+										<td headers="col-fullname category-1" class="">
+											<a aria-label='Sheri Bollinger, ATHLETIC ADMINISTRATION, Director of Compliance & Student Success ' class='text-no-wrap' href='/staff-directory/sheri-bollinger/5'>Sheri Bollinger</a>
+                                                
+										</td>
+									
+										<td headers="col-staff_title category-1" class="">
+											Director of Compliance & Student Success 
+										</td>
+									
+										<td headers="col-staff_email category-1" class="">
+											
+                                                <a id="staff_email_3" href="#"></a>
+
+                                                <script type="text/javascript">
+                                                    var placeholder = document.getElementById("staff_email_3");
+                                                    var firstHalf = "sbollinger";
+                                                    var secondHalf = "northampton.edu";
+                                                    var full_email = firstHalf + '@' + secondHalf;
+                                                    placeholder.href = 'mailto:' + full_email;
+                                                    placeholder.innerText = full_email;
+                                                </script>
+                                                    
+										</td>
+									
+										<td headers="col-staff_phone category-1" class="">
+											
+													<a href="tel:610-861-5584">610-861-5584</a>
+												
+										</td>
+									
+								</tr>   
+							    
+								<tr class="sidearm-staff-member " data-member-id="346" data-category-id="1">
+									
+										<td headers="col-image_combined_path category-1" class="sidearm-staff-image-cell">
+											<img src='/images/2026/8/10/ben_master.jpg?width=100' alt='Ben Master'>
+										</td>
+									
+										<td headers="col-fullname category-1" class="">
+											<a aria-label='Ben Master, ATHLETIC ADMINISTRATION, Assistant Athletic Director - External Operations & Events ' class='text-no-wrap' href='/staff-directory/ben-master/346'>Ben Master</a>
+                                                
+										</td>
+									
+										<td headers="col-staff_title category-1" class="">
+											Assistant Athletic Director - External Operations & Events 
+										</td>
+									
+										<td headers="col-staff_email category-1" class="">
+											
+                                                <a id="staff_email_4" href="#"></a>
+
+                                                <script type="text/javascript">
+                                                    var placeholder = document.getElementById("staff_email_4");
+                                                    var firstHalf = "bmaster";
+                                                    var secondHalf = "northampton.edu";
+                                                    var full_email = firstHalf + '@' + secondHalf;
+                                                    placeholder.href = 'mailto:' + full_email;
+                                                    placeholder.innerText = full_email;
+                                                </script>
+                                                    
+										</td>
+									
+										<td headers="col-staff_phone category-1" class="">
+											
+										</td>
+									
+								</tr>   
+							    
+								<tr class="sidearm-staff-member " data-member-id="99" data-category-id="1">
+									
+										<td headers="col-image_combined_path category-1" class="sidearm-staff-image-cell">
+											<img src='/images/2022/10/5/donati__1eDXT.JPG?width=100' alt='Maria Popek LAT, ATC'>
+										</td>
+									
+										<td headers="col-fullname category-1" class="">
+											<a aria-label='Maria Popek LAT, ATC, ATHLETIC ADMINISTRATION, Assistant Athletic Director - Sports Medicine/Head Athletic Trainer' class='text-no-wrap' href='/staff-directory/maria-popek-lat-atc/99'>Maria Popek LAT, ATC</a>
+                                                
+										</td>
+									
+										<td headers="col-staff_title category-1" class="">
+											Assistant Athletic Director - Sports Medicine/Head Athletic Trainer
+										</td>
+									
+										<td headers="col-staff_email category-1" class="">
+											
+                                                <a id="staff_email_5" href="#"></a>
+
+                                                <script type="text/javascript">
+                                                    var placeholder = document.getElementById("staff_email_5");
+                                                    var firstHalf = "maria.popek";
+                                                    var secondHalf = "sluhn.org";
+                                                    var full_email = firstHalf + '@' + secondHalf;
+                                                    placeholder.href = 'mailto:' + full_email;
+                                                    placeholder.innerText = full_email;
+                                                </script>
+                                                    
+										</td>
+									
+										<td headers="col-staff_phone category-1" class="">
+											
+													<a href="tel:610-332-6141">610-332-6141</a>
+												
+										</td>
+									
+								</tr>   
+							        
+							<tr class="sidearm-staff-category " data-category-id="32">
+								<th id="category-2" class="fake-heading" scope="colgroup" colspan="5">FACULTY ATHLETICS REPRESENTATIVES </th>
+							</tr>                                      
+							    
+								<tr class="sidearm-staff-member " data-member-id="234" data-category-id="32">
+									
+										<td headers="col-image_combined_path category-2" class="sidearm-staff-image-cell">
+											<img src='/images/2019/9/6/Sam_Chen_.JPG?width=100' alt='Samuel S.  Chen '>
+										</td>
+									
+										<td headers="col-fullname category-2" class="">
+											<a aria-label='Samuel S.  Chen , FACULTY ATHLETICS REPRESENTATIVES , Faculty Athletic Representative' class='text-no-wrap' href='/staff-directory/samuels-chen/234'>Samuel S.  Chen </a>
+                                                
+										</td>
+									
+										<td headers="col-staff_title category-2" class="">
+											Faculty Athletic Representative
+										</td>
+									
+										<td headers="col-staff_email category-2" class="">
+											
+                                                <a id="staff_email_6" href="#"></a>
+
+                                                <script type="text/javascript">
+                                                    var placeholder = document.getElementById("staff_email_6");
+                                                    var firstHalf = "schen";
+                                                    var secondHalf = "northampton.edu ";
+                                                    var full_email = firstHalf + '@' + secondHalf;
+                                                    placeholder.href = 'mailto:' + full_email;
+                                                    placeholder.innerText = full_email;
+                                                </script>
+                                                    
+										</td>
+									
+										<td headers="col-staff_phone category-2" class="">
+											
+										</td>
+									
+								</tr>   
+							    
+								<tr class="sidearm-staff-member " data-member-id="235" data-category-id="32">
+									
+										<td headers="col-image_combined_path category-2" class="sidearm-staff-image-cell">
+											<img src='/images/2019/9/6/Karen_Mattes.JPG?width=100' alt='Karen Mattes'>
+										</td>
+									
+										<td headers="col-fullname category-2" class="">
+											<a aria-label='Karen Mattes, FACULTY ATHLETICS REPRESENTATIVES , Faculty Athletic Representative' class='text-no-wrap' href='/staff-directory/karen-mattes/235'>Karen Mattes</a>
+                                                
+										</td>
+									
+										<td headers="col-staff_title category-2" class="">
+											Faculty Athletic Representative
+										</td>
+									
+										<td headers="col-staff_email category-2" class="">
+											
+                                                <a id="staff_email_7" href="#"></a>
+
+                                                <script type="text/javascript">
+                                                    var placeholder = document.getElementById("staff_email_7");
+                                                    var firstHalf = "kmattes";
+                                                    var secondHalf = "northampton.edu ";
+                                                    var full_email = firstHalf + '@' + secondHalf;
+                                                    placeholder.href = 'mailto:' + full_email;
+                                                    placeholder.innerText = full_email;
+                                                </script>
+                                                    
+										</td>
+									
+										<td headers="col-staff_phone category-2" class="">
+											
+										</td>
+									
+								</tr>   
+							        
+							<tr class="sidearm-staff-category " data-category-id="20">
+								<th id="category-3" class="fake-heading" scope="colgroup" colspan="5">SPORTS MEDICINE</th>
+							</tr>                                      
+							    
+								<tr class="sidearm-staff-member " data-member-id="99" data-category-id="20">
+									
+										<td headers="col-image_combined_path category-3" class="sidearm-staff-image-cell">
+											<img src='/images/2022/10/5/donati__1eDXT.JPG?width=100' alt='Maria Popek LAT, ATC'>
+										</td>
+									
+										<td headers="col-fullname category-3" class="">
+											<a aria-label='Maria Popek LAT, ATC, SPORTS MEDICINE, Assistant Athletic Director - Sports Medicine/Head Athletic Trainer' class='text-no-wrap' href='/staff-directory/maria-popek-lat-atc/99'>Maria Popek LAT, ATC</a>
+                                                
+										</td>
+									
+										<td headers="col-staff_title category-3" class="">
+											Assistant Athletic Director - Sports Medicine/Head Athletic Trainer
+										</td>
+									
+										<td headers="col-staff_email category-3" class="">
+											
+                                                <a id="staff_email_8" href="#"></a>
+
+                                                <script type="text/javascript">
+                                                    var placeholder = document.getElementById("staff_email_8");
+                                                    var firstHalf = "maria.popek";
+                                                    var secondHalf = "sluhn.org";
+                                                    var full_email = firstHalf + '@' + secondHalf;
+                                                    placeholder.href = 'mailto:' + full_email;
+                                                    placeholder.innerText = full_email;
+                                                </script>
+                                                    
+										</td>
+									
+										<td headers="col-staff_phone category-3" class="">
+											
+													<a href="tel:610-332-6141">610-332-6141</a>
+												
+										</td>
+									
+								</tr>   
+							    
+								<tr class="sidearm-staff-member " data-member-id="319" data-category-id="20">
+									
+										<td headers="col-image_combined_path category-3" class="sidearm-staff-image-cell">
+											<img src='/images/2025/9/16/DSC_2851.JPG?width=100' alt='Sydney Wright LAT, ATC'>
+										</td>
+									
+										<td headers="col-fullname category-3" class="">
+											<a aria-label='Sydney Wright LAT, ATC, SPORTS MEDICINE, Athletic Trainer' class='text-no-wrap' href='/staff-directory/sydney-wright-lat-atc/319'>Sydney Wright LAT, ATC</a>
+                                                
+										</td>
+									
+										<td headers="col-staff_title category-3" class="">
+											Athletic Trainer
+										</td>
+									
+										<td headers="col-staff_email category-3" class="">
+											
+                                                <a id="staff_email_9" href="#"></a>
+
+                                                <script type="text/javascript">
+                                                    var placeholder = document.getElementById("staff_email_9");
+                                                    var firstHalf = "sydney.wright";
+                                                    var secondHalf = "sluhn.org";
+                                                    var full_email = firstHalf + '@' + secondHalf;
+                                                    placeholder.href = 'mailto:' + full_email;
+                                                    placeholder.innerText = full_email;
+                                                </script>
+                                                    
+										</td>
+									
+										<td headers="col-staff_phone category-3" class="">
+											
+													<a href="tel:302-745-8290">302-745-8290</a>
+												
+										</td>
+									
+								</tr>   
+							        
+							<tr class="sidearm-staff-category " data-category-id="34">
+								<th id="category-4" class="fake-heading" scope="colgroup" colspan="5">WALDMAN FITNESS CENTER / SPORTS PERFORMANCE</th>
+							</tr>                                      
+							    
+								<tr class="sidearm-staff-member " data-member-id="273" data-category-id="34">
+									
+										<td headers="col-image_combined_path category-4" class="sidearm-staff-image-cell">
+											<img src='/images/2024/10/25/DSC_0674.JPG?width=100' alt='Gene  Smith '>
+										</td>
+									
+										<td headers="col-fullname category-4" class="">
+											<a aria-label='Gene  Smith , WALDMAN FITNESS CENTER / SPORTS PERFORMANCE, Fitness Center Staff ' class='text-no-wrap' href='/staff-directory/gene-smith/273'>Gene  Smith </a>
+                                                
+										</td>
+									
+										<td headers="col-staff_title category-4" class="">
+											Fitness Center Staff 
+										</td>
+									
+										<td headers="col-staff_email category-4" class="">
+											
+                                                <a id="staff_email_10" href="#"></a>
+
+                                                <script type="text/javascript">
+                                                    var placeholder = document.getElementById("staff_email_10");
+                                                    var firstHalf = "csmith";
+                                                    var secondHalf = "northampton.edu ";
+                                                    var full_email = firstHalf + '@' + secondHalf;
+                                                    placeholder.href = 'mailto:' + full_email;
+                                                    placeholder.innerText = full_email;
+                                                </script>
+                                                    
+										</td>
+									
+										<td headers="col-staff_phone category-4" class="">
+											
+													<a href="tel:610-332-6156">610-332-6156</a>
+												
+										</td>
+									
+								</tr>   
+							    
+								<tr class="sidearm-staff-member " data-member-id="354" data-category-id="34">
+									
+										<td headers="col-image_combined_path category-4" class="sidearm-staff-image-cell">
+											<img src='/images/2026/11/11/Morgan_Labuda_picture_4o40K.jpg?width=100' alt='Morgan Labuda'>
+										</td>
+									
+										<td headers="col-fullname category-4" class="">
+											<a aria-label='Morgan Labuda, WALDMAN FITNESS CENTER / SPORTS PERFORMANCE, St. Lukes - Sports Performance' class='text-no-wrap' href='/staff-directory/morgan-labuda/354'>Morgan Labuda</a>
+                                                
+										</td>
+									
+										<td headers="col-staff_title category-4" class="">
+											St. Luke's - Sports Performance
+										</td>
+									
+										<td headers="col-staff_email category-4" class="">
+											
+                                                <a id="staff_email_11" href="#"></a>
+
+                                                <script type="text/javascript">
+                                                    var placeholder = document.getElementById("staff_email_11");
+                                                    var firstHalf = "morgan.labuda";
+                                                    var secondHalf = "sluhn,org";
+                                                    var full_email = firstHalf + '@' + secondHalf;
+                                                    placeholder.href = 'mailto:' + full_email;
+                                                    placeholder.innerText = full_email;
+                                                </script>
+                                                    
+										</td>
+									
+										<td headers="col-staff_phone category-4" class="">
+											
+													<a href="tel:610-332-6156">610-332-6156</a>
+												
+										</td>
+									
+								</tr>   
+							    
+								<tr class="sidearm-staff-member " data-member-id="355" data-category-id="34">
+									
+										<td headers="col-image_combined_path category-4" class="sidearm-staff-image-cell">
+											<img src='/images/2026/11/11/Lucas_Skelley_picture.jpg?width=100' alt='Lucas Skelley'>
+										</td>
+									
+										<td headers="col-fullname category-4" class="">
+											<a aria-label='Lucas Skelley, WALDMAN FITNESS CENTER / SPORTS PERFORMANCE, St. Lukes - Sports Performance' class='text-no-wrap' href='/staff-directory/lucas-skelley/355'>Lucas Skelley</a>
+                                                
+										</td>
+									
+										<td headers="col-staff_title category-4" class="">
+											St. Luke's - Sports Performance
+										</td>
+									
+										<td headers="col-staff_email category-4" class="">
+											
+                                                <a id="staff_email_12" href="#"></a>
+
+                                                <script type="text/javascript">
+                                                    var placeholder = document.getElementById("staff_email_12");
+                                                    var firstHalf = "Lucas.Skelley";
+                                                    var secondHalf = "sluhn.org";
+                                                    var full_email = firstHalf + '@' + secondHalf;
+                                                    placeholder.href = 'mailto:' + full_email;
+                                                    placeholder.innerText = full_email;
+                                                </script>
+                                                    
+										</td>
+									
+										<td headers="col-staff_phone category-4" class="">
+											
+													<a href="tel:610-332-6156">610-332-6156</a>
+												
+										</td>
+									
+								</tr>   
+							        
+							<tr class="sidearm-staff-category " data-category-id="43">
+								<th id="category-5" class="fake-heading" scope="colgroup" colspan="5">EVENT OPERATIONS </th>
+							</tr>                                      
+							    
+								<tr class="sidearm-staff-member " data-member-id="346" data-category-id="43">
+									
+										<td headers="col-image_combined_path category-5" class="sidearm-staff-image-cell">
+											<img src='/images/2026/8/10/ben_master.jpg?width=100' alt='Ben Master'>
+										</td>
+									
+										<td headers="col-fullname category-5" class="">
+											<a aria-label='Ben Master, EVENT OPERATIONS , Assistant Athletic Director - External Operations & Events ' class='text-no-wrap' href='/staff-directory/ben-master/346'>Ben Master</a>
+                                                
+										</td>
+									
+										<td headers="col-staff_title category-5" class="">
+											Assistant Athletic Director - External Operations & Events 
+										</td>
+									
+										<td headers="col-staff_email category-5" class="">
+											
+                                                <a id="staff_email_13" href="#"></a>
+
+                                                <script type="text/javascript">
+                                                    var placeholder = document.getElementById("staff_email_13");
+                                                    var firstHalf = "bmaster";
+                                                    var secondHalf = "northampton.edu";
+                                                    var full_email = firstHalf + '@' + secondHalf;
+                                                    placeholder.href = 'mailto:' + full_email;
+                                                    placeholder.innerText = full_email;
+                                                </script>
+                                                    
+										</td>
+									
+										<td headers="col-staff_phone category-5" class="">
+											
+										</td>
+									
+								</tr>   
+							    
+								<tr class="sidearm-staff-member " data-member-id="331" data-category-id="43">
+									
+										<td headers="col-image_combined_path category-5" class="sidearm-staff-image-cell">
+											<img src='/images/2025/11/18/IMG_9150.JPG?width=100' alt='Caleb  Brennan'>
+										</td>
+									
+										<td headers="col-fullname category-5" class="">
+											<a aria-label='Caleb  Brennan, EVENT OPERATIONS , Coordinator - Event Operations & Facilities ' class='text-no-wrap' href='/staff-directory/caleb-brennan/331'>Caleb  Brennan</a>
+                                                
+										</td>
+									
+										<td headers="col-staff_title category-5" class="">
+											Coordinator - Event Operations & Facilities 
+										</td>
+									
+										<td headers="col-staff_email category-5" class="">
+											
+										</td>
+									
+										<td headers="col-staff_phone category-5" class="">
+											
+										</td>
+									
+								</tr>   
+							    
+								<tr class="sidearm-staff-member " data-member-id="290" data-category-id="43">
+									
+										<td headers="col-image_combined_path category-5" class="sidearm-staff-image-cell">
+											<img src='/images/2014/9/30/Coach_Cullen.jpg?width=100' alt='Scott  Cullen '>
+										</td>
+									
+										<td headers="col-fullname category-5" class="">
+											<a aria-label='Scott  Cullen , EVENT OPERATIONS , Livestats ' class='text-no-wrap' href='/staff-directory/scott-cullen/290'>Scott  Cullen </a>
+                                                
+										</td>
+									
+										<td headers="col-staff_title category-5" class="">
+											Livestats 
+										</td>
+									
+										<td headers="col-staff_email category-5" class="">
+											
+										</td>
+									
+										<td headers="col-staff_phone category-5" class="">
+											
+										</td>
+									
+								</tr>   
+							    
+								<tr class="sidearm-staff-member " data-member-id="291" data-category-id="43">
+									
+										<td headers="col-image_combined_path category-5" class="sidearm-staff-image-cell">
+											<img src='/images/2023/12/14/trumbore.jpg?width=100' alt='Andrew  Trumbore'>
+										</td>
+									
+										<td headers="col-fullname category-5" class="">
+											<a aria-label='Andrew  Trumbore, EVENT OPERATIONS , Voice of the Spartans ' class='text-no-wrap' href='/staff-directory/andrew-trumbore/291'>Andrew  Trumbore</a>
+                                                
+										</td>
+									
+										<td headers="col-staff_title category-5" class="">
+											Voice of the Spartans 
+										</td>
+									
+										<td headers="col-staff_email category-5" class="">
+											
+										</td>
+									
+										<td headers="col-staff_phone category-5" class="">
+											
+										</td>
+									
+								</tr>   
+							        
+							<tr class="sidearm-staff-category " data-category-id="44">
+								<th id="category-6" class="fake-heading" scope="colgroup" colspan="5">FACILITIES</th>
+							</tr>                                      
+							    
+								<tr class="sidearm-staff-member " data-member-id="255" data-category-id="44">
+									
+										<td headers="col-image_combined_path category-6" class="sidearm-staff-image-cell">
+											<img src='/images/2021/10/30/IMG_0078.JPG?width=100' alt='Brennan  McCarthy'>
+										</td>
+									
+										<td headers="col-fullname category-6" class="">
+											<a aria-label='Brennan  McCarthy, FACILITIES, Associate Athletic Director - Administration & Facilities ' class='text-no-wrap' href='/staff-directory/brennan-mccarthy/255'>Brennan  McCarthy</a>
+                                                
+										</td>
+									
+										<td headers="col-staff_title category-6" class="">
+											Associate Athletic Director - Administration & Facilities 
+										</td>
+									
+										<td headers="col-staff_email category-6" class="">
+											
+                                                <a id="staff_email_17" href="#"></a>
+
+                                                <script type="text/javascript">
+                                                    var placeholder = document.getElementById("staff_email_17");
+                                                    var firstHalf = "bmccarthy";
+                                                    var secondHalf = "northampton.edu";
+                                                    var full_email = firstHalf + '@' + secondHalf;
+                                                    placeholder.href = 'mailto:' + full_email;
+                                                    placeholder.innerText = full_email;
+                                                </script>
+                                                    
+										</td>
+									
+										<td headers="col-staff_phone category-6" class="">
+											
+													<a href="tel:610-332-6280">610-332-6280</a>
+												
+										</td>
+									
+								</tr>   
+							    
+								<tr class="sidearm-staff-member " data-member-id="331" data-category-id="44">
+									
+										<td headers="col-image_combined_path category-6" class="sidearm-staff-image-cell">
+											<img src='/images/2025/11/18/IMG_9150.JPG?width=100' alt='Caleb  Brennan'>
+										</td>
+									
+										<td headers="col-fullname category-6" class="">
+											<a aria-label='Caleb  Brennan, FACILITIES, Coordinator - Event Operations & Facilities ' class='text-no-wrap' href='/staff-directory/caleb-brennan/331'>Caleb  Brennan</a>
+                                                
+										</td>
+									
+										<td headers="col-staff_title category-6" class="">
+											Coordinator - Event Operations & Facilities 
+										</td>
+									
+										<td headers="col-staff_email category-6" class="">
+											
+										</td>
+									
+										<td headers="col-staff_phone category-6" class="">
+											
+										</td>
+									
+								</tr>   
+							        
+							<tr class="sidearm-staff-category " data-category-id="9">
+								<th id="category-7" class="fake-heading" scope="colgroup" colspan="5">MEN'S BASKETBALL COACHING STAFF </th>
+							</tr>                                      
+							    
+								<tr class="sidearm-staff-member " data-member-id="44" data-category-id="9">
+									
+										<td headers="col-image_combined_path category-7" class="sidearm-staff-image-cell">
+											<img src='/images/2021/10/30/IMG_0078.JPG?width=100' alt='Brennan McCarthy '>
+										</td>
+									
+										<td headers="col-fullname category-7" class="">
+											<a aria-label='Brennan McCarthy , MENS BASKETBALL COACHING STAFF , Head Coach, Mens Basketball' class='text-no-wrap' href='/staff-directory/brennan-mccarthy/44'>Brennan McCarthy </a>
+                                                
+										</td>
+									
+										<td headers="col-staff_title category-7" class="">
+											Head Coach, Men's Basketball
+										</td>
+									
+										<td headers="col-staff_email category-7" class="">
+											
+                                                <a id="staff_email_19" href="#"></a>
+
+                                                <script type="text/javascript">
+                                                    var placeholder = document.getElementById("staff_email_19");
+                                                    var firstHalf = "bmccarthy";
+                                                    var secondHalf = "northampton.edu";
+                                                    var full_email = firstHalf + '@' + secondHalf;
+                                                    placeholder.href = 'mailto:' + full_email;
+                                                    placeholder.innerText = full_email;
+                                                </script>
+                                                    
+										</td>
+									
+										<td headers="col-staff_phone category-7" class="">
+											
+													<a href="tel:610-332-6280">610-332-6280</a>
+												
+										</td>
+									
+								</tr>   
+							    
+								<tr class="sidearm-staff-member " data-member-id="281" data-category-id="9">
+									
+										<td headers="col-image_combined_path category-7" class="sidearm-staff-image-cell">
+											<img src='/images/2026/11/18/Dr.ToddVanNortwick-MBB2026.jpeg?width=100' alt='Dr. Todd VanNortwick'>
+										</td>
+									
+										<td headers="col-fullname category-7" class="">
+											<a aria-label='Dr. Todd VanNortwick, MENS BASKETBALL COACHING STAFF , Assistant Coach, Mens Basketball ' class='text-no-wrap' href='/staff-directory/dr-todd-vannortwick/281'>Dr. Todd VanNortwick</a>
+                                                
+										</td>
+									
+										<td headers="col-staff_title category-7" class="">
+											Assistant Coach, Men's Basketball 
+										</td>
+									
+										<td headers="col-staff_email category-7" class="">
+											
+                                                <a id="staff_email_20" href="#"></a>
+
+                                                <script type="text/javascript">
+                                                    var placeholder = document.getElementById("staff_email_20");
+                                                    var firstHalf = "tvannortwick";
+                                                    var secondHalf = "northampton.edu ";
+                                                    var full_email = firstHalf + '@' + secondHalf;
+                                                    placeholder.href = 'mailto:' + full_email;
+                                                    placeholder.innerText = full_email;
+                                                </script>
+                                                    
+										</td>
+									
+										<td headers="col-staff_phone category-7" class="">
+											
+										</td>
+									
+								</tr>   
+							    
+								<tr class="sidearm-staff-member " data-member-id="329" data-category-id="9">
+									
+										<td headers="col-image_combined_path category-7" class="sidearm-staff-image-cell">
+											<img src='/images/2026/11/18/AndrewMiller-MBB2026.jpeg?width=100' alt='Andrew Miller '>
+										</td>
+									
+										<td headers="col-fullname category-7" class="">
+											<a aria-label='Andrew Miller , MENS BASKETBALL COACHING STAFF , Assistant Coach, Mens Basketball ' class='text-no-wrap' href='/staff-directory/andrew-miller/329'>Andrew Miller </a>
+                                                
+										</td>
+									
+										<td headers="col-staff_title category-7" class="">
+											Assistant Coach, Men's Basketball 
+										</td>
+									
+										<td headers="col-staff_email category-7" class="">
+											
+										</td>
+									
+										<td headers="col-staff_phone category-7" class="">
+											
+										</td>
+									
+								</tr>   
+							    
+								<tr class="sidearm-staff-member " data-member-id="330" data-category-id="9">
+									
+										<td headers="col-image_combined_path category-7" class="sidearm-staff-image-cell">
+											<img src='/images/2025/11/18/IMG_9150.JPG?width=100' alt='Caleb Brennan'>
+										</td>
+									
+										<td headers="col-fullname category-7" class="">
+											<a aria-label='Caleb Brennan, MENS BASKETBALL COACHING STAFF , Assistant Coach, Mens Basketball ' class='text-no-wrap' href='/staff-directory/caleb-brennan/330'>Caleb Brennan</a>
+                                                
+										</td>
+									
+										<td headers="col-staff_title category-7" class="">
+											Assistant Coach, Men's Basketball 
+										</td>
+									
+										<td headers="col-staff_email category-7" class="">
+											
+										</td>
+									
+										<td headers="col-staff_phone category-7" class="">
+											
+										</td>
+									
+								</tr>   
+							    
+								<tr class="sidearm-staff-member " data-member-id="129" data-category-id="9">
+									
+										<td headers="col-image_combined_path category-7" class="sidearm-staff-image-cell">
+											<img src='/images/2014/11/5/jason_bogden.jpg?width=100' alt='Jason Bogden'>
+										</td>
+									
+										<td headers="col-fullname category-7" class="">
+											<a aria-label='Jason Bogden, MENS BASKETBALL COACHING STAFF , Director of Basketball Operations' class='text-no-wrap' href='/staff-directory/jason-bogden/129'>Jason Bogden</a>
+                                                
+										</td>
+									
+										<td headers="col-staff_title category-7" class="">
+											Director of Basketball Operations
+										</td>
+									
+										<td headers="col-staff_email category-7" class="">
+											
+										</td>
+									
+										<td headers="col-staff_phone category-7" class="">
+											
+													<a href="tel:610-861-5369">610-861-5369</a>
+												
+										</td>
+									
+								</tr>   
+							    
+								<tr class="sidearm-staff-member " data-member-id="351" data-category-id="9">
+									
+										<td headers="col-image_combined_path category-7" class="sidearm-staff-image-cell">
+											<img src='/images/2026/11/18/Jah-SeerAulderMBB2026.jpeg?width=100' alt='Jah-Seer Aulder'>
+										</td>
+									
+										<td headers="col-fullname category-7" class="">
+											<a aria-label='Jah-Seer Aulder, MENS BASKETBALL COACHING STAFF , Assistant Coach, Mens Basketball ' class='text-no-wrap' href='/staff-directory/jah-seer-aulder/351'>Jah-Seer Aulder</a>
+                                                
+										</td>
+									
+										<td headers="col-staff_title category-7" class="">
+											Assistant Coach, Men's Basketball 
+										</td>
+									
+										<td headers="col-staff_email category-7" class="">
+											
+                                                <a id="staff_email_24" href="#"></a>
+
+                                                <script type="text/javascript">
+                                                    var placeholder = document.getElementById("staff_email_24");
+                                                    var firstHalf = "bmccarthy";
+                                                    var secondHalf = "northampton.edu";
+                                                    var full_email = firstHalf + '@' + secondHalf;
+                                                    placeholder.href = 'mailto:' + full_email;
+                                                    placeholder.innerText = full_email;
+                                                </script>
+                                                    
+										</td>
+									
+										<td headers="col-staff_phone category-7" class="">
+											
+										</td>
+									
+								</tr>   
+							        
+							<tr class="sidearm-staff-category " data-category-id="10">
+								<th id="category-8" class="fake-heading" scope="colgroup" colspan="5">WOMEN'S BASKETBALL COACHING STAFF</th>
+							</tr>                                      
+							    
+								<tr class="sidearm-staff-member " data-member-id="297" data-category-id="10">
+									
+										<td headers="col-image_combined_path category-8" class="sidearm-staff-image-cell">
+											<img src='/images/2024/10/23/DSC_0663.JPG?width=100' alt='Carly Gallagher'>
+										</td>
+									
+										<td headers="col-fullname category-8" class="">
+											<a aria-label='Carly Gallagher, WOMENS BASKETBALL COACHING STAFF, Head Coach, Womens Basketball ' class='text-no-wrap' href='/staff-directory/carly-gallagher/297'>Carly Gallagher</a>
+                                                
+										</td>
+									
+										<td headers="col-staff_title category-8" class="">
+											Head Coach, Women's Basketball 
+										</td>
+									
+										<td headers="col-staff_email category-8" class="">
+											
+                                                <a id="staff_email_25" href="#"></a>
+
+                                                <script type="text/javascript">
+                                                    var placeholder = document.getElementById("staff_email_25");
+                                                    var firstHalf = "cgallagher";
+                                                    var secondHalf = "northampton.edu ";
+                                                    var full_email = firstHalf + '@' + secondHalf;
+                                                    placeholder.href = 'mailto:' + full_email;
+                                                    placeholder.innerText = full_email;
+                                                </script>
+                                                    
+										</td>
+									
+										<td headers="col-staff_phone category-8" class="">
+											
+													<a href="tel:570-620-5407">570-620-5407</a>
+												
+										</td>
+									
+								</tr>   
+							    
+								<tr class="sidearm-staff-member " data-member-id="308" data-category-id="10">
+									
+										<td headers="col-image_combined_path category-8" class="sidearm-staff-image-cell">
+											<img src='/images/2024/10/23/DSC_0667_gQkp1.JPG?width=100' alt='Kelsey Gallagher'>
+										</td>
+									
+										<td headers="col-fullname category-8" class="">
+											<a aria-label='Kelsey Gallagher, WOMENS BASKETBALL COACHING STAFF, Assistant Coach, Womens Basketball ' class='text-no-wrap' href='/staff-directory/kelsey-gallagher/308'>Kelsey Gallagher</a>
+                                                
+										</td>
+									
+										<td headers="col-staff_title category-8" class="">
+											Assistant Coach, Women's Basketball 
+										</td>
+									
+										<td headers="col-staff_email category-8" class="">
+											
+										</td>
+									
+										<td headers="col-staff_phone category-8" class="">
+											
+										</td>
+									
+								</tr>   
+							    
+								<tr class="sidearm-staff-member " data-member-id="129" data-category-id="10">
+									
+										<td headers="col-image_combined_path category-8" class="sidearm-staff-image-cell">
+											<img src='/images/2014/11/5/jason_bogden.jpg?width=100' alt='Jason Bogden'>
+										</td>
+									
+										<td headers="col-fullname category-8" class="">
+											<a aria-label='Jason Bogden, WOMENS BASKETBALL COACHING STAFF, Director of Basketball Operations' class='text-no-wrap' href='/staff-directory/jason-bogden/129'>Jason Bogden</a>
+                                                
+										</td>
+									
+										<td headers="col-staff_title category-8" class="">
+											Director of Basketball Operations
+										</td>
+									
+										<td headers="col-staff_email category-8" class="">
+											
+										</td>
+									
+										<td headers="col-staff_phone category-8" class="">
+											
+													<a href="tel:610-861-5369">610-861-5369</a>
+												
+										</td>
+									
+								</tr>   
+							    
+								<tr class="sidearm-staff-member " data-member-id="353" data-category-id="10">
+									
+										<td headers="col-image_combined_path category-8" class="sidearm-staff-image-cell">
+											<img src='/images/2026/10/26/Victoria_Keenan.jpg?width=100' alt='Victoria Keenan'>
+										</td>
+									
+										<td headers="col-fullname category-8" class="">
+											<a aria-label='Victoria Keenan, WOMENS BASKETBALL COACHING STAFF, Assistant Coach, Womens Basketball ' class='text-no-wrap' href='/staff-directory/victoria-keenan/353'>Victoria Keenan</a>
+                                                
+										</td>
+									
+										<td headers="col-staff_title category-8" class="">
+											Assistant Coach, Women's Basketball 
+										</td>
+									
+										<td headers="col-staff_email category-8" class="">
+											
+                                                <a id="staff_email_28" href="#"></a>
+
+                                                <script type="text/javascript">
+                                                    var placeholder = document.getElementById("staff_email_28");
+                                                    var firstHalf = "cgallagher";
+                                                    var secondHalf = "northampton.edu";
+                                                    var full_email = firstHalf + '@' + secondHalf;
+                                                    placeholder.href = 'mailto:' + full_email;
+                                                    placeholder.innerText = full_email;
+                                                </script>
+                                                    
+										</td>
+									
+										<td headers="col-staff_phone category-8" class="">
+											
+										</td>
+									
+								</tr>   
+							        
+							<tr class="sidearm-staff-category " data-category-id="5">
+								<th id="category-9" class="fake-heading" scope="colgroup" colspan="5">BASEBALL COACHING STAFF </th>
+							</tr>                                      
+							    
+								<tr class="sidearm-staff-member " data-member-id="16" data-category-id="5">
+									
+										<td headers="col-image_combined_path category-9" class="sidearm-staff-image-cell">
+											<img src='/images/2021/3/14/IMG_0009.JPG?width=100' alt='Adrian  Yaguez'>
+										</td>
+									
+										<td headers="col-fullname category-9" class="">
+											<a aria-label='Adrian  Yaguez, BASEBALL COACHING STAFF , Head Coach, Baseball' class='text-no-wrap' href='/staff-directory/adrian-yaguez/16'>Adrian  Yaguez</a>
+                                                
+										</td>
+									
+										<td headers="col-staff_title category-9" class="">
+											Head Coach, Baseball
+										</td>
+									
+										<td headers="col-staff_email category-9" class="">
+											
+                                                <a id="staff_email_29" href="#"></a>
+
+                                                <script type="text/javascript">
+                                                    var placeholder = document.getElementById("staff_email_29");
+                                                    var firstHalf = "ayaguez";
+                                                    var secondHalf = "northampton.edu";
+                                                    var full_email = firstHalf + '@' + secondHalf;
+                                                    placeholder.href = 'mailto:' + full_email;
+                                                    placeholder.innerText = full_email;
+                                                </script>
+                                                    
+										</td>
+									
+										<td headers="col-staff_phone category-9" class="">
+											
+													<a href="tel:610-332-6559">610-332-6559</a>
+												
+										</td>
+									
+								</tr>   
+							    
+								<tr class="sidearm-staff-member " data-member-id="277" data-category-id="5">
+									
+										<td headers="col-image_combined_path category-9" class="sidearm-staff-image-cell">
+											<img src='/images/2024/2/11/JeremyGigliotti.jpg?width=100' alt='Jeremy Gigliotti'>
+										</td>
+									
+										<td headers="col-fullname category-9" class="">
+											<a aria-label='Jeremy Gigliotti, BASEBALL COACHING STAFF , Assistant Coach, Baseball ' class='text-no-wrap' href='/staff-directory/jeremy-gigliotti/277'>Jeremy Gigliotti</a>
+                                                
+										</td>
+									
+										<td headers="col-staff_title category-9" class="">
+											Assistant Coach, Baseball 
+										</td>
+									
+										<td headers="col-staff_email category-9" class="">
+											
+                                                <a id="staff_email_30" href="#"></a>
+
+                                                <script type="text/javascript">
+                                                    var placeholder = document.getElementById("staff_email_30");
+                                                    var firstHalf = "ayaguez";
+                                                    var secondHalf = "northampton.edu";
+                                                    var full_email = firstHalf + '@' + secondHalf;
+                                                    placeholder.href = 'mailto:' + full_email;
+                                                    placeholder.innerText = full_email;
+                                                </script>
+                                                    
+										</td>
+									
+										<td headers="col-staff_phone category-9" class="">
+											
+										</td>
+									
+								</tr>   
+							    
+								<tr class="sidearm-staff-member " data-member-id="266" data-category-id="5">
+									
+										<td headers="col-image_combined_path category-9" class="sidearm-staff-image-cell">
+											<img src='/images/2024/2/11/AlbertOzelis.jpg?width=100' alt='Albert Ozelis'>
+										</td>
+									
+										<td headers="col-fullname category-9" class="">
+											<a aria-label='Albert Ozelis, BASEBALL COACHING STAFF , Assistant Coach, Baseball ' class='text-no-wrap' href='/staff-directory/albert-ozelis/266'>Albert Ozelis</a>
+                                                
+										</td>
+									
+										<td headers="col-staff_title category-9" class="">
+											Assistant Coach, Baseball 
+										</td>
+									
+										<td headers="col-staff_email category-9" class="">
+											
+                                                <a id="staff_email_31" href="#"></a>
+
+                                                <script type="text/javascript">
+                                                    var placeholder = document.getElementById("staff_email_31");
+                                                    var firstHalf = "ayaguez";
+                                                    var secondHalf = "northampton.edu";
+                                                    var full_email = firstHalf + '@' + secondHalf;
+                                                    placeholder.href = 'mailto:' + full_email;
+                                                    placeholder.innerText = full_email;
+                                                </script>
+                                                    
+										</td>
+									
+										<td headers="col-staff_phone category-9" class="">
+											
+										</td>
+									
+								</tr>   
+							        
+							<tr class="sidearm-staff-category " data-category-id="8">
+								<th id="category-10" class="fake-heading" scope="colgroup" colspan="5">SOFTBALL COACHING STAFF </th>
+							</tr>                                      
+							    
+								<tr class="sidearm-staff-member " data-member-id="271" data-category-id="8">
+									
+										<td headers="col-image_combined_path category-10" class="sidearm-staff-image-cell">
+											<img src='/images/2023/7/9/Coach_K.jpg?width=100' alt='Eric  Kutteroff'>
+										</td>
+									
+										<td headers="col-fullname category-10" class="">
+											<a aria-label='Eric  Kutteroff, SOFTBALL COACHING STAFF , Head Coach, Womens Softball ' class='text-no-wrap' href='/staff-directory/eric-kutteroff/271'>Eric  Kutteroff</a>
+                                                
+										</td>
+									
+										<td headers="col-staff_title category-10" class="">
+											Head Coach, Women's Softball 
+										</td>
+									
+										<td headers="col-staff_email category-10" class="">
+											
+                                                <a id="staff_email_32" href="#"></a>
+
+                                                <script type="text/javascript">
+                                                    var placeholder = document.getElementById("staff_email_32");
+                                                    var firstHalf = "ekutteroff";
+                                                    var secondHalf = "northampton.edu ";
+                                                    var full_email = firstHalf + '@' + secondHalf;
+                                                    placeholder.href = 'mailto:' + full_email;
+                                                    placeholder.innerText = full_email;
+                                                </script>
+                                                    
+										</td>
+									
+										<td headers="col-staff_phone category-10" class="">
+											
+													<a href="tel:610-442-5390">610-442-5390</a>
+												
+										</td>
+									
+								</tr>   
+							    
+								<tr class="sidearm-staff-member " data-member-id="272" data-category-id="8">
+									
+										<td headers="col-image_combined_path category-10" class="sidearm-staff-image-cell">
+											<img src='/images/2024/2/9/coach_r.jpg?width=100' alt='Richard Sechler'>
+										</td>
+									
+										<td headers="col-fullname category-10" class="">
+											<a aria-label='Richard Sechler, SOFTBALL COACHING STAFF , Assistant Coach, Softball ' class='text-no-wrap' href='/staff-directory/richard-sechler/272'>Richard Sechler</a>
+                                                
+										</td>
+									
+										<td headers="col-staff_title category-10" class="">
+											Assistant Coach, Softball 
+										</td>
+									
+										<td headers="col-staff_email category-10" class="">
+											
+                                                <a id="staff_email_33" href="#"></a>
+
+                                                <script type="text/javascript">
+                                                    var placeholder = document.getElementById("staff_email_33");
+                                                    var firstHalf = "rsechler";
+                                                    var secondHalf = "northampton.edu ";
+                                                    var full_email = firstHalf + '@' + secondHalf;
+                                                    placeholder.href = 'mailto:' + full_email;
+                                                    placeholder.innerText = full_email;
+                                                </script>
+                                                    
+										</td>
+									
+										<td headers="col-staff_phone category-10" class="">
+											
+										</td>
+									
+								</tr>   
+							    
+								<tr class="sidearm-staff-member " data-member-id="278" data-category-id="8">
+									
+										<td headers="col-image_combined_path category-10" class="sidearm-staff-image-cell">
+											<img src='/images/2024/2/9/coach_b.jpg?width=100' alt='Bobby Thomas'>
+										</td>
+									
+										<td headers="col-fullname category-10" class="">
+											<a aria-label='Bobby Thomas, SOFTBALL COACHING STAFF , Assistant Coach, Softball ' class='text-no-wrap' href='/staff-directory/bobby-thomas/278'>Bobby Thomas</a>
+                                                
+										</td>
+									
+										<td headers="col-staff_title category-10" class="">
+											Assistant Coach, Softball 
+										</td>
+									
+										<td headers="col-staff_email category-10" class="">
+											
+                                                <a id="staff_email_34" href="#"></a>
+
+                                                <script type="text/javascript">
+                                                    var placeholder = document.getElementById("staff_email_34");
+                                                    var firstHalf = "ekutteroff";
+                                                    var secondHalf = "northampton.edu ";
+                                                    var full_email = firstHalf + '@' + secondHalf;
+                                                    placeholder.href = 'mailto:' + full_email;
+                                                    placeholder.innerText = full_email;
+                                                </script>
+                                                    
+										</td>
+									
+										<td headers="col-staff_phone category-10" class="">
+											
+										</td>
+									
+								</tr>   
+							    
+								<tr class="sidearm-staff-member " data-member-id="279" data-category-id="8">
+									
+										<td headers="col-image_combined_path category-10" class="sidearm-staff-image-cell">
+											<img src='/images/2024/2/9/coach_frank.jpg?width=100' alt='Paul Frank'>
+										</td>
+									
+										<td headers="col-fullname category-10" class="">
+											<a aria-label='Paul Frank, SOFTBALL COACHING STAFF , Assistant Coach, Softball ' class='text-no-wrap' href='/staff-directory/paul-frank/279'>Paul Frank</a>
+                                                
+										</td>
+									
+										<td headers="col-staff_title category-10" class="">
+											Assistant Coach, Softball 
+										</td>
+									
+										<td headers="col-staff_email category-10" class="">
+											
+                                                <a id="staff_email_35" href="#"></a>
+
+                                                <script type="text/javascript">
+                                                    var placeholder = document.getElementById("staff_email_35");
+                                                    var firstHalf = "ekutteroff";
+                                                    var secondHalf = "northampton.edu ";
+                                                    var full_email = firstHalf + '@' + secondHalf;
+                                                    placeholder.href = 'mailto:' + full_email;
+                                                    placeholder.innerText = full_email;
+                                                </script>
+                                                    
+										</td>
+									
+										<td headers="col-staff_phone category-10" class="">
+											
+										</td>
+									
+								</tr>   
+							        
+							<tr class="sidearm-staff-category " data-category-id="11">
+								<th id="category-11" class="fake-heading" scope="colgroup" colspan="5">MEN'S SOCCER COACHING STAFF </th>
+							</tr>                                      
+							    
+								<tr class="sidearm-staff-member " data-member-id="187" data-category-id="11">
+									
+										<td headers="col-image_combined_path category-11" class="sidearm-staff-image-cell">
+											<img src='/images/2021/9/11/mario.JPG?width=100' alt='Mario Barrantes'>
+										</td>
+									
+										<td headers="col-fullname category-11" class="">
+											<a aria-label='Mario Barrantes, MENS SOCCER COACHING STAFF , Head Coach, Mens Soccer ' class='text-no-wrap' href='/staff-directory/mario-barrantes/187'>Mario Barrantes</a>
+                                                
+										</td>
+									
+										<td headers="col-staff_title category-11" class="">
+											Head Coach, Men's Soccer 
+										</td>
+									
+										<td headers="col-staff_email category-11" class="">
+											
+                                                <a id="staff_email_36" href="#"></a>
+
+                                                <script type="text/javascript">
+                                                    var placeholder = document.getElementById("staff_email_36");
+                                                    var firstHalf = "mbarrantes";
+                                                    var secondHalf = "northampton.edu";
+                                                    var full_email = firstHalf + '@' + secondHalf;
+                                                    placeholder.href = 'mailto:' + full_email;
+                                                    placeholder.innerText = full_email;
+                                                </script>
+                                                    
+										</td>
+									
+										<td headers="col-staff_phone category-11" class="">
+											
+													<a href="tel:610-504-1080">610-504-1080</a>
+												
+										</td>
+									
+								</tr>   
+							    
+								<tr class="sidearm-staff-member " data-member-id="323" data-category-id="11">
+									
+										<td headers="col-image_combined_path category-11" class="sidearm-staff-image-cell">
+											<img src='/images/2025/8/18/DSC_2700_AfaNE.JPG?width=100' alt='Derek Filipkowski '>
+										</td>
+									
+										<td headers="col-fullname category-11" class="">
+											<a aria-label='Derek Filipkowski , MENS SOCCER COACHING STAFF , Assistant Coach, Mens Soccer ' class='text-no-wrap' href='/staff-directory/derek-filipkowski/323'>Derek Filipkowski </a>
+                                                
+										</td>
+									
+										<td headers="col-staff_title category-11" class="">
+											Assistant Coach, Men's Soccer 
+										</td>
+									
+										<td headers="col-staff_email category-11" class="">
+											
+                                                <a id="staff_email_37" href="#"></a>
+
+                                                <script type="text/javascript">
+                                                    var placeholder = document.getElementById("staff_email_37");
+                                                    var firstHalf = "mbarrantes";
+                                                    var secondHalf = "northampton.edu ";
+                                                    var full_email = firstHalf + '@' + secondHalf;
+                                                    placeholder.href = 'mailto:' + full_email;
+                                                    placeholder.innerText = full_email;
+                                                </script>
+                                                    
+										</td>
+									
+										<td headers="col-staff_phone category-11" class="">
+											
+										</td>
+									
+								</tr>   
+							    
+								<tr class="sidearm-staff-member " data-member-id="284" data-category-id="11">
+									
+										<td headers="col-image_combined_path category-11" class="sidearm-staff-image-cell">
+											<img src='/images/2024/8/30/DB.JPG?width=100' alt='Drake  Brackett'>
+										</td>
+									
+										<td headers="col-fullname category-11" class="">
+											<a aria-label='Drake  Brackett, MENS SOCCER COACHING STAFF , Assistant Coach, Mens Soccer ' class='text-no-wrap' href='/staff-directory/drake-brackett/284'>Drake  Brackett</a>
+                                                
+										</td>
+									
+										<td headers="col-staff_title category-11" class="">
+											Assistant Coach, Men's Soccer 
+										</td>
+									
+										<td headers="col-staff_email category-11" class="">
+											
+                                                <a id="staff_email_38" href="#"></a>
+
+                                                <script type="text/javascript">
+                                                    var placeholder = document.getElementById("staff_email_38");
+                                                    var firstHalf = "mbarrantes";
+                                                    var secondHalf = "northampton.edu";
+                                                    var full_email = firstHalf + '@' + secondHalf;
+                                                    placeholder.href = 'mailto:' + full_email;
+                                                    placeholder.innerText = full_email;
+                                                </script>
+                                                    
+										</td>
+									
+										<td headers="col-staff_phone category-11" class="">
+											
+										</td>
+									
+								</tr>   
+							    
+								<tr class="sidearm-staff-member " data-member-id="301" data-category-id="11">
+									
+										<td headers="col-image_combined_path category-11" class="sidearm-staff-image-cell">
+											<img src='/images/2024/8/30/zo.JPG?width=100' alt='Zach O' toole'="">
+										</td>
+									
+										<td headers="col-fullname category-11" class="">
+											<a aria-label='Zach OToole, MENS SOCCER COACHING STAFF , Assistant Coach, Mens Soccer ' class='text-no-wrap' href='/staff-directory/zach-o-toole/301'>Zach O'Toole</a>
+                                                
+										</td>
+									
+										<td headers="col-staff_title category-11" class="">
+											Assistant Coach, Men's Soccer 
+										</td>
+									
+										<td headers="col-staff_email category-11" class="">
+											
+                                                <a id="staff_email_39" href="#"></a>
+
+                                                <script type="text/javascript">
+                                                    var placeholder = document.getElementById("staff_email_39");
+                                                    var firstHalf = "mbarrantes";
+                                                    var secondHalf = "northampton.edu";
+                                                    var full_email = firstHalf + '@' + secondHalf;
+                                                    placeholder.href = 'mailto:' + full_email;
+                                                    placeholder.innerText = full_email;
+                                                </script>
+                                                    
+										</td>
+									
+										<td headers="col-staff_phone category-11" class="">
+											
+										</td>
+									
+								</tr>   
+							    
+								<tr class="sidearm-staff-member " data-member-id="348" data-category-id="11">
+									
+										<td headers="col-image_combined_path category-11" class="sidearm-staff-image-cell">
+											
+										</td>
+									
+										<td headers="col-fullname category-11" class="">
+											<a aria-label='Johnsi Fajardo, MENS SOCCER COACHING STAFF , Manager ' class='text-no-wrap' href='/staff-directory/johnsi-fajardo/348'>Johnsi Fajardo</a>
+                                                
+										</td>
+									
+										<td headers="col-staff_title category-11" class="">
+											Manager 
+										</td>
+									
+										<td headers="col-staff_email category-11" class="">
+											
+										</td>
+									
+										<td headers="col-staff_phone category-11" class="">
+											
+										</td>
+									
+								</tr>   
+							        
+							<tr class="sidearm-staff-category " data-category-id="12">
+								<th id="category-12" class="fake-heading" scope="colgroup" colspan="5">WOMEN'S VOLLEYBALL COACHING STAFF</th>
+							</tr>                                      
+							    
+								<tr class="sidearm-staff-member " data-member-id="227" data-category-id="12">
+									
+										<td headers="col-image_combined_path category-12" class="sidearm-staff-image-cell">
+											<img src='/images/2022/10/5/caywood_aGbw2_3EvJG.JPG?width=100' alt='Rachael  Aquila'>
+										</td>
+									
+										<td headers="col-fullname category-12" class="">
+											<a aria-label='Rachael  Aquila, WOMENS VOLLEYBALL COACHING STAFF, Head Coach, Womens Volleyball' class='text-no-wrap' href='/staff-directory/rachael-aquila/227'>Rachael  Aquila</a>
+                                                
+										</td>
+									
+										<td headers="col-staff_title category-12" class="">
+											Head Coach, Women's Volleyball
+										</td>
+									
+										<td headers="col-staff_email category-12" class="">
+											
+                                                <a id="staff_email_41" href="#"></a>
+
+                                                <script type="text/javascript">
+                                                    var placeholder = document.getElementById("staff_email_41");
+                                                    var firstHalf = "raquila";
+                                                    var secondHalf = "northampton.edu";
+                                                    var full_email = firstHalf + '@' + secondHalf;
+                                                    placeholder.href = 'mailto:' + full_email;
+                                                    placeholder.innerText = full_email;
+                                                </script>
+                                                    
+										</td>
+									
+										<td headers="col-staff_phone category-12" class="">
+											
+													<a href="tel:610-861-5369">610-861-5369</a>
+												
+										</td>
+									
+								</tr>   
+							    
+								<tr class="sidearm-staff-member " data-member-id="275" data-category-id="12">
+									
+										<td headers="col-image_combined_path category-12" class="sidearm-staff-image-cell">
+											<img src='/images/2023/9/5/frankie_santiago.JPG?width=100' alt='Frankie Santiago '>
+										</td>
+									
+										<td headers="col-fullname category-12" class="">
+											<a aria-label='Frankie Santiago , WOMENS VOLLEYBALL COACHING STAFF, Assistant Coach, Womens Volleyball ' class='text-no-wrap' href='/staff-directory/frankie-santiago/275'>Frankie Santiago </a>
+                                                
+										</td>
+									
+										<td headers="col-staff_title category-12" class="">
+											Assistant Coach, Women's Volleyball 
+										</td>
+									
+										<td headers="col-staff_email category-12" class="">
+											
+                                                <a id="staff_email_42" href="#"></a>
+
+                                                <script type="text/javascript">
+                                                    var placeholder = document.getElementById("staff_email_42");
+                                                    var firstHalf = "fsantiago";
+                                                    var secondHalf = "northampton.edu";
+                                                    var full_email = firstHalf + '@' + secondHalf;
+                                                    placeholder.href = 'mailto:' + full_email;
+                                                    placeholder.innerText = full_email;
+                                                </script>
+                                                    
+										</td>
+									
+										<td headers="col-staff_phone category-12" class="">
+											
+										</td>
+									
+								</tr>   
+							    
+								<tr class="sidearm-staff-member " data-member-id="347" data-category-id="12">
+									
+										<td headers="col-image_combined_path category-12" class="sidearm-staff-image-cell">
+											
+										</td>
+									
+										<td headers="col-fullname category-12" class="">
+											<a aria-label='Xander McDonald, WOMENS VOLLEYBALL COACHING STAFF, Manager ' class='text-no-wrap' href='/staff-directory/xander-mcdonald/347'>Xander McDonald</a>
+                                                
+										</td>
+									
+										<td headers="col-staff_title category-12" class="">
+											Manager 
+										</td>
+									
+										<td headers="col-staff_email category-12" class="">
+											
+										</td>
+									
+										<td headers="col-staff_phone category-12" class="">
+											
+										</td>
+									
+								</tr>   
+							    
+								<tr class="sidearm-staff-member " data-member-id="350" data-category-id="12">
+									
+										<td headers="col-image_combined_path category-12" class="sidearm-staff-image-cell">
+											
+										</td>
+									
+										<td headers="col-fullname category-12" class="">
+											<a aria-label='Jayden Perez, WOMENS VOLLEYBALL COACHING STAFF, Manager ' class='text-no-wrap' href='/staff-directory/jayden-perez/350'>Jayden Perez</a>
+                                                
+										</td>
+									
+										<td headers="col-staff_title category-12" class="">
+											Manager 
+										</td>
+									
+										<td headers="col-staff_email category-12" class="">
+											
+										</td>
+									
+										<td headers="col-staff_phone category-12" class="">
+											
+										</td>
+									
+								</tr>   
+							        
+							<tr class="sidearm-staff-category " data-category-id="33">
+								<th id="category-13" class="fake-heading" scope="colgroup" colspan="5">MEN'S VOLLEYBALL COACHING STAFF</th>
+							</tr>                                      
+							    
+								<tr class="sidearm-staff-member " data-member-id="336" data-category-id="33">
+									
+										<td headers="col-image_combined_path category-13" class="sidearm-staff-image-cell">
+											<img src='/images/2021/7/14/Rachael_Caywood.JPG?width=100' alt='Rachael Aquila'>
+										</td>
+									
+										<td headers="col-fullname category-13" class="">
+											<a aria-label='Rachael Aquila, MENS VOLLEYBALL COACHING STAFF, Head Coach, Mens Volleyball ' class='text-no-wrap' href='/staff-directory/rachael-aquila/336'>Rachael Aquila</a>
+                                                
+										</td>
+									
+										<td headers="col-staff_title category-13" class="">
+											Head Coach, Men's Volleyball 
+										</td>
+									
+										<td headers="col-staff_email category-13" class="">
+											
+                                                <a id="staff_email_45" href="#"></a>
+
+                                                <script type="text/javascript">
+                                                    var placeholder = document.getElementById("staff_email_45");
+                                                    var firstHalf = "raquila";
+                                                    var secondHalf = "northampton.edu";
+                                                    var full_email = firstHalf + '@' + secondHalf;
+                                                    placeholder.href = 'mailto:' + full_email;
+                                                    placeholder.innerText = full_email;
+                                                </script>
+                                                    
+										</td>
+									
+										<td headers="col-staff_phone category-13" class="">
+											
+										</td>
+									
+								</tr>   
+							    
+								<tr class="sidearm-staff-member " data-member-id="280" data-category-id="33">
+									
+										<td headers="col-image_combined_path category-13" class="sidearm-staff-image-cell">
+											<img src='/images/2023/9/5/frankie_santiago.JPG?width=100' alt='Frankie  Santiago'>
+										</td>
+									
+										<td headers="col-fullname category-13" class="">
+											<a aria-label='Frankie  Santiago, MENS VOLLEYBALL COACHING STAFF, Assistant Coach, Mens Volleyball ' class='text-no-wrap' href='/staff-directory/frankie-santiago/280'>Frankie  Santiago</a>
+                                                
+										</td>
+									
+										<td headers="col-staff_title category-13" class="">
+											Assistant Coach, Men's Volleyball 
+										</td>
+									
+										<td headers="col-staff_email category-13" class="">
+											
+                                                <a id="staff_email_46" href="#"></a>
+
+                                                <script type="text/javascript">
+                                                    var placeholder = document.getElementById("staff_email_46");
+                                                    var firstHalf = "fsantiago";
+                                                    var secondHalf = "northampton.edu";
+                                                    var full_email = firstHalf + '@' + secondHalf;
+                                                    placeholder.href = 'mailto:' + full_email;
+                                                    placeholder.innerText = full_email;
+                                                </script>
+                                                    
+										</td>
+									
+										<td headers="col-staff_phone category-13" class="">
+											
+										</td>
+									
+								</tr>   
+							        
+							<tr class="sidearm-staff-category " data-category-id="36">
+								<th id="category-14" class="fake-heading" scope="colgroup" colspan="5">MEN'S WRESTLING COACHING STAFF </th>
+							</tr>                                      
+							    
+								<tr class="sidearm-staff-member " data-member-id="349" data-category-id="36">
+									
+										<td headers="col-image_combined_path category-14" class="sidearm-staff-image-cell">
+											<img src='/images/2026/8/28/Dennis_Sierra_headshot_bZwOt.JPG?width=100' alt='Dennis Sierra'>
+										</td>
+									
+										<td headers="col-fullname category-14" class="">
+											<a aria-label='Dennis Sierra, MENS WRESTLING COACHING STAFF , Head Coach , Wrestling ' class='text-no-wrap' href='/staff-directory/dennis-sierra/349'>Dennis Sierra</a>
+                                                
+										</td>
+									
+										<td headers="col-staff_title category-14" class="">
+											Head Coach , Wrestling 
+										</td>
+									
+										<td headers="col-staff_email category-14" class="">
+											
+                                                <a id="staff_email_47" href="#"></a>
+
+                                                <script type="text/javascript">
+                                                    var placeholder = document.getElementById("staff_email_47");
+                                                    var firstHalf = "dsierra";
+                                                    var secondHalf = "northampton.edu";
+                                                    var full_email = firstHalf + '@' + secondHalf;
+                                                    placeholder.href = 'mailto:' + full_email;
+                                                    placeholder.innerText = full_email;
+                                                </script>
+                                                    
+										</td>
+									
+										<td headers="col-staff_phone category-14" class="">
+											
+													<a href="tel:609-600-7763">609-600-7763</a>
+												
+										</td>
+									
+								</tr>   
+							        
+							<tr class="sidearm-staff-category " data-category-id="37">
+								<th id="category-15" class="fake-heading" scope="colgroup" colspan="5">WOMEN'S WRESTLING COACHING STAFF </th>
+							</tr>                                      
+							    
+								<tr class="sidearm-staff-member " data-member-id="349" data-category-id="37">
+									
+										<td headers="col-image_combined_path category-15" class="sidearm-staff-image-cell">
+											<img src='/images/2026/8/28/Dennis_Sierra_headshot_bZwOt.JPG?width=100' alt='Dennis Sierra'>
+										</td>
+									
+										<td headers="col-fullname category-15" class="">
+											<a aria-label='Dennis Sierra, WOMENS WRESTLING COACHING STAFF , Head Coach , Wrestling ' class='text-no-wrap' href='/staff-directory/dennis-sierra/349'>Dennis Sierra</a>
+                                                
+										</td>
+									
+										<td headers="col-staff_title category-15" class="">
+											Head Coach , Wrestling 
+										</td>
+									
+										<td headers="col-staff_email category-15" class="">
+											
+                                                <a id="staff_email_48" href="#"></a>
+
+                                                <script type="text/javascript">
+                                                    var placeholder = document.getElementById("staff_email_48");
+                                                    var firstHalf = "dsierra";
+                                                    var secondHalf = "northampton.edu";
+                                                    var full_email = firstHalf + '@' + secondHalf;
+                                                    placeholder.href = 'mailto:' + full_email;
+                                                    placeholder.innerText = full_email;
+                                                </script>
+                                                    
+										</td>
+									
+										<td headers="col-staff_phone category-15" class="">
+											
+													<a href="tel:609-600-7763">609-600-7763</a>
+												
+										</td>
+									
+								</tr>   
+							        
+							<tr class="sidearm-staff-category " data-category-id="41">
+								<th id="category-16" class="fake-heading" scope="colgroup" colspan="5">MEN'S GOLF COACHING STAFF</th>
+							</tr>                                      
+							    
+								<tr class="sidearm-staff-member " data-member-id="325" data-category-id="41">
+									
+										<td headers="col-image_combined_path category-16" class="sidearm-staff-image-cell">
+											<img src='/images/2021/10/30/IMG_0078.JPG?width=100' alt='Brennan McCarthy'>
+										</td>
+									
+										<td headers="col-fullname category-16" class="">
+											<a aria-label='Brennan McCarthy, MENS GOLF COACHING STAFF, Head Coach, Mens Golf' class='text-no-wrap' href='/staff-directory/brennan-mccarthy/325'>Brennan McCarthy</a>
+                                                
+										</td>
+									
+										<td headers="col-staff_title category-16" class="">
+											Head Coach, Men's Golf
+										</td>
+									
+										<td headers="col-staff_email category-16" class="">
+											
+                                                <a id="staff_email_49" href="#"></a>
+
+                                                <script type="text/javascript">
+                                                    var placeholder = document.getElementById("staff_email_49");
+                                                    var firstHalf = "bmccarthy";
+                                                    var secondHalf = "northampton.edu";
+                                                    var full_email = firstHalf + '@' + secondHalf;
+                                                    placeholder.href = 'mailto:' + full_email;
+                                                    placeholder.innerText = full_email;
+                                                </script>
+                                                    
+										</td>
+									
+										<td headers="col-staff_phone category-16" class="">
+											
+										</td>
+									
+								</tr>   
+							        
+							<tr class="sidearm-staff-category " data-category-id="42">
+								<th id="category-17" class="fake-heading" scope="colgroup" colspan="5">WOMEN'S GOLF COACHING STAFF</th>
+							</tr>                                      
+							    
+								<tr class="sidearm-staff-member " data-member-id="326" data-category-id="42">
+									
+										<td headers="col-image_combined_path category-17" class="sidearm-staff-image-cell">
+											<img src='/images/2021/10/30/IMG_0078.JPG?width=100' alt='Brennan McCarthy'>
+										</td>
+									
+										<td headers="col-fullname category-17" class="">
+											<a aria-label='Brennan McCarthy, WOMENS GOLF COACHING STAFF, Head Coach, Womens Golf ' class='text-no-wrap' href='/staff-directory/brennan-mccarthy/326'>Brennan McCarthy</a>
+                                                
+										</td>
+									
+										<td headers="col-staff_title category-17" class="">
+											Head Coach, Women's Golf 
+										</td>
+									
+										<td headers="col-staff_email category-17" class="">
+											
+                                                <a id="staff_email_50" href="#"></a>
+
+                                                <script type="text/javascript">
+                                                    var placeholder = document.getElementById("staff_email_50");
+                                                    var firstHalf = "bmccarthy";
+                                                    var secondHalf = "northampton.edu";
+                                                    var full_email = firstHalf + '@' + secondHalf;
+                                                    placeholder.href = 'mailto:' + full_email;
+                                                    placeholder.innerText = full_email;
+                                                </script>
+                                                    
+										</td>
+									
+										<td headers="col-staff_phone category-17" class="">
+											
+										</td>
+									
+								</tr>   
+							
+					</tbody>
+				</table> 
+
+				<div class="sidearm-common-promotion">
+                    
+
+<script>
+    var obj = {"start":0,"count":10,"name":"staff-below-content-1","sport_id":null,"count_breakpoints":null,"css_class":"","pinned_id":"","extra":{},"context":null,"dummy":false,"type":"ads","id":"a8917724-cde0-42f1-a112-10beee8a4f07","data":{"location":{"id":0,"title":null,"type":null,"effect":null,"fixed_image_sizes":false,"excluded_sport_ids":null,"slick":false,"dfp":false,"sidearm_dfp":false,"common_page":false,"html_template":null,"name":null,"autoplay_speed":0,"accessibility_icons":false,"sizes":null,"slick_options":null,"dfp_sizes":null},"campaigns":[],"content_id":null,"content_title":null,"content_date":null,"content_url":null,"content_image_url":null},"mode":"web"};
+    if (!("sidearmComponents" in window))
+        window.sidearmComponents = [];
+    window.sidearmComponents.push(obj);
+</script>
+
+<ads-component params="{ id: 'a8917724-cde0-42f1-a112-10beee8a4f07' }"></ads-component>
+                    
+				</div>
+
+			</article>
+
+			<script>
+				require(['jquery', 'jquery-ui'], function ($) {
+					require(['sidearm-responsive'], function () {
+                        $(window).on('load', function() {
+							$(window).sidearmResponsive();
+
+							var staff = [{"label":"Troy Tucker","value":1},{"label":"Brennan  McCarthy","value":255},{"label":"Adrian Yaguez","value":2},{"label":"Sheri Bollinger","value":5},{"label":"Ben Master","value":346},{"label":"Maria Popek LAT, ATC","value":99},{"label":"Samuel S.  Chen ","value":234},{"label":"Karen Mattes","value":235},{"label":"Maria Popek LAT, ATC","value":99},{"label":"Sydney Wright LAT, ATC","value":319},{"label":"Gene  Smith ","value":273},{"label":"Morgan Labuda","value":354},{"label":"Lucas Skelley","value":355},{"label":"Ben Master","value":346},{"label":"Caleb  Brennan","value":331},{"label":"Scott  Cullen ","value":290},{"label":"Andrew  Trumbore","value":291},{"label":"Brennan  McCarthy","value":255},{"label":"Caleb  Brennan","value":331},{"label":"Brennan McCarthy ","value":44},{"label":"Dr. Todd VanNortwick","value":281},{"label":"Andrew Miller ","value":329},{"label":"Caleb Brennan","value":330},{"label":"Jason Bogden","value":129},{"label":"Jah-Seer Aulder","value":351},{"label":"Carly Gallagher","value":297},{"label":"Kelsey Gallagher","value":308},{"label":"Jason Bogden","value":129},{"label":"Victoria Keenan","value":353},{"label":"Adrian  Yaguez","value":16},{"label":"Jeremy Gigliotti","value":277},{"label":"Albert Ozelis","value":266},{"label":"Eric  Kutteroff","value":271},{"label":"Richard Sechler","value":272},{"label":"Bobby Thomas","value":278},{"label":"Paul Frank","value":279},{"label":"Mario Barrantes","value":187},{"label":"Derek Filipkowski ","value":323},{"label":"Drake  Brackett","value":284},{"label":"Zach O'Toole","value":301},{"label":"Johnsi Fajardo","value":348},{"label":"Rachael  Aquila","value":227},{"label":"Frankie Santiago ","value":275},{"label":"Xander McDonald","value":347},{"label":"Jayden Perez","value":350},{"label":"Rachael Aquila","value":336},{"label":"Frankie  Santiago","value":280},{"label":"Dennis Sierra","value":349},{"label":"Dennis Sierra","value":349},{"label":"Brennan McCarthy","value":325},{"label":"Brennan McCarthy","value":326}];
+
+							$('#ctl00_cplhMainContent_txt_keyword_search').autocomplete({
+								appendTo: '.sidearm-staff-select-search',
+								source: staff,
+								select: function(event, ui) {                           
+									event.preventDefault(); 
+									$(this).val(ui.item.label);   
+									$(this).data('ui-autocomplete').search();
+								},
+								focus: function(event, ui) { 
+									event.preventDefault(); 
+									$(this).val(ui.item.label);
+								}
+							}).on("keypress", function(e) {
+								if (e.keyCode == 13) {
+									e.preventDefault();
+									searchStaff();
+								}
+							});
+
+							$('#ctl00_cplhMainContent_btn_keyword_search').click(function(e) {
+								e.preventDefault();                        
+								searchStaff(); 
+							});
+
+							function searchStaff() {
+								var _list = $('#ctl00_cplhMainContent_txt_keyword_search').data('ui-autocomplete').menu.element[0];
+
+								if (_list.children) {
+									var _matches = [];
+									$.each(_list.children, function(index, _item) {
+										_matches.push(_item.innerText);
+									});
+
+									var _staff = staff.filter(function(_member) {
+										if ($.inArray(_member.label, _matches) > -1)
+											return _member;
+									});
+
+									if (_staff.length === 0) return;
+
+									var $members = $('.sidearm-staff-member');
+									$members.addClass('hide');
+
+									var $categories = $('.sidearm-staff-category');
+									$categories.addClass('hide');
+
+									$.each(_staff, function(index, member) {
+										var $search = $members.filter('[data-member-id=' + member.value + ']');
+										$search.removeClass('hide');
+
+										$.each($search, function(index, search) {
+											var _category = $(search).data("category-id");
+											$categories.filter('[data-category-id=' + _category + ']').removeClass('hide');
+										});
+									}); 
+								}
+							}
+
+							$('#ctl00_cplhMainContent_btn_filter_categories').click(function(e) {
+                                e.preventDefault();
+                                filterStaffByCategory();
+                            });
+
+                            function filterStaffByCategory(){
+                                var _category = $('#ctl00_cplhMainContent_ddl_filter_categories').val();
+                                var $members = $('.sidearm-staff-member');
+                                var $categories = $('.sidearm-staff-category');
+
+                                if(_category === ""){
+                                    $members.removeClass('hide');
+                                    $categories.removeClass('hide');
+                                    return;
+                                }
+
+                                $members.addClass('hide');
+                                $categories.addClass('hide');
+
+                                $members.filter('[data-category-id=' + _category + ']').removeClass('hide');
+                                $categories.filter('[data-category-id=' + _category + ']').removeClass('hide');
+                            }
+						});
+					});
+				});
+            </script>
+
+		
+
+    </main>
+	<br>
+    Copyright &copy; 2026 Northampton Community College Athletics
+    
+<script type="text/javascript">window.accessibility_focus_outline_style = 'solid'; window.accessibility_focus_outline_color = '#00FFFF'; window.accessibility_focus_outline_width = '5px'; window.accessibility_light_mode = 'true'.toLowerCase();</script></form>
+    
+        <script>$(function(){ setTimeout(function(){window.print(); }, 500);});</script>
+    
+
+
+<div class="bqqwvj30l" style="display: none;" role="dialog" aria-label="Ad Blocker Detected" aria-modal="true">
+    <div class="bqqwvj30l__inner">
+        <div class="bqqwvj30l__body">
+            <div class="flex flex-align-center">
+                <img src="/images/logos/site/site.png?width=48" alt="Site logo" />
+                <div class="bqqwvj30l-modal__title">Ad Blocker Detected</div>
+            </div>
+            <div class="bqqwvj30l-modal__text">
+                <p>Thanks for visiting <a class="bqqwvj30l-modal__text-host"></a>!</p> 
+                <p>The use of software that blocks ads hinders our ability to serve you the content you came here to enjoy.</p>
+                <p>We ask that you consider turning off your ad blocker so we can deliver you the best experience possible while you are here.</p>
+                <p>Thank you for your support!</p>
+                <div class="bqqwvj30l-modal__learn">
+                    <a href="http://www.sidearmsports.com/blockers" target="_blank"><span class="sf-arrows-round-right"></span>Learn More About Ad Blockers</a>
+                </div>
+            </div>
+        </div>
+        <button type="button" class="bqqwvj30l-banner__consent text-center" aria-label="Close ad blocker detected modal">Close</button>
+    </div>
+</div>
+
+<script>
+    var host_element = document.querySelector(".bqqwvj30l-modal__text-host");
+    host_element.href = window.location.href; 
+    host_element.innerText = window.location.hostname; 
+
+    function close_banner() {
+        var CookieDate = new Date;
+        CookieDate.setTime(CookieDate.getTime() + 1 * 3600 * 1000 * 24);
+        document.cookie = "sidearm-adblock-banner_consent=true; expires=\"" + CookieDate.toGMTString() + "\";";
+        document.querySelector(".bqqwvj30l").remove();
+    }
+
+    var consent_button = document.querySelector(".bqqwvj30l-banner__consent");
+
+    consent_button.addEventListener("click", function() { close_banner(); });
+
+    require(['config'], function(config) {
+        require(['jquery', 'knockout', 'cookie', 'text'], function ($, ko, cookie, text) {
+            $(function () {   
+                //disable check for Siteimprove scans
+                if (navigator.userAgent.toLowerCase().indexOf('siteimprove') < 0) {
+                    
+                    if (cookie.get_cookie('sidearm-adblock-banner_consent')) {
+                        return;
+                    }
+
+                    var deferred = $.Deferred();
+                    $.ajax({
+                        type: "HEAD",
+                        async: true,
+                        url: "/components/js/analytics.js",
+                    }).done(function(message,text,jqXHR){
+                        deferred.resolve();
+                    })
+                    .fail(function(err){
+                        show_ad_blocker_blocked_modal();
+                        deferred.reject();
+                    });
+
+                    deferred.then(function(success) {
+                        $.get('/common/templates/dfp/dfp-component-template.html')
+                            .then(function (response) {
+                            }, function (error) {
+                                show_ad_blocker_blocked_modal();
+                            });
+                    }, function (error) {
+                        show_ad_blocker_blocked_modal()
+                    })
+                    .fail(function(){
+                        show_ad_blocker_blocked_modal()
+                    });
+
+                    function show_ad_blocker_blocked_modal() {
+                        var modal = document.querySelector('.bqqwvj30l');
+                        modal.style.display = 'flex';
+                        modal.querySelector('.bqqwvj30l-banner__consent').focus();
+                    }
+                }
+            });
+        });
+    });
+</script>
+
+<style>
+    .bqqwvj30l {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999999;
+  padding: 24px;
+  background-color: rgba(0, 0, 0, 0.85);
+}
+.bqqwvj30l__inner {
+  background-color: white;
+  color: #2a2b2c;
+  width: 100%;
+  max-width: 500px;
+  border-radius: 2px;
+  line-height: 1.875;
+  font-size: 1rem;
+  max-height: 100%;
+  max-width: 700px;
+}
+.bqqwvj30l__body {
+  padding: 24px;
+}
+.bqqwvj30l-modal__title {
+  position: relative;
+  padding-left: 24px;
+  font-size: 1.5rem;
+  font-weight: 900;
+  line-height: 1;
+}
+.bqqwvj30l-modal__title::after {
+  content: '';
+  display: block;
+  width: 48px;
+  height: 2px;
+  background-color: black;
+  margin-top: 8px;
+}
+.bqqwvj30l-modal__text a {
+  color: black;
+}
+.bqqwvj30l-modal__learn {
+  color: black;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5rem;
+}
+.bqqwvj30l-modal__learn a {
+  color: black;
+}
+.bqqwvj30l-modal__browsers {
+  padding-top: 12px;
+  margin: 0 -6px;
+}
+.bqqwvj30l-modal__browsers-button {
+  flex: 1 0 auto;
+  text-decoration: none;
+  border-radius: 6px;
+  background: whitesmoke;
+  border-radius: 35px;
+  padding: 12px;
+  margin: 0 6px;
+  border: 1px solid #d9d9d9;
+  transition: .25s;
+}
+.bqqwvj30l-modal__browsers-button img {
+  width: 36px;
+  height: 36px;
+}
+.bqqwvj30l-modal__browsers-button:hover {
+  background: #d9d9d9;
+}
+.bqqwvj30l-modal__browsers--upgrade {
+  line-height: 1;
+  padding: 0 12px;
+}
+.bqqwvj30l-modal__browsers--text {
+  font-size: 14px;
+  color: #2a2b2c;
+  font-weight: 400;
+}
+.bqqwvj30l-modal__browsers--text span {
+  font-size: 16px;
+  color: black;
+  font-weight: 700;
+}
+.bqqwvj30l-modal__browsers--text:last-child {
+  padding-top: 4px;
+}
+.bqqwvj30l-banner__consent {
+  -webkit-appearance: none;
+  background-color: whitesmoke;
+  border: 1px solid #d9d9d9;
+  display: block;
+  padding: 0 16px;
+  color: black;
+  width: 100%;
+  margin-top: 8px;
+  transition: .25s;
+  line-height: 28px;
+  height: 28px;
+  font-size: 14px;
+}
+.bqqwvj30l-banner__consent:hover {
+  background-color: black;
+  color: white;
+}
+
+</style><div style='position: fixed; left: -10000px'></div>
+                <script>
+                document.addEventListener('click', function(e) {
+                    if (e.target && e.target.classList.contains('sidearm-accessible-slick-pause-all')) {
+                        var button = e.target,
+                            paused = button.classList.contains('sidearm-paused'),
+                            slickSliders = document.querySelectorAll('.slick-initialized'),
+                            pauseButtons = document.querySelectorAll('.sidearm-accessible-pause'),
+                            pauseButtonsText = document.querySelectorAll('.sidearm-accessible-pause-text'),
+                            jaws = button.parentElement.querySelector('.sidearm-jaws-talk-please');
+
+                        if (paused) {
+                            slickSliders.forEach(function(slider) {
+                                $(slider).slick('slickPlay');
+                                $(slider).slick('slickGoTo', 0, false);
+                            });
+
+                            button.classList.remove('sidearm-paused');
+                            button.textContent = 'Pause All Rotators';
+                            jaws.textContent = 'All Rotators Playing';
+
+                            pauseButtonsText.forEach(function(text) {
+                                text.setAttribute('aria-live', 'off');
+                                text.textContent = 'Pause';
+                                text.setAttribute('aria-live', 'polite');
+                            });
+                        } else {
+                            slickSliders.forEach(function(slider) {
+                                $(slider).slick('slickPause');
+                                $(slider).slick('slickGoTo', 0, false);
+                            });
+
+                            button.classList.add('sidearm-paused');
+                            button.textContent = 'Play All Rotators';
+                            jaws.textContent = 'All Rotators Paused';
+
+                            pauseButtonsText.forEach(function(text) {
+                                text.setAttribute('aria-live', 'off');
+                                text.textContent = 'Play';
+                                text.setAttribute('aria-live', 'polite');
+                            });
+                        }
+                    }
+                });
+                </script>
+            <!-- BEGIN ControlTag for "Sidearm" -->
+<script class="kxct" data-id="so4l4yxm2" data-timing="async" data-version="3.0" type="text/javascript">
+  window.Krux||((Krux=function(){Krux.q.push(arguments)}).q=[]);
+  (function(){
+    var k=document.createElement('script');k.type='text/javascript';k.async=true;
+    k.src=(location.protocol==='https:'?'https:':'http:')+'//cdn.krxd.net/controltag/so4l4yxm2.js';
+    var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(k,s);
+  }());
+</script>
+<!-- END ControlTag -->
+
+<script>
+Krux('ns:mogointeractive', 'consent:set', {
+dc: true,
+  al: true,
+  tg: true,
+  cd: false,
+  sh: false,
+  re: false
+}, function(errors, body) {
+  if (errors) {
+    console.error(errors);
+  }
+});
+</script></body>
+</html>
+

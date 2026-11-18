@@ -1,0 +1,68 @@
+{
+  "slug": "salt-lake-community-college",
+  "programId": "cmox1gjfe009nqtsgbecwceq7",
+  "collegeId": "cmox1gjen009lqtsgixb3jop3",
+  "checkedAtUtc": "2026-11-18T14:43:31.969Z",
+  "sourcePath": "../njcaa-discovery-20261118/sources/salt-lake-community-college-1.source",
+  "sourceSHA256": "9e0c48d6a814a31cb95e7d05ccc2748827c715c87474823c69768276faa16db3",
+  "sourceUrl": "https://slccbruins.com/sports/baseball",
+  "socialLeads": [],
+  "recruitingLeads": [
+    {
+      "url": "https://slccbruins.com/sb_output.aspx?form=3&path=general",
+      "label": "Prospective Athlete Questionnaire Form",
+      "context": "",
+      "kind": "QUESTIONNAIRE"
+    },
+    {
+      "url": "https://static.slccbruins.com/custompages/SLCC%20Camp%20Registration%20Form.pdf",
+      "label": "Camp Waiver",
+      "context": "",
+      "kind": "CAMP"
+    }
+  ],
+  "logoLeads": [
+    {
+      "url": "https://slccbruins.com/images/official_banner.png",
+      "label": "Salt Lake Community College Bruins header-text"
+    }
+  ],
+  "captures": [
+    {
+      "requestedUrl": "https://slccbruins.com/sb_output.aspx?form=3&path=general",
+      "kind": "QUESTIONNAIRE",
+      "status": 200,
+      "finalUrl": "https://slccbruins.com/sb_output.aspx?form=3&path=general",
+      "sourcePath": "../njcaa-core-review-20261118/sources/salt-lake-community-college-4.source",
+      "sha256": "9d50760079aef467042fd634e56feb00ef01cfd9dc1b6ef2ab18abc7c3336c88",
+      "reusedEvidence": true
+    },
+    {
+      "requestedUrl": "https://static.slccbruins.com/custompages/SLCC%20Camp%20Registration%20Form.pdf",
+      "kind": "CAMP",
+      "status": 200,
+      "finalUrl": "https://static.slccbruins.com/custompages/SLCC%20Camp%20Registration%20Form.pdf",
+      "contentType": "application/pdf",
+      "sourcePath": "sources/salt-lake-community-college-1.source",
+      "sha256": "15eec2cf2a5aeb672412adc2e1751d8919b1966aa505ef92da82e4bf32bcfabe"
+    },
+    {
+      "requestedUrl": "https://slccbruins.com/images/official_banner.png",
+      "kind": "LOGO_ASSET",
+      "status": 200,
+      "finalUrl": "https://images.sidearmdev.com/convert?url=https%3a%2f%2fdxbhsrqyrr690.cloudfront.net%2fsidearm.nextgen.sites%2fslccbruins.com%2fimages%2fofficial_banner.png&type=webp",
+      "contentType": "image/webp",
+      "sourcePath": "sources/salt-lake-community-college-2.source",
+      "sha256": "6135547a51546e09ff6de4a00bb75a2ca7387c6eecda86d9d9f73f68bed0b530",
+      "decoded": {
+        "format": "webp",
+        "width": 826,
+        "height": 10
+      },
+      "assetDecoded": true
+    }
+  ],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED"
+}

@@ -1,0 +1,83 @@
+{
+  "slug": "lackawanna-college",
+  "programId": "cmox237p6006kqtfk0slt41wk",
+  "collegeId": "cmox237oi006iqtfkgxp6lx4g",
+  "checkedAtUtc": "2026-11-18T14:43:34.882Z",
+  "sourcePath": "../njcaa-discovery-20261118/sources/lackawanna-college-1.source",
+  "sourceSHA256": "4e9621db7f9fc22b0607eb67e32c5aa3029535d4a6e950bc035e218ce56cc300",
+  "sourceUrl": "https://lackawannafalcons.com/sports/baseball",
+  "socialLeads": [],
+  "recruitingLeads": [
+    {
+      "url": "https://lackawannafalcons.com/sports/2026/4/28/prospective-student-athletes.aspx",
+      "label": "Prospective Athlete Interest Form",
+      "context": "",
+      "kind": "QUESTIONNAIRE"
+    },
+    {
+      "url": "https://questionnaires.armssoftware.com/6fedbc84e7e8",
+      "label": "Prospective Athlete",
+      "context": "",
+      "kind": "QUESTIONNAIRE"
+    },
+    {
+      "url": "https://lackawannafalcons.com/sports/2026/4/16/camps.aspx",
+      "label": "CAMPS",
+      "context": "",
+      "kind": "CAMP"
+    }
+  ],
+  "logoLeads": [
+    {
+      "url": "https://lackawannafalcons.com/images/logos/site/site.png?height=72&mode=crop&anchor=middlecenter",
+      "label": "Lackawanna College Go to homepage undefined"
+    }
+  ],
+  "captures": [
+    {
+      "requestedUrl": "https://lackawannafalcons.com/sports/2026/4/28/prospective-student-athletes.aspx",
+      "kind": "QUESTIONNAIRE",
+      "status": 200,
+      "finalUrl": "https://lackawannafalcons.com/sports/2026/4/28/prospective-student-athletes.aspx",
+      "sourcePath": "../njcaa-core-review-20261118/sources/lackawanna-college-4.source",
+      "sha256": "e29762ccf6660e9d8efe0be1b2e4431fdc370545110650742c8d4f58567f599e",
+      "reusedEvidence": true
+    },
+    {
+      "requestedUrl": "https://questionnaires.armssoftware.com/6fedbc84e7e8",
+      "kind": "QUESTIONNAIRE",
+      "status": 200,
+      "finalUrl": "https://questionnaires.armssoftware.com/6fedbc84e7e8",
+      "contentType": "text/html",
+      "sourcePath": "sources/lackawanna-college-1.source",
+      "sha256": "644a758fed60ad88686744b0b9dfdb047692d397548f7bed2d902970b9d5bb0b"
+    },
+    {
+      "requestedUrl": "https://lackawannafalcons.com/sports/2026/4/16/camps.aspx",
+      "kind": "CAMP",
+      "status": 200,
+      "finalUrl": "https://lackawannafalcons.com/sports/2026/4/16/camps.aspx",
+      "sourcePath": "../njcaa-core-review-20261118/sources/lackawanna-college-5.source",
+      "sha256": "f185ab8a9a6aa0b82236e8be0f90b80760ae150f8862d09c49ed350fd6ab0d81",
+      "reusedEvidence": true
+    },
+    {
+      "requestedUrl": "https://lackawannafalcons.com/images/logos/site/site.png?height=72&mode=crop&anchor=middlecenter",
+      "kind": "LOGO_ASSET",
+      "status": 200,
+      "finalUrl": "https://images.sidearmdev.com/resize?url=https%3a%2f%2fdxbhsrqyrr690.cloudfront.net%2fsidearm.nextgen.sites%2flackawanna.sidearmsports.com%2fimages%2flogos%2fsite%2fsite.png&height=72&type=webp&gravity=centre",
+      "contentType": "image/webp",
+      "sourcePath": "sources/lackawanna-college-3.source",
+      "sha256": "7444f11dbb9a9c8984ac9aa645acabfc6ffbc902bb7fc6a218f13ac008d1f14b",
+      "decoded": {
+        "format": "webp",
+        "width": 72,
+        "height": 72
+      },
+      "assetDecoded": true
+    }
+  ],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED"
+}

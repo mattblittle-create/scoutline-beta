@@ -1,0 +1,1900 @@
+{
+  "slug": "neumann-university",
+  "collegeId": "cmovortqb00g9qt7gwezhdnqp",
+  "programId": "cmovortr000gbqt7gfk2lcriu",
+  "checkedAtUtc": "2026-11-17T20:36:48.509Z",
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED",
+  "missingFields": [
+    "rosterUrl",
+    "questionnaireUrl",
+    "campsUrl",
+    "generalContactEmail"
+  ],
+  "pages": [
+    {
+      "requestedUrl": "https://www.neumannathletics.com/sports/baseball",
+      "kind": "baseball-home",
+      "parent": null,
+      "status": 200,
+      "finalUrl": "https://www.neumannathletics.com/sports/baseball",
+      "sourcePath": "../sources/neumann-university-1.html",
+      "sha256": "cfa195a2da054fe329ea5555d2560b15c87523a62e403d3022ed6da17926313c",
+      "reusedEvidence": true,
+      "originalCheckedAtUtc": "2026-11-17T17:24:31.926Z",
+      "parsed": {
+        "title": "Baseball - Neumann University Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "Neumann University Athletics",
+          "Scoreboard",
+          "Main Navigation",
+          "Events and Results",
+          "Sport Navigation",
+          "Top Stories",
+          "Knight Media",
+          "Promo Sponsor",
+          "Knight Vision",
+          "Footer",
+          "Promo Ad"
+        ],
+        "links": [
+          {
+            "url": "https://www.neumannathletics.com/sports/baseball/schedule",
+            "label": "Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-ice-hockey/schedule",
+            "label": "Ice Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-ice-hockey/roster",
+            "label": "Ice Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-track-and-field/schedule",
+            "label": "Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-track-and-field/roster",
+            "label": "Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/field-hockey/schedule",
+            "label": "Field Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/field-hockey/roster",
+            "label": "Field Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-flag-football/schedule",
+            "label": "Flag Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-flag-football/roster",
+            "label": "Flag Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-ice-hockey/schedule",
+            "label": "Ice Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-ice-hockey/roster",
+            "label": "Ice Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-track-and-field/schedule",
+            "label": "Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-track-and-field/roster",
+            "label": "Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/cheerleading/schedule",
+            "label": "Cheer Team: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/cheerleading/roster",
+            "label": "Cheer Team: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/dance-team/schedule",
+            "label": "Dance Team: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/dance-team/roster",
+            "label": "Dance Team: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/esports/schedule",
+            "label": "eSports: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/esports/roster",
+            "label": "eSports: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/clubice/schedule",
+            "label": "Club Ice Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/clubice/roster",
+            "label": "Club Ice Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/roller/schedule",
+            "label": "Roller Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/roller/roster",
+            "label": "Roller Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory",
+            "label": "Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sb_output.aspx?form=62",
+            "label": "Student Staff Interest Form",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/2024/12/6/rothman-orthopaedics-fast-scheduling-service.aspx",
+            "label": "Rothman Fast Scheduler",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.nusportscamps.com/",
+            "label": "Neumann Camps",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/baseball-department/25",
+            "label": "Coaches",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://www.neumannathletics.com/sports/baseball/schedule",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/neumann-university-1.html",
+        "sha256": "cfa195a2da054fe329ea5555d2560b15c87523a62e403d3022ed6da17926313c",
+        "url": "https://www.neumannathletics.com/sports/baseball/schedule",
+        "label": "Baseball: Schedule"
+      },
+      "status": 200,
+      "finalUrl": "https://www.neumannathletics.com/sports/baseball/schedule",
+      "checkedAtUtc": "2026-11-17T20:36:49.882Z",
+      "sourcePath": "sources/neumann-university-1.html",
+      "sha256": "d42250bc011799c98491b6184c7c937cd34168bb1043ae5042562da9b95e910c",
+      "parsed": {
+        "title": "2027 Baseball Schedule - Neumann University Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "Neumann University Athletics",
+          "Scoreboard",
+          "Main Navigation",
+          "Events and Results",
+          "Sport Navigation",
+          "2027 Baseball Schedule",
+          "Season Record",
+          "Scheduled Games",
+          "Footer",
+          "Promo Ad"
+        ],
+        "links": [
+          {
+            "url": "https://www.neumannathletics.com/sports/baseball/schedule",
+            "label": "Skip To Main Content",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-ice-hockey/schedule",
+            "label": "Ice Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-ice-hockey/roster",
+            "label": "Ice Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-track-and-field/schedule",
+            "label": "Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-track-and-field/roster",
+            "label": "Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/field-hockey/schedule",
+            "label": "Field Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/field-hockey/roster",
+            "label": "Field Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-flag-football/schedule",
+            "label": "Flag Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-flag-football/roster",
+            "label": "Flag Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-ice-hockey/schedule",
+            "label": "Ice Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-ice-hockey/roster",
+            "label": "Ice Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-track-and-field/schedule",
+            "label": "Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-track-and-field/roster",
+            "label": "Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/cheerleading/schedule",
+            "label": "Cheer Team: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/cheerleading/roster",
+            "label": "Cheer Team: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/dance-team/schedule",
+            "label": "Dance Team: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/dance-team/roster",
+            "label": "Dance Team: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/esports/schedule",
+            "label": "eSports: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/esports/roster",
+            "label": "eSports: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/clubice/schedule",
+            "label": "Club Ice Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/clubice/roster",
+            "label": "Club Ice Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/roller/schedule",
+            "label": "Roller Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/roller/roster",
+            "label": "Roller Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory",
+            "label": "Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sb_output.aspx?form=62",
+            "label": "Student Staff Interest Form",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/2024/12/6/rothman-orthopaedics-fast-scheduling-service.aspx",
+            "label": "Rothman Fast Scheduler",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.nusportscamps.com/",
+            "label": "Neumann Camps",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/baseball-department/25",
+            "label": "Coaches",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/baseball/schedule?print=true",
+            "label": "Print Print this page",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/baseball/schedule/2027?grid=true",
+            "label": "Grid Switch to Grid View",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/services/schedule_txt.ashx?schedule=1535",
+            "label": "Text Text Format For Braille (New Tab)",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://www.neumannathletics.com/staff-directory/baseball-department/25",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/neumann-university-1.html",
+        "sha256": "cfa195a2da054fe329ea5555d2560b15c87523a62e403d3022ed6da17926313c",
+        "url": "https://www.neumannathletics.com/staff-directory/baseball-department/25",
+        "label": "Coaches"
+      },
+      "status": 200,
+      "finalUrl": "https://www.neumannathletics.com/staff-directory/baseball-department/25",
+      "checkedAtUtc": "2026-11-17T20:36:50.231Z",
+      "sourcePath": "sources/neumann-university-2.html",
+      "sha256": "1a141463785c2d5c2959d7aebbe14c89a3a21f70abb8961312ce27732a5e2aa5",
+      "parsed": {
+        "title": "Staff Directory - Neumann University Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "Neumann University Athletics",
+          "Scoreboard",
+          "Main Navigation",
+          "Events and Results",
+          "Staff Directory",
+          "Footer",
+          "Promo Ad"
+        ],
+        "links": [
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/baseball-department/25",
+            "label": "Skip To Main Content",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/baseball/schedule",
+            "label": "Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-ice-hockey/schedule",
+            "label": "Ice Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-ice-hockey/roster",
+            "label": "Ice Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-track-and-field/schedule",
+            "label": "Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-track-and-field/roster",
+            "label": "Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/field-hockey/schedule",
+            "label": "Field Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/field-hockey/roster",
+            "label": "Field Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-flag-football/schedule",
+            "label": "Flag Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-flag-football/roster",
+            "label": "Flag Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-ice-hockey/schedule",
+            "label": "Ice Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-ice-hockey/roster",
+            "label": "Ice Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-track-and-field/schedule",
+            "label": "Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-track-and-field/roster",
+            "label": "Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/cheerleading/schedule",
+            "label": "Cheer Team: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/cheerleading/roster",
+            "label": "Cheer Team: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/dance-team/schedule",
+            "label": "Dance Team: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/dance-team/roster",
+            "label": "Dance Team: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/esports/schedule",
+            "label": "eSports: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/esports/roster",
+            "label": "eSports: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/clubice/schedule",
+            "label": "Club Ice Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/clubice/roster",
+            "label": "Club Ice Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/roller/schedule",
+            "label": "Roller Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/roller/roster",
+            "label": "Roller Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory",
+            "label": "Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sb_output.aspx?form=62",
+            "label": "Student Staff Interest Form",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/2024/12/6/rothman-orthopaedics-fast-scheduling-service.aspx",
+            "label": "Rothman Fast Scheduler",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.nusportscamps.com/",
+            "label": "Neumann Camps",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory?print=true",
+            "label": "Print",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/john-krimmel/1584",
+            "label": "John Krimmel John Krimmel, Athletic Administration, Director of Athletics and Recreation (Sport Admin: XC/Track, FH, Soft, WFF, MSoc, WSoc, MLax, MVB)",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/gina-mclaughlin/284",
+            "label": "Gina McLaughlin Gina McLaughlin, Athletic Administration, Deputy Director of Athletics/SWA (Sport Admin: MBB, WBB, Base, MIH, WIH, WLax, M/WTen, WVB)",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/michael-hedden/1562",
+            "label": "Michael Hedden Michael Hedden, Athletic Administration, Associate Athletics Director for External Relations",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/jackie-neary/1569",
+            "label": "Jackie Neary Jackie Neary, Athletic Administration, Associate Athletics Director for Community Relations",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/jim-rullo/216",
+            "label": "Jim Rullo Jim Rullo, Athletic Administration, Associate Athletics Director for Facility Operations",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/erik-temple/1601",
+            "label": "Erik Temple Erik Temple, Athletic Administration, Associate Athletics Director for Recruitment",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/jill-weigel/42",
+            "label": "Jill Weigel Jill Weigel, Athletic Administration, Director of Athletic Communications",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/tom-willms/1537",
+            "label": "Tom Willms Tom Willms, Athletic Administration, Coordinator of Athletic Communications",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/emma-kensey/1671",
+            "label": "Emma Kensey Emma Kensey, Athletic Administration, Director of Creative Content and Fan Engagement",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/curt-krouse/1645",
+            "label": "Curt Krouse Curt Krouse, Athletic Administration, Coordinator of Athletics Operations",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/shannon-padula/1604",
+            "label": "Shannon Padula Shannon Padula, Athletic Administration, SAAC Advisor",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/elaine-hills/1585",
+            "label": "Elaine Hills Elaine Hills, Athletic Administration, Administrative Assistant",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/dr-julie-lanzillo/1602",
+            "label": "Dr. Julie Lanzillo Dr. Julie Lanzillo, Faculty Athletic Representative, Faculty Athletic Representative",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/julia-wayock-ma-lat-atc/187",
+            "label": "Julia Wayock, MA, LAT, ATC Julia Wayock, MA, LAT, ATC, Sports Medicine and Sports Performance, Director of Sports Medicine (MVB, SB, WFF, Club Sports)",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/tiffany-malin-ms-lat-atc/1470",
+            "label": "Tiffany Malin, MS, LAT, ATC Tiffany Malin, MS, LAT, ATC, Sports Medicine and Sports Performance, Senior Associate Athletic Trainer (WVB, XC, WIH, Track, M/W Ten)",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/drew-nelson-ms-lat-atc-cscs/1488",
+            "label": "Drew Nelson MS, LAT, ATC, CSCS Drew Nelson MS, LAT, ATC, CSCS, Sports Medicine and Sports Performance, Senior Associate Athletic Trainer (FH, WBB, MLAX), Strength and Conditioning Specialist",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/laura-dilucia-ms-lat-atc/1523",
+            "label": "Laura DiLucia, MS, LAT, ATC Laura DiLucia, MS, LAT, ATC, Sports Medicine and Sports Performance, Associate Athletic Trainer (MSOC, MBB, WLAX)",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/paul-thompson-ms-lat-atc/1550",
+            "label": "Paul Thompson, MS, LAT, ATC Paul Thompson, MS, LAT, ATC, Sports Medicine and Sports Performance, Assistant Athletic Trainer (WSOC, MIH, BSB)",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/michael-booth-pt-dpt-lat-atc-ms-cscs/1603",
+            "label": "Michael Booth, PT, DPT, LAT, ATC, MS, CSCS Michael Booth, PT, DPT, LAT, ATC, MS, CSCS, Sports Medicine and Sports Performance, On-Site Sports Physical Therapist, Per Diem Athletic Trainer",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/dr-benjamin-rogers/1626",
+            "label": "Dr. Benjamin Rogers Dr. Benjamin Rogers, Sports Medicine and Sports Performance, Head Team Physician- Rothman Orthopedics",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/scott-grimes/1459",
+            "label": "Scott Grimes Scott Grimes, Baseball, Head Baseball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/john-merkh/1574",
+            "label": "John Merkh John Merkh, Baseball, Assistant Baseball Coach / Recruiting Coordinator",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/jesse-murphy/1575",
+            "label": "Jesse Murphy Jesse Murphy, Baseball, Assistant Baseball Coach / Director of Player Development",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/katie-callahan/308",
+            "label": "Katie Callahan Katie Callahan, Baseball, Baseball Team Chaplain - Associate Dean Student Success & Retention",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/kelly-thornton-davis/1651",
+            "label": "Kelly Thornton-Davis Kelly Thornton-Davis , Baseball, Baseball Faculty Athletic Mentor",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/jim-rullo/217",
+            "label": "Jim Rullo Jim Rullo, Basketball (Men), Head Mens Basketball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/tom-fabian/1576",
+            "label": "Tom Fabian Tom Fabian, Basketball (Men), Assistant Mens Basketball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/tony-james/1621",
+            "label": "Tony James Tony James, Basketball (Men), Assistant Mens Basketball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/ishmael-marshall/1594",
+            "label": "Ishmael Marshall Ishmael Marshall, Basketball (Men), Assistant Mens Basketball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/justin-gallashaw/1633",
+            "label": "Justin Gallashaw Justin Gallashaw, Basketball (Men), Mens Basketball Team Chaplain",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/james-dechant/1652",
+            "label": "James Dechant James Dechant , Basketball (Men), Mens Basketball Faculty Athletic Mentor",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/mary-beth-mcnichol/409",
+            "label": "Mary Beth McNichol Mary Beth McNichol , Basketball (Women), Head Womens Basketball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/kacy-cellucci/415",
+            "label": "Kacy Cellucci Kacy Cellucci, Basketball (Women), Assistant Women’s Basketball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/brooke-keith/1572",
+            "label": "Brooke Keith Brooke Keith, Basketball (Women), Assistant Womens Basketball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/jacqueline-wardrop/1669",
+            "label": "Jacqueline Wardrop Jacqueline Wardrop, Basketball (Women), Assistant Womens Basketball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/sr-linda-decero-osf/51",
+            "label": "Sr. Linda DeCero, OSF Sr. Linda DeCero, OSF, Basketball (Women), Womens Basketball Team Chaplain - Volunteer - Pastoral Ministry",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/chris-simpson/1467",
+            "label": "Chris Simpson Chris Simpson, Cross Country (Men & Women), Head Mens and Womens Cross Country Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/ryan-carter/1560",
+            "label": "Ryan Carter Ryan Carter, Cross Country (Men & Women), Assistant Mens and Womens Cross Country Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/ryan-savitz/73",
+            "label": "Ryan Savitz Ryan Savitz, Cross Country (Men & Women), Mens and Womens Cross Country Team Chaplain - Professor Math Dept.",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/bethany-ragusa/1653",
+            "label": "Bethany Ragusa Bethany Ragusa, Cross Country (Men & Women), Cross Country Faculty Athletic Mentor",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/dana-ott/1618",
+            "label": "Dana Ott Dana Ott, Field Hockey, Head Field Hockey Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/sara-hussey/1623",
+            "label": "Sara Hussey Sara Hussey, Field Hockey, Assistant Field Hockey Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/courtney-keith/1622",
+            "label": "Courtney Keith Courtney Keith, Field Hockey, Assistant Field Hockey Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/natalie-van-wyk/1558",
+            "label": "Natalie Van Wyk Natalie Van Wyk, Field Hockey, Field Hockey Team Chaplain - Director, University Store",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/kristen-acosta/1656",
+            "label": "Kristen Acosta Kristen Acosta , Field Hockey, Field Hockey Faculty Athletic Mentor",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/brandon-reese/1647",
+            "label": "Brandon Reese Brandon Reese, Flag Football (Women), Head Womens Flag Football Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/sr-linda-decero-osf/1617",
+            "label": "Sr. Linda DeCero, OSF Sr. Linda DeCero, OSF, Flag Football (Women), Womens Flag Football Team Chaplain - Volunteer - Pastoral Ministry",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/michael-hedden/1561",
+            "label": "Michael Hedden Michael Hedden, Hockey (Men), Head Mens Ice Hockey Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/nate-dunning/1591",
+            "label": "Nate Dunning Nate Dunning, Hockey (Men), Assistant Mens Ice Hockey Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/shayne-morrissey/1472",
+            "label": "Shayne Morrissey Shayne Morrissey, Hockey (Men), Assistant Mens Ice Hockey Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/denny-anastasia/310",
+            "label": "Denny Anastasia Denny Anastasia, Hockey (Men), Mens Ice Hockey Team Chaplain - Adjunct Professor",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/tim-corrozi/1449",
+            "label": "Tim Corrozi Tim Corrozi, Hockey (Men), Mens Ice Hockey Team Chaplain - Assistant Director, University Store",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/annie-o-malley/197",
+            "label": "Annie O'Malley Annie OMalley, Hockey (Men), Mens Ice Hockey Team Chaplain - Assistant Professor English",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/george-asimos/1657",
+            "label": "George Asimos George Asimos, Hockey (Men), Mens Ice Hockey Faculty Athletic Mentor",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/rebecca-morse/1646",
+            "label": "Rebecca Morse Rebecca Morse, Hockey (Women), Head Womens Ice Hockey Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/helen-dickerson/1508",
+            "label": "Helen Dickerson Helen Dickerson, Hockey (Women), Assistant Womens Ice Hockey Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/grace-klienbach/1504",
+            "label": "Grace Klienbach Grace Klienbach, Hockey (Women), Assistant Womens Ice Hockey Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/tera-hofmann/1650",
+            "label": "Tera Hofmann Tera Hofmann, Hockey (Women), Volunteer Assistant Womens Ice Hockey Coach and Goaltending Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/sr-marguerite-o-beirne-osf/272",
+            "label": "Sr. Marguerite O'Beirne, OSF Sr. Marguerite OBeirne, OSF, Hockey (Women), Womens Ice Hockey Team Chaplain - Athletic Academic Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/evan-bohner/1638",
+            "label": "Evan Bohner Evan Bohner, Lacrosse (Men), Head Mens Lacrosse Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/connor-betts/1515",
+            "label": "Connor Betts Connor Betts, Lacrosse (Men), Assistant Mens Lacrosse Coach - Goalie Coach / Defensive Assistant",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/jake-methlie/1640",
+            "label": "Jake Methlie Jake Methlie, Lacrosse (Men), Assistant Mens Lacrosse Coach - Face-Offs",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/nick-mormando/1641",
+            "label": "Nick Mormando Nick Mormando, Lacrosse (Men), Assistant Mens Lacrosse Coach - Offensive Coordinator",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/curt-krouse/1664",
+            "label": "Curt Krouse Curt Krouse, Lacrosse (Men), Mens Lacrosse Team Chaplain - Athletic Operations Administrative Assistant",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/janis-chakars/1659",
+            "label": "Janis Chakars Janis Chakars , Lacrosse (Men), Mens Lacrosse Faculty Athletic Mentor",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/jackie-neary/1568",
+            "label": "Jackie Neary Jackie Neary, Lacrosse (Women), Head Womens Lacrosse Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/morgan-mcclintock/1668",
+            "label": "Morgan McClintock Morgan McClintock, Lacrosse (Women), Assistant Womens Lacrosse Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/sean-ralph/1578",
+            "label": "Sean Ralph Sean Ralph, Lacrosse (Women), Assistant Womens Lacrosse Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/jamie-gillen/1596",
+            "label": "Jamie Gillen Jamie Gillen, Lacrosse (Women), Assistant Womens Lacrosse Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/jackie-e-neary/1598",
+            "label": "Jackie E. Neary Jackie E. Neary, Lacrosse (Women), Assistant Womens Lacrosse Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/shea-neary/1605",
+            "label": "Shea Neary Shea Neary, Lacrosse (Women), Assistant Womens Lacrosse Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/sr-marguerite-o-beirne-osf/1615",
+            "label": "Sr. Marguerite O'Beirne, OSF Sr. Marguerite OBeirne, OSF, Lacrosse (Women), Womens Lacrosse Team Chaplain - Athletic Academic Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/annie-o-malley/1660",
+            "label": "Annie O'Malley Annie OMalley, Lacrosse (Women), Womens Lacrosse Faculty Athletic Mentor",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/erik-temple/274",
+            "label": "Erik Temple Erik Temple, Soccer (Men), Head Mens Soccer Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/zack-swarbrick/1571",
+            "label": "Zack Swarbrick Zack Swarbrick, Soccer (Men), Assistant Mens Soccer Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/daniel-lewis/1497",
+            "label": "Daniel Lewis Daniel Lewis, Soccer (Men), Assistant Mens Soccer Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/dean-temple/1579",
+            "label": "Dean Temple Dean Temple, Soccer (Men), Assistant Mens Soccer Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/anthony-sciotto/1627",
+            "label": "Anthony Sciotto Anthony Sciotto, Soccer (Men), Assistant Men’s Soccer Coach & Soccer Operations",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/bruce-cairnduff/1559",
+            "label": "Bruce Cairnduff Bruce Cairnduff, Soccer (Men), Mens Soccer Team Chaplain - CFO",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/geoff-karabin/414",
+            "label": "Geoff Karabin Geoff Karabin, Soccer (Men), Mens Soccer Team Chaplain - Professor Philosophy",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/george-asimos/1662",
+            "label": "George Asimos George Asimos, Soccer (Men), Mens Soccer Faculty Athletic Mentor",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/kurt-nusshag/1542",
+            "label": "Kurt Nusshag Kurt Nusshag, Soccer (Women), Head Womens Soccer Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/tim-brokopp/1580",
+            "label": "Tim Brokopp Tim Brokopp, Soccer (Women), Assistant Womens Soccer Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/mike-havel/1581",
+            "label": "Mike Havel Mike Havel, Soccer (Women), Assistant Womens Soccer Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/zack-swarbrick/1670",
+            "label": "Zack Swarbrick Zack Swarbrick, Soccer (Women), Womens Soccer Recruiting Assistant",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/jillian-jackson/1666",
+            "label": "Jillian Jackson Jillian Jackson, Soccer (Women), Womens Soccer Team Chaplain - Program Coordinator Title 4",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/samantha-locklear/1665",
+            "label": "Samantha Locklear Samantha Locklear, Soccer (Women), Womens Soccer Team Chaplain - Reference Liberian",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/hubert-lee/1663",
+            "label": "Hubert Lee Hubert Lee, Soccer (Women), Womens Soccer Faculty Athletic Mentor",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/shannon-padula/1496",
+            "label": "Shannon Padula Shannon Padula, Softball, Head Softball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/alli-bascunan/1519",
+            "label": "Alli Bascunan Alli Bascunan, Softball, Assistant Softball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/megan-camp/1607",
+            "label": "Megan Camp Megan Camp, Softball, Softball Team Chaplain - Director of Service Learning & Community Engagement",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/jason-petrin/1619",
+            "label": "Jason Petrin Jason Petrin, Tennis (Men), Head Mens Tennis Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/trevor-lodge/1648",
+            "label": "Trevor Lodge Trevor Lodge, Tennis (Men), Assistant Mens Tennis Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/michael-pace/1612",
+            "label": "Michael Pace Michael Pace, Tennis (Men), Mens Tennis Team Chaplain - Coordinator Information & Reference Library",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/maya-jacyszyn/1613",
+            "label": "Maya Jacyszyn Maya Jacyszyn, Tennis (Men), Mens Tennis Team Chaplain - Associate Director of the Writing Center",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/jason-petrin/1620",
+            "label": "Jason Petrin Jason Petrin, Tennis (Women), Head Womens Tennis Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/trevor-lodge/1649",
+            "label": "Trevor Lodge Trevor Lodge, Tennis (Women), Assistant Womens Tennis Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/andrea-lobacz/373",
+            "label": "Andrea Lobacz Andrea Lobacz, Tennis (Women), Womens Tennis Chaplain - Associate Professor Athletic Training",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/chris-simpson/361",
+            "label": "Chris Simpson Chris Simpson, Track & Field (Men & Women), Head Men’s and Womens Track & Field Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/ryan-carter/1610",
+            "label": "Ryan Carter Ryan Carter, Track & Field (Men & Women), Assistant Mens and Womens Track & Field Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/lorielle-laforest/1566",
+            "label": "Lorielle LaForest Lorielle LaForest, Track & Field (Men & Women), Assistant Mens and Womens Track & Field Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/ryan-savitz/1611",
+            "label": "Ryan Savitz Ryan Savitz, Track & Field (Men & Women), Mens and Womens Track & Field Team Chaplain - Professor Math Dept.",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/bethany-ragusa/1654",
+            "label": "Bethany Ragusa Bethany Ragusa, Track & Field (Men & Women), Track & Field Faculty Athletic Mentor",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/kiriam-yordan/1625",
+            "label": "Kiriam Yordan Kiriam Yordan, Volleyball (Men), Head Mens Volleyball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/kaevon-boles/1634",
+            "label": "Kaevon Boles Kaevon Boles, Volleyball (Men), Mens Volleyball Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/sr-linda-decero-osf/1667",
+            "label": "Sr. Linda DeCero, OSF Sr. Linda DeCero, OSF, Volleyball (Men), Mens Volleyball Team Chaplain - Volunteer - Pastoral Ministry",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/alicia-macglaughlin/139",
+            "label": "Alicia MacGlaughlin Alicia MacGlaughlin, Volleyball (Women), Head Womens Volleyball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/melissa-algeo/402",
+            "label": "Melissa Algeo Melissa Algeo, Volleyball (Women), Assistant Womens Volleyball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/janet-massey/225",
+            "label": "Janet Massey Janet Massey, Volleyball (Women), Womens Volleyball Team Chaplain - Professor Accounting",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/joie-townsend/390",
+            "label": "Joie Townsend Joie Townsend, Cheer Team, Head Cheer Team Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/mikayla-cassidy/1631",
+            "label": "Mikayla Cassidy Mikayla Cassidy, Cheer Team, Cheer Team Chaplain - Admissions Counselor",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/kemba-daniels/423",
+            "label": "Kemba Daniels Kemba Daniels, Dance Team, Head Dance Team Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/natalie-hummel/433",
+            "label": "Natalie Hummel Natalie Hummel, Dance Team, Assistant Dance Team Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/mikayla-cassidy/1630",
+            "label": "Mikayla Cassidy Mikayla Cassidy, Dance Team, Dance Team Chaplain - Admissions Counselor",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/derek-bosworth/1525",
+            "label": "Derek Bosworth Derek Bosworth, eSports, Head eSports Club Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/aaron-talasnik/1655",
+            "label": "Aaron Talasnik Aaron Talasnik, eSports, eSports Faculty Athletic Mentor",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/steve-mescanti/1480",
+            "label": "Steve Mescanti Steve Mescanti, Club Ice Hockey, Head Club Ice Hockey Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/chris-francis/1479",
+            "label": "Chris Francis Chris Francis, Club Ice Hockey, Assistant Club Ice Hockey Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/jake-slim/1635",
+            "label": "Jake Slim Jake Slim, Club Ice Hockey, Assistant Club Ice Hockey Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/eric-tye/1636",
+            "label": "Eric Tye Eric Tye, Club Ice Hockey, Assistant Club Ice Hockey Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/brad-weil/1637",
+            "label": "Brad Weil Brad Weil, Club Ice Hockey, Assistant Club Ice Hockey Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/rina-keller/1658",
+            "label": "Rina Keller Rina Keller, Club Ice Hockey, Club Ice Hockey Faculty Athletic Mentor",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/lee-strofe/124",
+            "label": "Lee Strofe Lee Strofe, Roller Hockey, Head Roller Hockey Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/ronald-putter/434",
+            "label": "Ronald Putter Ronald Putter, Roller Hockey, Assistant Roller Hockey Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/rina-keller/1661",
+            "label": "Rina Keller Rina Keller, Roller Hockey, Roller Hockey Faculty Athletic Mentor",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://www.neumannathletics.com/sports/mens-basketball/schedule",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/neumann-university-1.html",
+        "sha256": "cfa195a2da054fe329ea5555d2560b15c87523a62e403d3022ed6da17926313c",
+        "url": "https://www.neumannathletics.com/sports/mens-basketball/schedule",
+        "label": "Basketball: Schedule"
+      },
+      "status": 200,
+      "finalUrl": "https://www.neumannathletics.com/sports/mens-basketball/schedule",
+      "checkedAtUtc": "2026-11-17T20:36:50.350Z",
+      "sourcePath": "sources/neumann-university-3.html",
+      "sha256": "9ca2dbd0c4eb0ee3cb6ef698fbbc50059d279a5409120389b345c95e179a1bae",
+      "parsed": {
+        "title": "2026-2027 Men's Basketball Schedule - Neumann University Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "Neumann University Athletics",
+          "Scoreboard",
+          "Main Navigation",
+          "Events and Results",
+          "Sport Navigation",
+          "2026-2027 Men's Basketball Schedule",
+          "Season Record",
+          "Scheduled Games",
+          "Footer",
+          "Promo Ad"
+        ],
+        "links": [
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-basketball/schedule",
+            "label": "Skip To Main Content",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/baseball/schedule",
+            "label": "Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-ice-hockey/schedule",
+            "label": "Ice Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-ice-hockey/roster",
+            "label": "Ice Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-track-and-field/schedule",
+            "label": "Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-track-and-field/roster",
+            "label": "Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/field-hockey/schedule",
+            "label": "Field Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/field-hockey/roster",
+            "label": "Field Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-flag-football/schedule",
+            "label": "Flag Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-flag-football/roster",
+            "label": "Flag Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-ice-hockey/schedule",
+            "label": "Ice Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-ice-hockey/roster",
+            "label": "Ice Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-track-and-field/schedule",
+            "label": "Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-track-and-field/roster",
+            "label": "Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/womens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/cheerleading/schedule",
+            "label": "Cheer Team: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/cheerleading/roster",
+            "label": "Cheer Team: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/dance-team/schedule",
+            "label": "Dance Team: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/dance-team/roster",
+            "label": "Dance Team: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/esports/schedule",
+            "label": "eSports: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/esports/roster",
+            "label": "eSports: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/clubice/schedule",
+            "label": "Club Ice Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/clubice/roster",
+            "label": "Club Ice Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/roller/schedule",
+            "label": "Roller Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/roller/roster",
+            "label": "Roller Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory",
+            "label": "Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sb_output.aspx?form=62",
+            "label": "Student Staff Interest Form",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/2024/12/6/rothman-orthopaedics-fast-scheduling-service.aspx",
+            "label": "Rothman Fast Scheduler",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.nusportscamps.com/",
+            "label": "Neumann Camps",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.neumannathletics.com/staff-directory/basketball-men--department/4",
+            "label": "Coaches",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-basketball/schedule?print=true",
+            "label": "Print Print this page",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/sports/mens-basketball/schedule/2026-2027?grid=true",
+            "label": "Grid Switch to Grid View",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.neumannathletics.com/services/schedule_txt.ashx?schedule=1523",
+            "label": "Text Text Format For Braille (New Tab)",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          }
+        ]
+      }
+    }
+  ],
+  "status": "EVIDENCE_CAPTURED_REQUIRES_REVIEW"
+}

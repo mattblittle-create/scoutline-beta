@@ -1,0 +1,53 @@
+{
+  "slug": "southern-union-state-community-college",
+  "programId": "cmox1gjxd00aqqtsgv8d1c4rm",
+  "collegeId": "cmox1gjwp00aoqtsgrn8xk6pf",
+  "checkedAtUtc": "2026-11-18T14:43:32.818Z",
+  "sourcePath": "../njcaa-core-review-20261118/sources/southern-union-state-community-college-0.source",
+  "sourceSHA256": "f1ee085206de85380fe0dfcc428533d5ceafc9a601727d56412c0660ac74f5ed",
+  "sourceUrl": "https://www.suscc.edu/athletics/mens-baseball",
+  "socialLeads": [],
+  "recruitingLeads": [
+    {
+      "url": "https://www.suscc.edu/about/summer-camps",
+      "label": "Summer Camps",
+      "context": "",
+      "kind": "CAMP"
+    }
+  ],
+  "logoLeads": [
+    {
+      "url": "https://www.suscc.edu/img/suscc-logo-white.svg",
+      "label": "Southern Union State Community College undefined"
+    }
+  ],
+  "captures": [
+    {
+      "requestedUrl": "https://www.suscc.edu/about/summer-camps",
+      "kind": "CAMP",
+      "status": 200,
+      "finalUrl": "https://www.suscc.edu/about/summer-camps",
+      "sourcePath": "../njcaa-core-review-20261118/sources/southern-union-state-community-college-4.source",
+      "sha256": "40928b5b52c8bb8c041d22be428fe4fab403a02a252cf7421c0e3d3d8503f368",
+      "reusedEvidence": true
+    },
+    {
+      "requestedUrl": "https://www.suscc.edu/img/suscc-logo-white.svg",
+      "kind": "LOGO_ASSET",
+      "status": 200,
+      "finalUrl": "https://www.suscc.edu/img/suscc-logo-white.svg",
+      "contentType": "image/svg+xml",
+      "sourcePath": "sources/southern-union-state-community-college-1.source",
+      "sha256": "7626cae6514a9f411da3b08593e8e0389190c1ae780d80953e4f626a18aace9b",
+      "decoded": {
+        "format": "svg",
+        "width": 500,
+        "height": 61
+      },
+      "assetDecoded": true
+    }
+  ],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED"
+}

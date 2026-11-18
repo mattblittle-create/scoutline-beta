@@ -1,0 +1,49 @@
+{
+  "slug": "kingsborough-community-college",
+  "name": "Kingsborough Community College",
+  "collegeId": "cmox2o20l0036qtbktb8b86z7",
+  "programId": "cmox2o21a0038qtbks2m0pz2r",
+  "storedState": "NY",
+  "storedDivision": "NJCAA_D3",
+  "directoryMatch": {
+    "unitid": "190619",
+    "name": "CUNY Kingsborough Community College",
+    "aliases": [
+      "KCC",
+      "KBCC",
+      "Kingsborough CC",
+      "Kingsborough Community College"
+    ],
+    "state": "NY",
+    "city": "Brooklyn",
+    "host": "kbcc.cuny.edu",
+    "decision": "UNIQUE_EXACT_NAME_OR_ALIAS_AND_STATE_DISCOVERY_LEAD_ONLY"
+  },
+  "directoryMatchStatus": "DISCOVERY_LEAD_NOT_CURRENT_CAMPUS_VERIFIED",
+  "needsHeadCoach": false,
+  "needs2027Roster": true,
+  "newPagesAttempted": 1,
+  "pages": [
+    {
+      "requestedUrl": "https://kbcc.cuny.edu/",
+      "checkedAtUtc": "2026-11-18T16:21:56.673Z",
+      "status": "FAILED",
+      "errorType": "Error",
+      "kind": "INSTITUTIONAL_DIRECTORY_HOST_LEAD",
+      "parent": {
+        "sourcePath": "../../geography/us-college-locations-ipeds2024.json",
+        "unitid": "190619",
+        "publishedName": "CUNY Kingsborough Community College",
+        "state": "NY",
+        "city": "Brooklyn"
+      }
+    }
+  ],
+  "unfetchedPublishedLeads": [],
+  "publishedLeads": [],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "campusIdentityReviewRequired": true,
+  "currentMembershipVerified": false,
+  "importApproval": "NOT_GRANTED"
+}

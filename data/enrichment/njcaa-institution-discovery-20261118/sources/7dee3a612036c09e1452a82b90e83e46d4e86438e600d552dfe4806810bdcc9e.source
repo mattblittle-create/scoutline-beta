@@ -1,0 +1,775 @@
+
+
+
+<!DOCTYPE html>
+<html id="html" lang="en">
+<head>
+
+    <meta charset="utf-8" />
+    <!-- Google Tag Manager -->
+    <script src="/js/google-tag-manager.js?v=639305976340850950"></script>
+    <!-- End Google Tag Manager -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="/fscj/css/bootstrap.min.css?v=PI8n5gCcz9cQqQXm3PEtDuPG8qx9oFsFctPg0S5zb8g" rel="stylesheet" />
+    <link href="/fscj/styles/custom-fix-kendo-icon-kendo_classic_main.css?v=at8I3VSPjHIbPx0p6AqmIws5QlfukLXc-8d4MQRsEvw" rel="stylesheet" />
+    <!-- Load Open Sans Font -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+          rel="stylesheet">
+    <script src="https://kit.fontawesome.com/4189400e1e.js" crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="/fscj/bootstrap-icons/bootstrap-icons.css?v=AEMichyFVzMXWbxt2qy7aJsPBxXWiK7IK9BW0tW1zDs" />
+    <link href="/fscj/styles/fscj.min.css?v=639305976340851813&amp;v=MDNt6wjfFi9fRNJSyiy8M6gd20UUSNkMvnqP9gT99OE" rel="stylesheet" />
+    <title>Home</title><meta property="og:title" content="Home"><meta property="og:description" content="FSCJ ranks among the top colleges and universities in Florida and provides affordable, high-quality education that meets the demands of the community."><meta name="description" content="FSCJ ranks among the top colleges and universities in Florida and provides affordable, high-quality education that meets the demands of the community."><link rel="canonical" href="https://www.fscj.edu" />
+
+  </head>
+
+<body>
+        <!-- Google Tag Manager (noscript) -->
+        <noscript>
+            <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDBJFWQ"
+                    height="0" width="0" style="display:none;visibility:hidden"></iframe>
+        </noscript>
+        <!-- End Google Tag Manager (noscript) -->
+      <!-- Search Overlay Backdrop -->
+<div class="search-backdrop" id="searchBackdrop"></div>
+
+<!-- Search Overlay -->
+<div class="search-overlay" id="searchOverlay">
+    <div class="container">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h2 class="h4 text-white mb-0 d-flex align-items-center gap-2">
+                <i class="bi bi-search text-info"></i> Search
+            </h2>
+            <button class="btn btn-link text-white text-decoration-none p-0" id="closeSearchBtn" aria-label="Close search overlay">
+                <span class="me-2">Close</span>
+                <i class="bi bi-x-lg"></i>
+            </button>
+        </div>
+
+        <div class="position-relative mb-5">
+        
+            <div id="searchtool" style="padding-top:2%">
+                <script async src="https://cse.google.com/cse.js?cx=e0b33c1ad9ff54b3b"></script>
+                <div class="gcse-searchbox-only" data-resultsUrl="/search"></div>
+            </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+<!-- Alert Bar -->
+<div class="alert-bar" id="alertBar" style="display:none;">
+    <div class="container py-2 text-center">
+        <div id="alert-content" class="d-flex align-items-center justify-content-center gap-2">
+            <i id="alertIcon"></i>
+            <p class="mb-0 small fw-bold" id="alertText"></p>
+            <p class="mb-0" id="alertDate"></p>
+            <a id="alertLink" class="text-decoration-underline small ms-2 text-black" aria-label="Alert Button">Learn More</a>
+        </div>
+    </div>
+    <button class="alert-close-tab" id="alertCloseBtn" aria-label="Close alert">
+        <i class="bi bi-chevron-up"></i>
+    </button>
+</div>
+
+<!-- Quick Links Bar -->
+<div id="quicklink-bar" class="quick-links-bar">
+    <div class="container">
+        <div class="quick-links-bar__inner d-flex align-items-center justify-content-between gap-3">
+
+            <div id="quickLinksContainer"
+                 class="quick-links-container">
+
+                <nav class="quick-links d-flex align-items-center gap-4 py-3"
+                     aria-label="Quick links">
+
+                    <a href="https://my.fscj.edu"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="fscj-myfscj-link">
+                        myFSCJ
+                        <span class="visually-hidden">
+                            (opens in a new tab)
+                        </span>
+                    </a>
+
+                    <a href="/rfi">Request for Information</a>
+
+                    <a href="/athletics">Manta Rays Athletics</a>
+
+                    <a href="/foundation/giving">Giving</a>
+
+                    <a href="/student-alerts"
+                       id="studentNotification">
+                        <i class="bi bi-exclamation-circle"
+                           aria-hidden="true"></i>
+                        Student Notification
+                    </a>
+
+                </nav>
+            </div>
+
+            <a href="https://www.fscj.edu/apply"
+               class="fscj-apply-btn flex-shrink-0">
+                Apply Now
+            </a>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- Header -->
+<header>
+    <div class="container py-3">
+        <div class="d-flex align-items-center justify-content-between gap-3">
+            <!-- Menu Button -->
+            <button class="header-menu-btn"
+                    id="menuButton"
+                    aria-label="Open menu"
+                    aria-controls="flyoutMenu"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    type="button">
+                <i class="bi bi-list" style="font-size: 1.5rem;" aria-hidden="true"></i>
+            </button>
+
+            <!-- Brand Logo -->
+            <div class="flex-grow-1 d-flex justify-content-center">
+                <div class="d-flex align-items-center gap-3">
+                    <a href="/home" aria-label="Return to home">
+                        <img class="header-logo"
+                             src="/images/default-source/logos/fscj/fscj_hlogo.png"
+                             alt="Florida State College at Jacksonville logo" />
+                    </a>
+                </div>
+            </div>
+
+            <!-- Search Trigger Button -->
+            <button class="search-icon-btn"
+                    id="searchTriggerBtn"
+                    aria-label="Open search"
+                    type="button">
+                <i class="bi bi-search" style="font-size: 1.25rem;" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+</header>
+
+    
+<div id="flyoutMenuMount"
+     data-flyout-menu-mount="true"
+     data-flyout-menu-endpoint="/api/flyout-menu/content"
+     data-flyout-menu-loaded="false"
+     aria-live="polite">
+    <!-- Flyout menu content is loaded fresh by fscjGlobalscript.js. -->
+</div>
+
+
+    <section><section class="home-hero home-hero--image" aria-label="Home hero">
+        <a class="home-hero__media-link" href="https://www.fscj.edu/registration">
+        <picture class="home-hero__picture">
+            <img class="home-hero__media" src="https://www.fscj.edu/images/default-source/banners/refresh/springreg_homeban26_v03-(1).webp?sfvrsn=579b7e35_2" alt="" loading="eager" fetchpriority="high" />
+        </picture>
+        </a>
+
+
+</section>
+</section>
+    <main class="container my-5">
+           <section class="mb-4">
+<section style="" class="row pt-3 pb-3">
+        <div style="" class="col-md-12 ">
+
+
+
+<div class="">
+<div class="text-center mb-5"><h2 style="color: var(--ocean-primary)" class="mb-4">Why Choose FSCJ?</h2><p class="mx-auto" style="max-width: 768px">Discover the opportunities that make FSCJ a top choice for students.
+                    </p></div></div>
+</div>
+</section>
+
+<section style="" class="row pt-3 pb-3 mb-4">
+        <div style="" class="col-md-4 ">
+
+
+
+<div class="">
+<a class="feature-card" href="https://www.fscj.edu/academics/areas-of-study"><div style="background-color: var(--ocean-primary)" class="feature-icon"><em class="bi bi-book"></em></div><h2 style="color: var(--ocean-deep)">170+ Programs</h2><p>Choose from a diverse range of associate and bachelor's degrees and certificate programs designed to help you achieve your career goals.
+        </p></a></div>
+</div>
+        <div style="" class="col-md-4 ">
+
+
+
+<div class="">
+<a class="feature-card" href="https://www.fscj.edu/financial-aid"><div class="feature-icon" style="background-color: var(--ocean-primary)"><em class="bi bi-piggy-bank-fill"></em></div><h2 style="color: var(--ocean-deep)">Affordable</h2><p>FSCJ students pay much lower tuition rates for the same, high-quality programs and offerings.</p><p>&nbsp;</p></a></div>
+</div>
+        <div style="" class="col-md-4 ">
+
+
+
+<div class="">
+<a class="feature-card" href="https://www.fscj.edu/class-schedules"><div class="feature-icon" style="background-color: var(--ocean-primary)"><em class="bi bi-calendar-heart"></em></div><h2 style="color: var(--ocean-deep)">Flexible Classes</h2><p>FSCJ offers day, evening, weekend and online options.</p></a></div>
+</div>
+</section>
+
+    <section class="popular-credit-programs py-4" aria-label="Program Spotlight">
+        <div class="container px-0">
+            <div class="popular-credit-programs__header mb-3">
+                <h2 style="color:var(--ocean-primary);text-align:center;" class="mb-4">Program Spotlight</h2>
+            </div>
+
+            <div class="row g-3 popular-credit-programs__grid">
+                    <div class="col-12 col-md-6 col-xl-3">
+                        <article class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden program-card popular-credit-programs__card">
+                            <a href="/program?pCode=6253"
+                               class="popular-credit-programs__image-link"
+                               aria-label="View Business Specialist (T.C.)">
+                                <img src="/images/default-source/programs/ExplorerCardImages/6253.webp"
+                                     class="card-img-top popular-credit-programs__image"
+                                     alt=""
+                                     width="720"
+                                     height="150"
+                                     loading="lazy" />
+                            </a>
+
+                            <div class="card-body d-flex flex-column popular-credit-programs__body">
+                                    <div class="popular-credit-programs__badge-wrap">
+                                        <span class="badge-pill-custom">Online</span>
+                                    </div>
+
+                                <h3 class="h5 fw-bold popular-credit-programs__title">
+                                    <a href="/program?pCode=6253" class="text-decoration-none text-reset">
+                                        Business Specialist (T.C.)
+                                    </a>
+                                </h3>
+
+                                <div class="popular-credit-programs__learn-more mt-auto">
+                                    <a class="ocean-btn-learnMore" href="/program?pCode=6253">
+                                        Learn More <i class="bi bi-arrow-right" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-3">
+                        <article class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden program-card popular-credit-programs__card">
+                            <a href="/program?pCode=2239"
+                               class="popular-credit-programs__image-link"
+                               aria-label="View Criminal Justice Technology (A.S.)">
+                                <img src="/images/default-source/programs/ExplorerCardImages/2239.webp"
+                                     class="card-img-top popular-credit-programs__image"
+                                     alt=""
+                                     width="720"
+                                     height="150"
+                                     loading="lazy" />
+                            </a>
+
+                            <div class="card-body d-flex flex-column popular-credit-programs__body">
+                                    <div class="popular-credit-programs__badge-wrap">
+                                        <span class="badge-pill-custom">Online</span>
+                                    </div>
+
+                                <h3 class="h5 fw-bold popular-credit-programs__title">
+                                    <a href="/program?pCode=2239" class="text-decoration-none text-reset">
+                                        Criminal Justice Technology (A.S.)
+                                    </a>
+                                </h3>
+
+                                <div class="popular-credit-programs__learn-more mt-auto">
+                                    <a class="ocean-btn-learnMore" href="/program?pCode=2239">
+                                        Learn More <i class="bi bi-arrow-right" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-3">
+                        <article class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden program-card popular-credit-programs__card">
+                            <a href="/program?pCode=6139"
+                               class="popular-credit-programs__image-link"
+                               aria-label="View Entrepreneurship Operations (T.C.)">
+                                <img src="/images/default-source/programs/ExplorerCardImages/6139.webp"
+                                     class="card-img-top popular-credit-programs__image"
+                                     alt=""
+                                     width="720"
+                                     height="150"
+                                     loading="lazy" />
+                            </a>
+
+                            <div class="card-body d-flex flex-column popular-credit-programs__body">
+
+                                <h3 class="h5 fw-bold popular-credit-programs__title">
+                                    <a href="/program?pCode=6139" class="text-decoration-none text-reset">
+                                        Entrepreneurship Operations (T.C.)
+                                    </a>
+                                </h3>
+
+                                <div class="popular-credit-programs__learn-more mt-auto">
+                                    <a class="ocean-btn-learnMore" href="/program?pCode=6139">
+                                        Learn More <i class="bi bi-arrow-right" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-3">
+                        <article class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden program-card popular-credit-programs__card">
+                            <a href="/program?pCode=6394"
+                               class="popular-credit-programs__image-link"
+                               aria-label="View Emergency Medical Technician (T.C.)">
+                                <img src="/images/default-source/programs/ExplorerCardImages/6394.webp"
+                                     class="card-img-top popular-credit-programs__image"
+                                     alt=""
+                                     width="720"
+                                     height="150"
+                                     loading="lazy" />
+                            </a>
+
+                            <div class="card-body d-flex flex-column popular-credit-programs__body">
+
+                                <h3 class="h5 fw-bold popular-credit-programs__title">
+                                    <a href="/program?pCode=6394" class="text-decoration-none text-reset">
+                                        Emergency Medical Technician (T.C.)
+                                    </a>
+                                </h3>
+
+                                <div class="popular-credit-programs__learn-more mt-auto">
+                                    <a class="ocean-btn-learnMore" href="/program?pCode=6394">
+                                        Learn More <i class="bi bi-arrow-right" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+            </div>
+            <br /><center><a href="/program-explorer" class="btn-cta-primary">See All Programs</a></center>
+        </div>
+
+    </section>
+
+<section style="" class="row pt-3 pb-3 mt-5">
+        <div style="" class="col-md-7 ">
+
+
+
+<div class="">
+<div class="mb-3"><span class="fscj-allcaps">Financial Aid</span>
+</div><h2 style="color: var(--ocean-deep)">Flexible Payment Options</h2><p>Pay for college on a schedule that works for you. FSCJ offers Tuition Installment Plans (TIPs) through Nelnet, allowing you to spread tuition and fees into manageable monthly payments while attending classes. Choose from flexible payment options, with down payments and enrollment fees varying based on when you enroll.<strong></strong></p><p><a class="ocean-btn-learnMore" href="https://www.fscj.edu/student-financial-services/tips" style="font-size: inherit; text-transform: inherit; word-spacing: normal; white-space: inherit">Learn More About TIPS</a><span style="background-color: initial; font-size: inherit; text-transform: inherit; word-spacing: normal; caret-color: auto; white-space: inherit">&nbsp;</span><em class="bi bi-arrow-right"></em></p></div>
+</div>
+        <div style="" class="col-md-5 ">
+
+            <picture class="d-inline-block ">
+                        <source media="(max-width: 266px)" srcset="https://www.fscj.edu/images/default-source/student-services/advser_card.tmb-0.webp?Culture=en&amp;sfvrsn=20c4e44f_1" type="image/webp" width=266 height=160>
+                <img  loading="lazy" class=img-fluid src="https://www.fscj.edu/images/default-source/student-services/advser_card.webp?sfvrsn=20c4e44f_3" title="Student working with staff" alt="A person speaking with a staff member at desk">
+            </picture>
+</div>
+</section>
+</section>
+            
+             
+           
+   
+        
+                <!-- EDITABLE WIDGET AREA: SPOTLIGHT -->
+             <section class="mb-4">
+
+
+
+<div class="">
+<div class="text-center mb-2"><h2 class="mb-4" style="color: var(--ocean-primary)">Important Dates</h2></div></div>
+
+
+
+<section class="trumba-calendar-widget" aria-label="Upcoming events">
+    <div class="trumba-calendar-widget__grid">
+            <article class="trumba-event-card">
+                    <div class="trumba-event-card__image-wrap">
+                        <img class="trumba-event-card__image"
+                             src="https://www.trumba.com/i/DgDvqzDXsbMYIvpqc6JsDVBm.jpg"
+                             alt="Explore the World with FSCJ"
+                             loading="lazy" />
+                    </div>
+
+                <div class="trumba-event-card__body">
+
+                    <h3 class="trumba-event-card__title">
+                            <a href="/news-events/calendar?trumbaEmbed=view%3Devent%26eventid%3D211819742">Explore the World with FSCJ</a>
+                    </h3>
+
+                        <p class="trumba-event-card__date">Friday, November 20, 2026</p>
+
+                        <div class="trumba-event-card__location">
+                            Online &#8211; Global Learning Hub through Campus Community
+                        </div>
+                </div>
+            </article>
+            <article class="trumba-event-card">
+                    <div class="trumba-event-card__image-wrap">
+                        <img class="trumba-event-card__image"
+                             src="https://www.trumba.com/i/DgDEl5cfRAM5AoUpn2rCZ3Nn.jpg"
+                             alt="Study Nook"
+                             loading="lazy" />
+                    </div>
+
+                <div class="trumba-event-card__body">
+
+                    <h3 class="trumba-event-card__title">
+                            <a href="/news-events/calendar?trumbaEmbed=view%3Devent%26eventid%3D206603671">Study Nook</a>
+                    </h3>
+
+                        <p class="trumba-event-card__date">Friday, November 20, 2026, 8am&nbsp;&ndash;&nbsp;12pm&nbsp;EST</p>
+
+                        <div class="trumba-event-card__location">
+                            <a href="http://maps.google.com/?q=3939+Roosevelt+Blvd%2C+Jacksonville%2C+FL+32205" target="_blank" rel="noopener">Kent Campus | Cafeteria G-Stage</a>
+                        </div>
+                </div>
+            </article>
+            <article class="trumba-event-card">
+                    <div class="trumba-event-card__image-wrap">
+                        <img class="trumba-event-card__image"
+                             src="https://www.trumba.com/i/DgArNujTsKBguMUCekUkFmdk.jpg"
+                             alt="FSCJ Talent Show Auditions North Campus"
+                             loading="lazy" />
+                    </div>
+
+                <div class="trumba-event-card__body">
+
+                    <h3 class="trumba-event-card__title">
+                            <a href="/news-events/calendar?trumbaEmbed=view%3Devent%26eventid%3D212248056">FSCJ Talent Show Auditions North Campus</a>
+                    </h3>
+
+                        <p class="trumba-event-card__date">Friday, November 20, 2026, 9&nbsp;&ndash;&nbsp;11am&nbsp;EST</p>
+
+                        <div class="trumba-event-card__location">
+                            <a href="http://maps.google.com/?q=4501+Capper+Rd%2C+Jacksonville%2C+FL+32218" target="_blank" rel="noopener">FSCJ North Campus Student Life Center | E-235</a>
+                        </div>
+                </div>
+            </article>
+            <article class="trumba-event-card">
+                    <div class="trumba-event-card__image-wrap">
+                        <img class="trumba-event-card__image"
+                             src="https://www.trumba.com/i/DgCDD3Uar39HhS9eMtCKRajp.jpg"
+                             alt="Blue ad with cute illustrations of black cats perched on books promoting Kitten Therapy at Kent Campus Library."
+                             loading="lazy" />
+                    </div>
+
+                <div class="trumba-event-card__body">
+
+                    <h3 class="trumba-event-card__title">
+                            <a href="/news-events/calendar?trumbaEmbed=view%3Devent%26eventid%3D210583008">Kitten Therapy</a>
+                    </h3>
+
+                        <p class="trumba-event-card__date">Friday, November 20, 2026, 9:30am&nbsp;&ndash;&nbsp;12pm&nbsp;EST</p>
+
+                        <div class="trumba-event-card__location">
+                            <a href="http://maps.google.com/?q=3939+Roosevelt+Blvd%2C+Jacksonville%2C+FL+32205" target="_blank" rel="noopener">FSCJ Kent Campus Library | C-100</a>
+                        </div>
+                </div>
+            </article>
+    </div>
+</section>
+
+
+
+<div class="mb-5">
+<p><a class="ocean-btn-learnMore" href="https://www.fscj.edu/news-events/calendar">College Calendar&nbsp;<em class="bi bi-arrow-right"></em></a></p><p><a href="https://visit.fscj.edu/" target="_blank" class="ocean-btn-learnMore">Admissions Calendar&nbsp;<em class="bi bi-arrow-right"></em></a></p></div>
+
+
+
+
+<div class="">
+<div class="badge-social"><em class="bi bi-instagram"></em><span>&nbsp;Follow Us</span></div></div>
+
+
+
+<section class="behold-widget"
+         aria-label="Instagram"
+         data-behold-feed-id="1IzEk32fXuDm6vtYAkU4">
+
+    <div class="behold-widget__placeholder"
+         role="status"
+         aria-live="polite">
+        Loading social feed…
+    </div>
+</section></section>
+        
+    </main>
+    <section class="cta-section">
+    <div class="cta-bg-circle-1"></div>
+    <div class="cta-bg-circle-2"></div>
+
+    <div class="container text-center position-relative" style="z-index: 10;">
+        <h2 class="mb-4">Ready to Start Your Journey?</h2>
+        <p class="fs-5 mb-4 mx-auto" style="max-width: 768px; color: rgba(255, 255, 255, 0.9);">
+            Take the first step toward an exceptional education and a bright future. Apply to FSCJ today.
+        </p>
+        <div class="d-flex flex-wrap justify-content-center gap-3">
+            <a href="/apply" class="btn-cta-secondary btn-lg">
+                Start Your Application
+            </a>
+            <a href="/rfi" class="btn-cta-secondary btn-lg">
+                Request Information
+            </a>
+        </div>
+    </div>
+</section>
+
+    <section>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-section">
+            <div class="container">
+                <div class="row g-4">
+                    <!-- About Column -->
+                    <div class="col-lg-3 col-md-6">
+                        <div class="d-flex align-items-center gap-3 mb-3">
+                            <img src="/images/default-source/logos/fscjmantarayfooter.png?sfvrsn=f19fa15_2"
+                                 alt="FSCJ Logo" class="img-fluid">
+
+                        </div>
+                        <p class="footer-text mb-3">
+                            Florida State College at Jacksonville empowers students to achieve their goals by providing exceptional learning experiences that promote intellectual growth, civic engagement, and workforce connections.
+                        </p>
+                        <div class="mb-3">
+                            <a href="https://www.facebook.com/FSCJOfficial" class="social-link" aria-label="Facebook">
+                                <i class="fa-brands fa-square-facebook"></i>
+                            </a>
+                            <a href="https://twitter.com/FSCJ_Official" class="social-link" aria-label="X">
+                                <i class="fa-brands fa-x-twitter"></i>
+                            </a>
+                            <a href="https://www.instagram.com/fscjofficial/" class="social-link" aria-label="Instagram">
+                                <i class="fa-brands fa-instagram"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/school/florida-state-college-at-jacksonville/" class="social-link" aria-label="LinkedIn">
+                                <i class="fa-brands fa-square-linkedin"></i>
+                            </a>
+                            <a href="https://flickr.com/photos/floridastatecollege/albums" class="social-link" aria-label="Flickr">
+                                <i class="fa-brands fa-flickr"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Academics Column -->
+                    <div class="col-lg-3 col-md-6">
+                        <h5 class="footer-heading">Academics</h5>
+                        <a href="/academics/workforce-education" class="footer-link">Workforce/Certificate Programs</a>
+                        <a href="/aa" class="footer-link">Associate in Arts Degree</a>
+                        <a href="/as" class="footer-link">Associate in Science Degree</a>
+                        <a href="/academics/bachelors-degrees" class="footer-link">Bachelor's Degrees</a>
+                        <a href="/academics/online-learning" class="footer-link">Online Learning</a>
+                        <a href="/news-events/calendar" class="footer-link">Academic Calendar</a>
+                        <a href="/catalog" class="footer-link">Catalog</a>
+                        <a href="https://library.fscj.edu" class="footer-link">Library and Tutoring Services</a>
+                    </div>
+
+                    <!-- Admissions Column -->
+                    <div class="col-lg-3 col-md-6">
+                        <h5 class="footer-heading">Admissions</h5>
+                        <a href="/apply" class="footer-link">Apply Now</a>
+                        <a href="/student-financial-services/tuition-and-fees" class="footer-link">Tuition & Financial Aid</a>
+                        <a href="/scholarships" class="footer-link">Scholarships</a>
+                        <a href="/campustours" class="footer-link">Campus Tours</a>
+                        <a href="/admissions/international-student-services" class="footer-link">International Students</a>
+                        <a href="/admissions/transfer-services" class="footer-link">Transfer Students</a>
+                        <a href="/mvsc" class="footer-link">Military and Veterans Services</a>
+                    </div>
+
+                    <!-- Contact Column -->
+                    <div class="col-lg-3 col-md-6">
+                        <h5 class="footer-heading">Contact Us</h5>
+
+                        <div class="footer-contact-item">
+                            <i class="bi bi-telephone-fill"></i>
+                            <div>
+                                <a href="tel:904-646-2300" class="footer-link">
+                                    (904) 646-2300
+                                </a>
+                            </div>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="bi bi-envelope-fill"></i>
+                            <div>
+                                <a href="mailto:welcome@fscj.edu" class="footer-link">
+                                    welcome@fscj.edu
+                                </a>
+                            </div>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="bi bi-clock-fill"></i>
+                            <div>
+                                Mon - Thur: 8 a.m. - 6 p.m.<br>
+                                Fri: 8 a.m. - 12 p.m.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        <p class="footer-text mb-0">
+                            &copy; 2026 Florida State College at Jacksonville. All rights reserved.
+                        </p>
+                    </div>
+                    <div class="col-md-6 text-center text-md-end">
+                        <a href="/discover/governance-administration/policies-and-procedures/internet-privacy-policy" class="footer-link d-inline-block me-3">Privacy Policy</a>
+                        <a href="/discover/governance-administration/policies-and-procedures/acceptable-use-policy" class="footer-link d-inline-block me-3">Acceptable Use Policy</a>
+                    </div>
+                </div>
+                <div class="container py-2">
+
+
+                    <!-- Top Row -->
+                    <div class="row align-items-center">
+
+                        <!-- Left Side: 2 Columns -->
+                        <div class="col-lg-9">
+                            <div class="row g-3 align-items-center">
+
+                                <div class="col-6">
+                                    <div class="p-2 text-center">
+                                        <img loading="lazy"
+                                             class="img-fluid"
+                                             src="/images/default-source/core/footer/logo_aspen-120x120.webp?sfvrsn=f7456885_3"
+                                             title="Aspen Prize Top 150"
+                                             alt="Aspen Prize Top 150">
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="p-2 text-center">
+                                        <img loading="lazy"
+                                             class="img-fluid"
+                                             src="/images/default-source/core/footer/sacscoc-120x120.webp?sfvrsn=53f5083c_1"
+                                             title="SACS Accredited"
+                                             alt="SACS Accredited">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- Right Side -->
+                        <div class="col-lg-3">
+                            <div class="p-1 text-white h-100 d-flex align-items-center justify-content-lg-end">
+                                <!-- Right-side content here -->
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Bottom Full Width Row -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="p-1 text-white">
+                                <p class="text-white">
+                                    Florida State College at Jacksonville is accredited by the Southern Association of Colleges and Schools Commission on Colleges (SACSCOC) to award associate and baccalaureate degrees. Florida State College at Jacksonville also may offer credentials such as certificates and diplomas at approved degree levels. Questions about the accreditation of Florida State College at Jacksonville may be directed in writing  to the Southern Association of Colleges and Schools Commission on Colleges at 1866 Southern Lane, Decatur, GA  30033-4097, by calling (404) 679-4500, or by using information available on SACSCOC’s website (www.sacscoc.org).
+
+                                    Florida State College at Jacksonville does not discriminate against any person on the basis of race, disability, color, ethnicity, national origin, religion, gender, age, sex, sexual orientation/expression, marital status, veteran status, pregnancy or genetic information in its programs, activities and employment. For more information, visit the <a href="/discover/humanresources/about-us/eeo-crco">Office of Civil Rights Compliance</a> page.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+               
+            </div>
+        </div>
+    </footer>
+</section>
+
+    <script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script type="module" src="/js/core/core.es5.min.js?v=639305976341117115&amp;v=dT5shUHxYM7frBT_bnuniLI2psecfz10SSWpBw826Uk" defer></script>
+    <script type="module" src="/js/widgets/widgets.es5.min.js?v=639305976341118779&amp;v=oB8vC1XJoaQvsFcGX0jVXktoVxA6CHl8cFVzzorI4rE" defer></script>
+ 
+
+    
+
+
+    
+<button id="open-chat"
+        type="button"
+        aria-label="Open Ask Rayzor">
+    <i class="bi bi-chat-dots"></i>&nbsp;
+    Ask Rayzor
+</button>
+
+<div id="chatbot-popup" role="complementary" aria-label="Ask Rayzor">
+    <div id="chatbot-header">
+        <div class="header-title">
+            <svg class="chat-icon"
+                 width="24"
+                 height="24"
+                 viewBox="0 0 24 24"
+                 fill="none"
+                 stroke="currentColor"
+                 stroke-width="2"
+                 stroke-linecap="round"
+                 stroke-linejoin="round"
+                 aria-hidden="true">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+            <span>Ask Rayzor</span>
+        </div>
+
+        <div class="header-buttons">
+            <button class="icon-button"
+                    id="restart-button"
+                    type="button"
+                    aria-label="Restart Conversation">
+                <svg width="20"
+                     height="20"
+                     viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2"
+                     stroke-linecap="round"
+                     stroke-linejoin="round"
+                     aria-hidden="true">
+                    <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+                    <path d="M3 3v5h5"></path>
+                </svg>
+            </button>
+
+            <button class="icon-button"
+                    id="close-button"
+                    type="button"
+                    aria-label="Close Chat">
+                <svg width="20"
+                     height="20"
+                     viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2"
+                     stroke-linecap="round"
+                     stroke-linejoin="round"
+                     aria-hidden="true">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <div id="webchat" role="main"></div>
+</div>
+
+    <script src="/js/ask-rayzor-chat.js?v=639305976341119916&amp;v=U8LtHerRZZDlUyR8GPUPTWAMM3YC8eTCnVbH_SKNqvE" defer></script>
+    <script src="/js/behold-widget-loader.js?v=OIXYryQhOepkIAdqjojtTKVYic8TThTuiy91MX6YlEg" defer></script>
+<script id="PersonalizationTracker" type="application/json">{"IsPagePersonalizationTarget":false,"IsUrlPersonalizationTarget":false,"PageId":"4821c6d3-e0d5-49a0-9cc8-d72fe992b7d5"}</script><script src="/WebResource.axd?d=NjxTqR2bqTw1rewxxlkHPrdCVAjl9w0C8xx7-nnNLmIfVFowapE0Bs8yM1QZme18dRBxAXpHjymDU0OmJvD_fWsNB5hXCWzQt1P3PpQkxRYT_c4iqvL8tusppxb71rxO4llzXqhZPrzM7OYQhP0VKfoPTFvRFVfRqZyCABfUsHFjVdh028nebYim1_9uVvKPWEIhAUKTh5Fd3Mzfvz6PBM-Hj5VflznepRxO8QBNCH41&amp;t=639292889820000000" type="text/javascript"></script></body>
+</html>

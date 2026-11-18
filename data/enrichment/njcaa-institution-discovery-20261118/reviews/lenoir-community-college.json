@@ -1,0 +1,47 @@
+{
+  "slug": "lenoir-community-college",
+  "name": "Lenoir Community College",
+  "collegeId": "cmox237x00070qtfkegjy06th",
+  "programId": "cmox237xp0072qtfkyq6d1rp1",
+  "storedState": "NC",
+  "storedDivision": "NJCAA_D2",
+  "directoryMatch": {
+    "unitid": "198817",
+    "name": "Lenoir Community College",
+    "aliases": [],
+    "state": "NC",
+    "city": "Kinston",
+    "host": "lenoircc.edu",
+    "decision": "UNIQUE_EXACT_NAME_OR_ALIAS_AND_STATE_DISCOVERY_LEAD_ONLY"
+  },
+  "directoryMatchStatus": "DISCOVERY_LEAD_NOT_CURRENT_CAMPUS_VERIFIED",
+  "needsHeadCoach": true,
+  "needs2027Roster": true,
+  "newPagesAttempted": 1,
+  "pages": [
+    {
+      "requestedUrl": "https://lenoircc.edu/",
+      "checkedAtUtc": "2026-11-18T16:21:16.768Z",
+      "finalUrl": "https://lenoircc.edu/",
+      "status": 403,
+      "contentType": "text/html",
+      "sha256": "58bf2215b395dcac74c009aa98701854e43cbe54a1cd3a95fee6a647ca9910d4",
+      "sourcePath": "sources/a8124e8b98a833e71e2c0eaced6e456d3a3267ad5ddc2ee5e3ccb1a903ee391e.source",
+      "kind": "INSTITUTIONAL_DIRECTORY_HOST_LEAD",
+      "parent": {
+        "sourcePath": "../../geography/us-college-locations-ipeds2024.json",
+        "unitid": "198817",
+        "publishedName": "Lenoir Community College",
+        "state": "NC",
+        "city": "Kinston"
+      }
+    }
+  ],
+  "unfetchedPublishedLeads": [],
+  "publishedLeads": [],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "campusIdentityReviewRequired": true,
+  "currentMembershipVerified": false,
+  "importApproval": "NOT_GRANTED"
+}

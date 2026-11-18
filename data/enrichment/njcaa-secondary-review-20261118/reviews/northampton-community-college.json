@@ -1,0 +1,72 @@
+{
+  "slug": "northampton-community-college",
+  "programId": "cmox2o2rm004qqtbk0z6bfysi",
+  "collegeId": "cmox2o2qw004oqtbkl22srla5",
+  "checkedAtUtc": "2026-11-18T14:43:38.538Z",
+  "sourcePath": "../njcaa-discovery-20261118/sources/northampton-community-college-1.source",
+  "sourceSHA256": "e32991f6c2e807dfb1b159ece9328508a4fee69786f8e9700c6232e9562e1f80",
+  "sourceUrl": "https://www.nccspartans.com/sports/baseball",
+  "socialLeads": [],
+  "recruitingLeads": [
+    {
+      "url": "https://www.nccspartans.com/registrations/#!/camps/",
+      "label": "Prospect Camp",
+      "context": "",
+      "kind": "CAMP"
+    }
+  ],
+  "logoLeads": [
+    {
+      "url": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/nccspartans.com/images/responsive_2020/logo_wordage.svg",
+      "label": "Northampton undefined"
+    },
+    {
+      "url": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/nccspartans.com/images/responsive_2020/logo_main.svg",
+      "label": "Northampton Community College Athletics Logo - Go to Homepage undefined"
+    }
+  ],
+  "captures": [
+    {
+      "requestedUrl": "https://www.nccspartans.com/registrations/#!/camps/",
+      "kind": "CAMP",
+      "status": 200,
+      "finalUrl": "https://www.nccspartans.com/registrations/#!/camps/",
+      "contentType": "text/html; charset=utf-8",
+      "sourcePath": "sources/northampton-community-college-0.source",
+      "sha256": "dc73c5fe8b56800ed3964083fe1c851d66904e9af41e9b370180340638dab595"
+    },
+    {
+      "requestedUrl": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/nccspartans.com/images/responsive_2020/logo_wordage.svg",
+      "kind": "LOGO_ASSET",
+      "status": 200,
+      "finalUrl": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/nccspartans.com/images/responsive_2020/logo_wordage.svg",
+      "contentType": "image/svg+xml",
+      "sourcePath": "sources/northampton-community-college-1.source",
+      "sha256": "95c6ef860793edda99a5bf55031533a3bd5b06f672fc901d594dcd58167f35f3",
+      "decoded": {
+        "format": "svg",
+        "width": 297,
+        "height": 76
+      },
+      "assetDecoded": true
+    },
+    {
+      "requestedUrl": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/nccspartans.com/images/responsive_2020/logo_main.svg",
+      "kind": "LOGO_ASSET",
+      "status": 200,
+      "finalUrl": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/nccspartans.com/images/responsive_2020/logo_main.svg",
+      "contentType": "image/svg+xml",
+      "sourcePath": "sources/northampton-community-college-2.source",
+      "sha256": "cbe3311b2c54df765ddd137ca821fac24fc8797067f33e83728a3fc7849ccf1a",
+      "decoded": {
+        "format": "svg",
+        "width": 128,
+        "height": 128
+      },
+      "assetDecoded": true
+    }
+  ],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED"
+}

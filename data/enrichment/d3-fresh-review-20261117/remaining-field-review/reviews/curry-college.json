@@ -1,0 +1,1957 @@
+{
+  "slug": "curry-college",
+  "collegeId": "cmovorokf005xqt7g09qab5qz",
+  "programId": "cmovorol4005zqt7g4y8hfqny",
+  "checkedAtUtc": "2026-11-17T20:35:38.009Z",
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED",
+  "missingFields": [
+    "rosterUrl",
+    "scheduleUrl",
+    "questionnaireUrl",
+    "campsUrl",
+    "generalContactEmail",
+    "programInstagramUrl"
+  ],
+  "pages": [
+    {
+      "requestedUrl": "https://www.curryathletics.com/sports/bsb/index",
+      "kind": "baseball-home",
+      "parent": null,
+      "status": 200,
+      "finalUrl": "https://www.curryathletics.com/sports/bsb/index",
+      "sourcePath": "../sources/curry-college-0.html",
+      "sha256": "46e78fb40abd0634aae092f5647722f2df1c02007633010203b0b034d2982989",
+      "reusedEvidence": true,
+      "originalCheckedAtUtc": "2026-11-17T17:21:34.040Z",
+      "parsed": {
+        "title": "Baseball - Curry College Athletics",
+        "headings": [
+          "Top Stories",
+          "Next Event",
+          "Banners",
+          "Next Event",
+          "Banners",
+          "More News",
+          "Stat Leaders",
+          "Parallax",
+          "Players of the Week",
+          "Social Banners"
+        ],
+        "links": [
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/2025-26/schedule",
+            "label": "Schedule Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/2025-26/roster",
+            "label": "Roster Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/Curry_Baseball",
+            "label": "Twitter Baseball: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/currycolonels/",
+            "label": "Instagram Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/mbkb/2026-27/schedule",
+            "label": "Schedule Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/mbkb/2026-27/roster",
+            "label": "Roster Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/Curry_MBB",
+            "label": "Twitter Basketball: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/mxc/2026-27/schedule",
+            "label": "Schedule Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/mxc/2026-27/roster",
+            "label": "Roster Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/CurryColonels",
+            "label": "Twitter Cross Country: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/currycollegexc",
+            "label": "Instagram Cross Country: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/fball/2026-27/schedule",
+            "label": "Schedule Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/fball/2026-27/roster",
+            "label": "Roster Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/CurryFootball",
+            "label": "Twitter Football: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/currycollegefootball/",
+            "label": "Instagram Football: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/mice/2026-27/schedule",
+            "label": "Schedule Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/mice/2026-27/roster",
+            "label": "Roster Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/curryhockey",
+            "label": "Twitter Hockey: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/currycollegehockey/",
+            "label": "Instagram Hockey: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/mlax/2025-26/schedule",
+            "label": "Schedule Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/mlax/2025-26/roster",
+            "label": "Roster Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/currycollegemenslacrosse/",
+            "label": "Instagram Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/msoc/2026-27/schedule",
+            "label": "Schedule Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/msoc/2026-27/roster",
+            "label": "Roster Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/CurrySoccer",
+            "label": "Twitter Soccer: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/currycollegesoccer/",
+            "label": "Instagram Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/mten/2026-27/schedule",
+            "label": "Schedule Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/mten/2026-27/roster",
+            "label": "Roster Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/mtrack-out/2025-26/schedule",
+            "label": "Schedule Track and Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/mtrack-out/2025-26/roster",
+            "label": "Roster Track and Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/mvball/2025-26/schedule",
+            "label": "Schedule Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/mvball/2025-26/roster",
+            "label": "Roster Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/currycolonelsmvb/",
+            "label": "Instagram Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wbkb/2026-27/schedule",
+            "label": "Schedule Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wbkb/2026-27/roster",
+            "label": "Roster Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/currycollegewbb",
+            "label": "Twitter Basketball: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/curry_wbb/",
+            "label": "Instagram Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wxc/2026-27/schedule",
+            "label": "Schedule Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wxc/2026-27/roster",
+            "label": "Roster Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wice/2026-27/schedule",
+            "label": "Schedule Ice Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wice/2026-27/roster",
+            "label": "Roster Ice Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/CurryWIH",
+            "label": "Twitter Ice Hockey: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/currywhockey/?hl=en)",
+            "label": "Instagram Ice Hockey: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wlax/2025-26/schedule",
+            "label": "Schedule Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wlax/2025-26/roster",
+            "label": "Roster Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/CCWLAX",
+            "label": "Twitter Lacrosse: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/cc_womenslacrosse/",
+            "label": "Instagram Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wsoc/2026-27/schedule",
+            "label": "Schedule Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wsoc/2026-27/roster",
+            "label": "Roster Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/CurryWSoccer",
+            "label": "Twitter Soccer: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/currywsoc/",
+            "label": "Instagram Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/sball/2025-26/schedule",
+            "label": "Schedule Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/sball/2025-26/roster",
+            "label": "Roster Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/CurrySoftball",
+            "label": "Twitter Softball: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/currysoftball/",
+            "label": "Instagram Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wten/2026-27/schedule",
+            "label": "Schedule Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wten/2026-27/roster",
+            "label": "Roster Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/currycollegetennis/",
+            "label": "Instagram Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wtrack-out/2025-26/schedule",
+            "label": "Schedule Track and Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wtrack-out/2025-26/roster",
+            "label": "Roster Track and Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wvball/2026-27/schedule",
+            "label": "Schedule Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wvball/2026-27/roster",
+            "label": "Roster Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/Curry_WVB",
+            "label": "Twitter Volleyball: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/curryvolleyball/",
+            "label": "Instagram Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/cheer/2025-26/roster",
+            "label": "Cheerleading Inside Athletics: Cheerleading",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/information/directory/index",
+            "label": "Staff Directory Inside Athletics: Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "http://www.curry.edu/about-curry/our-campus/directions-and-campus-map.html",
+            "label": "Campus Map Curry: Campus Map",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "http://www.curry.edu/campus-life/fitness-and-recreation/club-sports.html",
+            "label": "Club Sports Curry: Club Sports",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "http://www.curry.edu/campus-life/fitness-and-recreation/intramurals.html",
+            "label": "Intramurals Curry: Intramurals",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.curryathletics.com/information/recruiting_questionnaire/Index",
+            "label": "Recruiting Questionnaires by Sport Recruit Me: Recruiting Questionnaires by Sport",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.curryathletics.com/composite",
+            "label": "Schedule Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bsnteamsports.com/shop/gwCwuVwDwB?utm_source=flyer&utm_medium=pdf&utm_campaign=store_shop&utm_content=store_link",
+            "label": "Volleyball Shop: Volleyball",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.instagram.com/currycolonels/?hl=en",
+            "label": "Instagram Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/currycolonels?lang=en",
+            "label": "X-Twitter X-Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/coaches/index",
+            "label": "Coaches",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/recruit_questionnaire",
+            "label": "Recruiting Questionnaire",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://secureq.scoutwareforms.net/q/curry_base/kp_alumni/s98x2.html",
+            "label": "Alumni Questionnaire",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.boostmyschool.com/orgs/curry/campaigns/curry-curry-college-fund-2025-2026",
+            "label": "Banner Support (opens in a new tab)",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/index",
+            "label": "Schedule Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/composite",
+            "label": "Composite Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/composite?view=2&tmpl=component-scoreboard-template&layout=tabular&shortSportName=true&archive=true&archiveText=Composite+Schedule&details=false",
+            "label": "#",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://www.curryathletics.com/sports/bsb/2025-26/schedule",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/curry-college-0.html",
+        "sha256": "46e78fb40abd0634aae092f5647722f2df1c02007633010203b0b034d2982989",
+        "url": "https://www.curryathletics.com/sports/bsb/2025-26/schedule",
+        "label": "Schedule Baseball: Schedule"
+      },
+      "status": 200,
+      "finalUrl": "https://www.curryathletics.com/sports/bsb/2025-26/schedule",
+      "checkedAtUtc": "2026-11-17T20:35:39.533Z",
+      "sourcePath": "sources/curry-college-1.html",
+      "sha256": "6e50a86e4f7fc1336c7b07cfa5fb35e0149b3c64de839d1b9f11e05d9f2a8802",
+      "parsed": {
+        "title": "2025-26 Curry Baseball Schedule - Curry College Athletics",
+        "headings": [
+          "2025-26 Curry Baseball Schedule"
+        ],
+        "links": [
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/2025-26/schedule",
+            "label": "Skip to navigation",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/2025-26/roster",
+            "label": "Roster Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/Curry_Baseball",
+            "label": "Twitter Baseball: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/currycolonels/",
+            "label": "Instagram Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/mbkb/2026-27/schedule",
+            "label": "Schedule Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/mbkb/2026-27/roster",
+            "label": "Roster Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/Curry_MBB",
+            "label": "Twitter Basketball: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/mxc/2026-27/schedule",
+            "label": "Schedule Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/mxc/2026-27/roster",
+            "label": "Roster Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/CurryColonels",
+            "label": "Twitter Cross Country: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/currycollegexc",
+            "label": "Instagram Cross Country: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/fball/2026-27/schedule",
+            "label": "Schedule Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/fball/2026-27/roster",
+            "label": "Roster Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/CurryFootball",
+            "label": "Twitter Football: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/currycollegefootball/",
+            "label": "Instagram Football: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/mice/2026-27/schedule",
+            "label": "Schedule Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/mice/2026-27/roster",
+            "label": "Roster Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/curryhockey",
+            "label": "Twitter Hockey: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/currycollegehockey/",
+            "label": "Instagram Hockey: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/mlax/2025-26/schedule",
+            "label": "Schedule Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/mlax/2025-26/roster",
+            "label": "Roster Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/currycollegemenslacrosse/",
+            "label": "Instagram Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/msoc/2026-27/schedule",
+            "label": "Schedule Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/msoc/2026-27/roster",
+            "label": "Roster Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/CurrySoccer",
+            "label": "Twitter Soccer: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/currycollegesoccer/",
+            "label": "Instagram Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/mten/2026-27/schedule",
+            "label": "Schedule Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/mten/2026-27/roster",
+            "label": "Roster Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/mtrack-out/2025-26/schedule",
+            "label": "Schedule Track and Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/mtrack-out/2025-26/roster",
+            "label": "Roster Track and Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/mvball/2025-26/schedule",
+            "label": "Schedule Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/mvball/2025-26/roster",
+            "label": "Roster Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/currycolonelsmvb/",
+            "label": "Instagram Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wbkb/2026-27/schedule",
+            "label": "Schedule Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wbkb/2026-27/roster",
+            "label": "Roster Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/currycollegewbb",
+            "label": "Twitter Basketball: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/curry_wbb/",
+            "label": "Instagram Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wxc/2026-27/schedule",
+            "label": "Schedule Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wxc/2026-27/roster",
+            "label": "Roster Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wice/2026-27/schedule",
+            "label": "Schedule Ice Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wice/2026-27/roster",
+            "label": "Roster Ice Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/CurryWIH",
+            "label": "Twitter Ice Hockey: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/currywhockey/?hl=en)",
+            "label": "Instagram Ice Hockey: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wlax/2025-26/schedule",
+            "label": "Schedule Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wlax/2025-26/roster",
+            "label": "Roster Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/CCWLAX",
+            "label": "Twitter Lacrosse: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/cc_womenslacrosse/",
+            "label": "Instagram Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wsoc/2026-27/schedule",
+            "label": "Schedule Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wsoc/2026-27/roster",
+            "label": "Roster Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/CurryWSoccer",
+            "label": "Twitter Soccer: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/currywsoc/",
+            "label": "Instagram Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/sball/2025-26/schedule",
+            "label": "Schedule Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/sball/2025-26/roster",
+            "label": "Roster Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/CurrySoftball",
+            "label": "Twitter Softball: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/currysoftball/",
+            "label": "Instagram Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wten/2026-27/schedule",
+            "label": "Schedule Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wten/2026-27/roster",
+            "label": "Roster Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/currycollegetennis/",
+            "label": "Instagram Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wtrack-out/2025-26/schedule",
+            "label": "Schedule Track and Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wtrack-out/2025-26/roster",
+            "label": "Roster Track and Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wvball/2026-27/schedule",
+            "label": "Schedule Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wvball/2026-27/roster",
+            "label": "Roster Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/Curry_WVB",
+            "label": "Twitter Volleyball: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/curryvolleyball/",
+            "label": "Instagram Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/cheer/2025-26/roster",
+            "label": "Cheerleading Inside Athletics: Cheerleading",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/information/directory/index",
+            "label": "Staff Directory Inside Athletics: Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "http://www.curry.edu/about-curry/our-campus/directions-and-campus-map.html",
+            "label": "Campus Map Curry: Campus Map",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "http://www.curry.edu/campus-life/fitness-and-recreation/club-sports.html",
+            "label": "Club Sports Curry: Club Sports",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "http://www.curry.edu/campus-life/fitness-and-recreation/intramurals.html",
+            "label": "Intramurals Curry: Intramurals",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.curryathletics.com/information/recruiting_questionnaire/Index",
+            "label": "Recruiting Questionnaires by Sport Recruit Me: Recruiting Questionnaires by Sport",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.curryathletics.com/composite",
+            "label": "Schedule Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bsnteamsports.com/shop/gwCwuVwDwB?utm_source=flyer&utm_medium=pdf&utm_campaign=store_shop&utm_content=store_link",
+            "label": "Volleyball Shop: Volleyball",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.instagram.com/currycolonels/?hl=en",
+            "label": "Instagram Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/currycolonels?lang=en",
+            "label": "X-Twitter X-Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/coaches/index",
+            "label": "Coaches",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/recruit_questionnaire",
+            "label": "Recruiting Questionnaire",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://secureq.scoutwareforms.net/q/curry_base/kp_alumni/s98x2.html",
+            "label": "Alumni Questionnaire",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/2025-26/schedule?eid=s8de7xeo65r9x0ox",
+            "label": "Details Event details for Baseball at Caltech on Mon. 9",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/2025-26/schedule?eid=n9s4mwvo18cr0h30",
+            "label": "Details Event details for Baseball at Whittier on Tue. 10",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/2025-26/schedule?eid=seikatlketkz1t51",
+            "label": "Details Event details for Baseball at Cal Lutheran on Wed. 11",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/2025-26/schedule?eid=8yj6az1d66osux1u",
+            "label": "Details Event details for Baseball at Occidental on Thu. 12",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/2025-26/schedule?eid=x147gjov7pk6fdj8",
+            "label": "Details Event details for Baseball at Occidental on Fri. 13",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/2025-26/schedule?eid=5sv2l2puk8wgh2ln",
+            "label": "Details Event details for Baseball at Occidental on Sat. 14",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/2025-26/schedule?eid=qsxgpvelypzrcoyg",
+            "label": "Details Event details for Baseball at Lasell on Thu. 19",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/2025-26/schedule?eid=2b37fzvdrcjsj51r",
+            "label": "Details Event details for Baseball vs Lesley on Sun. 22",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/2025-26/schedule?eid=ovnrghiiq5oiiyrs",
+            "label": "Details Event details for Baseball at Nichols on Wed. 25",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/2025-26/schedule?eid=zeaqkxayjl2kapnh",
+            "label": "Details Event details for Baseball vs Emerson on Thu. 26",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/2025-26/schedule?eid=1i2rcmi41umnh8rh",
+            "label": "Details Event details for Baseball vs Johnson & Wales (RI) on Sat. 28",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/2025-26/schedule?eid=8oem918rjrivlka8",
+            "label": "Details Event details for Baseball vs Johnson & Wales (RI) on Sat. 28",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/2025-26/schedule?eid=4ld2vuyux3scluwv",
+            "label": "Details Event details for Baseball vs Roger Williams on Wed. 1",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/2025-26/schedule?eid=3jxq2d6brrd6kxn1",
+            "label": "Details Event details for Baseball at Rhode Island Col. on Thu. 2",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/2025-26/schedule?eid=5yfdbfs9qatlfa5p",
+            "label": "Details Event details for Baseball at Suffolk on Sat. 4",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/2025-26/schedule?eid=cztfnf4ni6gvfy50",
+            "label": "Details Event details for Baseball at Suffolk on Sat. 4",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/2025-26/schedule?eid=yxv2qkihejyu9tb2",
+            "label": "Details Event details for Baseball at Bridgewater St. on Wed. 8",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/2025-26/schedule?eid=0bzkml8lwqjo18ld",
+            "label": "Details Event details for Baseball vs Gordon on Thu. 9",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/2025-26/schedule?eid=cyc9foh6wnwgezot",
+            "label": "Details Event details for Baseball at Wentworth on Sat. 11",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/2025-26/schedule?eid=vsf1kzozb90grdjs",
+            "label": "Details Event details for Baseball at Wentworth on Sat. 11",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/2025-26/schedule?eid=hfw77cojpzejjl30",
+            "label": "Details Event details for Baseball at Salve Regina on Sun. 12",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/2025-26/schedule?eid=hoja3acbcelg26j4",
+            "label": "Details Event details for Baseball at Roger Williams on Tue. 14",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/2025-26/schedule?eid=az8tublcmwhk3icx",
+            "label": "Details Event details for Baseball vs Framingham St. on Wed. 15",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/2025-26/schedule?eid=dbd2ccp6q9ozwt1j",
+            "label": "Details Event details for Baseball vs Springfield on Thu. 16",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/2025-26/schedule?eid=ftie8mk1y6svct82",
+            "label": "Details Event details for Baseball vs Western New Eng. on Sat. 18",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/2025-26/schedule?eid=1tgsirn0kywmoadp",
+            "label": "Details Event details for Baseball vs Western New Eng. on Sat. 18",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/2025-26/schedule?eid=rxs35etan50saljb",
+            "label": "Details Event details for Baseball vs Mass.-Boston on Mon. 20",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/2025-26/schedule?eid=zbgndetqkzgzcwuy",
+            "label": "Details Event details for Baseball at Gordon on Tue. 21",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/2025-26/schedule?eid=s42gumm8dalh5cpw",
+            "label": "Details Event details for Baseball vs Albertus Magnus on Wed. 22",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/2025-26/schedule?eid=3mptoyitbcmq30h6",
+            "label": "Details Event details for Baseball vs Rhode Island Col. on Thu. 23",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/2025-26/schedule?eid=kodwv7xqbg20i0qd",
+            "label": "Details Event details for Baseball vs Hartford on Sat. 25",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/2025-26/schedule?eid=iq9lf8134aygsbjg",
+            "label": "Details Event details for Baseball vs Hartford on Sat. 25",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/2025-26/schedule?eid=vyoqbq5q2fvc75y0",
+            "label": "Details Event details for Baseball vs Nichols on Tue. 28",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/2025-26/schedule?eid=xbfdz345j8a6itp5",
+            "label": "Details Event details for Baseball vs Brandeis on Wed. 29",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/2025-26/schedule?eid=h7kyopkwow6m479d",
+            "label": "Details Event details for Baseball vs Mass. Maritime on Fri. 1",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/2025-26/schedule?eid=jzln14lm9d30e06j",
+            "label": "Details Event details for Baseball at Endicott on Sat. 2",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/2025-26/schedule?eid=xzfegj5rtl1zyhlb",
+            "label": "Details Event details for Baseball at Endicott on Sat. 2",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/2025-26/schedule?print=ical",
+            "label": "Calendar",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/2025-26/schedule?print=rss",
+            "label": "RSS Feed",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://facebook.com/sharer/sharer.php?u=https://www.curryathletics.com/sports/bsb/2025-26/schedule",
+            "label": "Facebook Share this page on Facebook",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/intent/tweet/?text=2025-26%20Curry%20Baseball%20Schedule&url=https://www.curryathletics.com/sports/bsb/2025-26/schedule",
+            "label": "Twitter Share this page on Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "mailto:?subject=2025-26 Curry Baseball Schedule&body=https://www.curryathletics.com/sports/bsb/2025-26/schedule",
+            "label": "Email Share this page via email",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://curry.prestosports.com/sports/bsb/2025-26/schedule?dec=printer-decorator",
+            "label": "Print Print this page Print",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://www.curryathletics.com/sports/bsb/coaches/index",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/curry-college-0.html",
+        "sha256": "46e78fb40abd0634aae092f5647722f2df1c02007633010203b0b034d2982989",
+        "url": "https://www.curryathletics.com/sports/bsb/coaches/index",
+        "label": "Coaches"
+      },
+      "status": 200,
+      "finalUrl": "https://www.curryathletics.com/sports/bsb/coaches/index",
+      "checkedAtUtc": "2026-11-17T20:35:40.696Z",
+      "sourcePath": "sources/curry-college-2.html",
+      "sha256": "c3801058c21810a54b6783c671515e9503fc7c19d975f031d43786c398395a7e",
+      "parsed": {
+        "title": "Baseball - Curry College Athletics",
+        "headings": [
+          "Baseball"
+        ],
+        "links": [
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/coaches/index",
+            "label": "Skip to navigation",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/2025-26/schedule",
+            "label": "Schedule Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/2025-26/roster",
+            "label": "Roster Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/Curry_Baseball",
+            "label": "Twitter Baseball: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/currycolonels/",
+            "label": "Instagram Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/mbkb/2026-27/schedule",
+            "label": "Schedule Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/mbkb/2026-27/roster",
+            "label": "Roster Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/Curry_MBB",
+            "label": "Twitter Basketball: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/mxc/2026-27/schedule",
+            "label": "Schedule Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/mxc/2026-27/roster",
+            "label": "Roster Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/CurryColonels",
+            "label": "Twitter Cross Country: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/currycollegexc",
+            "label": "Instagram Cross Country: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/fball/2026-27/schedule",
+            "label": "Schedule Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/fball/2026-27/roster",
+            "label": "Roster Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/CurryFootball",
+            "label": "Twitter Football: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/currycollegefootball/",
+            "label": "Instagram Football: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/mice/2026-27/schedule",
+            "label": "Schedule Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/mice/2026-27/roster",
+            "label": "Roster Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/curryhockey",
+            "label": "Twitter Hockey: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/currycollegehockey/",
+            "label": "Instagram Hockey: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/mlax/2025-26/schedule",
+            "label": "Schedule Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/mlax/2025-26/roster",
+            "label": "Roster Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/currycollegemenslacrosse/",
+            "label": "Instagram Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/msoc/2026-27/schedule",
+            "label": "Schedule Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/msoc/2026-27/roster",
+            "label": "Roster Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/CurrySoccer",
+            "label": "Twitter Soccer: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/currycollegesoccer/",
+            "label": "Instagram Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/mten/2026-27/schedule",
+            "label": "Schedule Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/mten/2026-27/roster",
+            "label": "Roster Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/mtrack-out/2025-26/schedule",
+            "label": "Schedule Track and Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/mtrack-out/2025-26/roster",
+            "label": "Roster Track and Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/mvball/2025-26/schedule",
+            "label": "Schedule Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/mvball/2025-26/roster",
+            "label": "Roster Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/currycolonelsmvb/",
+            "label": "Instagram Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wbkb/2026-27/schedule",
+            "label": "Schedule Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wbkb/2026-27/roster",
+            "label": "Roster Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/currycollegewbb",
+            "label": "Twitter Basketball: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/curry_wbb/",
+            "label": "Instagram Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wxc/2026-27/schedule",
+            "label": "Schedule Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wxc/2026-27/roster",
+            "label": "Roster Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wice/2026-27/schedule",
+            "label": "Schedule Ice Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wice/2026-27/roster",
+            "label": "Roster Ice Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/CurryWIH",
+            "label": "Twitter Ice Hockey: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/currywhockey/?hl=en)",
+            "label": "Instagram Ice Hockey: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wlax/2025-26/schedule",
+            "label": "Schedule Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wlax/2025-26/roster",
+            "label": "Roster Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/CCWLAX",
+            "label": "Twitter Lacrosse: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/cc_womenslacrosse/",
+            "label": "Instagram Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wsoc/2026-27/schedule",
+            "label": "Schedule Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wsoc/2026-27/roster",
+            "label": "Roster Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/CurryWSoccer",
+            "label": "Twitter Soccer: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/currywsoc/",
+            "label": "Instagram Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/sball/2025-26/schedule",
+            "label": "Schedule Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/sball/2025-26/roster",
+            "label": "Roster Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/CurrySoftball",
+            "label": "Twitter Softball: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/currysoftball/",
+            "label": "Instagram Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wten/2026-27/schedule",
+            "label": "Schedule Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wten/2026-27/roster",
+            "label": "Roster Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/currycollegetennis/",
+            "label": "Instagram Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wtrack-out/2025-26/schedule",
+            "label": "Schedule Track and Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wtrack-out/2025-26/roster",
+            "label": "Roster Track and Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wvball/2026-27/schedule",
+            "label": "Schedule Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wvball/2026-27/roster",
+            "label": "Roster Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/Curry_WVB",
+            "label": "Twitter Volleyball: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/curryvolleyball/",
+            "label": "Instagram Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/cheer/2025-26/roster",
+            "label": "Cheerleading Inside Athletics: Cheerleading",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/information/directory/index",
+            "label": "Staff Directory Inside Athletics: Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "http://www.curry.edu/about-curry/our-campus/directions-and-campus-map.html",
+            "label": "Campus Map Curry: Campus Map",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "http://www.curry.edu/campus-life/fitness-and-recreation/club-sports.html",
+            "label": "Club Sports Curry: Club Sports",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "http://www.curry.edu/campus-life/fitness-and-recreation/intramurals.html",
+            "label": "Intramurals Curry: Intramurals",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.curryathletics.com/information/recruiting_questionnaire/Index",
+            "label": "Recruiting Questionnaires by Sport Recruit Me: Recruiting Questionnaires by Sport",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/coaches/youtube.com/watch?reload=9&v=Df-G3Pt-yyM&feature=youtu.be",
+            "label": "Recruiting Video Recruit Me: Recruiting Video",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.curryathletics.com/composite",
+            "label": "Schedule Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bsnteamsports.com/shop/gwCwuVwDwB?utm_source=flyer&utm_medium=pdf&utm_campaign=store_shop&utm_content=store_link",
+            "label": "Volleyball Shop: Volleyball",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.instagram.com/currycolonels/?hl=en",
+            "label": "Instagram Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/currycolonels?lang=en",
+            "label": "X-Twitter X-Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/recruit_questionnaire",
+            "label": "Recruiting Questionnaire",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://secureq.scoutwareforms.net/q/curry_base/kp_alumni/s98x2.html",
+            "label": "Alumni Questionnaire",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/coaches/CJ_Willis",
+            "label": "",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/coaches/Ryan_Kirkpatrick",
+            "label": "",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/coaches/Logan_Lawrence",
+            "label": "",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/coaches/AJ_Cook",
+            "label": "",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://facebook.com/sharer/sharer.php?u=https://www.curryathletics.com/sports/bsb/coaches/index",
+            "label": "Facebook Share this page on Facebook",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://twitter.com/intent/tweet/?text=Baseball&url=https://www.curryathletics.com/sports/bsb/coaches/index",
+            "label": "Twitter Share this page on Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "mailto:?subject=Baseball&body=https://www.curryathletics.com/sports/bsb/coaches/index",
+            "label": "Email Share this page via email",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://curry.prestosports.com/sports/bsb/coaches/index?dec=printer-decorator",
+            "label": "Print Print this page Print",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://www.curryathletics.com/sports/bsb/recruit_questionnaire",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/curry-college-0.html",
+        "sha256": "46e78fb40abd0634aae092f5647722f2df1c02007633010203b0b034d2982989",
+        "url": "https://www.curryathletics.com/sports/bsb/recruit_questionnaire",
+        "label": "Recruiting Questionnaire"
+      },
+      "status": 200,
+      "finalUrl": "https://www.curryathletics.com/sports/bsb/recruit_questionnaire",
+      "checkedAtUtc": "2026-11-17T20:35:41.598Z",
+      "sourcePath": "sources/curry-college-3.html",
+      "sha256": "3a22a4be11e9ebd4065695abeae830dd47f546db159194ee4a95e0762b8ab962",
+      "parsed": {
+        "title": "Recruit Questionnaire - Curry College Athletics",
+        "headings": [
+          "Curry College Baseball Recruiting Questionnaire"
+        ],
+        "links": [
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/recruit_questionnaire",
+            "label": "Skip to navigation",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/2025-26/schedule",
+            "label": "Schedule Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/2025-26/roster",
+            "label": "Roster Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/Curry_Baseball",
+            "label": "Twitter Baseball: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/currycolonels/",
+            "label": "Instagram Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/mbkb/2026-27/schedule",
+            "label": "Schedule Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/mbkb/2026-27/roster",
+            "label": "Roster Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/Curry_MBB",
+            "label": "Twitter Basketball: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/mxc/2026-27/schedule",
+            "label": "Schedule Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/mxc/2026-27/roster",
+            "label": "Roster Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/CurryColonels",
+            "label": "Twitter Cross Country: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/currycollegexc",
+            "label": "Instagram Cross Country: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/fball/2026-27/schedule",
+            "label": "Schedule Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/fball/2026-27/roster",
+            "label": "Roster Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/CurryFootball",
+            "label": "Twitter Football: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/currycollegefootball/",
+            "label": "Instagram Football: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/mice/2026-27/schedule",
+            "label": "Schedule Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/mice/2026-27/roster",
+            "label": "Roster Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/curryhockey",
+            "label": "Twitter Hockey: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/currycollegehockey/",
+            "label": "Instagram Hockey: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/mlax/2025-26/schedule",
+            "label": "Schedule Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/mlax/2025-26/roster",
+            "label": "Roster Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/currycollegemenslacrosse/",
+            "label": "Instagram Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/msoc/2026-27/schedule",
+            "label": "Schedule Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/msoc/2026-27/roster",
+            "label": "Roster Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/CurrySoccer",
+            "label": "Twitter Soccer: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/currycollegesoccer/",
+            "label": "Instagram Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/mten/2026-27/schedule",
+            "label": "Schedule Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/mten/2026-27/roster",
+            "label": "Roster Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/mtrack-out/2025-26/schedule",
+            "label": "Schedule Track and Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/mtrack-out/2025-26/roster",
+            "label": "Roster Track and Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/mvball/2025-26/schedule",
+            "label": "Schedule Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/mvball/2025-26/roster",
+            "label": "Roster Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/currycolonelsmvb/",
+            "label": "Instagram Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wbkb/2026-27/schedule",
+            "label": "Schedule Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wbkb/2026-27/roster",
+            "label": "Roster Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/currycollegewbb",
+            "label": "Twitter Basketball: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/curry_wbb/",
+            "label": "Instagram Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wxc/2026-27/schedule",
+            "label": "Schedule Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wxc/2026-27/roster",
+            "label": "Roster Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wice/2026-27/schedule",
+            "label": "Schedule Ice Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wice/2026-27/roster",
+            "label": "Roster Ice Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/CurryWIH",
+            "label": "Twitter Ice Hockey: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/currywhockey/?hl=en)",
+            "label": "Instagram Ice Hockey: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wlax/2025-26/schedule",
+            "label": "Schedule Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wlax/2025-26/roster",
+            "label": "Roster Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/CCWLAX",
+            "label": "Twitter Lacrosse: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/cc_womenslacrosse/",
+            "label": "Instagram Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wsoc/2026-27/schedule",
+            "label": "Schedule Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wsoc/2026-27/roster",
+            "label": "Roster Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/CurryWSoccer",
+            "label": "Twitter Soccer: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/currywsoc/",
+            "label": "Instagram Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/sball/2025-26/schedule",
+            "label": "Schedule Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/sball/2025-26/roster",
+            "label": "Roster Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/CurrySoftball",
+            "label": "Twitter Softball: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/currysoftball/",
+            "label": "Instagram Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wten/2026-27/schedule",
+            "label": "Schedule Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wten/2026-27/roster",
+            "label": "Roster Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/currycollegetennis/",
+            "label": "Instagram Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wtrack-out/2025-26/schedule",
+            "label": "Schedule Track and Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wtrack-out/2025-26/roster",
+            "label": "Roster Track and Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wvball/2026-27/schedule",
+            "label": "Schedule Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/wvball/2026-27/roster",
+            "label": "Roster Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/Curry_WVB",
+            "label": "Twitter Volleyball: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/curryvolleyball/",
+            "label": "Instagram Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/cheer/2025-26/roster",
+            "label": "Cheerleading Inside Athletics: Cheerleading",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.curryathletics.com/information/directory/index",
+            "label": "Staff Directory Inside Athletics: Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "http://www.curry.edu/about-curry/our-campus/directions-and-campus-map.html",
+            "label": "Campus Map Curry: Campus Map",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "http://www.curry.edu/campus-life/fitness-and-recreation/club-sports.html",
+            "label": "Club Sports Curry: Club Sports",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "http://www.curry.edu/campus-life/fitness-and-recreation/intramurals.html",
+            "label": "Intramurals Curry: Intramurals",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.curryathletics.com/information/recruiting_questionnaire/Index",
+            "label": "Recruiting Questionnaires by Sport Recruit Me: Recruiting Questionnaires by Sport",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.curryathletics.com/composite",
+            "label": "Schedule Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://bsnteamsports.com/shop/gwCwuVwDwB?utm_source=flyer&utm_medium=pdf&utm_campaign=store_shop&utm_content=store_link",
+            "label": "Volleyball Shop: Volleyball",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.instagram.com/currycolonels/?hl=en",
+            "label": "Instagram Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/currycolonels?lang=en",
+            "label": "X-Twitter X-Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.curryathletics.com/sports/bsb/coaches/index",
+            "label": "Coaches",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://secureq.scoutwareforms.net/q/curry_base/kp_alumni/s98x2.html",
+            "label": "Alumni Questionnaire",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://facebook.com/sharer/sharer.php?u=https://www.curryathletics.com/sports/bsb/recruit_questionnaire",
+            "label": "Facebook Share this page on Facebook",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://twitter.com/intent/tweet/?text=Recruit%20Questionnaire&url=https://www.curryathletics.com/sports/bsb/recruit_questionnaire",
+            "label": "Twitter Share this page on Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "mailto:?subject=Recruit Questionnaire&body=https://www.curryathletics.com/sports/bsb/recruit_questionnaire",
+            "label": "Email Share this page via email",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://curry.prestosports.com/sports/bsb/recruit_questionnaire?dec=printer-decorator",
+            "label": "Print Print this page Print",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          }
+        ]
+      }
+    }
+  ],
+  "status": "EVIDENCE_CAPTURED_REQUIRES_REVIEW"
+}

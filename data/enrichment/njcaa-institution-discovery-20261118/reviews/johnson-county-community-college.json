@@ -1,0 +1,44 @@
+{
+  "slug": "johnson-county-community-college",
+  "name": "Johnson County Community College",
+  "collegeId": "cmox1ghkq005oqtsgk5vbmhcv",
+  "programId": "cmox1ghlk005qqtsgeovgi8gx",
+  "storedState": "KS",
+  "storedDivision": "NJCAA_D1",
+  "directoryMatch": {
+    "unitid": "155210",
+    "name": "Johnson County Community College",
+    "aliases": [
+      "JCCC"
+    ],
+    "state": "KS",
+    "city": "Overland Park",
+    "host": "jccc.edu",
+    "decision": "UNIQUE_EXACT_NAME_OR_ALIAS_AND_STATE_DISCOVERY_LEAD_ONLY"
+  },
+  "directoryMatchStatus": "DISCOVERY_LEAD_NOT_CURRENT_CAMPUS_VERIFIED",
+  "needsHeadCoach": true,
+  "needs2027Roster": true,
+  "newPagesAttempted": 0,
+  "pages": [
+    {
+      "requestedUrl": "https://jccc.edu/",
+      "finalUrl": "https://jccc.edu/",
+      "status": "HELD_ACCESS_NOT_RETRIED",
+      "parent": {
+        "sourcePath": "../../geography/us-college-locations-ipeds2024.json",
+        "unitid": "155210",
+        "publishedName": "Johnson County Community College",
+        "state": "KS",
+        "city": "Overland Park"
+      }
+    }
+  ],
+  "unfetchedPublishedLeads": [],
+  "publishedLeads": [],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "campusIdentityReviewRequired": true,
+  "currentMembershipVerified": false,
+  "importApproval": "NOT_GRANTED"
+}

@@ -1,0 +1,85 @@
+{
+  "slug": "heartland-community-college",
+  "programId": "cmox236ym004zqtfkvhpmfjkq",
+  "collegeId": "cmox236xw004xqtfku67i1gyl",
+  "checkedAtUtc": "2026-11-18T14:43:34.578Z",
+  "sourcePath": "../njcaa-discovery-20261118/sources/heartland-community-college-1.source",
+  "sourceSHA256": "38e9b6f68122a4e6dbbb0e216ac4822753ea3e58538024f47b0a7e856d905170",
+  "sourceUrl": "https://heartlandhawks.com/sports/baseball",
+  "socialLeads": [
+    {
+      "url": "https://x.com/hcc_hawks",
+      "label": "Baseball: X",
+      "context": "",
+      "kind": "HTML"
+    },
+    {
+      "url": "https://instagram.com/heartlandccbaseball",
+      "label": "Baseball: Instagram",
+      "context": "",
+      "kind": "HTML"
+    }
+  ],
+  "recruitingLeads": [
+    {
+      "url": "https://heartlandhawks.com/sb_output.aspx?form=3",
+      "label": "Recruits",
+      "context": "",
+      "kind": "QUESTIONNAIRE"
+    }
+  ],
+  "logoLeads": [
+    {
+      "url": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/heartlandcc.sidearmsports.com/images/responsive/nav_logo_baseball.png",
+      "label": "Heartland Hawks large main-header__logo--lg"
+    },
+    {
+      "url": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/heartlandcc.sidearmsports.com/images/responsive/nav_logo_scroll.svg",
+      "label": "Heartland Hawks small main-header__logo--sm"
+    }
+  ],
+  "captures": [
+    {
+      "requestedUrl": "https://heartlandhawks.com/sb_output.aspx?form=3",
+      "kind": "QUESTIONNAIRE",
+      "status": 200,
+      "finalUrl": "https://heartlandhawks.com/sb_output.aspx?form=3",
+      "contentType": "text/html; charset=utf-8",
+      "sourcePath": "sources/heartland-community-college-0.source",
+      "sha256": "ff460fb8d5e55c56ca8b94710029abf4e8b22e22c17e506710c45b5aca070ccc"
+    },
+    {
+      "requestedUrl": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/heartlandcc.sidearmsports.com/images/responsive/nav_logo_baseball.png",
+      "kind": "LOGO_ASSET",
+      "status": 200,
+      "finalUrl": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/heartlandcc.sidearmsports.com/images/responsive/nav_logo_baseball.png",
+      "contentType": "image/png",
+      "sourcePath": "sources/heartland-community-college-1.source",
+      "sha256": "557fc10c34b497bd5004059f3aa329894eccd25d2b295037f404aadabded2fb4",
+      "decoded": {
+        "format": "png",
+        "width": 216,
+        "height": 145
+      },
+      "assetDecoded": true
+    },
+    {
+      "requestedUrl": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/heartlandcc.sidearmsports.com/images/responsive/nav_logo_scroll.svg",
+      "kind": "LOGO_ASSET",
+      "status": 200,
+      "finalUrl": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/heartlandcc.sidearmsports.com/images/responsive/nav_logo_scroll.svg",
+      "contentType": "image/svg+xml",
+      "sourcePath": "sources/heartland-community-college-2.source",
+      "sha256": "c85eb00f5a81339344e62abd002b8e8188764f060598e3d8677bb781c4875cfe",
+      "decoded": {
+        "format": "svg",
+        "width": 204,
+        "height": 59
+      },
+      "assetDecoded": true
+    }
+  ],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED"
+}

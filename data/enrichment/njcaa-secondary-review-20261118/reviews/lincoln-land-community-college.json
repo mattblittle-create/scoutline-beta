@@ -1,0 +1,83 @@
+{
+  "slug": "lincoln-land-community-college",
+  "programId": "cmox2380i0078qtfk1skng94m",
+  "collegeId": "cmox237zs0076qtfkf1v7ckpt",
+  "checkedAtUtc": "2026-11-18T14:43:35.393Z",
+  "sourcePath": "../njcaa-discovery-20261118/sources/lincoln-land-community-college-1.source",
+  "sourceSHA256": "eda863a0d09bc9c5d1bf8ca6f27870f29b259a1020ec95c9af005cc53bfbebde",
+  "sourceUrl": "https://lincolnlandloggers.com/sports/baseball",
+  "socialLeads": [],
+  "recruitingLeads": [
+    {
+      "url": "https://lincolnlandloggers.com/sb_output.aspx?form=3&path=general",
+      "label": "Recruit Me",
+      "context": "",
+      "kind": "QUESTIONNAIRE"
+    },
+    {
+      "url": "https://lincolnlandloggers.com/registrations",
+      "label": "2026-2027 Winter Camps",
+      "context": "",
+      "kind": "CAMP"
+    },
+    {
+      "url": "https://lincolnlandloggers.com/documents/2022/3/28/LLCC_Summer_Sports_Camps_Insurance_Waiver_ADA.pdf",
+      "label": "Camp Insurance Waiver",
+      "context": "",
+      "kind": "CAMP"
+    }
+  ],
+  "logoLeads": [
+    {
+      "url": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/llcc.sidearmsports.com/images/responsive_2020/logo_main.svg",
+      "label": "LLCC undefined"
+    }
+  ],
+  "captures": [
+    {
+      "requestedUrl": "https://lincolnlandloggers.com/sb_output.aspx?form=3&path=general",
+      "kind": "QUESTIONNAIRE",
+      "status": 200,
+      "finalUrl": "https://lincolnlandloggers.com/sb_output.aspx?form=3&path=general",
+      "contentType": "text/html; charset=utf-8",
+      "sourcePath": "sources/lincoln-land-community-college-0.source",
+      "sha256": "67ec7c0feb987ba668a10ddcc1f5d6d35b1431aba7eb8fab5ce4b9fca851f32d"
+    },
+    {
+      "requestedUrl": "https://lincolnlandloggers.com/registrations",
+      "kind": "CAMP",
+      "status": 200,
+      "finalUrl": "https://lincolnlandloggers.com/registrations/",
+      "sourcePath": "../njcaa-core-review-20261118/sources/lincoln-land-community-college-5.source",
+      "sha256": "7238c75d925c962f975e87ea585a1dfcf51e1cdfaeba3840d43d972e9af56ee8",
+      "reusedEvidence": true
+    },
+    {
+      "requestedUrl": "https://lincolnlandloggers.com/documents/2022/3/28/LLCC_Summer_Sports_Camps_Insurance_Waiver_ADA.pdf",
+      "kind": "CAMP",
+      "status": 200,
+      "finalUrl": "https://lincolnlandloggers.com/documents/2022/3/28/LLCC_Summer_Sports_Camps_Insurance_Waiver_ADA.pdf",
+      "contentType": "text/html; charset=utf-8",
+      "sourcePath": "sources/lincoln-land-community-college-2.source",
+      "sha256": "45e6b08796f24a9fe50919ffeb8a43501088089aaff36af9818a8128ebc8acf0"
+    },
+    {
+      "requestedUrl": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/llcc.sidearmsports.com/images/responsive_2020/logo_main.svg",
+      "kind": "LOGO_ASSET",
+      "status": 200,
+      "finalUrl": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/llcc.sidearmsports.com/images/responsive_2020/logo_main.svg",
+      "contentType": "image/svg+xml",
+      "sourcePath": "sources/lincoln-land-community-college-3.source",
+      "sha256": "524f1c70a383921fec7dac9a5af1ef2c202dad81ced542a54e2dd33febe97771",
+      "decoded": {
+        "format": "svg",
+        "width": 178,
+        "height": 100
+      },
+      "assetDecoded": true
+    }
+  ],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED"
+}

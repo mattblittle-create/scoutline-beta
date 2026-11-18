@@ -1,0 +1,44 @@
+{
+  "slug": "illinois-central-college",
+  "name": "Illinois Central College",
+  "collegeId": "cmox2377j005iqtfklxcbxnrb",
+  "programId": "cmox23788005kqtfkjxoc69xz",
+  "storedState": "IL",
+  "storedDivision": "NJCAA_D2",
+  "directoryMatch": {
+    "unitid": "145682",
+    "name": "Illinois Central College",
+    "aliases": [
+      "ICC"
+    ],
+    "state": "IL",
+    "city": "East Peoria",
+    "host": "icc.edu",
+    "decision": "UNIQUE_EXACT_NAME_OR_ALIAS_AND_STATE_DISCOVERY_LEAD_ONLY"
+  },
+  "directoryMatchStatus": "DISCOVERY_LEAD_NOT_CURRENT_CAMPUS_VERIFIED",
+  "needsHeadCoach": true,
+  "needs2027Roster": true,
+  "newPagesAttempted": 0,
+  "pages": [
+    {
+      "requestedUrl": "https://icc.edu/",
+      "finalUrl": "https://icc.edu/",
+      "status": "HELD_ACCESS_NOT_RETRIED",
+      "parent": {
+        "sourcePath": "../../geography/us-college-locations-ipeds2024.json",
+        "unitid": "145682",
+        "publishedName": "Illinois Central College",
+        "state": "IL",
+        "city": "East Peoria"
+      }
+    }
+  ],
+  "unfetchedPublishedLeads": [],
+  "publishedLeads": [],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "campusIdentityReviewRequired": true,
+  "currentMembershipVerified": false,
+  "importApproval": "NOT_GRANTED"
+}

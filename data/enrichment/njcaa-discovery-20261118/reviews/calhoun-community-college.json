@@ -1,0 +1,41 @@
+{
+  "slug": "calhoun-community-college",
+  "collegeId": "cmox1gfce000xqtsgvavjcgow",
+  "programId": "cmox1gfd4000zqtsgpu111htg",
+  "name": "Calhoun Community College",
+  "state": "AL",
+  "storedDivision": "NJCAA_D1",
+  "pages": [
+    {
+      "requestedUrl": "https://njcaastats.prestosports.com/sports/bsb/2024-25/div1/teams/calhouncommunitycollege",
+      "kind": "STORED_URL_UNVERIFIED",
+      "checkedAtUtc": "2026-11-18T14:15:46.614Z",
+      "status": "HELD_ACCESS_NOT_RETRIED",
+      "finalUrl": "https://njcaastats.prestosports.com/sports/bsb/2024-25/div1/teams/calhouncommunitycollege"
+    },
+    {
+      "requestedUrl": "https://calhoun.edu/athletics/baseball/",
+      "kind": "DISCOVERY_LEAD_NOT_CAMPUS_VERIFIED",
+      "checkedAtUtc": "2026-11-18T14:15:46.615Z",
+      "status": 404,
+      "finalUrl": "https://calhoun.edu/athletics/baseball/",
+      "contentType": "text/html; charset=UTF-8",
+      "sourcePath": "sources/calhoun-community-college-1.source",
+      "sha256": "85d6b3f9d572af7aeab575fa0e0c6dbf75c64fd5018ff5ebf00ee6fccb54298c"
+    }
+  ],
+  "thirdPartyExactNameLeads": [
+    {
+      "url": "https://calhoun.edu/athletics/baseball/",
+      "label": "Calhoun CC",
+      "parentSourcePath": "sources/directory-0.source",
+      "parentSHA256": "63f1c531b007d2922e4db3aa2ba596ee54e397dbafd287df69b95213a011a404",
+      "parentUrl": "https://www.thebaseballobserver.com/njcaa-di-baseball"
+    }
+  ],
+  "currentMembershipVerified": false,
+  "campusIdentityVerified": false,
+  "importApproval": "NOT_GRANTED",
+  "databaseAccess": false,
+  "databaseWrites": 0
+}

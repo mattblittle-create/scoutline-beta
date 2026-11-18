@@ -1,0 +1,87 @@
+{
+  "slug": "south-suburban-college",
+  "programId": "cmox1gjtc00ahqtsgi0siqdvp",
+  "collegeId": "cmox1gjsn00afqtsgo0ngyrn5",
+  "checkedAtUtc": "2026-11-18T14:43:32.266Z",
+  "sourcePath": "../njcaa-discovery-20261118/sources/south-suburban-college-1.source",
+  "sourceSHA256": "ba7b633b56e10c502b33f37807765c25aa79f55839ec171c43ebfaa34dbe26b2",
+  "sourceUrl": "https://www.ssc.edu/athletics/baseball/",
+  "socialLeads": [],
+  "recruitingLeads": [
+    {
+      "url": "https://www.ssc.edu/athletics/prospective-athlete-form/",
+      "label": "Recruits",
+      "context": "",
+      "kind": "QUESTIONNAIRE"
+    },
+    {
+      "url": "http://www.ssc.edu/athletics/prospective-athlete-form/",
+      "label": "Prospective Athlete Form",
+      "context": "",
+      "kind": "QUESTIONNAIRE"
+    }
+  ],
+  "logoLeads": [
+    {
+      "url": "https://www.ssc.edu/wp-content/uploads/2022/10/ancilla-300x253.png",
+      "label": "img-fluid wp-post-image"
+    },
+    {
+      "url": "https://www.ssc.edu/wp-content/uploads/2018/05/bulldogbasketball2018-300x294.png",
+      "label": "Bulldog Basketball 2018 img-fluid"
+    }
+  ],
+  "captures": [
+    {
+      "requestedUrl": "https://www.ssc.edu/athletics/prospective-athlete-form/",
+      "kind": "QUESTIONNAIRE",
+      "status": 200,
+      "finalUrl": "https://www.ssc.edu/athletics/prospective-athlete-form/",
+      "sourcePath": "../njcaa-core-review-20261118/sources/south-suburban-college-4.source",
+      "sha256": "b6e63553e5ca03750b4ffc0473ddf603439d8f7f15413889df3b89ca496b58d4",
+      "reusedEvidence": true
+    },
+    {
+      "requestedUrl": "http://www.ssc.edu/athletics/prospective-athlete-form/",
+      "kind": "QUESTIONNAIRE",
+      "status": 200,
+      "finalUrl": "https://www.ssc.edu/athletics/prospective-athlete-form/",
+      "contentType": "text/html; charset=UTF-8",
+      "sourcePath": "sources/south-suburban-college-1.source",
+      "sha256": "b6e63553e5ca03750b4ffc0473ddf603439d8f7f15413889df3b89ca496b58d4"
+    },
+    {
+      "requestedUrl": "https://www.ssc.edu/wp-content/uploads/2022/10/ancilla-300x253.png",
+      "kind": "LOGO_ASSET",
+      "status": 200,
+      "finalUrl": "https://www.ssc.edu/wp-content/uploads/2022/10/ancilla-300x253.png",
+      "contentType": "image/png",
+      "sourcePath": "sources/south-suburban-college-2.source",
+      "sha256": "95c758d7c6446a5a7318e6a6c78ca4ff3e657d2016121e221749c2036cb3dddf",
+      "decoded": {
+        "format": "png",
+        "width": 300,
+        "height": 253
+      },
+      "assetDecoded": true
+    },
+    {
+      "requestedUrl": "https://www.ssc.edu/wp-content/uploads/2018/05/bulldogbasketball2018-300x294.png",
+      "kind": "LOGO_ASSET",
+      "status": 200,
+      "finalUrl": "https://www.ssc.edu/wp-content/uploads/2018/05/bulldogbasketball2018-300x294.png",
+      "contentType": "image/png",
+      "sourcePath": "sources/south-suburban-college-3.source",
+      "sha256": "264d9fa2cd7ff58108446d0ee43c10b829d4daf68882881ad916a09fe3b48562",
+      "decoded": {
+        "format": "png",
+        "width": 300,
+        "height": 294
+      },
+      "assetDecoded": true
+    }
+  ],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED"
+}

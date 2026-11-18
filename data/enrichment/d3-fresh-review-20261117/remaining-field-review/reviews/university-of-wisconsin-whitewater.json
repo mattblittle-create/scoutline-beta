@@ -1,0 +1,2180 @@
+{
+  "slug": "university-of-wisconsin-whitewater",
+  "collegeId": "cmovorzys00sfqt7gurowuj9o",
+  "programId": "cmovorzzh00shqt7g8j99tg7n",
+  "checkedAtUtc": "2026-11-17T20:38:21.795Z",
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED",
+  "missingFields": [
+    "rosterUrl",
+    "scheduleUrl",
+    "questionnaireUrl",
+    "campsUrl",
+    "generalContactEmail"
+  ],
+  "pages": [
+    {
+      "requestedUrl": "https://uwwsports.com/sports/baseball",
+      "kind": "baseball-home",
+      "parent": null,
+      "status": 200,
+      "finalUrl": "https://uwwsports.com/sports/baseball",
+      "sourcePath": "../sources/university-of-wisconsin-whitewater-1.html",
+      "sha256": "b62fc203a7448a2f6002c3113c64eb68f9d426eb4fb790be424ebcf2c8724f9b",
+      "reusedEvidence": true,
+      "originalCheckedAtUtc": "2026-11-17T17:28:24.961Z",
+      "parsed": {
+        "title": "Baseball - University of Wisconsin-Whitewater Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "THE OFFICIAL ATHLETICS SITE OF THE UNIVERSITY OF WISCONSIN-WHITEWATER",
+          "Main",
+          "Sport",
+          "Stories",
+          "Schedule",
+          "Upcoming Events",
+          "Recent Results",
+          "Videos",
+          "Trending",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://x.com/UWWBaseball",
+            "label": "Baseball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/uwwbaseball",
+            "label": "Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/baseball/schedule",
+            "label": "Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UWWMensHoops",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/uwwmenshoops",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/mens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/mens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/WarhawkXCTrack",
+            "label": "Cross Country: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/uwwsports",
+            "label": "Cross Country: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/mens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/mens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/WarhawkFootball",
+            "label": "Football: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/warhawkfb",
+            "label": "Football: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/football/schedule",
+            "label": "Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/football/roster",
+            "label": "Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UWWMensSoccer",
+            "label": "Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/uww_msoc",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/mens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/mens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UWWSwimandDive",
+            "label": "Swimming / Diving: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/uwwswimdive",
+            "label": "Swimming / Diving: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/mens-swimming-and-diving/schedule",
+            "label": "Swimming / Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/mens-swimming-and-diving/roster",
+            "label": "Swimming / Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UWWTennis",
+            "label": "Tennis: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/uwwtennis",
+            "label": "Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/mens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/mens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/uwwtf",
+            "label": "Track & Field: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/mens-track-and-field/schedule",
+            "label": "Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/mens-track-and-field/roster",
+            "label": "Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UWW_Wrestling",
+            "label": "Wrestling: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/uwwhitewaterwrestling",
+            "label": "Wrestling: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/wrestling/schedule",
+            "label": "Wrestling: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/wrestling/roster",
+            "label": "Wrestling: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UWWWomensHoops",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/uwwwomenshoops",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/WarhawkBowling",
+            "label": "Bowling: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-bowling/schedule",
+            "label": "Bowling: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-bowling/roster",
+            "label": "Bowling: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UWWwomensGolf",
+            "label": "Golf: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UWWGymnastics",
+            "label": "Gymnastics: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/uwwhitewatergymnastics",
+            "label": "Gymnastics: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/gymnastics/schedule",
+            "label": "Gymnastics: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/gymnastics/roster",
+            "label": "Gymnastics: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UWWWomensSoccer",
+            "label": "Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UWWSoftball",
+            "label": "Softball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-swimming-and-diving/schedule",
+            "label": "Swimming / Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-swimming-and-diving/roster",
+            "label": "Swimming / Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-track-and-field/schedule",
+            "label": "Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-track-and-field/roster",
+            "label": "Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UWWVolleyball",
+            "label": "Volleyball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/uwwhitewatervolleyball",
+            "label": "Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory",
+            "label": "Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/sports/2013/8/30/GEN_0830130200.aspx",
+            "label": "Recruiting Questionnaires",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/baseball-department/2?path=baseball",
+            "label": "Coaching Staff",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "http://college.jumpforward.com/questionnaire.aspx?iid=1616&sportid=16&path=baseball",
+            "label": "Recruiting Questionnaire",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://uwwsports.com/schedule.aspx?path=baseball",
+            "label": "+",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://uwwsports.com/sports/baseball/schedule",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/university-of-wisconsin-whitewater-1.html",
+        "sha256": "b62fc203a7448a2f6002c3113c64eb68f9d426eb4fb790be424ebcf2c8724f9b",
+        "url": "https://uwwsports.com/sports/baseball/schedule",
+        "label": "Baseball: Schedule"
+      },
+      "status": 200,
+      "finalUrl": "https://uwwsports.com/sports/baseball/schedule",
+      "checkedAtUtc": "2026-11-17T20:38:22.258Z",
+      "sourcePath": "sources/university-of-wisconsin-whitewater-1.html",
+      "sha256": "0e064f9baf6c2b059d1ba18655d239b90c23e95968de9c95cac34ae8c4ee8de8",
+      "parsed": {
+        "title": "2026 Baseball Schedule - University of Wisconsin-Whitewater Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "THE OFFICIAL ATHLETICS SITE OF THE UNIVERSITY OF WISCONSIN-WHITEWATER",
+          "Main",
+          "Sport",
+          "2026 Baseball Schedule",
+          "Season Records",
+          "Scheduled Games",
+          "Related Videos",
+          "Related Headlines",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://uwwsports.com/sports/baseball/schedule",
+            "label": "Skip To Main Content",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UWWBaseball",
+            "label": "Baseball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/uwwbaseball",
+            "label": "Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UWWMensHoops",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/uwwmenshoops",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/mens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/mens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/WarhawkXCTrack",
+            "label": "Cross Country: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/uwwsports",
+            "label": "Cross Country: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/mens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/mens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/WarhawkFootball",
+            "label": "Football: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/warhawkfb",
+            "label": "Football: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/football/schedule",
+            "label": "Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/football/roster",
+            "label": "Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UWWMensSoccer",
+            "label": "Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/uww_msoc",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/mens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/mens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UWWSwimandDive",
+            "label": "Swimming / Diving: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/uwwswimdive",
+            "label": "Swimming / Diving: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/mens-swimming-and-diving/schedule",
+            "label": "Swimming / Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/mens-swimming-and-diving/roster",
+            "label": "Swimming / Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UWWTennis",
+            "label": "Tennis: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/uwwtennis",
+            "label": "Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/mens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/mens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/uwwtf",
+            "label": "Track & Field: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/mens-track-and-field/schedule",
+            "label": "Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/mens-track-and-field/roster",
+            "label": "Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UWW_Wrestling",
+            "label": "Wrestling: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/uwwhitewaterwrestling",
+            "label": "Wrestling: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/wrestling/schedule",
+            "label": "Wrestling: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/wrestling/roster",
+            "label": "Wrestling: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UWWWomensHoops",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/uwwwomenshoops",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/WarhawkBowling",
+            "label": "Bowling: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-bowling/schedule",
+            "label": "Bowling: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-bowling/roster",
+            "label": "Bowling: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UWWwomensGolf",
+            "label": "Golf: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UWWGymnastics",
+            "label": "Gymnastics: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/uwwhitewatergymnastics",
+            "label": "Gymnastics: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/gymnastics/schedule",
+            "label": "Gymnastics: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/gymnastics/roster",
+            "label": "Gymnastics: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UWWWomensSoccer",
+            "label": "Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UWWSoftball",
+            "label": "Softball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-swimming-and-diving/schedule",
+            "label": "Swimming / Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-swimming-and-diving/roster",
+            "label": "Swimming / Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-track-and-field/schedule",
+            "label": "Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-track-and-field/roster",
+            "label": "Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UWWVolleyball",
+            "label": "Volleyball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/uwwhitewatervolleyball",
+            "label": "Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory",
+            "label": "Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/sports/2013/8/30/GEN_0830130200.aspx",
+            "label": "Recruiting Questionnaires",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/baseball-department/2?path=baseball",
+            "label": "Coaching Staff",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "http://college.jumpforward.com/questionnaire.aspx?iid=1616&sportid=16&path=baseball",
+            "label": "Recruiting Questionnaire",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://uwwsports.com/sports/baseball/schedule?print=true",
+            "label": "Print Print this page",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/baseball/schedule/2026?grid=true",
+            "label": "Grid Switch to Grid View",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/services/schedule_txt.ashx?schedule=930",
+            "label": "Text Text Format For Braille (New Tab)",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/news/2026/2/19/uww-baseball-begins-2026-campaign-with-a-top-10-win.aspx",
+            "label": "Recap Recap for Baseball at Trinity University (TX) on February 19, 2026 at 6 PM",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://uwwsports.com/news/2026/8/27/warhawk-baseball-2026-golf-outing.aspx",
+            "label": "Warhawk Baseball: 2026 Golf Outing - RESCHEDULED",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://uwwsports.com/staff-directory/baseball-department/2?path=baseball",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/university-of-wisconsin-whitewater-1.html",
+        "sha256": "b62fc203a7448a2f6002c3113c64eb68f9d426eb4fb790be424ebcf2c8724f9b",
+        "url": "https://uwwsports.com/staff-directory/baseball-department/2?path=baseball",
+        "label": "Coaching Staff"
+      },
+      "status": 200,
+      "finalUrl": "https://uwwsports.com/staff-directory/baseball-department/2?path=baseball",
+      "checkedAtUtc": "2026-11-17T20:38:22.658Z",
+      "sourcePath": "sources/university-of-wisconsin-whitewater-2.html",
+      "sha256": "428009acea923d73f930b1c1d70aafdbd12dbf0c77ceb9a8fbc8f115cddb5072",
+      "parsed": {
+        "title": "Staff Directory - University of Wisconsin-Whitewater Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "THE OFFICIAL ATHLETICS SITE OF THE UNIVERSITY OF WISCONSIN-WHITEWATER",
+          "Main",
+          "Staff Directory",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://uwwsports.com/staff-directory/baseball-department/2?path=baseball",
+            "label": "Skip To Main Content",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://x.com/UWWBaseball",
+            "label": "Baseball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/uwwbaseball",
+            "label": "Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/baseball/schedule",
+            "label": "Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UWWMensHoops",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/uwwmenshoops",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/mens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/mens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/WarhawkXCTrack",
+            "label": "Cross Country: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/uwwsports",
+            "label": "Cross Country: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/mens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/mens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/WarhawkFootball",
+            "label": "Football: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/warhawkfb",
+            "label": "Football: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/football/schedule",
+            "label": "Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/football/roster",
+            "label": "Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UWWMensSoccer",
+            "label": "Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/uww_msoc",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/mens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/mens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UWWSwimandDive",
+            "label": "Swimming / Diving: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/uwwswimdive",
+            "label": "Swimming / Diving: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/mens-swimming-and-diving/schedule",
+            "label": "Swimming / Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/mens-swimming-and-diving/roster",
+            "label": "Swimming / Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UWWTennis",
+            "label": "Tennis: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/uwwtennis",
+            "label": "Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/mens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/mens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/uwwtf",
+            "label": "Track & Field: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/mens-track-and-field/schedule",
+            "label": "Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/mens-track-and-field/roster",
+            "label": "Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UWW_Wrestling",
+            "label": "Wrestling: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/uwwhitewaterwrestling",
+            "label": "Wrestling: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/wrestling/schedule",
+            "label": "Wrestling: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/wrestling/roster",
+            "label": "Wrestling: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UWWWomensHoops",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/uwwwomenshoops",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/WarhawkBowling",
+            "label": "Bowling: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-bowling/schedule",
+            "label": "Bowling: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-bowling/roster",
+            "label": "Bowling: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UWWwomensGolf",
+            "label": "Golf: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UWWGymnastics",
+            "label": "Gymnastics: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/uwwhitewatergymnastics",
+            "label": "Gymnastics: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/gymnastics/schedule",
+            "label": "Gymnastics: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/gymnastics/roster",
+            "label": "Gymnastics: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UWWWomensSoccer",
+            "label": "Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UWWSoftball",
+            "label": "Softball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-swimming-and-diving/schedule",
+            "label": "Swimming / Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-swimming-and-diving/roster",
+            "label": "Swimming / Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-track-and-field/schedule",
+            "label": "Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-track-and-field/roster",
+            "label": "Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UWWVolleyball",
+            "label": "Volleyball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/uwwhitewatervolleyball",
+            "label": "Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory",
+            "label": "Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/sports/2013/8/30/GEN_0830130200.aspx",
+            "label": "Recruiting Questionnaires",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory?print=true",
+            "label": "Print",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/ryan-callahan/445",
+            "label": "Ryan Callahan Ryan Callahan, Athletic Administration, Director of Intercollegiate Athletics",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/keri-carollo/27",
+            "label": "Keri Carollo Keri Carollo, Athletic Administration, Head Womens Basketball Coach / SWA / Assistant AD for Compliance",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/angela-kelm/615",
+            "label": "Angela Kelm Angela Kelm, Athletic Administration, Assistant Athletics Director - Sports Information",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/peter-briggs/535",
+            "label": "Peter Briggs Peter Briggs, Athletic Administration, Business Manager",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/nathan-erickson/499",
+            "label": "Nathan Erickson Nathan Erickson, Athletic Administration, Athletic Event Operations Manager",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/kiefer-sullivan/539",
+            "label": "Kiefer Sullivan Kiefer Sullivan, Athletic Administration, Foundation Liaison",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/kayla-savage/594",
+            "label": "Kayla Savage Kayla Savage, Athletic Administration, Administrative Assistant",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/demetrius-bissen/734",
+            "label": "Demetrius Bissen Demetrius Bissen, Athletic Administration, Intercollegiate Athletics Graduate Assistant",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/logan-marty/636",
+            "label": "Logan Marty Logan Marty, Athletic Administration, Equipment Services Coordinator",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/susan-johnson/267",
+            "label": "Susan Johnson Susan Johnson, Athletic Administration, Womens Faculty Athletics Representative",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/corey-davis/656",
+            "label": "Corey Davis Corey Davis, Athletic Administration, Mens Faculty Athletic Representative",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/mike-miller/487",
+            "label": "Mike Miller Mike Miller, Athletic Administration, Grounds Crew Lead",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/steve-hillmer/35",
+            "label": "Steve Hillmer Steve Hillmer, Sports Medicine, Director of Sports Medicine (WSOC, MXC, GOLF, MBB)",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/emma-peterson/498",
+            "label": "Emma Peterson Emma Peterson, Sports Medicine, Athletic Trainer (VB, WXC, WBB, SB)",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/whitney-williams/588",
+            "label": "Whitney Williams Whitney Williams, Sports Medicine, Athletic Trainer (FB, BOWL, TF)",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/kelly-hahn/638",
+            "label": "Kelly Hahn Kelly Hahn, Sports Medicine, Athletic Trainer (FB, BASE, SWIM)",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/grace-nys/704",
+            "label": "Grace Nys Grace Nys, Sports Medicine, Athletic Trainer (TEN, GYM, TF)",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/max-schneider/703",
+            "label": "Max Schneider Max Schneider, Sports Medicine, Athletic Trainer (MSOC, WREST, TF)",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/dr-bradley-fideler/472",
+            "label": "Dr. Bradley Fideler Dr. Bradley Fideler, Sports Medicine, Team Doctor",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/dr-dennys-maldonado/473",
+            "label": "Dr. Dennys Maldonado Dr. Dennys Maldonado, Sports Medicine, Team Doctor",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/danielle-daggett/378",
+            "label": "Danielle Daggett Danielle Daggett, Sports Medicine, Team Massage Therapist",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/broderick-frye/643",
+            "label": "Broderick Frye Broderick Frye, Athletic Communications, Assistant Sports Information Director (MSOC, WSOC, MBB, BASE)",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/justin-krause/680",
+            "label": "Justin Krause Justin Krause, Athletic Communications, Assistant Coach (Mid-Distance) / Graphic Design",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/lee-munger/39",
+            "label": "Lee Munger Lee Munger, Sports Performance, Director of Sports Performance",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/john-schimenz/573",
+            "label": "John Schimenz John Schimenz, Sports Performance, Assistant Sports Performance Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/corey-meredith/710",
+            "label": "Corey Meredith Corey Meredith, Sports Performance, Assistant Sports Performance Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/summer-manzke/666",
+            "label": "Summer Manzke Summer Manzke, Sports Performance, Dietitian",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/john-vodenlich/7",
+            "label": "John Vodenlich John Vodenlich, Baseball, Head Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/zach-bayreuther/662",
+            "label": "Zach Bayreuther Zach Bayreuther, Baseball, Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/peyton-schneider/663",
+            "label": "Peyton Schneider Peyton Schneider, Baseball, Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/mark-fuller/387",
+            "label": "Mark Fuller Mark Fuller, Baseball, Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/armando-hernandez/61",
+            "label": "Armando Hernandez Armando Hernandez, Baseball, Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/tom-klawitter/413",
+            "label": "Tom Klawitter Tom Klawitter, Baseball, Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/sam-martin/665",
+            "label": "Sam Martin Sam Martin, Baseball, Director Of Baseball Operations",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/ryne-willard/716",
+            "label": "Ryne Willard Ryne Willard, Baseball, Student Assistant Coach (Pitching)",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/samuel-vodenlich/715",
+            "label": "Samuel Vodenlich Samuel Vodenlich, Baseball, Director of Media Production",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/jarod-wichser/468",
+            "label": "Jarod Wichser Jarod Wichser, Mens Basketball, Head Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/andy-fitzgerald/719",
+            "label": "Andy Fitzgerald Andy Fitzgerald, Mens Basketball, Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/kai-instefjord/222",
+            "label": "Kai Instefjord Kai Instefjord, Mens Basketball, Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/jake-toepfer/720",
+            "label": "Jake Toepfer Jake Toepfer, Mens Basketball, Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/jeff-miller/11",
+            "label": "Jeff Miller Jeff Miller, Mens and Womens Cross Country, Head Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/brandon-miles/706",
+            "label": "Brandon Miles Brandon Miles, Mens and Womens Cross Country, Assistant Coach (Mid-Distance)",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/jace-rindahl/147",
+            "label": "Jace Rindahl Jace Rindahl, Football, Head Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/beau-martin/532",
+            "label": "Beau Martin Beau Martin, Football, Associate Head Coach | Special Teams & Recruiting Coordinator | Linebackers",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/ryan-cortez/438",
+            "label": "Ryan Cortez Ryan Cortez, Football, Defensive Coordinator | Defensive Line",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/caden-murphy/689",
+            "label": "Caden Murphy Caden Murphy, Football, Offensive Coordinator | Quarterbacks",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/miles-hookstead/690",
+            "label": "Miles Hookstead Miles Hookstead, Football, Offensive Line Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/bryce-cross/691",
+            "label": "Bryce Cross Bryce Cross, Football, Defensive Backs Coach | NFL Liaison",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/mike-mardis/648",
+            "label": "Mike Mardis Mike Mardis, Football, Tight Ends Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/evan-schweers/723",
+            "label": "Evan Schweers Evan Schweers, Football, Running Backs Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/alec-ogden/693",
+            "label": "Alec Ogden Alec Ogden, Football, Wide Receivers Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/ryan-galasso/724",
+            "label": "Ryan Galasso Ryan Galasso, Football, Specialist Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/jacob-possorek/677",
+            "label": "Jacob Possorek Jacob Possorek, Football, Assistant Coach | Equipment Director",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/paco-hernandez/694",
+            "label": "Paco Hernandez Paco Hernandez, Football, Assistant Coach | Video Coordinator",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/brayden-hechel/725",
+            "label": "Brayden Hechel Brayden Hechel, Football, Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/zech-lapp/708",
+            "label": "Zech Lapp Zech Lapp, Football, Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/colton-thennes/726",
+            "label": "Colton Thennes Colton Thennes, Football, Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/jacob-schumacher/676",
+            "label": "Jacob Schumacher Jacob Schumacher, Football, Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/loden-peil/727",
+            "label": "Loden Peil Loden Peil, Football, Equipment Manager",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/football-office/489",
+            "label": "Football Office Football Office, Football, Student Athletic Complex (SAC)",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/tony-guinn/264",
+            "label": "Tony Guinn Tony Guinn, Mens Soccer, Head Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/scott-suprise/389",
+            "label": "Scott Suprise Scott Suprise, Mens Soccer, Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/steve-domin/669",
+            "label": "Steve Domin Steve Domin, Mens Soccer, Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/alex-heath/717",
+            "label": "Alex Heath Alex Heath, Mens Soccer, Assistant Coach (Goalkeepers)",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/matt-white/730",
+            "label": "Matt White Matt White, Mens Soccer, Student Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/elise-knoche/502",
+            "label": "Elise Knoche Elise Knoche, Mens and Womens Swimming and Diving, Head Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/alex-sorce/658",
+            "label": "Alex Sorce Alex Sorce, Mens and Womens Swimming and Diving, Diving Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/byron-balkin/700",
+            "label": "Byron Balkin Byron Balkin, Mens and Womens Tennis, Head Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/frank-barnes/22",
+            "label": "Frank Barnes Frank Barnes, Mens and Womens Tennis, Volunteer Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/matthew-hurley/722",
+            "label": "Matthew Hurley Matthew Hurley, Mens and Womens Tennis, Graduate Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/payton-adkisson/718",
+            "label": "Payton Adkisson Payton Adkisson, Mens and Womens Tennis, Volunteer Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/drew-lied/728",
+            "label": "Drew Lied Drew Lied, Mens and Womens Tennis, Volunteer Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/abby-aitken/729",
+            "label": "Abby Aitken Abby Aitken, Mens and Womens Tennis, Student Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/mike-johnson/23",
+            "label": "Mike Johnson Mike Johnson, Mens and Womens Track and Field, Head Coach (Sprints/Hurdles)",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/nick-bee/625",
+            "label": "Nick Bee Nick Bee, Mens and Womens Track and Field, Assistant Coach (Strength and Conditioning)",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/cody-helgeson/441",
+            "label": "Cody Helgeson Cody Helgeson, Mens and Womens Track and Field, Assistant Coach (High Jump/Combined Events)",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/joey-lemere/713",
+            "label": "Joey LeMere Joey LeMere, Mens and Womens Track and Field, Assistant Coach (Horizontal Jumps)",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/jeff-miller/204",
+            "label": "Jeff Miller Jeff Miller, Mens and Womens Track and Field, Assistant Coach (Distance)",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/trevor-roznowski/668",
+            "label": "Trevor Roznowski Trevor Roznowski, Mens and Womens Track and Field, Assistant Coach (Throws)",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/nathan-wells/451",
+            "label": "Nathan Wells Nathan Wells, Mens and Womens Track and Field, Assistant Coach (Pole Vault)",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/olivia-zinanni/697",
+            "label": "Olivia Zinanni Olivia Zinanni, Mens and Womens Track and Field, Director of Track & Field Operations",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/nicole-lemberg/714",
+            "label": "Nicole Lemberg Nicole Lemberg, Mens and Womens Track and Field, Track & Field Team Manager",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/dr-lindsey-greviskes/599",
+            "label": "Dr. Lindsey Greviskes Dr. Lindsey Greviskes, Mens and Womens Track and Field, Team Mental Performance Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/kathryn-colby/731",
+            "label": "Kathryn Colby Kathryn Colby, Mens and Womens Track and Field, Team Mental Performance Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/john-garlewski/732",
+            "label": "John Garlewski John Garlewski, Mens and Womens Track and Field, Team Mental Performance Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/matt-zwaschka/518",
+            "label": "Matt Zwaschka Matt Zwaschka, Wrestling, Head Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/adam-latella/270",
+            "label": "Adam Latella Adam Latella, Wrestling, Head Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/ben-peterson/292",
+            "label": "Ben Peterson Ben Peterson, Wrestling, Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/shane-siefert/560",
+            "label": "Shane Siefert Shane Siefert, Wrestling, Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/tyler-becker/627",
+            "label": "Tyler Becker Tyler Becker, Wrestling, Volunteer Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/jaritt-shinhoster/660",
+            "label": "Jaritt Shinhoster Jaritt Shinhoster, Wrestling, Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/mikey-tortorice/661",
+            "label": "Mikey Tortorice Mikey Tortorice, Wrestling, Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/erinn-behn/684",
+            "label": "Erinn Behn Erinn Behn, Womens Basketball, Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/molly-lutmer/698",
+            "label": "Molly Lutmer Molly Lutmer, Womens Basketball, Graduate Assistant",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/kayla-smith/687",
+            "label": "Kayla Smith Kayla Smith, Womens Bowling, Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/rachel-nelson/688",
+            "label": "Rachel Nelson Rachel Nelson, Womens Bowling, Volunteer Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/brandon-mooney/733",
+            "label": "Brandon Mooney Brandon Mooney, Womens Bowling, Head Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/andrea-wieland/417",
+            "label": "Andrea Wieland Andrea Wieland, Womens Golf, Head Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/jeff-schmidt/427",
+            "label": "Jeff Schmidt Jeff Schmidt, Womens Golf, Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/maddie-o-keefe/683",
+            "label": "Maddie O'Keefe Maddie OKeefe, Womens Golf, Graduate Student Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/chloe-edgren/579",
+            "label": "Chloe Edgren Chloe Edgren, Gymnastics, Interim Head Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/acacia-erbs/629",
+            "label": "Acacia Erbs Acacia Erbs, Gymnastics, Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/dan-montanye/239",
+            "label": "Dan Montanye Dan Montanye, Womens Soccer, Head Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/garrett-smith/721",
+            "label": "Garrett Smith Garrett Smith, Womens Soccer, Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/zach-groelle/110",
+            "label": "Zach Groelle Zach Groelle, Womens Soccer, Assistant Coach (Goalkeepers)",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/kaitlin-kapitan/640",
+            "label": "Kaitlin Kapitan Kaitlin Kapitan, Womens Soccer, Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/brenda-volk/48",
+            "label": "Brenda Volk Brenda Volk, Softball, Head Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/beth-bonuso/40",
+            "label": "Beth Bonuso Beth Bonuso, Softball, Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/steve-evans/101",
+            "label": "Steve Evans Steve Evans, Softball, Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/kurt-mussey/577",
+            "label": "Kurt Mussey Kurt Mussey, Softball, Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/stacy-boudreau/52",
+            "label": "Stacy Boudreau Stacy Boudreau, Womens Volleyball, Head Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/keith-scheckel/506",
+            "label": "Keith Scheckel Keith Scheckel, Womens Volleyball, Associate Head Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/alayna-jansky-gehl/641",
+            "label": "Alayna Jansky-Gehl Alayna Jansky-Gehl, Womens Volleyball, Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/jenna-weinfurt-cyskiewicz/699",
+            "label": "Jenna (Weinfurt) Cyskiewicz Jenna (Weinfurt) Cyskiewicz, Womens Volleyball, Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://uwwsports.com/schedule.aspx?path=baseball",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/university-of-wisconsin-whitewater-1.html",
+        "sha256": "b62fc203a7448a2f6002c3113c64eb68f9d426eb4fb790be424ebcf2c8724f9b",
+        "url": "https://uwwsports.com/schedule.aspx?path=baseball",
+        "label": "+"
+      },
+      "status": 200,
+      "finalUrl": "https://uwwsports.com/sports/baseball/schedule",
+      "checkedAtUtc": "2026-11-17T20:38:22.999Z",
+      "sourcePath": "sources/university-of-wisconsin-whitewater-3.html",
+      "sha256": "0e064f9baf6c2b059d1ba18655d239b90c23e95968de9c95cac34ae8c4ee8de8",
+      "parsed": {
+        "title": "2026 Baseball Schedule - University of Wisconsin-Whitewater Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "THE OFFICIAL ATHLETICS SITE OF THE UNIVERSITY OF WISCONSIN-WHITEWATER",
+          "Main",
+          "Sport",
+          "2026 Baseball Schedule",
+          "Season Records",
+          "Scheduled Games",
+          "Related Videos",
+          "Related Headlines",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://uwwsports.com/sports/baseball/schedule",
+            "label": "Skip To Main Content",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UWWBaseball",
+            "label": "Baseball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/uwwbaseball",
+            "label": "Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UWWMensHoops",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/uwwmenshoops",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/mens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/mens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/WarhawkXCTrack",
+            "label": "Cross Country: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/uwwsports",
+            "label": "Cross Country: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/mens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/mens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/WarhawkFootball",
+            "label": "Football: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/warhawkfb",
+            "label": "Football: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/football/schedule",
+            "label": "Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/football/roster",
+            "label": "Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UWWMensSoccer",
+            "label": "Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/uww_msoc",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/mens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/mens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UWWSwimandDive",
+            "label": "Swimming / Diving: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/uwwswimdive",
+            "label": "Swimming / Diving: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/mens-swimming-and-diving/schedule",
+            "label": "Swimming / Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/mens-swimming-and-diving/roster",
+            "label": "Swimming / Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UWWTennis",
+            "label": "Tennis: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/uwwtennis",
+            "label": "Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/mens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/mens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/uwwtf",
+            "label": "Track & Field: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/mens-track-and-field/schedule",
+            "label": "Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/mens-track-and-field/roster",
+            "label": "Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UWW_Wrestling",
+            "label": "Wrestling: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/uwwhitewaterwrestling",
+            "label": "Wrestling: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/wrestling/schedule",
+            "label": "Wrestling: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/wrestling/roster",
+            "label": "Wrestling: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UWWWomensHoops",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/uwwwomenshoops",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/WarhawkBowling",
+            "label": "Bowling: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-bowling/schedule",
+            "label": "Bowling: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-bowling/roster",
+            "label": "Bowling: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UWWwomensGolf",
+            "label": "Golf: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UWWGymnastics",
+            "label": "Gymnastics: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/uwwhitewatergymnastics",
+            "label": "Gymnastics: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/gymnastics/schedule",
+            "label": "Gymnastics: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/gymnastics/roster",
+            "label": "Gymnastics: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UWWWomensSoccer",
+            "label": "Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UWWSoftball",
+            "label": "Softball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-swimming-and-diving/schedule",
+            "label": "Swimming / Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-swimming-and-diving/roster",
+            "label": "Swimming / Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-track-and-field/schedule",
+            "label": "Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-track-and-field/roster",
+            "label": "Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/UWWVolleyball",
+            "label": "Volleyball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/uwwhitewatervolleyball",
+            "label": "Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/womens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory",
+            "label": "Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://uwwsports.com/sports/2013/8/30/GEN_0830130200.aspx",
+            "label": "Recruiting Questionnaires",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://uwwsports.com/staff-directory/baseball-department/2?path=baseball",
+            "label": "Coaching Staff",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "http://college.jumpforward.com/questionnaire.aspx?iid=1616&sportid=16&path=baseball",
+            "label": "Recruiting Questionnaire",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://uwwsports.com/sports/baseball/schedule?print=true",
+            "label": "Print Print this page",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/sports/baseball/schedule/2026?grid=true",
+            "label": "Grid Switch to Grid View",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/services/schedule_txt.ashx?schedule=930",
+            "label": "Text Text Format For Braille (New Tab)",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://uwwsports.com/news/2026/2/19/uww-baseball-begins-2026-campaign-with-a-top-10-win.aspx",
+            "label": "Recap Recap for Baseball at Trinity University (TX) on February 19, 2026 at 6 PM",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://uwwsports.com/news/2026/8/27/warhawk-baseball-2026-golf-outing.aspx",
+            "label": "Warhawk Baseball: 2026 Golf Outing - RESCHEDULED",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          }
+        ]
+      }
+    }
+  ],
+  "status": "EVIDENCE_CAPTURED_REQUIRES_REVIEW"
+}

@@ -1,0 +1,53 @@
+{
+  "slug": "kingsborough-community-college",
+  "programId": "cmox2o21a0038qtbks2m0pz2r",
+  "collegeId": "cmox2o20l0036qtbktb8b86z7",
+  "checkedAtUtc": "2026-11-18T14:43:38.128Z",
+  "sourcePath": "../njcaa-discovery-20261118/sources/kingsborough-community-college-1.source",
+  "sourceSHA256": "fe1f0a0b82963efe0c4886c0cfceb58c3e3b98a47c427d60bafdd5e059532f57",
+  "sourceUrl": "https://kccathletics.com/sports/baseball",
+  "socialLeads": [],
+  "recruitingLeads": [
+    {
+      "url": "https://kccathletics.com/sb_output.aspx?form=3",
+      "label": "Prospective Athlete Recruitment Form",
+      "context": "",
+      "kind": "QUESTIONNAIRE"
+    }
+  ],
+  "logoLeads": [
+    {
+      "url": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/kbcc.sidearmsports.com/images/responsive/logo_main.png",
+      "label": "Kingsborough Community College undefined"
+    }
+  ],
+  "captures": [
+    {
+      "requestedUrl": "https://kccathletics.com/sb_output.aspx?form=3",
+      "kind": "QUESTIONNAIRE",
+      "status": 200,
+      "finalUrl": "https://kccathletics.com/sb_output.aspx?form=3",
+      "sourcePath": "../njcaa-core-review-20261118/sources/kingsborough-community-college-4.source",
+      "sha256": "5f9cf5256b00dabaf61725664eede14ebb2fdea2b7d234fdf62b54ae7a8bb165",
+      "reusedEvidence": true
+    },
+    {
+      "requestedUrl": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/kbcc.sidearmsports.com/images/responsive/logo_main.png",
+      "kind": "LOGO_ASSET",
+      "status": 200,
+      "finalUrl": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/kbcc.sidearmsports.com/images/responsive/logo_main.png",
+      "contentType": "image/png",
+      "sourcePath": "sources/kingsborough-community-college-1.source",
+      "sha256": "1ad0d51f9eafe376f2ebb58ae467674eb3a9e147f04a2840f03ec0c0db4dbc3e",
+      "decoded": {
+        "format": "png",
+        "width": 185,
+        "height": 77
+      },
+      "assetDecoded": true
+    }
+  ],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED"
+}

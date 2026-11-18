@@ -1,0 +1,41 @@
+{
+  "slug": "carl-albert-state-college",
+  "collegeId": "cmox2354r0016qtfkakmcyf2u",
+  "programId": "cmox2355j0018qtfk1331mkwk",
+  "name": "Carl Albert State College",
+  "storedState": "OK",
+  "storedDivision": "NJCAA_D2",
+  "checkedAtUtc": "2026-11-18T14:21:03.366Z",
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "currentMembershipVerified": false,
+  "campusIdentityVerified": false,
+  "importApproval": "NOT_GRANTED",
+  "pages": [
+    {
+      "requestedUrl": "https://www.cascathletics.com/sports/bsb/index",
+      "kind": "DIRECTORY_ALIAS_REQUIRES_CAMPUS_REVIEW",
+      "parent": {
+        "sourcePath": "../njcaa-discovery-20261118/sources/directory-1.source",
+        "sha256": "496ce44f9a76dc28894dc481d97424ffa3efb0cc8fe8f218363abbc43f06de00",
+        "label": "Carl Albert State"
+      },
+      "status": 202,
+      "finalUrl": "https://www.cascathletics.com/sports/bsb/index",
+      "checkedAtUtc": "2026-11-18T14:21:06.974Z",
+      "sourcePath": "sources/carl-albert-state-college-0.source",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "discoveryAliases": [
+    {
+      "url": "https://www.cascathletics.com/sports/bsb/index",
+      "label": "Carl Albert State",
+      "parentSourcePath": "sources/directory-1.source",
+      "parentSHA256": "496ce44f9a76dc28894dc481d97424ffa3efb0cc8fe8f218363abbc43f06de00",
+      "parentUrl": "https://www.thebaseballobserver.com/njcaa-dii-baseball",
+      "status": "UNVERIFIED_NORMALIZED_NAME_LEAD"
+    }
+  ],
+  "status": "HELD_NO_READABLE_SOURCE"
+}

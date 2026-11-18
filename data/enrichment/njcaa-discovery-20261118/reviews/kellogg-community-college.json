@@ -1,0 +1,41 @@
+{
+  "slug": "kellogg-community-college",
+  "collegeId": "cmox237ln006cqtfk96h84b7x",
+  "programId": "cmox237mc006eqtfk5fy685jx",
+  "name": "Kellogg Community College",
+  "state": "MI",
+  "storedDivision": "NJCAA_D2",
+  "pages": [
+    {
+      "requestedUrl": "https://njcaastats.prestosports.com/sports/bsb/2024-25/div2/teams/kelloggcommunitycollege",
+      "kind": "STORED_URL_UNVERIFIED",
+      "checkedAtUtc": "2026-11-18T14:16:51.878Z",
+      "status": "HELD_ACCESS_NOT_RETRIED",
+      "finalUrl": "https://njcaastats.prestosports.com/sports/bsb/2024-25/div2/teams/kelloggcommunitycollege"
+    },
+    {
+      "requestedUrl": "http://www.kellogg.edu/athletics/baseball/",
+      "kind": "DISCOVERY_LEAD_NOT_CAMPUS_VERIFIED",
+      "checkedAtUtc": "2026-11-18T14:16:51.878Z",
+      "status": 403,
+      "finalUrl": "http://kellogg.edu/athletics/baseball/",
+      "contentType": "text/html; charset=UTF-8",
+      "sourcePath": "sources/kellogg-community-college-1.source",
+      "sha256": "86a18059b97297338ba9d3824a348ffcc596f02e7f163250962b6e47e2c9ccdc"
+    }
+  ],
+  "thirdPartyExactNameLeads": [
+    {
+      "url": "http://www.kellogg.edu/athletics/baseball/",
+      "label": "Kellogg CC",
+      "parentSourcePath": "sources/directory-1.source",
+      "parentSHA256": "496ce44f9a76dc28894dc481d97424ffa3efb0cc8fe8f218363abbc43f06de00",
+      "parentUrl": "https://www.thebaseballobserver.com/njcaa-dii-baseball"
+    }
+  ],
+  "currentMembershipVerified": false,
+  "campusIdentityVerified": false,
+  "importApproval": "NOT_GRANTED",
+  "databaseAccess": false,
+  "databaseWrites": 0
+}

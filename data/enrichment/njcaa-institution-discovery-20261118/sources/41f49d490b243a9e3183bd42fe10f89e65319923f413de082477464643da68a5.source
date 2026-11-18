@@ -1,0 +1,1866 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		     
+
+      
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Coastal Bend College | CBC</title>
+<meta content="Coastal Bend College provides affordable education, workforce training, and student support. " name="description"/>
+<link href="https://fonts.bunny.net" rel="preconnect"/>
+<link href="https://fonts.bunny.net/css?family=source-sans-3:200,300,400,500,600,700,800,900|source-sans-pro:200,300,400,600,700,900" rel="stylesheet"/>
+<link href="_files/css/brands.min.css" rel="stylesheet"/>
+<link href="_files/css/fontawesome-all.min.css" rel="stylesheet"/>
+<link href="_files/css/site.css" rel="stylesheet"/>
+<link href="_files/css/overrides.css" rel="stylesheet"/>
+<link href="_files/plugins/splidejs/video/dist/css/splide-extension-video.min.css" rel="stylesheet"/>
+
+
+                                <link href="https://www.coastalbend.edu/events/_files/css/hh-module-bootstrap3.css" rel="stylesheet"/>
+<link crossorigin="anonymous" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css"/>
+<link href="https://www.coastalbend.edu/events/_files/css/hh-events.css" rel="stylesheet"/>
+<link href="https://www.coastalbend.edu/events/_files/css/hh-custom-events.css" rel="stylesheet"/>
+<script async="" src="https://cse.google.com/cse.js?cx=93f0088fb0e4440ee"></script>
+
+<!-- Google tag (gtag.js) -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-44WHCKMPBP"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-44WHCKMPBP');
+</script>
+
+		
+	</head>
+	
+	<body>
+		     
+
+      
+          
+<header class="header" id="header" x-cloak x-data="Nav">
+    <div class="wrapper">
+        <div class="flex justify-between">
+                                                <a href="index.html" target="_parent">
+                <img src="_files/images/logos/logo-horizontal-color.png" alt="Coastal Bend College" class="logo" />
+            </a>
+            <ul class="primary-nav">
+                <li @click="toggleNavbarItem(1)" :class="{ 'active' : navOpen == 1 }" class="has-dropdown-nav primary-nav--cougar-zone">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8 1H1V8H8V1Z" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M19 1H12V8H19V1Z" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M19 12H12V19H19V12Z" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M8 12H1V19H8V12Z" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>    
+                    <span>Cougar Zone</span>
+                    <div x-show="navOpen === 1" class="dropdown-nav">
+                        <ul>
+                                                                                            <li>
+                                <a href="https://experience.elluciancloud.com/cbc/" target="_blank">
+                                                                                                                                    <img src="_images/banners/2024/cougar-den.svg" alt="cougar-den.svg" class="" />
+                                    <span>Cougar Experience</span>
+                                </a>
+                            </li>
+                                                                                            <li>
+                                <a href="https://blackboard.coastalbend.edu/auth-saml/saml/login?apId=_362_1&amp;redirectUrl=https%3A%2F%2Fblackboard.coastalbend.edu%2Fultra" target="_blank">
+                                                                                                                                    <img src="_images/banners/2023/blackboard.svg" alt="blackboard.svg" class="" />
+                                    <span>Blackboard</span>
+                                </a>
+                            </li>
+                                                                                            <li>
+                                <a href="http://portal.office.com/" target="_blank">
+                                                                                                                                    <img src="_images/office365.svg" alt="office365.svg" class="" />
+                                    <span>Office365</span>
+                                </a>
+                            </li>
+                                                                                            <li>
+                                <a href="https://lrc.coastalbend.edu/about" target="_blank">
+                                                                                                                                    <img src="_images/library.svg" alt="library.svg" class="" />
+                                    <span>Library</span>
+                                </a>
+                            </li>
+                                                                                            <li>
+                                <a href="https://www.coastalbendbooks.com/home" target="_blank">
+                                                                                                                                    <img src="_images/office365.svg" alt="office365.svg" class="" />
+                                    <span>Campus Store</span>
+                                </a>
+                            </li>
+                                                                                            <li>
+                                <a href="http://phplive.coastalbend.edu/phplive/phplive.php?d=0&amp;onpage=livechatimagelink&amp;title=Live+Chat+Direct+Link" target="_blank">
+                                                                                                                                    <img src="_images/banners/2024/chat.svg" alt="chat.svg" class="" />
+                                    <span>Chat</span>
+                                </a>
+                            </li>
+                                                    </ul>
+                    </div>
+                </li>
+                <li :class="{'active' : navOpen == 2 }">
+                    <div class="nav-button" @click="toggleNavbarItem(2)">
+                        <svg width="18" height="14" viewBox="0 0 18 14" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg" x-show="navOpen != 2">
+                            <path d="M1 7H17" stroke-width="1.2" stroke-linecap="square" stroke-linejoin="round"/>
+                            <path d="M1 1H17" stroke-width="1.2" stroke-linecap="square" stroke-linejoin="round"/>
+                            <path d="M1 13H17" stroke-width="1.2" stroke-linecap="square" stroke-linejoin="round"/>
+                        </svg>
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg" x-show="navOpen == 2">
+                            <path d="M1 1L13 13" stroke-width="1.2" stroke-linecap="square" stroke-linejoin="round"/>
+                            <path d="M1 13L13 1" stroke-width="1.2" stroke-linecap="square" stroke-linejoin="round"/>
+                        </svg>
+                        <span x-text="navOpen == 2 ? 'Close' : 'Quick Links'"></span>
+                    </div>
+                    <div x-show="navOpen === 2" class="nav">
+                        <div class="h-full w-full">
+                            <div class="wrapper">
+                                <div class="left">
+                                    <form class="mobile-search" action="search.html">
+                                        <div class="header-search-wrapper">
+                                            <svg class="search-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M9 17C13.4183 17 17 13.4183 17 9C17 4.58172 13.4183 1 9 1C4.58172 1 1 4.58172 1 9C1 13.4183 4.58172 17 9 17Z" stroke-width="1.2" stroke-linecap="square"/>
+                                                <path d="M19.0004 18.9999L14.6504 14.6499" stroke-width="1.2" stroke-linecap="square"/>
+                                            </svg>
+                                            <input name="cx" type="hidden" value="93f0088fb0e4440ee"/>
+                                        <input
+    type="search"
+    name="q"
+    id="q-mobile"
+    class="search-input"
+    placeholder="Search"
+    aria-label="Search"
+    @click.stop
+/>
+
+                                        </div>
+                                    </form>
+                                    
+                                    <!-- Embed Code Placement for Mobile -->
+                                    <div class="gtranslate_wrapper mobile-only"></div>
+                                    <button class="mobile-cougar-zone-button" @click="toggleMobileCougarZone()">
+                                        <span>Cougar Zone</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="plus w-6 h-6" style="display: block;">
+                                              <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="minus w-6 h-6" style="display: none;">
+                                              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15" />
+                                        </svg>
+                                    </button>
+                                    <div class="mobile-cougar-zone-list">
+                                        <ul>
+                                                                                                                                                    <li>
+                                                    <a href="https://experience.elluciancloud.com/cbc/" target="_blank">
+                                                        <span>Cougar Experience</span>
+                                                    </a>
+                                                </li>
+                                                                                                                                                    <li>
+                                                    <a href="https://blackboard.coastalbend.edu/auth-saml/saml/login?apId=_362_1&amp;redirectUrl=https%3A%2F%2Fblackboard.coastalbend.edu%2Fultra" target="_blank">
+                                                        <span>Blackboard</span>
+                                                    </a>
+                                                </li>
+                                                                                                                                                    <li>
+                                                    <a href="http://portal.office.com/" target="_blank">
+                                                        <span>Office365</span>
+                                                    </a>
+                                                </li>
+                                                                                                                                                    <li>
+                                                    <a href="https://lrc.coastalbend.edu/about" target="_blank">
+                                                        <span>Library</span>
+                                                    </a>
+                                                </li>
+                                                                                                                                                    <li>
+                                                    <a href="https://www.coastalbendbooks.com/home" target="_blank">
+                                                        <span>Campus Store</span>
+                                                    </a>
+                                                </li>
+                                                                                                                                                    <li>
+                                                    <a href="http://phplive.coastalbend.edu/phplive/phplive.php?d=0&amp;onpage=livechatimagelink&amp;title=Live+Chat+Direct+Link" target="_blank">
+                                                        <span>Chat</span>
+                                                    </a>
+                                                </li>
+                                                                                    </ul>
+                                    </div>
+                                    <button class="mobile-sub-nav-dropdown" @click="toggleMobileSubNavCategories()" style="display: none;">
+                                        <span>Navigation</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="plus w-6 h-6" style="display: block;">
+                                              <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="minus w-6 h-6" style="display: none;">
+                                              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15" />
+                                        </svg>
+                                    </button>
+                                    <div class="z-10 block" id="navCategories">
+                                                                                    <button type="buton" @click="togglePrimaryNavSubItem(1)" value="1" class="flex justify-between items-center text-white" :class="{'active' : mobileNavSubItem == 1, 'active' : primaryNavSubItem == 1 }">
+                                                <span>Future Students</span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6" :class="{'rotate-180' : mobileNavSubItem == 1 }">
+                                                      <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                                                </svg>
+                                            </button>
+                                            <div class="mobile-sub-nav" x-show="mobileNavSubItem == 1">
+                                                <ul class="sub-nav-list">
+                                                                                                                                                                                    <li>
+                                                        <a href="sites/beeville/index.html" target="_parent">
+                                                            About CBC
+                                                        </a>
+                                                    </li>
+                                                                                                                                                                                    <li>
+                                                        <a href="student_success_engagement/student_services_accessibility/accessibility_services/index.html" target="_parent">
+                                                            Accessibility Services
+                                                        </a>
+                                                    </li>
+                                                                                                                                                                                    <li>
+                                                        <a href="student_success_engagement/admissions_registrar/index.html" target="_parent">
+                                                            Admissions / Registrar
+                                                        </a>
+                                                    </li>
+                                                                                                                                                                    <li>
+                                                        <a href="https://coastalbend.appointment451.sites.451.io/?category=Academic%20Advising" target="_parent">
+                                                            Advising
+                                                        </a>
+                                                    </li>
+                                                                                                                                                                                    <li>
+                                                        <a href="marketing_public_relations/files/2026-2027-course-catalog.pdf" target="_blank">
+                                                            Course Catalog
+                                                        </a>
+                                                    </li>
+                                                                                                                                                                                    <li>
+                                                        <a href="instruction/dual_credit/index.html" target="_parent">
+                                                            Dual Credit
+                                                        </a>
+                                                    </li>
+                                                                                                                                                                                    <li>
+                                                        <a href="student_success_engagement/financial_aid/index.html" target="_parent">
+                                                            Financial Aid
+                                                        </a>
+                                                    </li>
+                                                                                                                                                                    <li>
+                                                        <a href="https://lrc.coastalbend.edu/about" target="_blank">
+                                                            Library Services
+                                                        </a>
+                                                    </li>
+                                                                                                                                                                                    <li>
+                                                        <a href="student_success_engagement/admissions_registrar/orientation.html" target="_parent">
+                                                            New Student Orientation
+                                                        </a>
+                                                    </li>
+                                                                                                                                                                                    <li>
+                                                        <a href="instruction/index.html" target="_parent">
+                                                            Programs
+                                                        </a>
+                                                    </li>
+                                                                                                                                                                                    <li>
+                                                        <a href="police_emergency_management/index.html" target="_parent">
+                                                            Public Safety
+                                                        </a>
+                                                    </li>
+                                                                                                                                                                                    <li>
+                                                        <a href="student_success_engagement/residence_life/index.html" target="_parent">
+                                                            Residence Life
+                                                        </a>
+                                                    </li>
+                                                                                                                                                                                    <li>
+                                                        <a href="student_success_engagement/residence_life/index.html" target="_parent">
+                                                            Student Life
+                                                        </a>
+                                                    </li>
+                                                                                                                                                                                    <li>
+                                                        <a href="student_success_engagement/index.html" target="_parent">
+                                                            Student Success &amp; Engagement
+                                                        </a>
+                                                    </li>
+                                                                                                                                                                                    <li>
+                                                        <a href="instruction/dual_credit/testing_requirements.html" target="_parent">
+                                                            Testing Requirements
+                                                        </a>
+                                                    </li>
+                                                                                                                                                                                    <li>
+                                                        <a href="student_success_engagement/financial_aid/veterans/veteransaffairs.html" target="_parent">
+                                                            Veterans Affairs
+                                                        </a>
+                                                    </li>
+                                                                                                    </ul>
+                                            </div>
+                                                                                    <button type="buton" @click="togglePrimaryNavSubItem(2)" value="2" class="flex justify-between items-center text-white" :class="{'active' : mobileNavSubItem == 2, 'active' : primaryNavSubItem == 2 }">
+                                                <span>Current Students</span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6" :class="{'rotate-180' : mobileNavSubItem == 2 }">
+                                                      <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                                                </svg>
+                                            </button>
+                                            <div class="mobile-sub-nav" x-show="mobileNavSubItem == 2">
+                                                <ul class="sub-nav-list">
+                                                                                                                                                                                    <li>
+                                                        <a href="student_success_engagement/student_services_accessibility/accessibility_services/index.html" target="_parent">
+                                                            Accessibility Services
+                                                        </a>
+                                                    </li>
+                                                                                                                                                                                    <li>
+                                                        <a href="student_success_engagement/admissions_registrar/index.html" target="_parent">
+                                                            Admissions / Registrar
+                                                        </a>
+                                                    </li>
+                                                                                                                                                                    <li>
+                                                        <a href="https://coastalbend.appointment451.sites.451.io/?category=Academic%20Advising" target="_parent">
+                                                            Advising
+                                                        </a>
+                                                    </li>
+                                                                                                                                                                    <li>
+                                                        <a href="https://blackboard.coastalbend.edu/auth-saml/saml/login?apId=_362_1&amp;redirectUrl=https%3A%2F%2Fblackboard.coastalbend.edu%2Fultra" target="_blank">
+                                                            Blackboard
+                                                        </a>
+                                                    </li>
+                                                                                                                                                                    <li>
+                                                        <a href="https://www.coastalbendbooks.com/home" target="_blank">
+                                                            Campus Store
+                                                        </a>
+                                                    </li>
+                                                                                                                                                                    <li>
+                                                        <a href="https://experience.elluciancloud.com/cbc/" target="_blank">
+                                                            Cougar Experience
+                                                        </a>
+                                                    </li>
+                                                                                                                                                                                    <li>
+                                                        <a href="" target="_parent">
+                                                            Financial Aid
+                                                        </a>
+                                                    </li>
+                                                                                                                                                                                    <li>
+                                                        <a href="" target="_parent">
+                                                            Graduation
+                                                        </a>
+                                                    </li>
+                                                                                                                                                                    <li>
+                                                        <a href="https://lrc.coastalbend.edu/about" target="_blank">
+                                                            Library Services
+                                                        </a>
+                                                    </li>
+                                                                                                                                                                    <li>
+                                                        <a href="http://portal.office.com/" target="_blank">
+                                                            Office 365
+                                                        </a>
+                                                    </li>
+                                                                                                                                                                                    <li>
+                                                        <a href="instruction/index.html" target="_parent">
+                                                            Programs
+                                                        </a>
+                                                    </li>
+                                                                                                                                                                                    <li>
+                                                        <a href="police_emergency_management/index.html" target="_parent">
+                                                            Public Safety
+                                                        </a>
+                                                    </li>
+                                                                                                                                                                                    <li>
+                                                        <a href="student_success_engagement/residence_life/index.html" target="_parent">
+                                                            Residence Life
+                                                        </a>
+                                                    </li>
+                                                                                                                                                                                    <li>
+                                                        <a href="student_success_engagement/residence_life/index.html" target="_parent">
+                                                            Student Life
+                                                        </a>
+                                                    </li>
+                                                                                                                                                                                    <li>
+                                                        <a href="student_success_engagement/index.html" target="_parent">
+                                                            Student Success &amp; Engagement
+                                                        </a>
+                                                    </li>
+                                                                                                                                                                                    <li>
+                                                        <a href="student_success_engagement/student_services_accessibility/testing/index.html" target="_parent">
+                                                            Testing
+                                                        </a>
+                                                    </li>
+                                                                                                                                                                                    <li>
+                                                        <a href="student_success_engagement/student_services_accessibility/transfer_resources.html" target="_parent">
+                                                            Transfer Resources
+                                                        </a>
+                                                    </li>
+                                                                                                                                                                                    <li>
+                                                        <a href="student_success_engagement/financial_aid/veterans/veteransaffairs.html" target="_parent">
+                                                            Veterans Affairs
+                                                        </a>
+                                                    </li>
+                                                                                                    </ul>
+                                            </div>
+                                                                                    <button type="buton" @click="togglePrimaryNavSubItem(3)" value="3" class="flex justify-between items-center text-white" :class="{'active' : mobileNavSubItem == 3, 'active' : primaryNavSubItem == 3 }">
+                                                <span>High School Students</span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6" :class="{'rotate-180' : mobileNavSubItem == 3 }">
+                                                      <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                                                </svg>
+                                            </button>
+                                            <div class="mobile-sub-nav" x-show="mobileNavSubItem == 3">
+                                                <ul class="sub-nav-list">
+                                                                                                                                                                    <li>
+                                                        <a href="https://blackboard.coastalbend.edu/auth-saml/saml/login?apId=_362_1&amp;redirectUrl=https%3A%2F%2Fblackboard.coastalbend.edu%2Fultra" target="_blank">
+                                                            Blackboard
+                                                        </a>
+                                                    </li>
+                                                                                                                                                                    <li>
+                                                        <a href="https://www.coastalbendbooks.com/home" target="_blank">
+                                                            Campus Store
+                                                        </a>
+                                                    </li>
+                                                                                                                                                                    <li>
+                                                        <a href="https://experience.elluciancloud.com/cbc/" target="_blank">
+                                                            Cougar Experience
+                                                        </a>
+                                                    </li>
+                                                                                                                                                                                    <li>
+                                                        <a href="instruction/dual_credit/index.html" target="_parent">
+                                                            Dual Credit
+                                                        </a>
+                                                    </li>
+                                                                                                                                                                    <li>
+                                                        <a href="https://lrc.coastalbend.edu/about" target="_blank">
+                                                            Library Services
+                                                        </a>
+                                                    </li>
+                                                                                                                                                                    <li>
+                                                        <a href="http://portal.office.com/" target="_blank">
+                                                            Office 365
+                                                        </a>
+                                                    </li>
+                                                                                                                                                                                    <li>
+                                                        <a href="student_success_engagement/index.html" target="_parent">
+                                                            Student Success &amp; Engagement
+                                                        </a>
+                                                    </li>
+                                                                                                                                                                                    <li>
+                                                        <a href="student_success_engagement/student_services_accessibility/trio/ts_alice/index.html" target="_parent">
+                                                            Talent Search Alice
+                                                        </a>
+                                                    </li>
+                                                                                                                                                                                    <li>
+                                                        <a href="student_success_engagement/student_services_accessibility/trio/ts_beeville/index.html" target="_parent">
+                                                            Talent Search Beeville
+                                                        </a>
+                                                    </li>
+                                                                                                                                                                                    <li>
+                                                        <a href="student_success_engagement/student_services_accessibility/testing/index.html" target="_parent">
+                                                            Testing
+                                                        </a>
+                                                    </li>
+                                                                                                                                                                                    <li>
+                                                        <a href="student_success_engagement/student_services_accessibility/trio/index.html" target="_parent">
+                                                            TRIO Programs
+                                                        </a>
+                                                    </li>
+                                                                                                                                                                                    <li>
+                                                        <a href="student_success_engagement/student_services_accessibility/trio/upward_bound/index.html" target="_parent">
+                                                            Upward Bound
+                                                        </a>
+                                                    </li>
+                                                                                                                                                                                    <li>
+                                                        <a href="student_success_engagement/student_services_accessibility/trio/upward_bound_rural/index.html" target="_parent">
+                                                            Upward Bound Rural
+                                                        </a>
+                                                    </li>
+                                                                                                    </ul>
+                                            </div>
+                                                                            </div>
+                                </div>
+                                                                                                                                <div class="right" style="background-image: url(_files/images/logo-horizontal.svg); background-position: center center; background-repeat: no-repeat; background-size: 70%;">
+                                                                            <div class="sub-nav" x-show="primaryNavSubItem == 1">
+                                            <ul class="sub-nav-list">
+                                                                                                                                                                                <li><a href="sites/beeville/index.html" target="_parent">About CBC</a></li>
+                                                                                                                                                                                <li><a href="student_success_engagement/student_services_accessibility/accessibility_services/index.html" target="_parent">Accessibility Services</a></li>
+                                                                                                                                                                                <li><a href="student_success_engagement/admissions_registrar/index.html" target="_parent">Admissions / Registrar</a></li>
+                                                                                                                                                                <li><a href="https://coastalbend.appointment451.sites.451.io/?category=Academic%20Advising" target="_parent">Advising</a></li>
+                                                                                                                                                                                <li><a href="marketing_public_relations/files/2026-2027-course-catalog.pdf" target="_blank">Course Catalog</a></li>
+                                                                                                                                                                                <li><a href="instruction/dual_credit/index.html" target="_parent">Dual Credit</a></li>
+                                                                                                                                                                                <li><a href="student_success_engagement/financial_aid/index.html" target="_parent">Financial Aid</a></li>
+                                                                                                                                                                <li><a href="https://lrc.coastalbend.edu/about" target="_blank">Library Services</a></li>
+                                                                                                                                                                                <li><a href="student_success_engagement/admissions_registrar/orientation.html" target="_parent">New Student Orientation</a></li>
+                                                                                                                                                                                <li><a href="instruction/index.html" target="_parent">Programs</a></li>
+                                                                                                                                                                                <li><a href="police_emergency_management/index.html" target="_parent">Public Safety</a></li>
+                                                                                                                                                                                <li><a href="student_success_engagement/residence_life/index.html" target="_parent">Residence Life</a></li>
+                                                                                                                                                                                <li><a href="student_success_engagement/residence_life/index.html" target="_parent">Student Life</a></li>
+                                                                                                                                                                                <li><a href="student_success_engagement/index.html" target="_parent">Student Success &amp; Engagement</a></li>
+                                                                                                                                                                                <li><a href="instruction/dual_credit/testing_requirements.html" target="_parent">Testing Requirements</a></li>
+                                                                                                                                                                                <li><a href="student_success_engagement/financial_aid/veterans/veteransaffairs.html" target="_parent">Veterans Affairs</a></li>
+                                                                                            </ul>
+                                        </div>
+                                                                            <div class="sub-nav" x-show="primaryNavSubItem == 2">
+                                            <ul class="sub-nav-list">
+                                                                                                                                                                                <li><a href="student_success_engagement/student_services_accessibility/accessibility_services/index.html" target="_parent">Accessibility Services</a></li>
+                                                                                                                                                                                <li><a href="student_success_engagement/admissions_registrar/index.html" target="_parent">Admissions / Registrar</a></li>
+                                                                                                                                                                <li><a href="https://coastalbend.appointment451.sites.451.io/?category=Academic%20Advising" target="_parent">Advising</a></li>
+                                                                                                                                                                <li><a href="https://blackboard.coastalbend.edu/auth-saml/saml/login?apId=_362_1&amp;redirectUrl=https%3A%2F%2Fblackboard.coastalbend.edu%2Fultra" target="_blank">Blackboard</a></li>
+                                                                                                                                                                <li><a href="https://www.coastalbendbooks.com/home" target="_blank">Campus Store</a></li>
+                                                                                                                                                                <li><a href="https://experience.elluciancloud.com/cbc/" target="_blank">Cougar Experience</a></li>
+                                                                                                                                                                                <li><a href="" target="_parent">Financial Aid</a></li>
+                                                                                                                                                                                <li><a href="" target="_parent">Graduation</a></li>
+                                                                                                                                                                <li><a href="https://lrc.coastalbend.edu/about" target="_blank">Library Services</a></li>
+                                                                                                                                                                <li><a href="http://portal.office.com/" target="_blank">Office 365</a></li>
+                                                                                                                                                                                <li><a href="instruction/index.html" target="_parent">Programs</a></li>
+                                                                                                                                                                                <li><a href="police_emergency_management/index.html" target="_parent">Public Safety</a></li>
+                                                                                                                                                                                <li><a href="student_success_engagement/residence_life/index.html" target="_parent">Residence Life</a></li>
+                                                                                                                                                                                <li><a href="student_success_engagement/residence_life/index.html" target="_parent">Student Life</a></li>
+                                                                                                                                                                                <li><a href="student_success_engagement/index.html" target="_parent">Student Success &amp; Engagement</a></li>
+                                                                                                                                                                                <li><a href="student_success_engagement/student_services_accessibility/testing/index.html" target="_parent">Testing</a></li>
+                                                                                                                                                                                <li><a href="student_success_engagement/student_services_accessibility/transfer_resources.html" target="_parent">Transfer Resources</a></li>
+                                                                                                                                                                                <li><a href="student_success_engagement/financial_aid/veterans/veteransaffairs.html" target="_parent">Veterans Affairs</a></li>
+                                                                                            </ul>
+                                        </div>
+                                                                            <div class="sub-nav" x-show="primaryNavSubItem == 3">
+                                            <ul class="sub-nav-list">
+                                                                                                                                                                <li><a href="https://blackboard.coastalbend.edu/auth-saml/saml/login?apId=_362_1&amp;redirectUrl=https%3A%2F%2Fblackboard.coastalbend.edu%2Fultra" target="_blank">Blackboard</a></li>
+                                                                                                                                                                <li><a href="https://www.coastalbendbooks.com/home" target="_blank">Campus Store</a></li>
+                                                                                                                                                                <li><a href="https://experience.elluciancloud.com/cbc/" target="_blank">Cougar Experience</a></li>
+                                                                                                                                                                                <li><a href="instruction/dual_credit/index.html" target="_parent">Dual Credit</a></li>
+                                                                                                                                                                <li><a href="https://lrc.coastalbend.edu/about" target="_blank">Library Services</a></li>
+                                                                                                                                                                <li><a href="http://portal.office.com/" target="_blank">Office 365</a></li>
+                                                                                                                                                                                <li><a href="student_success_engagement/index.html" target="_parent">Student Success &amp; Engagement</a></li>
+                                                                                                                                                                                <li><a href="student_success_engagement/student_services_accessibility/trio/ts_alice/index.html" target="_parent">Talent Search Alice</a></li>
+                                                                                                                                                                                <li><a href="student_success_engagement/student_services_accessibility/trio/ts_beeville/index.html" target="_parent">Talent Search Beeville</a></li>
+                                                                                                                                                                                <li><a href="student_success_engagement/student_services_accessibility/testing/index.html" target="_parent">Testing</a></li>
+                                                                                                                                                                                <li><a href="student_success_engagement/student_services_accessibility/trio/index.html" target="_parent">TRIO Programs</a></li>
+                                                                                                                                                                                <li><a href="student_success_engagement/student_services_accessibility/trio/upward_bound/index.html" target="_parent">Upward Bound</a></li>
+                                                                                                                                                                                <li><a href="student_success_engagement/student_services_accessibility/trio/upward_bound_rural/index.html" target="_parent">Upward Bound Rural</a></li>
+                                                                                            </ul>
+                                        </div>
+                                                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="primary-nav--search">
+                    <form class="header-search" action="search.html">
+                        <div class="header-search-wrapper">
+                            <svg class="search-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 17C13.4183 17 17 13.4183 17 9C17 4.58172 13.4183 1 9 1C4.58172 1 1 4.58172 1 9C1 13.4183 4.58172 17 9 17Z" stroke-width="1.2" stroke-linecap="square"/>
+                                <path d="M19.0004 18.9999L14.6504 14.6499" stroke-width="1.2" stroke-linecap="square"/>
+                            </svg>
+                            <input name="cx" type="hidden" value="93f0088fb0e4440ee"/>
+<input
+    type="search"
+    name="q"
+    id="q-desktop"
+    class="search-input"
+    placeholder="Search"
+    aria-label="Search"
+/>
+                        </div>
+                    </form>
+                    <!-- Embed Code for Desktop -->
+                    <div class="gtranslate_wrapper desktop-only"></div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
+
+
+		<div class="site-wrapper">
+		         
+
+      
+                                                  
+			
+			     
+
+      
+  <section aria-label="Homepage slider" class="slider splide" id="homepageSlider">
+            <div class="splide__arrows splide__arrows--ltr">
+            <button aria-label="Previous slide" class="btn prev splide__arrow splide__arrow--prev" type="button">
+                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-6 h-6" fill="none" focusable="false" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                    <path d="M15.75 19.5L8.25 12l7.5-7.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+            <button aria-label="Next slide" class="btn next splide__arrow splide__arrow--next" type="button">
+                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-6 h-6" fill="none" focusable="false" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                    <path d="M8.25 4.5l7.5 7.5-7.5 7.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+        </div>
+        <div class="splide__track">
+        <div class="splide__list">
+                                
+                                    
+                        
+            <div class="splide__slide" data-splide-html-video="_images/banners/2026/spring-enrollment.mp4">
+                                <div class="splide__slide__container">
+                                <img alt="cougar and text calling to spring registration" src="_images/banners/2026/spring-enrollment.png"/>
+                                </div>
+                                            </div>
+                                
+                                    
+                        
+            <div class="splide__slide">
+                                <img alt="Graphic promoting Cougar ReConnect with the headline &quot;Finish What You Started.&quot; A stylized cougar moves forward above the Cougar ReConnect logo, symbolizing returning to Coastal Bend College to complete a degree or credential." src="_images/cougar-reconnect-banner-best-1920-x-1080-px.png"/>
+                                            </div>
+                </div>
+    </div>
+</section>
+			<main class="main" id="main">
+				     
+
+      
+  <h1>Coastal Bend College</h1>
+<div>
+                                                                                                                                                                                            
+    
+	<div class="section-wrapper light " id="wysiwygLanding-1">
+	    <div class="wysiwyg" id="$source">
+		                             <section aria-labelledby="reconnect-heading" class="cbc-reconnect-callout">
+<div class="cbc-reconnect-container">
+<h2 id="reconnect-heading">Introducing Cougar ReConnect</h2>
+<p class="cbc-reconnect-tagline">A New Opportunity to Finish What You Started.</p>
+<p class="cbc-reconnect-text">If a past-due balance has kept you from returning to Coastal Bend College, Cougar ReConnect may provide eligible former students with a pathway back. Explore your options and continue working toward completing your degree or credential.</p>
+<a aria-label="Learn more about Cougar ReConnect" class="cbc-reconnect-button" href="cougar-reconnect.html"> Learn More </a></div>
+</section>
+<style><!--
+.cbc-reconnect-callout{
+    width:100%;
+    background:#f3f6f8;
+    padding:5rem 2rem;
+    box-sizing:border-box;
+}
+
+.cbc-reconnect-container{
+    max-width:1200px;
+    margin:0 auto;
+    text-align:center;
+}
+
+.cbc-reconnect-container h2{
+    margin:0;
+    color:#004d71;
+    font-size:clamp(2.5rem,4vw,4rem);
+    line-height:1.15;
+    font-weight:800;
+}
+
+.cbc-reconnect-tagline{
+    margin:1rem auto 2rem;
+    font-size:clamp(1.3rem,2vw,1.8rem);
+    color:#4b5563;
+    font-style:italic;
+    line-height:1.5;
+}
+
+.cbc-reconnect-text{
+    max-width:900px;
+    margin:0 auto 2.5rem;
+    font-size:clamp(1.15rem,1.6vw,1.45rem);
+    line-height:1.8;
+    color:#1f2937;
+}
+
+.cbc-reconnect-button{
+    display:inline-block;
+    padding:1rem 2.5rem;
+    background:#004d71;
+    color:#ffffff;
+    text-decoration:none;
+    font-size:1.15rem;
+    font-weight:700;
+    border-radius:8px;
+    transition:all .2s ease;
+}
+
+.cbc-reconnect-button:hover,
+.cbc-reconnect-button:focus{
+    background:#00618f;
+    color:#ffffff;
+    text-decoration:none;
+}
+
+.cbc-reconnect-button:focus-visible{
+    outline:3px solid #00a7e1;
+    outline-offset:4px;
+}
+
+@media (max-width:992px){
+
+    .cbc-reconnect-callout{
+        padding:4rem 2rem;
+    }
+
+}
+
+@media (max-width:768px){
+
+    .cbc-reconnect-callout{
+        padding:3rem 1.25rem;
+    }
+
+    .cbc-reconnect-text{
+        line-height:1.7;
+    }
+
+    .cbc-reconnect-button{
+        display:block;
+        width:100%;
+        max-width:360px;
+        margin:0 auto;
+    }
+
+}
+--></style>
+            		</div>
+	</div>
+    
+    
+ 
+                                                                                                                                        <section class="section cards homepage splide dark" id="cards-2">
+    	<div class="section-wrapper">
+    		<div class="splide__track">
+    			<div class="wrapper splide__list">
+    			    			        			                                                    				<div class="card splide__slide">
+    					<a href="students/prospective-students.html" target="_parent">
+    						<img alt="" src="_images/banners/2024/c4529e93-d43b-4858-a8bc-daa286106c10.jpeg"/>
+    						<div class="title">
+    						        							    <div>Become a Student</div>
+    							    							<span class="summary">
+    								Ready to begin your college journey? Learn about our programs, complete your application, and find everything you need to enroll at Coastal Bend College.
+    							</span>
+    						</div>
+    						<div class="cover" style="background: url('_images/banners/2024/c4529e93-d43b-4858-a8bc-daa286106c10.jpeg');">
+    							<div class="overlay">
+    								<div class="overlay-wrapper">
+    								            									<span class="overlay-title">
+        										Become a Student
+        									</span>
+    									    									<span class="overlay-summary">
+    										Ready to begin your college journey? Learn about our programs, complete your application, and find everything you need to enroll at Coastal Bend College.
+    									</span>
+    								</div>
+    							</div>
+    						</div>
+    					</a>
+    				</div>
+    			    			        			                                                    				<div class="card splide__slide">
+    					<a href="instruction/index.html" target="_parent">
+    						<img alt="" src="_images/banners/2024/criminal-justice.jpg"/>
+    						<div class="title">
+    						        							    <div>Explore Programs</div>
+    							    							<span class="summary">
+    								Explore Career &amp; Technical Education, General Transfer Education, and Nursing &amp; Allied Health to learn more about our Programs of Study.
+    							</span>
+    						</div>
+    						<div class="cover" style="background: url('_images/banners/2024/criminal-justice.jpg');">
+    							<div class="overlay">
+    								<div class="overlay-wrapper">
+    								            									<span class="overlay-title">
+        										Explore Programs
+        									</span>
+    									    									<span class="overlay-summary">
+    										Explore Career &amp; Technical Education, General Transfer Education, and Nursing &amp; Allied Health to learn more about our Programs of Study.
+    									</span>
+    								</div>
+    							</div>
+    						</div>
+    					</a>
+    				</div>
+    			    			        			                                                    				<div class="card splide__slide">
+    					<a href="students/cost-aid.html" target="_parent">
+    						<img alt="" src="_images/banners/2024/663132270_1366208048880110_3895635661853088010_n.jpg"/>
+    						<div class="title">
+    						        							    <div>Pay for College</div>
+    							    							<span class="summary">
+    								You can pay online in your Cougar Den Account, or pay in-person at your nearest CBC location. If you are receiving financial aid, please check the Financial Aid checklist in Cougar Den.
+    							</span>
+    						</div>
+    						<div class="cover" style="background: url('_images/banners/2024/663132270_1366208048880110_3895635661853088010_n.jpg');">
+    							<div class="overlay">
+    								<div class="overlay-wrapper">
+    								            									<span class="overlay-title">
+        										Pay for College
+        									</span>
+    									    									<span class="overlay-summary">
+    										You can pay online in your Cougar Den Account, or pay in-person at your nearest CBC location. If you are receiving financial aid, please check the Financial Aid checklist in Cougar Den.
+    									</span>
+    								</div>
+    							</div>
+    						</div>
+    					</a>
+    				</div>
+    			    			        			                                                    				<div class="card splide__slide">
+    					<a href="student_success_engagement/index.html" target="_parent">
+    						<img alt="" src="_images/banners/2024/grad1.jpg"/>
+    						<div class="title">
+    						        							    <div>Student Resources</div>
+    							    							<span class="summary">
+    								Student Resources at Coastal Bend College empower students with the tools, services, and support systems needed to thrive academically and personally from enrollment to graduation.
+    							</span>
+    						</div>
+    						<div class="cover" style="background: url('_images/banners/2024/grad1.jpg');">
+    							<div class="overlay">
+    								<div class="overlay-wrapper">
+    								            									<span class="overlay-title">
+        										Student Resources
+        									</span>
+    									    									<span class="overlay-summary">
+    										Student Resources at Coastal Bend College empower students with the tools, services, and support systems needed to thrive academically and personally from enrollment to graduation.
+    									</span>
+    								</div>
+    							</div>
+    						</div>
+    					</a>
+    				</div>
+    			    			        			                                                    				<div class="card splide__slide">
+    					<a href="leadership/office-of-the-president.html" target="_parent">
+    						<img alt="" src="_images/seal1.jpg"/>
+    						<div class="title">
+    						        							    <div>Office of the President</div>
+    							    							<span class="summary">
+    								The Office of the President provides leadership and strategic direction for Coastal Bend College, advancing its mission to serve students and communities with excellence.
+    							</span>
+    						</div>
+    						<div class="cover" style="background: url('_images/seal1.jpg');">
+    							<div class="overlay">
+    								<div class="overlay-wrapper">
+    								            									<span class="overlay-title">
+        										Office of the President
+        									</span>
+    									    									<span class="overlay-summary">
+    										The Office of the President provides leadership and strategic direction for Coastal Bend College, advancing its mission to serve students and communities with excellence.
+    									</span>
+    								</div>
+    							</div>
+    						</div>
+    					</a>
+    				</div>
+    			    			        			                                                    				<div class="card splide__slide">
+    					<a href="faculty-staff/directory.html" target="_parent">
+    						<img alt="" src="_images/banners/2024/employee1.jpg"/>
+    						<div class="title">
+    						        							    <div>Faculty &amp; Staff</div>
+    							    							<span class="summary">
+    								Directory for Coastal Bend College Faculty &amp; Staff
+    							</span>
+    						</div>
+    						<div class="cover" style="background: url('_images/banners/2024/employee1.jpg');">
+    							<div class="overlay">
+    								<div class="overlay-wrapper">
+    								            									<span class="overlay-title">
+        										Faculty &amp; Staff
+        									</span>
+    									    									<span class="overlay-summary">
+    										Directory for Coastal Bend College Faculty &amp; Staff
+    									</span>
+    								</div>
+    							</div>
+    						</div>
+    					</a>
+    				</div>
+    			    			        			                                                    				<div class="card splide__slide">
+    					<a href="mariachi-costa-azul.html" target="_blank">
+    						<img alt="" src="mariachi-auditions-1920-x-700-px.png"/>
+    						<div class="title">
+    						        							    <div>Mariachi Costa Azul</div>
+    							    							<span class="summary">
+    								Coastal Bend College's official collegiate mariachi ensemble, fostering musical excellence, cultural heritage, and student success.
+    							</span>
+    						</div>
+    						<div class="cover" style="background: url('mariachi-auditions-1920-x-700-px.png');">
+    							<div class="overlay">
+    								<div class="overlay-wrapper">
+    								            									<span class="overlay-title">
+        										Mariachi Costa Azul
+        									</span>
+    									    									<span class="overlay-summary">
+    										Coastal Bend College's official collegiate mariachi ensemble, fostering musical excellence, cultural heritage, and student success.
+    									</span>
+    								</div>
+    							</div>
+    						</div>
+    					</a>
+    				</div>
+    			    			        			                            				<div class="card splide__slide">
+    					<a href="https://www.cbcathletics.com/landing/index" target="_blank">
+    						<img alt="" src="_images/banners/2023/athletics-logo.jpg"/>
+    						<div class="title">
+    						        							    <div>Athletics</div>
+    							    							<span class="summary">
+    								CBC's Athletic Department features Baseball, Men's and Women's Basketball, eSports, Soccer, Softball, and Volleyball.
+    							</span>
+    						</div>
+    						<div class="cover" style="background: url('_images/banners/2023/athletics-logo.jpg');">
+    							<div class="overlay">
+    								<div class="overlay-wrapper">
+    								            									<span class="overlay-title">
+        										Athletics
+        									</span>
+    									    									<span class="overlay-summary">
+    										CBC's Athletic Department features Baseball, Men's and Women's Basketball, eSports, Soccer, Softball, and Volleyball.
+    									</span>
+    								</div>
+    							</div>
+    						</div>
+    					</a>
+    				</div>
+    			    			</div>
+    			<div class="splide__arrows splide__arrows--ltr nav">
+    				<button aria-label="Previous slide" class="splide__arrow splide__arrow--prev" type="button">
+    					<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-6 h-6" fill="none" focusable="false" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+    						<path d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" stroke-linecap="round" stroke-linejoin="round"/>
+    					</svg>
+    				</button>
+    				<button aria-label="Next slide" class="splide__arrow splide__arrow--next" type="button">
+    					<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-6 h-6" fill="none" focusable="false" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+    						<path d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" stroke-linecap="round" stroke-linejoin="round"/>
+    					</svg>
+    				</button>
+    			</div>
+    		</div>
+    	</div>
+    </section>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var splide_cards_2 = new Splide("#cards-2", {
+      grid: false,
+      perPage: 1,
+      perMove: 1,
+      gap: '1.5rem',
+      mediaQuery: 'min',
+      breakpoints: {
+        640: {
+          perPage:  2 ,
+          grid: false
+        },
+        768: {
+          perPage:  3 ,
+          grid: false
+        }, 
+        1024: {
+                      // New attempt: keep grid look, but dynamically add rows to fit all cards
+            grid: {
+              rows: Math.ceil(8 / 4), // auto rows for all cards
+              cols: 4,
+              gap: { row: '1.5rem', col: '1.5rem' }
+            },
+            type: false,
+            perPage: 1
+                  }
+      }
+    });
+    splide_cards_2.mount(window.splide.Extensions);
+  });
+</script>
+
+
+
+
+    
+                                                                                                                                                                             
+                                                                                                                                                                                                
+    
+	<div class="section-wrapper dark full-bleed" id="wysiwygLanding-3">
+	    <div class="wysiwyg" id="$source">
+		                             <center style="max-width: 330px; margin: 1.25rem auto; width: 100%;">
+<p style="background-color: #ffffff !important; background: #ffffff !important; color: #004d71 !important; padding: 10px 16px !important; border: 2px solid #004d71 !important; border-radius: 6px !important; font-family: system-ui, -apple-system, sans-serif !important; font-size: 1rem !important; text-align: center !important; box-sizing: border-box !important; margin: 0 !important; width: 100% !important;"><a href="https://studentaid.gov/" rel="noopener" target="_blank"><strong style="color: #004d71 !important;">Complete Your FAFSA Today</strong></a></p>
+</center>
+            		</div>
+	</div>
+    
+    
+ 
+                                                                                                                                                                                                
+    
+	<div class="section-wrapper light " id="wysiwygLanding-4">
+	    <div class="wysiwyg" id="$source">
+		                             <style><!--
+.foundation-card {
+    background: #ffffff;
+    border: 1px solid #e1e7eb;
+    border-radius: 8px;
+    box-shadow: 0 3px 12px rgba(0, 77, 113, 0.08);
+    margin: 30px 0;
+    overflow: hidden;
+}
+
+.foundation-card-inner {
+    display: flex;
+    align-items: center;
+    padding: 30px;
+}
+
+.foundation-logo {
+    flex: 0 0 240px;
+    text-align: center;
+    padding: 10px 30px 10px 10px;
+    border-right: 1px solid #dce5e9;
+}
+
+.foundation-logo img {
+    display: block;
+    width: 100%;
+    max-width: 210px;
+    height: auto;
+    margin: 0 auto;
+}
+
+.foundation-content {
+    flex: 1;
+    min-width: 0;
+    padding: 5px 20px 5px 35px;
+}
+
+.foundation-content h2 {
+    color: #004d71;
+    font-size: 25px;
+    line-height: 1.2;
+    margin: 0 0 12px 0;
+}
+
+.foundation-accent {
+    width: 55px;
+    height: 4px;
+    background: #00a7e1;
+    margin-bottom: 18px;
+}
+
+.foundation-content p {
+    color: #37474f;
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 0 0 10px 0;
+}
+
+.foundation-content p:last-of-type {
+    color: #5b6770;
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+
+.foundation-button {
+    display: inline-block;
+    background: #004d71;
+    color: #ffffff !important;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 12px 22px;
+    border-radius: 4px;
+}
+
+.foundation-button:hover,
+.foundation-button:focus {
+    background: #003a56;
+    color: #ffffff !important;
+    text-decoration: none;
+}
+
+/* Mobile */
+@media screen and (max-width: 700px) {
+
+    .foundation-card {
+        margin: 20px 0;
+    }
+
+    .foundation-card-inner {
+        display: block;
+        padding: 22px;
+    }
+
+    .foundation-logo {
+        padding: 0 0 22px 0;
+        border-right: 0;
+        border-bottom: 1px solid #dce5e9;
+        margin-bottom: 22px;
+    }
+
+    .foundation-logo img {
+        max-width: 180px;
+    }
+
+    .foundation-content {
+        padding: 0;
+    }
+
+    .foundation-content h2 {
+        font-size: 22px;
+    }
+
+    .foundation-content p {
+        font-size: 15px;
+    }
+
+    .foundation-button {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 14px 18px;
+}
+
+.foundation-buttons {
+    display: block;
+}
+}
+--></style>
+<div class="foundation-card">
+<div class="foundation-card-inner">
+<div class="foundation-logo"><img alt="Coastal Bend College Foundation logo" height="300" src="_images/foundation_image_logo.jpg" width="300"/></div>
+<div class="foundation-content">
+<h2>Coastal Bend College Foundation</h2>
+<div class="foundation-accent"></div>
+<p>The Coastal Bend College Foundation is a 501(c)(3) nonprofit supporting CBC students and the College through scholarships, private giving, and investments in student success.</p>
+<p>Explore scholarships, student support, giving opportunities, alumni and friends, and ways to make an impact.</p>
+<div class="foundation-buttons"><a class="foundation-button" href="https://www.thecbcfoundation.org/" rel="noopener" target="_blank">Visit the CBC Foundation &#8250;</a> <a class="foundation-button" href="foundation/fall-2026-coastal-bend-college-foundation-scholarship-application-form-1.pdf" rel="noopener" target="_blank">2026-2027 Scholarship Application &#8250;</a></div>
+<p class="foundation-note"><span><br/>Please email your scholarship application to <a href="mailto:foundation@coastalbend.edu">foundation@coastalbend.edu</a>&#160;or drop it off at the Foundation Office at Hall Bldg. #139-A.</span></p>
+</div>
+</div>
+</div>
+            		</div>
+	</div>
+    
+    
+ 
+                                                                                                                            <section class="section news splide light" id="news-5">
+    	<div class="section-wrapper">
+    		<div class="title-wrapper">
+    		        			<div class="title bar">
+    			    News
+    			</div>
+    			    			                            			<a href="https://www.coastalbend.edu/news/index.html" target="_blank">
+    				View All
+    			</a>
+    		</div>
+    		<div class="articles-wrapper splide__track">
+    			<div class="splide__list">
+    			    			                                                    				<article class="article splide__slide">
+    					<a href="https://www.coastalbend.edu/news/2026/11/coastal-bend-college-foundation-receives-100,000-gift.html" target="_parent">
+    						<div class="image-wrapper">
+    							<div class="image" style="background-image: url(https://www.coastalbend.edu/news/2026/11/dsc004341.jpg)"></div>
+    						</div>
+    						<div class="details">
+    						        							<div class="category">
+    								    								        								        College News, 
+								            								    								    								            Community &amp; Partnerships
+    								        								    							</div>
+    							    							<div class="title">Coastal Bend College Foundation Receives $100,000 Endowment</div>
+    						</div>
+    					</a>
+    				</article>
+    			    			                                                    				<article class="article splide__slide">
+    					<a href="https://www.coastalbend.edu/news/2026/11/coastal-bend-college-welcomes-madison-lee-leal-as-director-of-marketing-and-public-relations.html" target="_parent">
+    						<div class="image-wrapper">
+    							<div class="image" style="background-image: url(https://www.coastalbend.edu/news/2026/leal.madison.jpg)"></div>
+    						</div>
+    						<div class="details">
+    						        							<div class="category">
+    								    								    								            College News
+    								        								    							</div>
+    							    							<div class="title">Coastal Bend College Welcomes Madison Lee Leal as Director of Marketing and Public Relations</div>
+    						</div>
+    					</a>
+    				</article>
+    			    			                                                    				<article class="article splide__slide">
+    					<a href="https://www.coastalbend.edu/news/2026/10/a-promising-start-cbc-celebrates-its-first-2026-promise-scholars.html" target="_parent">
+    						<div class="image-wrapper">
+    							<div class="image" style="background-image: url(https://www.coastalbend.edu/news/2026/10/dsc04816.jpg)"></div>
+    						</div>
+    						<div class="details">
+    						        							<div class="category">
+    								    								    								            Academics
+    								        								    							</div>
+    							    							<div class="title">A Promising Start: CBC Celebrates Its First 2026 Promise Scholars</div>
+    						</div>
+    					</a>
+    				</article>
+    			    			                                                    				<article class="article splide__slide">
+    					<a href="https://www.coastalbend.edu/news/2026/09/911-remembrance.html" target="_parent">
+    						<div class="image-wrapper">
+    							<div class="image" style="background-image: url(https://www.coastalbend.edu/news/2026/09/dsc012631.jpg)"></div>
+    						</div>
+    						<div class="details">
+    						        							<div class="category">
+    								    								    								            Arts &amp; Culture
+    								        								    							</div>
+    							    							<div class="title">9/11 Remembrance</div>
+    						</div>
+    					</a>
+    				</article>
+    			    			                                                    				<article class="article splide__slide">
+    					<a href="https://www.coastalbend.edu/news/2026/09/coastal-bend-college-to-establish-career-development-office-to-support-student-career-success.html" target="_parent">
+    						<div class="image-wrapper">
+    							<div class="image" style="background-image: url(https://www.coastalbend.edu/news/2026/09/career-development-office.jpg)"></div>
+    						</div>
+    						<div class="details">
+    						        							<div class="category">
+    								    								        								        Academics, 
+								            								    								    								            Workforce &amp; Careers
+    								        								    							</div>
+    							    							<div class="title">Coastal Bend College to Establish Career Development Office to Support Student Career Success</div>
+    						</div>
+    					</a>
+    				</article>
+    			    			                                                    				<article class="article splide__slide">
+    					<a href="https://www.coastalbend.edu/news/2026/08/coastal-bend-college-welcomes-carmen-rojas-salazar-as-new-chief-of-police-and-emergency-management.html" target="_parent">
+    						<div class="image-wrapper">
+    							<div class="image" style="background-image: url(https://www.coastalbend.edu/news/_images/chief_carmen/carmen_judge_morrill.jpg)"></div>
+    						</div>
+    						<div class="details">
+    						        							<div class="category">
+    								    								    								            College News
+    								        								    							</div>
+    							    							<div class="title">Coastal Bend College Welcomes Carmen Rojas-Salazar As New Chief of Police and Emergency Management</div>
+    						</div>
+    					</a>
+    				</article>
+    			    			                                                    				<article class="article splide__slide">
+    					<a href="https://www.coastalbend.edu/news/2026/07/coastal-bend-college-announces-spring-2026-deans-list.html" target="_parent">
+    						<div class="image-wrapper">
+    							<div class="image" style="background-image: url(https://www.coastalbend.edu/news/2026/innovation-3.png)"></div>
+    						</div>
+    						<div class="details">
+    						        							<div class="category">
+    								    								    								            Student Life
+    								        								    							</div>
+    							    							<div class="title">Coastal Bend College Announces Spring 2026 Dean's List</div>
+    						</div>
+    					</a>
+    				</article>
+    			    			                                                    				<article class="article splide__slide">
+    					<a href="https://www.coastalbend.edu/news/coastal-bend-college-announces-mark-secord-as-vice-president-of-academic-affairs.html" target="_parent">
+    						<div class="image-wrapper">
+    							<div class="image" style="background-image: url(https://www.coastalbend.edu/news/mark-secord-1.jpeg)"></div>
+    						</div>
+    						<div class="details">
+    						        							<div class="category">
+    								    								        								        College News, 
+								            								    								    								            Academics
+    								        								    							</div>
+    							    							<div class="title">Coastal Bend College Announces Mark Secord as Vice President of Academic Affairs</div>
+    						</div>
+    					</a>
+    				</article>
+    			    			</div>
+    			<div class="splide__arrows splide__arrows--ltr nav">
+    				<button aria-label="Previous slide" class="splide__arrow splide__arrow--prev" type="button">
+    					<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-6 h-6" fill="none" focusable="false" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+    						<path d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" stroke-linecap="round" stroke-linejoin="round"/>
+    					</svg>
+    				</button>
+    				<button aria-label="Next slide" class="splide__arrow splide__arrow--next" type="button">
+    					<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-6 h-6" fill="none" focusable="false" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+    						<path d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" stroke-linecap="round" stroke-linejoin="round"/>
+    					</svg>
+    				</button>
+    			</div>
+    		</div>
+    	</div>
+    </section>
+    
+    <script>
+    	document.addEventListener('DOMContentLoaded', function () {
+    		var splide_news_5 = new Splide("#news-5", {
+    			type: 'loop',
+    			perPage: 1,
+    			perMove: 1,
+    			gap: '1.5rem',
+    			mediaQuery: 'min',
+    			    			breakpoints: {
+    			        				640: {
+    					perPage:  2     				},
+    				    				    				768: {
+    					perPage:  3     				},
+    				    				    				1024: {
+    					perPage:  4     				}
+    				    			}
+    			    		});
+    		splide_news_5.mount();
+    	});
+    </script>
+         
+                                                                                                                                                                                                                <div class="hh-events-block">
+            <section class="section events splide homepage dark" id="cbEvents-6">
+                <div class="section-wrapper">
+                    <div class="title-wrapper">
+                                                    <div class="title bar">
+                                Events
+                            </div>
+                                                <a href="https://www.coastalbend.edu/events/index.html" target="_blank">
+                            All Events
+                        </a>
+                    </div>
+                    <div class="wrapper splide__track">
+                        <div class="splide__list row events">
+                            <div class="fa-3x text-center loading-spinner">
+                                <i class="fas fa-spinner fa-pulse"></i>
+                            </div>
+                        </div>
+                        <div class="splide__arrows splide__arrows--ltr nav">
+                            <button aria-label="Previous slide" class="splide__arrow splide__arrow--prev" type="button">
+                                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-6 h-6" fill="none" focusable="false" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                                	<path d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                            <button aria-label="Next slide" class="splide__arrow splide__arrow--next" type="button">
+                                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-6 h-6" fill="none" focusable="false" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                                	<path d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+     
+                                                                                                                            <section class="section campuses splide light" id="campuses-7">
+    	<div class="section-wrapper">
+    	        		<div class="title bar">
+    		    Locations
+    		</div>
+    		    		<div class="cardsWrapper splide__track">
+    			<div class="splide__list">
+    			    			        			        			                                                    				<div class="card-campus splide__slide">
+    					<a href="sites/alice/index.html" target="_parent">
+    						<div class="image" style="background-image: url(_images/banners/2024/alice1.jpg)"></div>
+    						<div class="overlay">
+    							<div class="title">
+    								<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="none" focusable="false" height="22" viewBox="0 0 18 22" width="18">
+    									<path d="M17 8.78564C17 14.7856 9 20.7856 9 20.7856C9 20.7856 1 14.7856 1 8.78564C1 6.66391 1.84285 4.62908 3.34315 3.12879C4.84344 1.6285 6.87827 0.785645 9 0.785645C11.1217 0.785645 13.1566 1.6285 14.6569 3.12879C16.1571 4.62908 17 6.66391 17 8.78564V8.78564Z" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/>
+    									<path d="M9 11.7856C10.6569 11.7856 12 10.4425 12 8.78564C12 7.12879 10.6569 5.78564 9 5.78564C7.34315 5.78564 6 7.12879 6 8.78564C6 10.4425 7.34315 11.7856 9 11.7856Z" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/>
+    								</svg>
+    								<span>Alice</span>
+    							</div>
+    							<div class="contactWrapper">
+    								<div class="addres">
+    								    704 Coyote Trail<br/>
+    								        								    Alice, TX 78332
+    								</div>
+    								    								<div class="phone">
+    								    361-664-2981     								</div>
+    								    							</div>
+    						</div>
+    					</a>
+    				</div>
+    			    			        			        			                                                    				<div class="card-campus splide__slide">
+    					<a href="sites/beeville/index.html" target="_parent">
+    						<div class="image" style="background-image: url(_images/banners/2024/beeville1.jpg)"></div>
+    						<div class="overlay">
+    							<div class="title">
+    								<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="none" focusable="false" height="22" viewBox="0 0 18 22" width="18">
+    									<path d="M17 8.78564C17 14.7856 9 20.7856 9 20.7856C9 20.7856 1 14.7856 1 8.78564C1 6.66391 1.84285 4.62908 3.34315 3.12879C4.84344 1.6285 6.87827 0.785645 9 0.785645C11.1217 0.785645 13.1566 1.6285 14.6569 3.12879C16.1571 4.62908 17 6.66391 17 8.78564V8.78564Z" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/>
+    									<path d="M9 11.7856C10.6569 11.7856 12 10.4425 12 8.78564C12 7.12879 10.6569 5.78564 9 5.78564C7.34315 5.78564 6 7.12879 6 8.78564C6 10.4425 7.34315 11.7856 9 11.7856Z" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/>
+    								</svg>
+    								<span>Beeville</span>
+    							</div>
+    							<div class="contactWrapper">
+    								<div class="addres">
+    								    3800 Charco Road<br/>
+    								        								    Beeville, TX 78102
+    								</div>
+    								    								<div class="phone">
+    								    361-358-2838     								</div>
+    								    							</div>
+    						</div>
+    					</a>
+    				</div>
+    			    			        			        			                                                    				<div class="card-campus splide__slide">
+    					<a href="sites/kingsville/index.html" target="_parent">
+    						<div class="image" style="background-image: url(_images/kingsville1.jpg)"></div>
+    						<div class="overlay">
+    							<div class="title">
+    								<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="none" focusable="false" height="22" viewBox="0 0 18 22" width="18">
+    									<path d="M17 8.78564C17 14.7856 9 20.7856 9 20.7856C9 20.7856 1 14.7856 1 8.78564C1 6.66391 1.84285 4.62908 3.34315 3.12879C4.84344 1.6285 6.87827 0.785645 9 0.785645C11.1217 0.785645 13.1566 1.6285 14.6569 3.12879C16.1571 4.62908 17 6.66391 17 8.78564V8.78564Z" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/>
+    									<path d="M9 11.7856C10.6569 11.7856 12 10.4425 12 8.78564C12 7.12879 10.6569 5.78564 9 5.78564C7.34315 5.78564 6 7.12879 6 8.78564C6 10.4425 7.34315 11.7856 9 11.7856Z" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/>
+    								</svg>
+    								<span>Kingsville</span>
+    							</div>
+    							<div class="contactWrapper">
+    								<div class="addres">
+    								    1814 Brahma Blvd.<br/>
+    								        								    Kingsville, TX 78363
+    								</div>
+    								    								<div class="phone">
+    								    361-592-1615     								</div>
+    								    							</div>
+    						</div>
+    					</a>
+    				</div>
+    			    			        			        			                                                    				<div class="card-campus splide__slide">
+    					<a href="sites/pleasanton/index.html" target="_parent">
+    						<div class="image" style="background-image: url(_images/pleas.jpg)"></div>
+    						<div class="overlay">
+    							<div class="title">
+    								<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="none" focusable="false" height="22" viewBox="0 0 18 22" width="18">
+    									<path d="M17 8.78564C17 14.7856 9 20.7856 9 20.7856C9 20.7856 1 14.7856 1 8.78564C1 6.66391 1.84285 4.62908 3.34315 3.12879C4.84344 1.6285 6.87827 0.785645 9 0.785645C11.1217 0.785645 13.1566 1.6285 14.6569 3.12879C16.1571 4.62908 17 6.66391 17 8.78564V8.78564Z" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/>
+    									<path d="M9 11.7856C10.6569 11.7856 12 10.4425 12 8.78564C12 7.12879 10.6569 5.78564 9 5.78564C7.34315 5.78564 6 7.12879 6 8.78564C6 10.4425 7.34315 11.7856 9 11.7856Z" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/>
+    								</svg>
+    								<span>Pleasanton</span>
+    							</div>
+    							<div class="contactWrapper">
+    								<div class="addres">
+    								    1411 Bensdale<br/>
+    								        								    Pleasanton, TX 78064
+    								</div>
+    								    								<div class="phone">
+    								    830-569-4222     								</div>
+    								    							</div>
+    						</div>
+    					</a>
+    				</div>
+    			    			</div>
+    			<div class="splide__arrows splide__arrows--ltr nav">
+    				<button aria-label="Previous slide" class="splide__arrow splide__arrow--prev" type="button">
+    					<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-6 h-6" fill="none" focusable="false" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+    						<path d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" stroke-linecap="round" stroke-linejoin="round"/>
+    					</svg>
+    				</button>
+    				<button aria-label="Next slide" class="splide__arrow splide__arrow--next" type="button">
+    					<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-6 h-6" fill="none" focusable="false" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+    						<path d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" stroke-linecap="round" stroke-linejoin="round"/>
+    					</svg>
+    				</button>
+    			</div>
+    		</div>
+    	</div>
+    </section>
+    
+    <script>
+    	document.addEventListener('DOMContentLoaded', function () {
+    		var splide_campuses_7 = new Splide("#campuses-7", {
+    			type: 'loop',
+    			perPage: 1,
+    			perMove: 1,
+    			gap: '1.5rem',
+    			mediaQuery: 'min',
+    			breakpoints: {
+    				640: {
+    					perPage:  2     				},
+    				768: {
+    					perPage:  3     				},
+    				1024: {
+    					perPage:  4     				}
+    			}
+    		});
+    		splide_campuses_7.mount();
+    	});
+    </script>
+         
+                        </div>
+
+			</main>
+			     
+
+      
+                          <footer class="footer">
+	<section class="pre-footer">
+		<div class="section-wrapper">
+			<div class="pre-wrapper">
+				<a href="index.html" target="_parent">
+				    <img alt="Coastal Bend College" class="w-auto h-16" src="_files/images/logos/logo-horizontal-white.png"/>
+				</a>
+			</div>
+			<hr class="divider"/>
+			<div class="links-wrapper">
+				    				<div class="link-column">
+    					<ul class="link-list">
+    						    						                            						<li>
+    							<a href="accessibility/index.html" target="_parent">
+    								Accessibility
+    							</a>
+    						</li>
+    						    						                            						<li>
+    							<a href="institutional_effectiveness/accreditation.html" target="_parent">
+    								Accreditation
+    							</a>
+    						</li>
+    						    						                            						<li>
+    							<a href="board_of_trustees/index.html" target="_parent">
+    								Board of Trustees
+    							</a>
+    						</li>
+    						    						                            						<li>
+    							<a href="finance_business_operations/index.html" target="_parent">
+    								Business Office
+    							</a>
+    						</li>
+    						    						                            						<li>
+    							<a href="instruction/hb2504.html" target="_parent">
+    								Course Information &amp; Faculty Credentials (House Bill 2504)
+    							</a>
+    						</li>
+    						    					</ul>
+    				</div>
+				    				<div class="link-column">
+    					<ul class="link-list">
+    						    						                            						<li>
+    							<a href="human_resources/index.html" target="_parent">
+    								Employment Opportunities
+    							</a>
+    						</li>
+    						    						            						<li>
+    							<a href="https://studentaid.gov/h/apply-for-aid/fafsa" target="_blank">
+    								Free Application for Federal Student Aid (FAFSA)
+    							</a>
+    						</li>
+    						    						                            						<li>
+    							<a href="police_emergency_management/hazing-prevention-and-reporting.html" target="_parent">
+    								Hazing Prevention and Reporting
+    							</a>
+    						</li>
+    						    						                            						<li>
+    							<a href="institutional_effectiveness/index.html" target="_parent">
+    								Institutional Effectiveness
+    							</a>
+    						</li>
+    						    						            						<li>
+    							<a href="https://apps.highered.texas.gov/resumes/" target="_parent">
+    								Institutional Resume (THECB)
+    							</a>
+    						</li>
+    						    					</ul>
+    				</div>
+				    				<div class="link-column">
+    					<ul class="link-list">
+    						    						                            						<li>
+    							<a href="marketing_public_relations/index.html" target="_parent">
+    								Marketing &amp; Public Relations
+    							</a>
+    						</li>
+    						    						                            						<li>
+    							<a href="student_success_engagement/cougar_care/mental_health_resources.html" target="_parent">
+    								Mental Health Resources
+    							</a>
+    						</li>
+    						    						                            						<li>
+    							<a href="physical_plant/index.html" target="_parent">
+    								Physical Plant &amp; Facilities Services
+    							</a>
+    						</li>
+    						    						                            						<li>
+    							<a href="marketing_public_relations/privacy.policy.html" target="_parent">
+    								Privacy Policy
+    							</a>
+    						</li>
+    						    						                            						<li>
+    							<a href="police_emergency_management/index.html" target="_parent">
+    								Public Safety
+    							</a>
+    						</li>
+    						    					</ul>
+    				</div>
+				    				<div class="link-column">
+    					<ul class="link-list">
+    						    						                            						<li>
+    							<a href="institutional_effectiveness/strategic_plan.html" target="_parent">
+    								Strategic Plan
+    							</a>
+    						</li>
+    						    						                            						<li>
+    							<a href="marketing_public_relations/tpia.html" target="_parent">
+    								Texas Public Information Act
+    							</a>
+    						</li>
+    						    						                            						<li>
+    							<a href="human_resources/titleix/index.html" target="_parent">
+    								Title IX &amp; Sexual Misconduct Reporting
+    							</a>
+    						</li>
+    						    						                            						<li>
+    							<a href="transparency/truth-in-taxation.html" target="_parent">
+    								Truth in Taxation
+    							</a>
+    						</li>
+    						    					</ul>
+    				</div>
+								<div class="social-wrapper">
+					<ul class="social-list">
+											                												<li class="social-list-item">
+							<a href="https://www.facebook.com/coastalbendcollege/" target="_blank">
+								<div class="icon">
+								    <i class="fa-brands fa-facebook-f"></i>
+								</div>
+								<span>Facebook</span>
+							</a>
+						</li>
+																	                												<li class="social-list-item">
+							<a href="https://www.instagram.com/coastalbendcollege/" target="_blank">
+								<div class="icon">
+								    <i class="fa-brands fa-instagram"></i>
+								</div>
+								<span>Instagram</span>
+							</a>
+						</li>
+																	                												<li class="social-list-item">
+							<a href="https://www.youtube.com/@coastalbendcollege" target="_blank">
+								<div class="icon">
+								    <i class="fa-brands fa-youtube"></i>
+								</div>
+								<span>YouTube</span>
+							</a>
+						</li>
+																	                												<li class="social-list-item">
+							<a href="https://www.linkedin.com/school/coastal-bend-college/" target="_blank">
+								<div class="icon">
+								    <i class="fa-brands fa-linkedin-in"></i>
+								</div>
+								<span>LinkedIn</span>
+							</a>
+						</li>
+																	                												<li class="social-list-item">
+							<a href="https://twitter.com/CBCFuture" target="_blank">
+								<div class="icon">
+								    <i class="fa-brands fa-x-twitter"></i>
+								</div>
+								<span>X</span>
+							</a>
+						</li>
+																</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="post-footer">
+	    		<div class="section-wrapper">
+			<div class="post-footer-wrapper">
+				<div class="left">
+																																													
+					    					        					        					        					            <span class="copyright line-1">
+					                &#169; 2026 Coastal Bend College. All rights reserved.
+				                </span>
+					        					    					        					        					        					            <span class="copyright line-2">
+					                Coastal Bend College does not discriminate on the basis of race, creed, color, national origin, gender, age or disability.
+				                </span>
+					        					    					        					        					        					            <span class="copyright line-2">
+					                Section 504 prohibits discrimination on the basis of disability in programs or activities that receive Federal financial assistance from the U.S. Department of Education.  Title IX - No person in the United States shall, on the basis of sex, be excluded from participation, be denied the benefits of, or be subjected to discrimination under any education program or activity receiving Federal financial assistance.
+				                </span>
+					        					    					
+				</div>
+				<ul class="nav">
+								                            				    					<li>
+						<a href="student_success_engagement/admissions_registrar/privacy.html" target="_parent">
+							Privacy Policy
+						</a>
+					</li>
+													</ul>
+			</div>
+		</div>
+	</section>
+    <button class="button-scroll-top" id="scrollToTop">
+    	<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-6 h-6" fill="none" focusable="false" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+    		<path d="M4.5 15.75l7.5-7.5 7.5 7.5" stroke-linecap="round" stroke-linejoin="round"/>
+    	</svg>
+    	<span class="text">Back to top</span>
+    </button>
+</footer>
+		</div>
+		     
+
+      
+  <script src="_files/plugins/splidejs/core/dist/js/splide.min.js"></script>
+<script src="_files/plugins/splidejs/grid/dist/js/splide-extension-grid.min.js"></script>
+<script src="_files/plugins/splidejs/video/dist/js/splide-extension-video.min.js"></script>
+<script defer="defer" src="_files/js/site.js"></script>
+<script defer="defer" src="_files/js/overrides.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const sliderEl = document.getElementById('homepageSlider');
+    const realSlides = sliderEl ? sliderEl.querySelectorAll('.splide__slide').length : 0;
+
+    let homepageSlider = new Splide('#homepageSlider', {
+        cover: false,
+        autoHeight: false,
+        type: realSlides > 1 ? 'loop' : 'slide',
+        perPage: 1,
+        autoplay: realSlides > 1,
+        interval: 5000,
+        arrows: realSlides > 1,
+        drag: realSlides > 1,
+        video: {
+            loop: true,
+            mute: true,
+            autoplay: true,
+            playerOptions: {
+                youtube: {
+                    controls: 0,
+                    disablekb: 1
+                },
+                htmlVideo: {
+                    controls: false,
+                    playsInline: true,
+                    muted: true
+                }
+            }
+        }
+    });
+
+    homepageSlider.on('mounted', function() {
+        const slider = document.getElementById('homepageSlider');
+
+        // Hide <video> elements until they have a decoded frame so the slide's
+        // poster image shows through instead of a black flash. Also strip the
+        // wrapper's default black background.
+        const style = document.createElement('style');
+        style.textContent = '#homepageSlider .splide__video__wrapper{background:transparent!important}#homepageSlider video:not([data-ready]){opacity:0}#homepageSlider video[data-ready]{opacity:1;transition:opacity .15s}';
+        document.head.appendChild(style);
+
+        // Keep all play buttons visible at all times (extension tries to hide them)
+        new MutationObserver(function() {
+            slider.querySelectorAll('.splide__video__play').forEach(function(btn) {
+                if (btn.style.display === 'none') {
+                    btn.style.display = 'flex';
+                }
+            });
+        }).observe(slider, { attributes: true, attributeFilter: ['style'], subtree: true });
+
+        // Watch for <video> elements and hook them once
+        new MutationObserver(function() {
+            slider.querySelectorAll('video').forEach(function(videoEl) {
+                // iOS autoplay insurance: the extension sets muted/playsInline as
+                // properties, but iOS also inspects the HTML attributes. Set them
+                // explicitly here (idempotent).
+                videoEl.setAttribute('playsinline', '');
+                videoEl.setAttribute('webkit-playsinline', '');
+                videoEl.setAttribute('muted', '');
+
+                if (videoEl.dataset.customHooked) return;
+                videoEl.dataset.customHooked = 'true';
+
+                const slide = videoEl.closest('.splide__slide');
+                const btn = slide ? slide.querySelector('.splide__video__play') : null;
+
+                // Show the slide's poster image in place of the video's default
+                // black frame while it's loading the first frame.
+                const posterImg = slide ? slide.querySelector('img') : null;
+                if (posterImg) {
+                    videoEl.poster = posterImg.currentSrc || posterImg.src;
+                }
+
+                // Reveal the video once it has a decoded frame (see CSS above).
+                function markReady() { videoEl.setAttribute('data-ready', ''); }
+                if (videoEl.readyState >= 2) {
+                    markReady();
+                } else {
+                    videoEl.addEventListener('loadeddata', markReady, { once: true });
+                }
+
+                let hasPlayed = false;
+
+                videoEl.addEventListener('play', function() {
+                    hasPlayed = true;
+                    if (btn) {
+                        btn.classList.add('is-video-playing');
+                        btn.setAttribute('aria-label', 'Pause Video');
+                    }
+                });
+                videoEl.addEventListener('pause', function() {
+                    if (btn) {
+                        btn.classList.remove('is-video-playing');
+                        btn.setAttribute('aria-label', 'Play Video');
+                    }
+                });
+
+                // The extension's UI registers a click listener on the slide itself
+                // (this.parent), so ANY click inside the slide triggers the
+                // extension's onClick &#8594; state-machine toggle, which collides with
+                // our direct pause/play. Stop propagation so only our handler runs.
+                function togglePlay(e) {
+                    if (e && e.stopPropagation) e.stopPropagation();
+                    if (videoEl.paused) {
+                        videoEl.play().catch(function() {});
+                    } else {
+                        videoEl.pause();
+                    }
+                }
+                videoEl.style.cursor = 'pointer';
+                videoEl.addEventListener('click', togglePlay);
+                if (btn) btn.addEventListener('click', togglePlay);
+
+                // iOS autoplay safety net: if the extension's initial play() was
+                // rejected (can happen on mobile even with correct properties),
+                // retry once after the attributes are set.
+                setTimeout(function() {
+                    if (!hasPlayed && videoEl.paused && slide && slide.classList.contains('is-active')) {
+                        videoEl.play().catch(function() {});
+                    }
+                }, 250);
+            });
+        }).observe(slider, { childList: true, subtree: true });
+    });
+
+    function getRealActiveSlide() {
+        const activePagBtn = document.querySelector('#homepageSlider .splide__pagination__page.is-active');
+        if (activePagBtn) {
+            const slideId = activePagBtn.getAttribute('aria-controls');
+            if (slideId) {
+                const slide = document.getElementById(slideId);
+                if (slide) return slide;
+            }
+        }
+        return document.querySelector('#homepageSlider .splide__slide:not(.splide__slide--clone).is-active') ||
+               document.querySelector('#homepageSlider .splide__slide.is-active');
+    }
+
+    function updateSliderHeight() {
+        const slider = document.getElementById('homepageSlider');
+        const slideList = slider ? slider.querySelector('.splide__list') : null;
+        const activeSlide = getRealActiveSlide();
+        if (!activeSlide) return;
+        let measuredHeight = activeSlide.offsetHeight;
+        if (activeSlide.classList.contains('splide__slide--has-video')) {
+            const poster = activeSlide.querySelector('img');
+            if (poster && poster.naturalWidth && poster.naturalHeight) {
+                let slideWidth = activeSlide.clientWidth;
+                measuredHeight = Math.round(slideWidth * (poster.naturalHeight / poster.naturalWidth));
+            }
+        } else {
+            const img = activeSlide.querySelector('img');
+            if (img && img.naturalWidth && img.naturalHeight) {
+                let slideWidth = activeSlide.clientWidth;
+                let calculatedHeight = Math.round(slideWidth * (img.naturalHeight / img.naturalWidth));
+                if (calculatedHeight < measuredHeight) measuredHeight = calculatedHeight;
+            }
+        }
+        slider.removeAttribute('style');
+        if (slideList) {
+            slideList.style.setProperty('height', measuredHeight + 'px', 'important');
+            slider.style.setProperty('height', measuredHeight + 'px', 'important');
+        }
+    }
+
+    homepageSlider.on('mounted moved', updateSliderHeight);
+    document.querySelectorAll('#homepageSlider img').forEach(function(img) {
+        img.addEventListener('load', updateSliderHeight);
+    });
+    window.addEventListener('resize', updateSliderHeight);
+
+    homepageSlider.mount(window.splide.Extensions);
+});
+</script>
+
+
+                                <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js"></script>
+<script crossorigin="anonymous" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script crossorigin="anonymous" integrity="sha512-/bOVV1DV1AQXcypckRwsR9ThoCj7FqTV2/0Bm79bL3YSyLkVideFLE3MIZkq1u5t28ke1c0n31WYCOrO01dsUg==" referrerpolicy="no-referrer" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.matchHeight/0.7.2/jquery.matchHeight-min.js"></script>
+<script crossorigin="anonymous" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.15/lodash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.32/moment-timezone-with-data.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+            <script>var debugMode = false; var filterBy = "endDate"; var defaultView = "upcoming events.replace(/[^A-Za-z0-9]/g, "-")"; function getBlockEvents(data) { return new Promise(function (resolve) { $.each(data, function (i, v) { eventList += eventCustomHTML(v); }); resolve({ data: data, events: eventList }); }) } function eventCustomHTML(v, col) { eventItem = ''; eventItem += '<div class="event splide__slide">'; eventItem += '<a href="' + v.url + '" target="_parent">'; eventItem += '<div class="image-wrapper">'; eventItem += imageOutputCustom(v.image, v.startDate); eventItem += '</div>'; eventItem += '<div class="details">'; eventItem += '<div class="date">'; eventItem += '<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="none" focusable="false" height="22" viewBox="0 0 21 22" width="21"><path d="M19 6.5V5C19 4.46957 18.7893 3.96086 18.4142 3.58579C18.0391 3.21071 17.5304 3 17 3H3C2.46957 3 1.96086 3.21071 1.58579 3.58579C1.21071 3.96086 1 4.46957 1 5V19C1 19.5304 1.21071 20.0391 1.58579 20.4142C1.96086 20.7893 2.46957 21 3 21H6.5" stroke="#696F82" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><path d="M14 1V5" stroke="#696F82" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><path d="M6 1V5" stroke="#696F82" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><path d="M1 9H6" stroke="#696F82" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><path d="M15.5 16.5L14 15.25V13" stroke="#696F82" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/><path d="M20 15C20 16.5913 19.3679 18.1174 18.2426 19.2426C17.1174 20.3679 15.5913 21 14 21C12.4087 21 10.8826 20.3679 9.75736 19.2426C8.63214 18.1174 8 16.5913 8 15C8 13.4087 8.63214 11.8826 9.75736 10.7574C10.8826 9.63214 12.4087 9 14 9C15.5913 9 17.1174 9.63214 18.2426 10.7574C19.3679 11.8826 20 13.4087 20 15V15Z" stroke="#696F82" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/></svg>'; eventItem += '<span>' + dateOutputCustom(v.startDate, v.endDate) + ' - ' + timeOutputCustom(v.startDate, v.endDate, v.allDay, v.originalStart, v.originalEnd) + '</span>'; eventItem += '</div>'; eventItem += '<div class="title">' + v.title + '</div>'; eventItem += '</div>'; eventItem += '</a>'; eventItem += '</div>'; return eventItem; } function dateOutputCustom(startDateIn, endDateIn, type) { if (moment(startDateIn).isSame(endDateIn, 'day')) { if (type == "full") { var dateOutput = moment(startDateIn).format('MMMM D, YYYY'); } else { var dateOutput = moment(startDateIn).format('MMM D YYYY'); } } else { if (moment(startDateIn).isSame(endDateIn, 'year')) { if (moment(startDateIn).isSame(endDateIn, 'month')) { var dateOutput = moment(startDateIn).format('MMM D') + ' - ' + moment(endDateIn).format('D YYYY'); } else { var dateOutput = moment(startDateIn).format('MMM D') + ' - ' + moment(endDateIn).format('MMM D YYYY'); } } else { var dateOutput = moment(startDateIn).format('MMM D YYYY') + ' - ' + moment(endDateIn).format('MMM D YYYY'); } } return dateOutput; } function imageOutputCustom(image, startDateIn){ if (image) { var imageOuput = '<div class="image" style="background-image:url(' + image.url + ');"></div>'; } else { var imageOuput = '<div class="hh-events"><div class="event-image date-img"><div class="month">' + moment(startDateIn).format('MMM') + '</div><div class="day">' + moment(startDateIn).format('D') + '<div class="weekday">' + imgWeekDay(moment(startDateIn).isoWeekday()) + '</div></div></div></div>'; } return imageOuput; } function timeOutputCustom(startDateIn, endDateIn, allDayIn, originalStart, originalEnd) { if (allDayIn === "true") { var timeOutput = 'All Day'; } else { var timeOutput = ""; var startDateInM = moment(startDateIn); var originalStartM = moment(originalStart); var endDateInM = moment(endDateIn); var originalEndM = moment(originalEnd); var startDateStdOffset; /*Fix to remove daylight savings time*/ if (!moment().isDST()) { if (startDateInM.isSame(originalStartM)) { startDateStdOffset = originalStartM.utcOffset(); } else { startDateStdOffset = startDateInM.utcOffset(); } var endDateStdOffset; if (endDateInM.isSame(originalStartM)) { endDateStdOffset = originalEndM.utcOffset(); } else { endDateStdOffset = endDateInM.utcOffset(); } var startDateInOffsetM = startDateInM.utcOffset(startDateStdOffset); var endDateInOffsetM = endDateInM.utcOffset(endDateStdOffset); } else { var startDateInOffsetM = originalStartM; var endDateInOffsetM = originalEndM; } timeOutput += startDateInOffsetM.format('h'); if (startDateInOffsetM.format('mm') != "00") { timeOutput += startDateInOffsetM.format(':mm'); } if (startDateInOffsetM.format('a') != endDateInOffsetM.format('A')) { timeOutput += startDateInOffsetM.format(' A'); } timeOutput += ' - '; timeOutput += endDateInOffsetM.format('h'); if (endDateInOffsetM.format('mm') != "00") { timeOutput += endDateInOffsetM.format(':mm'); } timeOutput += endDateInOffsetM.format(' A'); } return timeOutput; } var currentDataURL = "https://www.coastalbend.edu/events/_data/current-live.json"; var hhEventsType = "current"; var hhEventsLimit = 6; var hhEventsWidth = "3"; var hhEvents = []; var filter1Text = [ ]; var filter2Text = [ ]; var filter3Text = [ ]; var filter4Text = [ ]; var filter5Text = [ ]; var filter1 = true; var filter2 = true; var filter3 = true; var filter4 = true; var filter5 = true; var filter6 = false; var filter7 = false; var filter8 = false; var filter9 = false; var filter10 = false;</script>    <script src="https://www.coastalbend.edu/events/_files/js/hh-events.js"></script>
+
+
+<script>
+    function afterHHEventsLoad(){
+        let eventCount = document.querySelectorAll('#cbEvents-6 .event:not(.splide__slide--clone)').length;
+		var splide_cbEvents_6 = new Splide("#cbEvents-6", {
+			type: 'loop',
+			perPage: 1,
+			perMove: 1,
+			gap: '1.5rem',
+			mediaQuery: 'min',
+			breakpoints: {
+				640: {
+					perPage: (eventCount < 2 ? eventCount : 2)
+				},
+				768: {
+					perPage: (eventCount < 3 ? eventCount : 3)
+				}
+			}
+		});
+		splide_cbEvents_6.mount();
+    }
+</script>
+
+
+<script defer="defer" src="_files/js/alert.js"></script>
+
+		
+		
+	</body>
+</html>

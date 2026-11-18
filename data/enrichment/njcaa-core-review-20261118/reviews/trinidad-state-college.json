@@ -1,0 +1,41 @@
+{
+  "slug": "trinidad-state-college",
+  "collegeId": "cmox1gkdi00boqtsgvoj3d2eq",
+  "programId": "cmox1gke600bqqtsgg5ri45lj",
+  "name": "Trinidad State College",
+  "storedState": "CO",
+  "storedDivision": "NJCAA_D1",
+  "checkedAtUtc": "2026-11-18T14:20:56.718Z",
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "currentMembershipVerified": false,
+  "campusIdentityVerified": false,
+  "importApproval": "NOT_GRANTED",
+  "pages": [
+    {
+      "requestedUrl": "https://tsctrojans.com/sports/bsb/index",
+      "kind": "DIRECTORY_ALIAS_REQUIRES_CAMPUS_REVIEW",
+      "parent": {
+        "sourcePath": "../njcaa-discovery-20261118/sources/directory-0.source",
+        "sha256": "63f1c531b007d2922e4db3aa2ba596ee54e397dbafd287df69b95213a011a404",
+        "label": "Trinidad State (CO)"
+      },
+      "status": 202,
+      "finalUrl": "https://tsctrojans.com/sports/bsb/index",
+      "checkedAtUtc": "2026-11-18T14:20:56.844Z",
+      "sourcePath": "sources/trinidad-state-college-0.source",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "discoveryAliases": [
+    {
+      "url": "https://tsctrojans.com/sports/bsb/index",
+      "label": "Trinidad State (CO)",
+      "parentSourcePath": "sources/directory-0.source",
+      "parentSHA256": "63f1c531b007d2922e4db3aa2ba596ee54e397dbafd287df69b95213a011a404",
+      "parentUrl": "https://www.thebaseballobserver.com/njcaa-di-baseball",
+      "status": "UNVERIFIED_NORMALIZED_NAME_LEAD"
+    }
+  ],
+  "status": "HELD_NO_READABLE_SOURCE"
+}

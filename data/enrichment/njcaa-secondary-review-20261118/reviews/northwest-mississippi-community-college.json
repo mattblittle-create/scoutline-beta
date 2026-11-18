@@ -1,0 +1,53 @@
+{
+  "slug": "northwest-mississippi-community-college",
+  "programId": "cmox2398g009tqtfkrnhijw16",
+  "collegeId": "cmox2397r009rqtfkmtp9eot3",
+  "checkedAtUtc": "2026-11-18T14:43:36.125Z",
+  "sourcePath": "../njcaa-discovery-20261118/sources/northwest-mississippi-community-college-1.source",
+  "sourceSHA256": "8ae303acc0710f2c7f275b48ea52ad4b3b09d780939ea3e5c1609214824d1680",
+  "sourceUrl": "https://nwccrangers.com/sports/baseball",
+  "socialLeads": [],
+  "recruitingLeads": [
+    {
+      "url": "https://nwccrangers.com/sb_output.aspx?form=3",
+      "label": "Prospective Athlete Form",
+      "context": "",
+      "kind": "QUESTIONNAIRE"
+    }
+  ],
+  "logoLeads": [
+    {
+      "url": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/northwestms.sidearmsports.com/images/responsive/main-logo.png",
+      "label": "Northwest Mississippi Community College Rangers | Go to Home main-header__logo"
+    }
+  ],
+  "captures": [
+    {
+      "requestedUrl": "https://nwccrangers.com/sb_output.aspx?form=3",
+      "kind": "QUESTIONNAIRE",
+      "status": 200,
+      "finalUrl": "https://nwccrangers.com/sb_output.aspx?form=3",
+      "sourcePath": "../njcaa-core-review-20261118/sources/northwest-mississippi-community-college-4.source",
+      "sha256": "7c399238b17aef1c3a88bd4d85943948fe0c5d113a7228b9966e24e613f04950",
+      "reusedEvidence": true
+    },
+    {
+      "requestedUrl": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/northwestms.sidearmsports.com/images/responsive/main-logo.png",
+      "kind": "LOGO_ASSET",
+      "status": 200,
+      "finalUrl": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/northwestms.sidearmsports.com/images/responsive/main-logo.png",
+      "contentType": "image/png",
+      "sourcePath": "sources/northwest-mississippi-community-college-1.source",
+      "sha256": "0280c306bebff17e6c688f707a650216af387f17fac3b181abfe423557543df7",
+      "decoded": {
+        "format": "png",
+        "width": 350,
+        "height": 273
+      },
+      "assetDecoded": true
+    }
+  ],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED"
+}

@@ -1,0 +1,4756 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<!-- The IE meta tag must be one of the first tags in the HEAD. It prevents the outrageously silly "compatability mode" in intranet. -->
+<!--  -->
+<meta name="viewport" content="width=device-width">
+<meta name="viewport" content="initial-scale=1.0">
+<meta name="apple-touch-fullscreen" content="yes">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Welcome - Roane State Community College</title>
+<link rel="canonical" href="https://www.roanestate.edu">
+<link rel="stylesheet" href="/layout.css?v=5" type="text/css">
+<!--<link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>-->
+<style>
+#subpagePhoto { background-image:url("/_images/banners/"); }
+</style>
+<script type="text/javascript" src="/_functions/jquery/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="/layout.js?v=46"></script>
+
+
+<!-- Neutralize TikTok tracking before GTM loads -->
+<script>
+  (function() {
+    var dummy = function() {};
+    var ttqMock = {
+      load: dummy,
+      page: dummy,
+      track: dummy,
+      identify: dummy,
+      instance: function() { return ttqMock; },
+      _i: {},
+      methods: ['page', 'track', 'identify', 'instances', 'debug', 'on', 'off', 'once', 'ready', 'alias', 'group', 'enableCookie', 'disableCookie']
+    };
+    ttqMock.methods.forEach(function(m) { ttqMock[m] = dummy; });
+
+    try {
+      Object.defineProperty(window, 'ttq', {
+        get: function() { return ttqMock; },
+        set: function() {},
+        configurable: false
+      });
+    } catch (e) {
+      window.ttq = ttqMock;
+    }
+  })();
+</script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BDWC8WJJ66"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'G-BDWC8WJJ66');
+</script>
+
+<!-- Google Tag Manager (script) / Todd & Sarah for UDM, 2025-01-21 -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-WLXZS4TF');</script>
+    <!-- End Google Tag Manager -->
+
+<!-- Google Tag Manager / Jamie & Sarah, 2023-04-28 -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5HV2CNM');</script>
+    <!-- End Google Tag Manager -->
+
+
+
+
+	<!--Todd Appleton added the code below for Keri Phillips in reference to Google Site Verification-->
+	<meta name="google-site-verification" content="fL84Qm1rDfZ0T2gBVPYxCkOEeFYhI6mbTfXsjMYcDsY" />
+
+</head>
+
+
+
+<!---- HeyHalda tracking code, requested by Sarah Self om 2-12-2024 Updated on 2-14-2024 for errors in code----->
+<script async="true"> var s = document.createElement('script'); s.src = 'https://app.heyhalda.com/widgets/smart-forms/clsj5u2tx00pyh9od8gpo6oy0.js?r=' + Math.random().toString(36).substring(7); s.async = true; document.head.appendChild(s); </script> 
+
+
+<body class="-Page">
+
+
+<!-- Todd Appleton added the code below for Sarah Self in reference to Big Slate Media 07-10-2024-->
+<!-- Meta Pixel Code -->
+<script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '858736036172819');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=858736036172819&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+	 
+
+
+
+<div id="mobileDetection"></div>
+
+<!--Keep directly after #mobileDetection HTML-->
+<script>
+function isMobile(){
+
+	if(parseInt($("#mobileDetection").css("z-index")) > 0){ return true; } else { return false; }
+	
+}
+function mobileCategory(){
+	
+	return parseInt($("#mobileDetection").css("z-index"));
+	
+}
+</script>
+
+<div id="layoutWeather"></div>
+<div id="layoutMenuSkip"><a href="#layoutContent">Skip to Main Content</a></div>
+
+<!--
+<style>
+@font-face { font-family:Impact2; src:url("/pages/athletics2/images/Impact2.ttf"); }
+#tourneyBanner { display:none; padding:1px 25px; background-color:#004682; color:white; font-family:Impact2; font-size:21px; text-align:center; }
+#tourneyBanner a { margin:0 1em; color:white; /* text-decoration:underline; */ border-bottom:1px solid white; }
+#tourneyBanner p.links { margin-top:-0.5em; }
+@media screen and (max-width:500px) {
+	#tourneyBanner p.links { font-size:0.85em; }
+}
+</style>
+
+<div id="tourneyBanner"><p><a href="/?13472-News-Find-out-how-you-can-watch-the-Raiders-in-the-national-tournament">Learn How to Watch the Raiders in the National Championship!</a></p></div>
+-->
+
+<div id="layoutMiniBanner">
+	<ul class="layoutNavMini">
+		<!--no whitespace to remove spaces for inline-block-->
+		<li><a href="https://myraidernet.roanestate.edu/">RaiderNet</a><span></span></li><li><a href="/?6022-Momentum-Login-Page">Momentum</a><span></span></li><li><a href="/?5430-Email-Web-Access">Email</a><span></span></li><li><a href="/?470-Schedule-of-Classes-RSCC">Class Schedule</a><span></span></li><li><a href="/?12106-Athletics">Athletics</a><span></span></li><li><a href="/?6924-Campuses">Campuses</a><span></span></li><li><a href="/?6921-A-Z-Index">A-Z</a><span></span></li><li><a href="/?6999-Contact-the-CollegeHelp-Center">Contact Us</a></li>
+	</ul>
+	<div id="layoutNavMobileMenu">
+		<div id="layoutMenuBurger">
+			<div class="patty"></div>
+			<div class="patty"></div>
+			<div class="patty"></div>
+		</div>
+			<div id="layoutMenuText">Menu</div>
+		<ul id="layoutNavMobile3Links">
+			<li><a href="/?6110-RaiderNet">RaiderNet</a><span aria-hidden="true">/</span></li>
+			<li><a href="/?6022-Momentum-Login-Page">Momentum</a><span aria-hidden="true">/</span></li>
+			<li><a href="/?5430-Email-Web-Access">Email</a><span aria-hidden="true">/</span></li>
+			<li><a href="/?6999-Contact-the-CollegeHelp-Center">Contact Us</a></li>
+		</ul>
+	</div>
+</div>
+<div id="layoutBannerContainer">
+	<div id="layoutBannerContent"> <a id="layoutRSFull" href="https://www.roanestate.edu/"><img src="/_images/top_rsRoaneState.png" alt="Roane State Community College"/></a><a id="layoutRSShort" href="https://www.roanestate.edu/"><img src="/_images/top_rs.png" alt="Roane State Community College"/></a>
+		<ul class="layoutNavPeople">
+			<li><a href="/?6691-Student-Services">Students</a><span></span></li>
+			<li><a href="/?12673-Parent-and-Family-Resources">Parents</a><span></span></li>
+			<li><a href="/?20-Alumni">Alumni</a><span></span></li>
+			<li><a href="/?9904-Community-Resources">Community</a><span></span></li>
+			<li><a href="/?6680-FacultyStaff">Faculty/Staff</a><span></span></li>
+			<li><a href="/?9662-Workforce-Programs">Workforce</a></li>
+		</ul>
+		<form class="layoutSearchForm" action="/search/" method="get">
+			<div class="layoutSearchBox"><input name="for" type="text" title="Search" value=""></div>
+			<div class="layoutSearchImage"><input type="image" src="/_images/searchGlass.png" alt="Search"></div>
+		</form>
+	</div>
+</div>
+
+<!-- Print-Only Banner -->
+<h1 id='layoutRSCCPrintBanner'>Roane State Community College</h1>
+
+<ul class="layoutNavMajor">
+	<li><a href="/?5506-Academic-Programs">Programs</a><span></span></li><li><a href="/?10434-Paying-for-College">Paying for College</a><span></span></li><li><a href="/?9646-Campus-Tours-and-Questions">Campus Tours</a><span></span></li><li><a href="/?13424-Request-Information">Request Information</a><span></span></li><li><a href="/?6691-Student-Services">Student Services</a><span></span></li><li><a href="/?6958-Admissions-Office">Apply Now</a></li>
+</ul>
+<!--<div id="reconnectBanner"><a href="/?10317-Tennessee-Reconnect"><img class="desktop" alt="Reconnect. Free tuition for adults. Get started now. See Requirements" src="/_images/reconnectHomepageBanner2_pixelAccurate.png"><img class="mobile" alt="Free tuition for adults. Get started now. See Requirements" src="/_images/reconnectHomepageBanner2_mobile.png"></a></div> -->
+<!--<div id="wintertermBanner"><a href="/winter"><img class="desktop" alt="New Winter Term! Take accelerated online classes: Dec 16 – Jan 16. Registration available now. Learn more." src="/_images/wintertermHomepageBanner_foreground.png"><img class="mobile" alt="New Winter Term! Take accelerated online classes: Dec 16 – Jan 16. Registration available now. Learn more." src="/_images/wintertermHomepageBanner_foregroundMobile.png"></a></div>-->
+
+
+	<div id="layoutHomeMainPhoto"></div>
+
+
+<div class="sectionBlueBar2020">
+	<div class="sizer homeWidth">
+		<div><a href="/?6958-Admissions-Office"><img class="desktop" src="/_images/homeBlueBar2020/bluebar_desktop_1b.png" alt="Move Forward. Don't delay your future! Apply now! Register for online or traditional classes."><img class="mobile" src="/_images/homeBlueBar2020/bluebar_mobile_1b.png" alt="Move Forward. Don't delay your future! Apply now!. Register for online or traditional classes."></a></div>
+		<div><a href="/?10434-Paying-for-College"><img class="desktop" src="/_images/homeBlueBar2020/bluebar_desktop_2b.png" alt="Tennessee Reconnect and Promise. Graduating high school seniors can attend tuition-free. Free tuition for adults."><img class="mobile" src="/_images/homeBlueBar2020/bluebar_mobile_2b.png" alt="Tennessee Reconnect and Promise. Graduating high school seniors can attend tuition-free. Free tuition for adults."></a></div>
+		<div><a href="/?138-Distance-Education"><img class="desktop" src="/_images/homeBlueBar2020/bluebar_desktop_3c.png" alt="Online degrees available. Online education gives you flexibility to take classes that fit your schedule."><img class="mobile" src="/_images/homeBlueBar2020/bluebar_mobile_3c.png" alt="Online degrees available. Online education gives you flexibility to take classes that fit your schedule."></a></div>
+	</div>
+</div>
+
+<h2 id="layoutPageTitle">Welcome</h2>
+<div id="layoutContent" class="layoutContentClass">
+	
+
+<style>
+@font-face { font-family:GlacialIndifference; src:url("/_images/fonts/GlacialIndifference/GlacialIndifference-Regular.otf"); }
+@font-face { font-family:GlacialIndifference; src:url("/_images/fonts/GlacialIndifference/GlacialIndifference-Bold.otf"); font-weight:bold; }
+@font-face { font-family:GlacialIndifference; src:url("/_images/fonts/GlacialIndifference/GlacialIndifference-Italic.otf"); font-style:italic; }
+</style>
+
+<!-- STYLE SECTION FOR MAIN PHOTO ONLY -->
+<style>
+#layoutHomeMainPhoto { height:900px; margin-bottom:2.07em; background-position:top; background-size:cover; background-repeat:no-repeat; }
+#layoutHomeMainPhoto { background-image:url('/_images/homeMainPhoto/homepage_2023_fall.jpg'); }
+@media screen and (max-width:1500px) {
+	#layoutHomeMainPhoto { height:690px; }
+}
+@media screen and (max-width:1100px) {
+	#layoutHomeMainPhoto { height:500px; }
+}
+@media screen and (max-width:740px) {
+	#layoutHomeMainPhoto { height:400px; }
+}
+@media screen and (max-width:550px) {
+	#layoutHomeMainPhoto { height:300px; }
+}
+@media print {
+	#layoutHomeMainPhoto { display:none; }
+}
+</style>
+<style type="text/css">#layoutHomeMainPhoto {
+    /* 1. Keep your original PC settings */
+    background-image: url('/_images/homeMainPhoto/homepage-hero-2026-fall.jpg');
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover; /* Keeps the high-end look on desktop */
+    height: 900px;
+    margin-bottom: 2.07em;
+    width: 100%;
+    display: block;
+}
+
+/* 2. Fix for Tablet/Mobile: Stop cutting the sides */
+@media screen and (max-width: 1100px) {
+    #layoutHomeMainPhoto {
+        /* Change 'cover' to '100% auto' so the full width is always visible */
+        background-size: 100% auto; 
+        
+        /* Remove fixed pixel heights and use aspect-ratio */
+        /* This ensures the height perfectly matches the width of your PNG */
+        height: auto;
+        aspect-ratio: 16 / 9; /* Adjust these numbers to match your photo's shape */
+    }
+}
+
+
+@media screen and (max-width: 550px) {
+    #layoutHomeMainPhoto {
+        margin-bottom: 1em;
+        /* If 16/9 makes the photo look too short on mobile, 
+           you can change it to 4/3 here */
+        aspect-ratio: 16 / 10; 
+    }
+}
+
+@media print {
+    #layoutHomeMainPhoto { display: none; }
+}
+</style>
+
+
+<!-- STYLE SECTION FOR MAIN TEMPLATE & MISC -->
+<style>
+html { overflow-y:scroll; }
+.homeWidth { width:1170px; margin:0 auto; }
+#layoutContent { max-width:none; }
+#maskBanner { /*display:block;*/ display:NONE; }
+/*#reconnectBanner { display:block; }*/
+/*#wintertermBanner { display:block; }*/
+#tourneyBanner { display:block; }
+.sectionBlueBar2020 { display:block; }
+#layoutCrumbs, #layoutPageTitle { display:none; }
+
+@media screen and (max-width:1225px) {
+	.homeWidth { width:950px; }
+}
+
+@media screen and (max-width:984px) {
+	.homeWidth { width:auto; }
+}
+
+@media screen and (max-width:480px) {
+	#layoutRSFull { display:block; margin:0 15px 15px; } /* homepage & subpages in mobile receive different images */
+	#layoutRSShort { display:none; }
+	.layoutSearchForm { max-width:275px; margin:0 auto 10px; }
+	.layoutNavMajor { display:block; } /* main nav ordinarily hidden, except for homepage */
+}
+</style>
+
+<!-- STYLE SECTION FOR CALENDAR -->
+<style>
+.sectionCalendar { display:none; /* hide temp contents including editor table */ font-family:"Microsoft New Tai Lue", "Segoe UI", Frutiger, "DejaVu Sans", "Helvetica Neue", Arial, sans-serif; }
+
+.sectionCalendar .calendarTabRow { margin:24px 0 32px; font-size:16px; border-bottom:1px solid #cfcfcf; }
+.sectionCalendar .calendarTabRow.second { margin-top:36px; }
+.sectionCalendar .calendarTabRow .calendarTab { display:inline-block; margin-bottom:-2px; padding-bottom:2px; font-weight:bold; border-bottom:2px solid #860e00; }
+.sectionCalendar .calendarMore { float:right; text-shadow: 0px 0px 0px black; } /* .calendarMore will exist in multiple structures */
+.sectionCalendar .calendarMore a { text-decoration:none; }
+.sectionCalendar .calendarMore.evenMore { float:none; padding:5px 0 2em; font-weight:bold; text-align:right; }
+
+.sectionCalendar ul { margin:0; padding:0; list-style-type:none; }
+.sectionCalendar ul li { display:inline-block; width:32.66%; margin:0 1% 0 0; padding:0; }
+.sectionCalendar ul li:nth-child(n+4) { display:none; margin-top:24px; }
+.sectionCalendar ul li:nth-child(3), .sectionCalendar ul li:nth-child(6) { margin-right:0; }
+.sectionCalendar ul li a { display:table; width:100%; }
+.sectionCalendar ul li a:hover { text-decoration:none; }
+.sectionCalendar ul li a:focus { text-decoration:none !important; }
+.sectionCalendar ul li a div.datePart { display:table-cell; width:65px; vertical-align:middle; text-align:center; line-height:1; text-transform:uppercase; color:black; border-right:1px solid #cfcfcf; }
+.sectionCalendar ul li a div.datePart div.multiDate { position:relative; left:-4px; display:inline-block; }
+.sectionCalendar ul li a div.datePart div.multiDate:last-child {  }
+.sectionCalendar ul li a div.datePart span { display:block; margin-top:3px; }
+.sectionCalendar ul li a div.datePart span.bigM { font-size:18px; font-weight:bold; }
+.sectionCalendar ul li a div.datePart span.bigD { margin-top:5px; font-size:36px; }
+.sectionCalendar ul li a div.datePart span.littleM { font-size:9px; font-weight:bold; }
+.sectionCalendar ul li a div.datePart span.littleD { margin-top:5px; font-size:20px; }
+.sectionCalendar ul li a div.datePart div.hyphen { position:relative; bottom:12px; left:-4px; display:inline-block; padding:0 2px; font-size:20px; }
+.sectionCalendar ul li a div.textPart { display:table-cell; /*height:62px;*/ height:2.7em; padding-left:10px; box-sizing:border-box; font-size:24px; line-height:normal; vertical-align:middle; color:#0071bc; }
+.sectionCalendar ul li a div.textPart div.overflowStop { max-height:2.7em; overflow:hidden; }
+.sectionCalendar ul li a div.textPart div.overflowStop span.hellip { position:relative; left:-4px; font-family:Verdana; font-size:1rem; }
+.sectionCalendar ul li a div.datePart.MMM { font-weight:bold; font-size:1.3em; }
+
+@media screen and (max-width:1225px) {
+	.sectionCalendar ul li a div.textPart { font-size:20px; }
+}
+@media screen and (max-width:984px) {
+	.sectionCalendar ul li a div.datePart { width:60px; }
+	.sectionCalendar ul li a div.datePart span.bigM { font-size:16px; }
+	.sectionCalendar ul li a div.datePart span.bigD { margin-top:5px; font-size:30px; }
+	.sectionCalendar ul li a div.textPart { font-size:17px; }
+}
+@media screen and (max-width:820px) {
+	.sectionCalendar ul li:nth-child(n+0) { display:inline-block; width:100%;  /* inline-block & 100% because JS is setting inline-block on expansion */ margin-top:0.7em; margin-right:0; }
+	.sectionCalendar ul li:nth-child(n+5) { display:none; }
+	
+/*	.sectionCalendar ul li { width:49%; }
+	.sectionCalendar ul li:nth-child(n+4) { display:inline-block; }
+	.sectionCalendar ul li:nth-child(n+5) { display:none; }
+	.sectionCalendar ul li:nth-child(2) { margin-right:0; }
+	.sectionCalendar ul li:nth-child(3) { margin-right:1%; }
+	.sectionCalendar ul li:nth-child(4) { margin-right:0; }
+	.sectionCalendar ul li:nth-child(n+3) { margin-top:0.7em; }*/
+}
+@media screen and (max-width:560px) {
+	.sectionCalendar .calendarTabRow.second { margin-top:24px; }
+/*	.sectionCalendar ul li { display:block; width:auto; }
+	.sectionCalendar ul li:nth-child(n+0) { margin-top:0.7em; margin-right:0; }*/
+	.sectionCalendar .calendarMore { float:none; display:inline-block; margin-left:0.75em; font-size:0.9em; }
+}
+@media screen and (max-width:400px) {
+	.sectionCalendar .calendarTabRow { font-size:0.9em; text-shadow:none; }
+}
+</style>
+
+<!-- STYLE SECTION FOR NEWS GRID -->
+<style>
+.sectionNews { margin-top:3em; font-family:GlacialIndifference, Verdana; /* Verdana fallback for IE11 */}
+.sectionNews ul { list-style-type:none; margin:0; padding:0; }
+.sectionNews ul li { position:relative; float:left; width:20%; margin:0; box-sizing:border-box; overflow:hidden; }
+.sectionNews ul.lowCount li:nth-child(n+6) { display:none; } /* for low count situations */
+.sectionNews ul li:before { content:""; display:block; margin-top:100%; } /* https://stackoverflow.com/a/6615994 */
+.sectionNews ul li a { position:absolute; top:0; left:0; display:block; width:100%; height:100%; font-size:0; color:white; background-color:#5c5c5c; }
+.sectionNews ul li:nth-child(odd) a { background-color:#3d3d3d; }
+.sectionNews ul li a img { position:relative; width:100%; height:100% !important; /* if off-square by a few pixels, ensure fix */ transition-property:transform; transition-duration:.33s; transition-timing-function:cubic-bezier(.16,.51,.39,.97); }
+.sectionNews ul li a:hover img { transform:scale(1.05, 1.05); }
+
+.sectionNews ul li a span.titleContainer { position:absolute; top:0; left:0; z-index:100; width:100%; height:100%; background:linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.30) 60%,rgba(0,0,0,0.65) 100%); transition-property:background-color; transition-duration:0.20s; transition-timing-function:linear; }
+.sectionNews ul li a span.titleContainer:hover { background-color:rgba(0, 0, 0, 0.80); }
+
+.sectionNews ul li a span.titleContainer span.firstTitle { position:absolute; bottom:0.5em; display:block; width:86%; margin:0 7% 3%; opacity:1; transition-property:all; transition-duration:0.20s; transition-timing-function:linear; /* fixes for GlacialIndifference: */ line-height:1.3; font-size:25px; letter-spacing:1px; }
+.sectionNews ul li a span.titleContainer:hover span.firstTitle { opacity:0; }
+
+.sectionNews ul li a span.titleContainer span.secondTitle { position:absolute; top:50%; transform:translateY(-50%); display:block; width:86%; margin:0 7% 0; opacity:0; font-family:Baskerville, "Palatino Linotype", Palatino, "Century Schoolbook L", "Times New Roman", serif; font-size:30px; text-align:center; transition-property:all; transition-duration:0.20s; transition-timing-function:linear; }
+.sectionNews ul li a span.titleContainer:hover span.secondTitle { opacity:1; }
+.sectionNews ul li a span.titleContainer span.secondTitle span.linkAction { display:block; margin-top:0.9em; font-size:0.65em; backface-visibility:hidden; color:white; font-weight:bold; font-style:italic; opacity:0; }
+.sectionNews ul li a span.titleContainer:hover span.secondTitle span.linkAction { opacity:1; color:#0071bc; color:#0093f5; /* #0093f5 passes AA contrast limit against ~ the lightest possible bkgrnd #282727 */ }
+
+.sectionNews ul li a.noImage span.titleContainer { background-image:none; }
+.sectionNews ul li a.noImage span.titleContainer span.firstTitle { display:none; }
+.sectionNews ul li a.noImage span.titleContainer:hover span.firstTitle { opacity:0; }
+.sectionNews ul li a.noImage span.titleContainer span.secondTitle { opacity:1; }
+
+.newsMore { text-align:right; }
+.newsMore a { display:inline-block; margin-top:0.5em; padding:0 1em; text-decoration:none; font-family:"Microsoft New Tai Lue", "Segoe UI", Frutiger, "DejaVu Sans", "Helvetica Neue", Arial, sans-serif; font-size:18px; text-shadow:0px 0px 0px black; }
+
+@media screen and (max-width:1700px) {
+	.sectionNews ul li { width:25%; }
+	.sectionNews ul li:nth-child(n+9) { display:none; }
+	.sectionNews ul.lowCount li:nth-child(n+5) { display:none; } /* for low count situations */
+}
+
+@media screen and (max-width:1400px) {
+	.sectionNews ul li a span.titleContainer span.firstTitle { font-size:22px; }
+	.sectionNews ul li a span.titleContainer span.secondTitle { font-size:25px; }
+}
+
+@media screen and (max-width:1225px) {
+	.sectionNews ul li { width:33.333%; width:calc(100% / 3); }
+	.sectionNews ul li:nth-child(n+10) { display:initial; }
+	.sectionNews ul.lowCount li:nth-child(n+4) { display:none; } /* for low count situations */
+}
+
+@media screen and (max-width:900px) {
+	.sectionNews ul li { width:50%; }
+	.sectionNews ul li:nth-child(n+7) { display:none; }
+	.sectionNews ul.lowCount li:nth-child(n+1) { display:initial; } /* for low count situations (reset) */
+	.sectionNews ul.lowCount li:nth-child(n+5) { display:none; } /* for low count situations */
+	.sectionNews ul li a.noImage span.titleContainer { background-color:rgba(0, 0, 0, 0.80); }
+	.sectionNews ul li a span.titleContainer span.secondTitle span.linkAction { opacity:1; }
+}
+
+@media screen and (max-width:600px) {
+	.sectionNews ul li { width:100%; }
+	.sectionNews ul li:nth-child(n+6) { display:none; }
+	.sectionNews ul li a span.titleContainer span.firstTitle { font-size:30px; }
+	.sectionNews ul li a span.titleContainer span.secondTitle { font-size:37px; }
+	
+	.sectionNews ul li a:hover img { transform:none; }
+	.sectionNews ul li a span.titleContainer:hover { background-color:transparent; }
+	.sectionNews ul li a span.titleContainer:hover span.firstTitle { opacity:1; }
+	.sectionNews ul li a span.titleContainer:hover span.secondTitle { opacity:0; }
+	.sectionNews ul li a span.titleContainer:hover span.secondTitle span.linkAction { opacity:0; }
+	
+	.sectionNews ul li a.noImage span.titleContainer:hover { background-color:rgba(0, 0, 0, 0.80); }
+	.sectionNews ul li a.noImage span.titleContainer:hover span.firstTitle { opacity:0; }
+	.sectionNews ul li a.noImage span.titleContainer:hover span.secondTitle { opacity:1; }
+	.sectionNews ul li a.noImage span.titleContainer:hover span.secondTitle span.linkAction { opacity:1; }
+	
+	.sectionNews ul li a img { transition:none; }
+	.sectionNews ul li a span.titleContainer { transition:none; }
+	.sectionNews ul li a span.titleContainer span.firstTitle { transition:none; }
+	.sectionNews ul li a span.titleContainer span.secondTitle { transition:none; }
+	
+	.newsMore { text-align:center; }
+	.newsMore a { margin-top:0.25em; font-size:30px; }
+}
+
+@media screen and (max-width:480px) {
+	.sectionNews ul li a span.titleContainer span.firstTitle { font-size:25px; }
+	.sectionNews ul li a span.titleContainer span.secondTitle { font-size:30px; }
+}
+
+@media screen and (max-width:365px) {
+	.sectionNews ul li a span.titleContainer span.firstTitle { font-size:20px; }
+	.sectionNews ul li a span.titleContainer span.secondTitle { font-size:23px; }
+}
+
+@media print {
+}
+</style>
+
+<!-- STYLE SECTION FOR TROPHY -->
+<style>
+.sectionTrophy { display:NONE; margin:2.07em 0; padding:3em 0; background-color:#004682; text-align:center; }
+.sectionTrophy > div { display:inline-block; }
+.sectionTrophy > div:first-child { margin-right:53px; }
+.sectionTrophy > div:first-child img.mobile { display:none; }
+.sectionTrophy > div:last-child { width:707px; height:398px; }
+
+@media screen and (max-width:1225px) {
+	.sectionTrophy > div:first-child { margin-right:43px; }
+	.sectionTrophy > div:first-child img { width:333px !important; }
+	.sectionTrophy > div:last-child { width:574px; height:323px; }
+}
+
+@media screen and (max-width:984px) {
+	.sectionTrophy { padding:1.5em 1em; }
+	.sectionTrophy > div { display:block; }
+	.sectionTrophy > div:first-child { margin-right:0; margin-bottom:1.5em; }
+	.sectionTrophy > div:first-child img { width:748px !important; max-width:60%; min-width:300px; }
+	.sectionTrophy > div:first-child img.desktop { display:none; }
+	.sectionTrophy > div:first-child img.mobile { display:inline; }
+	.sectionTrophy > div:last-child { width:100%; height:auto; }
+}
+</style>
+
+<!-- STYLE SECTION FOR MAPS -->
+<style>
+.sectionMaps { min-height:465px; margin:4em 0 3em; text-align:center; font-family:"Microsoft New Tai Lue", "Segoe UI", Frutiger, "DejaVu Sans", "Helvetica Neue", Arial, sans-serif; }
+.sectionMaps div.controls { margin-bottom:2.5em; }
+.sectionMaps div.controls .control { display:inline-block; margin:0 1.25em; font-size:37px; line-height:1.1; color:black; }
+.sectionMaps div.controls .control:hover { border-bottom:3px solid #313131; text-decoration:none; }
+.sectionMaps div.controls .control.active { border-bottom:3px solid #313131; }
+.sectionMaps div.controls .control:focus { text-decoration:none !important; }
+.sectionMaps div.content { display:none; }
+.sectionMaps div.content a { text-decoration:underline; }
+.sectionMaps div.content.local { display:block; }
+.sectionMaps div.content div.column { display:inline-block; font-size:18px; vertical-align:top; }
+.sectionMaps div.content div.column:first-child { width:700px; margin:0 20px 0 0; text-align:right; }
+.sectionMaps div.content div.column:last-child { width:700px; margin-left:20px; text-align:left; }
+.sectionMaps div.content div.column h4 { margin:0; font-size:30px; text-align:center; }
+.sectionMaps div.content div.column p.hangingindent { padding-left:1.7em; text-indent:-1.7em; }
+.sectionMaps div.content div.column span.legendBox { position:relative; top:2px; display:inline-block; width:1em; height:1em; margin-right:0.7em; background-color:#8c1101; }
+.sectionMaps div.content div.column div.globalList { display:none; }
+.sectionMaps div.content div.column div.globalList h5 { margin:0 0 0.5em;  }
+.sectionMaps div.content div.column div.globalList ul { margin:0 0 0.5em; padding:0; list-style-type:none; }
+.sectionMaps div.content div.column div.globalList ul li { display:inline-block; }
+.sectionMaps div.content div.column div.globalList ul li:not(:last-child):after { content:",\00A0"; }
+
+@media screen and (max-width:1475px) {
+	.sectionMaps { min-height:auto; }
+	.sectionMaps div.controls { margin-bottom:2.5em; }
+	.sectionMaps div.content div.column { display:block; }
+	.sectionMaps div.content div.column:first-child { margin:0 auto; text-align:center; }
+	.sectionMaps div.content div.column:last-child { margin:1.5em auto 0; text-align:left; }
+}
+
+@media screen and (max-width:984px) {
+	.sectionMaps { margin:3em 0 2.5em; }
+	.sectionMaps div.controls { margin-bottom:2em; }
+	.sectionMaps div.controls .control { margin:0 5%; font-size:2em; }
+	.sectionMaps div.content div.column:first-child { width:90%; }
+	.sectionMaps div.content div.column:last-child { width:90%; }
+}
+
+@media screen and (max-width:500px) {
+	.sectionMaps div.controls .control { margin:0 4%; font-size:1.75em; }
+	.sectionMaps div.content div.column { font-size:1em; }
+	.sectionMaps div.content div.column h4 { font-size:1.5em; }
+	.sectionMaps div.content div.column:first-child { width:auto; }
+	.sectionMaps div.content div.column:last-child { width:auto; }
+}
+</style>
+
+<!-- STYLE SECTION FOR WHY SECTION -->
+<style>
+.sectionWhy { padding-bottom:1px; background-color:#353336; color:white; font-family:"Microsoft New Tai Lue", "Segoe UI", Frutiger, Arial, sans-serif; }
+.sectionWhy div.table { display:table; margin:0 auto; }
+.sectionWhy div.table div.cell { display:table-cell; width:33.333%; padding:0; }
+.sectionWhy div.table div.cell h4 { margin:1em 0; font-size:27px; font-weight:normal; text-align:center; }
+.sectionWhy div.table div.cell img { width:100%; }
+.sectionWhy div.table div.cell p {  margin-left:2em; margin-right:2em; line-height:1.35; }
+.sectionWhy div.table div.cell a { color:white; text-decoration:underline; }
+
+@media screen and (max-width:1650px) {
+	.sectionWhy div.table div.cell h4 { font-size:27px; }
+}
+@media screen and (max-width:1300px) {
+	.sectionWhy div.table div.cell h4 { font-size:20px; }
+}
+@media screen and (max-width:984px) {
+	.sectionWhy div.table { display:block; }
+	.sectionWhy div.table div.cell { display:block; width:auto; max-width:90%; margin:0 auto; padding-top:1px; }
+	.sectionWhy div.table div.cell h4 { font-size:1.75em; font-weight:bold; }
+	.sectionWhy div.table div.cell p { margin-left:0; margin-right:0; }
+}
+@media screen and (max-width:500px) {
+	.sectionWhy div.table div.cell h4 { font-size:1.35em; }
+}
+</style>
+
+<!-- STYLE SECTION FOR BY THE NUMBERS -->
+<style>
+.sectionInfo { padding:10em 0 13em; font-family:"Microsoft New Tai Lue", "Segoe UI", Frutiger, Arial, sans-serif; }
+.sectionInfo div.contentRow { position:relative; max-width:75%; margin:0 auto; }
+.sectionInfo div.contentRow div.background { position:absolute; left:0; top:0; z-index:1; width:100%; height:100%; opacity:0.94; background-color:white; }
+.sectionInfo div.contentRow div.contentColumn { position:relative; z-index:2; display:table-cell; width:33.33%; padding:0 1.5em 2em; text-align:center; }
+.sectionInfo div.contentRow div.contentColumn h4 { margin:2em 0; }
+.sectionInfo div.contentRow div.contentColumn h4 span { display:block; }
+.sectionInfo div.contentRow div.contentColumn h4 span:first-child { font-size:40px; }
+.sectionInfo div.contentRow div.contentColumn h4 span:nth-child(2) { height:20px; margin:0.5em 0 1em; background-color:hsla(0, 0%, 79%, 1); box-shadow:0 0 0px 0.5px hsla(0, 0%, 79%, 1); }
+.sectionInfo div.contentRow div.contentColumn h4 span:last-child { font-weight:normal; font-size:27px; line-height:1.15; }
+.sectionInfo div.contentRow div.contentColumn p { line-height:1.35; text-shadow:0px 0px 0px black; }
+
+.parallax { background-image:url(/_images/homeSectionInfo/oakridge-footer.jpg); background-attachment:fixed; background-position:bottom; }
+#layoutContent { margin-bottom:0; }
+#layoutFooter { margin-top:0; }
+
+@media screen and (max-width:1300px) {
+.sectionInfo div.contentRow { max-width:1170px; }
+}
+
+@media screen and (max-width:984px) {
+	.sectionInfo { padding:0; }
+	.sectionInfo div.contentRow div.contentColumn { display:block; width:auto; padding-top:1px; padding-bottom:1px; }
+	.sectionInfo div.contentRow div.contentColumn:last-child { padding-bottom:1.5em; }
+	.sectionInfo div.contentRow div.contentColumn h4 { margin-bottom:0; }
+	.sectionInfo div.contentRow div.contentColumn h4 span { font-size:27px; }
+	.sectionInfo div.contentRow div.contentColumn h4 span:nth-child(2) {display:none; }
+	.sectionInfo div.contentRow div.contentColumn h4 span:last-child br { display:inline-block; }
+	.sectionInfo div.contentRow div.contentColumn h4 span:last-child br{ display:none; }	
+	.parallax { background:none; }
+}
+</style>
+
+<script>
+//make a case-insensitive "Contains"
+//http://stackoverflow.com/questions/187537/is-there-a-case-insensitive-jquery-contains-selector
+jQuery.expr[":"].Contains = jQuery.expr.createPseudo(function(arg) {
+	return function( elem ) {
+		return jQuery(elem).text().toUpperCase().indexOf(arg.toUpperCase()) >= 0;
+	};
+});
+</script>
+
+<script>
+$(function(){
+//***** SECTION: CALENDAR DATE ITEMS *****
+
+	var $sectionCalendar = $(".sectionCalendar:first");
+	var $sourceDateTable = $sectionCalendar.find("table:first");
+	var $newCalendar = $("<div>");
+
+	//cleanup
+	$sourceDateTable.html($sourceDateTable.html().replace(/&nbsp;/g, " "));  //no nbsp's
+	$sourceDateTable.find("p").contents().unwrap();  //no P's
+	$sourceDateTable.find("th:first").closest("tr").remove();  //no header row
+	
+	//assign classes to list items
+	$sourceDateTable.find("tr").each(function(){
+		if($(this).children(":eq(2):Contains('Y')").length > 0){ $(this).addClass("itemEvents"); } else { $(this).addClass("itemDates"); } //assign class for what type of item this is
+	});
+
+	//remove items which have passed
+	$sourceDateTable.find("tr").each(function(){
+		var endingDateText = $(this).children(":eq(1)").text();
+		if(endingDateText.indexOf("/") > -1){  //ignore "ongoing" situations (cell will be blank)
+			var today = new Date();
+			today.setHours(0, 0, 0, 0);  //must clear time portion otherwise comparison will be off
+			var testdate = new Date(Date.parse(endingDateText));
+			if(today > testdate){ $(this).remove(); };
+		}
+	});
+
+	$newCalendar.append("<div class='calendarTabRow'><div class='calendarTab'>IMPORTANT DATES</div><div class='calendarMore'><a href='/?6553-Academic-Calendar'>More important dates</a></div></div>");
+
+	//output first X "Important Dates" items
+	var $ul = $("<ul>");
+	$sourceDateTable.find("tr.itemDates:lt(6)").each(function(){
+		var $li = $("<li>").attr("class", $(this).attr("class")).append($(this).find("a"));
+		$li.find("a").contents().wrap("<div class='textPart'><div class='overflowStop'></div></div>");
+		var $datePart = getDateHTML($.trim($(this).find("td:eq(0)").text()), $.trim($(this).find("td:eq(1)").text()), $("<div class='datePart'></div>"));
+		$li.find("a").prepend($datePart)
+		$ul.append($li);
+	});
+	$newCalendar.append($ul).append("<div class='calendarTabRow second'><div class='calendarTab'>EVENTS</div><div class='calendarMore'><a href='/?6457-College-Calendar'>More events</a></div></div>");
+
+	//output first X "Events" items
+	var $ul = $("<ul>");
+	$sourceDateTable.find("tr.itemEvents:lt(6)").each(function(){
+		var $li = $("<li>").attr("class", $(this).attr("class")).append($(this).find("a"));
+		$li.find("a").contents().wrap("<div class='textPart'><div class='overflowStop'></div></div>");
+		var $datePart = getDateHTML($.trim($(this).find("td:eq(0)").text()), $.trim($(this).find("td:eq(1)").text()), $("<div class='datePart'></div>"));
+		$li.find("a").prepend($datePart)
+		$ul.append($li);
+	});
+	$newCalendar.append($ul);
+
+	//cleanup and show container
+	$newCalendar.find("li:contains('NaN')").each(function(){ console.log("Date item has invalid date and has been hidden: " + $(this).text()); $(this).hide(); });
+	$sectionCalendar.html($newCalendar.html()).show();
+
+	//no overflowing; make ellipses
+	reduceOverflows($sectionCalendar.find("div.overflowStop"));
+	
+	//handle request to show more items
+	$("div.calendarMore a").on("click", function(e){
+		
+		var $thisMore = $(this).closest(".calendarMore");
+		var $associatedItems = $(this).closest(".calendarTabRow").next("ul").children();
+		
+		//if there are more calendar items in DOM than visible calendar items, then show them all		
+		if($associatedItems.length > $associatedItems.filter(":visible").length){
+			
+			e.preventDefault();
+			
+			$associatedItems.not(":visible")
+				.addClass("expanded")
+				.slideDown({
+					start: function(){
+						$(this).css('display','inline-block');
+					},
+					done: function(){
+						reduceOverflows($(this).find(".overflowStop"));
+					}
+			});
+			
+			//add a View All link
+			var $evenMore = $thisMore.clone().addClass("evenMore").hide();
+			$evenMore.find("a").text("View all items");
+			$associatedItems.parent().after($evenMore);
+			$evenMore.slideDown();
+			
+		} else if($associatedItems.filter(".expanded").length > 0){  //else, if these items have been previously expanded, then collapse them
+			
+			e.preventDefault();
+			$associatedItems.filter(".expanded").slideUp();
+			$thisMore.closest(".calendarTabRow").next().next(".evenMore").slideUp(200);  //remove any (associated) previously added element		
+			
+		}
+		
+	});
+
+});
+
+function getDateHTML(beg, ending, $container){
+//http://stackoverflow.com/questions/8579861/how-to-convert-milliseconds-into-a-readable-date
+//input: date string, like 1/20/2017
+
+	var months = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
+	
+	//ordinarily, there is no beginning date to show
+	if(beg.length === 0){
+		
+		//the ending date may be empty, too, in cases such as "ongoing" events
+		if(ending.length === 0){
+			var date = new Date();
+			return $container.addClass("MMM").append(months[date.getMonth()]);
+		} else {
+			//return string format, like Jan 20
+			var date = new Date(Date.parse(ending));
+			return $container.append("<span class='bigM'>" + months[date.getMonth()] + "</span><span class='bigD'>" + date.getDate() + "</span>");
+		}
+		
+	} else {
+	//else, there is a beginning date to show	
+		if(ending.length !== 0){
+			var date1 = new Date(Date.parse(beg));
+			var date2 = new Date(Date.parse(ending));
+			return $container.append("<div class='multiDate'><span class='littleM'>" + months[date1.getMonth()] + "</span><span class='littleD'>" + date1.getDate() + "</span></div>")
+							 .append("<div class='hyphen'>-</div>")
+							 .append("<div class='multiDate'><span class='littleM'>" + months[date2.getMonth()] + "</span><span class='littleD'>" + date2.getDate() + "</span></div>");
+		}
+	}
+}
+
+function reduceOverflows($elems){
+//This is passed a collection of DIVs which contain just the item text. It is called initially on all items; but will only act on visible items b/c they have no height to overflow.
+//It will be called for items every time they are expanded, but once they are shortened, they shoudl not be acted on again.
+	
+	$.each($elems, function(){
+		if(checkOverflow(this)){ //initial check to see if overflowing
+		
+			//add ellipsis
+			$(this).append(" <span class='hellip'>&hellip;</span>");
+		
+			//reduce words until not overflowing
+			while(checkOverflow(this)){
+				//console.log(arrStr);
+				var arrStr = $(this).html().split(" ");
+				arrStr.splice(arrStr.length - 3, 1);
+				$(this).html(arrStr.join(" "));
+			}	
+			
+		}		
+	});
+	
+}
+
+function checkOverflow(el){
+//http://stackoverflow.com/questions/143815/determine-if-an-html-elements-content-overflows
+//This sets the element to CSS (inline) overflow if it is not already, compares its different dimension values, and returns the CSS property to its original (inline) state.
+   
+   var isOverflowing = el.scrollHeight > el.parentElement.clientHeight;
+   //console.log(el.scrollHeight,  el.parentElement.clientHeight);
+   return isOverflowing;
+   
+}
+</script>
+
+<script>
+$(function(){
+//***** SECTION: NEWS ITEMS *****
+
+	//add class to UL if news items are below minimum count
+	if($(".sectionNews ul li").length < 10){ $(".sectionNews ul").addClass("lowCount"); }
+
+	//lazy load news images
+	$(".sectionNews ul li a img").each(function(){
+		$(this).attr("src", $(this).data("src"));
+	});
+	
+	//no hanging digits (2019-08-14 email)
+	$("span.firstTitle, span.secondTitle").each(function(){
+		var htmlHeadline = $(this).html();
+		htmlHeadline = htmlHeadline.replace(/ (?=\d)/g, "&nbsp;");
+		$(this).html(htmlHeadline);
+	});
+
+});
+</script>
+
+<script>
+$(function(){
+//***** SECTION: MAPS *****
+	$(".sectionMaps .controls").on("click", ".control", function(e){
+		e.preventDefault();
+		var thisIndex = $(this).index();
+		$(".sectionMaps .content").hide().eq(thisIndex).show();
+		$(this).addClass("active").siblings().removeClass("active");
+	});
+	
+	$("#seeGlobalList").on("click", function(e){
+			e.preventDefault();
+			$("div.globalList").slideToggle();
+	});
+});
+</script>
+
+<script>
+$(function(){
+//***** SECTION: BY THE NUMBERS *****
+
+	//lazy load image
+	$(".sectionInfo").addClass("parallax");
+
+});
+</script>
+
+<!-- Google Tag Manager for Celia added 2023-04-19 -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-W3TH9DF');</script>
+<!-- End Google Tag Manager -->
+
+
+
+<!-- Google Tag Manager (noscript)  for Celia added 2023-04-19 -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W3TH9DF"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<div class="sectionCalendar homeWidth">
+	<table border="1" cellpadding="3" cellspacing="0">
+	<caption>Important Dates &amp; Events</caption>
+	<thead>
+		<tr>
+			<th scope="col">Starting Date</th>
+			<th scope="col">Ending Date</th>
+			<th scope="col">Event?<br>
+			(Y/N)</th>
+			<th scope="col">Title</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>&nbsp;</td>
+			<td>01/06/2023</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=502&amp;lang=en">Princess Theatre:&nbsp;End of the Line -&nbsp;Allman Brothers Tribute</a></td>
+		</tr>
+		<tr>
+			<td>01/06/2023</td>
+			<td>01/08/2023</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Oak Ridge Kennel Club Agility Trials</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>01/14/2023</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: TN S3DA Scholastic Archery Assoc</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>01/16/2023</td>
+			<td>&nbsp;</td>
+			<td><a href="/catalog/?id=609">Martin Luther King holiday</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>01/17/2023</td>
+			<td>&nbsp;</td>
+			<td><a href="/catalog/?id=609">Spring classes begin</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>01/27/2023</td>
+			<td>&nbsp;</td>
+			<td><a href="/catalog/?id=609">Graduation applications for spring due</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>01/30/2023</td>
+			<td>&nbsp;</td>
+			<td><a href="/catalog/?id=609">Last day to drop without W grade (full-term)</a></td>
+		</tr>
+		<tr>
+			<td>02/03/2023</td>
+			<td>02/05/2023</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center:&nbsp;TN Valley Kennel Club - Agility</a></td>
+		</tr>
+		<tr>
+			<td>02/10/2023</td>
+			<td>02/12/2023</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center:&nbsp;East TN Cutting Horse Assn.</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>02/11/2023</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=501&amp;lang=en">Princess Theatre: The Purple Madness - A Prince Tribute Band</a></td>
+		</tr>
+		<tr>
+			<td>02/13/2023</td>
+			<td>02/17/2023</td>
+			<td>Y</td>
+			<td><a href="/?10411-Roane-County-Campus-Tours">Roane County campus tours begin</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>02/23/2023</td>
+			<td>Y</td>
+			<td><a href="/?12665-Virtual-FAFSA-Completion-Workshop">Virtual FAFSA Completion Workshop</a></td>
+		</tr>
+		<tr>
+			<td>02/24/2023</td>
+			<td>02/25/2023</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=508&amp;lang=en">Princess Theatre: Robin Hood and His Merry Men</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>02/28/2023</td>
+			<td>Y</td>
+			<td><a href="/?5585-Roane-State-Presents-Performing-and-Visual-Arts">&#8220;Inseparable: Oak Ridge History and the Manhattan Project&#8221; Lecture</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>03/02/2023</td>
+			<td>Y</td>
+			<td><a href="/?5585-Roane-State-Presents-Performing-and-Visual-Arts">RSCC Music Student Solo Class Mid-Term Recital</a></td>
+		</tr>
+		<tr>
+			<td>03/03/2023</td>
+			<td>03/04/2023</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: JR Drake Rodeo</a></td>
+		</tr>
+		<tr>
+			<td>03/03/2023</td>
+			<td>03/07/2023</td>
+			<td>Y</td>
+			<td><a href="/?13438-TCCAA-NJCAA-Region-VII-Basketball-Tournament-2023">Region 7 Basketball Tournament</a></td>
+		</tr>
+		<tr>
+			<td>03/06/2023</td>
+			<td>03/12/2023</td>
+			<td>&nbsp;</td>
+			<td><a href="/catalog/?id=609">Spring Break</a></td>
+		</tr>
+		<tr>
+			<td>03/09/2023</td>
+			<td>03/12/2023</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center:&nbsp;TQHA Celebration</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>03/18/2023</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=510&amp;lang=en">Dressed to Kill KISS Tribute Concert</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>03/25/2023</td>
+			<td>Y</td>
+			<td><a href="/?11774-Roane-State-Film-Festival-2023">Princess Theatre:&nbsp;RSCC Film Festival</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>03/27/2023</td>
+			<td>&nbsp;</td>
+			<td><a href="/catalog/?id=609">Last day to withdraw from classes (full-term)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>03/31/2023</td>
+			<td>Y</td>
+			<td><a href="/?5585-Roane-State-Presents-Performing-and-Visual-Arts#03312023">Arts and Lectures: &#8220;History of Harriman,&#8221; free admission</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>04/03/2023</td>
+			<td>&nbsp;</td>
+			<td><a href="/catalog/?id=609">Registration for summer &amp; fall begins</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>04/07/2023</td>
+			<td>&nbsp;</td>
+			<td><a href="/catalog/?id=609">Good Friday holiday</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>04/08/2023</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=505&amp;lang=en">Princess Theatre: Roane Jamboree</a></td>
+		</tr>
+		<tr>
+			<td>04/14/2023</td>
+			<td>04/15/2023</td>
+			<td>Y</td>
+			<td><a href="/?5585-Roane-State-Presents-Performing-and-Visual-Arts#20230414">O'Brien Theatre: The Miracle Worker (RSCC Playmakers)</a></td>
+		</tr>
+		<tr>
+			<td>04/21/2023</td>
+			<td>04/22/2023</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: 4H Clover Classic</a></td>
+		</tr>
+		<tr>
+			<td>04/21/2023</td>
+			<td>04/23/2023</td>
+			<td>Y</td>
+			<td><a href="/?5585-Roane-State-Presents-Performing-and-Visual-Arts#20230414">O'Brien Theatre: The Miracle Worker (RSCC Playmakers)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>04/29/2023</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=512&amp;lang=en">Princess Theatre:&nbsp;Chi-Town Transit Authority</a></td>
+		</tr>
+		<tr>
+			<td>04/29/2023</td>
+			<td>04/30/2023</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center:&nbsp;Peach State Miniature Horse Club</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>05/01/2023</td>
+			<td>&nbsp;</td>
+			<td><a href="/catalog/?id=609">Last day of classes (full-term)</a></td>
+		</tr>
+		<tr>
+			<td>05/02/2023</td>
+			<td>05/04/2023</td>
+			<td>&nbsp;</td>
+			<td><a href="/catalog/?id=609">Exam&nbsp;period for full-term classes</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>05/05/2023</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=516&amp;lang=en">Princess Theatre:&nbsp;World Turning: A Fleetwood Mac Tribute</a></td>
+		</tr>
+		<tr>
+			<td>05/05/2023</td>
+			<td>05/06/2023</td>
+			<td>&nbsp;</td>
+			<td><a href="/?97-Graduation-Ceremony">Graduation ceremonies</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>05/07/2023</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=521&amp;lang=en">Princess Theatre: Roane Choral 50 Year Celebration</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>05/29/2023</td>
+			<td>&nbsp;</td>
+			<td><a href="/catalog/?id=610">Memorial Day holiday</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>06/05/2023</td>
+			<td>&nbsp;</td>
+			<td><a href="/catalog/?id=610">Classes begin, summer full term</a></td>
+		</tr>
+		<tr>
+			<td>06/15/2023</td>
+			<td>06/18/2023</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">TQHA Dogwood Classic</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>06/19/2023</td>
+			<td>&nbsp;</td>
+			<td><a href="#">Juneteenth holiday</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>07/04/2023</td>
+			<td>&nbsp;</td>
+			<td><a href="/catalog/?id=610">Fourth of July holiday</a></td>
+		</tr>
+		<tr>
+			<td>07/07/2023</td>
+			<td>07/08/2023</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">American Gaited Mule Show</a></td>
+		</tr>
+		<tr>
+			<td>07/20/2023</td>
+			<td>07/23/2023</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">North American Saddle Mule Donkey Association</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>07/31/2023</td>
+			<td>&nbsp;</td>
+			<td><a href="/catalog/?id=610">Last day of classes, summer full term</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>08/04/2023</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=528&amp;lang=en">Princess Theatre: "Pickleball Princess" Movie Premiere</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>08/05/2023</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=526&amp;lang=en">Princess Theatre: Face Value, A Tribute to Phil Collins</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>08/05/2023</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Barrel Race</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>08/08/2023</td>
+			<td>Y</td>
+			<td><a href="/?6918-New-Student-Experience">New Student Experience: Oak Ridge</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>08/09/2023</td>
+			<td>Y</td>
+			<td><a href="https://www.youtube.com/watch?v=6o8Fdt_jfPw">Fall Convocation</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>08/10/2023</td>
+			<td>Y</td>
+			<td><a href="/?6918-New-Student-Experience">New Student Experience: Roane County</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>08/11/2023</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=522&amp;lang=en">Princess Theatre: Nick Hickman Concert</a></td>
+		</tr>
+		<tr>
+			<td>08/12/2023</td>
+			<td>08/13/2023</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Jesse Adcock Memorial</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>08/16/2023</td>
+			<td>&nbsp;</td>
+			<td><a href="/catalog/?id=611">Classes begin, fall semester</a></td>
+		</tr>
+		<tr>
+			<td>08/18/2023</td>
+			<td>08/19/2023</td>
+			<td>Y</td>
+			<td><a href="/?12648-Volleyball-Schedule">Volleyball: E2 Sports Raider Classic</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>08/19/2023</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=527&amp;lang=en">Princess Theatre: Allman Brothers Tribute</a></td>
+		</tr>
+		<tr>
+			<td>08/18/2023</td>
+			<td>08/20/2023</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: South East Ranch Horse Series</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>08/29/2023</td>
+			<td>&nbsp;</td>
+			<td><a href="/catalog/?id=611">Last day to drop without a grade of "W"</a></td>
+		</tr>
+		<tr>
+			<td>09/01/2023</td>
+			<td>09/03/2023</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: ETCHA</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>09/04/2023</td>
+			<td>&nbsp;</td>
+			<td><a href="/catalog/?id=611">Labor Day holiday</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>09/14/2023</td>
+			<td>Y</td>
+			<td><a href="/?13610-News-Sept-14-Constitution-Day-observance-at-Oak-Ridge-Campus">Constitution Day - Oak Ridge Campus</a></td>
+		</tr>
+		<tr>
+			<td>09/15/2023</td>
+			<td>09/16/2023</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=523&amp;lang=en">Princess Theatre: Roane County Children's Theatre Fall Production</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>09/16/2023</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: NBHA</a></td>
+		</tr>
+		<tr>
+			<td>09/16/2023</td>
+			<td>09/17/2023</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: SERHS Cow Clinic</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>09/23/2023</td>
+			<td>Y</td>
+			<td><a href="/?10160-Street-Painting-Festival">Oak Ridge: Street Painting Festival</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>09/28/2023</td>
+			<td>Y</td>
+			<td><a href="/?5470-Student-Life">Harriman: RSCC Ping Pong Tournament</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>09/29/2023</td>
+			<td>&nbsp;</td>
+			<td><a href="/catalog/?id=611">Graduation applications for fall due</a></td>
+		</tr>
+		<tr>
+			<td>09/29/2023</td>
+			<td>09/30/2023</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: JR N Spurs Invitational Rodeo</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>10/04/2023</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Roane County Farm Day (private event)</a></td>
+		</tr>
+		<tr>
+			<td>10/07/2023</td>
+			<td>10/08/2023</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Oak Ridge Kennel Club</a></td>
+		</tr>
+		<tr>
+			<td>10/9/2023</td>
+			<td>10/15/2023</td>
+			<td>&nbsp;</td>
+			<td><a href="/catalog/?id=611">Fall break</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>10/13/2023</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=529&amp;lang=en">Princess Theatre: The RhythMatics Concert</a></td>
+		</tr>
+		<tr>
+			<td>10/13/2023</td>
+			<td>10/14/2023</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Three Rivers Antique Tractor Show</a></td>
+		</tr>
+		<tr>
+			<td>10/16/2023</td>
+			<td>10/19/2023</td>
+			<td>Y</td>
+			<td><a href="/?13631-News-Oct-16-19-Join-us-for-Fall-Fest-2023">Fall Fest 2023</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>10/21/2023</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=533&amp;lang=en">Princess Theatre: Movie Night &amp; Costume Parade</a></td>
+		</tr>
+		<tr>
+			<td>10/20/2023</td>
+			<td>10/22/2023</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: SERHS</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>10/24/2023</td>
+			<td>Y</td>
+			<td><a href="/?5470-Student-Life">Trunk or Treat (Roane County Campus)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>10/25/2023</td>
+			<td>Y</td>
+			<td><a href="/?12365-Arts-and-Lectures-Committee">Arts &amp; Lectures: Historical Horror (Oak Ridge Campus)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>10/27/2023</td>
+			<td>&nbsp;</td>
+			<td><a href="/catalog/?id=611">Last day to withdraw from classes</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>10/31/2023</td>
+			<td>Y</td>
+			<td><a href="/?5470-Student-Life">Halloween Costume Contest (All Campuses)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>11/06/2023</td>
+			<td>&nbsp;</td>
+			<td><a href="/catalog/?id=612">Registration for spring begins</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>11/09/2023</td>
+			<td>Y</td>
+			<td><a href="https://library.roanestate.edu/home/lnap">Long Night Against Procrastination (Oak Ridge Campus)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>11/10/2023</td>
+			<td>Y</td>
+			<td><a href="/?13642-News-Nov-10-Veterans-Day-Commemoration-on-Roane-County-Campus">Veterans Day Commemoration: Veteran Wave</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>11/15/2023</td>
+			<td>Y</td>
+			<td><a href="/?5470-Student-Life">Turkey Day (Roane County Campus)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>11/16/2023</td>
+			<td>Y</td>
+			<td><a href="https://www.facebook.com/roanestate/posts/pfbid02bPKZApVpnQofhgqm1k5VVyVB7v1H6Fh7SXf3mvZezWXVGmeG4inX1CwLNHxehek2l">Friendsgiving (Oak Ridge Campus)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>11/16/2023</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=534&amp;lang=en">Movie Night: National Lampoon's Christmas Vacation</a></td>
+		</tr>
+		<tr>
+			<td>11/16/2023</td>
+			<td>11/19/2023</td>
+			<td>Y</td>
+			<td><a href="https://www.onthestage.tickets/show/roane-state-community-college/650f026bcf72f20e41a26f30">Playmakers: They Promised Her the Moon</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>11/18/2023</td>
+			<td>Y</td>
+			<td><a href="/?13636-News-Nov-18-Athletics-Hall-of-Fame-and-All-Sports-Alumni-Event">Athletics Hall of Fame &amp; All-Sports Alumni Event</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>11/18/2023</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: NBHA</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>11/20/2023</td>
+			<td>Y</td>
+			<td><a href="/?11662-Lighting-of-the-Tree">Roane County's Lighting of the Tree</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>11/21/2023</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Open Ride</a></td>
+		</tr>
+		<tr>
+			<td>11/22/2023</td>
+			<td>11/26/2023</td>
+			<td>&nbsp;</td>
+			<td><a href="/catalog/?id=611">Thanksgiving holiday (no classes)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>11/30/2023</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=535&amp;lang=en">Movie Night: Mickey's Christmas Carol</a></td>
+		</tr>
+		<tr>
+			<td>11/30/2023</td>
+			<td>12/03/2023</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: TQHA Hillbilly Classic</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>12/01/2023</td>
+			<td>&nbsp;</td>
+			<td><a href="/catalog/?id=611">Last day to register for Winter Term</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>12/04/2023</td>
+			<td>&nbsp;</td>
+			<td><a href="/catalog/?id=611">Last day of classes</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>12/05/2023</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Open Ride</a></td>
+		</tr>
+		<tr>
+			<td>12/05/2023</td>
+			<td>12/07/2023</td>
+			<td>&nbsp;</td>
+			<td><a href="/catalog/?id=611">Exam period</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>12/08/2023</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=538&amp;lang=en">Princess Theatre: Babahatchie Band</a></td>
+		</tr>
+		<tr>
+			<td>12/08/2023</td>
+			<td>12/10/2023</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: TN Valley Kennel Club</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>12/09/2023</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=539&amp;lang=en">Princess Theatre: Merry Tuba Christmas</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>12/10/2023</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=520&amp;lang=en">Princess Theatre: James Gregory</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>12/11/2023</td>
+			<td>&nbsp;</td>
+			<td><a href="/catalog/?id=611">Winter Term classes begin</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>12/11/2023</td>
+			<td>&nbsp;</td>
+			<td><a href="/?13675-News-Orientation-review-sessions-offered-for-parents-and-family-of-Roane-State-students">Parent/Family Webinar: Tutoring &amp; Learning Center</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>12/12/2023</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Open Ride</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>12/23/2023</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=541&amp;lang=en">Movie Night: It's a Wonderful Life</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>12/25/2023</td>
+			<td>&nbsp;</td>
+			<td><a href="/catalog/?id=611">Christmas holiday</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>12/31/2023</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=536&amp;lang=en">Princess Theatre: New Year's Eve Concert</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>01/01/2024</td>
+			<td>&nbsp;</td>
+			<td><a href="/catalog/?id=611">New Year's holiday</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>01/02/2024</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Open Ride</a></td>
+		</tr>
+		<tr>
+			<td>01/05/2024</td>
+			<td>01/07/2024</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Oak Ridge Kennel Club</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>01/09/2024</td>
+			<td>Y</td>
+			<td><a href="https://www.roanestate.edu/art/gallery/">Art Gallery: Theresa Lee Exhibit Closing Reception</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>01/09/2024</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Open Ride</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>01/11/2024</td>
+			<td>&nbsp;</td>
+			<td><a href="/?13675-News-Orientation-review-sessions-offered-for-parents-and-family-of-Roane-State-students">Webinar: Parent/Family Portal</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>01/12/2024</td>
+			<td>&nbsp;</td>
+			<td><a href="/catalog/?id=611">Last day of Winter Term classes</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>01/15/2024</td>
+			<td>&nbsp;</td>
+			<td><a href="/catalog/?id=612">Martin Luther King holiday</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>01/16/2024</td>
+			<td>&nbsp;</td>
+			<td><a href="/catalog/?id=612">Spring classes begin</a></td>
+		</tr>
+		<tr>
+			<td>01/19/2024</td>
+			<td>01/21/2024</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: BattleLands USA</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>01/26/2024</td>
+			<td>&nbsp;</td>
+			<td><a href="/catalog/?id=612">Graduation applications for spring due</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>01/29/2024</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=612">Last day to drop without a W grade (full-term)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>01/30/2024</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Open Ride</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>02/02/2024</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=549&amp;lang=en">Movie Night: The Princess Bride</a></td>
+		</tr>
+		<tr>
+			<td>02/02/2024</td>
+			<td>02/04/2024</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: TN Valley Kennel Club-Agility</a></td>
+		</tr>
+		<tr>
+			<td>02/09/2024</td>
+			<td>02/11/2024</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: East TN Cutting Horse Association</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>02/12/2024</td>
+			<td>Y</td>
+			<td><a href="/?349-Tamke-Allan-Observatory">Observatory: Public Stargaze</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>02/13/2024</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Open Ride</a></td>
+		</tr>
+		<tr>
+			<td>02/16/2024</td>
+			<td>02/17/2024</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=544&amp;lang=en">Princess Theatre: Roane County Children's Theatre Production</a></td>
+		</tr>
+		<tr>
+			<td>02/17/2024</td>
+			<td>02/18/2024</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Great Pages Circus</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>02/19/2024</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Cabin Fever 4H Horse Clinic</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>02/20/2024</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Open Ride</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>02/24/2024</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=552&amp;lang=en">Princess Theatre: Eagles Tribute Concert</a></td>
+		</tr>
+		<tr>
+			<td>02/24/2024</td>
+			<td>02/25/2024</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: SERHS Clinic</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>02/27/2024</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Open Ride</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>03/01/2024</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=537&amp;lang=en">Princess Theatre: A Salute to Conway &amp; Loretta</a></td>
+		</tr>
+		<tr>
+			<td>03/01/2024</td>
+			<td>03/02/2024</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: JR Drake Rodeo</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>03/03/2024</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=543&amp;lang=en">Princess Theatre: Roane Choral Society Concert</a></td>
+		</tr>
+		<tr>
+			<td>03/04/2024</td>
+			<td>03/10/2024</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=612">Spring Break</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>03/05/2024</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Open Ride</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>03/11/2024</td>
+			<td>Y</td>
+			<td><a href="/?349-Tamke-Allan-Observatory">Observatory: Public Stargaze</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>03/14/2024</td>
+			<td>Y</td>
+			<td><a href="https://www.roanestate.edu/worc2030">The Future of Work Symposium</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>03/22/2024</td>
+			<td>&nbsp;</td>
+			<td><a href="/?5571-Academic-Festival">Academic Festival</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>03/23/2024</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=550&amp;lang=en">Movie Night at the Princess: Peter Rabbit</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>03/27/2024</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=612">Last day to withdraw from classes (full-term)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>03/29/2024</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=612">Good Friday holiday</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>03/29/2024</td>
+			<td>&nbsp;</td>
+			<td><a href="/?5464-Graduation">Graduation applications for summer due</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>03/30/2024</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=553&amp;lang=en">Princess Theatre: Bon Jovi Tribute Concert</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>04/01/2024</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=618">Registration for summer &amp; fall begins</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>04/04/2024</td>
+			<td>Y</td>
+			<td><a href="https://library.roanestate.edu/home/lnap">Long Night Against Procrastination</a></td>
+		</tr>
+		<tr>
+			<td>04/05/2024</td>
+			<td>04/07/2024</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: SERHS Show</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>04/07/2024</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=556&amp;lang=en">Princess Theatre: RSCC Sophomore Recital</a></td>
+		</tr>
+		<tr>
+			<td>04/11/2024</td>
+			<td>04/14/2024</td>
+			<td>Y</td>
+			<td><a href="https://www.onthestage.tickets/show/roane-state-community-college/65d8e49108b2ca0674128282">O'Brien Theatre: The Sound of Music</a></td>
+		</tr>
+		<tr>
+			<td>04/12/2024</td>
+			<td>04/14/2024</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Oak Ridge Kennel Club</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>04/13/2024</td>
+			<td>Y</td>
+			<td><a href="/?349-Tamke-Allan-Observatory">Observatory: Public Stargaze</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>04/18/2024</td>
+			<td>Y</td>
+			<td><a href="/?13459-Job-Fairs-at-Roane-State">Healthcare Job Fair (Oak Ridge)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>04/18/2024</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=551&amp;lang=en">Movie Night: To Catch a Thief</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>04/20/2024</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=554&amp;lang=en">Princess Theatre: Poison Tribute Concert</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>04/23/2024</td>
+			<td>Y</td>
+			<td><a href="/?5470-Student-Life">Academic Awards Night</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>04/24/2024</td>
+			<td>Y</td>
+			<td><a href="/?13760-News-Apr-24-Adult-Learner-Expo-at-Oak-Ridge-Campus">Adult Learner Expo (Oak Ridge)</a></td>
+		</tr>
+		<tr>
+			<td>04/26/2024</td>
+			<td>04/27/2024</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: 4H Clover Classic</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>05/02/2024</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=612">Last day of classes (full-term)</a></td>
+		</tr>
+		<tr>
+			<td>05/03/2024</td>
+			<td>05/04/2024</td>
+			<td>&nbsp;</td>
+			<td><a href="/?97-Graduation-Ceremony">Graduation ceremonies</a></td>
+		</tr>
+		<tr>
+			<td>05/03/2024</td>
+			<td>05/05/2024</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: East TN Cutting Horse Association</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>05/05/2024</td>
+			<td>Y</td>
+			<td><a href="/?349-Tamke-Allan-Observatory">Observatory: Public Meteor Stargaze</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>05/06/2024</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=613">Maymester classes begin</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>05/11/2024</td>
+			<td>Y</td>
+			<td><a href="/?349-Tamke-Allan-Observatory">Observatory: Public Meteor Stargaze</a></td>
+		</tr>
+		<tr>
+			<td>05/11/2024</td>
+			<td>05/12/2024</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Peach State Miniature Horse Show</a></td>
+		</tr>
+		<tr>
+			<td>05/17/2024</td>
+			<td>05/19/2024</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: SERHS Show</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>05/21/2024</td>
+			<td>Y</td>
+			<td><a href="https://www.signupgenius.com/go/9040944AFAB2EA1F85-45009178-lighting?fbclid=IwAR1KoWbXOVixsMv6Zp-md-YD91C6HliOlcjip1r_1AQxKFbuot5vqam8Oak#/">Princess Theatre: A/V Tech Training</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>05/21/2024</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=547&amp;lang=en">Princess Theatre: Mini-Concert</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>05/24/2024</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=613">Last day of Maymester classes</a></td>
+		</tr>
+		<tr>
+			<td>05/25/2024</td>
+			<td>05/26/2024</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Smoky Mountain Dairy Goat Show</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>05/27/2024</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=613">Memorial Day holiday</a></td>
+		</tr>
+		<tr>
+			<td>05/30/2024</td>
+			<td>06/01/2024</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Eastern Region 4H</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>05/31/2024</td>
+			<td>&nbsp;</td>
+			<td><a href="/?12971-Apply-for-Foundation-Scholarships">Roane State Foundation scholarship deadline</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>06/03/2024</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=613">Summer full-term classes begin</a></td>
+		</tr>
+		<tr>
+			<td>06/03/2024</td>
+			<td>06/06/2024</td>
+			<td>Y</td>
+			<td><a href="/?12360-Cybersecurity-Summer-Camps">Cybersecurity Summer Camp 1 (Oak Ridge)</a></td>
+		</tr>
+		<tr>
+			<td>06/07/2024</td>
+			<td>06/09/2024</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: SERHS Show</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>06/10/2024</td>
+			<td>Y</td>
+			<td><a href="/?5465-Raiders-Basketball-Camps">Raiders Basketball Shooting Camp</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>06/11/2024</td>
+			<td>Y</td>
+			<td><a href="https://www.facebook.com/share/nSDLt4ufYWt6TPrR/">Application Workshop (Harriman Public Library)</a></td>
+		</tr>
+		<tr>
+			<td>06/11/2024</td>
+			<td>06/13/2024</td>
+			<td>Y</td>
+			<td><a href="/?12300-Volleyball-Camp">Raiders Volleyball Camp</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>06/12/2024</td>
+			<td>Y</td>
+			<td><a href="/?6918-New-Student-Experience">New Student Experience (Oak Ridge)</a></td>
+		</tr>
+		<tr>
+			<td>06/13/2024</td>
+			<td>06/16/2024</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: TQHA Dogwood Classic</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>06/18/2024</td>
+			<td>Y</td>
+			<td><a href="/?12665-Virtual-FAFSA-Completion-Workshop">Virtual FAFSA Completion Workshop</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>06/19/2024</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=613">Juneteenth holiday</a></td>
+		</tr>
+		<tr>
+			<td>06/19/2024</td>
+			<td>06/21/2024</td>
+			<td>Y</td>
+			<td><a href="/?5465-Raiders-Basketball-Camps">Raiders Basketball Kids Camp</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>06/20/2024</td>
+			<td>Y</td>
+			<td><a href="/?6918-New-Student-Experience">New Student Experience (Oak Ridge)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>06/24/2024</td>
+			<td>Y</td>
+			<td><a href="https://www.facebook.com/share/vR4WziwPk56Z81vw/">FAFSA Night (Roane County)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>06/26/2024</td>
+			<td>Y</td>
+			<td><a href="/?6918-New-Student-Experience">New Student Experience (Roane County)</a></td>
+		</tr>
+		<tr>
+			<td>06/24/2024</td>
+			<td>06/27/2024</td>
+			<td>Y</td>
+			<td><a href="/?12360-Cybersecurity-Summer-Camps">Cybersecurity Summer Camp 2 (Oak Ridge)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>06/29/2024</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=558&amp;lang=en">Princess Theatre: An Evening with Gene Watson</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>07/04/2024</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=613">Fourth of July holiday</a></td>
+		</tr>
+		<tr>
+			<td>07/05/2024</td>
+			<td>07/07/2024</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: East TN Cutting Horse Association</a></td>
+		</tr>
+		<tr>
+			<td>07/08/2024</td>
+			<td>07/11/2024</td>
+			<td>Y</td>
+			<td><a href="https://registration.xendirect.com/rscc/searchResults.cfm?couID=19559">Cybersecurity Camp, Grades 9-12 (Anderson County)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>07/10/2024</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=613">Last day to withdraw, summer full term</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>07/10/2024</td>
+			<td>Y</td>
+			<td><a href="/?6918-New-Student-Experience">New Student Experience (Roane County)</a></td>
+		</tr>
+		<tr>
+			<td>07/12/2024</td>
+			<td>07/13/2024</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: American Gaited Mule Association</a></td>
+		</tr>
+		<tr>
+			<td>07/15/2024</td>
+			<td>07/18/2024</td>
+			<td>Y</td>
+			<td><a href="https://registration.xendirect.com/rscc/searchResults.cfm?couID=19559">Cybersecurity Camp, Grades 9-12 (Campbell County)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>07/16/2024</td>
+			<td>Y</td>
+			<td><a href="/?6918-New-Student-Experience">New Student Experience (Oak Ridge)</a></td>
+		</tr>
+		<tr>
+			<td>07/18/2024</td>
+			<td>07/20/2024</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: North American Saddle Mule and Donkey Show</a></td>
+		</tr>
+		<tr>
+			<td>07/22/2024</td>
+			<td>07/25/2024</td>
+			<td>Y</td>
+			<td><a href="https://registration.xendirect.com/rscc/searchResults.cfm?couID=19559">Cybersecurity Camp, Grades 9-12 (Scott County)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>07/29/2024</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=613">Last day of classes, summer full term</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>07/29/2024</td>
+			<td>Y</td>
+			<td><a href="/?6918-New-Student-Experience">New Student Experience (Roane County)</a></td>
+		</tr>
+		<tr>
+			<td>08/02/2024</td>
+			<td>08/04/2024</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: TN Stock Horse Association</a></td>
+		</tr>
+		<tr>
+			<td>08/10/2024</td>
+			<td>08/11/2024</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Jesse Adcock Memorial Roping</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>08/14/2024</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=618">Faculty report</a></td>
+		</tr>
+		<tr>
+			<td>08/16/2024</td>
+			<td>08/18/2024</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: SERHS Show</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>08/20/2024</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=618">Registration closes for fall full term</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>08/21/2024</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=618">Classes begin, fall semester</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>08/24/2024</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Peak Equine Productions Open Horse Show</a></td>
+		</tr>
+		<tr>
+			<td>08/26/2024</td>
+			<td>08/29/2024</td>
+			<td>Y</td>
+			<td><a href="/?13841-News-Aug-26-29-Celebrate-the-new-semester-during-Welcome-Back-Week">Welcome Back Week</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>08/28/2024</td>
+			<td>Y</td>
+			<td><a href="/?12665-Virtual-FAFSA-Completion-Workshop">Virtual FAFSA Workshop</a></td>
+		</tr>
+		<tr>
+			<td>08/30/2024</td>
+			<td>09/01/2024</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: East TN Cutting Horse Association</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>09/02/2024</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=618">Labor Day holiday</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>09/03/2024</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=618">Last day to drop without a "W"</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>09/07/2024</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: National Barrel Horse Association</a></td>
+		</tr>
+		<tr>
+			<td>09/13/2024</td>
+			<td>09/15/2024</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Southeastern Reined Cow Horse Association</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>09/27/2024</td>
+			<td>&nbsp;</td>
+			<td><a href="/?5464-Graduation">Graduation applications for fall due</a></td>
+		</tr>
+		<tr>
+			<td>09/27/2024</td>
+			<td>09/29/2024</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: SERHS Show</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>09/30/2024</td>
+			<td>Y</td>
+			<td><a href="/?5585-Roane-State-Presents-Performing-and-Visual-Arts">Arts &amp; Lectures: Concert and Gala (Oak Ridge)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>10/05/2024</td>
+			<td>Y</td>
+			<td><a href="/?10160-Street-Painting-Festival">Street Painting Festival (Oak Ridge)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>10/09/2024</td>
+			<td>Y</td>
+			<td><a href="/?13568-Upcoming-Events">Fall Transfer Fair (Oak Ridge)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>10/09/2024</td>
+			<td>Y</td>
+			<td><a href="/?5585-Roane-State-Presents-Performing-and-Visual-Arts">Midterm Musical Solo Class Recital (Roane County)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>10/10/2024</td>
+			<td>Y</td>
+			<td><a href="/?13568-Upcoming-Events">Fall Transfer Fair (Roane County)</a></td>
+		</tr>
+		<tr>
+			<td>10/11/2024</td>
+			<td>10/13/2024</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Three Rivers Antique Tractor Show</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>10/12/2024</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=567&amp;lang=en">Princess Theatre: Boys in the Band Alabama Tribute</a></td>
+		</tr>
+		<tr>
+			<td>10/14/2024</td>
+			<td>10/20/2024</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=618">Fall break</a></td>
+		</tr>
+		<tr>
+			<td>10/18/2024</td>
+			<td>10/20/2024</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: SERHS Show</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>10/23/2024</td>
+			<td>Y</td>
+			<td><a href="/?5585-Roane-State-Presents-Performing-and-Visual-Arts">Arts &amp; Lectures: Historical Horror (Oak Ridge)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>10/24/2024</td>
+			<td>Y</td>
+			<td><a href="/?13893-News-Oct-24-Nuclear-Science-Week-Career-and-Job-Fair-at-Oak-Ridge-Campus">Nuclear Science Week Career &amp; Job Fair (Oak Ridge)</a></td>
+		</tr>
+		<tr>
+			<td>10/25/2024</td>
+			<td>10/26/2024</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: JR's Pro Rodeo</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>10/26/2024</td>
+			<td>Y</td>
+			<td><a href="/?5585-Roane-State-Presents-Performing-and-Visual-Arts">Movie Night at the Princess: Ghostbusters</a></td>
+		</tr>
+		<tr>
+			<td>10/26/2024</td>
+			<td>10/27/2024</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Oak Ridge Kennel Club Tracking Test</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>10/29/2024</td>
+			<td>Y</td>
+			<td><a href="/?5585-Roane-State-Presents-Performing-and-Visual-Arts">Art Gallery: "I See Myself in Them" exhibit opens</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>11/01/2024</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=564&amp;lang=en">Princess Theatre: Allman Brothers Tribute</a></td>
+		</tr>
+		<tr>
+			<td>11/01/2024</td>
+			<td>11/02/2024</td>
+			<td>Y</td>
+			<td><a href="https://tjccaa.com/sports/wvball/2024-25/schedule">Region VII Volleyball Tournament (@RSCC)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>11/04/2024</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=618">Last day to withdraw</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>11/05/2024</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=619">Spring registration begins</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>11/08/2024</td>
+			<td>&nbsp;</td>
+			<td><a href="/?13872-News-RSCC-celebrates-First-Generation-College-Student-Day-with-photo-and-essay-contests">First Generation College Student Day</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>11/08/2024</td>
+			<td>Y</td>
+			<td><a href="/?5585-Roane-State-Presents-Performing-and-Visual-Arts">Arts &amp; Lectures: Maria Callas 101 (Princess Theatre)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>11/10/2024</td>
+			<td>Y</td>
+			<td><a href="/?5585-Roane-State-Presents-Performing-and-Visual-Arts">Princess Theatre: RSCC Music Sophomore Recital</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>11/11/2024</td>
+			<td>Y</td>
+			<td><a href="/?13922-News-Nov-11-Veterans-Day-observance-at-Roane-County-Campus">Veterans Day Ceremony (Roane Campus)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>11/12/2024</td>
+			<td>Y</td>
+			<td><a href="/?13459-Job-Fairs-at-Roane-State">Community Job Fair (Roane Campus)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>11/12/2024</td>
+			<td>Y</td>
+			<td><a href="https://library.roanestate.edu/home/lnap">Long Night Against Procrastination (Oak Ridge)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>11/15/2024</td>
+			<td>Y</td>
+			<td><a href="/?5585-Roane-State-Presents-Performing-and-Visual-Arts">Movie Night at the Princess: Miracle on 34th Street</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>11/18/2024</td>
+			<td>Y</td>
+			<td><a href="https://www.roanestate.edu/treelighting">Roane County's Lighting of the Tree</a></td>
+		</tr>
+		<tr>
+			<td>11/18/2024</td>
+			<td>11/22/2024</td>
+			<td>Y</td>
+			<td><a href="/?12684-Upcoming-Events">International Education Week Passport Fairs</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>11/19/2024</td>
+			<td>Y</td>
+			<td><a href="/?13459-Job-Fairs-at-Roane-State">Community Job Fair (Oak Ridge)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>11/21/2024</td>
+			<td>Y</td>
+			<td><a href="/?5470-Student-Life">Turkey Day Lunch (Roane Campus)</a></td>
+		</tr>
+		<tr>
+			<td>11/21/2024</td>
+			<td>11/24/2024</td>
+			<td>Y</td>
+			<td><a href="https://our.show/rsccfools">Playmakers: Fools (O'Brien Theatre)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>11/22/2024</td>
+			<td>Y</td>
+			<td><a href="https://www.roanetourism.com/event/158755/ken-yagers-annual-chili-supper-silent-auction/">Chili Supper &amp; Silent Auction (Roane Campus)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>11/26/2024</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Open Ride</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>11/27/2024</td>
+			<td>&nbsp;</td>
+			<td><a href="/catalog/?id=618">No classes, all campuses open</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>11/27/2024</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=575&amp;lang=en">Princess Theatre: The Wizard of Oz</a></td>
+		</tr>
+		<tr>
+			<td>11/28/2024</td>
+			<td>12/01/2024</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=618">Thanksgiving holiday (campuses closed)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>11/29/2024</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=578&amp;lang=en">Princess Theatre: Levi Kreis - Home for the Holidays</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>12/01/2024</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=579&amp;lang=en">Princess Theatre: Levi Kreis - Home for the Holidays</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>12/03/2024</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Open Ride</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>12/04/2024</td>
+			<td>Y</td>
+			<td><a href="/?5585-Roane-State-Presents-Performing-and-Visual-Arts">O'Brien Theatre: Music / Theatre Recital &amp; Showcase</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>12/06/2024</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=618">Last day to register for Winter Term</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>12/06/2024</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=576&amp;lang=en">Princess Theatre: The Grinch</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>12/09/2024</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=618">Winter Term: Check your schedule!</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>12/09/2024</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=618">Last day of fall classes</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>12/10/2024</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Open Ride</a></td>
+		</tr>
+		<tr>
+			<td>12/10/2024</td>
+			<td>12/12/2024</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=618">Exam period</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>12/12/2024</td>
+			<td>Y</td>
+			<td><a href="/?12665-Virtual-FAFSA-Completion-Workshop">Virtual FAFSA Workshop</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>12/12/2024</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=618">Winter Term payment deadline (5:30pm ET)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>12/13/2024</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=580&amp;lang=en">Princess Theatre: Babahatchie Community Band</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>12/13/2024</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=618">Grades due for fall</a></td>
+		</tr>
+		<tr>
+			<td>12/13/2024</td>
+			<td>12/14/2024</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: 4H Hog Show</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>12/14/2024</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=581&amp;lang=en">Princess Theatre: Tuba Christmas</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>12/16/2024</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=618">Winter Term classes begin</a></td>
+		</tr>
+		<tr>
+			<td>12/19/2024</td>
+			<td>12/20/2024</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Oak Ridge Kennel Club - Tracking</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>12/20/2024</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=582&amp;lang=en">Princess Theatre: Christmas with Ben Briley &amp; Friends</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>12/23/2024</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=577&amp;lang=en">Princess Theatre: It's a Wonderful Life</a></td>
+		</tr>
+		<tr>
+			<td>12/24/2024</td>
+			<td>12/25/2024</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=618">Christmas holiday</a></td>
+		</tr>
+		<tr>
+			<td>12/31/2024</td>
+			<td>01/01/2025</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=618">New Year's holiday</a></td>
+		</tr>
+		<tr>
+			<td>01/03/2025</td>
+			<td>01/05/2025</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Oak Ridge Kennel Club</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>01/06/2025</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=618">Last day to withdraw from Winter Term</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>01/13/2025</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=619">Faculty report</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>01/14/2025</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Open Ride</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>01/17/2025</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=567&amp;lang=en">Princess Theatre: Alabama Tribute Concert</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>01/17/2025</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=618">Last day of Winter Term classes</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>01/20/2025</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=619">Martin Luther King holiday</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>01/21/2025</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Open Ride</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>01/21/2025</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=619">Spring classes begin (full-term)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>01/21/2025</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=618">Winter Term grades due</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>01/23/2025</td>
+			<td>Y</td>
+			<td><a href="/?13953-News-Jan-23-Pop-Into-Roane-State-for-answers-about-college">Oak Ridge Campus: Pop Into Roane State</a></td>
+		</tr>
+		<tr>
+			<td>01/25/2025</td>
+			<td>01/26/2025</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Youth Equestrian Development</a></td>
+		</tr>
+		<tr>
+			<td>01/27/2025</td>
+			<td>01/30/2025</td>
+			<td>Y</td>
+			<td><a href="/?5470-Student-Life">Welcome Back Week (all campuses)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>01/28/2025</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Open Ride</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>01/29/2025</td>
+			<td>Y</td>
+			<td><a href="/?12665-Virtual-FAFSA-Completion-Workshop">Virtual FAFSA Workshop</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>01/31/2025</td>
+			<td>&nbsp;</td>
+			<td><a href="/?5464-Graduation">Graduation applications for spring due</a></td>
+		</tr>
+		<tr>
+			<td>01/31/2025</td>
+			<td>02/02/2025</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: TN Valley Kennel Club</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>02/01/2025</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=585&amp;lang=en">Princess Theatre: Georgette Jones Concert</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>02/03/2025</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=619">Last day to drop/withdraw without a "W"</a></td>
+		</tr>
+		<tr>
+			<td>02/04/2025</td>
+			<td>02/05/2025</td>
+			<td>Y</td>
+			<td><a href="/?13962-News-Feb-4-5-Oak-Ridge-Campus-to-host-Love-Your-Library-Used-Book-Sale">"Love Your Library" Book Sale (Oak Ridge)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>02/07/2025</td>
+			<td>Y</td>
+			<td><a href="/?13964-News-Feb-7-Movie-Night-at-the-Princess-presents-Roman-Holiday">Movie Night at the Princess: Roman Holiday</a></td>
+		</tr>
+		<tr>
+			<td>02/07/2025</td>
+			<td>02/09/2025</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: East TN Cutting Horse Association</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>02/08/2025</td>
+			<td>Y</td>
+			<td><a href="/?13391-Our-American-Roots-An-Exploration-of-Cultures-A-Four-Part-Series">Oak Ridge High School: Amythyst Kiah concert</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>02/11/2025</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Open Ride</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>02/17/2025</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=567&amp;lang=en">Princess Theatre: Alabama Tribute Concert</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>02/18/2025</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Open Ride</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>02/19/2025</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=588&amp;lang=en">Princess Theatre: Makers Matinee</a></td>
+		</tr>
+		<tr>
+			<td>02/22/2025</td>
+			<td>02/23/2025</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Southeast Ranch Horse Series Clinic</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>02/25/2025</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Open Ride</a></td>
+		</tr>
+		<tr>
+			<td>02/28/2025</td>
+			<td>03/01/2025</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: JR's Pro Rodeo</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>03/01/2025</td>
+			<td>Y</td>
+			<td><a href="/?13987-News-Mar-1-Catch-The-Incredibles-on-Free-Movie-Night-at-the-Princess">Princess Theatre: The Incredibles</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>03/06/2025</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=568&amp;lang=en">Princess Theatre: ZZ Top Tribute Concert</a></td>
+		</tr>
+		<tr>
+			<td>03/10/2025</td>
+			<td>03/16/2025</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=619">Spring break</a></td>
+		</tr>
+		<tr>
+			<td>03/12/2025</td>
+			<td>03/16/2025</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: TN Reining Horse Association</a></td>
+		</tr>
+		<tr>
+			<td>03/12/2025</td>
+			<td>04/04/2025</td>
+			<td>&nbsp;</td>
+			<td><a href="/?5470-Student-Life">SGA Candidate Filing Period</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>03/20/2025</td>
+			<td>Y</td>
+			<td><a href="/?13459-Job-Fairs-at-Roane-State">Oak Ridge Campus: Job Fair</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>03/22/2025</td>
+			<td>Y</td>
+			<td><a href="/?14001-News-Mar-22-Oak-Ridge-Campus-to-host-emergency-exercise-for-health-science-students">Oak Ridge Campus: Emergency Exercise</a></td>
+		</tr>
+		<tr>
+			<td>03/24/2025</td>
+			<td>03/27/2025</td>
+			<td>Y</td>
+			<td><a href="/?5470-Student-Life">Spring Fling (all campuses)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>03/25/2025</td>
+			<td>Y</td>
+			<td><a href="/?5470-Student-Life">Roane Campus: MEDIC Blood Drive</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>03/26/2025</td>
+			<td>Y</td>
+			<td><a href="/?5470-Student-Life">Oak Ridge Campus: MEDIC Blood Drive</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>03/26/2025</td>
+			<td>Y</td>
+			<td><a href="/?13994-News-Center-for-Health-Sciences-to-host-blood-drive-amid-critical-need">Knox Campus: MEDIC Blood Drive</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>03/27/2025</td>
+			<td>Y</td>
+			<td><a href="/?13459-Job-Fairs-at-Roane-State">Oak Ridge Campus: Healthcare Job Fair</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>03/28/2025</td>
+			<td>&nbsp;</td>
+			<td><a href="/?5464-Graduation">Graduation applications for summer due</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>04/02/2025</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=619">Last day to withdraw (spring full-term)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>04/02/2025</td>
+			<td>Y</td>
+			<td><a href="/?5585-Roane-State-Presents-Performing-and-Visual-Arts">Arts &amp; Lectures: Hospice Care in Appalachia (Oak Ridge)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>04/03/2025</td>
+			<td>Y</td>
+			<td><a href="https://library.roanestate.edu/home/lnap">Oak Ridge Campus: Long Night Against Procrastination</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>04/05/2025</td>
+			<td>Y</td>
+			<td><a href="/?14010-News-1st-Annual-Roane-State-Student-Vendor-Fair-to-be-held-April-5">Student Vendor Fair (Roane County)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>04/06/2025</td>
+			<td>Y</td>
+			<td><a href="/?5585-Roane-State-Presents-Performing-and-Visual-Arts">Princess Theatre: Sophomore Recital</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>04/07/2025</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=620">Registration begins (summer and fall)</a></td>
+		</tr>
+		<tr>
+			<td>04/07/2025</td>
+			<td>04/18/2025</td>
+			<td>&nbsp;</td>
+			<td><a href="/?5470-Student-Life">SGA Election</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>04/11/2025</td>
+			<td>Y</td>
+			<td><a href="/?5571-Academic-Festival">Academic Festival</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>04/17/2025</td>
+			<td>Y</td>
+			<td><a href="/?13459-Job-Fairs-at-Roane-State">Roane Campus: Job Fair</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>04/18/2025</td>
+			<td>&nbsp;</td>
+			<td><a href="/?5905-Nursing-Program">Nursing Program application deadline (extended)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>04/18/2025</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=619">Good Friday holiday</a></td>
+		</tr>
+		<tr>
+			<td>04/22/2025</td>
+			<td>04/30/2025</td>
+			<td>Y</td>
+			<td><a href="/?5585-Roane-State-Presents-Performing-and-Visual-Arts">Spring Student Art Show (Roane County)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>04/23/2025</td>
+			<td>Y</td>
+			<td><a href="/?13978-News-Apr-23-Roane-County-Campus-hosts-College-and-Career-Expo">Roane Campus: College &amp; Career Expo</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>04/24/2025</td>
+			<td>Y</td>
+			<td><a href="/?5585-Roane-State-Presents-Performing-and-Visual-Arts">Arts &amp; Lectures: Author Linda Holmes (Oak Ridge)</a></td>
+		</tr>
+		<tr>
+			<td>04/24/2025</td>
+			<td>04/27/2025</td>
+			<td>Y</td>
+			<td><a href="https://www.onthestage.tickets/show/roane-state-community-college/67a66f80667c096db7a81607">Playmakers: Much Ado About Nothing (O'Brien Theatre)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>04/28/2025</td>
+			<td>&nbsp;</td>
+			<td><a href="/?97-Graduation-Ceremony">Cap &amp; Gown Pickups Begin</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>04/30/2025</td>
+			<td>Y</td>
+			<td><a href="/?12665-Virtual-FAFSA-Completion-Workshop">Virtual FAFSA Workshop</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>04/30/2025</td>
+			<td>Y</td>
+			<td><a href="/?5585-Roane-State-Presents-Performing-and-Visual-Arts">O'Brien Theatre: Final Recital &amp; Showcase</a></td>
+		</tr>
+		<tr>
+			<td>05/02/2025</td>
+			<td>05/04/2025</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: East TN Cutting Horse Association</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>05/05/2025</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=619">Last day of spring classes (full-term)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>05/05/2025</td>
+			<td>Y</td>
+			<td><a href="/?97-Graduation-Ceremony">O'Brien Theatre: Middle College Cording</a></td>
+		</tr>
+		<tr>
+			<td>05/06/2025</td>
+			<td>05/08/2025</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=619">Exam period (spring)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>05/09/2025</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=619">Grades due for spring (Noon)</a></td>
+		</tr>
+		<tr>
+			<td>05/09/2025</td>
+			<td>05/10/2025</td>
+			<td>Y</td>
+			<td><a href="/?97-Graduation-Ceremony">Graduation ceremonies</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>05/10/2025</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: East TN Spring Classic</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>05/12/2025</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=620">Expanded Term &amp; Maymester classes begin</a></td>
+		</tr>
+		<tr>
+			<td>05/16/2025</td>
+			<td>05/18/2025</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Southeast Ranch Horse Series</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>05/17/2025</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=565&amp;lang=en">Princess Theatre: Journey from the Heart concert</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>05/23/2025</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=620">Last day to withdraw from Maymester classes</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>05/26/2025</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=620">Memorial Day holiday</a></td>
+		</tr>
+		<tr>
+			<td>05/29/2025</td>
+			<td>05/31/2025</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Eastern Region 4H</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>05/30/2025</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=620">Last day of Maymester</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>05/31/2025</td>
+			<td>&nbsp;</td>
+			<td><a href="/?13998-News-Roane-State-Foundations-annual-student-scholarship-application-opens-March-15">Foundation Scholarship application deadline</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>06/02/2025</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=620">Summer classes begin (Full &amp; First Term)</a></td>
+		</tr>
+		<tr>
+			<td>06/02/2025</td>
+			<td>06/20/2025</td>
+			<td>Y</td>
+			<td><a href="https://nacce.formstack.com/forms/2022_2023_vilsap_registration_form_copy_copy_31">Verizon Innovative Learning STEM Achievers (Roane)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>06/19/2025</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=620">Juneteenth holiday</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>06/21/2025</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=599&amp;lang=en">Princess Theatre: Pumphouse Revival concert</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>06/26/2025</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=620">Last day of classes (First Term Summer)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>06/28/2025</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Smoky Mountain Dairy Goat Show</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>06/29/2025</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=620">Last day to withdraw from Expanded Term classes</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>06/30/2025</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=620">Second Term Summer classes begin</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>06/30/2025</td>
+			<td>&nbsp;</td>
+			<td><a href="/?12730-Medical-Laboratory-Technology-AAS">Medical Laboratory Technology application deadline</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>07/04/2025</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=620">July 4th holiday</a></td>
+		</tr>
+		<tr>
+			<td>07/04/2025</td>
+			<td>07/06/2025</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: East TN Cutting Horse Association</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>07/06/2025</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=620">Last day to withdraw (Full Term Summer)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>07/06/2025</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=601&amp;lang=en">Princess Theatre: Levi Kreis</a></td>
+		</tr>
+		<tr>
+			<td>07/07/2025</td>
+			<td>07/25/2025</td>
+			<td>Y</td>
+			<td><a href="https://nacce.formstack.com/forms/2022_2023_vilsap_registration_form_copy_copy_31">Verizon Innovative Learning STEM Achievers (Cumberland)</a></td>
+		</tr>
+		<tr>
+			<td>07/11/2025</td>
+			<td>07/12/2025</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: American Gaited Mule Championship</a></td>
+		</tr>
+		<tr>
+			<td>07/17/2025</td>
+			<td>07/19/2025</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: North American Saddle Mule Donkey Assoc.</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>07/18/2025</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=620">Last day to withdraw (Second Term Summer)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>07/23/2025</td>
+			<td>Y</td>
+			<td><a href="/?12665-Virtual-FAFSA-Completion-Workshop">Virtual FAFSA Workshop</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>07/24/2025</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=620">Last day of Full, Second &amp; Expanded Terms</a></td>
+		</tr>
+		<tr>
+			<td>07/26/2028</td>
+			<td>07/27/2025</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: County Mounties</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>07/30/2025</td>
+			<td>Y</td>
+			<td><a href="/?14056-News-Roane-State-to-host-pair-of-registration-rallies-in-July-for-returning-students">Registration Rally (Oak Ridge)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>07/30/2025</td>
+			<td>Y</td>
+			<td><a href="/?12665-Virtual-FAFSA-Completion-Workshop">Virtual FAFSA Workshop</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>07/31/2025</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=622">Middle College Express Term begins</a></td>
+		</tr>
+		<tr>
+			<td>08/01/2025</td>
+			<td>08/03/2025</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: TN Stock Horse Show</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>08/02/2025</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=589&amp;lang=en">Princess Theatre: Gene Watson concert</a></td>
+		</tr>
+		<tr>
+			<td>08/08/2025</td>
+			<td>08/10/2025</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Southeast Ranch Horse Show</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>08/13/2025</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=622">Faculty report</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>08/15/2025</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=622">Last day of Middle College Express Term</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>08/16/2025</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Tri Star Open Horse Show</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>08/16/2025</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=604&amp;lang=en">Princess Theatre: Nick Hickman concert</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>08/20/2025</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=622">Classes begin (Full &amp; Accelerated Term I)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>08/22/2025</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=598&amp;lang=en">Princess Theatre: ELO Tribute Concert</a></td>
+		</tr>
+		<tr>
+			<td>08/25/2025</td>
+			<td>08/28/2025</td>
+			<td>Y</td>
+			<td><a href="/?5470-Student-Life">Welcome Back Week (all campuses)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>08/29/2025</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=600&amp;lang=en">Princess Theatre: Jon Reep comedy show</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>09/01/2025</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=622">Labor Day holiday</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>09/02/2025</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=622">Last day to drop/withdraw without a "W"</a></td>
+		</tr>
+		<tr>
+			<td>09/04/2025</td>
+			<td>09/07/2025</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: East TN Cutting Horse Assoc.</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>09/06/2025</td>
+			<td>Y</td>
+			<td><a href="https://www.signupgenius.com/go/9040944AFAB2EA1F85-58004302-rscc#/">Playmakers Auditions (O'Brien Theatre)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>09/11/2025</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=622">Last day to withdraw (Accelerated Term I)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>09/23/2025</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=622">Accelerated Term I ends</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>09/24/2025</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=622">Accelerated Term II begins</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>09/26/2025</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=622">Graduation applications due for fall</a></td>
+		</tr>
+		<tr>
+			<td>09/26/2025</td>
+			<td>09/28/2025</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Southeast Ranch Horse Show</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>10/03/2025</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Great Pages Circus</a></td>
+		</tr>
+		<tr>
+			<td>10/06/2025</td>
+			<td>10/09/2025</td>
+			<td>Y</td>
+			<td><a href="/?5470-Student-Life">Fall Fest (All Campuses)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>10/09/2025</td>
+			<td>Y</td>
+			<td><a href="https://www.facebook.com/events/3747471912054391/">Job Fair (Roane Campus)</a></td>
+		</tr>
+		<tr>
+			<td>10/10/2025</td>
+			<td>10/11/2025</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Three Rivers Antique Tractor Show</a></td>
+		</tr>
+		<tr>
+			<td>10/13/2025</td>
+			<td>10/19/2025</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=622">Fall break</a></td>
+		</tr>
+		<tr>
+			<td>10/17/2025</td>
+			<td>10/19/2025</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Southeast Ranch Horse Show</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>10/20/2025</td>
+			<td>Y</td>
+			<td><a href="/?5470-Student-Life">Men's Golf Tailgate Party</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>10/21/2025</td>
+			<td>Y</td>
+			<td><a href="/?14118-News-Oct-21-2nd-Annual-Nuclear-Science-Week-Career-Fair-at-Oak-Ridge-Campus">Nuclear Science Week Career Fair (Oak Ridge)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>10/24/2025</td>
+			<td>Y</td>
+			<td><a href="/?12665-Virtual-FAFSA-Completion-Workshop">Virtual FAFSA Workshop</a></td>
+		</tr>
+		<tr>
+			<td>10/24/2025</td>
+			<td>10/25/2025</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: JR's Finals Rodeo</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>10/28/2025</td>
+			<td>Y</td>
+			<td><a href="/?14121-News-Oct-28-TBR-announces-Nuclear-Workforce-Summit-in-Oak-Ridge">TBR Nuclear Workforce Summit (Oak Ridge)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>10/28/2025</td>
+			<td>Y</td>
+			<td><a href="/?5470-Student-Life">Trunk or Treat (Roane Campus)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>10/29/2025</td>
+			<td>Y</td>
+			<td><a href="/?12665-Virtual-FAFSA-Completion-Workshop">Virtual FAFSA Workshop</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>10/30/2025</td>
+			<td>&nbsp;</td>
+			<td><a href="/?14102-News-RSCC-celebrates-First-Generation-College-Student-Day-with-photo-and-essay-contests">Deadline: First Gen Essay Contest</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>10/31/2025</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=622">Last day to withdraw (Full Term)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>11/03/2025</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=623">Spring registration begins</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>11/06/2025</td>
+			<td>&nbsp;</td>
+			<td><a href="/?14102-News-RSCC-celebrates-First-Generation-College-Student-Day-with-photo-and-essay-contests">Deadline: First Gen Photo Contest</a></td>
+		</tr>
+		<tr>
+			<td>11/06/2025</td>
+			<td>12/11/2025</td>
+			<td>Y</td>
+			<td><a href="/?5585-Roane-State-Presents-Performing-and-Visual-Arts">Art Gallery: Darlene Parks Mixed Media Exhibit</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>11/08/2025</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=603&amp;lang=en">Princess Theatre: 80s Tribute Concert</a></td>
+		</tr>
+		<tr>
+			<td>11/10/2025</td>
+			<td>11/14/2025</td>
+			<td>Y</td>
+			<td><a href="/?14114-News-Weeklong-Salute-to-Service-will-honor-RSCC-student-veterans">Salute to Service for Student Veterans</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>11/13/2025</td>
+			<td>Y</td>
+			<td><a href="https://library.roanestate.edu/home/lnap">Long Night Against Procrastination</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>11/15/2025</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=614&amp;lang=en">Free Movie Night at the Princess</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>11/17/2025</td>
+			<td>Y</td>
+			<td><a href="/?11662-Lighting-of-the-Tree">Lighting of the Tree (Roane Campus)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>11/20/2025</td>
+			<td>Y</td>
+			<td><a href="/?14130-News-Nov-20-Veteran-Wave-flag-retirement-ceremony-to-be-held-at-Roane-State">Veteran Wave Flag Retirement</a></td>
+		</tr>
+		<tr>
+			<td>11/20/2025</td>
+			<td>11/23/2025</td>
+			<td>Y</td>
+			<td><a href="https://www.facebook.com/RSCCTheatre">Playmakers: The Importance of Being Earnest</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>11/26/2025</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=615&amp;lang=en">Free Movie Night at the Princess</a></td>
+		</tr>
+		<tr>
+			<td>11/26/2025</td>
+			<td>11/30/2025</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=622">Thanksgiving holiday</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>11/29/2025</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=616&amp;lang=en">Home for the Holidays w/ Levi Kreis</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>11/30/2025</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=617&amp;lang=en">Home for the Holidays w/ Levi Kreis</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>12/03/2025</td>
+			<td>Y</td>
+			<td><a href="/?5585-Roane-State-Presents-Performing-and-Visual-Arts">O'Brien Theatre: Music Program Fall Showcase</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>12/04/2025</td>
+			<td>Y</td>
+			<td><a href="/?12665-Virtual-FAFSA-Completion-Workshop">Virtual FAFSA Workshop</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>12/04/2025</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=618&amp;lang=en">Princess Theatre: Christmas Parade Movies</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>12/06/2025</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=626&amp;lang=en">Free Movie Night at the Princess</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>12/08/2025</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=622">Last day of classes</a></td>
+		</tr>
+		<tr>
+			<td>12/08/2025</td>
+			<td>12/09/2025</td>
+			<td>Y</td>
+			<td><a href="/?5585-Roane-State-Presents-Performing-and-Visual-Arts">O'Brien Theatre: Playmakers Auditions</a></td>
+		</tr>
+		<tr>
+			<td>12/09/2025</td>
+			<td>12/11/2025</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=622">Exam period</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>12/12/2025</td>
+			<td>&nbsp;</td>
+			<td><a href="/?12138-Winter-Term">Last day to register for Winter Term</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>12/12/2025</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=622">Grades due</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>12/12/2025</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=621&amp;lang=en">Princess Theatre: Babahatchie Band Christmas Concert</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>12/13/2025</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=622&amp;lang=en">Princess Theatre: Merry Tuba Christmas Concert</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>12/14/2025</td>
+			<td>&nbsp;</td>
+			<td><a href="/?12138-Winter-Term">Last day to drop with 100% refund (Winter Term)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>12/15/2025</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=622">Winter Term classes begin</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>12/19/2025</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=625&amp;lang=en">Free Movie Night at the Princess</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>12/23/2025</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=619&amp;lang=en">Free Movie Night at the Princess</a></td>
+		</tr>
+		<tr>
+			<td>12/24/2025</td>
+			<td>12/25/2025</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=622">Christmas holiday</a></td>
+		</tr>
+		<tr>
+			<td>12/31/2025</td>
+			<td>01/01/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=622">New Year's holiday</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>01/03/2026</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=630&amp;lang=en">Princess Theatre: Bryan White concert</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>01/05/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="/?12138-Winter-Term">Last day to withdraw (Winter Term)</a></td>
+		</tr>
+		<tr>
+			<td>01/09/2026</td>
+			<td>01/11/2026</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Oak Ridge Kennel Club</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>01/10/2026</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=606&amp;lang=en">Princess Theatre: Elvis Concert Experience</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>01/12/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=623">Faculty report</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>01/13/2026</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Open Ride</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>01/14/2026</td>
+			<td>Y</td>
+			<td><a href="/?12665-Virtual-FAFSA-Completion-Workshop">Virtual FAFSA Workshop</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>01/16/2026</td>
+			<td>Y</td>
+			<td><a href="/?14152-News-Jan-16-Roane-County-Campus-to-host-nursing-job-fair">Roane Campus: Nursing Job Fair</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>01/16/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="/?12138-Winter-Term">Last day of Winter Term</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>01/17/2026</td>
+			<td>Y</td>
+			<td><a href="/?14157-News-Jan-17-Family-Fun-Day-showcases-college-basketball-and-student-resources">Roane Campus: Family Fun Day</a></td>
+		</tr>
+		<tr>
+			<td>01/17/2026</td>
+			<td>01/18/2026</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Roping for the Ribbon</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>01/19/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=623">Martin Luther King holiday</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>01/20/2026</td>
+			<td>&nbsp;</td>
+			<td>
+			<p><a href="https://www.roanestate.edu/catalog/?id=623">Spring classes begin (Full &amp; Accelerated Term I)</a></p>
+			</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>01/20/2026</td>
+			<td>Y</td>
+			<td><a href="/?14153-News-Jan-20-New-regional-health-science-campus-to-welcome-first-students">Opening: Knox Regional Health Science Education Center</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>01/20/2026</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Open Ride</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>01/23/2026</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=605&amp;lang=en">Princess Theatre: ZZ Top Tribute Concert</a></td>
+		</tr>
+		<tr>
+			<td>01/24/2026</td>
+			<td>01/25/2026</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: YEDA</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>01/27/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="/?5505-Bursars-Office-Tuition-and-Fees">Last day to charge books to excess financial aid</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>01/27/2026</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Open Ride</a></td>
+		</tr>
+		<tr>
+			<td>01/27/2026</td>
+			<td>02/04/2026</td>
+			<td>Y</td>
+			<td><a href="/?14161-News-Jan-27-Feb-4-Join-us-on-campus-for-Welcome-Back-Week">Welcome Back (All campuses)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>01/30/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="/?5464-Graduation">Graduation applications due (spring)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>01/30/2026</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=627&amp;lang=en">Princess Theatre: Comedy Night with Jonnie W</a></td>
+		</tr>
+		<tr>
+			<td>01/30/2026</td>
+			<td>02/01/2026</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: TN Valley Kennel Club</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>02/02/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=623">Last day to drop/withdraw without a W</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>02/06/2026</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=631&amp;lang=en">Princess Theatre: John Schneider</a></td>
+		</tr>
+		<tr>
+			<td>02/06/2026</td>
+			<td>02/08/2026</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: East TN Cutting Horse Assoc.</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>02/07/2026</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=638&amp;lang=en">Free Movie Night at the Princess: Love Affair</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>02/10/2026</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Open Ride</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>02/11/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=623">Last day to withdraw (5 Week Accelerated Term I)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>02/15/2026</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=632&amp;lang=en">Princess Theatre: Jeff Allen Love &amp; Laughter Tour</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>02/17/2026</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Open Ride</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>02/17/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=623">10 Week Term II begins</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>02/20/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=623">Last day to withdraw (7 Week Term I)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>02/20/2026</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=623&amp;lang=en">Princess Theatre: Tribute to The Doors</a></td>
+		</tr>
+		<tr>
+			<td>02/20/2026</td>
+			<td>02/21/2026</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Southeast Ranch Horse Clinic</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>02/21/2026</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=633&amp;lang=en">Princess Theatre: Allman Brothers Tribute</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>02/23/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=623">Accelerated Term I ends (5 Week)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>02/24/2026</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Open Ride</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>02/24/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=623">Accelerated Term II begins (5 Week)</a></td>
+		</tr>
+		<tr>
+			<td>02/27/2026</td>
+			<td>02/28/2026</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: JR's Pro Rodeo</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>02/28/2026</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=628&amp;lang=en">Princess Theatre: George Strait Tribute</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>03/02/2026</td>
+			<td>Y</td>
+			<td><a href="/?14150-News-Mar-2-Homeschool-Information-Session-at-Oak-Ridge-Campus">Oak Ridge Campus: Homeschool Info Session</a></td>
+		</tr>
+		<tr>
+			<td>03/05/2026</td>
+			<td>03/08/2026</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: TQHA Spring Circuit</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>03/08/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=623">Last day of 7 Week Term I classes</a></td>
+		</tr>
+		<tr>
+			<td>03/09/2026</td>
+			<td>03/15/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=623">Spring break</a></td>
+		</tr>
+		<tr>
+			<td>03/12/2026</td>
+			<td>03/15/2026</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: SE Reined Cow Horse Association</a></td>
+		</tr>
+		<tr>
+			<td>03/16/2026</td>
+			<td>03/19/2026</td>
+			<td>Y</td>
+			<td><a href="/?14208-News-Mar-16-19-Join-us-on-campus-for-Spring-Fling-after-Spring-Break">Spring Fling</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>03/17/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=623">7 Week Term II begins</a></td>
+		</tr>
+		<tr>
+			<td>03/18/2026</td>
+			<td>03/22/2026</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: TN Reining Horse Association</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>03/20/2026</td>
+			<td>Y</td>
+			<td><a href="/?14204-News-Mar-20-Arts-and-Lectures-presents-inaugural-Faculty-Research-Lightning-Colloquium">Oak Ridge: Faculty Research Lightning Colloquium</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>03/20/2026</td>
+			<td>Y</td>
+			<td><a href="https://campusce.roanestate.edu/roanestate/course/course.aspx?catId=16&amp;_gl=1*to347l*_gcl_au*OTkwNjgyMDg2LjE3NzA5MTQ2MzY.">Workforce Training: Microsoft Excel Level 1</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>03/22/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=623">Last day to withdraw (5 Week Accelerated Term II)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>03/25/2026</td>
+			<td>Y</td>
+			<td><a href="/?12665-Virtual-FAFSA-Completion-Workshop">Virtual FAFSA Workshop</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>03/26/2026</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: 4H Livestock Judging</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>03/27/2026</td>
+			<td>Y</td>
+			<td><a href="/?5571-Academic-Festival">Academic Festival</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>03/27/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="/?5464-Graduation">Graduation applications due (summer)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>04/01/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=623">Last day to withdraw (Full Term)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>04/01/2026</td>
+			<td>Y</td>
+			<td><a href="https://www.tntech.edu/news/releases/25-26/transfer-tech-to-you-events-set-for-late-march-early-april.php">Oak Ridge: Transfer Tech to You</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>04/01/2026</td>
+			<td>Y</td>
+			<td><a href="/?14203-News-Apr-1-Roane-County-Campus-to-welcome-David-Alley-for-lecture-on-professional-acting">O'Brien Theatre: Professional Acting Lecture</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>04/03/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=623">Good Friday holiday</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>04/06/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=624">Registration opens for Summer Term</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>04/06/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=623">5 Week Term II &amp; 10 Week Term I ends</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>04/07/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=645">Registration opens for Fall</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>04/07/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=623">Accelerated Term III begins (5 Week)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>04/11/2026</td>
+			<td>Y</td>
+			<td><a href="/?14221-News-Student-film-festival-set-for-April-11-submissions-accepted-through-April-3">Princess Theatre: Student Film Festival</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>04/13/2026</td>
+			<td>Y</td>
+			<td><a href="https://library.roanestate.edu/home/rbb">Roane County: Raider Brain Boost</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>04/14/2026</td>
+			<td>Y</td>
+			<td><a href="/?14227-News-Apr-14-Grow-with-the-Student-Support-Center-Roane-County-Campus">Grow with the Student Support Center</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>04/15/2026</td>
+			<td>Y</td>
+			<td><a href="/?12665-Virtual-FAFSA-Completion-Workshop">Virtual FAFSA Workshop</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>04/16/2026</td>
+			<td>Y</td>
+			<td><a href="https://library.roanestate.edu/home/lnap">Oak Ridge: Long Night Against Procrastination</a></td>
+		</tr>
+		<tr>
+			<td>04/16/2026</td>
+			<td>04/19/2026</td>
+			<td>Y</td>
+			<td><a href="https://www.onthestage.tickets/show/roane-state-community-college/6950746eadd4654ac8021993">O'Brien Theatre: The Music Man (Playmakers)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>04/17/2026</td>
+			<td>Y</td>
+			<td><a href="https://campusce.roanestate.edu/roanestate/course/course.aspx?catId=16&amp;_gl=1*to347l*_gcl_au*OTkwNjgyMDg2LjE3NzA5MTQ2MzY.">Workforce Training: Microsoft Excel Level 2</a></td>
+		</tr>
+		<tr>
+			<td>04/17/2026</td>
+			<td>04/24/2026</td>
+			<td>Y</td>
+			<td><a href="/?14225-News-Eco-Club-hosts-free-Clothing-and-Toy-Swap-at-Oak-Ridge-Campus">Oak Ridge: Eco Club Clothing &amp; Toy Swap</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>04/22/2026</td>
+			<td>Y</td>
+			<td><a href="/?14189-News-Apr-22-Oak-Ridge-Campus-to-host-College-and-Career-Expo">Oak Ridge: College &amp; Career Expo</a></td>
+		</tr>
+		<tr>
+			<td>04/24/2026</td>
+			<td>04/25/2026</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: 4H Clover Classic</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>04/26/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=623">Last day to withdraw (5 Week Accelerated Term III)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>05/01/2026</td>
+			<td>Y</td>
+			<td><a href="https://campusce.roanestate.edu/roanestate/course/course.aspx?catId=16&amp;_gl=1*to347l*_gcl_au*OTkwNjgyMDg2LjE3NzA5MTQ2MzY.">Workforce Training: Microsoft Word Level 1</a></td>
+		</tr>
+		<tr>
+			<td>05/01/2026</td>
+			<td>05/03/2026</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: East TN Cutting Horse Assoc.</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>05/04/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=623">Last day of classes (Full Term &amp; 7/10 Week Term II)</a></td>
+		</tr>
+		<tr>
+			<td>05/05/2026</td>
+			<td>05/07/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=623">Exam period</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>05/07/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=623">Accelerated Term III ends (5 Week)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>05/08/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=623">Grades due (noon)</a></td>
+		</tr>
+		<tr>
+			<td>05/08/2026</td>
+			<td>05/09/2026</td>
+			<td>Y</td>
+			<td><a href="/?97-Graduation-Ceremony">Graduation ceremonies</a></td>
+		</tr>
+		<tr>
+			<td>05/08/2026</td>
+			<td>05/10/2026</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Southeast Ranch Horse Series</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>05/09/2026</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=647&amp;lang=en">Princess Theatre: Journey tribute concert</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>05/11/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=624">Expanded Term &amp; Maymester classes begin</a></td>
+		</tr>
+		<tr>
+			<td>05/12/2026</td>
+			<td>05/17/2026</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: United Way Fair</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>05/25/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=624">Memorial Day holiday</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>05/28/2026</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=645&amp;lang=en">Princess Theatre: 70s Jukebox Countdown</a></td>
+		</tr>
+		<tr>
+			<td>05/28/2026</td>
+			<td>05/30/2026</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Eastern Region 4H Horse Show</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>05/29/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=624">Last day of Maymester</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>05/31/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="/?12971-Apply-for-Foundation-Scholarships">Deadline for Roane State Foundation Scholarships</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>06/01/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=624">Summer classes begin (Full &amp; First Term)</a></td>
+		</tr>
+		<tr>
+			<td>06/01/2026</td>
+			<td>06/12/2026</td>
+			<td>Y</td>
+			<td><a href="/?14220-News-Registration-opens-for-free-STEM-Achievers-summer-program-at-Roane-County-Campus">STEM Achievers Summer Camp</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>06/06/2026</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Smoky Mountain Dairy Goat Assoc.</a></td>
+		</tr>
+		<tr>
+			<td>06/08/2026</td>
+			<td>06/11/2026</td>
+			<td>Y</td>
+			<td><a href="https://campusce.roanestate.edu/roanestate/course/course.aspx?C=59&amp;pc=16&amp;mc=0&amp;sc=0">Y-12 Cybersecurity Summer Camp (High School)</a></td>
+		</tr>
+		<tr>
+			<td>06/10/2026</td>
+			<td>06/14/2026</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: TN Quarter Horse Dogwood Classic</a></td>
+		</tr>
+		<tr>
+			<td>06/15/2026</td>
+			<td>06/18/2026</td>
+			<td>Y</td>
+			<td><a href="https://campusce.roanestate.edu/roanestate/course/course.aspx?C=61&amp;pc=16&amp;mc=0&amp;sc=0">Y-12 Cybersecurity Summer Camp (Middle School)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>06/18/2026</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=649&amp;lang=en">Princess Theatre: Elvis Tribute Concert</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>06/19/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=624">Juneteenth holiday</a></td>
+		</tr>
+		<tr>
+			<td>06/19/2026</td>
+			<td>06/21/2026</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Southeast Ranch Horse Series</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>06/26/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=624">Last day of classes (Summer First Term)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>06/27/2026</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: High Octane Barrel Race</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>06/29/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=624">Classes begin (Summer Second Term)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>07/03/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=624">July 4th holiday</a></td>
+		</tr>
+		<tr>
+			<td>07/03/2026</td>
+			<td>07/05/2026</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: East TN Cutting Horse Assoc.</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>07/09/2026</td>
+			<td>Y</td>
+			<td><a href="https://www.roanestate.edu/nso">New Student Experience (Orientation)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>07/09/2026</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=644&amp;lang=en">Princess Theatre: The Kingdom Heirs</a></td>
+		</tr>
+		<tr>
+			<td>07/10/2026</td>
+			<td>07/11/2026</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: American Gaited Mule Assoc.</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>07/11/2026</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=655&amp;lang=en">Princess Theatre: The Moonshiner Mash In</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>07/15/2026</td>
+			<td>Y</td>
+			<td><a href="/?12665-Virtual-FAFSA-Completion-Workshop">Virtual FAFSA Workshop</a></td>
+		</tr>
+		<tr>
+			<td>07/16/2026</td>
+			<td>07/18/2026</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Nat'l Saddle Mule and Donkey Assoc.</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>07/18/2026</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=653&amp;lang=en">Princess Theatre: Def Leppard &amp; Bon Jovi Tribute</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>07/24/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=624">Last day of classes (Full / Second / Expanded)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>07/24/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=624">Grades due (Summer Expanded Term)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>07/24/2026</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=654&amp;lang=en">Princess Theatre: Forever George &amp; Tammy Concert</a></td>
+		</tr>
+		<tr>
+			<td>07/24/2026</td>
+			<td>07/26/2026</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: TN Stock Horse</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>07/25/2026</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=660&amp;lang=en">Princess Theatre: YAU Theatre Camp Showcase</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>07/27/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=624">Grades due (Summer Full Term)</a></td>
+		</tr>
+		<tr>
+			<td>07/27/2026</td>
+			<td>07/28/2026</td>
+			<td>Y</td>
+			<td><a href="https://www.signupgenius.com/go/9040944AFAB2EA1F85-64516700-auditions#/?fbclid=IwY2xjawTLnedleHRuA2FlbQIxMABicmlkETF3OE5UbUhLS0FLRVp2RGx2c3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHn1caQrtLGlHFuiBfwK2aIhn2BBobtURbCPkQOu4_6SdFpywTzJ6mCYLgenl_aem_zKMOmuXB-OTt8FIC3ZENXQ">Playmakers Auditions: Into the Woods</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>07/30/2026</td>
+			<td>Y</td>
+			<td><a href="/?12665-Virtual-FAFSA-Completion-Workshop">Virtual FAFSA Workshop</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>08/01/2026</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: East TN Throwdown Car &amp; Truck Show</a></td>
+		</tr>
+		<tr>
+			<td>08/07/2026</td>
+			<td>08/09/2026</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Southeast Ranch Horse Series</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>08/08/2026</td>
+			<td>Y</td>
+			<td><a href="https://www.roanestate.edu/nso">New Student Experience (Orientation)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>08/12/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=645">Faculty report</a></td>
+		</tr>
+		<tr>
+			<td>08/13/2026</td>
+			<td>08/16/2026</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Cirque Deluxe - Circus</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>08/14/2026</td>
+			<td>Y</td>
+			<td><a href="/?13459-Job-Fairs-at-Roane-State">Knox Regional: Nursing Job Fair</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>08/18/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=645">Last day for 100% refund (Full Term)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>08/19/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=645">Fall classes begin (Full &amp; Accelerated Term I)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>08/22/2026</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=640&amp;lang=en">Princess Theatre: An Evening with Gene Watson</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>08/22/2026</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: East TN Summer Classic</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>08/24/2026</td>
+			<td>Y</td>
+			<td><a href="/?14325-News-Aug-24-Roane-State-to-celebrate-first-semester-in-new-Fentress-County-campus-in-Jamestown">Fentress Campus Grand Opening</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>08/29/2026</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/?event_id=662&amp;lang=en">Princess Theatre: Jim Barber &amp; Friends</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>09/01/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=645">Last day to drop/withdraw without a "W"</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>09/01/2026</td>
+			<td>Y</td>
+			<td><a href="/?13459-Job-Fairs-at-Roane-State">Knox Regional: Healthcare Job Fair</a></td>
+		</tr>
+		<tr>
+			<td>09/03/2026</td>
+			<td>09/06/2026</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: East TN Cutting Horse Association</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>09/07/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=645">Labor Day holiday</a></td>
+		</tr>
+		<tr>
+			<td>09/11/2026</td>
+			<td>09/13/2026</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Southeastern Reined Cow Horse</a></td>
+		</tr>
+		<tr>
+			<td>09/12/2026</td>
+			<td>09/13/2026</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/">Princess Theatre: YAU's Stone Dragon Stew</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>09/16/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=645">10-Week Term II begins</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>09/17/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=645">Last day for 25% refund (Fall Full Term)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>09/17/2026</td>
+			<td>Y</td>
+			<td><a href="/?14361-News-Sept-17-New-Applied-and-Innovative-Technology-Division-to-host-Internship-Day">Applied and Innovative Technology Internship Day</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>09/19/2026</td>
+			<td>Y</td>
+			<td><a href="/?10160-Street-Painting-Festival">Oak Ridge Campus: Street Painting Festival</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>09/22/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=645">Accelerated 5-Week Term I ends</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>09/25/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="/?5464-Graduation">Graduation applications due (Fall)</a></td>
+		</tr>
+		<tr>
+			<td>09/25/2026</td>
+			<td>09/27/2026</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Southeast Ranch Horse Series</a></td>
+		</tr>
+		<tr>
+			<td>09/26/2026</td>
+			<td>09/27/2026</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/events/">Princess Theatre: YAU's Bringing Down the House</a></td>
+		</tr>
+		<tr>
+			<td>10/02/2026</td>
+			<td>10/04/2026</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: TN Stock Horse Assoc.</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>10/03/2026</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/eme-event/the-magic-of-motown/">Princess Theatre: The Magic of Motown</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>10/06/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=645">Last day of 7-Week Term I</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>10/11/2026</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/eme-event/twitty-lynn/">Princess Theatre: Twitty &amp; Lynn in Concert</a></td>
+		</tr>
+		<tr>
+			<td>10/12/2026</td>
+			<td>10/18/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=645">Fall Break</a></td>
+		</tr>
+		<tr>
+			<td>10/16/2026</td>
+			<td>10/18/2026</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Southeast Ranch Horse Series</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>10/17/2026</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/eme-event/the-comedy-takeover/">Princess Theatre: The Comedy Takeover</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>10/20/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=645">Last day to withdraw (5-Week Term II)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>10/22/2026</td>
+			<td>Y</td>
+			<td><a href="/?14392-News-Costumes-Creatures-and-Cinema-Roane-State-hosts-pre-Halloween-screening-of-Alien-at-Princess-Theatre">Movie Night at the Princess: Alien</a></td>
+		</tr>
+		<tr>
+			<td>10/23/2026</td>
+			<td>10/24/2026</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: JR's Pro Rodeo</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>10/24/2026</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/eme-event/the-fortunate-sons/">Princess Theatre: The Fortunate Sons</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>10/27/2026</td>
+			<td>Y</td>
+			<td><a href="/?13459-Job-Fairs-at-Roane-State">Oak Ridge Campus: General Job Fair</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>10/29/2026</td>
+			<td>Y</td>
+			<td><a href="/?14389-News-Oct-29-Trunk-or-Treat-returns-to-Roane-County-Campus-volunteers-needed">Roane County Campus: Trunk or Treat</a></td>
+		</tr>
+		<tr>
+			<td>10/30/2026</td>
+			<td>11/01/2026</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: TN High School Rodeo</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>11/02/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=645">Last day to withdraw</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>11/02/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=646">Registration opens (Spring 2027)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>11/03/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=645">5-Week Term II ends</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>11/07/2026</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: East TN Fall Classic</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>11/07/2026</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/eme-event/legends-of-rock-a-tribute-to-the-80s/">Princess Theatre: Legends of Rock</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>11/12/2026</td>
+			<td>Y</td>
+			<td><a href="https://library.roanestate.edu/home/lnap?_gl=1*yy5jb0*_gcl_au*MTcyMTMwNS4xNzg2NTMxMzY5LjEyNTk0MTQxMTUuMTc4ODIxMjczMC4xNzg4MjEyNzI5LjE5NDM4NzEwMDQuMTc4ODIxMjczMC4xNzg4MjEyNzI5">Long Night Against Procrastination</a></td>
+		</tr>
+		<tr>
+			<td>11/12/2026</td>
+			<td>11/15/2026</td>
+			<td>Y</td>
+			<td><a href="https://www.onthestage.tickets/show/roane-state-community-college/6aa44775f4f9e02748da276b">O'Brien Theatre: Into the Woods (Playmakers)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>11/13/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="/?14412-News-RSCC-celebrates-First-Generation-College-Student-Day-with-photo-and-essay-contests">First-Gen Essay &amp; Photo Contest deadline</a></td>
+		</tr>
+		<tr>
+			<td>11/13/2026</td>
+			<td>11/15/2026</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: TN Valley Kennel Club</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>11/16/2026</td>
+			<td>Y</td>
+			<td><a href="/?11662-Lighting-of-the-Tree">Lighting of the Tree (Roane County)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>11/20/2026</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/eme-event/rscc-arts-lectures-presents-free-movie-night/">Free Movie at the Princess: The Polar Express</a></td>
+		</tr>
+		<tr>
+			<td>11/20/2026</td>
+			<td>11/22/2026</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Southeast Ranch Horse Series</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>11/25/2026</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/eme-event/the-wizard-of-oz-2/">Free Movie at the Princess: The Wizard of Oz</a></td>
+		</tr>
+		<tr>
+			<td>11/25/2026</td>
+			<td>11/29/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=645">Thanksgiving holiday</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>11/27/2026</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/eme-event/levi-kreis-home-for-the-holidays-4/">Princess Theatre: Home for the Holidays</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>11/29/2026</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/eme-event/levi-kreis-home-for-the-holidays-5/">Princess Theatre: Home for the Holidays</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>12/02/2026</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/eme-event/rscc-music-presents-solo-class-final-showcase/">Princess Theatre: Solo Class Final Showcase</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>12/03/2026</td>
+			<td>Y</td>
+			<td><a href="https://www.princessharriman.org/eme-event/harriman-christmas-parade-copy/">Princess Theatre: Christmas Movie Marathon</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>12/04/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="/?14407-News-Dec-4-Annual-Food-Drive-Challenge-donation-deadline-at-RSCC">Food Drive Challenge donation deadline</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>12/07/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=645">Last day of classes (Full Term)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>12/08/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="/?12138-Winter-Term">Last day to register for Winter Term</a></td>
+		</tr>
+		<tr>
+			<td>12/08/2026</td>
+			<td>12/10/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=645">Final exam period</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>12/11/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=645">Grades due (Noon)</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>12/14/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="/?12138-Winter-Term">Winter Term begins</a></td>
+		</tr>
+		<tr>
+			<td>12/24/2026</td>
+			<td>12/25/2026</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=645">Christmas holiday</a></td>
+		</tr>
+		<tr>
+			<td>12/31/2026</td>
+			<td>01/01/2027</td>
+			<td>&nbsp;</td>
+			<td><a href="https://www.roanestate.edu/catalog/?id=645">New Year's Day holiday</a></td>
+		</tr>
+		<tr>
+			<td>01/08/2027</td>
+			<td>01/10/2027</td>
+			<td>Y</td>
+			<td><a href="/?6497-Expo-Events-Calendar">Expo Center: Oak Ridge Kennel Club</a></td>
+		</tr>
+	</tbody>
+</table>
+
+<p>Items must be linked and have a valid ending date (M/D/YYYY). Items will appear in the order listed./</p>
+
+</div>
+
+<div class="sectionNews contentClear">
+	<ul>
+		<li class='pinned'><a class='hasImage' href='/?14410-News-Roane-State-named-Entrepreneurial-College-of-the-Year'><img src='data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEUAAAALAAAAAABAAEAAAICRAEAOw==' data-src='/webfolders/NEWS/newsContent/14410_NACCEaward_square.png' alt=''><span class='titleContainer'><span class='firstTitle'>Roane State named Entrepreneurial College of the Year</span><span class='secondTitle' aria-hidden='true' >Roane State named Entrepreneurial College of the Year<span class='linkAction accTextLight'>Continue reading &ndash;</span></span></span></a></li><li class='pinned'><a class='hasImage' href='/?14412-News-RSCC-celebrates-First-Generation-College-Student-Day-with-photo-and-essay-contests'><img src='data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEUAAAALAAAAAABAAEAAAICRAEAOw==' data-src='/webfolders/NEWS/newsContent/14412_FirstGen_square.png' alt=''><span class='titleContainer'><span class='firstTitle'>RSCC celebrates First-Generation College Student Day with photo and essay contests</span><span class='secondTitle' aria-hidden='true' >RSCC celebrates First-Generation College Student Day with photo and essay contests<span class='linkAction accTextLight'>Continue reading &ndash;</span></span></span></a></li><li class='pinned'><a class='hasImage' href='/?14407-News-Dec-4-Annual-Food-Drive-Challenge-donation-deadline-at-RSCC'><img src='data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEUAAAALAAAAAABAAEAAAICRAEAOw==' data-src='/webfolders/NEWS/newsContent/14407_FoodDrive_square.png' alt=''><span class='titleContainer'><span class='firstTitle'>Dec 4: Annual Food Drive Challenge donation deadline at RSCC</span><span class='secondTitle' aria-hidden='true' >Dec 4: Annual Food Drive Challenge donation deadline at RSCC<span class='linkAction accTextLight'>Continue reading &ndash;</span></span></span></a></li><li class='unpinned'><a class='hasImage' href='/?13584-News-What-do-you-need-to-succeed-Let-us-know'><img src='data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEUAAAALAAAAAABAAEAAAICRAEAOw==' data-src='/webfolders/NEWS/newsContent/13584_RSCCneed_square.jpg' alt=''><span class='titleContainer'><span class='firstTitle'>What do you need to succeed? Let us know!</span><span class='secondTitle' aria-hidden='true' >What do you need to succeed? Let us know!<span class='linkAction accTextLight'>Continue reading &ndash;</span></span></span></a></li><li class='unpinned'><a class='hasImage' href='/?14411-News-Roane-State-receives-13M-in-grants-from-Appalachian-Regional-Commissions-POWER-Initiative'><img src='data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEUAAAALAAAAAABAAEAAAICRAEAOw==' data-src='/webfolders/NEWS/newsContent/14411_ARCpowergrant_square.png' alt=''><span class='titleContainer'><span class='firstTitle'>Roane State receives $1.3M in grants from Appalachian Regional Commission’s POWER Initiative</span><span class='secondTitle' aria-hidden='true' >Roane State receives $1.3M in grants from Appalachian Regional Commission’s POWER Initiative<span class='linkAction accTextLight'>Continue reading &ndash;</span></span></span></a></li>
+	</ul>
+</div>
+<div class="newsMore"><a href="/?9243-News">More news</a></div>
+
+<div class="sectionTrophy">
+	<div><a href="/?12385-News-Roane-State-named-2020-Community-College-of-the-Year"><img class="desktop" src="/_images/homeTrophy/trophy_desktop.png" alt="The SOAR Awards: Community College of the Year" style="width:410px;"><img class="mobile" src="/_images/homeTrophy/trophy_mobile.png" alt="The SOAR Awards: Community College of the Year"></a></div><div><iframe width="707" height="398" src="https://www.youtube-nocookie.com/embed/ALaJ8rYcuEE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+</div>
+
+<div class="sectionMaps">
+	<div class="controls"><a class="control active" href="#">Local</a><a class="control" href="#">National</a><a class="control" href="#">Global</a></div>
+	<div class="content local">
+		<div class="column"><img src="/_images/homeSectionMaps/local4.png" alt="Image of Tennessee representing Roane State's locations"></div>
+		<div class="column">
+			<h4>Wherever you are, we are</h4>
+			<p>Roane State is proud to have campuses in each of our service area counties.</p>
+			<p>We also bring college instruction to over 30 area high schools. Additionally, Middle College is a way for high school students to earn a degree and a diploma at the same time.</p>
+			<p>If you prefer to go to class online, we offer that too. Providing convenient access to higher learning is one of our most important missions.</p>
+		</div>
+	</div>
+	<div class="content national">
+		<div class="column"><img src="/_images/homeSectionMaps/national5.png" alt="Map of the United States"></div>
+		<div class="column">
+			<h4>Transfer ready</h4>
+			<p>Roane State's graduates have transferred to colleges and universities in almost every state, and are well-known for being academically prepared for transfer.</p>
+			<p>Whether you want to transfer in-state to colleges such as Tennessee Tech or the University of Tennessee &ndash; or even venture out-of-state to places such as Purdue or Virginia &ndash; our exceptional faculty will help you succeed.</p>
+		</div>
+	</div>
+	<div class="content global">
+		<div class="column"><img src="/_images/homeSectionMaps/global4.png" alt="World Map"></div>
+		<div class="column">
+			<h4>A global reach</h4>
+			<p>Roane State has abundant opportunities for <a href="/?6328-International-Education">global interaction and education</a>.</p>
+			<p class="hangingindent"><span class="legendBox"></span>Indicates those residents who have studied at Roane State within the last ten years, and also past and present study-abroad locations.&nbsp;&nbsp;<a id="seeGlobalList" href="#">See List</a></p>
+			<div class="globalList">
+				<h5>Has Travelled From:</h5>
+				<ul><li>Australia</li><li>Bahamas</li><li>Belgium</li><li>Brazil</li><li>Burkina Faso</li><li>Cameroon</li><li>Canada</li><li>China</li><li>Columbia</li><li>Croatia</li><li>Denmark</li><li>Egypt</li><li>France</li><li>Gambia</li><li>Germany</li><li>Ghana</li><li>India</li><li>Indonesia</li><li>Japan</li><li>Kazakhstan</li><li>Kenya</li><li>Liberia</li><li>Lithuania</li><li>Mexico</li><li>Nepal</li><li>Netherlands</li><li>Pakistan</li><li>Russia</li><li>Saudi Arabia</li><li>Senegal</li><li>South Korea</li><li>Sudan</li><li>Sweden</li><li>Switzerland</li><li>Ukraine</li><li>Vietnam</li></ul>
+				<h5>Has Travelled To:</h5>
+				<ul class="globalList"><li>Barbados</li><li>Belgium</li><li>Belize</li><li>Bonaire</li><li>Costa Rica</li><li>Cuba</li><li>Denmark</li><li>Ecuador</li><li>England</li><li>France</li><li>Galapagos</li><li>Germany</li><li>Guatemala</li><li>Haiti</li><li>Italy</li><li>Jamaica</li><li>Mexico</li><li>Panama</li><li>Peru</li><li>Spain</li><li>Sweden</li></ul>
+			</div>	
+		</div>
+	</div>
+</div>
+
+<div class="sectionWhy">
+	<div class="table">
+		<div class="cell">
+			<h4>Roane State: a place for growth</h4>
+			<img src="/_images/homeSectionWhy/slot1f.jpg" width="722" height="400" alt="Southwest Field Trip Students"/>
+			<p>“I was so alive those three weeks. My soul... the freedom... I just felt like I was really living, not just existing.”</p>
+			<p>Haley Russell, on the<br>Southwest Field Trip Course<br>Course Numbers: SSC 211 and MSC 261</p><p><a href="https://www.roanestate.edu/?13452-Southwest-Field-Trip">Visit the SWFT website!</a></p>
+		</div>
+		<div class="cell">
+			<h4>Roane State: a place to succeed</h4>
+			<img src="/_images/homeSectionWhy/slot2f.jpg" width="722" height="400" alt="Student with Success Coach"/>
+			<p>“I was really nervous about the college admissions, financial aid, and class registration process. However, my Success Coach, Sue Niemi, made all those processes very easy and accessible. Working with my Success Coach created feelings of comfort, inclusion, and belonging, which overall guided my college career in a positive direction!”</p><p>Jason Wasilewski</p>
+			<p><a href="/?11056-Success-Coaches">More about Success Coaches</a></p>
+		</div>
+		<div class="cell">
+			<h4>Roane State: a place for results</h4>
+			<img src="/_images/homeSectionWhy/slot32.jpg" width="722" height="400" alt="Photo of the President's Award Winner"/>
+			<p>“When I look back now, I see how every class, every late-night study session, every paper revised, every presentation rehearsed, formed the foundation beneath my future. They didn’t just prepare me to graduate; they prepared me to lead with compassion and conviction.”</p>
+			<p>Aaron Summerall<br>Winner of the President’s Award, Roane State’s highest student honor<br><a href="/?12398-Presidents-Award">Read more about Aaron</a></p>
+		</div>
+	</div>
+</div>
+
+<div class="sectionInfo">
+	<div class="contentRow">
+		<div class="background"></div>
+		<div class="contentColumn"><h4><span>Over 91%</span><span>&nbsp;</span><span>Job Placement<br> Rate</span></h4><p>Our programs lead to jobs in the fields that interest you. Transferring to a university instead? Our academic programs vigorously prepare you for your continued academic career.</p></div>
+		<div class="contentColumn"><h4><span>16:1</span><span>&nbsp;</span><span>Student to Faculty<br> Ratio</span></h4><p>Big, 200-student classes where you are afraid to ask a question? Not our style. Our professors will work with you one-on-one and know you on a first-name basis.</p></div>
+		<div class="contentColumn"><h4><span>$18 million</span><span>&nbsp;</span><span>Scholarships &amp; Grants<br> Awarded Last Year</span></h4><p>You may be able to take advantage of Tennessee Promise, Tennessee Reconnect, book scholarships or many other opportunities.</p></div>
+	</div>
+</div>
+</div>
+
+<!-- Contact, Formerly in Page Content -->
+
+
+
+<div style="clear:both;"></div>
+<div id="layoutFooter">
+	<div id="layoutFooterContent">
+		<ul>
+			<li>Roane State Community College<br>
+				276 Patton Lane<br>
+				Harriman, TN 37748-5011<br>
+				<br>
+				(865) 354-3000 or toll free 866-462-7722</li>
+		</ul>
+		<ul>
+			<li><a href="/?6924-Campuses">Campus Maps</a></li>
+			<li><a href="/?12415-CARES-Act-Emergency-Assistance-for-Students">HEERF</a></li>
+			<li><a href="/?13506-Intellectual-Diversity-Survey-Results">Intellectual Diversity Survey</a></li>
+			<li><a href="/?6826-Police-Department">Roane State Police Department</a></li>
+			<li><a href="/?406-Presidents-Office">President's Welcome</a></li>
+			<li><a href="/?10874-Accessibility-Settings">Accessibility Settings</a></li>
+		</ul>
+		<ul>
+			<li><a href="/?73-Catalog">College Catalog</a></li>
+			<li><a href="/?10-Student-Learning">VP of Student Learning</a></li>
+			<li><a href="/?7-Academic-Divisions">Academic Divisions</a></li>
+			<li><a href="/?297-Libraries">Library</a></li>
+		</ul>
+		<ul>
+			<li><a href="/?5354-About-Roane-State">About the College</a></li>
+			<li><a href="/?7000-Accreditation">Accreditation</a></li>
+			<li><a href="/?394-RSCC-Policies">Policies</a></li>
+			<li><a href="/?9085-Be-Safe-at-Roane-State">Be Safe at College</a></li>
+			<li><a href="/?8243-Annual-Security-Reports">Annual Security Report</a></li>
+			<li><a href="/?8681-Donate-to-Roane-State-Foundation">Donate</a></li>
+		</ul>
+	</div>
+	<div id="layoutSocial"><h4>Connect with us</h4><a href="http://twitter.com/roanestate"><img src="/_images/social/white/twitterx.svg" alt="Twitter / X"/></a><a href="http://www.facebook.com/roanestate"><img src="/_images/social/white/facebook.svg" alt="Facebook"/></a><a href="https://www.instagram.com/roanestate/"><img src="/_images/social/white/instagram2.svg" alt="Instagram"/></a><a href="https://threads.net/@roanestate"><img src="/_images/social/white/threads.svg" alt="Threads"/></a><a href="https://www.youtube.com/user/roanestatecc"><img src="/_images/social/white/youtube.svg" alt="Youtube"/></a></div>
+</div>
+<div id="layoutLegal">
+		<span>© Roane State Community College</span>
+		<p>Roane State Community College does not discriminate on the basis of race, color, religion, creed, ethnicity or national origin, sex, disability, age, status as a protected veteran, or any other class protected by federal or state laws and regulations, and by Tennessee Board of Regents policies with respect to employment, programs, and activities.​​​​​​​​​​​​​​ <a href="/?7858-RSCC-Policy-PA-01-01-Equal-Employment-Opportunity-and-Affirmative-Action">View full non-discrimination policy</a>.</p>
+		<div id="layoutExternalLogos"><a href="http://communitycolleges.tbr.edu/"><img src="/_images/externalLogo1.png" alt="Tennessee's Community Colleges"></a><!-- <a href="http://www.tntransferpathway.org/"><img src="/_images/externalLogo2.png" alt="Tennessee Board of Regents / Tennessee Transfer Pathways"></a> <a href="https://tnecampus.org/"><img src="/_images/externalLogo3.png" alt="TN eCampus"></a>--></div>
+		<p>
+			<a href="/?6418-Reporting-Fraud-Waste-and-Abuse">Report Fraud, Waste and Abuse</a> |
+			<a href="/?136-Digital-Millennium-Copyright-Act-of-1998">Digital Millennium Copyright Act of 1998</a> |
+			<a href="/?14013-Privacy-Notice-and-Terms-of-Service">Privacy Notice</a>
+		  </p>
+</div>
+<script>
+//if (top != self) { top.location.replace(self.location.href); }
+</script>
+</body>
+</html>

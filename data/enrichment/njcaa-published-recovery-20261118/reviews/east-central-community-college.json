@@ -1,0 +1,91 @@
+{
+  "slug": "east-central-community-college",
+  "name": "East Central Community College",
+  "collegeId": "cmox2369i003iqtfki4kmid3s",
+  "programId": "cmox236ak003kqtfk3j2ad41i",
+  "storedState": "MS",
+  "storedDivision": "NJCAA_D2",
+  "directoryMatch": {
+    "unitid": "175643",
+    "name": "East Central Community College",
+    "aliases": [],
+    "state": "MS",
+    "city": "Decatur",
+    "host": "eccc.edu",
+    "decision": "UNIQUE_EXACT_NAME_OR_ALIAS_AND_STATE_DISCOVERY_LEAD_ONLY"
+  },
+  "needsHeadCoach": true,
+  "needs2027Roster": true,
+  "newPagesAttempted": 0,
+  "pages": [
+    {
+      "requestedUrl": "https://eccc.edu/",
+      "checkedAtUtc": "2026-11-18T16:21:04.635Z",
+      "finalUrl": "https://www.eccc.edu/",
+      "status": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "sha256": "764bd1cd75d0cd96820e9eafadff9b762839f48dcdea990e0b76a52693ece1c4",
+      "sourcePath": "../njcaa-institution-discovery-20261118/sources/b278a8130c4f4e84c0fe802969bd8859ff72b02e489e2c1f24f2eb1088d3da33.source",
+      "parsed": {
+        "title": "East Central Community College in Decatur, Mississippi",
+        "headings": [
+          "With YouIn Mind"
+        ],
+        "links": [
+          {
+            "url": "https://my.eccc.edu/ics/Student",
+            "label": "myEC"
+          },
+          {
+            "url": "https://myapps.microsoft.com/",
+            "label": "MyApps"
+          },
+          {
+            "url": "https://commerce.cashnet.com/cashneti/static/epayment/ecccpay/login?isGuestUser=no",
+            "label": "Pay Now"
+          },
+          {
+            "url": "https://my.eccc.edu/ICS/Future-Students/",
+            "label": "Apply Now"
+          },
+          {
+            "url": "https://www.facebook.com/EastCentralCC",
+            "label": "Facebook-f"
+          },
+          {
+            "url": "https://twitter.com/ECCC_MS",
+            "label": "X-twitter"
+          },
+          {
+            "url": "https://www.instagram.com/eccc_ms/",
+            "label": "Instagram"
+          },
+          {
+            "url": "https://www.youtube.com/user/ecccwarriors",
+            "label": "Youtube"
+          },
+          {
+            "url": "https://www.linkedin.com/edu/school?id=32528&trk=edu-cp-logo",
+            "label": "Linkedin-in"
+          }
+        ]
+      },
+      "kind": "INSTITUTIONAL_DIRECTORY_HOST_LEAD",
+      "parent": {
+        "sourcePath": "../../geography/us-college-locations-ipeds2024.json",
+        "unitid": "175643",
+        "publishedName": "East Central Community College",
+        "state": "MS",
+        "city": "Decatur"
+      },
+      "reusedEvidence": true
+    }
+  ],
+  "unfetchedPublishedLeads": [],
+  "publishedLeads": [],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "campusIdentityReviewRequired": true,
+  "currentMembershipVerified": false,
+  "importApproval": "NOT_GRANTED"
+}

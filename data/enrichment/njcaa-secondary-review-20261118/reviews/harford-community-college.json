@@ -1,0 +1,87 @@
+{
+  "slug": "harford-community-college",
+  "programId": "cmox1gh4p004qqtsg05wnt5w1",
+  "collegeId": "cmox1gh3z004oqtsgej58d6pv",
+  "checkedAtUtc": "2026-11-18T14:43:30.903Z",
+  "sourcePath": "../njcaa-discovery-20261118/sources/harford-community-college-1.source",
+  "sourceSHA256": "f4e95f21a5129b5508613a4eebb14614826b4cccea967bcf34a96fa03c1f838b",
+  "sourceUrl": "https://harfordathletics.com/sports/baseball",
+  "socialLeads": [],
+  "recruitingLeads": [
+    {
+      "url": "https://harfordathletics.com/sb_output.aspx?form=3",
+      "label": "Prospective Student-Athlete Form",
+      "context": "",
+      "kind": "QUESTIONNAIRE"
+    },
+    {
+      "url": "https://harfordathletics.com/sports/2021/6/22/camps.aspx",
+      "label": "Camps",
+      "context": "",
+      "kind": "CAMP"
+    }
+  ],
+  "logoLeads": [
+    {
+      "url": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/harfordathletics.com/images/responsive_2022/harford_logo.svg",
+      "label": "Harford Community College Athletics main-header__logo-image"
+    },
+    {
+      "url": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/harfordathletics.com/images/responsive_2022/logo_alt.svg",
+      "label": "Harford Community College Athletics main-header__logo-image"
+    }
+  ],
+  "captures": [
+    {
+      "requestedUrl": "https://harfordathletics.com/sb_output.aspx?form=3",
+      "kind": "QUESTIONNAIRE",
+      "status": 200,
+      "finalUrl": "https://harfordathletics.com/sb_output.aspx?form=3",
+      "sourcePath": "../njcaa-core-review-20261118/sources/harford-community-college-4.source",
+      "sha256": "1c5658fe766c34252e077e12b82259cb211b17d96cff51fcf091f4d5e9bfeeb1",
+      "reusedEvidence": true
+    },
+    {
+      "requestedUrl": "https://harfordathletics.com/sports/2021/6/22/camps.aspx",
+      "kind": "CAMP",
+      "status": 200,
+      "finalUrl": "https://harfordathletics.com/sports/2021/6/22/camps.aspx",
+      "sourcePath": "../njcaa-core-review-20261118/sources/harford-community-college-5.source",
+      "sha256": "497817d207bcee102b97d218a6da9e862fbe95d4d2ec91246816855121f7586d",
+      "reusedEvidence": true
+    },
+    {
+      "requestedUrl": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/harfordathletics.com/images/responsive_2022/harford_logo.svg",
+      "kind": "LOGO_ASSET",
+      "status": 200,
+      "finalUrl": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/harfordathletics.com/images/responsive_2022/harford_logo.svg",
+      "contentType": "image/svg+xml",
+      "sourcePath": "sources/harford-community-college-2.source",
+      "sha256": "7ab40b94de577f752e87856079ef18aba95866b55d2ccde51bc0f4102df84ee0",
+      "decoded": {
+        "format": "svg",
+        "width": 199,
+        "height": 64
+      },
+      "assetDecoded": true
+    },
+    {
+      "requestedUrl": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/harfordathletics.com/images/responsive_2022/logo_alt.svg",
+      "kind": "LOGO_ASSET",
+      "status": 200,
+      "finalUrl": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/harfordathletics.com/images/responsive_2022/logo_alt.svg",
+      "contentType": "image/svg+xml",
+      "sourcePath": "sources/harford-community-college-3.source",
+      "sha256": "275d76953ea06b41bee1df4221328e9b855473c151c1c0f63eb3862cb055456c",
+      "decoded": {
+        "format": "svg",
+        "width": 60,
+        "height": 48
+      },
+      "assetDecoded": true
+    }
+  ],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED"
+}

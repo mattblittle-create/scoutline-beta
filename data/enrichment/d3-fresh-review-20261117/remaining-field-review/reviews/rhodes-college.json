@@ -1,0 +1,747 @@
+{
+  "slug": "rhodes-college",
+  "collegeId": "cmovorvjc00jlqt7g4h3pm5yf",
+  "programId": "cmovorvk300jnqt7gs6847tmt",
+  "checkedAtUtc": "2026-11-17T20:37:09.139Z",
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED",
+  "missingFields": [
+    "rosterUrl",
+    "scheduleUrl",
+    "questionnaireUrl",
+    "campsUrl",
+    "generalContactEmail"
+  ],
+  "pages": [
+    {
+      "requestedUrl": "https://rhodeslynx.com/sports/baseball",
+      "kind": "baseball-home",
+      "parent": null,
+      "status": 200,
+      "finalUrl": "https://rhodeslynx.com/sports/baseball",
+      "sourcePath": "../sources/rhodes-college-1.html",
+      "sha256": "5c7660f1ff3f61be7dea34d9658b94e349bd1badb8f8b2703a51af5b6b396a61",
+      "reusedEvidence": true,
+      "originalCheckedAtUtc": "2026-11-17T17:25:22.263Z",
+      "parsed": {
+        "title": "Baseball - Rhodes College Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "Rhodes College Athletics",
+          "Schedule",
+          "Events",
+          "Main Navigation",
+          "Sport Navigation Menu",
+          "Countdown",
+          "Top Stories",
+          "Top Stories",
+          "Galleries",
+          "Content Stream",
+          "Countdown",
+          "Newsletter",
+          "Featured Athletes",
+          "Parallax",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://rhodeslynx.com/sports/baseball",
+            "label": "Skip To Main Content",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/",
+            "label": "",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/calendar.aspx",
+            "label": "All Events",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/RhodesBaseball",
+            "label": "Baseball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/rhodescollegebsb",
+            "label": "Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/baseball/schedule",
+            "label": "Baseball: Schedule",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/baseball/archives",
+            "label": "Baseball: News",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/mens-basketball",
+            "label": "Basketball",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/rhodeslynxmbb",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/rhodeslynxmbb",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/mens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/mens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/mens-basketball/archives",
+            "label": "Basketball: News",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/mens-cross-country",
+            "label": "Cross Country",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/rhodes_xctf",
+            "label": "Cross Country: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/mens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/mens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/mens-cross-country/archives",
+            "label": "Cross Country: News",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/football",
+            "label": "Football",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/RhodesFB",
+            "label": "Football: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/rhodesfootball",
+            "label": "Football: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/football/schedule",
+            "label": "Football: Schedule",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/football/roster",
+            "label": "Football: Roster",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/football/archives",
+            "label": "Football: News",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/mens-golf",
+            "label": "Golf",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/rhodes_mgolf",
+            "label": "Golf: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/mens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/mens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/mens-golf/archives",
+            "label": "Golf: News",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/mens-lacrosse",
+            "label": "Lacrosse",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/rhodesmenslax",
+            "label": "Lacrosse: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/rhodesmenslax",
+            "label": "Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/mens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/mens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/mens-lacrosse/archives",
+            "label": "Lacrosse: News",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/mens-soccer",
+            "label": "Soccer",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/rhodeslynxmsoc",
+            "label": "Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/rhodeslynxmsoc",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/mens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/mens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/mens-soccer/archives",
+            "label": "Soccer: News",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/mens-swimming-and-diving",
+            "label": "Swimming and Diving",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/lynxswimdive",
+            "label": "Swimming and Diving: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/lynxswimdive",
+            "label": "Swimming and Diving: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/mens-swimming-and-diving/schedule",
+            "label": "Swimming and Diving: Schedule",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/mens-swimming-and-diving/roster",
+            "label": "Swimming and Diving: Roster",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/mens-swimming-and-diving/archives",
+            "label": "Swimming and Diving: News",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/mens-tennis",
+            "label": "Tennis",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/rhodesmtennis",
+            "label": "Tennis: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/rhodesmtennis",
+            "label": "Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/mens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/mens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/mens-tennis/archives",
+            "label": "Tennis: News",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/mens-track-and-field",
+            "label": "Track and Field",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/mens-track-and-field/schedule",
+            "label": "Track and Field: Schedule",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/mens-track-and-field/roster",
+            "label": "Track and Field: Roster",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/mens-track-and-field/archives",
+            "label": "Track and Field: News",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/womens-basketball",
+            "label": "Basketball",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/rhodes_wbb",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/rhodes_wbb",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/womens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/womens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/womens-basketball/archives",
+            "label": "Basketball: News",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/womens-cross-country",
+            "label": "Cross Country",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/womens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/womens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/womens-cross-country/archives",
+            "label": "Cross Country: News",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/field-hockey",
+            "label": "Field Hockey",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/rhodesfh",
+            "label": "Field Hockey: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/rhodes_fh",
+            "label": "Field Hockey: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/field-hockey/schedule",
+            "label": "Field Hockey: Schedule",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/field-hockey/roster",
+            "label": "Field Hockey: Roster",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/field-hockey/archives",
+            "label": "Field Hockey: News",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/womens-golf",
+            "label": "Golf",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/rhodeslynxwgolf",
+            "label": "Golf: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/rhodeswomensgolf",
+            "label": "Golf: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/womens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/womens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/womens-golf/archives",
+            "label": "Golf: News",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/womens-lacrosse",
+            "label": "Lacrosse",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/rhodeswomenslax",
+            "label": "Lacrosse: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/rhodes_wlax",
+            "label": "Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/womens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/womens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/womens-lacrosse/archives",
+            "label": "Lacrosse: News",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/womens-soccer",
+            "label": "Soccer",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/Rhodeslynxwsoc",
+            "label": "Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/rhodeslynxwsoc",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/womens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/womens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/womens-soccer/archives",
+            "label": "Soccer: News",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/softball",
+            "label": "Softball",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/rhodessoftball",
+            "label": "Softball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/rhodessoftball",
+            "label": "Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/softball/archives",
+            "label": "Softball: News",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/womens-swimming-and-diving",
+            "label": "Swimming and Diving",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/womens-swimming-and-diving/schedule",
+            "label": "Swimming and Diving: Schedule",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/womens-swimming-and-diving/roster",
+            "label": "Swimming and Diving: Roster",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/womens-swimming-and-diving/archives",
+            "label": "Swimming and Diving: News",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/womens-tennis",
+            "label": "Tennis",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/rhodeswtennis",
+            "label": "Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/womens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/womens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/womens-tennis/archives",
+            "label": "Tennis: News",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/womens-track-and-field",
+            "label": "Track & Field",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/womens-track-and-field/schedule",
+            "label": "Track & Field: Schedule",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/womens-track-and-field/roster",
+            "label": "Track & Field: Roster",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/womens-track-and-field/archives",
+            "label": "Track & Field: News",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/womens-volleyball",
+            "label": "Volleyball",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/rhodeslynxvball",
+            "label": "Volleyball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/rhodes_volleyball",
+            "label": "Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/womens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/womens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/womens-volleyball/archives",
+            "label": "Volleyball: News",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/calendar",
+            "label": "Composite Calendar",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/2007/7/30/mission_statement.aspx",
+            "label": "Mission Statement",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/facilities/",
+            "label": "Facilities",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/2021/1/11/bclc%20hours",
+            "label": "BCLC Hours of Operation",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/documents/2026/10/28/2026_EADA_Survey_Data.pdf",
+            "label": "EADA",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/2021/1/11/athletic%20media%20relations.aspx",
+            "label": "Athletic Media Relations",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/2007/7/30/sports_medicine_home?path=sportsmedicine",
+            "label": "Sports Medicine",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/staff-directory",
+            "label": "Staff Directory",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/2014/8/8/GEN_0808141610.aspx",
+            "label": "MULTIMEDIA",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/RhodesAthletics/",
+            "label": "Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://twitter.com/RhodesAthletics",
+            "label": "Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/allsports/archives",
+            "label": "Story Archives",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/honors/rhodes-athletic-hall-of-fame",
+            "label": "Hall of Fame",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/nationalchampions",
+            "label": "National Champions",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/conf_commissioners_cups",
+            "label": "SAA Commissioner's Cups",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/index.aspx?path=baseball",
+            "label": "Baseball",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/baseball/stats",
+            "label": "Statistics",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/sports/baseball/coaches",
+            "label": "Coaches",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.frontrush.com/FR_Web_App/Player/PlayerSubmit.aspx?sid=MjM0NTE=-fiu+qjTHiEQ=&ptype=Recruit",
+            "label": "Recruiting Questionnaire",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.rhodesbaseballcamps.com/rhodes-college-baseball-prospect-camp.cfm",
+            "label": "2024 Fall Prospect Camp",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://rhodeslynx.com/shop-all",
+            "label": "All Items",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://rhodeslynx.com/index.aspx",
+            "label": "",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          }
+        ]
+      }
+    }
+  ],
+  "status": "EVIDENCE_CAPTURED_REQUIRES_REVIEW"
+}

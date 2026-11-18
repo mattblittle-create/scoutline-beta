@@ -1,0 +1,66 @@
+{
+  "slug": "jones-college",
+  "programId": "cmox237i10065qtfkal7pzywa",
+  "collegeId": "cmox237hc0063qtfk9scdv1l9",
+  "checkedAtUtc": "2026-11-18T14:43:34.801Z",
+  "sourcePath": "../njcaa-core-review-20261118/sources/jones-college-0.source",
+  "sourceSHA256": "ea58f82916d17c864291a676e30f136f89327614f370438a21fc52b6c3f678d4",
+  "sourceUrl": "https://jcbobcats.com/sports/baseball",
+  "socialLeads": [
+    {
+      "url": "https://x.com/JC_BobcatsBB",
+      "label": "Baseball: X",
+      "context": "",
+      "kind": "HTML"
+    },
+    {
+      "url": "https://instagram.com/JC_BobcatsBB",
+      "label": "Baseball: Instagram",
+      "context": "",
+      "kind": "HTML"
+    }
+  ],
+  "recruitingLeads": [
+    {
+      "url": "https://jcbobcats.com/sb_output.aspx?form=3&path=general",
+      "label": "Prospective Athlete Form",
+      "context": "",
+      "kind": "QUESTIONNAIRE"
+    }
+  ],
+  "logoLeads": [
+    {
+      "url": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/jcjc.sidearmsports.com/images/responsive_2020/main-logo.svg",
+      "label": "Jones College - Go to Homepage undefined"
+    }
+  ],
+  "captures": [
+    {
+      "requestedUrl": "https://jcbobcats.com/sb_output.aspx?form=3&path=general",
+      "kind": "QUESTIONNAIRE",
+      "status": 200,
+      "finalUrl": "https://jcbobcats.com/sb_output.aspx?form=3&path=general",
+      "sourcePath": "../njcaa-core-review-20261118/sources/jones-college-4.source",
+      "sha256": "a751c888729487f99ff50c7899d204f61ebec2a91ca6ed9150f6ce4d0c251f25",
+      "reusedEvidence": true
+    },
+    {
+      "requestedUrl": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/jcjc.sidearmsports.com/images/responsive_2020/main-logo.svg",
+      "kind": "LOGO_ASSET",
+      "status": 200,
+      "finalUrl": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/jcjc.sidearmsports.com/images/responsive_2020/main-logo.svg",
+      "contentType": "image/svg+xml",
+      "sourcePath": "sources/jones-college-1.source",
+      "sha256": "c5719f3284e75feeefe9e72df5579bb21255fd8f1cc3d4ff82e3d7bad5fc47cc",
+      "decoded": {
+        "format": "svg",
+        "width": 1120,
+        "height": 1053
+      },
+      "assetDecoded": true
+    }
+  ],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED"
+}

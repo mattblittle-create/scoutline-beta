@@ -1,0 +1,72 @@
+{
+  "slug": "florida-southwestern-state-college",
+  "programId": "cmox1ggnh003qqtsgv219scds",
+  "collegeId": "cmox1ggmr003oqtsg3cn8o7i8",
+  "checkedAtUtc": "2026-11-18T14:43:30.425Z",
+  "sourcePath": "../njcaa-core-review-20261118/sources/florida-southwestern-state-college-0.source",
+  "sourceSHA256": "56cc3b18a9f6112581e661f19b17c81326520a99a56ecf9d6d623e0143e34fc6",
+  "sourceUrl": "https://www.fswbucs.com/sports/bsb/index",
+  "socialLeads": [],
+  "recruitingLeads": [
+    {
+      "url": "https://www.fswbucs.com/camps",
+      "label": "Camps/Clinics",
+      "context": "Inside Athletics: Camps/Clinics",
+      "kind": "CAMP"
+    }
+  ],
+  "logoLeads": [
+    {
+      "url": "https://www.fswbucs.com/assets/Secondary_Logo_-_.5x.png",
+      "label": "Florida SouthWestern College Athletics Home Page img-fluid"
+    },
+    {
+      "url": "https://www.fswbucs.com/assets/Trophy.png",
+      "label": "Trophy lazyloaded img-fluid img-mh-3"
+    }
+  ],
+  "captures": [
+    {
+      "requestedUrl": "https://www.fswbucs.com/camps",
+      "kind": "CAMP",
+      "status": 200,
+      "finalUrl": "https://www.fswbucs.com/camps",
+      "contentType": "text/html; charset=UTF-8",
+      "sourcePath": "sources/florida-southwestern-state-college-0.source",
+      "sha256": "b78d09c5662ef7dfca8fc0c0d27b44b2c4219ebdc427e9acbd24606a4d1a7232"
+    },
+    {
+      "requestedUrl": "https://www.fswbucs.com/assets/Secondary_Logo_-_.5x.png",
+      "kind": "LOGO_ASSET",
+      "status": 200,
+      "finalUrl": "https://www.fswbucs.com/assets/Secondary_Logo_-_.5x.png",
+      "contentType": "image/png",
+      "sourcePath": "sources/florida-southwestern-state-college-1.source",
+      "sha256": "c0556dddc3d1025dbbd87f55a6989d8476dcf0f9dd3869bf07148ad72429ee08",
+      "decoded": {
+        "format": "png",
+        "width": 377,
+        "height": 398
+      },
+      "assetDecoded": true
+    },
+    {
+      "requestedUrl": "https://www.fswbucs.com/assets/Trophy.png",
+      "kind": "LOGO_ASSET",
+      "status": 200,
+      "finalUrl": "https://www.fswbucs.com/assets/Trophy.png",
+      "contentType": "image/png",
+      "sourcePath": "sources/florida-southwestern-state-college-2.source",
+      "sha256": "00816296960f8cabdf7cd443ba41d8d89dd3df77b5f070568683edd37a3ad424",
+      "decoded": {
+        "format": "png",
+        "width": 672,
+        "height": 970
+      },
+      "assetDecoded": true
+    }
+  ],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED"
+}

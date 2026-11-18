@@ -1,0 +1,60 @@
+{
+  "slug": "usc-lancaster",
+  "programId": "cmox1gkic00bzqtsgb2qaby9r",
+  "collegeId": "cmox1gkhm00bxqtsglgq2idhq",
+  "checkedAtUtc": "2026-11-18T14:43:33.610Z",
+  "sourcePath": "../njcaa-discovery-20261118/sources/usc-lancaster-1.source",
+  "sourceSHA256": "4293f1ff3a07a1828fd5b5050406d94d416d26cc536e4b297aaa3e5bb08af46b",
+  "sourceUrl": "https://usclathletics.com/sports/baseball",
+  "socialLeads": [
+    {
+      "url": "https://instagram.com/USCL_Baseball",
+      "label": "Baseball : Instagram",
+      "context": "",
+      "kind": "HTML"
+    }
+  ],
+  "recruitingLeads": [
+    {
+      "url": "https://usclathletics.com/sb_output.aspx?form=5",
+      "label": "Prospective Baseball Athlete Form",
+      "context": "",
+      "kind": "QUESTIONNAIRE"
+    }
+  ],
+  "logoLeads": [
+    {
+      "url": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/usclancaster.sidearmsports.com/images/logos/site/site.png",
+      "label": "University of South Carolina Lancaster undefined"
+    }
+  ],
+  "captures": [
+    {
+      "requestedUrl": "https://usclathletics.com/sb_output.aspx?form=5",
+      "kind": "QUESTIONNAIRE",
+      "status": 200,
+      "finalUrl": "https://usclathletics.com/sb_output.aspx?form=5",
+      "sourcePath": "../njcaa-core-review-20261118/sources/usc-lancaster-4.source",
+      "sha256": "3204626561360d64ea474324277ee20ad94ff05c0cddb332d7d35472a26599bb",
+      "reusedEvidence": true
+    },
+    {
+      "requestedUrl": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/usclancaster.sidearmsports.com/images/logos/site/site.png",
+      "kind": "LOGO_ASSET",
+      "status": 200,
+      "finalUrl": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/usclancaster.sidearmsports.com/images/logos/site/site.png",
+      "contentType": "image/png",
+      "sourcePath": "sources/usc-lancaster-1.source",
+      "sha256": "870b4a48b43d732d9656cd73c6ee38ab4020c5cbeacfe66156546213904eaff0",
+      "decoded": {
+        "format": "png",
+        "width": 150,
+        "height": 187
+      },
+      "assetDecoded": true
+    }
+  ],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED"
+}

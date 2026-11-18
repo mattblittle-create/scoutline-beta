@@ -1,0 +1,47 @@
+{
+  "slug": "rockland-community-college",
+  "name": "Rockland Community College",
+  "collegeId": "cmox239xj00b9qtfk9csffm3a",
+  "programId": "cmox239y700bbqtfkjaawb8it",
+  "storedState": "NY",
+  "storedDivision": "NJCAA_D2",
+  "directoryMatch": {
+    "unitid": "195058",
+    "name": "Rockland Community College",
+    "aliases": [],
+    "state": "NY",
+    "city": "Suffern",
+    "host": "sunyrockland.edu",
+    "decision": "UNIQUE_EXACT_NAME_OR_ALIAS_AND_STATE_DISCOVERY_LEAD_ONLY"
+  },
+  "directoryMatchStatus": "DISCOVERY_LEAD_NOT_CURRENT_CAMPUS_VERIFIED",
+  "needsHeadCoach": true,
+  "needs2027Roster": true,
+  "newPagesAttempted": 1,
+  "pages": [
+    {
+      "requestedUrl": "https://sunyrockland.edu/",
+      "checkedAtUtc": "2026-11-18T16:21:32.495Z",
+      "finalUrl": "https://sunyrockland.edu/",
+      "status": 403,
+      "contentType": "text/html; charset=UTF-8",
+      "sha256": "d1048a9d5d36f6c0b865f862f6846f581ab45e8fadb79380c98afdbf6cdb3fad",
+      "sourcePath": "sources/e4ad2ead23efd88b74a5da7fbf457a00a610ebecb5eabc2e16fc2a5c856cd799.source",
+      "kind": "INSTITUTIONAL_DIRECTORY_HOST_LEAD",
+      "parent": {
+        "sourcePath": "../../geography/us-college-locations-ipeds2024.json",
+        "unitid": "195058",
+        "publishedName": "Rockland Community College",
+        "state": "NY",
+        "city": "Suffern"
+      }
+    }
+  ],
+  "unfetchedPublishedLeads": [],
+  "publishedLeads": [],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "campusIdentityReviewRequired": true,
+  "currentMembershipVerified": false,
+  "importApproval": "NOT_GRANTED"
+}

@@ -1,0 +1,45 @@
+{
+  "slug": "southwestern-community-college",
+  "programId": "cmox1gk0500awqtsg7qpi3xuf",
+  "collegeId": "cmox1gjze00auqtsgrix61vxy",
+  "checkedAtUtc": "2026-11-18T14:43:33.099Z",
+  "sourcePath": "../njcaa-discovery-20261118/sources/southwestern-community-college-1.source",
+  "sourceSHA256": "bef4526f5e1321f549d8b502c94e4366535f8c89accd6b760595ac53f362e64c",
+  "sourceUrl": "https://www.southwesternspartans.com/sports/bsb/index",
+  "socialLeads": [],
+  "recruitingLeads": [
+    {
+      "url": "https://www.southwesternspartans.com/sports/bsb/2026-27/releases/2026-BaseballCamp",
+      "label": "Spartan baseball hosting youth camp",
+      "context": "",
+      "kind": "CAMP"
+    },
+    {
+      "url": "https://twitter.com/intent/tweet?text=Spartan%20baseball%20hosting%20youth%20camp&url=http://swcciowa.prestosports.com/sports/bsb/2026-27/releases/2026-BaseballCamp&related=",
+      "label": "Twitter",
+      "context": "Share Spartan baseball hosting youth camp to Twitter",
+      "kind": "CAMP"
+    }
+  ],
+  "logoLeads": [],
+  "captures": [
+    {
+      "requestedUrl": "https://www.southwesternspartans.com/sports/bsb/2026-27/releases/2026-BaseballCamp",
+      "kind": "CAMP",
+      "status": "HELD_ACCESS_NOT_RETRIED",
+      "finalUrl": "https://www.southwesternspartans.com/sports/bsb/2026-27/releases/2026-BaseballCamp"
+    },
+    {
+      "requestedUrl": "https://twitter.com/intent/tweet?text=Spartan%20baseball%20hosting%20youth%20camp&url=http://swcciowa.prestosports.com/sports/bsb/2026-27/releases/2026-BaseballCamp&related=",
+      "kind": "CAMP",
+      "status": 200,
+      "finalUrl": "https://x.com/i/jf/onboarding/web?redirect_after_login=%2Fintent%2Ftweet%3Ftext%3DSpartan%2Bbaseball%2Bhosting%2Byouth%2Bcamp%26url%3Dhttp%253A%252F%252Fswcciowa.prestosports.com%252Fsports%252Fbsb%252F2026-27%252Freleases%252F2026-BaseballCamp%26related%3D&mode=login",
+      "contentType": "text/html; charset=UTF-8",
+      "sourcePath": "sources/southwestern-community-college-1.source",
+      "sha256": "81e2a4867bc6b0d847261d536056baa0fdf2368ab61e709167cfd080b76e6968"
+    }
+  ],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED"
+}

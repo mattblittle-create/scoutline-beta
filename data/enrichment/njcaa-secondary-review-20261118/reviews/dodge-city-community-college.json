@@ -1,0 +1,66 @@
+{
+  "slug": "dodge-city-community-college",
+  "programId": "cmox1ggc70032qtsggu2l5hgu",
+  "collegeId": "cmox1ggbg0030qtsgkd44qs0p",
+  "checkedAtUtc": "2026-11-18T14:43:30.229Z",
+  "sourcePath": "../njcaa-discovery-20261118/sources/dodge-city-community-college-1.source",
+  "sourceSHA256": "a9429f70a3e8b14cc9d6450393deb64740671f5198b2bfc9b40abf10bf01a779",
+  "sourceUrl": "https://goconqs.com/sports/baseball",
+  "socialLeads": [
+    {
+      "url": "https://x.com/GoConqsBB",
+      "label": "Baseball: X",
+      "context": "",
+      "kind": "HTML"
+    },
+    {
+      "url": "https://instagram.com/GoConqs",
+      "label": "Baseball: Instagram",
+      "context": "",
+      "kind": "HTML"
+    }
+  ],
+  "recruitingLeads": [
+    {
+      "url": "https://goconqs.com/sb_output.aspx?form=22",
+      "label": "Prospective Student-Athlete Form",
+      "context": "",
+      "kind": "QUESTIONNAIRE"
+    }
+  ],
+  "logoLeads": [
+    {
+      "url": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/dccc.sidearmsports.com/images/responsive_2020/logo-shield.svg",
+      "label": "Dodge City Community College Athletics undefined"
+    }
+  ],
+  "captures": [
+    {
+      "requestedUrl": "https://goconqs.com/sb_output.aspx?form=22",
+      "kind": "QUESTIONNAIRE",
+      "status": 200,
+      "finalUrl": "https://goconqs.com/sb_output.aspx?form=22",
+      "sourcePath": "../njcaa-core-review-20261118/sources/dodge-city-community-college-4.source",
+      "sha256": "798c2ea38c1ec66930f5e02586fefb9b207c4f06c73992f2f8c44442d0365391",
+      "reusedEvidence": true
+    },
+    {
+      "requestedUrl": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/dccc.sidearmsports.com/images/responsive_2020/logo-shield.svg",
+      "kind": "LOGO_ASSET",
+      "status": 200,
+      "finalUrl": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/dccc.sidearmsports.com/images/responsive_2020/logo-shield.svg",
+      "contentType": "image/svg+xml",
+      "sourcePath": "sources/dodge-city-community-college-1.source",
+      "sha256": "bfb1cca83eae77b74dd964d443c1d7ed967715ac074ba0271b7da5da3b624409",
+      "decoded": {
+        "format": "svg",
+        "width": 175,
+        "height": 213
+      },
+      "assetDecoded": true
+    }
+  ],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED"
+}

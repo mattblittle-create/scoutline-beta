@@ -1,0 +1,68 @@
+{
+  "slug": "cisco-college",
+  "programId": "cmox1gfka001eqtsgoe5xokxj",
+  "collegeId": "cmox1gfjl001cqtsggloi1bif",
+  "checkedAtUtc": "2026-11-18T14:43:28.746Z",
+  "sourcePath": "../njcaa-core-review-20261118/sources/cisco-college-0.source",
+  "sourceSHA256": "24befb7dddd71fce807e50cb596821179deb18d23b3521d7f8bcdf2b4b7a31cf",
+  "sourceUrl": "https://www.wranglersports.net/sports/bsb/index",
+  "socialLeads": [],
+  "recruitingLeads": [
+    {
+      "url": "https://www.wranglersports.net/Recruit_Questionnaire",
+      "label": "Recruits",
+      "context": "Recruits",
+      "kind": "QUESTIONNAIRE"
+    },
+    {
+      "url": "https://www.wranglersports.net/sports/bsb/2019-20/files/20190128bsbevaluationcamp",
+      "label": "Evaluation Camp",
+      "context": "",
+      "kind": "CAMP"
+    }
+  ],
+  "logoLeads": [
+    {
+      "url": "https://www.wranglersports.net/assets/Primary_Logo_-_.5x.png",
+      "label": "Cisco College d-inline-block align-text-top"
+    }
+  ],
+  "captures": [
+    {
+      "requestedUrl": "https://www.wranglersports.net/Recruit_Questionnaire",
+      "kind": "QUESTIONNAIRE",
+      "status": 200,
+      "finalUrl": "https://www.wranglersports.net/Recruit_Questionnaire",
+      "sourcePath": "../njcaa-core-review-20261118/sources/cisco-college-4.source",
+      "sha256": "efef489f16ee478ce1c41053b5dba6fca5243329f19271ee1cde9ca2fa476659",
+      "reusedEvidence": true
+    },
+    {
+      "requestedUrl": "https://www.wranglersports.net/sports/bsb/2019-20/files/20190128bsbevaluationcamp",
+      "kind": "CAMP",
+      "status": 200,
+      "finalUrl": "https://www.wranglersports.net/sports/bsb/2019-20/files/20190128bsbevaluationcamp",
+      "sourcePath": "../njcaa-core-review-20261118/sources/cisco-college-5.source",
+      "sha256": "6f820900f3b49d3e92a08085c8b50c3141c49695e2e642f6c64f3f48077d2567",
+      "reusedEvidence": true
+    },
+    {
+      "requestedUrl": "https://www.wranglersports.net/assets/Primary_Logo_-_.5x.png",
+      "kind": "LOGO_ASSET",
+      "status": 200,
+      "finalUrl": "https://www.wranglersports.net/assets/Primary_Logo_-_.5x.png",
+      "contentType": "image/png",
+      "sourcePath": "sources/cisco-college-2.source",
+      "sha256": "a0b7a42d0b573a41728f531394c74e9f7b167185594d2feae3a6cb979748f8a8",
+      "decoded": {
+        "format": "png",
+        "width": 400,
+        "height": 367
+      },
+      "assetDecoded": true
+    }
+  ],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED"
+}

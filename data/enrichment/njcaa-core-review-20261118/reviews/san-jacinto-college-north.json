@@ -1,0 +1,41 @@
+{
+  "slug": "san-jacinto-college-north",
+  "collegeId": "cmox1gjg2009oqtsg8cc00u2y",
+  "programId": "cmox1gjgo009qqtsgt37mcjot",
+  "name": "San Jacinto College-North",
+  "storedState": "TX",
+  "storedDivision": "NJCAA_D1",
+  "checkedAtUtc": "2026-11-18T14:20:47.191Z",
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "currentMembershipVerified": false,
+  "campusIdentityVerified": false,
+  "importApproval": "NOT_GRANTED",
+  "pages": [
+    {
+      "requestedUrl": "https://www.sanjac.edu/baseball",
+      "kind": "DIRECTORY_ALIAS_REQUIRES_CAMPUS_REVIEW",
+      "parent": {
+        "sourcePath": "../njcaa-discovery-20261118/sources/directory-0.source",
+        "sha256": "63f1c531b007d2922e4db3aa2ba596ee54e397dbafd287df69b95213a011a404",
+        "label": "San Jacinto-North College"
+      },
+      "status": 404,
+      "finalUrl": "https://www.sanjac.edu/baseball",
+      "checkedAtUtc": "2026-11-18T14:20:47.555Z",
+      "sourcePath": "sources/san-jacinto-college-north-0.source",
+      "sha256": "272946f921f05be05e305f84e3be9af412d0501e5c3e5b4f84baa929238fe29f"
+    }
+  ],
+  "discoveryAliases": [
+    {
+      "url": "https://www.sanjac.edu/baseball",
+      "label": "San Jacinto-North College",
+      "parentSourcePath": "sources/directory-0.source",
+      "parentSHA256": "63f1c531b007d2922e4db3aa2ba596ee54e397dbafd287df69b95213a011a404",
+      "parentUrl": "https://www.thebaseballobserver.com/njcaa-di-baseball",
+      "status": "UNVERIFIED_NORMALIZED_NAME_LEAD"
+    }
+  ],
+  "status": "HELD_NO_READABLE_SOURCE"
+}

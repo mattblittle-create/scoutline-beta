@@ -1,0 +1,53 @@
+{
+  "slug": "parkland-college",
+  "programId": "cmox239en00a5qtfkh3ftzmwa",
+  "collegeId": "cmox239dx00a3qtfkg1liwy4c",
+  "checkedAtUtc": "2026-11-18T14:43:36.234Z",
+  "sourcePath": "../njcaa-discovery-20261118/sources/parkland-college-1.source",
+  "sourceSHA256": "25b9c869d158a1bc66e9a665d95d3f245a1a79f25c1687905840f53bd2be90ad",
+  "sourceUrl": "https://athletics.parkland.edu/sports/baseball",
+  "socialLeads": [],
+  "recruitingLeads": [
+    {
+      "url": "https://athletics.parkland.edu/documents/2022/10/11/Baseball_Camp_Registration_Form_2022.pdf",
+      "label": "Camps",
+      "context": "",
+      "kind": "CAMP"
+    }
+  ],
+  "logoLeads": [
+    {
+      "url": "https://athletics.parkland.edu/images/nav_graphic.png",
+      "label": "Parkland College Header undefined"
+    }
+  ],
+  "captures": [
+    {
+      "requestedUrl": "https://athletics.parkland.edu/documents/2022/10/11/Baseball_Camp_Registration_Form_2022.pdf",
+      "kind": "CAMP",
+      "status": 200,
+      "finalUrl": "https://athletics.parkland.edu/documents/2022/10/11/Baseball_Camp_Registration_Form_2022.pdf",
+      "sourcePath": "../njcaa-core-review-20261118/sources/parkland-college-4.source",
+      "sha256": "b249634a2b392128493c9ed5740a7489ea1c958641a682034ebb096be4ad0326",
+      "reusedEvidence": true
+    },
+    {
+      "requestedUrl": "https://athletics.parkland.edu/images/nav_graphic.png",
+      "kind": "LOGO_ASSET",
+      "status": 200,
+      "finalUrl": "https://images.sidearmdev.com/convert?url=https%3a%2f%2fdxbhsrqyrr690.cloudfront.net%2fsidearm.nextgen.sites%2fparkland.sidearmsports.com%2fimages%2fnav_graphic.png&type=webp",
+      "contentType": "image/webp",
+      "sourcePath": "sources/parkland-college-1.source",
+      "sha256": "4177db5ab993eb18b27542f1bed391b05bad3ef015fc909c5b9848e95e034d62",
+      "decoded": {
+        "format": "webp",
+        "width": 2000,
+        "height": 300
+      },
+      "assetDecoded": true
+    }
+  ],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED"
+}

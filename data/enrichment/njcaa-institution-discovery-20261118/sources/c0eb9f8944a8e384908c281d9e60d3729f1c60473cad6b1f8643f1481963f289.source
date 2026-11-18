@@ -1,0 +1,581 @@
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en-US"> <![endif]--><!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang="en-US"> <![endif]--><!--[if IE 8]>         <html class="no-js lt-ie9" lang="en-US"> <![endif]--><!--[if gt IE 8]><!-->
+<!DOCTYPE HTML><html class="no-js" lang="en-US"><!--<![endif]-->
+   <head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- this is the headcode include -->
+<link rel="stylesheet" href="/_resources/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/_resources/css/magnific-popup.css" />
+<link rel="apple-touch-icon" sizes="57x57" href="/_resources/favicons/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/_resources/favicons/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/_resources/favicons/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/_resources/favicons/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/_resources/favicons/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/_resources/favicons/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/_resources/favicons/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/_resources/favicons/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/_resources/favicons/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/_resources/favicons/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/_resources/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/_resources/favicons/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/_resources/favicons/favicon-16x16.png">
+<link rel="manifest" href="/_resources/favicons/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/_resources/favicons/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+<link href="https://fonts.googleapis.com/css?family=Bitter%7CLato:300,300i,400,400i,700,900" rel="stylesheet"/>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+<link id="bssmCss" href="/_resources/js/vendor/addons/bootstrap/jquery.smartmenus.bootstrap.css" rel="stylesheet">
+<link rel="stylesheet" id="mainCss" href="/_resources/css/westmoreland.css?v=20190416b">
+<script async="async" referrerpolicy="no-referrer-when-downgrade" src='https://tag.simpli.fi/sifitag/8ae34000-78bf-013b-60c4-0cc47a8ffaac'></script>
+
+<script>
+  (function() {
+    var cx = '015678148207895745818:gxw1-ykwhne';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+<link rel="stylesheet" href="/_resources/css/oustyles.css" />
+
+<!-- Clarus universal pixel -->
+<script async referrerpolicy="no-referrer-when-downgrade" src='https://tag.simpli.fi/sifitag/33a5e060-70d7-0136-4c74-067f653fa718'></script>
+
+<script type="text/javascript">
+  var _pxDataLayer = {};  _pxDataLayer.cdmn = 'aa.trkn.us'; _pxDataLayer.lm = 'e'; _pxDataLayer.cid = 'c013'; _pxDataLayer.tt = 'cs.js'; _pxDataLayer.evid = '68a9ada0-4fe6-4c8f-bb99-b3a13a4f2be8'; _pxDataLayer.suu = '1'; function __pxDataTag(p, d, w, l) { function q(n, v) { return p[n] ? ((v ? '' : '&')+ n + '=' + p[n]) : ''; } p.dmn = p.dmn || (w.top[l] === w[l] ? w[l].toString() : d.referrer).split('/')[2]; var a = '//' + p.cdmn + '/1/' + p.lm + '/' + p.tt, t = p.tt.split('.').pop(); p.evid = p.evid || (Date.now() || newdate.getTime()) + '-' + Math.floor(Math.random() * 9999);
+    delete p.cdmn; delete p.lm; delete p.tt; var b = t == 'dhj' ? q('cid', 1) + q('cls') + q('dmn') + q('evid') : Object.keys(p).map(function (k)
+            { return q(k, 1); }).join('&'); s = d.createElement(t == 'gif' ? 'img' : 'script'); s.id = 'pxscrpt'; s.async = s.defer = !0; s.src = a + '?' +
+            b; d.body.appendChild(s); }; var pxcelData = _pxDataLayer; if(document.readyState === "complete" || document.readyState === "interactive") {__pxDataTag(_pxDataLayer, document, window, 'location'); } else {document.addEventListener('DOMContentLoaded', function () { __pxDataTag(_pxDataLayer, document, window, 'location');});}
+</script>
+
+<!-- Facebook Pixel Code -->
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1721366681451558');
+  fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1721366681451558&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Facebook Pixel Code -->
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WZ6STSF');</script>
+<!-- End Google Tag Manager -->
+
+<meta name="google-site-verification" content="F1ASFC1aGtRnmrEBQHrQ0FW-utWjHbcf8ThBQsoYbVc" />
+
+
+
+<link href="https://westmoreland.edu/ou-alerts/alerts-config.alerts.css?v=2.1-20260921051206" rel="stylesheet">      		
+      <meta xmlns:ouc="http://omniupdate.com/XSL/Variables" name="facebook-domain-verification" content="0pm85ozq8mjvuenec3itqdgvx29xk1">
+      	
+      <title>Westmoreland County Community College | Westmoreland County Community College, Youngwood, Pennsylvania</title>
+      <meta xmlns:ouc="http://omniupdate.com/XSL/Variables" name="Description" content="Westmoreland County Community College provides high-quality, affordable education at 8 convenient locations and online.">
+      <meta xmlns:ouc="http://omniupdate.com/XSL/Variables" name="Keywords" content="WCCC, Westmoreland County Community College, technical college, online degrees, culinary school, nursing school, career programs"><script type="text/javascript">
+					var page_url="https://westmoreland.edu/index.html";
+					var domain="https://westmoreland.edu";
+				</script></head>
+   <body><!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WZ6STSF"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<div class="headerGhost"></div><nav aria-label="Skip Links" title="Skip Links">
+   <ul class="skip-links">
+      <li><a href="#mainContainer"> Skip to main content </a></li>
+      <li><a href="#mainMenu"> Skip to Main Menu </a></li>
+   </ul>
+</nav><header class="mainHeader" data-spy="affix" data-offset-top="1"><img src="https://jelly.mdhv.io/v1/star.gif?pid=iNU2GQ1jT3LZvBFJ4r1bv3aaNoer&amp;src=mh&amp;evt=hi" style="display: none;" width="0" height="0"><nav class="mainNav navbar navbar-default" title="Main Desktop Navigation">
+      <div class="contentWidth">
+         <div class="navbar-header"><a class="navbar-brand mainLogo" href="/">
+               <h1><img alt="logo" src="/_resources/images/westmoreland_logo.png"></h1></a><button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" type="button" aria-expanded="false" aria-controls="navbar-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span><span class="sr-only">Toggle Menu</span></button></div>
+      </div>
+      <div class="collapse navbar-collapse" id="navbar-collapse">
+         <div class="mainNav" id="mainMenu">
+            <div class="contentWidth">
+               <ul class="nav navbar-nav mainItems" aria-label="Main Navigation">
+                  <li class="dropdown"><a href="/academics/index.html" class="dropdown-toggle">Academics<span class="caret"></span></a><ul class="dropdown-menu">
+                        <li><a href="/academics/programs/index.html">Programs</a></li>
+                        <li><a href="/academics/online-learning/">Distance Learning</a></li>
+                        <li><a href="/academics/university-transfer/">University Transfer</a></li>
+                        <li><a href="/academics/college-now/index.html">College Now! Dual Enrollment</a></li>
+                        <li><a href="/academics/continuing-education/index.html">Continuing Education</a></li>
+                        <li><a href="/academics/academic-services/index.html">Academic Services</a></li>
+                        <li><a href="/academics/honors.html">Honors College</a></li>
+                        <li><a href="/academics/academic-distinctions.html">Civics Distinction</a></li>
+                        <li><a href="/resources/class-schedules.html">Class Schedules</a></li>
+                        <li><a href="/resources/academic-calendar.html">Academic Calendar</a></li>
+                        <li><a href="/resources/college-catalog.html">College Catalog</a></li>
+                        <li><a href="/admissions_aid/apply/register-for-classes.html">Register for Classes</a></li>
+                        <li><a href="/eight/index.html">8-Week Terms</a></li>
+                     </ul>
+                  </li>
+                  <li class="dropdown"><a href="/workforce-development/index.html" class="dropdown-toggle">Workforce<span class="caret"></span></a><ul class="dropdown-menu">
+                        <li><a href="/workforce-development/about/index.html">About</a></li>
+                        <li><a href="/workforce-development/workforce-programs/index.html">Workforce Programs</a></li>
+                        <li><a href="/workforce-development/clients-and-connections/index.html">Clients &amp; Connections</a></li>
+                        <li><a href="/workforce-development/workforce-programs/technical-assessment-and-training.html">Technical Assessment &amp; Training</a></li>
+                        <li><a href="/workforce-development/workforce-programs/wednetpa.html">WEDnetPA</a></li>
+                        <li><a href="/workforce-development/workforce-programs/ed2go-online-workforce-courses.html">Online Workforce Training Programs</a></li>
+                        <li><a href="/workforce-development/workforce-programs/aws-welder-testing.html">Welder Testing</a></li>
+                        <li><a href="/workforce-development/workforce-programs/certification-testing.html">Certification Testing</a></li>
+                        <li><a href="/workforce-development/first-responder-training/index.html">First Responder Training</a></li>
+                        <li><a href="/workforce-development/rentals-and-retreats/index.html">Rentals &amp; Retreats</a></li>
+                        <li><a href="/academics/continuing-education/index.html">Community Engagement</a></li>
+                        <li><a href="/made/index.html">MADE @ Westmoreland</a></li>
+                        <li><a href="/workforceevents/index.html">Workforce Events &amp; Bootcamps</a></li>
+                     </ul>
+                  </li>
+                  <li class="dropdown"><a href="/admissions_aid/index.html" class="dropdown-toggle">Admission &amp; Aid<span class="caret"></span></a><ul class="dropdown-menu">
+                        <li><a href="/admissions_aid/apply/index.html">Apply</a></li>
+                        <li><a href="/admissions_aid/tuition-and-fees/index.html">Cost of Attendance</a></li>
+                        <li><a href="/admissions_aid/financial-aid/index.html">Financial Aid</a></li>
+                        <li><a href="/admissions_aid/admitted-students/index.html">Admitted Students</a></li>
+                        <li><a href="/admissions_aid/dual-admission.html">Dual Admission</a></li>
+                        <li><a href="/admissions_aid/apply/visiting-college-student.html">Visiting Students</a></li>
+                        <li><a href="/admissions_aid/apply/international-students.html">International Admissions</a></li>
+                        <li><a href="/admissions_aid/apply/student-housing-options.html">Student Housing</a></li>
+                        <li><a href="/admissions_aid/campus-tours/index.html">Campus Tours</a></li>
+                        <li><a href="https://info.westmoreland.edu/westmoreland-open-house" target="_blank">Open House</a></li>
+                        <li><a href="/admissions_aid/enrollment-days/index.html">Enrollment Days</a></li>
+                     </ul>
+                  </li>
+                  <li class="dropdown"><a href="/student_life/index.html" class="dropdown-toggle">Student Life<span class="caret"></span></a><ul class="dropdown-menu">
+                        <li><a href="/student_life/office-of-student-life.html">Office of Student Life</a></li>
+                        <li><a href="/student_life/student-organizations/index.html">Student Organizations</a></li>
+                        <li><a href="/student_life/career-connections-center/index.html">Career Connections Center</a></li>
+                        <li><a href="/student_life/dining.html">Dining</a></li>
+                        <li><a href="/student_life/fitness-center.html">Fitness Center</a></li>
+                        <li><a href="/student_life/services/index.html">Student Support &amp; Resources</a></li>
+                        <li><a href="/calendar.html">Events Calendar</a></li>
+                        <li><a href="/student_life/campus-security/index.html">Campus Security</a></li>
+                        <li><a href="/student_life/college-store.html">College Store</a></li>
+                        <li><a href="/student_life/services/military-students.html">Military Students</a></li>
+                        <li><a href="/student_life/services/community-resources.html">Mental Health &amp; Community Resources</a></li>
+                        <li><a href="/student_life/services/mental-health-matters.html">Mental Health Matters Initiative</a></li>
+                     </ul>
+                  </li>
+                  <li class="dropdown"><a href="http://athletics.westmoreland.edu" class="dropdown-toggle">Athletics<span class="caret"></span></a></li>
+                  <li class="dropdown"><a href="/community/index.html" class="dropdown-toggle">Community<span class="caret"></span></a><ul class="dropdown-menu">
+                        <li><a href="/community/advancement-and-community-engagement.html">About</a></li>
+                        <li><a href="/community/alumni-relations/index.html">Alumni</a></li>
+                        <li><a href="/community/educational-foundation/index.html">Educational Foundation</a></li>
+                        <li><a href="/events">Conference &amp; Event Services</a></li>
+                        <li><a href="/coned">Continuing Education</a></li>
+                        <li><a href="/made">MADE @ Westmoreland</a></li>
+                        <li><a href="/community/dental-hygiene-clinic.html">Dental Hygiene Clinic</a></li>
+                        <li><a href="/community/chefs-bistro.html">The Chefs' Bistro</a></li>
+                        <li><a href="/community/pa-medi.html">PA Medi</a></li>
+                        <li><a href="/community/rsvp.html">Retired &amp; Senior Volunteer Program</a></li>
+                        <li><a href="/community/scsep.html">Senior Community Service Employment Program</a></li>
+                     </ul>
+                  </li>
+                  <li class="dropdown"><a href="/about/index.html" class="dropdown-toggle">About<span class="caret"></span></a><ul class="dropdown-menu">
+                        <li><a href="/about/locations/index.html">Locations</a></li>
+                        <li><a href="/about/history/index.html">History</a></li>
+                        <li><a href="/about/leadership/index.html">Leadership</a></li>
+                        <li><a href="/about/policies/index.html">Policies</a></li>
+                        <li><a href="/about/community/transportation-and-parking.html">Transportation and Parking</a></li>
+                        <li><a href="/about/bids-and-quotes/index.html">Bids &amp; Quotes</a></li>
+                        <li><a href="/about/community/right-to-know.html">Right to Know</a></li>
+                        <li><a href="/inauguration/">Presidential Inauguration</a></li>
+                     </ul>
+                  </li>
+               </ul>
+            </div>
+         </div>
+         <div class="contentWidth">
+            <div class="tertiaryNav"><div class="three bottomnav columns" style="margin-top:15px">
+	<form class="mainSearch" style="padding:0px!important;" aria-label="Site Search">
+		<div style="padding:0px!important;" class="form-group">
+			<gcse:searchbox-only resultsUrl="/_resources/search-results.html"></gcse:searchbox-only>
+		</div>
+	</form>
+</div>
+
+               <ul class="nav navbar-nav tertItems" aria-label="Tertiary Navigation">
+                  <li><a href="https://mywccc.sharepoint.com/">MyWestmoreland</a></li>
+                  <li><a href="/directory/index.html">Directory</a></li>
+                  <li><a href="https://westmoreland.edu/resources/index.html">Resources</a></li>
+                  <li><a href="/about/conference-event-services/index.html">Rentals</a></li>
+               </ul>
+            </div>
+         </div>
+      </div>
+   </nav>
+</header>      <div class="container-fluid" id="mainContainer">
+         <div id="body_text" role="main">
+            <div class="heroWrap">
+               <section class="row heroRow no-gutter" style="background-image:url(/homepage-october2026-g.png);">
+                  <div class="col-xs-12">
+                     <div class="contentWidth">
+                        <div class="heroContent">
+                           <h2 class="h1">Your Future Starts Here!</h2>
+                           <p>Explore programs designed to help you reach your goals, gain real-world skills and
+                              build a career you'll love.</p><a class="btn darkGrad" href="https://westmoreland.edu/programs">Learn More</a></div>
+                     </div>
+                  </div>
+               </section>
+               <div xmlns:ouc="http://omniupdate.com/XSL/Variables" class="heroCtas">
+                  	
+                  <div class="heroCtaWrap">				
+                     		<a href="/admissions_aid/apply/index.html" class="btn">Apply</a>
+                     		<a href="/academics/programs/index.html" class="btn">Programs</a>
+                     		<a href="/contact-us.html" class="btn">Request Info</a>
+                     	</div>
+                  </div>
+            </div>
+            <p xmlns:ouc="http://omniupdate.com/XSL/Variables">
+               <section class="row events margTB50">   <div class="contentWidth">      <div class="col-xs-12">         <div class="row">            <div class="col-xs-12">               <h2 class="h1b">Events</h2>               <div class="row">                  <div class="col-xs-12 flex fx4">                  <article class="event">                  <a href="https://westmoreland.edu/calendar.html#event-details/d5375b00-f184-43cd-9ec0-14f0ccefa0dc">                  <span class="date">Nov<span class="day">18</span></span>                  <h3>Paint & Sip with PTK</h3>                  <span class="time">11:30 AM</span>                  <span class="locat">Westmoreland-Youngwood Campus</span>                  </a>                  </article>                  <article class="event">                  <a href="https://westmoreland.edu/calendar.html#event-details/4b19a23a-f0ff-494c-b28e-7c70685922a3">                  <span class="date">Nov<span class="day">18</span></span>                  <h3>Nursing Open House</h3>                  <span class="time">05:00 PM</span>                  <span class="locat">Westmoreland-Youngwood Campus</span>                  </a>                  </article>                  <article class="event">                  <a href="https://westmoreland.edu/calendar.html#event-details/5835efac-1668-46f0-aaac-ff77365bd41b">                  <span class="date">Nov<span class="day">18</span></span>                  <h3>Murrysville Education Center Open House</h3>                  <span class="time">05:00 PM</span>                  </a>                  </article>                  <article class="event">                  <a href="https://westmoreland.edu/calendar.html#event-details/b3c5532f-4a6b-40fa-8f40-771573e501b8">                  <span class="date">Nov<span class="day">19</span></span>                  <h3>Poetry reading: Kate Furlong</h3>                  <span class="time">12:00 PM</span>                  <span class="locat">Westmoreland-Youngwood Campus</span>                  </a>                  </article>                  <div class="col-xs-12 text-right"><a class="btn lightGrad" href="/calendar.html">More Events</a></div>               </div>            </div>         </div>      </div>   </div></section> 
+               </p>
+            
+            <section class="row locations colorMBbg text-center padTB50">
+               <div class="contentWidth">
+                  <div class="col-xs-12">
+                     <div class="row">
+                        <div class="col-xs-12">
+                           <h2 class="h1 colorFtxt">Seven locations serving the community</h2>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-xs-12 flex fx4">
+                           <article class="location"><a href="/about/locations/youngwood-campus.html" title="Youngwood campus"><img src="/images/location-thumbnails/youngwood-sac-homepage.jpg" alt="Youngwood"><h3>Youngwood</h3></a></article>
+                           <article class="location"><a href="/about/locations/advanced-technology-center.html" title="Advanced Technology Center"><img src="/images/location-thumbnails/atc_thumb.jpg" alt="ATC"><h3>Advanced Technology Center</h3></a></article>
+                           <article class="location"><a href="/about/locations/indiana-county.html" title="Indiana County"><img src="/images/location-thumbnails/indiana-front-homepagec.jpg" alt="Indiana County"><h3>Indiana County</h3></a></article>
+                           <article class="location"><a href="/about/locations/latrobe.html" title="Latrobe"><img src="/images/location-thumbnails/latrobe_thumb.jpg" alt="Latrobe"><h3>Latrobe</h3></a></article>
+                           <article class="location"><a href="/about/locations/murrysville.html" title="Murrysville"><img src="/images/location-thumbnails/murrysville_thumb.jpg" alt="Murrysville"><h3>Murrysville</h3></a></article>
+                           <article class="location"><a href="/about/locations/new-kensington.html" title="New Kensington"><img src="/images/location-thumbnails/new_ken_thumb.jpg" alt="New Kensington"><h3>New Kensington</h3></a></article>
+                           <article class="location"><a href="/about/locations/public-safety-training-center/index.html" title="Public Safety Training Center"><img src="/images/location-thumbnails/pstc-thumb-cadets-ff.jpg" alt="Public Safety Training Center"><h3>Public Safety Training Center</h3></a></article>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </section>
+            
+            <section class="row r5050 no-gutter flex fxCenter color3bg">
+               <div class="col-xs-12 col-sm-12 col-md-6 img50"><img src="/images/winter-session-homepage-10.26.jpg" alt="Girl doing homework"></div>
+               <div class="xs-hidden col-sm-12 col-md-6 cont50 colorFtxt">
+                  <div class="contentHalf">
+                     <h2 class="h1 colorFtxt">
+                        Register for our 4-Week Online Winter Session!
+                        </h2>
+                     
+                     <div xmlns:ouc="http://omniupdate.com/XSL/Variables" class="gmail_default">
+                        
+                        <div class="description"><span>Make the most of your winter break by catching up on needed credits or getting a jump
+                              start on spring.&nbsp; And you can do it from the comfort of home. Classes will run December
+                              14 to January 9.</span></div>
+                        </div>
+                     
+                     <div xmlns:ouc="http://omniupdate.com/XSL/Variables" class="gmail_default">&nbsp;</div>
+                     <a class="btn darkGrad" href="/winter">Learn More</a></div>
+               </div>
+            </section>
+            
+            <section class="row news margTB50">
+               <div class="contentWidth">
+                  <div class="col-xs-12">
+                     <div class="row">
+                        <div class="col-xs-12">
+                           <h2 class="h1b">News</h2>
+                           <div class="row">
+                              <div class="col-xs-12 flex fx3"><article class="news"><a href="https://westmoreland.edu/news/scrape-and-sweep-keith-dvorchak.html"><img src="https://westmoreland.edu/scrape-and-sweep-keith-dvorchak-thumb3.jpg" alt="Keith Dvorchak" />	<h3 class="h2">From Kitchen Floor to Patent: The Invention of the Scrape & Sweep</h3><span class="date">Friday, November 6th, 2026</span>	<p>A good invention often starts with a problem that needs to be solved. For Westmoreland County Community College alumnus and MADE at Westmoreland member Keith Dvorchak, that problem was dried-up applesauce and crisped rice cereal on his kitchen floor.</p></a></article><article class="news"><a href="https://westmoreland.edu/news/sean-springob-military-to-medical-imaging.html"><img src="https://westmoreland.edu/sean-lisa-springob-thumb.png" alt="Sean and Lisa Springob" />	<h3 class="h2">From Military Service to Medical Imaging: Sean Springob Finds a New Path</h3><span class="date">Thursday, October 15th, 2026</span>	<p>For Sean Springob of Greensburg, choosing Westmoreland County Community College was about more than starting a new career. It was about finding a college that offered the academic opportunities, personal support and commitment to military and veteran students he was looking for, and one that had already become an important part of his family's story.</p></a></article><article class="news"><a href="https://westmoreland.edu/news/bob-miner-manufacturing-lab-ribbon-cutting.html"><img src="https://westmoreland.edu/bob-miner-ribbon-cutting-thumb3.jpg" alt="" />	<h3 class="h2">College Celebrates Opening of Bob Miner Advanced Manufacturing Lab</h3><span class="date">Friday, October 2nd, 2026</span>	<p>Westmoreland County Community College celebrated the opening of the
+Bob Miner Advanced Manufacturing Lab on Friday, October 2, with a ribbon-cutting ceremony held in conjunction with National Manufacturing Day and the college's MADE for Tomorrow manufacturing day celebration.</p></a></article></div>
+                              <div class="col-xs-12 text-right"><a class="btn lightGrad" href="/news/">All News</a></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </section>
+            
+            <section class="row l5050 no-gutter flex fxCenter &#xA;color4bg&#xA;">
+               <div class="xs-hidden col-sm-12 col-md-6 cont50 &nbsp;">
+                  <div class="contentHalf">
+                     <h2 class="h1 &nbsp;">
+                        Learn. Create. Connect.
+                        </h2>
+                     
+                     <p xmlns:ouc="http://omniupdate.com/XSL/Variables">Our Fall Community Education schedule is here! Explore classes and workshops that
+                        inspire creativity, build skills and bring our community together.</p>
+                     <a class="btn darkGrad" href="/ce">Learn More!</a></div>
+               </div>
+               <div class="col-xs-12 col-sm-12 col-md-6 img50"><img src="/images/culinary-con-ed-class-2.jpg" alt="Culinary Class"></div>
+            </section>
+            
+            <p xmlns:ouc="http://omniupdate.com/XSL/Variables">&nbsp;</p>
+         </div>
+         <footer class="row mainFooter">
+   <div class="footWrap">
+      <div class="contentWidth">
+         <div class="col-xs-12 social">
+            <div class="social"><a href="https://www.facebook.com/ConnectWCCC/" class="fb"><span class="sr-only">Facebook</span><span class="westmicon-facebook" aria-hidden="true"></span></a><a href="https://www.linkedin.com/school/westmoreland-county-community-college/" class="li"><span class="sr-only">LinkdIn</span><span class="westmicon-linkedin" aria-hidden="true"></span></a><a href="https://www.youtube.com/user/WCCCMedia" class="yt"><span class="sr-only">YouTube</span><span class="westmicon-youtube" aria-hidden="true"></span></a><a href="https://www.instagram.com/connectwccc/" class="insta"><span class="sr-only">Instagram</span><span class="westmicon-instagram" aria-hidden="true"></span></a></div>
+         </div>
+         <div class="col-xs-12 footLinks"><a href="https://westmoreland.libguides.com/home">Library</a><a href="/student_life/career-connections-center/index.html">Career Connections</a><a href="https://westmoreland.edu/about/community/index.html">Community</a><a href="/about/policies/consumer-information.html">Consumer Information</a><a href="/about/policies/index.html">Policies</a><a href="/contact-us.html">Contact Us</a><a href="/about/employment/index.html">Employment</a><a href="https://w3cadmin.wufoo.com/forms/m1mmzh970kwyqhc/">Anonymous Report</a><span id="directedit">©</span></div>
+         <div class="col-xs-12 donate"><a class="btn darkGrad" href="https://tinyurl.com/mec5uret">Donate Now<span class="westmicon-heart" aria-hidden="true"></span></a></div>
+      </div>
+   </div>
+</footer></div>
+      <div id="bsCssCheck" class="hidden"></div>
+      
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>	
+<script>window.jQuery || document.write('<script src="/_resources/js/vendor/jquery-2.2.4.min.js"><\/script>')</script>
+
+<script> 
+	//check for bootstrap css class working - if not - fallback
+	$(function () {
+		if ($('#bsCssCheck').is(':visible') === true) {
+			$('<link rel="stylesheet" id="bsCssFallback" href="/_resources/css/bootstrap.min.css">').insertBefore('#mainCss');
+		}
+	});
+</script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script>window.jQuery.fn.modal || document.write('<script src="/_resources/js/vendor/bootstrap.min.js"><\/script>')</script> 
+<script src="/_resources/js/vendor/jquery.smartmenus.min.js"></script>
+<script src="/_resources/js/vendor/addons/bootstrap/jquery.smartmenus.bootstrap.js"></script>
+<script src="/_resources/js/vendor/addons/keyboard/jquery.smartmenus.keyboard.min.js"></script>
+<script src="/_resources/js/westmoreland.js?v=20180503b"></script> 
+
+
+<script src="/_resources/js/ou.js"></script> 
+<script src="/_resources/js/direct-edit.js"></script>
+
+<!-- Start of HubSpot Embed Code -->
+<script type="text/javascript" id="hs-script-loader" async="async" defer="defer" src="//js.hs-scripts.com/50655449.js"></script>
+<!-- End of HubSpot Embed Code --><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-2906564-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-2906564-1');
+</script>
+
+<script type="text/javascript">
+	(function(){"use strict";var e=null,b="4.0.0",
+		n="44933",
+		additional="term=value",
+		t,r,i;try{t=top.document.referer!==""?encodeURIComponent(top.document.referrer.substring(0,2048)):""}catch(o){t=document.referrer!==null?document.referrer.toString().substring(0,2048):""}try{r=window&&window.top&&document.location&&window.top.location===document.location?document.location:window&&window.top&&window.top.location&&""!==window.top.location?window.top.location:document.location}catch(u){r=document.location}try{i=parent.location.href!==""?encodeURIComponent(parent.location.href.toString().substring(0,2048)):""}catch(a){try{i=r!==null?encodeURIComponent(r.toString().substring(0,2048)):""}catch(f){i=""}}var l,c=document.createElement("script"),h=null,p=document.getElementsByTagName("script"),d=Number(p.length)-1,v=document.getElementsByTagName("script")[d];if(typeof l==="undefined"){l=Math.floor(Math.random()*1e17)}h="dx.mountain.com/spx?"+"dxver="+b+"&shaid="+n+"&tdr="+t+"&plh="+i+"&cb="+l+additional;c.type="text/javascript";c.src=("https:"===document.location.protocol?"https://":"http://")+h;v.parentNode.insertBefore(c,v)})()
+</script>
+<script src="https://westmoreland.edu/ou-alerts/alerts-config.alerts.js?v=2.1-20260921051206"></script>
+<script>
+	// archive alert processing
+	if (document.getElementById(ouEmergencyAlerts.archivedAlertDivId)) {
+		ouEmergencyAlerts.loadAlertFeed("processAlertFeedForArchivePage", "activeAlertFeed", "archiveActiveAlertHeading");  
+		setTimeout(function() {
+			ouEmergencyAlerts.loadAlertFeed("processAlertFeedForArchivePage", "archiveAlertFeed", "archiveAlertHeading");
+		}, 200);
+	}
+	// active alert processing
+	ouEmergencyAlerts.determineActiveAlertOutput();
+</script><script type="text/template" id="oualerts-active-announcement">
+<div id="oualerts-active-alert-display" class="oualerts-notify oualerts-notify-announcement oualerts-top oualerts-top-fixed ouAlertsFadeInDown oualerts-animated-fast" role="alert">
+	<div class="oualerts-notify-body">
+		{% if (o.showDate) { %}
+		<div class="oualerts-notify-date">{%=ouEmergencyAlerts.alertDateFormat("F d, Y h:i A",o.pubDate)%}</div>
+		{% } %}
+		<h3 class="oualerts-notify-title">
+			
+			{%=o.title%}
+		</h3>
+		{% if (o.subtitle) { %}
+		<p class="oualerts-notify-subtitle"><strong>{%=o.subtitle %}</strong></p>
+		{% } %}
+		{% if (o.description) { %}
+		<p class="oualerts-notify-msg">{%=o.description %}
+			{% } %}
+			{% if (o.guid) { %}
+			<br>
+			<a href="{%=o.guid %}" class="oualerts-notify-link">Read More >></a>
+			{% } %}
+			{% if (o.description) { %}
+		</p>
+		{% } %}
+		<p class="oualerts-notify-footer">
+			<button class="oualerts-close-button" id="oualerts-close-button">Close</button>
+		</p>
+	</div>
+</div>
+
+</script>
+<script type="text/template" id="oualerts-active-warning">
+<div id="oualerts-active-alert-display" class="oualerts-notify oualerts-notify-warning oualerts-top oualerts-top-fixed ouAlertsFadeInDown oualerts-animated-fast" role="alert">
+	<div class="oualerts-notify-body">
+		{% if (o.showDate) { %}
+		<div class="oualerts-notify-date">{%=ouEmergencyAlerts.alertDateFormat("F d, Y h:i A",o.pubDate)%}</div>
+		{% } %}
+		<h3 class="oualerts-notify-title">
+			
+						<svg class="oualerts-notify-icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 273 273"><path fill-rule="evenodd" d="M273 136.5c0 75.387-61.113 136.5-136.5 136.5C61.1131 273 0 211.887 0 136.5 0 61.1131 61.1131 0 136.5 0 211.887 0 273 61.1131 273 136.5zM123 58v105h27V58h-27zm0 157v-26.5h27V215h-27z" clip-rule="evenodd"/></svg>
+					
+			{%=o.title%}
+		</h3>
+		{% if (o.subtitle) { %}
+		<p class="oualerts-notify-subtitle"><strong>{%=o.subtitle %}</strong></p>
+		{% } %}
+		{% if (o.description) { %}
+		<p class="oualerts-notify-msg">{%=o.description %}
+			{% } %}
+			{% if (o.guid) { %}
+			<br>
+			<a href="{%=o.guid %}" class="oualerts-notify-link">Read More...</a>
+			{% } %}
+			{% if (o.description) { %}
+		</p>
+		{% } %}
+		<p class="oualerts-notify-footer">
+			<button class="oualerts-close-button" id="oualerts-close-button">Close</button>
+		</p>
+	</div>
+</div>
+
+</script>
+<script type="text/template" id="oualerts-active-emergency">
+<div class="oualerts-notify-modal-overlay">
+<div id="oualerts-active-alert-display" class="oualerts-notify oualerts-notify-emergency oualerts-modal ouAlertsFadeInDown oualerts-animated-fast" role="alert">
+	<div class="oualerts-notify-body">
+		{% if (o.showDate) { %}
+		<div class="oualerts-notify-date">{%=ouEmergencyAlerts.alertDateFormat("F d, Y h:i A",o.pubDate)%}</div>
+		{% } %}
+		<h3 class="oualerts-notify-title">
+			
+						<svg class="oualerts-notify-icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 298 273"><path fill-rule="evenodd" d="M137.626 7.553c4.947-8.9403 17.801-8.9403 22.748 0l135.948 245.652c4.795 8.665-1.471 19.295-11.374 19.295H13.0524c-9.903 0-16.1695-10.63-11.3744-19.295L137.626 7.553zM136.5 85v100h25V85h-25zm0 149.5v-24h25v24h-25z" clip-rule="evenodd"/></svg>
+					
+			{%=o.title%}
+		</h3>
+		{% if (o.subtitle) { %}
+		<p class="oualerts-notify-subtitle"><strong>{%=o.subtitle %}</strong></p>
+		{% } %}
+		{% if (o.description) { %}
+		<p class="oualerts-notify-msg">{%=o.description %}
+			{% } %}
+			{% if (o.guid) { %}
+			<br>
+			<a href="{%=o.guid %}" class="oualerts-notify-link">Read More...</a>
+			{% } %}
+			{% if (o.description) { %}
+		</p>
+		{% } %}
+		<p class="oualerts-notify-footer">
+			<button class="oualerts-close-button" id="oualerts-close-button">Close</button>
+		</p>
+	</div>
+</div>
+
+</div>
+</script>
+<script type="text/template" id="oualerts-archived-template">
+{% if (o[0].htmlHeading) { %}
+<h2 class="oualerts-archive-main-heading">{%=o[0].htmlHeading %}</h2>
+{% } %}
+<ul class="oualerts-achive-list">
+	{% for (var i=0; o.length > i; i++) { %}
+	<li class="oualerts-achive-list-item oualerts-archive-type-{%=o[i].severity%}">
+		<div class="oualerts-achive-list-item-inner">
+			<h3 class="oualerts-archive-title">{%=o[i].title%}</h3>
+			<div class="oualerts-archive-date">{%=ouEmergencyAlerts.alertDateFormat("F d, Y h:i A",o[i].pubDate)%}</div>
+			{% if (o[i].subtitle) { %}
+			<p class="oualerts-archive-subtitle"><strong>{%=o[i].subtitle %}</strong></p>
+			{% } %}
+			{% if (o[i].description) { %}
+			<p class="oualerts-archive-msg">{%=o[i].description %}
+				{% } %}
+				{% if (o[i].guid) { %}
+				<a href="{%=o[i].guid %}" class="oualerts-archive-link">{%=ouEmergencyAlerts[o[i].severity + "Archive"].readMoreText%}</a>
+				{% } %}
+				{% if (o[i].description) { %}
+			</p>
+			{% } %}
+			{% if (o[i].updates) { %}
+			<h4 class="oualerts-archive-list-update-header">{%=ouEmergencyAlerts[o[i].severity + "Archive"].updateText %}</h4>
+			<ul class="oualerts-achive-list-update">
+				{% for (var k=0; o[i].updates.length > k; k++) { %}
+				<li class="oualerts-achive-list-item-update">
+					<div class="oualerts-achive-list-item-update-inner">
+						<h5 class="oualerts-archive-title-update">{%=o[i].updates[k].title%}</h5>
+						<div class="oualerts-archive-date-update">{%=ouEmergencyAlerts.alertDateFormat("F d, Y h:i A",o[i].updates[k].pubDate)%}</div>
+						{% if (o[i].updates[k].subtitle) { %}
+						<p class="oualerts-archive-subtitle-update"><strong>{%=o[i].updates[k].subtitle %}</strong></p>
+						{% } %}
+						{% if (o[i].updates[k].description) { %}
+						<p class="oualerts-archive-msg-update">{%=o[i].updates[k].description %}
+							{% } %}
+							{% if (o[i].updates[k].guid) { %}
+							<a href="{%=o[i].updates[k].guid %}" class="oualerts-archive-link-update">{%=ouEmergencyAlerts[o[i].severity + "Archive"].readMoreText%}</a>
+							{% } %}
+							{% if (o[i].updates[k].description) { %}
+						</p>
+						{% } %}
+					</div>
+				</li>
+				{% } %}
+			</ul>
+			{% } %}
+		</div>
+	</li>
+	{% } %}
+</ul>
+</script>
+      <div id="hidden" style="display:none;"><a id="de" rel="nofollow" href="https://a.cms.omniupdate.com/11/?skin=oucampus&amp;account=westmoreland&amp;site=www&amp;action=de&amp;path=/index.pcf">© 2026</a></div><script>
+            function ouEncodingLinkReady(fn) {
+			  if (document.readyState !== "loading"){
+			    fn();
+			  }
+			  else if (document.addEventListener) {
+			    document.addEventListener("DOMContentLoaded", fn);
+			  }
+			  else {
+			    document.attachEvent("onreadystatechange", function() {
+			      if (document.readyState !== "loading") {
+			        fn();
+			      }
+			    });
+			  }
+			}
+			function ouEncodingLinkFunction() {
+			    var items = document.querySelectorAll("a[data-values-do-something='true']");
+			    var i;
+			    var valueOne;
+			    var valueTwo;
+			    var valueThree;
+			    var valueFour;
+			    var valueFive;
+			    var valueSix;
+			    var final;
+			    var text;
+			    for (i = 0; i < items.length; i += 1) {
+			        valueOne = decodeURIComponent(items[i].getAttribute("data-values-rep-one").split("").reverse().join(""));
+			        valueTwo = decodeURIComponent(items[i].getAttribute("data-values-rep-two").split("").reverse().join(""));
+			        valueThree = decodeURIComponent(items[i].getAttribute("data-values-rep-three").split("").reverse().join(""));
+			        valueFour = decodeURIComponent(items[i].getAttribute("data-values-rep-four").split("").reverse().join(""));
+			        valueFive = items[i].getAttribute("data-values-rep-five");
+			        valueSix = decodeURIComponent(items[i].getAttribute("data-values-rep-six").split("").reverse().join(""));
+
+			        final = items[i].getAttribute("href").replace(valueFour, valueThree).replace(valueTwo, valueFive).replace(valueOne, valueSix);
+			        text = decodeURIComponent(items[i].innerHTML.replace(valueFour, valueThree).replace(valueTwo, valueFive).replace(valueOne, valueSix));
+
+			        items[i].setAttribute("href", final);
+			        items[i].innerHTML = text;
+			    }
+			}
+			ouEncodingLinkReady(ouEncodingLinkFunction());
+        </script><!-- ouc:info uuid="8d8dfe37-03b5-41fb-ae24-5d4682ce6380"/ --></body>
+</html>

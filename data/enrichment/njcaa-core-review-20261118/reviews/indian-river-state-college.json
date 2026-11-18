@@ -1,0 +1,41 @@
+{
+  "slug": "indian-river-state-college",
+  "collegeId": "cmox1ghdt0059qtsg1nv7poph",
+  "programId": "cmox1ghej005bqtsg5a61nzcp",
+  "name": "Indian River State College",
+  "storedState": "FL",
+  "storedDivision": "NJCAA_D1",
+  "checkedAtUtc": "2026-11-18T14:20:41.048Z",
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "currentMembershipVerified": false,
+  "campusIdentityVerified": false,
+  "importApproval": "NOT_GRANTED",
+  "pages": [
+    {
+      "requestedUrl": "https://irsc.prestosports.com/sports/bsb/index",
+      "kind": "DIRECTORY_ALIAS_REQUIRES_CAMPUS_REVIEW",
+      "parent": {
+        "sourcePath": "../njcaa-discovery-20261118/sources/directory-0.source",
+        "sha256": "63f1c531b007d2922e4db3aa2ba596ee54e397dbafd287df69b95213a011a404",
+        "label": "Indian River State"
+      },
+      "status": 403,
+      "finalUrl": "https://irsc.prestosports.com/sports/bsb/index",
+      "checkedAtUtc": "2026-11-18T14:20:41.285Z",
+      "sourcePath": "sources/indian-river-state-college-0.source",
+      "sha256": "533b6b486a3119281dec53ea374651f39aa719e2aa98727021dad1833697f78c"
+    }
+  ],
+  "discoveryAliases": [
+    {
+      "url": "https://irsc.prestosports.com/sports/bsb/index",
+      "label": "Indian River State",
+      "parentSourcePath": "sources/directory-0.source",
+      "parentSHA256": "63f1c531b007d2922e4db3aa2ba596ee54e397dbafd287df69b95213a011a404",
+      "parentUrl": "https://www.thebaseballobserver.com/njcaa-di-baseball",
+      "status": "UNVERIFIED_NORMALIZED_NAME_LEAD"
+    }
+  ],
+  "status": "HELD_NO_READABLE_SOURCE"
+}

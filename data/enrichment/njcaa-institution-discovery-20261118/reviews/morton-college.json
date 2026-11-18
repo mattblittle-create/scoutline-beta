@@ -1,0 +1,47 @@
+{
+  "slug": "morton-college",
+  "name": "Morton College",
+  "collegeId": "cmox238ry008uqtfkz9z6kizk",
+  "programId": "cmox238so008wqtfkh0bb3978",
+  "storedState": "IL",
+  "storedDivision": "NJCAA_D2",
+  "directoryMatch": {
+    "unitid": "147411",
+    "name": "Morton College",
+    "aliases": [],
+    "state": "IL",
+    "city": "Cicero",
+    "host": "morton.edu",
+    "decision": "UNIQUE_EXACT_NAME_OR_ALIAS_AND_STATE_DISCOVERY_LEAD_ONLY"
+  },
+  "directoryMatchStatus": "DISCOVERY_LEAD_NOT_CURRENT_CAMPUS_VERIFIED",
+  "needsHeadCoach": false,
+  "needs2027Roster": true,
+  "newPagesAttempted": 1,
+  "pages": [
+    {
+      "requestedUrl": "https://morton.edu/",
+      "checkedAtUtc": "2026-11-18T16:21:22.986Z",
+      "finalUrl": "https://morton.edu/",
+      "status": 403,
+      "contentType": "text/html; charset=utf-8",
+      "sha256": "e52b4ab174c71c965fe8c39b5f9e0f4483739cefef6205915e55b7436617ada0",
+      "sourcePath": "sources/050eb47efc0cf313194e05a01ecd51f61efce6b9abe07e0b01d62013fb93adfe.source",
+      "kind": "INSTITUTIONAL_DIRECTORY_HOST_LEAD",
+      "parent": {
+        "sourcePath": "../../geography/us-college-locations-ipeds2024.json",
+        "unitid": "147411",
+        "publishedName": "Morton College",
+        "state": "IL",
+        "city": "Cicero"
+      }
+    }
+  ],
+  "unfetchedPublishedLeads": [],
+  "publishedLeads": [],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "campusIdentityReviewRequired": true,
+  "currentMembershipVerified": false,
+  "importApproval": "NOT_GRANTED"
+}

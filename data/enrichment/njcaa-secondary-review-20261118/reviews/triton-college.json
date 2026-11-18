@@ -1,0 +1,60 @@
+{
+  "slug": "triton-college",
+  "programId": "cmox1gkfl00btqtsgpl7lg2g3",
+  "collegeId": "cmox1gkev00brqtsgxithpel1",
+  "checkedAtUtc": "2026-11-18T14:43:33.558Z",
+  "sourcePath": "../njcaa-discovery-20261118/sources/triton-college-0.source",
+  "sourceSHA256": "ee05e8a402352d9f343d4670dd0079acd9ab915bbbaf9a04de0177755d7fd032",
+  "sourceUrl": "https://tritonathletics.com/sports/baseball",
+  "socialLeads": [
+    {
+      "url": "https://instagram.com/trojans_.baseball",
+      "label": "Baseball: Instagram",
+      "context": "",
+      "kind": "HTML"
+    }
+  ],
+  "recruitingLeads": [
+    {
+      "url": "https://tritonathletics.com/sb_output.aspx?form=3",
+      "label": "Prospective Athlete Form",
+      "context": "",
+      "kind": "QUESTIONNAIRE"
+    }
+  ],
+  "logoLeads": [
+    {
+      "url": "https://tritonathletics.com/images/logos/site/site.png",
+      "label": "Triton College Athletics, go to homepage main-header-img"
+    }
+  ],
+  "captures": [
+    {
+      "requestedUrl": "https://tritonathletics.com/sb_output.aspx?form=3",
+      "kind": "QUESTIONNAIRE",
+      "status": 200,
+      "finalUrl": "https://tritonathletics.com/sb_output.aspx?form=3",
+      "sourcePath": "../njcaa-core-review-20261118/sources/triton-college-4.source",
+      "sha256": "012c4b743bbc2e566fea6615fb555ce2eadaa3fa42f6be2ea439bf0ddb5166db",
+      "reusedEvidence": true
+    },
+    {
+      "requestedUrl": "https://tritonathletics.com/images/logos/site/site.png",
+      "kind": "LOGO_ASSET",
+      "status": 200,
+      "finalUrl": "https://images.sidearmdev.com/convert?url=https%3a%2f%2fdxbhsrqyrr690.cloudfront.net%2fsidearm.nextgen.sites%2ftriton.sidearmsports.com%2fimages%2flogos%2fsite%2fsite.png&type=webp",
+      "contentType": "image/webp",
+      "sourcePath": "sources/triton-college-1.source",
+      "sha256": "2e2c1b2eafe5b864af0d6e36bc68d7b581cdd4d763d22fe34e1bf7a9bd85c622",
+      "decoded": {
+        "format": "webp",
+        "width": 190,
+        "height": 179
+      },
+      "assetDecoded": true
+    }
+  ],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED"
+}

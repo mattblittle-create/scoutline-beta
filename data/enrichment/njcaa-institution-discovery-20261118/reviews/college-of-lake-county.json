@@ -1,0 +1,44 @@
+{
+  "slug": "college-of-lake-county",
+  "name": "College of Lake County",
+  "collegeId": "cmox235qm002fqtfkuqtlw0fr",
+  "programId": "cmox235ra002hqtfkjpougwcj",
+  "storedState": "IL",
+  "storedDivision": "NJCAA_D2",
+  "directoryMatch": {
+    "unitid": "146472",
+    "name": "College of Lake County",
+    "aliases": [],
+    "state": "IL",
+    "city": "Grayslake",
+    "host": "clcillinois.edu",
+    "decision": "UNIQUE_EXACT_NAME_OR_ALIAS_AND_STATE_DISCOVERY_LEAD_ONLY"
+  },
+  "directoryMatchStatus": "DISCOVERY_LEAD_NOT_CURRENT_CAMPUS_VERIFIED",
+  "needsHeadCoach": true,
+  "needs2027Roster": true,
+  "newPagesAttempted": 1,
+  "pages": [
+    {
+      "requestedUrl": "https://clcillinois.edu/",
+      "checkedAtUtc": "2026-11-18T16:21:01.192Z",
+      "status": "FAILED",
+      "errorType": "Error",
+      "kind": "INSTITUTIONAL_DIRECTORY_HOST_LEAD",
+      "parent": {
+        "sourcePath": "../../geography/us-college-locations-ipeds2024.json",
+        "unitid": "146472",
+        "publishedName": "College of Lake County",
+        "state": "IL",
+        "city": "Grayslake"
+      }
+    }
+  ],
+  "unfetchedPublishedLeads": [],
+  "publishedLeads": [],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "campusIdentityReviewRequired": true,
+  "currentMembershipVerified": false,
+  "importApproval": "NOT_GRANTED"
+}

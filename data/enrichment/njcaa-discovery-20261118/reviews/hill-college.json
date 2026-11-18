@@ -1,0 +1,41 @@
+{
+  "slug": "hill-college",
+  "collegeId": "cmox1gh6p004uqtsgbv70qatf",
+  "programId": "cmox1gh7e004wqtsg1vvxod0u",
+  "name": "Hill College",
+  "state": "TX",
+  "storedDivision": "NJCAA_D1",
+  "pages": [
+    {
+      "requestedUrl": "https://njcaastats.prestosports.com/sports/bsb/2024-25/div1/teams/hillcollege",
+      "kind": "STORED_URL_UNVERIFIED",
+      "checkedAtUtc": "2026-11-18T14:16:02.741Z",
+      "status": "HELD_ACCESS_NOT_RETRIED",
+      "finalUrl": "https://njcaastats.prestosports.com/sports/bsb/2024-25/div1/teams/hillcollege"
+    },
+    {
+      "requestedUrl": "https://www.hillcollege.edu/Athletics/Baseball/index.html",
+      "kind": "DISCOVERY_LEAD_NOT_CAMPUS_VERIFIED",
+      "checkedAtUtc": "2026-11-18T14:16:02.743Z",
+      "status": 404,
+      "finalUrl": "https://www.hillcollege.edu/Athletics/Baseball/index.html",
+      "contentType": "text/html",
+      "sourcePath": "sources/hill-college-1.source",
+      "sha256": "dc1d54dab6ec8c00f70137927504e4f222c8395f10760b6beecfcfa94e08249f"
+    }
+  ],
+  "thirdPartyExactNameLeads": [
+    {
+      "url": "https://www.hillcollege.edu/Athletics/Baseball/index.html",
+      "label": "Hill College",
+      "parentSourcePath": "sources/directory-0.source",
+      "parentSHA256": "63f1c531b007d2922e4db3aa2ba596ee54e397dbafd287df69b95213a011a404",
+      "parentUrl": "https://www.thebaseballobserver.com/njcaa-di-baseball"
+    }
+  ],
+  "currentMembershipVerified": false,
+  "campusIdentityVerified": false,
+  "importApproval": "NOT_GRANTED",
+  "databaseAccess": false,
+  "databaseWrites": 0
+}

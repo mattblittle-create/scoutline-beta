@@ -1,0 +1,1886 @@
+{
+  "slug": "susquehanna-university",
+  "collegeId": "cmw26ehhp0016qtwgjsul9yvn",
+  "programId": "cmw26ehhp0017qtwg94ngqyyv",
+  "checkedAtUtc": "2026-11-17T20:37:47.669Z",
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED",
+  "missingFields": [
+    "rosterUrl",
+    "scheduleUrl",
+    "questionnaireUrl",
+    "campsUrl",
+    "generalContactEmail"
+  ],
+  "pages": [
+    {
+      "requestedUrl": "https://suriverhawks.com/sports/baseball",
+      "kind": "baseball-home",
+      "parent": null,
+      "status": 200,
+      "finalUrl": "https://suriverhawks.com/sports/baseball",
+      "sourcePath": "../sources/susquehanna-university-1.html",
+      "sha256": "b04e52f2b27130e4596fe69c31cc3126685955fb5cceb6f13759ae1d9ac052c9",
+      "reusedEvidence": true,
+      "originalCheckedAtUtc": "2026-11-17T17:30:09.767Z",
+      "parsed": {
+        "title": "Baseball - Susquehanna University Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "Susquehanna University Athletics",
+          "Top",
+          "Scoreboard Tab",
+          "Main",
+          "Sport",
+          "Scoreboard",
+          "Promo Above Stories",
+          "Latest News",
+          "Hawks Media",
+          "Instagram",
+          "Awards",
+          "Meet The Coach",
+          "Facilities",
+          "Storied Success",
+          "Store",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://x.com/SusquehannaBase",
+            "label": "Baseball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/diamondriverhawks",
+            "label": "Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/baseball/schedule",
+            "label": "Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/Susquehanna_MBB",
+            "label": "Basketball | M: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/susqumbb",
+            "label": "Basketball | M: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-basketball/schedule",
+            "label": "Basketball | M: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-basketball/roster",
+            "label": "Basketball | M: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/susquehannaWBB",
+            "label": "Basketball | W: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/suwb_riverhawks",
+            "label": "Basketball | W: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-basketball/schedule",
+            "label": "Basketball | W: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-basketball/roster",
+            "label": "Basketball | W: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/Susquxctf",
+            "label": "Cross Country | M: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/susquxctf",
+            "label": "Cross Country | M: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-cross-country/schedule",
+            "label": "Cross Country | M: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-cross-country/roster",
+            "label": "Cross Country | M: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-cross-country/schedule",
+            "label": "Cross Country | W: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-cross-country/roster",
+            "label": "Cross Country | W: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/SUFH_thereitis",
+            "label": "Field Hockey | W: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/susquehannafieldhockey",
+            "label": "Field Hockey | W: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/field-hockey/schedule",
+            "label": "Field Hockey | W: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/field-hockey/roster",
+            "label": "Field Hockey | W: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/SURiverHawksFB",
+            "label": "Football: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/susqufootball",
+            "label": "Football: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/football/schedule",
+            "label": "Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/football/roster",
+            "label": "Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/susqumensgolf",
+            "label": "Golf | M: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-golf/schedule",
+            "label": "Golf | M: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-golf/roster",
+            "label": "Golf | M: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/susquwgolf",
+            "label": "Golf | W: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/susquwomensgolf",
+            "label": "Golf | W: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-golf/schedule",
+            "label": "Golf | W: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-golf/roster",
+            "label": "Golf | W: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/susqumlax",
+            "label": "Lacrosse | M: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-lacrosse/schedule",
+            "label": "Lacrosse | M: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-lacrosse/roster",
+            "label": "Lacrosse | M: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/Susqu_WLax",
+            "label": "Lacrosse | W: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/susqu_wlax",
+            "label": "Lacrosse | W: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-lacrosse/schedule",
+            "label": "Lacrosse | W: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-lacrosse/roster",
+            "label": "Lacrosse | W: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/SUSQUMensSoccer",
+            "label": "Soccer | M: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/susoccer",
+            "label": "Soccer | M: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-soccer/schedule",
+            "label": "Soccer | M: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-soccer/roster",
+            "label": "Soccer | M: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/SURiverHawksWS",
+            "label": "Soccer | W: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/susquws",
+            "label": "Soccer | W: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-soccer/schedule",
+            "label": "Soccer | W: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-soccer/roster",
+            "label": "Soccer | W: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/SusqUSoftball",
+            "label": "Softball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/susqusoftball",
+            "label": "Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/suskyswimming",
+            "label": "Swimming & Diving | M: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-swimming-and-diving/schedule",
+            "label": "Swimming & Diving | M: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-swimming-and-diving/roster",
+            "label": "Swimming & Diving | M: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-swimming-and-diving/schedule",
+            "label": "Swimming & Diving | W: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-swimming-and-diving/roster",
+            "label": "Swimming & Diving | W: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/SusquTennis",
+            "label": "Tennis | M: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/sumenstennis",
+            "label": "Tennis | M: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-tennis/schedule",
+            "label": "Tennis | M: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-tennis/roster",
+            "label": "Tennis | M: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/susqu_womenstennis",
+            "label": "Tennis | W: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-tennis/schedule",
+            "label": "Tennis | W: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-tennis/roster",
+            "label": "Tennis | W: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-track-and-field/schedule",
+            "label": "Track & Field | M: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-track-and-field/roster",
+            "label": "Track & Field | M: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-track-and-field/schedule",
+            "label": "Track & Field | W: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-track-and-field/roster",
+            "label": "Track & Field | W: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/SusquehannaVB",
+            "label": "Volleyball | W: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/susquvolleyball",
+            "label": "Volleyball | W: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-volleyball/schedule",
+            "label": "Volleyball | W: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-volleyball/roster",
+            "label": "Volleyball | W: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.susqu.edu/campus-life/athletics-recreation/outdoor-recreation/",
+            "label": "Outdoor Recreation",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/camps/archives?search=&sport=camps&season=0",
+            "label": "Camps & Clinics",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://suriverhawks.com/staff-directory",
+            "label": "Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.susqu.edu/campus-life/explore-selinsgrove/",
+            "label": "Local Restaurants and Lodging",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.givecampus.com/campaigns/38737/donations/new",
+            "label": "Orange & Maroon Club",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://suriverhawks.com/calendar",
+            "label": "All-Sports Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://go.flosports.tv/partner/landmark?utm_medium=partner&utm_source=multiple&utm_content=landingpage&utm_term=landmark.susquehanna&utm_campaign=landmark&contract_id=0063m00000u4k10aaa&sp=conf-partner",
+            "label": "Streaming (FloSports)",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.givecampus.com/schools/SusquehannaUniversity/onesu-2026?pre_launch_preview=true",
+            "label": "OneSU Giving Day",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/2025/1/23/recruiting.aspx",
+            "label": "Recruiting Forms",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://suriverhawks.com/camp",
+            "label": "Camps & Clinics",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/2018/8/8/information-compliance-compliance-prospects.aspx",
+            "label": "Compliance for Prospective Student-Athletes",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.givecampus.com/bcm55f?designation=baseball&",
+            "label": "Support Baseball",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://suriverhawks.com/socialaccounts.aspx",
+            "label": "Social Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://suriverhawks.com/sports/baseball/schedule",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/susquehanna-university-1.html",
+        "sha256": "b04e52f2b27130e4596fe69c31cc3126685955fb5cceb6f13759ae1d9ac052c9",
+        "url": "https://suriverhawks.com/sports/baseball/schedule",
+        "label": "Baseball: Schedule"
+      },
+      "status": 200,
+      "finalUrl": "https://suriverhawks.com/sports/baseball/schedule",
+      "checkedAtUtc": "2026-11-17T20:37:48.989Z",
+      "sourcePath": "sources/susquehanna-university-1.html",
+      "sha256": "5588e0c84d7e0702099a4ba7557cff814b2401bf2010661360dd79031978c39f",
+      "parsed": {
+        "title": "2026 Baseball Schedule - Susquehanna University Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "Susquehanna University Athletics",
+          "Top",
+          "Scoreboard Tab",
+          "Main",
+          "Sport",
+          "2026 Baseball Schedule",
+          "Season Record",
+          "Scheduled Games",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://suriverhawks.com/sports/baseball/schedule",
+            "label": "Skip To Main Content",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/SusquehannaBase",
+            "label": "Baseball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/diamondriverhawks",
+            "label": "Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/Susquehanna_MBB",
+            "label": "Basketball | M: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/susqumbb",
+            "label": "Basketball | M: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-basketball/schedule",
+            "label": "Basketball | M: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-basketball/roster",
+            "label": "Basketball | M: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/susquehannaWBB",
+            "label": "Basketball | W: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/suwb_riverhawks",
+            "label": "Basketball | W: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-basketball/schedule",
+            "label": "Basketball | W: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-basketball/roster",
+            "label": "Basketball | W: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/Susquxctf",
+            "label": "Cross Country | M: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/susquxctf",
+            "label": "Cross Country | M: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-cross-country/schedule",
+            "label": "Cross Country | M: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-cross-country/roster",
+            "label": "Cross Country | M: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-cross-country/schedule",
+            "label": "Cross Country | W: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-cross-country/roster",
+            "label": "Cross Country | W: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/SUFH_thereitis",
+            "label": "Field Hockey | W: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/susquehannafieldhockey",
+            "label": "Field Hockey | W: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/field-hockey/schedule",
+            "label": "Field Hockey | W: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/field-hockey/roster",
+            "label": "Field Hockey | W: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/SURiverHawksFB",
+            "label": "Football: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/susqufootball",
+            "label": "Football: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/football/schedule",
+            "label": "Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/football/roster",
+            "label": "Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/susqumensgolf",
+            "label": "Golf | M: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-golf/schedule",
+            "label": "Golf | M: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-golf/roster",
+            "label": "Golf | M: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/susquwgolf",
+            "label": "Golf | W: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/susquwomensgolf",
+            "label": "Golf | W: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-golf/schedule",
+            "label": "Golf | W: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-golf/roster",
+            "label": "Golf | W: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/susqumlax",
+            "label": "Lacrosse | M: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-lacrosse/schedule",
+            "label": "Lacrosse | M: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-lacrosse/roster",
+            "label": "Lacrosse | M: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/Susqu_WLax",
+            "label": "Lacrosse | W: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/susqu_wlax",
+            "label": "Lacrosse | W: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-lacrosse/schedule",
+            "label": "Lacrosse | W: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-lacrosse/roster",
+            "label": "Lacrosse | W: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/SUSQUMensSoccer",
+            "label": "Soccer | M: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/susoccer",
+            "label": "Soccer | M: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-soccer/schedule",
+            "label": "Soccer | M: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-soccer/roster",
+            "label": "Soccer | M: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/SURiverHawksWS",
+            "label": "Soccer | W: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/susquws",
+            "label": "Soccer | W: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-soccer/schedule",
+            "label": "Soccer | W: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-soccer/roster",
+            "label": "Soccer | W: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/SusqUSoftball",
+            "label": "Softball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/susqusoftball",
+            "label": "Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/suskyswimming",
+            "label": "Swimming & Diving | M: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-swimming-and-diving/schedule",
+            "label": "Swimming & Diving | M: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-swimming-and-diving/roster",
+            "label": "Swimming & Diving | M: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-swimming-and-diving/schedule",
+            "label": "Swimming & Diving | W: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-swimming-and-diving/roster",
+            "label": "Swimming & Diving | W: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/SusquTennis",
+            "label": "Tennis | M: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/sumenstennis",
+            "label": "Tennis | M: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-tennis/schedule",
+            "label": "Tennis | M: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-tennis/roster",
+            "label": "Tennis | M: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/susqu_womenstennis",
+            "label": "Tennis | W: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-tennis/schedule",
+            "label": "Tennis | W: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-tennis/roster",
+            "label": "Tennis | W: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-track-and-field/schedule",
+            "label": "Track & Field | M: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-track-and-field/roster",
+            "label": "Track & Field | M: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-track-and-field/schedule",
+            "label": "Track & Field | W: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-track-and-field/roster",
+            "label": "Track & Field | W: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/SusquehannaVB",
+            "label": "Volleyball | W: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/susquvolleyball",
+            "label": "Volleyball | W: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-volleyball/schedule",
+            "label": "Volleyball | W: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-volleyball/roster",
+            "label": "Volleyball | W: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.susqu.edu/campus-life/athletics-recreation/outdoor-recreation/",
+            "label": "Outdoor Recreation",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/camps/archives?search=&sport=camps&season=0",
+            "label": "Camps & Clinics",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://suriverhawks.com/staff-directory",
+            "label": "Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.susqu.edu/campus-life/explore-selinsgrove/",
+            "label": "Local Restaurants and Lodging",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.givecampus.com/campaigns/38737/donations/new",
+            "label": "Orange & Maroon Club",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://suriverhawks.com/calendar",
+            "label": "All-Sports Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://go.flosports.tv/partner/landmark?utm_medium=partner&utm_source=multiple&utm_content=landingpage&utm_term=landmark.susquehanna&utm_campaign=landmark&contract_id=0063m00000u4k10aaa&sp=conf-partner",
+            "label": "Streaming (FloSports)",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.givecampus.com/schools/SusquehannaUniversity/onesu-2026?pre_launch_preview=true",
+            "label": "OneSU Giving Day",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/2025/1/23/recruiting.aspx",
+            "label": "Recruiting Forms",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://suriverhawks.com/camp",
+            "label": "Camps & Clinics",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/2018/8/8/information-compliance-compliance-prospects.aspx",
+            "label": "Compliance for Prospective Student-Athletes",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.givecampus.com/bcm55f?designation=baseball&",
+            "label": "Support Baseball",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/baseball/schedule?print=true",
+            "label": "Print Print this page",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/baseball/schedule/2026?grid=true",
+            "label": "Grid Switch to Grid View",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/services/schedule_txt.ashx?schedule=670",
+            "label": "Text Text Format For Braille (New Tab)",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://suriverhawks.com/sports/mens-basketball/schedule",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/susquehanna-university-1.html",
+        "sha256": "b04e52f2b27130e4596fe69c31cc3126685955fb5cceb6f13759ae1d9ac052c9",
+        "url": "https://suriverhawks.com/sports/mens-basketball/schedule",
+        "label": "Basketball | M: Schedule"
+      },
+      "status": 200,
+      "finalUrl": "https://suriverhawks.com/sports/mens-basketball/schedule",
+      "checkedAtUtc": "2026-11-17T20:37:49.728Z",
+      "sourcePath": "sources/susquehanna-university-2.html",
+      "sha256": "555627eb36f2a348adcfc9a7056d2042f1c56a50571b0a635d650379e776e213",
+      "parsed": {
+        "title": "2026-27 Men's Basketball Schedule - Susquehanna University Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "Susquehanna University Athletics",
+          "Top",
+          "Scoreboard Tab",
+          "Main",
+          "Sport",
+          "2026-27 Men's Basketball Schedule",
+          "Season Record",
+          "Scheduled Games",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://suriverhawks.com/sports/mens-basketball/schedule",
+            "label": "Skip To Main Content",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/SusquehannaBase",
+            "label": "Baseball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/diamondriverhawks",
+            "label": "Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/baseball/schedule",
+            "label": "Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/Susquehanna_MBB",
+            "label": "Basketball | M: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/susqumbb",
+            "label": "Basketball | M: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-basketball/roster",
+            "label": "Basketball | M: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/susquehannaWBB",
+            "label": "Basketball | W: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/suwb_riverhawks",
+            "label": "Basketball | W: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-basketball/schedule",
+            "label": "Basketball | W: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-basketball/roster",
+            "label": "Basketball | W: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/Susquxctf",
+            "label": "Cross Country | M: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/susquxctf",
+            "label": "Cross Country | M: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-cross-country/schedule",
+            "label": "Cross Country | M: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-cross-country/roster",
+            "label": "Cross Country | M: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-cross-country/schedule",
+            "label": "Cross Country | W: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-cross-country/roster",
+            "label": "Cross Country | W: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/SUFH_thereitis",
+            "label": "Field Hockey | W: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/susquehannafieldhockey",
+            "label": "Field Hockey | W: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/field-hockey/schedule",
+            "label": "Field Hockey | W: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/field-hockey/roster",
+            "label": "Field Hockey | W: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/SURiverHawksFB",
+            "label": "Football: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/susqufootball",
+            "label": "Football: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/football/schedule",
+            "label": "Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/football/roster",
+            "label": "Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/susqumensgolf",
+            "label": "Golf | M: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-golf/schedule",
+            "label": "Golf | M: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-golf/roster",
+            "label": "Golf | M: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/susquwgolf",
+            "label": "Golf | W: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/susquwomensgolf",
+            "label": "Golf | W: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-golf/schedule",
+            "label": "Golf | W: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-golf/roster",
+            "label": "Golf | W: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/susqumlax",
+            "label": "Lacrosse | M: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-lacrosse/schedule",
+            "label": "Lacrosse | M: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-lacrosse/roster",
+            "label": "Lacrosse | M: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/Susqu_WLax",
+            "label": "Lacrosse | W: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/susqu_wlax",
+            "label": "Lacrosse | W: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-lacrosse/schedule",
+            "label": "Lacrosse | W: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-lacrosse/roster",
+            "label": "Lacrosse | W: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/SUSQUMensSoccer",
+            "label": "Soccer | M: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/susoccer",
+            "label": "Soccer | M: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-soccer/schedule",
+            "label": "Soccer | M: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-soccer/roster",
+            "label": "Soccer | M: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/SURiverHawksWS",
+            "label": "Soccer | W: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/susquws",
+            "label": "Soccer | W: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-soccer/schedule",
+            "label": "Soccer | W: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-soccer/roster",
+            "label": "Soccer | W: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/SusqUSoftball",
+            "label": "Softball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/susqusoftball",
+            "label": "Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/suskyswimming",
+            "label": "Swimming & Diving | M: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-swimming-and-diving/schedule",
+            "label": "Swimming & Diving | M: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-swimming-and-diving/roster",
+            "label": "Swimming & Diving | M: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-swimming-and-diving/schedule",
+            "label": "Swimming & Diving | W: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-swimming-and-diving/roster",
+            "label": "Swimming & Diving | W: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/SusquTennis",
+            "label": "Tennis | M: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/sumenstennis",
+            "label": "Tennis | M: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-tennis/schedule",
+            "label": "Tennis | M: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-tennis/roster",
+            "label": "Tennis | M: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/susqu_womenstennis",
+            "label": "Tennis | W: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-tennis/schedule",
+            "label": "Tennis | W: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-tennis/roster",
+            "label": "Tennis | W: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-track-and-field/schedule",
+            "label": "Track & Field | M: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-track-and-field/roster",
+            "label": "Track & Field | M: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-track-and-field/schedule",
+            "label": "Track & Field | W: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-track-and-field/roster",
+            "label": "Track & Field | W: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/SusquehannaVB",
+            "label": "Volleyball | W: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/susquvolleyball",
+            "label": "Volleyball | W: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-volleyball/schedule",
+            "label": "Volleyball | W: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-volleyball/roster",
+            "label": "Volleyball | W: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.susqu.edu/campus-life/athletics-recreation/outdoor-recreation/",
+            "label": "Outdoor Recreation",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/camps/archives?search=&sport=camps&season=0",
+            "label": "Camps & Clinics",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://suriverhawks.com/staff-directory",
+            "label": "Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.susqu.edu/campus-life/explore-selinsgrove/",
+            "label": "Local Restaurants and Lodging",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.givecampus.com/campaigns/38737/donations/new",
+            "label": "Orange & Maroon Club",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://suriverhawks.com/calendar",
+            "label": "All-Sports Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://go.flosports.tv/partner/landmark?utm_medium=partner&utm_source=multiple&utm_content=landingpage&utm_term=landmark.susquehanna&utm_campaign=landmark&contract_id=0063m00000u4k10aaa&sp=conf-partner",
+            "label": "Streaming (FloSports)",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.givecampus.com/schools/SusquehannaUniversity/onesu-2026?pre_launch_preview=true",
+            "label": "OneSU Giving Day",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/2025/1/23/recruiting.aspx",
+            "label": "Recruiting Forms",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://suriverhawks.com/camp",
+            "label": "Camps & Clinics",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/2018/8/8/information-compliance-compliance-prospects.aspx",
+            "label": "Compliance for Prospective Student-Athletes",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.givecampus.com/bcm55f?designation=mensbasketball&",
+            "label": "Support Men's Basketball",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-basketball/schedule?print=true",
+            "label": "Print Print this page",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-basketball/schedule/2026-27?grid=true",
+            "label": "Grid Switch to Grid View",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/services/schedule_txt.ashx?schedule=705",
+            "label": "Text Text Format For Braille (New Tab)",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://psucampusathletics.com/psuharrisburg/",
+            "label": "Watch Watch Video for Men's Basketball at Penn State Harrisburg on November 24, 2026 at 3:00 PM",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://suriverhawks.com/sports/womens-basketball/schedule",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/susquehanna-university-1.html",
+        "sha256": "b04e52f2b27130e4596fe69c31cc3126685955fb5cceb6f13759ae1d9ac052c9",
+        "url": "https://suriverhawks.com/sports/womens-basketball/schedule",
+        "label": "Basketball | W: Schedule"
+      },
+      "status": 200,
+      "finalUrl": "https://suriverhawks.com/sports/womens-basketball/schedule",
+      "checkedAtUtc": "2026-11-17T20:37:50.286Z",
+      "sourcePath": "sources/susquehanna-university-3.html",
+      "sha256": "75bf326020ee4eb80498f564b76599ebd75e6da7f786f16191f23f157a1d0ea7",
+      "parsed": {
+        "title": "2026-27 Women's Basketball Schedule - Susquehanna University Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "Susquehanna University Athletics",
+          "Top",
+          "Scoreboard Tab",
+          "Main",
+          "Sport",
+          "2026-27 Women's Basketball Schedule",
+          "Season Record",
+          "Scheduled Games",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://suriverhawks.com/sports/womens-basketball/schedule",
+            "label": "Skip To Main Content",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/SusquehannaBase",
+            "label": "Baseball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/diamondriverhawks",
+            "label": "Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/baseball/schedule",
+            "label": "Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/Susquehanna_MBB",
+            "label": "Basketball | M: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/susqumbb",
+            "label": "Basketball | M: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-basketball/schedule",
+            "label": "Basketball | M: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-basketball/roster",
+            "label": "Basketball | M: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/susquehannaWBB",
+            "label": "Basketball | W: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/suwb_riverhawks",
+            "label": "Basketball | W: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-basketball/roster",
+            "label": "Basketball | W: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/Susquxctf",
+            "label": "Cross Country | M: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/susquxctf",
+            "label": "Cross Country | M: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-cross-country/schedule",
+            "label": "Cross Country | M: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-cross-country/roster",
+            "label": "Cross Country | M: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-cross-country/schedule",
+            "label": "Cross Country | W: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-cross-country/roster",
+            "label": "Cross Country | W: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/SUFH_thereitis",
+            "label": "Field Hockey | W: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/susquehannafieldhockey",
+            "label": "Field Hockey | W: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/field-hockey/schedule",
+            "label": "Field Hockey | W: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/field-hockey/roster",
+            "label": "Field Hockey | W: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/SURiverHawksFB",
+            "label": "Football: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/susqufootball",
+            "label": "Football: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/football/schedule",
+            "label": "Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/football/roster",
+            "label": "Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/susqumensgolf",
+            "label": "Golf | M: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-golf/schedule",
+            "label": "Golf | M: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-golf/roster",
+            "label": "Golf | M: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/susquwgolf",
+            "label": "Golf | W: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/susquwomensgolf",
+            "label": "Golf | W: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-golf/schedule",
+            "label": "Golf | W: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-golf/roster",
+            "label": "Golf | W: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/susqumlax",
+            "label": "Lacrosse | M: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-lacrosse/schedule",
+            "label": "Lacrosse | M: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-lacrosse/roster",
+            "label": "Lacrosse | M: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/Susqu_WLax",
+            "label": "Lacrosse | W: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/susqu_wlax",
+            "label": "Lacrosse | W: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-lacrosse/schedule",
+            "label": "Lacrosse | W: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-lacrosse/roster",
+            "label": "Lacrosse | W: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/SUSQUMensSoccer",
+            "label": "Soccer | M: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/susoccer",
+            "label": "Soccer | M: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-soccer/schedule",
+            "label": "Soccer | M: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-soccer/roster",
+            "label": "Soccer | M: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/SURiverHawksWS",
+            "label": "Soccer | W: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/susquws",
+            "label": "Soccer | W: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-soccer/schedule",
+            "label": "Soccer | W: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-soccer/roster",
+            "label": "Soccer | W: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/SusqUSoftball",
+            "label": "Softball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/susqusoftball",
+            "label": "Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/suskyswimming",
+            "label": "Swimming & Diving | M: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-swimming-and-diving/schedule",
+            "label": "Swimming & Diving | M: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-swimming-and-diving/roster",
+            "label": "Swimming & Diving | M: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-swimming-and-diving/schedule",
+            "label": "Swimming & Diving | W: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-swimming-and-diving/roster",
+            "label": "Swimming & Diving | W: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/SusquTennis",
+            "label": "Tennis | M: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/sumenstennis",
+            "label": "Tennis | M: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-tennis/schedule",
+            "label": "Tennis | M: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-tennis/roster",
+            "label": "Tennis | M: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/susqu_womenstennis",
+            "label": "Tennis | W: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-tennis/schedule",
+            "label": "Tennis | W: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-tennis/roster",
+            "label": "Tennis | W: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-track-and-field/schedule",
+            "label": "Track & Field | M: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/mens-track-and-field/roster",
+            "label": "Track & Field | M: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-track-and-field/schedule",
+            "label": "Track & Field | W: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-track-and-field/roster",
+            "label": "Track & Field | W: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/SusquehannaVB",
+            "label": "Volleyball | W: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/susquvolleyball",
+            "label": "Volleyball | W: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-volleyball/schedule",
+            "label": "Volleyball | W: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-volleyball/roster",
+            "label": "Volleyball | W: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.susqu.edu/campus-life/athletics-recreation/outdoor-recreation/",
+            "label": "Outdoor Recreation",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/camps/archives?search=&sport=camps&season=0",
+            "label": "Camps & Clinics",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://suriverhawks.com/staff-directory",
+            "label": "Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.susqu.edu/campus-life/explore-selinsgrove/",
+            "label": "Local Restaurants and Lodging",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.givecampus.com/campaigns/38737/donations/new",
+            "label": "Orange & Maroon Club",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://suriverhawks.com/calendar",
+            "label": "All-Sports Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://go.flosports.tv/partner/landmark?utm_medium=partner&utm_source=multiple&utm_content=landingpage&utm_term=landmark.susquehanna&utm_campaign=landmark&contract_id=0063m00000u4k10aaa&sp=conf-partner",
+            "label": "Streaming (FloSports)",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.givecampus.com/schools/SusquehannaUniversity/onesu-2026?pre_launch_preview=true",
+            "label": "OneSU Giving Day",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/2025/1/23/recruiting.aspx",
+            "label": "Recruiting Forms",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://suriverhawks.com/camp",
+            "label": "Camps & Clinics",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/2018/8/8/information-compliance-compliance-prospects.aspx",
+            "label": "Compliance for Prospective Student-Athletes",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.givecampus.com/bcm55f?designation=womensbasketball&",
+            "label": "Support Women's Basketball",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://questionnaires.armssoftware.com/7eb50326b5ef",
+            "label": "Recruit Me",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-basketball/schedule?print=true",
+            "label": "Print Print this page",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/sports/womens-basketball/schedule/2026-27?grid=true",
+            "label": "Grid Switch to Grid View",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://suriverhawks.com/services/schedule_txt.ashx?schedule=706",
+            "label": "Text Text Format For Braille (New Tab)",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          }
+        ]
+      }
+    }
+  ],
+  "status": "EVIDENCE_CAPTURED_REQUIRES_REVIEW"
+}

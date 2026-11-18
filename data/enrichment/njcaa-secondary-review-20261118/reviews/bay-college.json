@@ -1,0 +1,54 @@
+{
+  "slug": "bay-college",
+  "programId": "cmox234u1000kqtfk0iwddaz2",
+  "collegeId": "cmox234tb000iqtfkko7tsa34",
+  "checkedAtUtc": "2026-11-18T14:43:33.881Z",
+  "sourcePath": "../njcaa-discovery-20261118/sources/bay-college-1.source",
+  "sourceSHA256": "648744c6af7c207dcd14367c531bbbdb031636ce4fba29b51488e9112fa5c1fe",
+  "sourceUrl": "https://www.baynorse.com/sports/bsb/index",
+  "socialLeads": [],
+  "recruitingLeads": [
+    {
+      "url": "https://www.baynorse.com/recruits/Recruiting_Form",
+      "label": "",
+      "context": "recruit me",
+      "kind": "QUESTIONNAIRE"
+    },
+    {
+      "url": "https://www.baynorse.com/information/forms",
+      "label": "Participation Forms",
+      "context": "Recruits: Participation Forms",
+      "kind": "QUESTIONNAIRE"
+    },
+    {
+      "url": "https://www.baynorse.com/fan-zone/Camps_and_Clinics",
+      "label": "Camps and Clinics",
+      "context": "Fan Zone: Camps and Clinics",
+      "kind": "CAMP"
+    }
+  ],
+  "logoLeads": [],
+  "captures": [
+    {
+      "requestedUrl": "https://www.baynorse.com/recruits/Recruiting_Form",
+      "kind": "QUESTIONNAIRE",
+      "status": "HELD_ACCESS_NOT_RETRIED",
+      "finalUrl": "https://www.baynorse.com/recruits/Recruiting_Form"
+    },
+    {
+      "requestedUrl": "https://www.baynorse.com/information/forms",
+      "kind": "QUESTIONNAIRE",
+      "status": "HELD_ACCESS_NOT_RETRIED",
+      "finalUrl": "https://www.baynorse.com/information/forms"
+    },
+    {
+      "requestedUrl": "https://www.baynorse.com/fan-zone/Camps_and_Clinics",
+      "kind": "CAMP",
+      "status": "HELD_ACCESS_NOT_RETRIED",
+      "finalUrl": "https://www.baynorse.com/fan-zone/Camps_and_Clinics"
+    }
+  ],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED"
+}

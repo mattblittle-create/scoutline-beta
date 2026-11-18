@@ -1,0 +1,41 @@
+{
+  "slug": "hillsborough-community-college",
+  "collegeId": "cmox1gh83004xqtsg5nnzsgrv",
+  "programId": "cmox1gh8s004zqtsg6w5c70re",
+  "name": "Hillsborough Community College",
+  "state": "FL",
+  "storedDivision": "NJCAA_D1",
+  "pages": [
+    {
+      "requestedUrl": "https://njcaastats.prestosports.com/sports/bsb/2024-25/div1/teams/hillsboroughcommunitycollege",
+      "kind": "STORED_URL_UNVERIFIED",
+      "checkedAtUtc": "2026-11-18T14:16:02.866Z",
+      "status": "HELD_ACCESS_NOT_RETRIED",
+      "finalUrl": "https://njcaastats.prestosports.com/sports/bsb/2024-25/div1/teams/hillsboroughcommunitycollege"
+    },
+    {
+      "requestedUrl": "https://hillsboroughcc.prestosports.com/sports/bsb/index",
+      "kind": "DISCOVERY_LEAD_NOT_CAMPUS_VERIFIED",
+      "checkedAtUtc": "2026-11-18T14:16:02.867Z",
+      "status": 403,
+      "finalUrl": "https://hillsboroughcc.prestosports.com/sports/bsb/index",
+      "contentType": "text/html; charset=UTF-8",
+      "sourcePath": "sources/hillsborough-community-college-1.source",
+      "sha256": "debd6db1b208fe721f9b566f22f3f669b077af03e14590d0427e0d7350afedb8"
+    }
+  ],
+  "thirdPartyExactNameLeads": [
+    {
+      "url": "https://hillsboroughcc.prestosports.com/sports/bsb/index",
+      "label": "Hillsborough CC",
+      "parentSourcePath": "sources/directory-0.source",
+      "parentSHA256": "63f1c531b007d2922e4db3aa2ba596ee54e397dbafd287df69b95213a011a404",
+      "parentUrl": "https://www.thebaseballobserver.com/njcaa-di-baseball"
+    }
+  ],
+  "currentMembershipVerified": false,
+  "campusIdentityVerified": false,
+  "importApproval": "NOT_GRANTED",
+  "databaseAccess": false,
+  "databaseWrites": 0
+}

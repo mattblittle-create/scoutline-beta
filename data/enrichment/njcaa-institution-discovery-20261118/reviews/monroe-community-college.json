@@ -1,0 +1,44 @@
+{
+  "slug": "monroe-community-college",
+  "name": "Monroe Community College",
+  "collegeId": "cmox238nk008lqtfkckzbvcng",
+  "programId": "cmox238o9008nqtfkiwh0hvrt",
+  "storedState": "NY",
+  "storedDivision": "NJCAA_D2",
+  "directoryMatch": {
+    "unitid": "193326",
+    "name": "Monroe Community College",
+    "aliases": [],
+    "state": "NY",
+    "city": "Rochester",
+    "host": "monroecc.edu",
+    "decision": "UNIQUE_EXACT_NAME_OR_ALIAS_AND_STATE_DISCOVERY_LEAD_ONLY"
+  },
+  "directoryMatchStatus": "DISCOVERY_LEAD_NOT_CURRENT_CAMPUS_VERIFIED",
+  "needsHeadCoach": true,
+  "needs2027Roster": true,
+  "newPagesAttempted": 1,
+  "pages": [
+    {
+      "requestedUrl": "https://monroecc.edu/",
+      "checkedAtUtc": "2026-11-18T16:21:22.268Z",
+      "status": "FAILED",
+      "errorType": "Error",
+      "kind": "INSTITUTIONAL_DIRECTORY_HOST_LEAD",
+      "parent": {
+        "sourcePath": "../../geography/us-college-locations-ipeds2024.json",
+        "unitid": "193326",
+        "publishedName": "Monroe Community College",
+        "state": "NY",
+        "city": "Rochester"
+      }
+    }
+  ],
+  "unfetchedPublishedLeads": [],
+  "publishedLeads": [],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "campusIdentityReviewRequired": true,
+  "currentMembershipVerified": false,
+  "importApproval": "NOT_GRANTED"
+}

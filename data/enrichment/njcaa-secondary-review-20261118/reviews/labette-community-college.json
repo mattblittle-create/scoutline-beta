@@ -1,0 +1,72 @@
+{
+  "slug": "labette-community-college",
+  "programId": "cmox1ghsd0065qtsg1b3vjnwy",
+  "collegeId": "cmox1ghrq0063qtsgu5jtnvsk",
+  "checkedAtUtc": "2026-11-18T14:43:31.217Z",
+  "sourcePath": "../njcaa-discovery-20261118/sources/labette-community-college-1.source",
+  "sourceSHA256": "e2cca1bccf10bdc0e9dc49feae1e93c196df0c12421d34024194ed0ae414ede2",
+  "sourceUrl": "https://www.labette.edu/athletics/baseball/index.html",
+  "socialLeads": [],
+  "recruitingLeads": [
+    {
+      "url": "https://www.labette.edu/athletics/baseball/recruits.html",
+      "label": "Prospective Player Questionnaire",
+      "context": "",
+      "kind": "QUESTIONNAIRE"
+    }
+  ],
+  "logoLeads": [
+    {
+      "url": "https://www.labette.edu/athletics/images/logos/lcc-logo-dark%402x.png",
+      "label": "LCC Logo undefined"
+    },
+    {
+      "url": "https://www.labette.edu/athletics/images/logos/kjccc.webp",
+      "label": "KJCCC Logo undefined"
+    }
+  ],
+  "captures": [
+    {
+      "requestedUrl": "https://www.labette.edu/athletics/baseball/recruits.html",
+      "kind": "QUESTIONNAIRE",
+      "status": 200,
+      "finalUrl": "https://www.labette.edu/athletics/baseball/recruits.html",
+      "sourcePath": "../njcaa-core-review-20261118/sources/labette-community-college-4.source",
+      "sha256": "53e3119383e9d83dc20fd5d7c28f0793e23ff8f7b6be0974840c1b7d1e917a92",
+      "reusedEvidence": true
+    },
+    {
+      "requestedUrl": "https://www.labette.edu/athletics/images/logos/lcc-logo-dark%402x.png",
+      "kind": "LOGO_ASSET",
+      "status": 200,
+      "finalUrl": "https://www.labette.edu/athletics/images/logos/lcc-logo-dark%402x.png",
+      "contentType": "image/png",
+      "sourcePath": "sources/labette-community-college-1.source",
+      "sha256": "53ec646860201bb7411e8f9e2005142811d130a8a25ac6c0948a4f24a8e7692d",
+      "decoded": {
+        "format": "png",
+        "width": 417,
+        "height": 200
+      },
+      "assetDecoded": true
+    },
+    {
+      "requestedUrl": "https://www.labette.edu/athletics/images/logos/kjccc.webp",
+      "kind": "LOGO_ASSET",
+      "status": 200,
+      "finalUrl": "https://www.labette.edu/athletics/images/logos/kjccc.webp",
+      "contentType": "image/webp",
+      "sourcePath": "sources/labette-community-college-2.source",
+      "sha256": "f318c846c43cde07a038332d63363a5f87954214f283bf30359600cde0fe1572",
+      "decoded": {
+        "format": "webp",
+        "width": 400,
+        "height": 248
+      },
+      "assetDecoded": true
+    }
+  ],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED"
+}

@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home | Bevill State Community College</title>
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+ 
+     <!-- css,js block -->	
+    <!-- Bootstrap css and normalize css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha512-Dop/vW3iOtayerlYAqCgkVr2aTr2ErwwTYOvRFUpzl2VhCMJyjQF0Q9TjUXIo6JhuM/3i0vVEt2e/7QQmnHQqw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js" integrity="sha512-37T7leoNS06R80c8Ulq7cdCDU5MNQBwlYoy1TX/WUsLFC2eYNqtKlV0QjH7r8JpG/S0GUMZwebnVFLPd6SU5yg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js" integrity="sha512-o6XqxgrUsKmchwy9G5VRNWSSxTS4Urr4loO6/0hYdpWmFUfHqGzawGxeQGMDqYzxjY9sbktPbNlkIQJWagVZQg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- Bootstrap js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha512-oBTprMeNEKCnqfuqKd6sbvFzmFQtlXS3e0C/RGFV0hD6QzhHV+ODfaQbAlmY6/q0ubbwlAM/nCJjkrgA3waLzg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- More 3rd party plug-ins -->  
+<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script> -->
+
+
+    <script src='/Scripts/fullcalendar/moment.min.js'></script>
+
+    <link href='/Scripts/fullcalendar/fullcalendar.css' rel='stylesheet'>    
+    <script src='/Scripts/fullcalendar/fullcalendar.min.js'></script>
+    <link href='/Scripts/fullcalendar/fullcalendar.print.css' rel='stylesheet' media='print'>
+
+    <script src='/Scripts/fullcalendar/jquery.qtip.min.js'></script>
+    <link href='/Scripts/fullcalendar/jquery.qtip.min.css' rel='stylesheet'>    
+    
+<!--    <script src='/Scripts/jquery.payment.js'></script> -->
+    <script src='/Scripts/polyfiller.js'></script>
+    
+
+	<link rel="stylesheet" type="text/css" href="/Page/Import/superfish.css" />
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/superfish/1.7.10/js/superfish.min.js" integrity="sha512-gdhtclwUZCkHSSb/Q79++RssWL4eDLKHO15TC7kR/XnvlNyzcvZDRLn4BIuxadMWGIxPuj/IbFBInMpYockVCA==" crossorigin="anonymous"  referrerpolicy="no-referrer" ></script>
+
+<!--
+	Import("owl.carousel.min.js")
+	Import("owl.carousel.min.css")
+	Import("owl.theme.default.min.css")
+-->
+	
+
+    <script>if (typeof window.JSON === 'undefined') { document.write('<script src="/Scripts/history/uncompressed/json2.js"><\/script>'); }</script>
+    <script src='/Scripts/history/bundled/html4html5/jquery.history.js'></script>
+
+
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ResponsiveSlides.js/1.55/responsiveslides.min.js" integrity="sha512-xLb7JAM9BNykuzMmlFtHHgQQAwFMiPVf9IhLV6g/IgQInWqxECLrlqBo64ytFPZH7qeZjahD1TOvl/wp8dL6LA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/galleria/1.6.1/galleria.min.js" integrity="sha512-vRKUU1GOjCKOTRhNuhQelz4gmhy6NPpB8N41c7a36Cxl5QqKeB9VowP8S7x8Lf3B8vZVURBxGlPpvyiRHh+CKg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" integrity="sha512-3n19xznO0ubPpSwYCRRBgHh63DrV+bdZfHK52b1esvId4GsfwStQNPJFjeQos2h3JwCmZl0/LgLxSKMAI55hgw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+
+    <script type="text/javascript" src="/Page/Import/livequery.js"></script>
+
+	
+	
+	<!-- No Layout Found for slick.css! -->
+	<!-- No Layout Found for slick-theme.css! -->	
+	<!-- No Layout Found for slick.js! -->
+	
+    <link rel="stylesheet" type="text/css" href="/Page/Import/tools.css" />
+
+    
+    <link rel="stylesheet" type="text/css" href="/Page/Import/header.css" />
+
+    <link rel="stylesheet" type="text/css" href="/Page/Import/footer.css" />
+
+    <link rel="stylesheet" type="text/css" href="/Page/Import/underpage.css" />
+
+    <link rel="stylesheet" type="text/css" href="/Page/Import/site.css" />
+
+    
+    <!-- Added templates for component based styling -->
+    
+    <link rel="stylesheet" type="text/css" href="/Page/Import/careers.css" />
+
+    <link rel="stylesheet" type="text/css" href="/Page/Import/responsive.css" />
+
+    
+ 	<script type="text/javascript" src="/Page/Import/site.js"></script>
+   
+    <!-- End of css,js block -->
+    
+	<!-- Innovate Template Items -->
+	
+
+	<link rel="stylesheet" type="text/css" href="/Page/Import/print.css" />
+
+	
+	
+    <!-- /Tools -->
+	
+    <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:200italic,300italic,400italic,600italic,700italic,900italic,200,300,400,600,700,900' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Lato:100italic,300italic,400italic,700italic,900italic,100,300,400,700,900' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Sanchez:400italic,400' rel='stylesheet' type='text/css'>
+	
+    
+    <!--<script type="text/javascript" src="https://ws.sharethis.com/button/buttons.js"></script>
+	<script type="text/javascript">stLight.options({publisher: "0276d3d2-2129-435a-954d-0f4954bf5a32", doNotHash: true, doNotCopy: true, hashAddressBar: false});</script> -->
+	
+    <link rel="apple-touch-icon" sizes="57x57" href="/Content/Uploads/bscc.edu/favicons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/Content/Uploads/bscc.edu/favicons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/Content/Uploads/bscc.edu/favicons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/Content/Uploads/bscc.edu/favicons/apple-touch-icon-76x76.png">
+    <link rel="icon" type="image/png" href="/Content/Uploads/bscc.edu/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/Content/Uploads/bscc.edu/favicons/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/Content/Uploads/bscc.edu/favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="/Content/Uploads/bscc.edu/favicons/manifest.json">
+    <link rel="mask-icon" href="/Content/Uploads/bscc.edu/favicons/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="/Content/Uploads/bscc.edu/favicons/favicon.ico">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-config" content="/Content/Uploads/bscc.edu/favicons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+    
+	
+                <!-- Global Site Tag (gtag.js) - Google Analytics -->
+                <script async src='https://www.googletagmanager.com/gtag/js?id=UA-4286652-1\'></script>
+                <script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){ dataLayer.push(arguments)};
+                    gtag('js', new Date());
+                    gtag('config', 'UA-4286652-1', {cookie_flags: 'max-age=7200;secure;samesite=none'});   
+                </script >
+	<!-- Global Site Tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=GA_TRACKING_ID"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments)};
+  gtag('js', new Date());
+
+  gtag('config', 'GA_TRACKING_ID');
+</script>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-T9XCHBP');</script>
+<!-- End Google Tag Manager -->
+
+<!-- Start of global snippet: Please do not remove -->
+<!-- Global site tag (gtag.js) - Google Marketing Platform -->
+<script async src=""https://www.googletagmanager.com/gtag/js?id=DC-10164753""></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'DC-10164753');
+</script>
+<!-- End of global snippet: Please do not remove -->
+<!-- Event snippet for Bevill State CC - Retargeting on https://www.bscc.edu/ -->
+<script>
+  gtag('event', 'conversion', {
+    'allow_custom_scripts': true,
+    'send_to': 'DC-10164753/bevil0/bevil0+standard'
+  });
+</script>
+<noscript>
+<img src=""https://ad.doubleclick.net/ddm/activity/src=10164753;type=bevil0;cat=bevil0;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua=;npa=;gdpr=${GDPR};gdpr_consent=${GDPR_CONSENT_755};ord=1?"" width=""1"" height=""1"" alt=""""/>
+</noscript>
+<!-- End of event snippet -->
+
+
+</head>
+<body>
+    
+        <!-- Messenger Chat Plugin Code -->
+    <div id="fb-root"></div>
+
+    <!-- Your Chat Plugin code -->
+    <div id="fb-customer-chat" class="fb-customerchat">
+    </div>
+
+    <script>
+      var chatbox = document.getElementById('fb-customer-chat');
+      chatbox.setAttribute("page_id", "44049948971");
+      chatbox.setAttribute("attribution", "biz_inbox");
+
+      window.fbAsyncInit = function() {
+        FB.init({
+          xfbml            : true,
+          version          : 'v12.0'
+        });
+      };
+
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T9XCHBP"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    
+    <!-- BEGIN HEADER-->
+
+<div id="wrapper">
+    <!-- Header Start -->
+    <header id="header">
+        <div id="skiptocontent"><a href="#maincontent">skip to main content</a></div>
+    <div class="content">
+        <div class="logo">
+            <a href="/" title="Bevill State Community College"><img src="/Content/Uploads/bscc.edu/images/logo-2.png" alt="Beville State Community college"></a>
+        </div>
+        
+        <div class="rt-block">
+            <div class="site-search"><form method='POST' action='/Page/SearchSite' role='search' aria-label='site search'>     <label for='search'>Search</label>         <input type='text' id='search' name='search' role='search' aria-label='search query field' class='site-search-icon' value='' placeholder='' />         <input type='submit' aria-label='submit search query' class='test2' value='test1' /></form></div>
+            
+            <div role="button" id="navigation">
+                <nav id="nav-wrap">
+                    <ul id="-1" class=" sf-menu"><li id="_42449" class=""><a href='/about' class=''>ABOUT</a><ul id="_1_42449" class="_sub"><li id="_42588" class=""><a href='/about/presidents-welcome' class=''>President’s Welcome</a></li><li id="_42592" class=""><a href='/about/at-a-glance' class=''>At a Glance</a></li><li id="_42598" class=""><a href='/about/campus-security' class=''>Campus Security</a></li><li id="_42606" class=""><a href='/about/institutional-effectiveness-research' class=''>Institutional Effectiveness & Research</a></li><li id="_42622" class=""><a href='/about/mission-vision-values' class=''>Mission Vision Values</a></li><li id="_42624" class=""><a href='/about/locations' class=''>Locations</a></li><li id="_42625" class=""><a href='/about/employee-directory' class=''>Employee Directory</a></li><li id="_42627" class=""><a href='/about/financial-data' class=''>Financial Data</a></li><li id="_42630" class=""><a href='/about/consumer-student-information' class=''>Consumer Student Information</a></li><li id="_42648" class=""><a href='/about/contact' class=''>Contact Us</a></li><li id="_42649" class=""><a href='/about/hours-of-operation' class=''>Hours of Operation</a></li><li id="_42650" class=""><a href='/about/faq' class=''>FAQ</a></li><li id="_42651" class=""><a href='/about/giving' class=''>Giving</a></li><li id="_42653" class=""><a href='/about/employment-opportunities' class=''>Employment Opportunities</a></li><li id="_42655" class=""><a href='/about/event-calendar' class=''>Event Calendar</a></li><li id="_42726" class=""><a href='/about/open-records-request' class=''>Open Records Request</a></li><li id="_42727" class=""><a href='/about/economic-impact' class=''>Economic Impact</a></li></ul></li><li id="_42450" class=""><a href='/students' class=''>STUDENTS</a><ul id="_1_42450" class="_sub"><li id="_42742" class=""><a href='/students/bear-essentials' class=''>Bear Essentials</a></li><li id="_42744" class=""><a href='/students/apply-online' class=''>Apply Online</a></li><li id="_42745" class=""><a href='/students/campus-tours' class=''>Campus Tours</a></li><li id="_42746" class=""><a href='/students/current-students' class=''>Current Students</a></li><li id="_42774" class=""><a href='/students/high-school-students' class=''>High School Students</a></li><li id="_42786" class=""><a href='/students/future-students' class=''>Future Students</a></li><li id="_42792" class=""><a href='/students/transfer-students' class=''>Transfer Students</a></li><li id="_42793" class=""><a href='/students/recruiting' class=''>Recruiting</a></li><li id="_42797" class=""><a href='/students/financial-aid' class=''>Financial Aid</a></li><li id="_42838" class=""><a href='/students/payment-plan' class=''>Payment Plan</a></li><li id="_42840" class=""><a href='/students/scholarship-applications' class=''>Scholarship Applications</a></li><li id="_42843" class=""><a href='/students/transcripts-and-records' class=''>Transcripts and Records</a></li><li id="_42845" class=""><a href='/students/diplomas' class=''>Diplomas</a></li><li id="_42846" class=""><a href='/students/international-students' class=''>International Students</a></li><li id="_42850" class=""><a href='/students/student-resources' class=''>Student Resources</a></li><li id="_42864" class=""><a href='/students/testing' class=''>Testing</a></li><li id="_42865" class=""><a href='/students/title-ix' class=''>Title IX</a></li><li id="_42867" class=""><a href='/students/graduation' class=''>Graduation</a></li><li id="_42868" class=""><a href='/students/advising' class=''>Advising</a></li><li id="_42872" class=""><a href='/students/academic-maps' class=''>Academic Maps</a></li><li id="_42873" class=""><a href='/students/office-of-student-services' class=''>Office of Student Services</a></li><li id="_42874" class=""><a href='/students/presidents-and-deans-lists' class=''>President's and Dean's Lists</a></li></ul></li><li id="_42451" class=""><a href='/programs' class=''>PROGRAMS</a><ul id="_1_42451" class="_sub"><li id="_42683" class=""><a href='/programs/workforce-solutions' class=''>Workforce Solutions</a></li><li id="_42681" class=""><a href='/programs/distance-education' class=''>Distance Education</a></li><li id="_42682" class=""><a href='/programs/health-sciences' class=''>Health Sciences</a></li><li id="_42657" class=""><a href='/programs/career-tech' class=''>Career Tech</a></li><li id="_42656" class=""><a href='/programs/academic' class=''>Academic</a></li></ul></li><li id="_42453" class=""><a href='/mybscc' class=''>MyBSCC</a></li><li id="_42454" class=""><a href='/canvas' class=''>Canvas</a></li><li id="_42485" class=""><a href='/bookstore' class=''>Bookstore</a></li><li id="_42497" class=""><a href='/athletics' class=''>Athletics</a></li></ul>
+                    <!-- BEGIN MEGA MENUS-->
+<div class="sf-mega sf-mega-programs" style="display:none;">
+    <div class="block">
+        <div class="sf-mega-section-first">
+            <img alt="Programs" src="/Content/Uploads/bscc.edu/images/mega-img.png" />
+        </div>
+        
+        <div class="sf-mega-section">
+            <h2><a href="/programs/academic">Academic</a></h2>
+
+<ul>
+	<li><a href="/programs/academic#transfer">Transfer Advisement</a></li>
+	<li><a href="/programs/academic#partnerships">Partnerships</a></li>
+	<li><a href="https://alabamatransfers.com/" target="_blank">Alabama Transfers Guides</a></li>
+	<li><a href="/programs/distance-education">Distance Education</a></li>
+</ul>
+
+        </div>
+        
+        <div class="sf-mega-section">
+            <h2><a href="/programs/career-tech">Career Technical</a></h2>
+
+<ul>
+	<li><a href="/programs/career-tech/advanced-engineering-design-technology-edt">Advanced Engineering Design Technology (EDT)</a></li>
+	<li><a href="/programs/career-tech/air-conditioning-and-refrigeration">Air Conditioning &amp; Refrigeration</a></li>
+	<li><a href="/programs/career-tech/apprenticeship-program">Apprenticeship Program</a></li>
+	<li><a href="/programs/career-tech/automated-manufacturing-technology">Automated Manufacturing Technology</a></li>
+	<li><a href="/programs/career-tech/child-development">Child Development</a></li>
+	<li><a href="/programs/career-tech/computer-science">Computer Science</a></li>
+	<li><a href="/programs/career-tech/electrical-systems-technology">Electrical Systems Technology</a></li>
+	<li><a href="https://www.bscc.edu/programs/career-tech/facilities-maintenance-technology">Facilities Maintenance Technology</a></li>
+	<li><a href="/programs/career-tech/industrial-electrical-technology">Industrial Electrical Technology (IST)</a></li>
+	<li><a href="/programs/career-tech/electrical-systems-technology">Industrial Electronics Technology</a></li>
+	<li><a href="/programs/career-tech/machine-tool-technology">Machine Tool Technology</a></li>
+	<li><a href="/programs/career-tech/management-and-entrepreneurship">Management &amp; Entrepreneurship</a></li>
+	<li><a href="/programs/career-tech/mercedes-tech-program">Mercedes Tech Program</a></li>
+	<li><a href="/programs/career-tech/office-administration-and-technology-oat">Office Administration&nbsp;&amp; Technology (OAT)</a></li>
+	<li><a href="/programs/career-tech/salon-spa-management">Salon &amp; Spa Management</a></li>
+	<li><a href="/programs/career-tech/truck-driver-training">Truck Driver Training</a></li>
+	<li><a href="/programs/career-tech/utility-vegetation-management">Utility Vegetation Management</a></li>
+	<li><a href="/programs/career-tech/vehicle-technology-repair">Vehicle Technology &amp; Repair</a></li>
+	<li><a href="/programs/career-tech/welding-technology">Welding Technology</a></li>
+</ul>
+
+        </div>
+        
+        <div class="sf-mega-section">
+            <h2><a href="/programs/health-sciences">Health Sciences</a></h2>
+
+<ul>
+	<li><a href="/programs/health-sciences/nursing">Nursing</a></li>
+	<li><a href="/programs/health-sciences/surgical-technology">Surgical Technology</a></li>
+	<li><a href="/programs/health-sciences/phlebotomy">Phlebotomy</a></li>
+	<li><a href="/programs/health-sciences/medical-assisting-technology">Medical Assisting Technology</a></li>
+	<li><a href="/programs/health-sciences/dental-assistant">Dental Assistant</a></li>
+</ul>
+
+        </div>
+        
+        <div class="sf-mega-section">
+            <h2><a href="/programs/workforce-solutions">Workforce Solutions &amp;</a>&nbsp;<span style="color:#FFFFFF;">Economic Development</span></h2>
+
+<ul>
+	<li><a href="/programs/workforce-solutions/adult-educationged">Adult Education/GED</a></li>
+	<li><a href="/programs/workforce-solutions/best-robotics">BEST Robotics</a></li>
+	<li><a href="/programs/workforce-solutions/educational-opportunity-center">Educational Opportunity Center</a></li>
+	<li><a href="http://www.bscc.edu/programs/workforce-solutions/industrial-maintenance-technician-online-refresher-training">Industrial Maintenance Technician Online Refresher</a></li>
+	<li><a href="http://www.bscc.edu/programs/workforce-solutions/manufactured-home-installation-training">Manufactured Home Installation Training</a></li>
+	<li><a href="http://www.bscc.edu/programs/workforce-solutions/mssc">Manufacturing Skill&nbsp;Standards Council (MSSC)</a></li>
+	<li><a href="/programs/workforce-solutions/periop-101">PeriOp 101</a></li>
+	<li><a href="/programs/workforce-solutions/second-opportunity-system">Second Opportunity System (SOS)</a></li>
+</ul>
+
+        </div>
+    	<div class="clear"></div>
+    </div>
+</div>
+<!-- END MEGA MENUS -->
+                </nav>
+            </div>
+        	<div class="clear"></div>
+        </div>
+    	<div class="clear"></div>
+    </div>
+    </header>
+    <!-- Header End -->
+<!-- END HEADER -->
+    
+    <!-- BEGIN HOMEPAGE SLIDER-->
+<script>
+$(function() {
+    $('.rslides').responsiveSlides({
+        timeout: 6000,
+    	pager: true
+    });
+	
+    $('.rslides1_tabs').appendTo('.home-slider .pagination');
+});
+</script>
+
+<!-- Banner Start -->
+<div class="home-slider">
+    <ul class="rslides">
+        <li>
+    <img src="/Content/Uploads/bscc.edu/Images/Gallery/Normalized/Webstite BannerBaseball_norm.png" alt="Bevill State. Building Futures. Athletics Photo - Baseball.">
+    <div class='desc'><div class='content'><div class='text-block'><h2>Bevill State. Building Futures.</h2>
+
+<p style="line-height: 20.8px; text-align: justify;">Whether you need seamless academic transfer classes; high-wage, high-demand career technical or health science programs; rapid training opportunities that get you into the workforce quickly; dual enrollment, or adult education courses, Bevill State is your community college for quality education. Contact us today to see how we can help you, 800.648.3271.</p>
+
+<div class="link-block" style="line-height: 20.8px;"><a href="/students/apply-online">APPLY NOW</a></div>
+</div><div class='clear'></div></div></div>
+</li><li>
+    <img src="/Content/Uploads/bscc.edu/Images/Gallery/Normalized/Webstite Banner Cole_norm.png" alt="Bevill State. Building Futures. Advising photo - Student with Recruiter">
+    <div class='desc'><div class='content'><div class='text-block'><h2>Bevill State. Building Futures.</h2>
+
+<p style="line-height: 20.8px; text-align: justify;">Whether you need seamless academic transfer classes; high-wage, high-demand career technical or health science programs; rapid training opportunities that get you into the workforce quickly; dual enrollment, or adult education courses, Bevill State is your community college for quality education. Contact us today to see how we can help you, 800.648.3271.</p>
+
+<div class="link-block" style="line-height: 20.8px;"><a href="/students/apply-online">APPLY NOW</a></div>
+</div><div class='clear'></div></div></div>
+</li><li>
+    <img src="/Content/Uploads/bscc.edu/Images/Gallery/Normalized/Webstite Banner HVAC_norm.png" alt="HVAC Student">
+    <div class='desc'><div class='content'><div class='text-block'><h2>Bevill State. Building Futures.</h2>
+
+<p style="line-height: 20.8px; text-align: justify;">Whether you need seamless academic transfer classes; high-wage, high-demand career technical or health science programs; rapid training opportunities that get you into the workforce quickly; dual enrollment, or adult education courses, Bevill State is your community college for quality education. Contact us today to see how we can help you, 800.648.3271.</p>
+
+<div class="link-block" style="line-height: 20.8px;"><a href="/students/apply-online">APPLY NOW</a></div>
+</div><div class='clear'></div></div></div>
+</li><li>
+    <img src="/Content/Uploads/bscc.edu/Images/Gallery/Normalized/Webstite Banner Nurses_norm.png" alt="Nursing Students in Class">
+    <div class='desc'><div class='content'><div class='text-block'><h2>Bevill State. Building Futures.</h2>
+
+<p style="line-height: 20.8px; text-align: justify;">Whether you need seamless academic transfer classes; high-wage, high-demand career technical or health science programs; rapid training opportunities that get you into the workforce quickly; dual enrollment, or adult education courses, Bevill State is your community college for quality education. Contact us today to see how we can help you, 800.648.3271.</p>
+
+<div class="link-block" style="line-height: 20.8px;"><a href="/students/apply-online">APPLY NOW</a></div>
+</div><div class='clear'></div></div></div>
+</li>
+    </ul>
+    
+    <div class="desc-pagination">
+    <div class="content">
+        <div class="pagination">
+        </div>
+    </div>
+    </div>
+</div>
+<!-- Banner End -->
+<!-- END HOMEPAGE SLIDER -->
+
+<!-- Body Start -->
+<div class="body-top-block">
+    <div id="maincontent" class="content">
+        <p style="text-align: center;"><span style="font-size:28px;">Bevill State's four main campuses, and one instructional site, offer university parallel and applied technology educational opportunities to over one-quarter million people in a seven county area. With a service area that spans over 4,600 square miles, from the Birmingham city limits to the Mississippi state line, Your Story Starts at Bevill State!</span></p>
+
+    
+        <aside>
+	<a href="/students">
+        <img src="/Content/Uploads/bscc.edu/Images/Content/icon6.png" alt="">
+        <h2>Student Services</h2>
+    </a>
+</aside><aside>
+	<a href="/programs">
+        <img src="/Content/Uploads/bscc.edu/Images/Content/icon7.png" alt="">
+        <h2>Programs</h2>
+    </a>
+</aside><aside>
+	<a href="/about/contact">
+        <img src="/Content/Uploads/bscc.edu/Images/Content/icon5.png" alt="">
+        <h2>Contact Us</h2>
+    </a>
+</aside>
+    	<div class="clear"></div>
+    </div>
+</div>
+
+<!--career coach widget-->
+
+<!-- Programs Start -->
+<div class="feature-block programs-block">
+<div class="content">
+    <div class="inner-content" >
+        <aside class="lt-block">
+            <div class="default">
+                <h2>Career Coach</h2>
+                <h3>Discover Your Story.</h3>
+            </div>
+            <a href="https://bscc.emsicc.com/">Career Coach</a>
+        	<div class="clear"></div>
+        </aside>
+        
+        <aside class="rt-block">
+            <ul>
+	<li class="last"><img alt="" src="/Content/Uploads/bscc.edu/images/AdDesignEng-00049.png" style="margin: 1px;" /></li>
+	<li class="last"><img alt="" src="/Content/Uploads/bscc.edu/images/AppleSwift.png" style="margin: 1px;" /></li>
+	<li class="last"><img alt="" src="/Content/Uploads/bscc.edu/images/AutoBodyRepair-00027.png" style="margin: 1px;" /></li>
+	<li class="last"><img alt="" src="/Content/Uploads/bscc.edu/images/MachineToolTech-00030.png" style="margin: 1px;" /></li>
+	<li class="last"><img alt="" src="/Content/Uploads/bscc.edu/images/SalonSpa.png" style="margin: 1px;" /></li>
+</ul>
+
+        </aside>
+    	<div class="clear"></div>
+    </div>
+	<div class="clear"></div>
+</div>
+</div>
+<!-- Programs End -->
+
+<div class="body-md-block">
+<div class="content">
+    <div class="tab-block">
+        <a href="#" onclick="displayNews(); return false;" class="active">BEVILL STATE NEWS</a>
+        <a href="#" onclick="displaySocial(); return false;" class="last">SOCIAL MEDIA</a>
+    	<div class="clear"></div>
+    </div>
+    
+    <div id="dvNews" class="tab-content-block">
+        <aside>
+    <p id="date">Oct 22, 2026</p>
+    <h3><a href="/about/news/mccay-named-new-dean-of-health-sciences-for-bevill-state">McCay named new dean of health sciences for Bevill State</a></h3>
+    <p>Dr. Kristen McCay was recently named Bevill State Community College’s new dean of health sciences. McCay has been with Bevill State since 2020, first working as a nursing instructor in Sumiton and most recently as the nursing simulation coordinator in Jasper. </p>
+    <!-- <p>Full Story »</p> -->
+</aside><aside>
+    <p id="date">Oct 06, 2026</p>
+    <h3><a href="/about/news/new-restaurant-to-open-on-jasper-campus">New restaurant to open on Jasper campus</a></h3>
+    <p>A new restaurant will soon open on Bevill State’s Jasper campus. Frederick’s Café will be located in the Frances Israel Cafeteria in the Wade Math & Science Building. It will be operated by Dan Frederick, who also owns Bevill Café on the college’s Sumiton campus.</p>
+    <!-- <p>Full Story »</p> -->
+</aside><aside>
+    <p id="date">Oct 06, 2026</p>
+    <h3><a href="/about/news/mcdaniel-serving-in-new-leadership-role-at-bevill-state">McDaniel serving in new leadership role at Bevill State</a></h3>
+    <p>Shawn McDaniel has been named vice president of instruction and student services for Bevill State Community College.</p>
+    <!-- <p>Full Story »</p> -->
+</aside>
+        <a class="site-button" href="about/news">View All News</a>
+    	<div class="clear"></div>
+    </div>
+    
+    
+    <div id="dvSocial" class="tab-content-block" style="display:none;">
+        <div style="width:100%;clear:both;">
+            <div class="social-facebook">
+            	<div class="fb-page" id="fb1" data-href="https://www.facebook.com/BevillStateCC" data-width="500" data-height="600" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false"></div>
+            	<div class="fb-page" id="fb2" data-href="https://www.facebook.com/BevillStateCC" data-width="400" data-height="600" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false"></div>
+            	<div class="fb-page" id="fb3" data-href="https://www.facebook.com/BevillStateCC" data-width="300" data-height="600" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false"></div>
+            </div>
+            <div class="social-twitter">
+            	<a class="twitter-timeline" data-height="600" data-tweet-limit="3" href="https://twitter.com/bevillstate">Tweets by bevillstate</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+           	</div>
+        </div>
+    </div>
+	<div class="clear"></div>
+</div>
+</div>
+
+
+<!-- Body End -->
+    
+    <!-- BEGIN FOOTER-->
+    <!-- Footer Start -->
+    <footer id="footer">
+    <div class="content">
+        <div class="lt-block">
+            <a href="/"><img src="/Content/Uploads/bscc.edu/images/BSCC-round-footer-logo.png" alt="Bevill State Community College"></a>
+            
+            <p>Bevill State Community College © 2026<br>
+            
+            <a href="/about/institutional-effectiveness-research/accreditation">Accreditation</a> | <a href="/non-discrimination-policy">Non-discrimination Policy</a> | <a href="https://translate.google.com/translate?js=n&amp;prev=_t&amp;hl=en&amp;ie=UTF-8&amp;layout=2&amp;eotf=1&amp;sl=en&amp;tl=es&amp;u=www.bscc.edu&amp;act=url" target="_blank">Espanol</a>
+
+<p></p>
+
+            
+            <div class="social-block">
+                <p><a href="https://twitter.com/bevillstate"><img alt="Twitter" src="/Content/Uploads/bscc.edu/images/social-icon1.png" /></a> <a href="https://www.facebook.com/BevillStateCC/" target="_blank"><img alt="Facebook" src="/Content/Uploads/bscc.edu/images/social-icon2.png" /></a>&nbsp;<a href="https://www.instagram.com/bevillstate/" target="_blank"><img alt="Instagram" src="/Content/Uploads/bscc.edu/images/instagram-icon.png" style="margin: 1px;" /></a>&nbsp;<a href="https://www.youtube.com/bevillstatecommunitycollege" target="_blank"><img alt="YouTube" src="/Content/Uploads/bscc.edu/images/youtube-icon.png" style="margin: 1px;" /></a></p>
+
+<p><a href="http://www.in10sity.net" target="_blank">Website Design by In10sity</a></p>
+
+            	<div class="clear"></div>
+            </div>
+        </div>
+        
+        <div class="rt-block">
+            <div class="top-block">
+                <aside>
+                    <ul>
+	<li><a href="/students/current-students/academic-calendar"><u>Academic Calendar 2025-2026</u></a>&nbsp;| <a href="/Content/Uploads/bscc.edu/files/Bevill%20State%202026-27%20College%20Calendar%20Official%202-10-26.pdf"><u>2026-2027</u></a></li>
+	<li><u><a href="/about/institutional-effectiveness-research/accreditation">Accreditation</a></u></li>
+	<li><u><a href="https://www.accs.edu/about-accs/job-postings/">ACCS Employment Opportunities</a></u></li>
+	<li><u><a href="https://www.accs.edu/wp-content/uploads/2019/04/Formal-Complaint.pdf">ACCS Formal Complaints (PDF)</a></u></li>
+	<li><u><a href="http://www.bscc.edu/accs-student-complaint-process">ACCS Student Complaint Process</a></u></li>
+	<li><u><a href="/programs/workforce-solutions/adult-educationged">Adult Education/GED</a></u></li>
+	<li><u><a href="https://www.accs.edu">Alabama Community College System</a></u></li>
+	<li><u><a href="http://alabamaworks.alabama.gov">Alabama Career Center&nbsp;(AlabamaWorks)</a></u></li>
+	<li><a href="https://alabamatransfers.com/" target="_blank"><u>Alabama Transfers Guides</u></a></li>
+	<li><a href="https://bevillstate.my.site.com/apply"><u>Applicant&nbsp;Dashboard</u></a></li>
+	<li><u><a href="https://bevillstate.my.site.com/apply">Apply Online</a></u></li>
+	<li><u><a href="https://www.athletics.bscc.edu/">Athletics</a></u></li>
+	<li><u><a href="/students/current-students/bear-alert">Bear Alert</a></u></li>
+	<li><u><a href="/students/student-resources/technology">Bear Growl</a></u></li>
+</ul>
+
+                </aside>
+                
+                <aside>
+                    <ul>
+	<li><u><a href="https://bscc.bncollege.com">Bevill State Bookstore</a></u></li>
+	<li><u><a href="/about/news">Campus News</a></u></li>
+	<li><u><a href="/about/at-a-glance/campus-security">Campus Security</a></u></li>
+	<li><u><a href="https://experience.elluciancloud.com/bscc/" target="_blank">Canvas</a></u>&nbsp;| <u><a href="https://www.bscc.edu/students/current-students/canvas-assistance">Canvas Assistance</a></u></li>
+	<li><u><a href="https://catalog.bscc.edu/">College Catalog</a></u></li>
+	<li><u><a href="/about/consumer-student-information">Consumer Student Information</a></u></li>
+	<li><u><a href="/contact">Contact Us</a></u></li>
+	<li><u><a href="https://bevillstate.my.site.com/gcportal">Counselor Dashboard</a></u></li>
+	<li><u><a href="https://reg-prod.ec.accs.edu/StudentRegistrationSsb/ssb/term/termSelection?mode=search&amp;mepCode=BSCC">Course Schedule</a></u></li>
+	<li><u><a href="/coronavirus">COVID-19</a></u></li>
+	<li><u><a href="/students/current-students/student-ada-accommodations">Disability Services</a></u></li>
+	<li><u><a href="https://employees.bscc.edu">Employees</a></u></li>
+	<li><u><a href="https://outlook.office.com">Employee Webmail</a></u></li>
+	<li><u><a href="/about/employment-opportunities">Employment Opportunities</a></u></li>
+</ul>
+
+                </aside>
+                
+                <aside class="last">
+                    <ul>
+	<li><u><a href="/about/faq">FAQ</a></u></li>
+	<li><u><a href="/students/current-students/forms-publications-applications">Forms &amp; Publications</a></u></li>
+	<li><u><a href="/students/student-resources/library">Library</a></u></li>
+	<li><u><a href="/live-chat">Live Chat</a></u></li>
+	<li><a href="https://experience.elluciancloud.com/bscc/"><u>MyBSCC</u></a></li>
+	<li><a href="https://www.bscc.edu/students/current-students/mybscc-assistance"><u>MyBSCC Assistance</u></a></li>
+	<li><u><a href="https://app.meadowfi.com/bscc">Net Price Calculator</a></u></li>
+	<li><u><a href="/about/at-a-glance/financial-data">Operating Financial Data</a></u></li>
+	<li><u><a href="/students/financial-aid/payment-plan">Payment Plan</a></u></li>
+	<li><u><a href="https://portal.office.com">Student Email Login</a></u></li>
+	<li><u><a href="/students/title-ix">Title IX</a></u></li>
+	<li><u><a href="https://www.bscc.edu/students/student-resources/technology/wifi-instructions">WiFi on Campus</a></u></li>
+</ul>
+
+                </aside>
+            	<div class="clear"></div>
+            </div>
+            
+            <p>Privacy Policy: Any personal information that you may share with Bevill State Community College is kept absolutely private. Neither your name nor anything about you is sold or shared with any other company or agency or institution. Occasionally, we may contact you to make you aware of upcoming events. However, we do respect your right to privacy and will not send notices if you contact us and opt out of future notices.</p>
+        </div>
+    	<div class="clear"></div>
+    </div>
+    </footer>
+    <!-- Footer End -->
+</div>
+<!-- END FOOTER -->
+
+
+    <script type="text/javascript">
+    	/*<![CDATA[*/
+    	(function() {
+    		var sz = document.createElement('script'); sz.type = 'text/javascript'; sz.async = true;
+    		sz.src = '//siteimproveanalytics.com/js/siteanalyze_22441.js';
+    		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sz, s);
+    	})();
+    	/*]]>*/
+    </script>
+    
+    <!-- Tracking tag. Place in the <body> section of webpage -->
+    <!-- Privacy policy at http://tag.brandcdn.com/privacy -->
+    <script type="text/javascript" src="//tag.brandcdn.com/autoscript/Bevill_State_Community_College.js"></script>
+    <!-- Tracking tag. Place in the <body> section of webpage -->
+    <!-- Privacy policy at http://tag.brandcdn.com/privacy -->
+    <script type="text/javascript" src="//tag.brandcdn.com/autoscript/bevillstateadulteducation_vfzstmvrouvwwgs9/Bevill_State_Adult_Education.js"></script>
+    <!-- Tracking tag. Place in the <body> section of webpage -->
+    <!-- Privacy policy at http://tag.brandcdn.com/privacy -->
+    <script type="text/javascript" src="//tag.brandcdn.com/autoscript/bevillstatecommunitycollege_vgtsqmvrnuvvvee9/Bevill_State_Community_College.js"></script>
+
+
+</body>
+</html>
+
+
+
+
+
+
+

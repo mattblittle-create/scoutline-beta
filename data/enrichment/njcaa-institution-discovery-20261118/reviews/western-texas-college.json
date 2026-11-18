@@ -1,0 +1,44 @@
+{
+  "slug": "western-texas-college",
+  "name": "Western Texas College",
+  "collegeId": "cmox1gky300cxqtsgcg0ex03r",
+  "programId": "cmox1gkyq00czqtsgijdtd275",
+  "storedState": "TX",
+  "storedDivision": "NJCAA_D1",
+  "directoryMatch": {
+    "unitid": "229832",
+    "name": "Western Texas College",
+    "aliases": [],
+    "state": "TX",
+    "city": "Snyder",
+    "host": "wtc.edu",
+    "decision": "UNIQUE_EXACT_NAME_OR_ALIAS_AND_STATE_DISCOVERY_LEAD_ONLY"
+  },
+  "directoryMatchStatus": "DISCOVERY_LEAD_NOT_CURRENT_CAMPUS_VERIFIED",
+  "needsHeadCoach": true,
+  "needs2027Roster": true,
+  "newPagesAttempted": 1,
+  "pages": [
+    {
+      "requestedUrl": "https://wtc.edu/",
+      "checkedAtUtc": "2026-11-18T16:20:39.923Z",
+      "status": "FAILED",
+      "errorType": "Error",
+      "kind": "INSTITUTIONAL_DIRECTORY_HOST_LEAD",
+      "parent": {
+        "sourcePath": "../../geography/us-college-locations-ipeds2024.json",
+        "unitid": "229832",
+        "publishedName": "Western Texas College",
+        "state": "TX",
+        "city": "Snyder"
+      }
+    }
+  ],
+  "unfetchedPublishedLeads": [],
+  "publishedLeads": [],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "campusIdentityReviewRequired": true,
+  "currentMembershipVerified": false,
+  "importApproval": "NOT_GRANTED"
+}

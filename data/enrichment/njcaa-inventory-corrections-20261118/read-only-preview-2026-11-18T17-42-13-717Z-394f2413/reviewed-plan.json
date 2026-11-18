@@ -1,0 +1,176 @@
+{
+  "summary": {
+    "checkedAtUtc": "2026-11-18T17:42:13.717Z",
+    "mode": "READ_ONLY_NJCAA_INVENTORY_CORRECTIONS_PREVIEW_PASSED",
+    "databaseWrites": 0,
+    "transactionReadOnly": "on",
+    "candidateSHA256": "888e824b50f2e3684e58c4d93333d3d2932995be6670c5ad435d0cd2f17e1580",
+    "programsProposed": 5,
+    "divisionCorrectionsProposed": 2,
+    "institutionStateCorrectionsProposed": 3,
+    "obsoleteScholarshipFieldsClearedProposed": 4,
+    "programFieldChangesProposed": 6,
+    "collegeFieldChangesProposed": 3,
+    "fieldChangesProposed": 9,
+    "recordCreations": 0,
+    "newCoaches": 0,
+    "newPlayers2027": 0,
+    "newSnapshots2027": 0,
+    "globalCollegesPreserved": 1580,
+    "globalCoachesPreserved": 5369,
+    "globalPlayersPreserved": 23633,
+    "globalSnapshotsPreserved": 602,
+    "fullStateSectionsCompared": 16,
+    "existingOwnershipAndVerificationMetadataPreserved": true,
+    "priorApprovedImportsPreserved": true,
+    "recordDeletions": 0,
+    "recordMerges": 0,
+    "verificationPromotions": 0,
+    "youtubeUpdates": 0,
+    "statusChanges": 0,
+    "collegeMirrorChanges": 0,
+    "crossFilterDivisionHoldsRetained": 51,
+    "newProgramAndTransitionHoldsRetained": true,
+    "nationalBaseballInventoryVerified": false,
+    "jucoEnrichmentComplete": false,
+    "importApproval": "NOT_GRANTED"
+  },
+  "candidate": {
+    "scope": "NJCAA_INVENTORY_CORRECTIONS_20261118",
+    "approval": "NOT_GRANTED",
+    "baseline": "../njcaa-inventory-exceptions-20261118/read-only-review-2026-11-18T17-38-52-569Z-12b987a2/fresh-read-only-snapshot.json",
+    "changes": [
+      {
+        "collegeId": "cmox236wf004uqtfkq9k0imgp",
+        "programId": "cmox236x4004wqtfk3ewlpqm1",
+        "slug": "harper-college",
+        "model": "CollegeBaseballProgram",
+        "field": "division",
+        "before": "NJCAA_D3",
+        "after": "NJCAA_D2",
+        "sourceKeys": [
+          "harper"
+        ],
+        "reason": "Correct baseball division using captured 2026-27 directory and institutional corroboration."
+      },
+      {
+        "collegeId": "cmox2374u005cqtfk4dijqisw",
+        "programId": "cmox2375h005eqtfk7891fcuj",
+        "slug": "hocking",
+        "model": "CollegeBaseballProgram",
+        "field": "division",
+        "before": "NJCAA_D2",
+        "after": "NJCAA_D3",
+        "sourceKeys": [
+          "hocking"
+        ],
+        "reason": "Correct baseball division using captured 2026-27 directory and institutional corroboration."
+      },
+      {
+        "collegeId": "cmox23969009oqtfklqdhm5d3",
+        "programId": "cmox2396z009qqtfk9ofh29kf",
+        "slug": "northern-oklahoma-college-tonkawa",
+        "model": "College",
+        "field": "state",
+        "before": "WA",
+        "after": "OK",
+        "sourceKeys": [
+          "tonkawa",
+          "tonkawaStaff"
+        ],
+        "reason": "Correct institution state from official campus address."
+      },
+      {
+        "collegeId": "cmox23aeu00c9qtfkozc5m18v",
+        "programId": "cmox23afh00cbqtfk0atvylh5",
+        "slug": "southwest-virginia",
+        "model": "College",
+        "field": "state",
+        "before": "IA",
+        "after": "VA",
+        "sourceKeys": [
+          "swva"
+        ],
+        "reason": "Correct institution state from official campus address."
+      },
+      {
+        "collegeId": "cmox2o29b003oqtbkoza2ug5s",
+        "programId": "cmox2o2a6003qqtbk8rnhxpfc",
+        "slug": "minnesota-north-college-itasca",
+        "model": "College",
+        "field": "state",
+        "before": "CA",
+        "after": "MN",
+        "sourceKeys": [
+          "mn",
+          "itasca"
+        ],
+        "reason": "Correct institution state from official campus address."
+      },
+      {
+        "collegeId": "cmox236wf004uqtfkq9k0imgp",
+        "programId": "cmox236x4004wqtfk3ewlpqm1",
+        "slug": "harper-college",
+        "model": "CollegeBaseballProgram",
+        "field": "scholarshipNotes",
+        "before": "NJCAA Division III programs do not offer athletic scholarships, but student-athletes may receive academic, need-based, and other non-athletic aid.",
+        "after": null,
+        "sourceKeys": [
+          "harper"
+        ],
+        "reason": "Clear generic scholarship metadata associated with the superseded division; no new scholarship availability claim."
+      },
+      {
+        "collegeId": "cmox236wf004uqtfkq9k0imgp",
+        "programId": "cmox236x4004wqtfk3ewlpqm1",
+        "slug": "harper-college",
+        "model": "CollegeBaseballProgram",
+        "field": "scholarshipInfoUrl",
+        "before": "https://www.njcaa.org/",
+        "after": null,
+        "sourceKeys": [
+          "harper"
+        ],
+        "reason": "Clear generic scholarship metadata associated with the superseded division; no new scholarship availability claim."
+      },
+      {
+        "collegeId": "cmox2374u005cqtfk4dijqisw",
+        "programId": "cmox2375h005eqtfk7891fcuj",
+        "slug": "hocking",
+        "model": "CollegeBaseballProgram",
+        "field": "scholarshipNotes",
+        "before": "NJCAA Division II programs may offer athletic scholarships, subject to NJCAA and institutional limits.",
+        "after": null,
+        "sourceKeys": [
+          "hocking"
+        ],
+        "reason": "Clear generic scholarship metadata associated with the superseded division; no new scholarship availability claim."
+      },
+      {
+        "collegeId": "cmox2374u005cqtfk4dijqisw",
+        "programId": "cmox2375h005eqtfk7891fcuj",
+        "slug": "hocking",
+        "model": "CollegeBaseballProgram",
+        "field": "scholarshipInfoUrl",
+        "before": "https://www.njcaa.org/",
+        "after": null,
+        "sourceKeys": [
+          "hocking"
+        ],
+        "reason": "Clear generic scholarship metadata associated with the superseded division; no new scholarship availability claim."
+      }
+    ],
+    "creates": [],
+    "newCoaches": 0,
+    "newPlayers2027": 0,
+    "newSnapshots2027": 0,
+    "recordDeletions": 0,
+    "recordMerges": 0,
+    "verificationPromotions": 0,
+    "youtubeUpdates": 0,
+    "statusChanges": 0,
+    "collegeMirrorChanges": 0,
+    "nationalBaseballInventoryVerified": false,
+    "jucoEnrichmentComplete": false
+  }
+}

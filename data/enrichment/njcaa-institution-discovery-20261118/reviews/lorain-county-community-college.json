@@ -1,0 +1,44 @@
+{
+  "slug": "lorain-county-community-college",
+  "name": "Lorain County Community College",
+  "collegeId": "cmox2o2210039qtbkozottt6r",
+  "programId": "cmox2o22q003bqtbk9ej8c3d5",
+  "storedState": "OH",
+  "storedDivision": "NJCAA_D3",
+  "directoryMatch": {
+    "unitid": "203748",
+    "name": "Lorain County Community College",
+    "aliases": [
+      "LCCC"
+    ],
+    "state": "OH",
+    "city": "Elyria",
+    "host": "lorainccc.edu",
+    "decision": "UNIQUE_EXACT_NAME_OR_ALIAS_AND_STATE_DISCOVERY_LEAD_ONLY"
+  },
+  "directoryMatchStatus": "DISCOVERY_LEAD_NOT_CURRENT_CAMPUS_VERIFIED",
+  "needsHeadCoach": true,
+  "needs2027Roster": true,
+  "newPagesAttempted": 0,
+  "pages": [
+    {
+      "requestedUrl": "https://lorainccc.edu/",
+      "finalUrl": "https://lorainccc.edu/",
+      "status": "HELD_ACCESS_NOT_RETRIED",
+      "parent": {
+        "sourcePath": "../../geography/us-college-locations-ipeds2024.json",
+        "unitid": "203748",
+        "publishedName": "Lorain County Community College",
+        "state": "OH",
+        "city": "Elyria"
+      }
+    }
+  ],
+  "unfetchedPublishedLeads": [],
+  "publishedLeads": [],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "campusIdentityReviewRequired": true,
+  "currentMembershipVerified": false,
+  "importApproval": "NOT_GRANTED"
+}

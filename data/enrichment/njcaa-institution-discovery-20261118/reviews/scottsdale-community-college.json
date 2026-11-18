@@ -1,0 +1,47 @@
+{
+  "slug": "scottsdale-community-college",
+  "name": "Scottsdale Community College",
+  "collegeId": "cmox23a2400biqtfknqf9i88p",
+  "programId": "cmox23a2u00bkqtfkteikxml6",
+  "storedState": "AZ",
+  "storedDivision": "NJCAA_D2",
+  "directoryMatch": {
+    "unitid": "105747",
+    "name": "Scottsdale Community College",
+    "aliases": [],
+    "state": "AZ",
+    "city": "Scottsdale",
+    "host": "scottsdalecc.edu",
+    "decision": "UNIQUE_EXACT_NAME_OR_ALIAS_AND_STATE_DISCOVERY_LEAD_ONLY"
+  },
+  "directoryMatchStatus": "DISCOVERY_LEAD_NOT_CURRENT_CAMPUS_VERIFIED",
+  "needsHeadCoach": true,
+  "needs2027Roster": true,
+  "newPagesAttempted": 1,
+  "pages": [
+    {
+      "requestedUrl": "https://scottsdalecc.edu/",
+      "checkedAtUtc": "2026-11-18T16:21:33.145Z",
+      "finalUrl": "https://scottsdalecc.edu/",
+      "status": 403,
+      "contentType": "text/html; charset=UTF-8",
+      "sha256": "10e1043e42f83a87eb040618f94478f25d22f678f01ac1ff8869d67d8c471018",
+      "sourcePath": "sources/2239f17e18fd21f03a91dfe040903d4eb3d48cb5e131320cd55972b4cd48b07d.source",
+      "kind": "INSTITUTIONAL_DIRECTORY_HOST_LEAD",
+      "parent": {
+        "sourcePath": "../../geography/us-college-locations-ipeds2024.json",
+        "unitid": "105747",
+        "publishedName": "Scottsdale Community College",
+        "state": "AZ",
+        "city": "Scottsdale"
+      }
+    }
+  ],
+  "unfetchedPublishedLeads": [],
+  "publishedLeads": [],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "campusIdentityReviewRequired": true,
+  "currentMembershipVerified": false,
+  "importApproval": "NOT_GRANTED"
+}

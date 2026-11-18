@@ -1,0 +1,41 @@
+{
+  "slug": "williston-state-college",
+  "collegeId": "cmox23b1a00dlqtfkj3zj56u5",
+  "programId": "cmox23b1z00dnqtfkm75g2u5j",
+  "name": "Williston State College",
+  "storedState": "ND",
+  "storedDivision": "NJCAA_D2",
+  "checkedAtUtc": "2026-11-18T14:21:25.180Z",
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "currentMembershipVerified": false,
+  "campusIdentityVerified": false,
+  "importApproval": "NOT_GRANTED",
+  "pages": [
+    {
+      "requestedUrl": "https://wsc.prestosports.com/sports/bsb/index",
+      "kind": "DIRECTORY_ALIAS_REQUIRES_CAMPUS_REVIEW",
+      "parent": {
+        "sourcePath": "../njcaa-discovery-20261118/sources/directory-1.source",
+        "sha256": "496ce44f9a76dc28894dc481d97424ffa3efb0cc8fe8f218363abbc43f06de00",
+        "label": "Williston State"
+      },
+      "status": 403,
+      "finalUrl": "https://wsc.prestosports.com/sports/bsb/index",
+      "checkedAtUtc": "2026-11-18T14:21:27.354Z",
+      "sourcePath": "sources/williston-state-college-0.source",
+      "sha256": "ae3889c9cbd56b4883e2d7510cd222300e487d8be63d59488850e255f06eb02d"
+    }
+  ],
+  "discoveryAliases": [
+    {
+      "url": "https://wsc.prestosports.com/sports/bsb/index",
+      "label": "Williston State",
+      "parentSourcePath": "sources/directory-1.source",
+      "parentSHA256": "496ce44f9a76dc28894dc481d97424ffa3efb0cc8fe8f218363abbc43f06de00",
+      "parentUrl": "https://www.thebaseballobserver.com/njcaa-dii-baseball",
+      "status": "UNVERIFIED_NORMALIZED_NAME_LEAD"
+    }
+  ],
+  "status": "HELD_NO_READABLE_SOURCE"
+}

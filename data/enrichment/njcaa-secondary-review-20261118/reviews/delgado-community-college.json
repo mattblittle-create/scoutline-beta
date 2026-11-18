@@ -1,0 +1,72 @@
+{
+  "slug": "delgado-community-college",
+  "programId": "cmox1ggaq002zqtsg4cqvagia",
+  "collegeId": "cmox1gga3002xqtsgnsdkdx19",
+  "checkedAtUtc": "2026-11-18T14:43:29.724Z",
+  "sourcePath": "../njcaa-discovery-20261118/sources/delgado-community-college-1.source",
+  "sourceSHA256": "8be662356b5c88242cfd22f830cdc3ef89f08278195fd3a5bb9f96c466b85952",
+  "sourceUrl": "https://delgadoathletics.com/sports/baseball",
+  "socialLeads": [],
+  "recruitingLeads": [
+    {
+      "url": "https://delgadoathletics.com/sb_output.aspx?form=12",
+      "label": "Prospect Questionnaire",
+      "context": "",
+      "kind": "QUESTIONNAIRE"
+    }
+  ],
+  "logoLeads": [
+    {
+      "url": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/dcc.sidearmsports.com/images/responsive_2020/logo-nav.svg",
+      "label": "Delgado Community College undefined"
+    },
+    {
+      "url": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/dcc.sidearmsports.com/images/responsive_2020/dcc-load.svg",
+      "label": "Delgado Community College undefined"
+    }
+  ],
+  "captures": [
+    {
+      "requestedUrl": "https://delgadoathletics.com/sb_output.aspx?form=12",
+      "kind": "QUESTIONNAIRE",
+      "status": 200,
+      "finalUrl": "https://delgadoathletics.com/sb_output.aspx?form=12",
+      "contentType": "text/html; charset=utf-8",
+      "sourcePath": "sources/delgado-community-college-0.source",
+      "sha256": "08a4715fec6fb07bed0f93e1148cc870c827415f5b0a5cf8801ec748aa8fd46e"
+    },
+    {
+      "requestedUrl": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/dcc.sidearmsports.com/images/responsive_2020/logo-nav.svg",
+      "kind": "LOGO_ASSET",
+      "status": 200,
+      "finalUrl": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/dcc.sidearmsports.com/images/responsive_2020/logo-nav.svg",
+      "contentType": "image/svg+xml",
+      "sourcePath": "sources/delgado-community-college-1.source",
+      "sha256": "deae5867379e48c701e88c854320f2ff9250a8f44daacf7ca7aa9773a075a443",
+      "decoded": {
+        "format": "svg",
+        "width": 140,
+        "height": 165
+      },
+      "assetDecoded": true
+    },
+    {
+      "requestedUrl": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/dcc.sidearmsports.com/images/responsive_2020/dcc-load.svg",
+      "kind": "LOGO_ASSET",
+      "status": 200,
+      "finalUrl": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/dcc.sidearmsports.com/images/responsive_2020/dcc-load.svg",
+      "contentType": "image/svg+xml",
+      "sourcePath": "sources/delgado-community-college-2.source",
+      "sha256": "a6bf49de0f9ce066c8c75b9a39d69da3273c352e6e810c1fd2117466d0a6a79d",
+      "decoded": {
+        "format": "svg",
+        "width": 185,
+        "height": 220
+      },
+      "assetDecoded": true
+    }
+  ],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED"
+}

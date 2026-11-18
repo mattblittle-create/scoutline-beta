@@ -1,0 +1,796 @@
+<!DOCTYPE HTML><html lang="en">
+   <head><!-- OU Search Ignore Start Here -->
+<!-- headcode include -->
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<link rel="canonical" href="https://sunyjefferson.edu/">
+
+<meta name="msapplication-TileColor" content="#820024"/>
+<meta name="theme-color" content="#ffffff"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel="apple-touch-icon" sizes="180x180" href="/_resources/images/apple-touch-icon.png"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/_resources/images/favicon-32x32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="/_resources/images/favicon-16x16.png"/>
+<link rel="manifest" href="/_resources/site.webmanifest"/>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin" />
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i,800" rel="stylesheet"/>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous"/>
+<!-- OUnote: necessary for directory-landing -->	
+    <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+<!-- OUnote: END- necessary for directory-landing -->	
+<link rel="stylesheet" id="mainCss" href="/_resources/css/jefferson.css?v=2.13"/>
+<link href="/_resources/fontawesome/css/fontawesome.min.css" rel="stylesheet" />
+<link href="/_resources/fontawesome/css/solid.min.css" rel="stylesheet" />
+<!-- oustyles -->
+<link rel="stylesheet" href="/_resources/css/oustyles.css" />
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NHNGLHW');</script>
+<!-- End Google Tag Manager -->
+
+<!-- Slate Tracking Code -->
+<script async="async" src="https://apply.sunyjefferson.edu/ping">/**/</script>
+<!-- END Slate Tracking Code -->
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1664590200383248');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" alt="" style="display:none"
+src="https://www.facebook.com/tr?id=1664590200383248&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+<!-- Swiper CSS and JS -->
+<link rel="stylesheet" href="/_resources/css/swiper-bundle.min.css" />
+<script src="/_resources/js/swiper-bundle.min.js" defer="defer"></script>
+<!-- End Swiper CSS and JS -->
+      <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet">
+      <style>
+		.play-pause-button {
+			 position: absolute;
+			 left: 84%;
+			 margin-top: 20px;
+			 z-index: 1;
+			 display: flex;
+			 background-color: rgba(255, 255, 255, 0.629);
+		  }
+
+		  .play-pause-button-img {
+			 width: 20px;
+			 height: 20px;
+			 align-self: center;
+		  }
+		</style>
+      
+      		
+      <style>
+			.zoom {
+			padding: 5px;
+			transition: transform .5s;
+			margin: 0 auto;
+			}
+
+			.zoom:hover {
+			transform: scale(1.2);
+			}
+			@media (min-width: 576px) {
+    .heroContent {width:500px !important;}
+		
+.slider-play-pause-btn:hover,
+.slider-play-pause-btn:focus {
+    background-color: #730b1d;
+    color: #ffffff;
+    border-color: #ffffff;
+    outline: none;
+}
+			/* --- 1. Pagination Bullets with White Border --- */
+.home-hero-swiper .swiper-pagination-bullet {
+    width: 12px;
+    height: 12px;
+    background: rgba(0, 0, 0, 0.4);
+    border: 2px solid #ffffff; /* White stroke */
+    opacity: 1;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.home-hero-swiper .swiper-pagination-bullet-active {
+    background: #730b1d; /* Brand color fill when active */
+    border-color: #ffffff;
+    transform: scale(1.15);
+}
+
+/* --- 2. Navigation Arrows with White Border and Contrast Circle --- */
+.home-hero-swiper .swiper-button-next,
+.home-hero-swiper .swiper-button-prev {
+    background-color: rgba(255, 255, 255, 0.85); /* Semi-transparent white backing */
+    border: 2px solid #ffffff;                     /* Crisp white stroke */
+    border-radius: 50%;                            /* Circular button shape */
+    width: 46px;
+    height: 46px;
+    color: #730b1d;                                /* Brand color arrow icon */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);     /* Subtle depth shadow */
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Hover/Focus State */
+.home-hero-swiper .swiper-button-next:hover,
+.home-hero-swiper .swiper-button-prev:hover {
+    background-color: #730b1d;
+    color: #ffffff;
+}
+
+/* Adjust size of the SVG arrow icon inside the circular button */
+.home-hero-swiper .swiper-button-next svg,
+.home-hero-swiper .swiper-button-prev svg {
+    width: 12px;
+    height: 12px;
+}
+		@media (max-width: 768px) {
+  /* Keep heroContent absolute so it overlays the image, but pad the bottom for controls */
+  .home-hero-swiper .heroContent {
+    position: absolute !important;
+    bottom: 0 !important;
+    padding-bottom: 35px !important; /* Creates a clear zone for pagination dots */
+    margin-bottom: 0 !important;
+  }
+
+  /* Ensure pagination bullets stay anchored cleanly at the bottom */
+  .home-hero-swiper .swiper-pagination {
+    bottom: 15px !important;
+    z-index: 30 !important;
+  }
+
+  /* Keep the pause button aligned in the bottom right corner */
+  .home-hero-swiper .slider-play-pause-btn {
+    position: absolute !important;
+    bottom: 10px !important;
+    right: 15px !important;
+    z-index: 30 !important;
+  }
+}
+		</style>
+      		
+      
+      	<!-- OU Search Ignore End Here -->
+      <title>Jefferson Community College</title>
+      <meta name="Description" content="Jefferson Community College Home Page Two-year SUNY community college with degree programs designed for transfer or career. Certificate, training, and single-course options to advance your career or for lifelong learning. On-campus bachelor’s and graduate degrees offered by partner institutions Located in Watertown, New York in the beautiful Thousand Islands region, 90-acre campus on the Black River, 10 minutes from the Fort Drum Army installation">
+      <!-- OU Search Ignore Start Here --><!-- OU Search Ignore End Here --><script>
+					var page_url="https://sunyjefferson.edu/index.php";
+				</script>
+      <link href="https://sunyjefferson.edu/ou-alerts/alerts-config.alerts.css?v=2.1-20261030063306" rel="stylesheet"></head>
+   <body><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NHNGLHW" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><div class="siteWrap"><!-- OU Search Ignore Start Here --><!--[if lte IE 9]>
+         <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience</p><![endif]-->
+         <ul class="skip-links" aria-label="skip links">
+            <li><a href="#mainContent">Skip to main content</a></li>
+            <li><a href="#mainMenuTog">Skip to Main Menu</a></li>
+         </ul>
+         <header class="mainHeader fixed-top">
+<form class="mainSearch" aria-label="Site Search" aria-hidden="true" action="/search/" method="get">
+	<div class="form-group">
+		<label for="sitesearch">Site Search</label>
+		<input name="query" id="sitesearch" type="search" title="search" class="form-control" tabindex="-1"/>
+		<button type="submit" tabindex="-1" class="sr-only"><span class="sr-only">Submit Search</span></button>
+	</div>
+</form>   <div class="container"><a class="navbar-brand" href="/"><img src="/_resources/images/JEFF_CC_LEFT_RGB.svg" alt="Jefferson Community College, Home Page"></a><div class="tertMenu">
+         <nav aria-label="tertiary navigation">
+            <ul>
+               <li><a href="https://livesunyjefferson.sharepoint.com/sites/Portal">MY JCC</a></li>
+               <li><a href="/directory/index.php">Directory</a></li>
+            </ul>
+         </nav><button class="searchTrigger"><span class="sr-only">Toggle </span><span>Search</span><span aria-hidden="true" class="icon-search d-none d-sm-block"></span></button></div>
+   </div>
+   <nav class="navbar mainNav d-block"><button class="navbar-toggler collapsed" type="button" data-toggle="collapse" id="mainMenuTog" name="mainMenuTog" data-target="#mainMenu" aria-controls="mainMenu" aria-expanded="false"><span class="sr-only">Main Menu</span><span class="icon-bar b1"></span><span class="icon-bar b2"></span><span class="icon-bar b3"></span></button><div class="collapse navbar-collapse" id="mainMenu">
+         <ul class="navbar-nav mr-auto">
+            <li class="nav-item"><a class="nav-link has-children" id="navbarDropdown1" href="/about/index.php">About</a><button class="ddmOpener" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-controls="ddm1" tabindex="0"><span class="sr-only">About</span></button><ul class="dropdown-menu" id="ddm1" aria-labelledby="navbarDropdown1">
+                  <li><a class="dropdown-item" href="/about/who-we-are/index.php">Who We Are</a></li>
+                  <li><a class="dropdown-item" href="/about/leadership/index.php">Leadership</a></li>
+                  <li><a class="dropdown-item" href="/about/campus-community/index.php">Campus &amp; Community</a></li>
+                  <li><a class="dropdown-item" href="/about/strategic-planning/index.php">Strategic Planning</a></li>
+                  <li><a class="dropdown-item" href="/about/consumer-info/index.php">Consumer Info</a></li>
+               </ul>
+            </li>
+            <li class="nav-item"><a class="nav-link has-children" id="navbarDropdown2" href="/academics/index.php">Academics</a><button class="ddmOpener" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-controls="ddm1" tabindex="0"><span class="sr-only">Academics</span></button><ul class="dropdown-menu" id="ddm2" aria-labelledby="navbarDropdown2">
+                  <li><a class="dropdown-item" href="/academics/programs/index.php">Areas of Interest</a></li>
+                  <li><a class="dropdown-item" href="/academics/programs/all-programs.php">All Programs</a></li>
+                  <li><a class="dropdown-item" href="https://banner.sunyjefferson.edu/StudentRegistrationSsb/ssb/term/termSelection?mode=search">Class Schedule</a></li>
+                  <li><a class="dropdown-item" href="/academics/support-services/index.php">Support Services</a></li>
+                  <li><a class="dropdown-item" href="/academics/edge/index.php">College in High School</a></li>
+                  <li><a class="dropdown-item" href="/academics/academic-calendar/index.php">Academic Calendar</a></li>
+                  <li><a class="dropdown-item" href="/academics/student-records/index.php">Records &amp; Transcripts</a></li>
+                  <li><a class="dropdown-item" href="/academics/commencement/index.php">Commencement</a></li>
+               </ul>
+            </li>
+            <li class="nav-item"><a class="nav-link has-children" id="navbarDropdown3" href="/admissions/index.php">Admissions</a><button class="ddmOpener" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-controls="ddm1" tabindex="0"><span class="sr-only">Admissions</span></button><ul class="dropdown-menu" id="ddm3" aria-labelledby="navbarDropdown3">
+                  <li><a class="dropdown-item" href="/admissions/apply/index.php">How to Apply</a></li>
+                  <li><a class="dropdown-item" href="https://apply.sunyjefferson.edu/register/?id=395c3843-0ecc-4963-9f37-bd9e30046496">Request Info</a></li>
+                  <li><a class="dropdown-item" href="/admissions/visit-campus/index.php">Visit Campus</a></li>
+                  <li><a class="dropdown-item" href="/student-life/housing/index.php">Live on Campus</a></li>
+                  <li><a class="dropdown-item" href="/admissions/after-accepted/index.php">After You're Accepted</a></li>
+                  <li><a class="dropdown-item" href="/admissions/contact.php">Contact Admissions</a></li>
+               </ul>
+            </li>
+            <li class="nav-item"><a class="nav-link has-children" id="navbarDropdown4" href="/costs-aid/index.php">Costs &amp; Aid</a><button class="ddmOpener" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-controls="ddm1" tabindex="0"><span class="sr-only">Costs &amp; Aid</span></button><ul class="dropdown-menu" id="ddm4" aria-labelledby="navbarDropdown4">
+                  <li><a class="dropdown-item" href="/costs-aid/financial-aid/apply/index.php">Apply for Aid</a></li>
+                  <li><a class="dropdown-item" href="/costs-aid/financial-aid/aid-types/index.php">Types of Aid</a></li>
+                  <li><a class="dropdown-item" href="/costs-aid/financial-aid/aid-types/all-scholarships.php">Apply for Scholarships</a></li>
+                  <li><a class="dropdown-item" href="/costs-aid/tuition-fees.php">Tuition &amp; Fees</a></li>
+                  <li><a class="dropdown-item" href="/costs-aid/net-price-calculator.php">Net Price Calculator</a></li>
+               </ul>
+            </li>
+            <li class="nav-item"><a class="nav-link has-children" id="navbarDropdown5" href="/student-life/index.php">Student Life</a><button class="ddmOpener" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-controls="ddm1" tabindex="0"><span class="sr-only">Student Life</span></button><ul class="dropdown-menu" id="ddm5" aria-labelledby="navbarDropdown5">
+                  <li><a class="dropdown-item" href="/student-life/housing/index.php">Live on Campus</a></li>
+                  <li><a class="dropdown-item" href="/student-life/activities/index.php">Activities &amp; Clubs</a></li>
+                  <li><a class="dropdown-item" href="/student-life/athletics.php">Athletics</a></li>
+                  <li><a class="dropdown-item" href="/student-life/career-services/index.php">Jobs &amp; Careers</a></li>
+                  <li><a class="dropdown-item" href="/student-life/health-wellness/index.php">Health &amp; Wellness</a></li>
+                  <li><a class="dropdown-item" href="/student-life/safety-security/index.php">Safety&nbsp;&amp; Security</a></li>
+               </ul>
+            </li>
+            <li class="nav-item"><a class="nav-link has-children" id="navbarDropdown6" href="/community/index.php">Community</a><button class="ddmOpener" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-controls="ddm1" tabindex="0"><span class="sr-only">Community</span></button><ul class="dropdown-menu" id="ddm6" aria-labelledby="navbarDropdown6">
+                  <li><a class="dropdown-item" href="/community/index.php">Workforce Solutions</a></li>
+                  <li><a class="dropdown-item" href="/community/nest.php">NEST/SBDC</a></li>
+                  <li><a class="dropdown-item" href="/community/community-studies/">Center for Community Studies</a></li>
+                  <li><a class="dropdown-item" href="/about/campus-community/facilities.php">Facilities Rentals</a></li>
+               </ul>
+            </li>
+            <li class="nav-item"><a class="nav-link has-children" id="navbarDropdown7" href="/foundation-alumni/index.php">Foundation&nbsp;</a><button class="ddmOpener" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-controls="ddm1" tabindex="0"><span class="sr-only">Foundation&nbsp;</span></button><ul class="dropdown-menu" id="ddm7" aria-labelledby="navbarDropdown7">
+                  <li><a class="dropdown-item" href="/foundation-alumni/foundation/give.php">Give to Jefferson</a></li>
+                  <li><a class="dropdown-item" href="/foundation-alumni/foundation/create-scholarship.php">Create a Scholarship</a></li>
+                  <li><a class="dropdown-item" href="/foundation-alumni/alumni/index.php">Alumni</a></li>
+               </ul>
+            </li>
+         </ul>
+      </div>
+   </nav>
+</header><div class="covid-alert"><a style="color:white;" href="/admissions/apply/index.php" aria-label="Apply Today">APPLY TODAY</a><span style="color:white;"></span></div><!-- OU Search Ignore End Here -->
+         <main>
+            <h1 class="sr-only">Jefferson Community College Homepage</h1>
+            <section class="home hero" id="mainContent">
+               <div class="row no-gutters">
+                  <div class="col-12">
+                     <div class="swiper home-hero-swiper">
+                        <div class="swiper-wrapper">
+                           <div class="swiper-slide">
+                              <div class="absoScreen">
+                                 <div class="container d-flex">
+                                    <div class="heroContent align-self-sm-end" style="z-index:1000;">
+                                       <h2><a href="/news/financial_aid_day_dec2026.php">Financial Aid Day</a></h2>
+                                       <p>Saturday, Dec. 5. Register today! 
+                                          </p>
+                                    </div>
+                                 </div>
+                              </div><img src="/documents/hero/indoors/home-hero_OblongTables-web.jpg" alt="Group of students gathered at table discussing assignment" width="1500" height="757" style="width: 100%; height: auto; object-fit: cover;"></div>
+                           <div class="swiper-slide">
+                              <div class="absoScreen">
+                                 <div class="container d-flex">
+                                    <div class="heroContent align-self-sm-end" style="z-index:1000;">
+                                       <h2><a href="https://events.sunyjefferson.edu/event/virtual-suny-reconnect-information-session-2/">SUNY Reconnect Info Session</a></h2>
+                                       <p>Ready to return to college? Join our Dec. 15 virtual info session on tuition-free
+                                          degrees for adults 25+.</p>
+                                    </div>
+                                 </div>
+                              </div><img src="/documents/hero/indoors/home-hero-reconnect-26.jpg" alt="Group of 4 students relaxing and smiling in East Hall " width="1500" height="757" style="width: 100%; height: auto; object-fit: cover;"></div>
+                           <div class="swiper-slide">
+                              <div class="absoScreen">
+                                 <div class="container d-flex">
+                                    <div class="heroContent align-self-sm-end" style="z-index:1000;">
+                                       <h2><a href="https://sunyjefferson.edu/register/winter_session.php">Winter Session</a></h2>
+                                       <p>Earn college credit in as little as 4 weeks!</p>
+                                    </div>
+                                 </div>
+                              </div><img src="/documents/hero/winter/clock-tower-snow-IMG_0200-web.jpg" alt="The iconic Jefferson clocktower on a bright winter day. " width="1500" height="757" style="width: 100%; height: auto; object-fit: cover;"></div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-button-next"></div><button type="button" id="slider-play-pause" class="btn slider-play-pause-btn" aria-label="Pause slideshow" aria-pressed="false" style="z-index: 10; position: absolute; bottom: 15px; right: 15px;"><span class="slider-toggle-icon fa-solid fa-pause" aria-hidden="true"></span></button></div>
+                  </div>
+               </div>
+            </section>
+         </main>
+         		
+         <section class="mainCtas" style="">
+            
+            <div class="flex-container">
+               
+               <div class="row"><a href="/admissions/" class="cta admis col-sm-12 col-lg-3 shad1b">
+                     
+                     <span class="icon-admissions" role="presentation" aria-hidden="true" style="     "></span><h2 class="cta-heading">
+                        Admissions
+                        </h2>
+                     </a>
+                  
+                  <a href="/academics/programs/" class="cta progs col-sm-12 col-lg-3 shad1b"><span class="icon-programs" role="presentation" aria-hidden="true"></span>
+                     
+                     <h2 class="cta-heading">Areas of Interest</h2>
+                     </a><a href="/costs-aid/index.php" class="cta cost col-sm-12 col-lg-3 shad1b"><span class="icon-cost" role="presentation" aria-hidden="true" style="     "></span>
+                     
+                     <h2 class="cta-heading">Costs &amp; Aid</h2>
+                     </a><a href="https://apply.sunyjefferson.edu/register/?id=395c3843-0ecc-4963-9f37-bd9e30046496" class="cta info col-sm-12 col-lg-3 shad1b"><span class="icon-info" role="presentation" aria-hidden="true" style="     "></span>
+                     
+                     <h2 class="cta-heading">Get Info</h2>
+                     </a></div>
+               </div>
+            </section>
+         		<!--<table class="ou-home-ctas"><caption>Home Call To Action Button Row</caption><colgroup> <col /> <col /> <col /> </colgroup>
+<thead>
+<tr>
+<th>Title + Link</th>
+<th>Content Text</th>
+<th>Icon</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="3">&nbsp;</td>
+</tr>
+<tr>
+<td><a href="/admissions/">Admissions</a></td>
+<td>
+<p>A process that makes it easy to take the next step.</p>
+</td>
+<td data-select-list="admissions,programs,info,insta,youtube,fb,news,events,video,search,twit,cost">admissions</td>
+</tr>
+<tr>
+<td><a href="/academics/programs/">Areas of Interest</a></td>
+<td>
+<p>Browse Jefferson's 60+ programs, certifications and microcredentials.</p>
+</td>
+<td data-select-list="admissions,programs,info,insta,youtube,fb,news,events,video,search,twit,cost">programs</td>
+</tr>
+<tr>
+<td><a href="/costs-aid/index.php">Costs &amp; Aid</a></td>
+<td>Explore your financial aid options &mdash; grants, scholarships, and loans.</td>
+<td data-select-list="admissions,programs,info,insta,youtube,fb,news,events,video,search,twit,cost">cost</td>
+</tr>
+<tr>
+<td><a href="https://apply.sunyjefferson.edu/register/?id=395c3843-0ecc-4963-9f37-bd9e30046496" target="_blank" rel="noopener">Get Info</a></td>
+<td>
+<p>We have so much to share! Tell us about yourself and we&rsquo;ll get you started with all the information you need.</p>
+</td>
+<td data-select-list="admissions,programs,info,insta,youtube,fb,news,events,video,search,twit,cost">info</td>
+</tr>
+</tbody>
+</table>-->
+         <p>&nbsp;</p>
+         <!--<p style="text-align: center;"><a class="linkBlock inEl modaal" href="/coronavirus/" data-modaal-scope="modaal_1583252641536f49e0a5c9793d"><strong>COVID-19 Resources and Information</strong></a></p>-->
+         
+         <section class="homeIntro py-4">
+            <div class="container">
+               <div class="row">
+                  <div class="col-sm-12 col-md-8">
+                     <div class="row">
+                        <div class="col-12">
+                           
+                           <div style="float: left; vertical-align: center; margin-top: 20px;">
+                              
+                              <h2>Take a stroll<br>through campus!<br><a href="https://map.sunyjefferson.edu"><span style="font-size: 20px;">3D Map and Virtual Tour</span></a></h2>
+                              </div>
+                           
+                           <div style="vertical-align: top; margin-top: 25px;"><a href="https://map.sunyjefferson.edu"><img class="zoom" style="display: block; float: right; margin-right: 150px;" src="/documents/images/concept3d_map_icon-web-t-8bit.png" alt="campus map on smart phone; link to campus map" width="185" height="309"></a></div>
+                           </div>
+                        <div class="col-12 pl-100 pr-50">&nbsp;</div>
+                     </div>
+                  </div>
+                  <div class="col-sm-12 col-md-4 p-4">
+                     <ul>
+                        
+                        <li><span style="font-size: 20px;"><a href="/freecc.php">Tuition-Free College for Adults 25+</a></span></li>
+                        
+                        <li><span style="font-size: 20px;"><a href="/register/index.php">Register for Classes</a></span></li>
+                        
+                        <li><span style="font-size: 20px;"><a href="/academics/programs/bachelors-masters-degrees.php">4-year bachelor &amp; graduate degrees</a></span></li>
+                        
+                        <li><span style="font-size: 20px;"><a href="/academics/support-services/library/index.php">Library</a></span></li>
+                        
+                        <li><span style="font-size: 20px;"><a href="/bookstore.php">Bookstore</a></span></li>
+                        
+                        <li><span style="font-size: 20px;"><a href="/student-life/athletics.php">Athletics</a></span></li>
+                        
+                        <li><span style="font-size: 20px;"><a href="https://amerifit.adc-us.com/dayglance?a=MTM2ODA4OTI4MA==" target="_blank" rel="noopener">Courtyard Café Weekly Menu</a></span></li>
+                        </ul>
+                  </div>
+               </div>
+            </div>
+         </section>
+         <section class="homeLinks visual">
+            <div class="container">
+               <div class="row"><a href="/costs-aid/financial-aid/index.php" class="col-sm-12 col-md-4 shad1b gradOutBL"><img src="/documents/showcase/home-visual-links-showcase-3onwalkway-o.jpg" alt="Three students walking and talking outside on campus, one student in foreground sitting on bench reading" width="380" height="250"><div class="over d-flex align-items-end">
+                        <h3>Scholarships and Aid</h3>
+                     </div></a><a href="/military-veterans-education/" class="col-sm-12 col-md-4 shad1b gradOutBL"><img src="/military-veterans-education/documents/home-visual-links_military-o.jpg" alt="Military students in classroom" width="380" height="250"><div class="over d-flex align-items-end">
+                        <h3>Military and Veterans' Education</h3>
+                     </div></a><a href="/community/" class="col-sm-12 col-md-4 shad1b gradOutBL"><img src="/documents/showcase/home-workforce.jpg" alt="Female and Male with hard hats on worksite" width="380" height="250"><div class="over d-flex align-items-end">
+                        <h3>Workforce Solutions</h3>
+                     </div></a></div>
+            </div>
+         </section>
+         <div class="section py-4">
+            <div class="container">
+               <div class="row">
+                  <section class="col-sm-12 col-md-8 home news artList color3 gradBr">
+                     <div class="row">
+                        <div class="col-12 sTitle">
+                           <h2>News</h2><span class="icon-news" role="presentation" aria-hidden="true"></span></div>
+                     </div>
+                     <ul><li>	<article class="row">		<div class="col-12 pl-100">			<a href="https://sunyjefferson.edu/news/athlete-of-the-week.php"><h3>Lalonde Named Jefferson Athlete of the Week</h3></a>			<p>Sophomore guard, Keera R. Lalonde of the Jefferson Community College (JCC) women’s basketball team, was named JCC athlete of the week, for the week ending November 16, 2026. Jefferson’s Athlete of...</p>		</div>	</article></li><li>	<article class="row">		<div class="col-12 pl-100">			<a href="https://sunyjefferson.edu/news/financial_aid_day_dec2026.php"><h3>Jefferson to Host Financial Aid Day on December 5, 2026</h3></a>			<p>Jefferson Community College (JCC) will host a local Financial Aid Day on Saturday, December 5, 2026, from 8:00 a.m. to 11:00 a.m. on the second floor of Jules Center (Building 6) in collaboration with...</p>		</div>	</article></li><li>	<article class="row">		<div class="col-12 pl-100">			<a href="https://sunyjefferson.edu/news/ccs-nys-changing-energy-landscape.php"><h3>The Center for Community Studies to Release Results of North Country Public Opinion Survey Regarding the Future Energy Landscape and Power Generation in the North Country</h3></a>			<p>For the past two years the Center for Community Studies at Jefferson Community College has surveyed adults regarding electrical energy generation in the future. A key outcome of this local public opin...</p>		</div>	</article></li><li>	<article class="row">		<div class="col-12 pl-100">			<a href="https://sunyjefferson.edu/news/ccs_forum_nys_changing_energy_nov12.php"><h3>CCS North Country Survey Findings Set the Stage for Nov. 12 Forum on NYS's Changing Energy Landscape</h3></a>			<p>Jefferson Community College's Center for Community Studies (CCS) will host a public forum on Thursday, November 12, 2026, building on findings from its North Country survey to explore the future of el...</p>		</div>	</article></li></ul><a class="viewAll" href="/news/index.php">More News<span class="sr-only">News</span><span aria-hidden="true" class="icon-all"></span></a></section>
+                  <section class="col-sm-12 col-md-4 home events artList color2">
+                     <div class="row">
+                        <div class="col-12 sTitle">
+                           <h2>Events</h2><span class="icon-events" role="presentation" aria-hidden="true"></span></div>
+                     </div>
+                     <ul><li>	<article class="row">		<div class="col-12 pl-65 pb-35">			<a href="https://events.sunyjefferson.edu/event/interviewing-techniques--int-111-approved-1/">				<h3>Interviewing Techniques  (INT 111 Approved)</h3>				<h4 class="artDate"><span>18</span> <span>Nov</span></h4>			</a>		</div>	</article></li><li>	<article class="row">		<div class="col-12 pl-65 pb-35">			<a href="https://events.sunyjefferson.edu/event/interviewing-techniques-int-111-approved-workshop/">				<h3>Interviewing Techniques (INT 111 Approved Workshop)</h3>				<h4 class="artDate"><span>18</span> <span>Nov</span></h4>			</a>		</div>	</article></li><li>	<article class="row">		<div class="col-12 pl-65 pb-35">			<a href="https://events.sunyjefferson.edu/event/the-humanity-of-homer--int-111-approved/">				<h3>The Humanity of Homer  (INT 111 approved)</h3>				<h4 class="artDate"><span>18</span> <span>Nov</span></h4>			</a>		</div>	</article></li><li>	<article class="row">		<div class="col-12 pl-65 pb-35">			<a href="https://events.sunyjefferson.edu/event/the-political-history-of-diversity--multiculturalism--where-it-came-from-what-it-is--why-it-matters--int-111-approved/">				<h3>The Political History of Diversity & Multiculturalism:  Where It Came From, What It Is, & Why It Matters  (INT 111 approved)</h3>				<h4 class="artDate"><span>18</span> <span>Nov</span></h4>			</a>		</div>	</article></li><li>	<article class="row">		<div class="col-12 pl-65 pb-35">			<a href="https://events.sunyjefferson.edu/event/womens-basketball-jefferson-community-college-at-cayuga-community-college-9/">				<h3>(Women's Basketball) Jefferson Community College at Cayuga Community College</h3>				<h4 class="artDate"><span>18</span> <span>Nov</span></h4>			</a>		</div>	</article></li></ul><a class="viewAll" href="http://events.sunyjefferson.edu">More Events<span class="sr-only">Events</span><span aria-hidden="true" class="icon-all"></span></a></section>
+               </div>
+            </div>
+         </div>
+         <!-- OU Search Ignore Start Here --><footer class="mainFooter">
+   <div class="container">
+      <div class="row footLogos">
+         <div class="col-md-3 col-6"><img src="/_resources/images/jefferson_full_logo.svg" alt="Jefferson State University of New York"></div>
+         <div class="col-md-3 col-6 suny"><img src="/_resources/images/suny_logo.svg" alt="State University of New York"></div>
+         <div class="col-md-6 col-12 footLinks">
+            <div class="row">
+               <div class="col-4">
+                  <ul>
+                     <li><a href="/admissions/accessing-soar-after-leaving-jcc.php">SOAR Links</a></li>
+                     <li><a href="/academics/support-services/library/index.php">Library</a></li>
+                     <li><a href="/bookstore.php">Bookstore</a></li>
+                     <li><a href="/academics/academic-calendar/index.php">Academic Calendar</a></li>
+                     <li><a href="/register/index.php">Register for Class</a></li>
+                     <li><a href="/academics/programs/bachelors-masters-degrees.php">4-Year Degrees </a></li>
+                     <li><a href="/academics/student-records/transcripts.php">Transcripts</a></li>
+                  </ul>
+               </div>
+               <div class="col-4">
+                  <ul>
+                     <li><a href="/foundation-alumni/foundation/give.php">Give to Jefferson</a></li>
+                     <li><a href="/costs-aid/financial-aid/aid-types/all-scholarships.php">Scholarships</a></li>
+                     <li><a href="/careers-jefferson/index.php">Careers at Jefferson</a></li>
+                     <li><a href="https://map.sunyjefferson.edu">Maps and Directions</a></li>
+                     <li><a href="/webcam.php">Webcam</a></li>
+                     <li><a href="/academics/programs/catalog/applications-forms.php">Applications &amp; Forms</a></li>
+                  </ul>
+               </div>
+               <div class="col-4">
+                  <ul>
+                     <li><a href="/foil-requests.php">FOIL Requests</a></li>
+                     <li><a href="/about/consumer-info/index.php">Consumer Info</a></li>
+                     <li><a href="/academics/programs/catalog/it-internet-privacy-policy.php">Privacy Policy</a></li>
+                     <li><a href="/accessibility/index.php">Accessibility</a></li>
+                     <li><a href="/student-life/safety-security/title-ix/index.php">Title IX</a></li>
+                     <li><a href="/academics/programs/catalog/index.php">Policies</a></li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </div>
+      <ul class="footSocial" aria-label="social media links">
+         <li><a href="https://www.facebook.com/sunyjefferson/"><span aria-hidden="true" class="icon-fb"></span><span class="sr-only">Facebook</span></a></li>
+         <li><a href="https://www.instagram.com/sunyjefferson"><span aria-hidden="true" class="icon-insta"></span><span class="sr-only">Instagram</span></a></li>
+         <li><a href="https://twitter.com/SUNYJefferson"><span aria-hidden="true" class="icon-twit"></span><span class="sr-only">Twitter</span></a></li>
+         <li><a href="https://www.youtube.com/SUNYJefferson"><span aria-hidden="true" class="icon-youtube"></span><span class="sr-only">YouTube</span></a></li>
+      </ul>
+      <div class="row footContact">
+         <div class="col-12">
+            <p class="mt-4">1220 Coffeen Street, Watertown,<br> New York 13601<br><strong>888.435.6522</strong> or <strong>315.786.2200</strong></p>
+            <p><span><span style="text-decoration: underline;"><a href="https://www.sunyjefferson.edu/contact-us.php">Leave us a comment</a></span> or <span style="text-decoration: underline;"><a title="contact us" href="mailto:webmaster@sunyjefferson.edu">contact us</a></span> for problems with the website</span><span>. Copyright </span><span id="directedit">©</span> 2026 Jefferson Community College.</p>
+         </div>
+      </div>
+   </div>
+</footer>
+<div id="bsCssCheck" class="d-none"><!-- bootstrap css check element --></div>
+<script	src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="/_resources/js/vendor/jquery-3.2.1.min.js"><\/script>')</script>
+<script> 
+	//check for bootstrap css class working - if not - fallback
+	$(function () {
+		if ($('#bsCssCheck').is(':visible') === true) {
+			$('<link rel="stylesheet" id="bsCssFallback" href="css/bootstrap.min.css">').insertBefore('#mainCss');
+		}
+	});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+<script>window.jQuery.fn.modal || document.write('<script src="/_resources/js/vendor/bootstrap.min.js"><\/script>')</script> 
+<!-- OUnote: necessary video for pop-up -->		
+<script src="/_resources/js/vendor/modaal.js"></script>
+<!-- OUnote: END- necessary video for pop-up -->		
+<!-- OUnote: necessary for directory-landing -->		
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>		
+<!-- OUnote: END- necessary for directory landing -->
+<!-- OUnote: necessary for program filter -->		
+<script src="/_resources/js/vendor/filter.min.js"></script>
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<!-- OUnote: END- necessary for program filter -->		
+
+<script src="/_resources/js/jefferson.js?v=20241017"></script> 
+<script src="/_resources/js/direct-edit.js"></script>
+<!-- Silktide -->
+<script defer src="https://analytics.silktide.com/5e1439dff0a4bc3dc38b14e1e0ffebd7.js"></script>
+<script>
+  (function (s,i,l,k,y) {
+    s[i] = s[i] || y;
+    s[l] = s[l] || [];
+    s[k] = function(e, p) { p = p || {}; p.event = e; p.time = Date.now(); s[l].push(p); };
+    s[k]('page_load');
+  })(window, 'stConfig', 'stEvents', 'silktide', {});
+</script>
+<!-- End Silktide -->         <div id="hidden" style="display:none;"><a id="de" href="https://a.cms.omniupdate.com/11/?skin=oucampus&amp;account=sunyjefferson&amp;site=www&amp;action=de&amp;path=/index.pcf" style="text-decoration:none;" >©</a></div><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><script>
+		// --- 1. Your Existing Video Play/Pause and Responsive Source Logic ---
+		$(document).ready(function () {
+			// Play/Pause functionality
+			$('.play-pause-button').click(function () {
+				var videoDesktop = $("#hero-video").get(0);
+				if (videoDesktop.paused) {
+					videoDesktop.play();
+					$('.play-pause-button-img').attr("src", "/_resources/images/pause_icon.svg");
+				} else {
+					videoDesktop.pause();
+					$('.play-pause-button-img').attr("src", "/_resources/images/play_icon.svg");
+				}
+			});
+
+			function setVideoSource() {
+				var width = $(window).width();
+				var video = document.getElementById('hero-video');
+				if (video) {
+					var currentSrc = video.querySelector('source');
+					var mobileVideoSrc = '';
+					var desktopVideoSrc = '';
+					var newSrc = width <= 768 ? mobileVideoSrc : desktopVideoSrc;
+
+					if (!currentSrc || currentSrc.getAttribute('src') !== newSrc) {
+						if (currentSrc) {
+							video.removeChild(currentSrc);
+						}
+						var source = document.createElement('source');
+						source.setAttribute('src', newSrc);
+						source.setAttribute('type', 'video/mp4');
+						video.appendChild(source);
+						video.load();
+					}
+				}
+			}
+
+			setVideoSource(); // Set the initial video source
+
+			$(window).resize(function () {
+				setVideoSource(); // Update video source on window resize
+			});
+		});
+
+		// --- 2. Swiper Carousel Initialization ---
+		document.addEventListener('DOMContentLoaded', function () {
+    var homeSwiper = new Swiper('.home-hero-swiper', {
+        modules: [Swiper.Navigation, Swiper.Pagination, Swiper.A11y, Swiper.Autoplay],
+        a11y: {
+            enabled: true,
+            prevSlideMessage: 'Previous slide',
+            nextSlideMessage: 'Next slide',
+            firstSlideMessage: 'This is the first slide',
+            lastSlideMessage: 'This is the last slide',
+            paginationBulletMessage: 'Go to slide {{index}}',
+        },
+        loop: true,
+        autoplay: {
+            delay: 5000,
+            disableOnInteraction: false,
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        keyboard: {
+            enabled: true,
+            onlyInViewport: true,
+        },
+    });
+
+    // --- Carousel Pause/Play Toggle Logic (Moved inside scope) ---
+    var playPauseBtn = document.getElementById('slider-play-pause');
+    if (playPauseBtn) {
+        var isPlaying = true;
+        playPauseBtn.addEventListener('click', function () {
+            if (isPlaying) {
+                homeSwiper.autoplay.stop();
+                playPauseBtn.setAttribute('aria-label', 'Play slideshow');
+                playPauseBtn.setAttribute('aria-pressed', 'true');
+                var icon = playPauseBtn.querySelector('.slider-toggle-icon');
+                if (icon) { icon.className = 'slider-toggle-icon fa-solid fa-play'; }
+                isPlaying = false;
+            } else {
+                homeSwiper.autoplay.start();
+                playPauseBtn.setAttribute('aria-label', 'Pause slideshow');
+                playPauseBtn.setAttribute('aria-pressed', 'false');
+                var icon = playPauseBtn.querySelector('.slider-toggle-icon');
+                if (icon) { icon.className = 'slider-toggle-icon fa-solid fa-pause'; }
+                isPlaying = true;
+            }
+        });
+    }
+});
+		</script>
+         <!-- OU Search Ignore End Here --></div>
+      <script src="https://sunyjefferson.edu/ou-alerts/alerts-config.alerts.js?v=2.1-20261030063305"></script>
+<script>
+	// archive alert processing
+	if (document.getElementById(ouEmergencyAlerts.archivedAlertDivId)) {
+		ouEmergencyAlerts.loadAlertFeed("processAlertFeedForArchivePage", "activeAlertFeed", "archiveActiveAlertHeading");  
+		setTimeout(function() {
+			ouEmergencyAlerts.loadAlertFeed("processAlertFeedForArchivePage", "archiveAlertFeed", "archiveAlertHeading");
+		}, 200);
+	}
+	// active alert processing
+	ouEmergencyAlerts.determineActiveAlertOutput();
+</script><script type="text/template" id="oualerts-active-announcement">
+<div class="oualerts-notify-modal-overlay">
+<div id="oualerts-active-alert-display" class="oualerts-notify oualerts-notify-announcement oualerts-modal oualerts-modal-medium ouAlertsFadeInDown oualerts-animated-fast" role="alert">
+	<div class="oualerts-notify-body">
+		{% if (o.showDate) { %}
+		<div class="oualerts-notify-date">{%=ouEmergencyAlerts.alertDateFormat("F d, Y h:i A",o.pubDate)%}</div>
+		{% } %}
+		<h3 class="oualerts-notify-title">
+			
+						<svg class="oualerts-notify-icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 271 286"><path fill-rule="evenodd" d="M241.964 157.267v69.997c0 5.11-5.639 8.199-9.934 5.442l-86.454-55.51h-13.388l11.06 28.862c18.297 3.828 32.042 20.078 32.042 39.544 0 22.311-18.056 40.398-40.328 40.398-17.471 0-32.347-11.13-37.949-26.698l-.0122.005-31.4593-82.111h-5.3193C26.9624 177.196 0 150.187 0 116.869c0-33.3175 26.9624-60.3268 60.2222-60.3268h85.3538L232.03 1.0324c4.295-2.7574 9.934.3319 9.934 5.4417v69.9975h18.282c5.939 0 10.754 4.8231 10.754 10.7727v59.2497c0 5.95-4.815 10.773-10.754 10.773h-18.282zm-15.055 54.237l-75.278-48.334V70.5682l75.278-48.3337V211.504zm15.055-69.319h13.98V91.5533h-13.98v50.6317z" clip-rule="evenodd"/></svg>
+					
+			{%=o.title%}
+		</h3>
+		{% if (o.subtitle) { %}
+		<p class="oualerts-notify-subtitle"><strong>{%=o.subtitle %}</strong></p>
+		{% } %}
+		{% if (o.description) { %}
+		<p class="oualerts-notify-msg">{%=o.description %}
+			{% } %}
+			{% if (o.guid) { %}
+			<br>
+			<a href="{%=o.guid %}" class="oualerts-notify-link">Read More...</a>
+			{% } %}
+			{% if (o.description) { %}
+		</p>
+		{% } %}
+		<p class="oualerts-notify-footer">
+			<button class="oualerts-close-button" id="oualerts-close-button">Close</button>
+		</p>
+	</div>
+</div>
+
+</div>
+</script>
+<script type="text/template" id="oualerts-active-warning">
+<div class="oualerts-notify-modal-overlay">
+<div id="oualerts-active-alert-display" class="oualerts-notify oualerts-notify-warning oualerts-modal oualerts-modal-medium ouAlertsFadeInDown oualerts-animated" role="alert">
+	<div class="oualerts-notify-body">
+		{% if (o.showDate) { %}
+		<div class="oualerts-notify-date">{%=ouEmergencyAlerts.alertDateFormat("F d, Y h:i A",o.pubDate)%}</div>
+		{% } %}
+		<h3 class="oualerts-notify-title">
+			
+						<svg class="oualerts-notify-icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 273 273"><path fill-rule="evenodd" d="M273 136.5c0 75.387-61.113 136.5-136.5 136.5C61.1131 273 0 211.887 0 136.5 0 61.1131 61.1131 0 136.5 0 211.887 0 273 61.1131 273 136.5zM123 58v105h27V58h-27zm0 157v-26.5h27V215h-27z" clip-rule="evenodd"/></svg>
+					
+			{%=o.title%}
+		</h3>
+		{% if (o.subtitle) { %}
+		<p class="oualerts-notify-subtitle"><strong>{%=o.subtitle %}</strong></p>
+		{% } %}
+		{% if (o.description) { %}
+		<p class="oualerts-notify-msg">{%=o.description %}
+			{% } %}
+			{% if (o.guid) { %}
+			<br>
+			<a href="{%=o.guid %}" class="oualerts-notify-link">More Information...</a>
+			{% } %}
+			{% if (o.description) { %}
+		</p>
+		{% } %}
+		<p class="oualerts-notify-footer">
+			<button class="oualerts-close-button" id="oualerts-close-button">Close</button>
+		</p>
+	</div>
+</div>
+
+</div>
+</script>
+<script type="text/template" id="oualerts-active-emergency">
+<div id="oualerts-active-alert-display" class="oualerts-notify oualerts-notify-emergency oualerts-top oualerts-top-fixed ouAlertsFadeInDown oualerts-animated-fast" role="alert">
+	<div class="oualerts-notify-body">
+		{% if (o.showDate) { %}
+		<div class="oualerts-notify-date">{%=ouEmergencyAlerts.alertDateFormat("F d, Y h:i A",o.pubDate)%}</div>
+		{% } %}
+		<h3 class="oualerts-notify-title">
+			
+						<svg class="oualerts-notify-icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 298 273"><path fill-rule="evenodd" d="M137.626 7.553c4.947-8.9403 17.801-8.9403 22.748 0l135.948 245.652c4.795 8.665-1.471 19.295-11.374 19.295H13.0524c-9.903 0-16.1695-10.63-11.3744-19.295L137.626 7.553zM136.5 85v100h25V85h-25zm0 149.5v-24h25v24h-25z" clip-rule="evenodd"/></svg>
+					
+			{%=o.title%}
+		</h3>
+		{% if (o.subtitle) { %}
+		<p class="oualerts-notify-subtitle"><strong>{%=o.subtitle %}</strong></p>
+		{% } %}
+		{% if (o.description) { %}
+		<p class="oualerts-notify-msg">{%=o.description %}
+			{% } %}
+			{% if (o.guid) { %}
+			<br>
+			<a href="{%=o.guid %}" class="oualerts-notify-link">Read More...</a>
+			{% } %}
+			{% if (o.description) { %}
+		</p>
+		{% } %}
+		<p class="oualerts-notify-footer">
+			<button class="oualerts-close-button" id="oualerts-close-button">Close</button>
+		</p>
+	</div>
+</div>
+
+</script>
+<script type="text/template" id="oualerts-archived-template">
+{% if (o[0].htmlHeading) { %}
+<h2 class="oualerts-archive-main-heading">{%=o[0].htmlHeading %}</h2>
+{% } %}
+<ul class="oualerts-achive-list">
+	{% for (var i=0; o.length > i; i++) { %}
+	<li class="oualerts-achive-list-item oualerts-archive-type-{%=o[i].severity%}">
+		<div class="oualerts-achive-list-item-inner">
+			<h3 class="oualerts-archive-title">{%=o[i].title%}</h3>
+			<div class="oualerts-archive-date">{%=ouEmergencyAlerts.alertDateFormat("F d, Y h:i A",o[i].pubDate)%}</div>
+			{% if (o[i].subtitle) { %}
+			<p class="oualerts-archive-subtitle"><strong>{%=o[i].subtitle %}</strong></p>
+			{% } %}
+			{% if (o[i].description) { %}
+			<p class="oualerts-archive-msg">{%=o[i].description %}
+				{% } %}
+				{% if (o[i].guid) { %}
+				<a href="{%=o[i].guid %}" class="oualerts-archive-link">{%=ouEmergencyAlerts[o[i].severity + "Archive"].readMoreText%}</a>
+				{% } %}
+				{% if (o[i].description) { %}
+			</p>
+			{% } %}
+			{% if (o[i].updates) { %}
+			<h4 class="oualerts-archive-list-update-header">{%=ouEmergencyAlerts[o[i].severity + "Archive"].updateText %}</h4>
+			<ul class="oualerts-achive-list-update">
+				{% for (var k=0; o[i].updates.length > k; k++) { %}
+				<li class="oualerts-achive-list-item-update">
+					<div class="oualerts-achive-list-item-update-inner">
+						<h5 class="oualerts-archive-title-update">{%=o[i].updates[k].title%}</h5>
+						<div class="oualerts-archive-date-update">{%=ouEmergencyAlerts.alertDateFormat("F d, Y h:i A",o[i].updates[k].pubDate)%}</div>
+						{% if (o[i].updates[k].subtitle) { %}
+						<p class="oualerts-archive-subtitle-update"><strong>{%=o[i].updates[k].subtitle %}</strong></p>
+						{% } %}
+						{% if (o[i].updates[k].description) { %}
+						<p class="oualerts-archive-msg-update">{%=o[i].updates[k].description %}
+							{% } %}
+							{% if (o[i].updates[k].guid) { %}
+							<a href="{%=o[i].updates[k].guid %}" class="oualerts-archive-link-update">{%=ouEmergencyAlerts[o[i].severity + "Archive"].readMoreText%}</a>
+							{% } %}
+							{% if (o[i].updates[k].description) { %}
+						</p>
+						{% } %}
+					</div>
+				</li>
+				{% } %}
+			</ul>
+			{% } %}
+		</div>
+	</li>
+	{% } %}
+</ul>
+</script>
+<!-- ouc:info uuid="f957cf40-0c23-44e9-a461-0a2c5f3674ba"/ --></body>
+</html>

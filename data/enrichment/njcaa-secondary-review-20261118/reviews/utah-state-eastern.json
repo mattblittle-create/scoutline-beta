@@ -1,0 +1,66 @@
+{
+  "slug": "utah-state-eastern",
+  "programId": "cmox1gknq00cbqtsgywmfzwd6",
+  "collegeId": "cmox1gkn200c9qtsgf9pf8wry",
+  "checkedAtUtc": "2026-11-18T14:43:33.697Z",
+  "sourcePath": "../njcaa-discovery-20261118/sources/utah-state-eastern-1.source",
+  "sourceSHA256": "184f2532c192478473a06ef2f8cbba9fc924a1eb045ba132954cdf251b26e4ee",
+  "sourceUrl": "https://usueasternathletics.com/sports/baseball",
+  "socialLeads": [
+    {
+      "url": "https://x.com/USUEbaseball",
+      "label": "Baseball: X",
+      "context": "",
+      "kind": "HTML"
+    },
+    {
+      "url": "https://instagram.com/usueastern_baseball",
+      "label": "Baseball: Instagram",
+      "context": "",
+      "kind": "HTML"
+    }
+  ],
+  "recruitingLeads": [
+    {
+      "url": "https://usueasternathletics.com/sb_output.aspx?form=3",
+      "label": "Recruits",
+      "context": "",
+      "kind": "QUESTIONNAIRE"
+    }
+  ],
+  "logoLeads": [
+    {
+      "url": "https://usueasternathletics.com/images/logos/site/site.png",
+      "label": "USU Eastern Athletics, go to homepage main-header-img"
+    }
+  ],
+  "captures": [
+    {
+      "requestedUrl": "https://usueasternathletics.com/sb_output.aspx?form=3",
+      "kind": "QUESTIONNAIRE",
+      "status": 200,
+      "finalUrl": "https://usueasternathletics.com/sb_output.aspx?form=3",
+      "contentType": "text/html; charset=utf-8",
+      "sourcePath": "sources/utah-state-eastern-0.source",
+      "sha256": "64350f5e1be5aabce903250fc0fbcc80d0c283569ea558b2f951d20b377fd47e"
+    },
+    {
+      "requestedUrl": "https://usueasternathletics.com/images/logos/site/site.png",
+      "kind": "LOGO_ASSET",
+      "status": 200,
+      "finalUrl": "https://images.sidearmdev.com/convert?url=https%3a%2f%2fdxbhsrqyrr690.cloudfront.net%2fsidearm.nextgen.sites%2fusu.sidearmsports.com%2fimages%2flogos%2fsite%2fsite.png&type=webp",
+      "contentType": "image/webp",
+      "sourcePath": "sources/utah-state-eastern-1.source",
+      "sha256": "7f94b797ccc8c2717a2f7184740bfc491893365f71f13a5caf6874876b728d8c",
+      "decoded": {
+        "format": "webp",
+        "width": 200,
+        "height": 200
+      },
+      "assetDecoded": true
+    }
+  ],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED"
+}

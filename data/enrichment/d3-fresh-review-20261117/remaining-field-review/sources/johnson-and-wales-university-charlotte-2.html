@@ -1,0 +1,465 @@
+
+
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head><!-- Transcend IAB frameworks -->
+<!-- GPP -->
+<script type='text/javascript'>
+  window.__gpp_addFrame=function(e){if(!window.frames[e]){if(document.body){var t=document.createElement('iframe');t.style.cssText='display:none',t.name=e,document.body.appendChild(t)}else window.setTimeout(window.__gppaddFrame,10,e)}},window.__gpp_stub=function(){var e=arguments;if(__gpp.queue=__gpp.queue||[],!e.length)return __gpp.queue;var t=e[0],a=e.length>1?e[1]:null,n=e.length>2?e[2]:null;if('ping'===t)return{gppVersion:'1.1',cmpStatus:'stub',cmpDisplayStatus:'hidden',supportedAPIs:['2:tcfeuv2','5:tcfcav1','6:uspv1'],cmpId:31,sectionList:[],applicableSections:[-1],gppString:''};if('events'===t)return __gpp.events;if('addEventListener'===t){__gpp.events=__gpp.events||[],'lastId'in __gpp||(__gpp.lastId=0),__gpp.lastId++;var s=__gpp.lastId;return __gpp.events.push({id:s,callback:a,parameter:n}),{eventName:'listenerRegistered',listenerId:s,data:!0,pingData:{gppVersion:'1.1',cmpStatus:'stub',cmpDisplayStatus:'hidden',supportedAPIs:['2:tcfeuv2','5:tcfcav1','9:usva','7:usnat'],cmpId:31,sectionList:[],applicableSections:[-1],gppString:''}}}if('removeEventListener'===t){var p=!1;__gpp.events=__gpp.events||[];for(var i=0;i<__gpp.events.length;i++)if(__gpp.events[i].id==n){__gpp.events[i].splice(i,1),p=!0;break}return{eventName:'listenerRemoved',listenerId:n,data:p,pingData:{gppVersion:'1.1',cmpStatus:'stub',cmpDisplayStatus:'hidden',supportedAPIs:['2:tcfeuv2','5:tcfcav1','9:usva','7:usnat'],cmpId:31,sectionList:[],applicableSections:[-1],gppString:''}}}if('hasSection'===t||'getSection'===t||'getField'===t)return null;__gpp.queue.push([].slice.apply(e))},window.__gpp_msghandler=function(e){var t='string'==typeof e.data;try{var a=t?JSON.parse(e.data):e.data}catch(n){var a=null}if('object'==typeof a&&null!==a&&'__gppCall'in a){var s=a.__gppCall;window.__gpp(s.command,function(a,n){var p={__gppReturn:{returnValue:a,success:n,callId:s.callId}};e.source.postMessage(t?JSON.stringify(p):p,'*')},'parameter'in s?s.parameter:null,'version'in s?s.version:'1.1')}},'__gpp'in window&&'function'==typeof window.__gpp||(window.__gpp=window.__gpp_stub,window.addEventListener('message',window.__gpp_msghandler,!1),window.__gpp_addFrame('__gppLocator'));
+</script>
+<script data-cfasync='false' onload='window.airgapLoadEvent=event' data-sync='off' src='https://transcend-cdn.com/cm/30fbff84-b0e3-4e26-9084-0b5158fdb1ed/airgap.js'></script><script>window.client_hostname = "charlotte.jwuathletics.com";window.client_title = "Johnson & Wales University Charlotte";window.server_name = "1104617-APP79";window.client_division = "DII";window.targetting_criteria = {"page_template":"unknown","sport_name":"0","sport_name_custom":"0","site":"jowachar","cbs_site_code":"","content_id":null,"sect":"ot","gender":"0"};window.client_shortname = "jowachar";window.dfp_network_code = "21708449227";window.img_dfp_unit_name = "";window.ad_full_unit_name = "SAExtended/jowachar";window.block_dfp = true;window.reactions = null;window.cbs_ads_activated = true;window.site_colors = {"safe_text_white":"#00529C","safe_text_black":"#F0B410","primary_background":"#00529C","primary_text":"#FFFFFF","secondary_background":"#F0B410","secondary_text":"#000000"};window.inactive_tab_title = "";window.site_in_dev_mode = false;window.sidearm_header_bidding_enabled = false;
+                    window.utagData = function() {
+                        return {
+                            embedPageUrl: location.href,
+                            brandPlatformId: "sidearm_site_" + (document.documentElement.clientWidth > 600 ? "desktop" : "mweb"),
+                            pageViewGuid: PageTargetting.getPageviewGuid(),
+                            _pageViewGuid: PageTargetting.getPageviewGuid() // cbs says they need it both /shrug
+                        };
+                    };
+                </script><!-- Begin comScore Tag -->
+<script>
+    var _comscore = _comscore || [];
+    _comscore.push({ c1: "2", c2: "3005086" });
+    (function() {
+      var s = document.createElement("script"), el = document.getElementsByTagName("script")[0]; s.async = true;
+      s.src = (document.location.protocol == "https:" ? "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js";
+      el.parentNode.insertBefore(s, el);
+    })();
+</script>
+<!-- End comScore Tag --><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><title>
+	Johnson & Wales University Charlotte Camp Registrations | Powered By SIDEARM Sports
+</title><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/css/pikaday.min.css"><link rel="stylesheet" href="//cdn.jsdelivr.net/npm/angular-toastr@2/dist/angular-toastr.css"><link rel="stylesheet" href="//unpkg.com/ng-table@2.0.2/bundles/ng-table.min.css"><link rel="stylesheet" href="//use.fontawesome.com/releases/v5.2.0/css/all.css">
+    <link rel="stylesheet" href="/registrations/content/app.less?_=638744128957749818">
+<!-- Google Tag Manager -->           
+            <script>
+                (function(w, d, s, l, i){
+            w[l] = w[l] ||[]; w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async=true;j.src=
+            '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-K3TH4CC');
+            </script>
+            <!-- End Google Tag Manager --><!-- Google Tag Manager -->           
+            <script>
+                (function(w, d, s, l, i){
+            w[l] = w[l] ||[]; w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async=true;j.src=
+            '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-TW6R675');
+            </script>
+            <!-- End Google Tag Manager --><script> 
+                Date.prototype.to_iso_with_offset = function() {
+                    var time_zone_offset = -this.getTimezoneOffset(),
+                        time_zone_diff = time_zone_offset >= 0 ? '+' : '-',
+                        pad = function(num) {
+                            var norm = Math.floor(Math.abs(num));
+                            return (norm < 10 ? '0' : '') + norm;
+                        };
+                    return this.getFullYear() +
+                        '-' + pad(this.getMonth() + 1) +
+                        '-' + pad(this.getDate()) +
+                        'T' + pad(this.getHours()) +
+                        ':' + pad(this.getMinutes()) +
+                        ':' + pad(this.getSeconds()) +
+                        time_zone_diff + pad(time_zone_offset / 60) +
+                        ':' + pad(time_zone_offset % 60);
+                }
+             window.dataLayer = window.dataLayer || []; window.dataLayer.push({"event":"dataLayerLoaded","timestamp":new Date().to_iso_with_offset(),"non_interaction_flag":true,"page_related_sport":undefined,"gaPropertyID":"UA-195038689-44","schoolAttributes":{"Name":"Johnson & Wales University Charlotte","Division":"DII","Conference":"Capital Athletic Conference","ssClientID":"2354"},"pageAttributes":{"pageName":undefined,"pageCategory":"unknown","site":"jowachar","sport_name":undefined,"sport_name_custom":undefined,"sect":"ot"},"siteAttributes":{"P5":false,"All_Access":false,"Paciolan_Marketing":false,"ticketingProvider":undefined,"region":undefined,"Fanbase_Partner":false,"SIDEARM_Extended":false,"MMR":undefined}}); window.dataLayer.push({"timestamp":new Date().to_iso_with_offset(),"non_interaction_flag":true,"page_related_sport":undefined,"ga_property_id":"UA-195038689-44","school_name":"Johnson & Wales University Charlotte","school_division":"DII","school_conference":"Capital Athletic Conference","ss_client_id":"2354","page_name":undefined,"page_category":"unknown","site_name":"jowachar","site_section":"ot","power_five":false,"all_access":false,"paciolan_marketing":false,"ticketing_provider":undefined,"school_region":undefined,"fanbase_partner":false,"sidearm_extended":false,"mmr":undefined,"user_id":undefined,"logged_in_status":undefined,"membership_type":undefined,"account_signup_date":undefined,"subscription_exp_date":undefined}); </script><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-FXYY72R3JF"></script><script>  window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag('js', new Date());const pageSessionId = crypto.randomUUID();gtag('config', 'G-FXYY72R3JF', {user_id: pageSessionId});</script></head>
+<body ng-controller="AppCtrl as vm" ng-class="{'loading': vm.appStatus.activeConnections > 0 && vm.appStatus.loadingState !== 'ready' }"><!-- Google Tag Manager (noscript) -->
+            <noscript><iframe src='//www.googletagmanager.com/ns.html?id=GTM-K3TH4CC' title='Google Tag Manager' 
+            height ='0' width ='0' style = 'display:none;visibility:hidden'></iframe>
+            </noscript>                
+            <!-- End Google Tag Manager (noscript) --><!-- Google Tag Manager (noscript) -->
+            <noscript><iframe src='//www.googletagmanager.com/ns.html?id=GTM-TW6R675' title='Google Tag Manager' 
+            height ='0' width ='0' style = 'display:none;visibility:hidden'></iframe>
+            </noscript>                
+            <!-- End Google Tag Manager (noscript) --><div style='position: fixed; left: -10000px'></div>
+                <script>
+                    function setStylesOnSkipPauseLink(skipLink) {
+                        skipLink.style.left = '0';
+                        skipLink.style.zIndex='99999999';
+                        skipLink.style.outlineStyle='solid';
+                        skipLink.style.outlineColor='#000';
+                        skipLink.style.outlineWidth='2px';
+                        skipLink.style.outlineOffset='0';
+                        skipLink.style.transition='none';
+                        skipLink.style.border='2px solid #fff';
+                        skipLink.style.textDecoration='underline';
+                    }
+                    function removeStylesOnSkipPauseLink(skipLink) {
+                        skipLink.style.left = '-99999px';
+                        skipLink.style.zIndex='-99999';
+                    }
+                </script>
+                <section aria-label='Landmark links'>
+                    <a  
+                        href='#main-content' 
+                        tabindex='0' 
+                        style='position: absolute !important; display: inline-block !important; left: -32000px !important; top: 0; background: #000 !important; padding: 10px !important; color: #fff !important; border: 0 !important; margin: 5px !important;'
+                        onfocus = 'setStylesOnSkipPauseLink(this)'
+                        onblur = 'removeStylesOnSkipPauseLink(this)'>
+                        Skip To Main Content
+                    </a>
+                    <button 
+                        class='sidearm-accessible-slick-pause-all'
+                        id='sidearm-accessible-slick-pause-all' 
+                        aria-live='off' 
+                        tabindex='0' 
+                        style='position: absolute !important; display: inline-block !important; left: -32000px !important; top: 0; background: #000 !important; padding: 10px !important; color: #fff !important; border: 0 !important; margin: 5px !important;'
+                        onfocus = 'setStylesOnSkipPauseLink(this)'
+                        onblur = 'removeStylesOnSkipPauseLink(this)'>
+                        Pause All Rotators
+                    </button>
+                    <span 
+                        href = 'javascript:void(0);' 
+                        aria-live='polite' 
+                        tabindex='-1'  
+                        style='display: block; text-align: center; position: absolute; background-color: white; z-index: 9999;'
+                        onfocus = 'setStylesOnSkipPauseLink(this)'
+                        onblur = 'removeStylesOnSkipPauseLink(this)'>
+                    </span>
+                </section>
+            <!-- Begin comScore Tag -->
+<noscript><img src="https://sb.scorecardresearch.com/p?c1=2&c2=3005086&cv=2.0&cj=1" alt="" aria-hidden="true" /></noscript>
+<!-- End comScore Tag -->
+
+    <a id="skip" class="sr-only sr-only-focusable" href="" ng-click="vm.skip()">Skip to main content</a>
+
+    <loading-spinner active-connections="vm.appStatus.activeConnections" loading-state="vm.appStatus.loadingState"></loading-spinner>
+
+    <site-navigation site-title="vm.title"></site-navigation>
+
+    <div id="content_wrapper" class="container">
+        <main role="main">
+            <ui-view autoscroll="true"></ui-view>
+        </main>
+        <footer class="border-top" ng-cloak="">
+            <div class="d-flex flex-column flex-md-row align-items-center">
+                <ul class="list-inline m-3 my-lg-auto">
+                    <li class="list-inline-item"><a target="_blank" href="http://www.sidearmsports.com/terms-of-service/">Terms of Service</a></li>
+                    <li class="list-inline-item">/</li>
+                    <li class="list-inline-item"><a target="_blank" href="http://www.sidearmsports.com/privacypolicy/">Privacy Policy</a></li>
+                    <li class="list-inline-item">/</li>
+                    <li class="list-inline-item"><a href="" ui-sref="orders">Order Lookup</a></li>
+                </ul>
+                <div class="ml-md-auto">
+                    <a class="logo p-3 px-4" href="//sidearmsports.com" target="_blank">
+                        <img src="//s3.amazonaws.com/assets.sidearmsports.com/images/footer-logos/sidearm_powered-by_stacked_blue-orange.svg" alt="SIDEARM Sports">
+                    </a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="//code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.10/angular.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.10/angular-animate.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.6.10/angular-sanitize.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.16/angular-ui-router.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.10/angular-aria.js"></script>
+    
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/pikaday.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/angular-toastr@2/dist/angular-toastr.tpls.js"></script>
+    <script src="//unpkg.com/ng-table@2.0.2/bundles/ng-table.min.js"></script>
+    <script src="libs/pikaday-angular.js"></script>
+
+    <!-- Bootstrapping -->
+    <script src="/registrations/app/app.js?_=638744347567572172"></script>
+
+    <!-- Reusable Blocks/Modules -->
+    <script src="/registrations/app/components/_components.config.js?_=638744128951967756"></script>
+    <script src="/registrations/app/components/camp-selection.js?_=638744128957124410"></script>
+    <script src="/registrations/app/components/site-navigation.js?_=638744347567572172"></script>
+    
+    <!-- core module -->
+    <script src="/registrations/app/core/_core.config.js?_=638744347567572172"></script>
+    <script src="/registrations/app/core/data-service.js?_=638744347567728686"></script>
+    <script src="/registrations/app/core/auth-service.js?_=638744347567728686"></script>
+    <script src="/registrations/app/core/model-service.js?_=638744128957281163"></script>
+    
+    <!-- layout -->
+    
+    <!--widgets-->
+    <script src="/registrations/app/widgets/_widgets.config.js?_=638744128957595018"></script>
+    <script src="/registrations/app/widgets/loading-spinner.js?_=638744128957595018"></script>
+
+    <!-- modules -->
+    <script src="/registrations/app/views/camps.js?_=638744128957436938"></script>
+    <script src="/registrations/app/views/camp.js?_=638744128957436938"></script>
+    <script src="/registrations/app/views/registration.js?_=638744347567728686"></script>
+    <script src="/registrations/app/views/registrants.js?_=638744128957595018"></script>
+    <script src="/registrations/app/views/orders.js?_=638744128957595018"></script>
+	<script src="/registrations/app/views/forgotPassword.js?_=638744347567728686"></script>
+
+
+<div class="b3burpsae" style="display: none;" role="dialog" aria-label="Ad Blocker Detected" aria-modal="true">
+    <div class="b3burpsae__inner">
+        <div class="b3burpsae__body">
+            <div class="flex flex-align-center">
+                <img src="/images/logos/site/site.png?width=48" alt="Site logo" />
+                <div class="b3burpsae-modal__title">Ad Blocker Detected</div>
+            </div>
+            <div class="b3burpsae-modal__text">
+                <p>Thanks for visiting <a class="b3burpsae-modal__text-host"></a>!</p> 
+                <p>The use of software that blocks ads hinders our ability to serve you the content you came here to enjoy.</p>
+                <p>We ask that you consider turning off your ad blocker so we can deliver you the best experience possible while you are here.</p>
+                <p>Thank you for your support!</p>
+                <div class="b3burpsae-modal__learn">
+                    <a href="http://www.sidearmsports.com/blockers" target="_blank"><span class="sf-arrows-round-right"></span>Learn More About Ad Blockers</a>
+                </div>
+            </div>
+        </div>
+        <button type="button" class="b3burpsae-banner__consent text-center" aria-label="Close ad blocker detected modal">Close</button>
+    </div>
+</div>
+
+<script>
+    var host_element = document.querySelector(".b3burpsae-modal__text-host");
+    host_element.href = window.location.href; 
+    host_element.innerText = window.location.hostname; 
+
+    function close_banner() {
+        var CookieDate = new Date;
+        CookieDate.setTime(CookieDate.getTime() + 1 * 3600 * 1000 * 24);
+        document.cookie = "sidearm-adblock-banner_consent=true; expires=\"" + CookieDate.toGMTString() + "\";";
+        document.querySelector(".b3burpsae").remove();
+    }
+
+    var consent_button = document.querySelector(".b3burpsae-banner__consent");
+
+    consent_button.addEventListener("click", function() { close_banner(); });
+
+    require(['config'], function(config) {
+        require(['jquery', 'knockout', 'cookie', 'text'], function ($, ko, cookie, text) {
+            $(function () {   
+                //disable check for Siteimprove scans
+                if (navigator.userAgent.toLowerCase().indexOf('siteimprove') < 0) {
+                    
+                    if (cookie.get_cookie('sidearm-adblock-banner_consent')) {
+                        return;
+                    }
+
+                    var deferred = $.Deferred();
+                    $.ajax({
+                        type: "HEAD",
+                        async: true,
+                        url: "/components/js/analytics.js",
+                    }).done(function(message,text,jqXHR){
+                        deferred.resolve();
+                    })
+                    .fail(function(err){
+                        show_ad_blocker_blocked_modal();
+                        deferred.reject();
+                    });
+
+                    deferred.then(function(success) {
+                        $.get('/common/templates/dfp/dfp-component-template.html')
+                            .then(function (response) {
+                            }, function (error) {
+                                show_ad_blocker_blocked_modal();
+                            });
+                    }, function (error) {
+                        show_ad_blocker_blocked_modal()
+                    })
+                    .fail(function(){
+                        show_ad_blocker_blocked_modal()
+                    });
+
+                    function show_ad_blocker_blocked_modal() {
+                        var modal = document.querySelector('.b3burpsae');
+                        modal.style.display = 'flex';
+                        modal.querySelector('.b3burpsae-banner__consent').focus();
+                    }
+                }
+            });
+        });
+    });
+</script>
+
+<style>
+    .b3burpsae {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999999;
+  padding: 24px;
+  background-color: rgba(0, 0, 0, 0.85);
+}
+.b3burpsae__inner {
+  background-color: white;
+  color: #2a2b2c;
+  width: 100%;
+  max-width: 500px;
+  border-radius: 2px;
+  line-height: 1.875;
+  font-size: 1rem;
+  max-height: 100%;
+  max-width: 700px;
+}
+.b3burpsae__body {
+  padding: 24px;
+}
+.b3burpsae-modal__title {
+  position: relative;
+  padding-left: 24px;
+  font-size: 1.5rem;
+  font-weight: 900;
+  line-height: 1;
+}
+.b3burpsae-modal__title::after {
+  content: '';
+  display: block;
+  width: 48px;
+  height: 2px;
+  background-color: black;
+  margin-top: 8px;
+}
+.b3burpsae-modal__text a {
+  color: black;
+}
+.b3burpsae-modal__learn {
+  color: black;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5rem;
+}
+.b3burpsae-modal__learn a {
+  color: black;
+}
+.b3burpsae-modal__browsers {
+  padding-top: 12px;
+  margin: 0 -6px;
+}
+.b3burpsae-modal__browsers-button {
+  flex: 1 0 auto;
+  text-decoration: none;
+  border-radius: 6px;
+  background: whitesmoke;
+  border-radius: 35px;
+  padding: 12px;
+  margin: 0 6px;
+  border: 1px solid #d9d9d9;
+  transition: .25s;
+}
+.b3burpsae-modal__browsers-button img {
+  width: 36px;
+  height: 36px;
+}
+.b3burpsae-modal__browsers-button:hover {
+  background: #d9d9d9;
+}
+.b3burpsae-modal__browsers--upgrade {
+  line-height: 1;
+  padding: 0 12px;
+}
+.b3burpsae-modal__browsers--text {
+  font-size: 14px;
+  color: #2a2b2c;
+  font-weight: 400;
+}
+.b3burpsae-modal__browsers--text span {
+  font-size: 16px;
+  color: black;
+  font-weight: 700;
+}
+.b3burpsae-modal__browsers--text:last-child {
+  padding-top: 4px;
+}
+.b3burpsae-banner__consent {
+  -webkit-appearance: none;
+  background-color: whitesmoke;
+  border: 1px solid #d9d9d9;
+  display: block;
+  padding: 0 16px;
+  color: black;
+  width: 100%;
+  margin-top: 8px;
+  transition: .25s;
+  line-height: 28px;
+  height: 28px;
+  font-size: 14px;
+}
+.b3burpsae-banner__consent:hover {
+  background-color: black;
+  color: white;
+}
+
+</style><div style='position: fixed; left: -10000px'></div>
+                <script>
+                document.addEventListener('click', function(e) {
+                    if (e.target && e.target.classList.contains('sidearm-accessible-slick-pause-all')) {
+                        var button = e.target,
+                            paused = button.classList.contains('sidearm-paused'),
+                            slickSliders = document.querySelectorAll('.slick-initialized'),
+                            pauseButtons = document.querySelectorAll('.sidearm-accessible-pause'),
+                            pauseButtonsText = document.querySelectorAll('.sidearm-accessible-pause-text'),
+                            jaws = button.parentElement.querySelector('.sidearm-jaws-talk-please');
+
+                        if (paused) {
+                            slickSliders.forEach(function(slider) {
+                                $(slider).slick('slickPlay');
+                                $(slider).slick('slickGoTo', 0, false);
+                            });
+
+                            button.classList.remove('sidearm-paused');
+                            button.textContent = 'Pause All Rotators';
+                            jaws.textContent = 'All Rotators Playing';
+
+                            pauseButtonsText.forEach(function(text) {
+                                text.setAttribute('aria-live', 'off');
+                                text.textContent = 'Pause';
+                                text.setAttribute('aria-live', 'polite');
+                            });
+                        } else {
+                            slickSliders.forEach(function(slider) {
+                                $(slider).slick('slickPause');
+                                $(slider).slick('slickGoTo', 0, false);
+                            });
+
+                            button.classList.add('sidearm-paused');
+                            button.textContent = 'Play All Rotators';
+                            jaws.textContent = 'All Rotators Paused';
+
+                            pauseButtonsText.forEach(function(text) {
+                                text.setAttribute('aria-live', 'off');
+                                text.textContent = 'Play';
+                                text.setAttribute('aria-live', 'polite');
+                            });
+                        }
+                    }
+                });
+                </script>
+            <!-- BEGIN ControlTag for "Sidearm" -->
+<script class="kxct" data-id="so4l4yxm2" data-timing="async" data-version="3.0" type="text/javascript">
+  window.Krux||((Krux=function(){Krux.q.push(arguments)}).q=[]);
+  (function(){
+    var k=document.createElement('script');k.type='text/javascript';k.async=true;
+    k.src=(location.protocol==='https:'?'https:':'http:')+'//cdn.krxd.net/controltag/so4l4yxm2.js';
+    var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(k,s);
+  }());
+</script>
+<!-- END ControlTag -->
+
+<script>
+Krux('ns:mogointeractive', 'consent:set', {
+dc: true,
+  al: true,
+  tg: true,
+  cd: false,
+  sh: false,
+  re: false
+}, function(errors, body) {
+  if (errors) {
+    console.error(errors);
+  }
+});
+</script><script type="text/javascript" src="/_Incapsula_Resource?SWJIYLWA=719d34d31c8e3a6e6fffd425f7e032f3&ns=2&cb=987095371" async></script></body>
+</html>

@@ -1,0 +1,62 @@
+{
+  "slug": "south-mountain-community-college",
+  "programId": "cmox23a7000btqtfkm5dgbrro",
+  "collegeId": "cmox23a6a00brqtfky43m0ojy",
+  "checkedAtUtc": "2026-11-18T14:43:36.978Z",
+  "sourcePath": "../njcaa-discovery-20261118/sources/south-mountain-community-college-1.source",
+  "sourceSHA256": "4cf6982d75be4688d9d5ae34bb9ceba24582a634d32b1ce845650c23fabccb7b",
+  "sourceUrl": "https://athletics.southmountaincc.edu/sports/bsb/index",
+  "socialLeads": [],
+  "recruitingLeads": [
+    {
+      "url": "https://smcccougars.prestosports.com/general/BaseballProSAQUE",
+      "label": "Prospective Student-Athletes",
+      "context": "",
+      "kind": "QUESTIONNAIRE"
+    },
+    {
+      "url": "https://smcccougars.prestosports.com/general/SMCCProSAQuestionnaire",
+      "label": "Prospective Student-Athletes",
+      "context": "Inside Athletics: Prospective Student-Athletes",
+      "kind": "QUESTIONNAIRE"
+    }
+  ],
+  "logoLeads": [
+    {
+      "url": "https://athletics.southmountaincc.edu/images/setup/Primary_Logo.png",
+      "label": "South Mountain Community College Home Page img-fluid img-mh-7"
+    }
+  ],
+  "captures": [
+    {
+      "requestedUrl": "https://smcccougars.prestosports.com/general/BaseballProSAQUE",
+      "kind": "QUESTIONNAIRE",
+      "status": "HELD_ACCESS_NOT_RETRIED",
+      "finalUrl": "https://smcccougars.prestosports.com/general/BaseballProSAQUE"
+    },
+    {
+      "requestedUrl": "https://smcccougars.prestosports.com/general/SMCCProSAQuestionnaire",
+      "kind": "QUESTIONNAIRE",
+      "status": "HELD_ACCESS_NOT_RETRIED",
+      "finalUrl": "https://smcccougars.prestosports.com/general/SMCCProSAQuestionnaire"
+    },
+    {
+      "requestedUrl": "https://athletics.southmountaincc.edu/images/setup/Primary_Logo.png",
+      "kind": "LOGO_ASSET",
+      "status": 200,
+      "finalUrl": "https://d2o2figo6ddd0g.cloudfront.net/g/i/xqve208uj6t1u4/Primary_Logo.png",
+      "contentType": "image/png",
+      "sourcePath": "sources/south-mountain-community-college-2.source",
+      "sha256": "6585bdaeedf3f3c772ff9a6136722da9491ca9525058c6352b71129dfe01df9b",
+      "decoded": {
+        "format": "png",
+        "width": 708,
+        "height": 800
+      },
+      "assetDecoded": true
+    }
+  ],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED"
+}

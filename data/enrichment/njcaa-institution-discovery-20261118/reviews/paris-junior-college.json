@@ -1,0 +1,44 @@
+{
+  "slug": "paris-junior-college",
+  "name": "Paris Junior College",
+  "collegeId": "cmox1gj22008uqtsgx2lb472o",
+  "programId": "cmox1gj2r008wqtsgt69gyo5b",
+  "storedState": "TX",
+  "storedDivision": "NJCAA_D1",
+  "directoryMatch": {
+    "unitid": "227401",
+    "name": "Paris Junior College",
+    "aliases": [],
+    "state": "TX",
+    "city": "Paris",
+    "host": "parisjc.edu",
+    "decision": "UNIQUE_EXACT_NAME_OR_ALIAS_AND_STATE_DISCOVERY_LEAD_ONLY"
+  },
+  "directoryMatchStatus": "DISCOVERY_LEAD_NOT_CURRENT_CAMPUS_VERIFIED",
+  "needsHeadCoach": true,
+  "needs2027Roster": true,
+  "newPagesAttempted": 1,
+  "pages": [
+    {
+      "requestedUrl": "https://parisjc.edu/",
+      "checkedAtUtc": "2026-11-18T16:20:19.543Z",
+      "status": "FAILED",
+      "errorType": "Error",
+      "kind": "INSTITUTIONAL_DIRECTORY_HOST_LEAD",
+      "parent": {
+        "sourcePath": "../../geography/us-college-locations-ipeds2024.json",
+        "unitid": "227401",
+        "publishedName": "Paris Junior College",
+        "state": "TX",
+        "city": "Paris"
+      }
+    }
+  ],
+  "unfetchedPublishedLeads": [],
+  "publishedLeads": [],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "campusIdentityReviewRequired": true,
+  "currentMembershipVerified": false,
+  "importApproval": "NOT_GRANTED"
+}

@@ -1,0 +1,702 @@
+<!DOCTYPE HTML><html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      <title>Home</title>
+      <link rel="canonical" href="https://www.gcccks.edu/index.html">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="Description" content="Garden City Community College offers affordable education, hands-on learning, and more than 50 academic and technical programs. Explore degrees, certificates, student life, financial aid, and discover why GCCC is where your future begins.">
+      <meta name="Keywords" content="Garden City Community College offers affordable education, hands-on learning, and more than 50 academic and career programs. Explore degrees, certificates, student life, financial aid, and discover why GCCC is where your future begins.">
+      
+<!-- this is the headcode include -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+<link rel="shortcut icon" href="/_resources/images/logos/gccc_logo.png">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="/_resources/bootstrap-5.3.3-dist/css/bootstrap.min.css">
+
+<!-- Slick -->
+<link rel="stylesheet" type="text/css" href="_resources/accessible-slick-1.0.1/slick/slick.min.css">
+<link rel="stylesheet" type="text/css" href="_resources/accessible-slick-1.0.1/slick/slick-theme.min.css">
+
+<!-- Fonts -->
+<link rel="stylesheet" href="/_resources/css/fonts.css">
+
+<!-- Global Styles -->
+<link rel="stylesheet" href="/_resources/css/spacings.css">
+<link rel="stylesheet" href="/_resources/css/colors.css">
+<link rel="stylesheet" href="/_resources/css/actions.css">
+<link rel="stylesheet" href="/_resources/css/main-nav.css">
+<link rel="stylesheet" href="/_resources/css/footer.css">
+<link rel="stylesheet" href="/_resources/css/global.css">
+<link rel="stylesheet" href="/_resources/css/showcase.css">
+
+<!-- DataTables CSS -->
+<link rel="stylesheet" href="/_resources/DataTables/datatables.min.css">
+
+<link rel="stylesheet" href="/_resources/css/mcstyles.css" />
+
+<script async src="https://cse.google.com/cse.js?cx=656a16719cb664852"></script>
+
+<!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-F11S9ZR0XD"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-F11S9ZR0XD'); </script>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KVLZCKMW');</script>
+<!-- End Google Tag Manager -->
+<!-- Insert google analytics here -->
+      
+      <style>
+section.hero-banner + p,
+p:has(> a#program-finder-main) {
+  display: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+section.hero-banner .hero-content,
+section.hero-banner .hero-banner-content,
+section.hero-banner .banner-content,
+section.hero-banner .container > div > div {
+  border-radius: 14px !important;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
+}
+
+.gccc-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1), transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.gccc-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gccc-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+section.checkerboard .row > div,
+.checkerboard .row > div {
+  overflow: hidden;
+}
+
+section.checkerboard img,
+.checkerboard img {
+  transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+section.checkerboard .row:hover img,
+.checkerboard .row:hover img {
+  transform: scale(1.035);
+}
+
+section.program-finder.d-bg-broncbuster-gold {
+  background-color: #FFC700 !important;
+  background-image: linear-gradient(135deg, #ffd438 0%, #FFC700 55%, #e6b300 100%) !important;
+  padding-top: 32px !important;
+  padding-bottom: 32px !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  position: relative;
+  z-index: 1;
+}
+
+section.program-finder > .container {
+  max-width: 1140px;
+  background: transparent !important;
+  border-radius: 0 !important;
+  padding: 0 20px !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+section.program-finder .col-lg-10.offset-lg-1 {
+  margin-left: 0 !important;
+  width: 100% !important;
+}
+
+section.program-finder .program-finder-row {
+  align-items: center !important;
+}
+
+section.program-finder .program-finder-image {
+  max-width: 195px !important;
+  margin: 0 auto !important;
+  filter: drop-shadow(0 6px 14px rgba(78, 49, 45, 0.18));
+}
+
+section.program-finder .program-finder-content {
+  align-self: center !important;
+  row-gap: 14px !important;
+  background: rgba(255, 255, 255, 0.42);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 24px 28px !important;
+  border-radius: 14px !important;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+}
+
+section.program-finder .select-box {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+
+section.program-finder .select-wrapper {
+  position: relative !important;
+  display: block !important;
+  width: 100% !important;
+  max-width: 280px !important;
+  height: auto !important;
+  flex: 1 1 240px !important;
+  margin: 0 !important;
+}
+
+section.program-finder .select-wrapper select {
+  height: 38px !important;
+  font-size: 14px !important;
+  padding: 0 36px 0 16px !important;
+}
+
+section.program-finder .select-wrapper::after {
+  top: 19px !important; 
+  right: 14px !important;
+  font-size: 13px !important;
+}
+
+section.program-finder .select-box button,
+section.program-finder .select-box .d-btn {
+  background-color: var(--broncbuster-brown, #4E312D) !important;
+  color: #ffffff !important;
+  border-radius: 100px !important;
+  height: 38px !important; 
+  min-height: 0 !important;
+  min-width: 0 !important; 
+  width: auto !important;
+  padding: 0 18px !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  border: 2px solid var(--broncbuster-brown, #4E312D) !important;
+  opacity: 1 !important;
+  margin: 0 !important;
+  position: relative !important;
+  white-space: nowrap !important;
+  flex: 0 0 auto !important;
+}
+
+section.program-finder .select-box button::after,
+section.program-finder .select-box .d-btn::after {
+  position: static !important;
+  transform: none !important;
+  margin-left: 4px !important;
+  font-size: 12px !important;
+  right: auto !important;
+  top: auto !important;
+  display: inline-block !important;
+  line-height: 1 !important;
+}
+
+section.program-finder a.d-hyperlink {
+  font-weight: 700 !important;
+  color: var(--broncbuster-brown, #4E312D) !important;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+@media (max-width: 991.5px) {
+  section.program-finder.d-bg-broncbuster-gold {
+    margin-top: 0 !important;
+    padding: 16px 12px !important;
+  }
+
+  section.program-finder > .container {
+    padding: 20px 16px !important;
+    border-radius: 16px !important;
+  }
+
+  section.program-finder .program-finder-content {
+    padding: 20px 18px !important;
+  }
+
+  section.program-finder .select-box {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 12px !important;
+  }
+
+  section.program-finder .select-wrapper {
+    flex: none !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    height: 48px !important;
+  }
+
+  section.program-finder .select-box button,
+  section.program-finder .select-box .d-btn {
+    width: 100% !important;
+  }
+}
+	  @media (max-width: 768px) {
+    .fast-facts .fast-facts-row {
+      display: flex !important;
+      flex-wrap: nowrap !important;
+      justify-content: flex-start !important;
+      overflow-x: auto !important;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      gap: 14px;
+      padding: 8px 16px 18px 16px;
+    }
+
+    .fast-facts .fast-fact-card {
+      flex: 0 0 72% !important;
+      max-width: 250px !important;
+      scroll-snap-align: center;
+      margin: 0 !important;
+      padding: 28px 16px !important;
+    }
+  }
+</style>
+      
+      <meta property="og:title" content="Home">
+      <meta property="og:url" content="https://www.gcccks.edu/index.html">
+      <meta property="og:description" content="Garden City Community College offers affordable education, hands-on learning, and more than 50 academic and technical programs. Explore degrees, certificates, student life, financial aid, and discover why GCCC is where your future begins.">
+      <meta property="og:type" content="">
+      <meta property="og:updated_time" content="2026-11-18T07:22:12.015389059-08:00">
+      <meta name="twitter:card" content="summary_large_image">
+      <meta name="twitter:url" content="https://www.gcccks.edu/index.html">
+      <meta name="twitter:title" content="Home">
+      <meta name="twitter:description" content="Garden City Community College offers affordable education, hands-on learning, and more than 50 academic and technical programs. Explore degrees, certificates, student life, financial aid, and discover">
+   </head>
+   <body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KVLZCKMW"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) --><header class="main-nav"><a href="#mainContent" class="skip-btn">Skip to Main Content</a><a href="#mainFooter" class="skip-btn">Skip to Footer</a><div class="top-nav">
+      <div class="container">
+         <div class="row">
+            <div class="col-12 col-lg-3"><a class="navbar-brand" href="/"><img src="/_resources/images/logos/gccc_primary.png" alt="GCCC Logo"></a></div>
+            <div class="col-12 col-lg-9">
+               <div class="top-nav-content"><a class="top-nav-link" href="/alumni.html">Alumni</a><span>|</span><a class="top-nav-link" href="https://gobroncbusters.com/landing/index">Athletics</a><span>|</span><a class="top-nav-link" href="/academics/academic-calendar.html">Calendar</a><span>|</span><a class="top-nav-link" href="https://www.givecampus.com/campaigns/34059/donations/new">Give</a><span>|</span><a class="top-nav-link" href="https://experience.elluciancloud.com/gcc74/">myGCCC</a><div class="nav-search-container">
+                     <form action="/search/index.html" class="nav-search-input" id="searchForm"><label for="searchMainNavDesktop" class="sr-only">Search</label><input type="text" id="searchMainNavDesktop" name="q" placeholder="Search"><button type="submit"><span class="icon fa-solid fa-magnifying-glass"></span><span class="sr-only">Search</span></button></form>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <nav class="navbar navbar-expand-lg bottom-nav" aria-label="main bottom navigation"><a class="main-nav-mobile-apply d-btn btn-primary d-block d-lg-none" href="/admissions/apply.html">
+         					Apply Now
+         				</a><div class="mobile-nav">
+         <div class="container">
+            <div class="row gx-0 w-100 d-flex align-items-center">
+               <div class="col-4 text-start"><a class="top-nav-link" href="https://experience.elluciancloud.com/gcc74/">myGCCC</a></div>
+               <div class="col-4 text-center"><a class="navbar-brand" href="/"><img src="/_resources/images/logos/gccc_sm.png" alt="GCCC Mobile Logo"></a></div>
+               <div class="col-4 text-end"><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="menu"><span class="fa-solid fa-bars me-1"></span>
+                     									MENU
+                     								</button></div>
+            </div>
+         </div>
+      </div>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+         <div class="container">
+            <div class="bottom-nav-content">
+               <div class="bottom-nav-links">
+                  <div class="dropdown"><a class="dropdown-toggle bottom-nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Admissions &amp; Aid</a><div class="dropdown-menu">
+                        <div class="row">
+                           <div class="col-12 col-lg"><a class="dropdown-item" href="/admissions/home.html">Start HERE</a><a class="dropdown-item" href="/paying-for-college/home.html">Paying for College</a><a class="dropdown-item" href="/admissions/estimate-cost-of-attendance.html">Estimated Cost</a></div>
+                           <div class="col-12 col-lg"><a class="dropdown-item" href="/paying-for-college/financial-aid-resources.html">Financial Aid</a><a class="dropdown-item" href="/paying-for-college/scholarships.html">Scholarships</a><a class="dropdown-item" href="/admissions/schedule-visit.html">Visit</a></div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="dropdown"><a class="dropdown-toggle bottom-nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Academics</a><div class="dropdown-menu">
+                        <div class="row">
+                           <div class="col-12 col-lg"><a class="dropdown-item" href="/academics/programs/">All Programs</a><a class="dropdown-item" href="/academics/academic-calendar.html">Academic Calendar</a><a class="dropdown-item" href="https://catalog.gcccks.edu/index.php">Academic Catalog</a><a class="dropdown-item" href="https://gccc-ss.colleague.elluciancloud.com/Student/Courses">Browse Classes</a></div>
+                           <div class="col-12 col-lg"><a class="dropdown-item" href="/student-services/advising.html">Advising</a><a class="dropdown-item" href="/academics/library.html">Library</a><a class="dropdown-item" href="/academics/online/online-home.html">Online Learning</a><a class="dropdown-item" href="/academics/registrar.html">Registrar</a></div>
+                           <div class="col-12 col-lg"><a class="dropdown-item" href="/academics/request-transcript.html">Request Transcript</a></div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="dropdown"><a class="dropdown-toggle bottom-nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Student Life</a><div class="dropdown-menu">
+                        <div class="row">
+                           <div class="col-12 col-lg"><a class="dropdown-item" href="/student-life.html">Student Life</a><a class="dropdown-item" href="/accessibility/accessibility-services.html">Accessibility Services</a><a class="dropdown-item" href="https://bookstore.gcccks.edu/home">Bookstore</a><a class="dropdown-item" href="/student-life/clubs-organizations.html">Clubs &amp; Organizations</a><a class="dropdown-item" href="/student-services.html">Campus Resources</a></div>
+                           <div class="col-12 col-lg"><a class="dropdown-item" href="/student-life/residential-life.html">Residential Life</a><a class="dropdown-item" href="https://catalog.gcccks.edu/index.php?catoid=10">Student Handbook</a><a class="dropdown-item" href="/student-services/campus-police-safety.html">Safety &amp; Security</a><a class="dropdown-item" href="/student-services/it/technology-information.html">Tech Support</a></div>
+                           <div class="col-12 col-lg"><a class="dropdown-item" href="/student-life/bookbusters.html">Project 1919</a><a class="dropdown-item" href="/bustercon.html">Bustercon</a></div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="dropdown"><a class="dropdown-toggle bottom-nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">About</a><div class="dropdown-menu">
+                        <div class="row">
+                           <div class="col-12 col-lg"><a class="dropdown-item" href="/about/index.html">About GCCC</a><a class="dropdown-item" href="/about/accreditation.html">Accreditation</a><a class="dropdown-item" href="/about/board-of-trustees.html">Board of Trustees</a><a class="dropdown-item" href="/about/campus-map.html">Campus Map</a><a class="dropdown-item" href="/directory.html">Directory</a></div>
+                           <div class="col-12 col-lg"><a class="dropdown-item" href="https://www.paycomonline.net/v4/ats/web.php/portal/EDDDA7ABD200C6844CF6CF5EFE35BD11/career-page">Employment Opportunities</a><a class="dropdown-item" href="/academics/programs/gccca.html">GCCCA</a><a class="dropdown-item" href="/about/marketing/branding-guide.html">Marketing/Branding</a><a class="dropdown-item" href="/policies.html">Policies</a><a class="dropdown-item" href="/about/presidents-office.html">President's Office</a></div>
+                           <div class="col-12 col-lg"><a class="dropdown-item" href="/about/title-ix-compliance.html">Title IX</a><a class="dropdown-item" href="/about/transparency-data.html">Transparency Data</a><a class="dropdown-item" href="/student-services/veteran-services/home.html">Veteran &amp; Military Services</a></div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="main-nav-apply-ribbon-wrap d-none d-lg-block"><a class="main-nav-apply-ribbon" href="/admissions/apply.html" aria-label="Apply Now"><img src="/_resources/images/apply-now-ribbon.svg" alt="Ribbon for applying."></a></div>&nbsp;</div>
+            </div>
+         </div>
+         <div class="mobile-sub-nav d-lg-none">
+            <form action="/search/index.html" class="nav-search-input active" id="searchFormMobile"><label for="searchMainNavMobile" class="sr-only">Search</label><input type="text" id="searchMainNavMobile" name="q" placeholder="Search"><button type="submit"><span class="icon fa-solid fa-magnifying-glass"></span><span class="sr-only">Search</span></button></form>
+            <div class="mobile-sub-nav-links"><a href="/alumni.html">Alumni</a><span>|</span><a href="https://gobroncbusters.com/landing/index">Athletics</a><span>|</span><a href="/academics/academic-calendar.html">Calendar</a><span>|</span><a href="https://www.givecampus.com/campaigns/34059/donations/new">Give</a><span>|</span><a href="https://experience.elluciancloud.com/gcc74/">myGCCC</a></div>
+         </div>
+      </div>
+   </nav>
+</header>      <main class="content" id="mainContent">
+         <section class="hero-banner"><button type="button" class="play-pause" title="play/pause"><span><span class="fa-solid fa-pause"></span></span></button><div data-bs-video="/_resources/videos/homepage-7-7-26.mp4" data-bs-type="video/mp4" data-bs-image="/_resources/images/placeholder/full-width-photo.png"><video id="heroVideo" autoplay="" muted="" loop="" playsinline="">
+                  <source src="/_resources/videos/homepage-7-7-26.mp4" type="video/mp4"></video></div>
+            <div class="container-fluid hero-banner-container">
+               <div class="hero-banner-content">
+                  
+                  <h1 class="title">Start HERE. Go ANYWHERE.</h1>
+                  
+                  <p>Your future starts at Garden City Community College, where opportunity, affordability,
+                     and personalized support help you succeed.</p>
+                  
+                  <p>&nbsp;<a class="d-btn btn-primary" style="font-size: 20px; padding: 4px 28px; border-radius: 9999px;" href="/admissions/home.html">Start HERE&nbsp;&nbsp;&nbsp;&nbsp;</a></p>
+                  </div>
+            </div>
+         </section>
+         <p><a id="program-finder-main"></a></p>
+         
+         <section class="program-finder section-padding-sm d-bg-broncbuster-gold">
+            <div class="container">
+               <div class="row">
+                  <div class="col-12 col-lg-10 offset-lg-1">
+                     <div class="row program-finder-row">
+                        <div class="col-12 col-lg-5 text-center"><img class="program-finder-image" src="/_resources/images/logos/broncbuster-logo.png" alt="Cowboy riding a horse"></div>
+                        <div class="col-12 col-lg-7 program-finder-content">
+                           <div>
+                              
+                              <h2 class="title">Discover Your Path</h2>
+                              
+                              <p>Explore 50+ programs designed to help you reach your goals, build your skills, and
+                                 take the next step toward your future.</p>
+                              </div>
+                           <form action="/academics/programs/index.html" id="programFinderForm" class="select-box"><label for="programFinder" class="sr-only">Choose a Program</label><div class="select-wrapper"><select name="program" id="programFinder">
+                                    <option value="placeholder">I am interested in...</option><option value="Agriculture">Agriculture</option><option value="Arts & Communication">Arts & Communication</option><option value="Business & Administration">Business & Administration</option><option value="Fully Online Programs">Fully Online Programs</option><option value="Health Professions">Health Professions</option><option value="Other Educational Opportunities">Other Educational Opportunities</option><option value="STEM">STEM</option><option value="Social Sciences & Education">Social Sciences & Education</option><option value="Trade & Industry">Trade & Industry</option></select></div><button type="submit" class="d-btn btn-primary"><span>Browse Programs</span></button></form><a href="/academics/programs/" class="d-hyperlink hyperlink-arrow-sm">View all Programs</a></div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+         
+         <h1 style="text-align: left;"><!--modernCampusPathwaysPersonaGuidesStart --> 
+            <div id="moderncampuspathwayspersonas"></div> 
+            <script> 
+	document.addEventListener("PathwaysWidgetPERSONASScriptLoaded", () => { 
+		new PathwaysPersonaPublicWidget({ 
+			"apiKey": "sErPsN9s3p6mJ7L1Wh5oLf9KTWc0n9B6mGLvHRy5",
+			"clientName": "GardenCityCommunityCollegeCMS",
+			"locale": "en_US",
+			"fontFamily": "Arial, Helvetica, sans-serif",
+			"fontColor": "#4e312d",
+			"elementId": "moderncampuspathwayspersonas",
+			"language": {
+				"en_US":{
+					"personaTitle": "From Here, You Can Go Anywhere",
+					"personaSubTitle": "Choose the option that best describes you to find information, resources, and opportunities created just for you."
+				}
+			}
+		}); 
+	}); 
+</script> 
+            <script src="https://widget.pathways.moderncampus.net/public.loader.js" onload="PathwaysPublicLoader('personas')"></script> <!--modernCampusPathwaysPersonaGuidesEnd -->
+            <script>
+window.addEventListener("load", function() {
+    var checkShadow = setInterval(function() {
+        var widgetContainer = document.querySelector('#moderncampuspathwayspersonas');
+        
+        if (widgetContainer) {
+            if (widgetContainer.shadowRoot) {
+                if (widgetContainer.shadowRoot.querySelector('.grid-item')) {
+                    clearInterval(checkShadow);
+                    
+                    var shadowStyles = document.createElement('style');
+                    shadowStyles.textContent = '.grid-link, .grid-link:hover, .grid-link:focus { text-decoration: none !important; } .grid-item { position: relative; transition: transform 0.2s ease, box-shadow 0.2s ease; } .grid-item:hover { transform: translateY(-3px); box-shadow: 0 6px 12px rgba(0,0,0,0.08); } .grid-link::after { content: \'\'; position: absolute; inset: 0; z-index: 10; }';
+                    
+                    widgetContainer.shadowRoot.appendChild(shadowStyles);
+                }
+            }
+        }
+    }, 150);
+});
+</script></h1>
+         
+         <h2 style="text-align: center;">GCCC at a Glance</h2>
+         
+         <section class="fast-facts section-margin-half">
+            <div class="container">
+               <div class="fast-facts-row">
+                  <div class="fast-fact-card"><span class="number">$7 M+</span><span class="text">Scholarships &amp; Grants Awarded Annually</span></div>
+                  <div class="fast-fact-card"><span class="number">25+</span><span class="text">Clubs &amp; Organizations</span></div>
+                  <div class="fast-fact-card"><span class="number">16:1</span><span class="text">Student-to-Faculty Ratio</span></div>
+                  <div class="fast-fact-card"><span class="number">50+</span><span class="text">Programs &amp; Pathways</span></div>
+               </div>
+            </div>
+         </section>
+         
+         <h2 style="text-align: center;">Experience GCCC</h2>
+         
+         <section class="checkerboard section-margin-half">
+            <div class="row gx-0">
+               <div class="col-12 col-lg-6 order-0 order-lg-0"><img class="checkerboard-image" src="/_resources/images/homepage/students-on-sign-9580.jpg" alt="Group of college students gathered around the Garden City Community College entrance sign."></div>
+               <div class="col-12 col-lg-6 order-1 order-lg-1 d-flex align-items-center d-bg-broncbuster-brown">
+                  <div class="checkerboard-content">
+                     
+                     <h2>Become a Broncbuster</h2>
+                     
+                     <p>Your future starts with a first step. Explore programs, apply for admission, and discover
+                        how GCCC can help you reach your goals.</p>
+                     
+                     <div class="checkerboard-buttons"><a class="d-btn btn-secondary" href="/admissions/home.html">Start Your Journey</a></div>
+                  </div>
+               </div>
+            </div>
+            <div class="row gx-0">
+               <div class="col-12 col-lg-6 order-1 order-lg-0 d-flex align-items-center d-bg-broncbuster-gold">
+                  <div class="checkerboard-content">
+                     
+                     <h2>Paying for College</h2>
+                     
+                     <p data-start="173" data-end="278">Make your education more affordable. Discover scholarships, grants, and financial
+                        aid options designed to help you invest in your future.</p>
+                     
+                     <div class="checkerboard-buttons"><a class="d-btn btn-primary" href="/paying-for-college/home.html">Ways to Pay</a></div>
+                  </div>
+               </div>
+               <div class="col-12 col-lg-6 order-0 order-lg-1"><img class="checkerboard-image" src="/_resources/images/homepage/home-paying-college.jpg" alt="Two college students sit in a campus lounge reviewing information together on a laptop."></div>
+            </div>
+            <div class="row gx-0">
+               <div class="col-12 col-lg-6 order-0 order-lg-0"><img class="checkerboard-image" src="/_resources/images/homepage/students-smiling-quad-9899.jpg" alt="Three college students standing together on campus outdoors, posing for a photo."></div>
+               <div class="col-12 col-lg-6 order-1 order-lg-1 d-flex align-items-center d-bg-broncbuster-brown">
+                  <div class="checkerboard-content">
+                     
+                     <h2>Student Life</h2>
+                     
+                     <p>Find your place at GCCC. Build connections, explore interests, and get involved through
+                        clubs, athletics, events, and campus traditions.</p>
+                     
+                     <div class="checkerboard-buttons"><a class="d-btn btn-secondary" href="/student-life.html">Explore Student Life</a></div>
+                  </div>
+               </div>
+            </div>
+            <div class="row gx-0">
+               <div class="col-12 col-lg-6 order-1 order-lg-0 d-flex align-items-center d-bg-broncbuster-gold">
+                  <div class="checkerboard-content">
+                     
+                     <h2>Student Success</h2>
+                     
+                     <p>Get the support you need to thrive. Connect with tutoring, advising, and resources
+                        that help you achieve your goals.</p>
+                     
+                     <div class="checkerboard-buttons"><a class="d-btn btn-primary" href="/student-services.html">Discover Resources</a></div>
+                  </div>
+               </div>
+               <div class="col-12 col-lg-6 order-0 order-lg-1"><img class="checkerboard-image" src="/_resources/images/homepage/student-support_books.jpg" alt="Two students studying in a library, writing in notebooks with open books on a table in front of them."></div>
+            </div>
+         </section>
+         
+         <h2 style="text-align: center;">What’s Happening at GCCC</h2>
+         
+         <p style="text-align: center;">Stay connected with campus events, news, and stories from the Broncbuster community.</p>
+         
+         <section class="news-events section-margin-half">
+            <div class="container">
+               <div class="row news-events-row">
+                  <div class="col-12 col-lg-8 order-1 order-lg-0">
+                     <div class="row news-cards-row"><div class="col-12 col-lg-6">	<div class="news-card">		<div class="row g-0 h-100">			<div class="col-12 col-lg-5 news-card-image">				<img src="/_resources/images/news/2026/buster-commitment-pr.png" alt="Buster Commitment 2027 Scholarship flyer highlighting a $2,000 annual scholarship for eligible western Kansas high school seniors attending GCCC."/>			</div>			<div class="col-12 col-lg news-card-content">				<h5>GCCC Launches Buster Commitment Scholarship for Western Kansas Seniors</h5>				<a href="/news/2026/gccc-launches-buster-commitment-scholarship-for-western-kansas-seniors.html" class="news-card-link d-hyperlink hyperlink-arrow-sm">Read More</a>			</div>		</div>	</div></div><div class="col-12 col-lg-6">	<div class="news-card">		<div class="row g-0 h-100">			<div class="col-12 col-lg-5 news-card-image">				<img src="/_resources/images/news/2026/sing-we-noel.png" alt="Christmas concert poster for Garden City Community College’s Department of Music, promoting Sing We Noel: Community Christmas Choral Vespers on Sunday, Dec. 6, at 2:30 p.m. in the Pauline Joyce Fine Arts KCB Bank Auditorium. Features GCCC Concert Choir, GCCC College Singers, Southwest Kansas Chorale, and Community Orchestra. Directed by Sean Boller, with pianist Maria Loving. Light blue snowflake background with teal and gold lettering."/>			</div>			<div class="col-12 col-lg news-card-content">				<h5>GCCC Music Department to Present Christmas Choral Vespers Concert on December 6</h5>				<a href="/news/2026/gccc-music-department-to-present-christmas-choral-vespers-concert-on-december-6.html" class="news-card-link d-hyperlink hyperlink-arrow-sm">Read More</a>			</div>		</div>	</div></div></div>
+                  </div>
+                  <div class="col-12 col-lg-4 order-0 order-lg-1 news-events-title">
+                     <h2>Campus News</h2><a href="/news.html" target="_blank" class="d-hyperlink hyperlink-arrow-sm">View All News</a></div>
+               </div>
+            </div>
+         </section>
+         
+         <section class="news-events section-margin-half">
+            <div class="container">
+               <div class="row news-events-row">
+                  <div class="col-12 col-lg-3 news-events-title">
+                     <h2>Events</h2><a href="/events/index.html" target="_self" class="d-hyperlink hyperlink-arrow-sm">View All Events</a></div>
+                  <div class="col-12 col-lg-9">
+                     <div class="row event-cards-row"><div class="col-12 col-lg-4">	<div class="event-card">		<a href="/events/2026/gc3-jazz-fest.html" target="_blank">			<h4>GC3 Jazz Fest</h4>		</a>		<span class="date">Nov 18 | 1:00 PM</span>	</div></div><div class="col-12 col-lg-4">	<div class="event-card">		<a href="/events/2026/sleigh-what-christmas-lighting.html" target="_blank">			<h4>Sleigh What? Christmas Lighting with Billy!</h4>		</a>		<span class="date">Nov 19 | 6:30 PM</span>	</div></div><div class="col-12 col-lg-4">	<div class="event-card">		<a href="/events/2026/campus-closed-thanksgiving-break.html" target="_blank">			<h4>Campus Closed 11/21-11/29 for Thanksgiving Break</h4>		</a>		<span class="date">Nov 29 | 11:59 PM</span>	</div></div></div>
+                  </div>
+               </div>
+            </div>
+         </section>
+         
+         <section class="cta-banner section-padding">
+            <div class="container">
+               <div class="row cta-banner-row">
+                  <div class="col-12 col-lg-7">
+                     <div class="cta-banner-text">
+                        <h2 class="cta-banner-title">From HERE, you can go ANYWHERE!</h2>
+                     </div>
+                  </div>
+                  <div class="col-12 col-lg-5">
+                     <div class="cta-banner-btns"><a class="d-btn btn-primary" href="/admissions/apply.html">Apply Now</a><a class="d-btn btn-primary" href="/admissions/schedule-visit.html">Visit Campus</a><a class="d-btn btn-primary" href="/admissions/request-info.html">Request Info</a></div>
+                  </div>
+               </div>
+            </div>
+         </section>
+         
+         <p>&nbsp;</p>
+      </main>
+      <footer class="main-footer" id="mainFooter">
+   <div class="container">
+      <div class="footer">
+         <div class="row footer-content">
+            <div class="col-12 col-lg-6">
+               <div class="footer-info-content">
+                  <div class="footer-logo"><img src="/_resources/images/logos/gccc_secondary.png" alt="footer-logo"></div>
+                  <div class="footer-contact"><a href=""><span class="icon fa-solid fa-map-location-dot"></span><span>801 Campus Drive - Garden City, KS 67846</span></a><a href="tel:6202767611"><span class="icon fa-solid fa-phone-volume"></span><span>620-276-7611</span></a></div>
+                  <div class="footer-social-media"><a href="https://www.facebook.com/GardenCityCommunityCollege"><span class="icon fa-brands fa-facebook"></span><span class="sr-only">Facebook</span></a><a href="https://x.com/gcccbroncbuster"><span class="icon fa-brands fa-x-twitter"></span><span class="sr-only">Twitter/X</span></a><a href="https://www.instagram.com/busternation/"><span class="icon fa-brands fa-instagram"></span><span class="sr-only">Instagram</span></a><a href="https://www.linkedin.com/school/garden-city-community-college"><span class="icon fa-brands fa-linkedin"></span><span class="sr-only">LinkedIn</span></a><a href="https://www.tiktok.com/@gccc_official"><span class="icon fa-brands fa-tiktok"></span><span class="sr-only">TikTok</span></a></div>
+               </div>
+            </div>
+            <div class="col-12 col-lg-6">
+               <div class="row">
+                  <div class="col-6 col-lg-3">
+                     <div class="footer-link-content"><a href="/about/index.html"><span>About Us</span></a><a href="/accessibility/accessibility-services.html"><span>Accessibility</span></a><a href="/about/accreditation.html"><span>Accreditation</span></a><a href="/about/board-of-trustees.html"><span>Board of Trustees</span></a><a href="https://bookstore.gcccks.edu/home"><span>Bookstore</span></a></div>
+                  </div>
+                  <div class="col-6 col-lg-3">
+                     <div class="footer-link-content"><a href="/about/campus-map.html"><span>Campus Map</span></a><a href="/student-services/campus-police-safety.html"><span>Campus Safety</span></a><a href="https://gardencitycc.instructure.com/"><span>Canvas</span></a><a href="https://www.paycomonline.net/v4/ats/web.php/portal/EDDDA7ABD200C6844CF6CF5EFE35BD11/career-page"><span>Careers</span></a><a href="/about/consumer-information.html"><span>Consumer Info</span></a></div>
+                  </div>
+                  <div class="col-6 col-lg-3">
+                     <div class="footer-link-content"><a href="/directory.html"><span>Directory</span></a><a href="https://gcccendowment.com/"><span>Endowment</span></a><a href="/accessibility/accessibility-services.html"><span>Equal Access</span></a><a href="/news.html"><span>News</span></a><a href="/notice-of-nondiscrimination.html"><span>Nondiscrimination</span></a></div>
+                  </div>
+                  <div class="col-6 col-lg-3">
+                     <div class="footer-link-content"><a href="https://gcccks.onelogin.com/"><span>OneLogin</span></a><a href="/policies.html"><span>Policies</span></a><a href="/about/transparency-data.html"><span>Taxpayer &amp; Student Data</span></a></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="sub-footer">
+         <div class="row sub-footer-content">
+            <div class="col-12 col-xl-8 order-1 order-md-0">
+               <div class="sub-footer-links"><a href="/">© 2026 Garden City Community College</a><a href="/policy-library/_operations/information-security-policy.html">Privacy Policy</a><a href="https://forms.cloud.microsoft/r/E5jiVEV4c0">Feedback</a>&nbsp;
+                  <div style="display:inline-block; vertical-align:middle; margin-left:15px; width:120px;"><iframe id="HLC" src="https://cdn2.yoshki.com/badgeframe?34" style="border:0px; background-color:transparent; width:100%; height:130px; overflow:hidden;" title="HLC Accreditation Status"></iframe></div>
+               </div>
+            </div>
+            <div class="col-12 col-xl-4 order-0 order-md-1 text-center text-md-end"><a href="" class="sub-footer-image"><img src="/_resources/images/logos/ks.png" alt="Subfooter footer-logo"></a></div>
+         </div>
+      </div>
+   </div>
+</footer>
+<!-- Jquery -->
+<script src="/_resources/js/jquery-3.7.1.min.js"></script>
+
+<!-- BootStrap -->
+<script src="/_resources/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Slick -->
+<script type="text/javascript" src="/_resources/accessible-slick-1.0.1/slick/slick.min.js"></script>
+
+<!-- Custom -->
+<script src="/_resources/js/scripts.js"></script>
+
+<!-- DataTables -->
+<script src="/_resources/DataTables/datatables.min.js"></script>      <div id="ou-hidden" style="display:none;"></div><script>
+			if(document.getElementById("de") != null && document.getElementById("directedit")) {
+				var link = document.getElementById("de").parentNode.innerHTML;
+				document.getElementById("de").parentNode.innerHTML = "";
+				document.getElementById("directedit").innerHTML = link.replace(/^\s+|\s+$/gm,'');
+			}
+		</script>
+      		<script>
+			document.addEventListener("DOMContentLoaded", function() {
+				const today = new Date();
+				today.setHours(0, 0, 0, 0);
+
+				const eventCards = document.querySelectorAll(".event-cards-row > div");
+				
+				eventCards.forEach(cardContainer => {
+					const dateSpan = cardContainer.querySelector(".date");
+					if (dateSpan) {
+						let text = dateSpan.textContent.trim();
+						let datePart = text.split('|')[0].trim();
+						
+						if (!datePart.includes("20")) {
+							datePart += ", " + new Date().getFullYear();
+						}
+						
+						const eventDate = new Date(datePart);
+						
+						if (!isNaN(eventDate)) {
+							if (eventDate < today) {
+								cardContainer.style.display = "none";
+							}
+						}
+					}
+				});
+			});
+		</script>
+      		<script>
+			setInterval(function() {
+			  var host = document.getElementById('moderncampuspathwayspersonas');
+			  if (host) {
+			    if (host.shadowRoot) {
+			      if (!host.shadowRoot.getElementById('round-fix-v2')) {
+			        var s = document.createElement('style');
+			        s.id = 'round-fix-v2';
+			        s.textContent = '.personas, .personas * { font-family: Montserrat, sans-serif !important; } .grid-item { border-radius: 14px !important; border: 1px solid rgba(78,49,45,0.12) !important; } .title { font-weight: 700 !important; font-size: 18px !important; line-height: 1.3 !important; }';
+			        host.shadowRoot.appendChild(s);
+			      }
+			    }
+			  }
+			}, 300);
+		</script>
+      		<script>
+			document.addEventListener("DOMContentLoaded", function() {
+			  /* Collapse empty anchor paragraph above Program Finder */
+			  var anchorP = document.getElementById("program-finder-main");
+			  if (anchorP) {
+			    if (anchorP.parentNode) {
+			      if (anchorP.parentNode.tagName === "P") {
+			        anchorP.parentNode.style.margin = "0";
+			        anchorP.parentNode.style.padding = "0";
+			        anchorP.parentNode.style.height = "0";
+			        anchorP.parentNode.style.overflow = "hidden";
+			      }
+			    }
+			  }
+
+			  /* Modern Smooth Scroll-Reveal (IntersectionObserver) for Checkerboard, Fast Facts, and Headings */
+			  var revealTargets = document.querySelectorAll("main h2, section:not(.hero-banner):not(.program-finder) .row, section.cta-banner");
+			  if ("IntersectionObserver" in window) {
+			    var observer = new IntersectionObserver(function(entries) {
+			      entries.forEach(function(entry) {
+			        if (entry.isIntersecting) {
+			          entry.target.classList.add("is-visible");
+			          observer.unobserve(entry.target);
+			        }
+			      });
+			    }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+
+			    revealTargets.forEach(function(el) {
+			      el.classList.add("gccc-reveal");
+			      observer.observe(el);
+			    });
+			  }
+			});
+		</script>
+      	<!-- ouc:info uuid="35e0b179-d867-4eea-b3ad-b78a3ebf03d1"/ --></body>
+</html>

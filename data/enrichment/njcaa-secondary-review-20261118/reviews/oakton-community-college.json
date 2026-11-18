@@ -1,0 +1,53 @@
+{
+  "slug": "oakton-community-college",
+  "programId": "cmox2o2w2004zqtbkffe2gaqm",
+  "collegeId": "cmox2o2va004xqtbk1jhuxnfl",
+  "checkedAtUtc": "2026-11-18T14:43:39.234Z",
+  "sourcePath": "../njcaa-discovery-20261118/sources/oakton-community-college-1.source",
+  "sourceSHA256": "bfccbafeffe6b1886ea7e5e382127a6a7b68f9a57890ec5bb08f85386ed7da63",
+  "sourceUrl": "https://oakton-owls.com/?path=baseball",
+  "socialLeads": [],
+  "recruitingLeads": [
+    {
+      "url": "https://oakton-owls.com/sb_output.aspx?form=4",
+      "label": "Prospective Athlete Form",
+      "context": "",
+      "kind": "QUESTIONNAIRE"
+    }
+  ],
+  "logoLeads": [
+    {
+      "url": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/oaktoncc.sidearmsports.com/images/logos/site/site.png",
+      "label": "Oakton College undefined"
+    }
+  ],
+  "captures": [
+    {
+      "requestedUrl": "https://oakton-owls.com/sb_output.aspx?form=4",
+      "kind": "QUESTIONNAIRE",
+      "status": 200,
+      "finalUrl": "https://oakton-owls.com/sb_output.aspx?form=4",
+      "sourcePath": "../njcaa-core-review-20261118/sources/oakton-community-college-4.source",
+      "sha256": "bd9e084e7cdebd2f0cf38678665a31d09abe01ed288cf3dc5777771e10d4b018",
+      "reusedEvidence": true
+    },
+    {
+      "requestedUrl": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/oaktoncc.sidearmsports.com/images/logos/site/site.png",
+      "kind": "LOGO_ASSET",
+      "status": 200,
+      "finalUrl": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/oaktoncc.sidearmsports.com/images/logos/site/site.png",
+      "contentType": "image/png",
+      "sourcePath": "sources/oakton-community-college-1.source",
+      "sha256": "fecf9003dab1d685a4cff3a162272e3a9a9bf902ae98722e4eff77958954b862",
+      "decoded": {
+        "format": "png",
+        "width": 200,
+        "height": 200
+      },
+      "assetDecoded": true
+    }
+  ],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED"
+}

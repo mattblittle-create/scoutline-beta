@@ -1,0 +1,1762 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr" xml:lang="en">
+<!-- InstanceBegin template="/Templates/athletics-main.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<meta http-equiv="x-ua-compatible" content="IE=edge">
+<meta name="google" content="notranslate">
+<!-- InstanceBeginEditable name="doctitle" -->
+<meta property="og:locale" 			content="en_US" />
+<meta property="og:type" 			content="website" />
+<meta property="og:site_name" 		content="Labette Community College Athletics" />
+<meta property="og:image"          	content="https://labette.edu/images/og/lcc-logo-athletics-flat.png" />
+<meta property="og:image:alt"       content="Labette Community College Athletics Logo" />
+<meta property="og:url" 			content="https://www.labette.edu/athletics/index.html" />
+<meta property="og:description"    	content="The official website of Labette Community College Athletics, Home of the Cardinals" />
+<title>Labette Community College Athletics | Home of the Cardinals</title>
+<!-- InstanceEndEditable -->
+<!-- Google tag (gtag.js) --> 
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GGHT9B97D5"></script> 
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GGHT9B97D5');
+</script> 
+<!-- Google Tag Manager --> 
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MX8T8LS3');</script> 
+<!-- End Google Tag Manager -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="../css/swiper.css">
+<link rel="stylesheet" href="../css/font-icons.css">
+<link rel="stylesheet" href="css/customathletics.css">
+<link rel="stylesheet" href="css/player-info.css">
+<link rel="icon" type="image/png" href="images/favicon/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/athletics/images/favicon/favicon.svg" />
+<link rel="shortcut icon" href="images/favicon/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-title" content="Labette Athletics" />
+<link rel="manifest" href="images/favicon/site.webmanifest" />
+<!-- InstanceBeginEditable name="head" -->
+<link rel="stylesheet" href="../css/components/bs-datatable.css">
+<style>
+.is-expanded-menu #header {
+--cnvs-header-bg: rgba(var(--cnvs-invert-contrast-rgb), .7);
+}
+.comp-sched {
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+}
+.comp-sched-day {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+.comp-sched-date {
+    padding-left: 0 !important;
+}
+.comp-sched-lcc {
+    font-weight: bold !important;
+    text-transform: uppercase;
+}
+table .home .comp-sched-opponent {
+    font-weight: bold !important;
+}
+table .home .comp-sched-opponent:before, table .homeconf .comp-sched-opponent:before {
+    content: 'VS';
+    color: #fff;
+    background-color: #da1a32;
+    padding: 0px 3px;
+    margin-right: 5px;
+    border-radius: 3px;
+    font-size: .8rem;
+}
+table .away .comp-sched-opponent:before, table .awayconf .comp-sched-opponent:before {
+    content: 'AT';
+    color: #fff;
+    background-color: #58595b;
+    padding-top: 0px;
+    padding-right: 3px;
+    padding-left: 3px;
+    margin-right: 5px;
+    border-radius: 3px;
+    font-size: .8rem;
+}
+.home, .homeconf, .away, .awayconf {
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+}
+.home {
+    background-image: url("images/corner-home.png");
+}
+.homeconf {
+    background-image: url("images/corner-homeconf.png");
+}
+.awayconf {
+    background-image: url("images/corner-awayconf.png");
+}
+.comp-sched tr, .comp-sched th, .comp-sched td {
+    display: inline-block;
+    overflow: hidden !important;
+    font-size: .9rem;
+    width: auto !important;
+}
+.comp-sched tr {
+    margin: .5%;
+    float: left !important;
+    overflow: hidden;
+    padding-top: 10px;
+    padding-left: 70px;
+    border: 1px solid #bbb;
+    background-color: #fff;
+}
+.comp-sched td, .comp-sched th {
+    display: inline-block;
+    vertical-align: top;
+    padding-top: 0px;
+    padding-right: 5px;
+    line-height: 1;
+    border: 0!important;
+}
+.comp-sched .comp-sched-opponent {
+    display: block;
+    margin-bottom: 7px;
+    padding-top: 0;
+    padding-bottom: 0;
+    font-size: 1em;
+    font-weight: normal !important;
+}
+.comp-sched-opponent {
+    margin-right: 25px !important;
+}
+.comp-sched .comp-sched-opponent .comp-sched-img {
+    max-HEIGHT: 50px !important;
+    max-width: 50px !important;
+    object-fit: contain !important;
+    margin-right: 10px;
+}
+.comp-sched .comp-sched-opponent .comp-sched-img {
+    display: block;
+    width: 50px;
+    float: left;
+    margin-left: -60px;
+    margin-bottom: auto;
+    margin-top: -35px;
+    position: absolute;
+}
+.comp-sched-opponent img {
+    width: 50px;
+    HEIGHT: 50px;
+    object-fit: contain !important;
+}
+#eventstable tr {
+    width: 99% !important;
+}
+
+@media only screen and (max-width: 991.98px) {
+.slider-caption h1, .slider-caption .h1, .slider-caption h2, .slider-caption .h2 {
+    font-size: 2rem!important;
+}
+.slider-caption p {
+    font-size: 1rem!important;
+}
+}
+}
+
+@media only screen and (max-width: 575.98px) {
+#eventstable tr {
+    width: 99% !important;
+}
+}
+
+@media (min-width: 576px) and (max-width: 991.98px) {
+#eventstable tr {
+    width: 49% !important;
+}
+}
+
+@media (min-width: 992px) and (max-width: 1400px) {
+#eventstable tr {
+    width: 32.3333% !important;
+}
+}
+
+@media only screen and (min-width: 1400px) {
+#eventstable tr {
+    width: 24% !important;
+}
+}
+</style>
+<!-- InstanceEndEditable -->
+</head>
+<body class="stretched">
+<!-- Google Tag Manager (noscript) -->
+<noscript>
+<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MX8T8LS3"
+height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<div id="wrapper">
+  <div id="top-bar" class="dark bg-color d-none d-sm-block">
+    <div class="container-fluid">
+      <div class="row justify-content-center justify-content-lg-between">
+        <div class="col-12">
+          <div class="text-center ls-5 py-2 fw-bold">HOME OF THE LABETTE COMMUNITY COLLEGE CARDINALS </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <header id="header" class="dark header-size-md">
+    <div id="header-wrap">
+      <div class="container">
+        <div class="header-row">
+          <div id="logo"><a href="index.html"><img src="images/logos/lcc-logo-dark%402x.png" alt="LCC Logo"><span class="sr-only text-white">LCC Athletics Home</span></a></div>
+          <!-- #logo end -->
+          <div class="header-misc"> <a href="https://www.facebook.com/profile.php?id=100057260928337" class="social-icon bg-white bg-opacity-10 h-bg-redzone transform-skew rounded-0" target="_blank" title="Facebook"><i class="fa-brands fa-facebook-f"></i><i class="fa-brands fa-facebook-f"></i></a> <a href="index.html#composite" class="social-icon bg-white bg-opacity-10  h-bg-redzone transform-skew rounded-0" title="Composite Schedule"><i class="fa fa-calendar-days"></i><i class="fa fa-calendar-days"></i></a> <a href="https://kjcccsports.net/labette/" class="social-icon bg-white bg-opacity-10 h-bg-redzone transform-skew rounded-0" title="Watch Live" target="_blank"><i class="fa fa-video-camera"></i><i class="fa fa-video-camera"></i></a>
+            <div id="top-search" class="header-misc-icon"> <a href="#" id="top-search-trigger"><i class="uil uil-search"></i><i class="bi-x-lg"></i><span class="sr-only">Open search</span></a></div>
+          </div>
+          <div class="primary-menu-trigger">
+            <button class="cnvs-hamburger" type="button" title="Open Mobile Menu"><span class="cnvs-hamburger-box"><span class="cnvs-hamburger-inner"></span></span></button>
+          </div>
+          <nav class="primary-menu">
+            <ul class="menu-container">
+              <li class="menu-item mega-menu"><a class="menu-link transform-skew h-bg-redzone" href="#">
+                <div class="ps-2 ps-sm-0 fw-bold">Sports</div>
+                </a>
+                <div class="mega-menu-content border-top-0">
+                  <div class="row g-0 align-items-stretch">
+                    <div class="col-lg-4 d-none d-md-none d-xl-flex imagescale" style="background: url('images/2022/slider-athletes.jpg') center center / cover;"></div>
+                    <div class="sub-menu-container mega-menu-column col not-dark bg-white p-4" id="sports">
+                      <div class="row d-md-flex p-md-4">
+                        <div class="col-12 col-sm-6">
+                          <div class="menu-item mb-md-2 border-top mb-3">
+                            <h4 class="mt-1 mb-0"><a href="baseball/index.html">Baseball</a></h4>
+                            <a href="baseball/26-27/schedule.html" class="me-2 sportmenulink">Schedule</a> <a href="baseball/26-27/roster.html" class="me-2 sportmenulink">Roster</a> <a href="baseball/26-27/profiles.html" class="me-2 sportmenulink">Profiles</a> <a href="https://www.kjccc.org/sports/bsb/2026-27/teams/labettecommunitycollege" class="me-2 sportmenulink" target="_blank">Stats</a></div>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                          <div class="menu-item mb-md-2 border-top mb-3">
+                            <h4 class="mt-1 mb-0"><a href="mbball/index.html">Basketball (M)</a></h4>
+                            <a href="mbball/26-27/schedule.html" class="me-2 sportmenulink">Schedule</a> <a href="mbball/26-27/roster.html" class="me-2 sportmenulink">Roster</a> <a href="mbball/26-27/profiles.html" class="me-2 sportmenulink">Profiles</a> <a href="https://www.kjccc.org/sports/mbkb/2026-27/div2/teams/labettecommunitycollege" class="me-2 sportmenulink" target="_blank">Stats</a> <a href="https://www.instagram.com/lccmensbasketball/" class="me-2 sportmenulink" target="_blank"><i class="fa-brands fa-instagram" aria-label="instagram" title="instagram"></i><span class="sr-only">Instagram</span></a></div>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                          <div class="menu-item mb-md-2 border-top mb-3">
+                            <h4 class="mt-1 mb-0"><a href="wbball/index.html">Basketball (W)</a></h4>
+                            <a href="wbball/26-27/schedule.html" class="me-2 sportmenulink">Schedule</a> <a href="wbball/26-27/roster.html" class="me-2 sportmenulink">Roster</a> <a href="wbball/26-27/profiles.html" class="me-2 sportmenulink">Profiles</a> <a href="https://www.kjccc.org/sports/wbkb/2026-27/div2/teams/labettecommunitycollege" class="me-2 sportmenulink" target="_blank">Stats</a> </div>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                          <div class="menu-item mb-md-2 border-top mb-3">
+                            <h4 class="mt-1 mb-0"><a href="softball/index.html">Softball</a></h4>
+                            <a href="softball/26-27/schedule.html" class="me-2 sportmenulink">Schedule</a> <a href="softball/26-27/roster.html" class="me-2 sportmenulink">Roster</a> <a href="softball/26-27/profiles.html" class="me-2 sportmenulink">Profiles</a> <a href="https://www.kjccc.org/sports/sball/2026-27/teams/labettecommunitycollege" class="me-2 sportmenulink" target="_blank">Stats</a> <a href="https://www.facebook.com/labettestrong/" class="me-2 sportmenulink" target="_blank"><i class="fa-brands fa-facebook" aria-label="Facebook" title="Facebook"></i><span class="sr-only">Facebook</span></a> <a href="https://www.instagram.com/labettesoftball/" class="me-2 sportmenulink" target="_blank"><i class="fa-brands fa-instagram" aria-label="instagram" title="instagram"></i><span class="sr-only">Instagram</span></a></div>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                          <div class="menu-item mb-md-2 border-top mb-3">
+                            <h4 class="mt-1 mb-0"><a href="volleyball/index.html">Volleyball</a></h4>
+                            <a href="volleyball/26-27/schedule.html" class="me-2 sportmenulink">Schedule</a> <a href="volleyball/26-27/roster.html" class="me-2 sportmenulink">Roster</a> <a href="volleyball/26-27/profiles.html" class="me-2 sportmenulink">Profiles</a> <a href="https://www.kjccc.org/sports/wvball/2026-27/div2/teams/labettecommunitycollege" class="me-2 sportmenulink" target="_blank">Stats</a> <a href="https://www.facebook.com/LabetteCommunityCollegeVolleyball" target="_blank" class="me-2 sportmenulink"><i class="fa-brands fa-facebook" aria-label="Facebook" title="Facebook"></i><span class="sr-only">Facebook</span></a><a href="https://www.instagram.com/labettevb/" target="_blank" class="me-2 sportmenulink"><i class="fa-brands fa-instagram" aria-label="instagram" title="instagram"></i><span class="sr-only">Instagram</span></a></div>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                          <div class="menu-item mb-md-2 border-top mb-3">
+                            <h4 class="mt-1 mb-0"><a href="wrestling/index.html">Wrestling</a></h4>
+                            <a href="wrestling/26-27/schedule.html" class="me-2 sportmenulink">Schedule</a> <a href="wrestling/26-27/roster.html" class="me-2 sportmenulink">Roster</a> <a href="wrestling/26-27/profiles.html" class="me-2 sportmenulink">Profiles</a> <a href="https://kjccc.prestosports.com/sports/wrest/2025-26/schedule?teamId=hesykjkux9pcnyxq" class="me-2 sportmenulink" target="_blank">Stats</a> <a href="https://www.facebook.com/LabetteWrestling/" class="me-2 sportmenulink" target="_blank"><i class="fa-brands fa-facebook" aria-label="Facebook" title="Facebook"></i><span class="sr-only">Facebook</span></a></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="menu-item mega-menu"><a class="menu-link transform-skew h-bg-redzone" href="#">
+                <div class="ps-2 ps-sm-0 fw-bold">Cardinal Zone</div>
+                </a>
+                <div class="mega-menu-content mega-menu-style-2 border-top-0">
+                  <div class="container">
+                    <div class="row">
+                      <ul class="sub-menu-container mega-menu-column col not-dark bg-white">
+                        <li class="menu-item mega-menu-title">
+                          <div class="fw-bold text-uppercase pb-2 pb-md-0 mt-1 color submenuheader">Cardinal Spirit</div>
+                          <ul class="sub-menu-container">
+                            <li class="menu-item"><a class="menu-link" href="mascot/index.html">
+                              <div>Cardinal Mascot</div>
+                              </a></li>
+                            <li class="menu-item"><a class="menu-link" href="spiritdays/index.html">
+                              <div>Spirit Days</div>
+                              </a></li>
+                            <li class="menu-item"><a class="menu-link" href="spiritsquad/index.html">
+                              <div>Spirit Squad</div>
+                              </a></li>
+                          </ul>
+                        </li>
+                      </ul>
+                      <ul class="sub-menu-container mega-menu-column col not-dark bg-white">
+                        <li class="menu-item mega-menu-title">
+                          <div class="fw-bold text-uppercase pb-2 pb-md-0 mt-1 color submenuheader">Support</div>
+                          <ul class="sub-menu-container">
+                            <li class="menu-item"><a class="menu-link" href="alumni/index.html">
+                              <div>Alumni</div>
+                              </a></li>
+                            <li class="menu-item"><a class="menu-link" href="booster/index.html">
+                              <div>Booster Club</div>
+                              </a></li>
+                            <li class="menu-item"><a class="menu-link" href="../foundation/index.html">
+                              <div>Give to LCC</div>
+                              </a></li>
+                          </ul>
+                        </li>
+                      </ul>
+                      <ul class="sub-menu-container mega-menu-column col not-dark bg-white">
+                        <li class="menu-item mega-menu-title">
+                          <div class="fw-bold text-uppercase pb-2 pb-md-0 mt-1 color submenuheader">Traditions</div>
+                          <ul class="sub-menu-container">
+                            <li class="menu-item"><a class="menu-link" href="honors/index.html">
+                              <div>Awards &amp; Honors</div>
+                              </a></li>
+                            <li class="menu-item"><a class="menu-link" href="hof/index.html">
+                              <div>Hall of Fame</div>
+                              </a></li>
+                          </ul>
+                        </li>
+                      </ul>
+                      <ul class="sub-menu-container mega-menu-column col not-dark bg-white">
+                        <div class="fw-bold text-uppercase pb-2 pb-md-0 mt-1 color submenuheader">Game Day</div>
+                        <li class="menu-item"><a class="menu-link" href="index.html#composite">
+                          <div>Composite Schedule</div>
+                          </a></li>
+                        <li class="menu-item"><a class="menu-link" href="gameday/index.html">
+                          <div>Game Day Roster</div>
+                          </a></li>
+                      </ul>
+                      <ul class="sub-menu-container mega-menu-column col d-none d-sm-block">
+                        <li class="menu-item mega-menu-title">
+                          <ul class="clients-grid row row-cols-3">
+                            <li class="col"><a href="https://www.njcaa.org/landing/index" target="_blank" rel="noopener" class=""><img src="images/logos/njcaa.png" alt="NJCAA Logo" loading="lazy"/></a></li>
+                            <li class="col"><a href="https://www.kjccc.org/landing/index" target="_blank" rel="noopener" class="link-image"><img src="images/logos/kjccc.webp" alt="KJCCC Logo" loading="lazy"/></a></li>
+                            <li class="col"><a class="link-image" href="https://www.kjcccsports.net"><img src="images/logos/kjccc-sports-network.png" alt="KJCCC Sports Network Logo" loading="lazy"/></a></li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="menu-item"><a class="menu-link transform-skew h-bg-redzone" href="#">
+                <div class="ps-2 ps-sm-0 fw-bold">Inside Athletics</div>
+                </a>
+                <ul class="sub-menu-container not-dark bg-white" id="insideathletics">
+                  <li class="menu-item"><a class="menu-link" href="directory.html">
+                    <div>Athletics Directory</div>
+                    </a></li>
+                  <li class="menu-item"><a class="menu-link" href="forms/index.html">
+                    <div>Athletics Forms</div>
+                    </a></li>
+                  <li class="menu-item"><a class="menu-link" href="at/staff.html">
+                    <div>Athletic Trainer</div>
+                    </a></li>
+                  <li class="menu-item"><a class="menu-link" href="assets/2026-EADA-Survey.pdf">
+                    <div>EADA Report </div>
+                    </a></li>
+                  <li class="menu-item"><a class="menu-link" href="at/index.html">
+                    <div>Visiting Athletic Trainer Info</div>
+                    </a></li>
+                </ul>
+              </li>
+              <li class="menu-item"><a class="menu-link transform-skew h-bg-redzone" href="../index.html">
+                <div class="ps-2 ps-sm-0 fw-bold">LCC Home</div>
+                </a></li>
+            </ul>
+          </nav>
+          <!-- #primary-menu end -->
+          <form class="top-search-form" action="https://labette.edu/athletics/search.html" method="get">
+            <label for="search" class="sr-only" >Search</label>
+            <input type="text" id="search" name="q" class="form-control" value="" placeholder="Search labette.edu..." autocomplete="off">
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="header-wrap-clone"></div>
+  </header>
+  <!-- #header end --><!-- InstanceBeginEditable name="main" -->
+  <div id="fb-root"></div>
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v23.0"></script>
+  <main>
+    <section id="slider" class="slider-element swiper_wrapper min-vh-50 min-vh-md-90 include-header" data-effect="fade" data-autoplay="7000" data-speed="650" data-loop="true">
+      <div class="slider-inner">
+        <div class="swiper swiper-parent">
+          <div class="swiper-wrapper bg-black">
+            <div class="swiper-slide">
+              <div class="container">
+                <div class="slider-caption slider-caption-center">
+                  <p data-animate="fadeInUp"><span class="text-white-shadow fs-1 mb-0 p-0 text-white">Welcome to</span></p>
+                  <h1 data-animate="fadeInUp"><span class="text-white-shadow text-uppercase m-0 p-0 text-white">Labette Athletics</span></h1>
+                </div>
+              </div>
+              <div class="swiper-slide-bg" style="background-image: url('volleyball/26-27/assets/813467405_1693079772817964_3948658953901212193_n.jpg'); background-position: center center;"></div>
+            </div>
+            <div class="swiper-slide">
+              <div class="container"> </div>
+              <div class="swiper-slide-bg" style="background-image: url('mbball/26-27/assets/2026-2027-team.jpg'); background-position: center 15%;"></div>
+            </div>
+            <div class="swiper-slide">
+              <div class="container"> </div>
+              <div class="swiper-slide-bg" style="background-image: url('wrestling/26-27/assets/Wrestling-Team-2026-27.webp'); background-position: center center;"></div>
+            </div>
+            <div class="swiper-slide dark">
+              <div class="container">
+                <div class="slider-caption slider-caption-center">
+                  <h1 data-animate="fadeInUp"><span class="text-white-shadow text-uppercase m-0 p-0 text-white">Home of the Cardinals</span></h1>
+                </div>
+              </div>
+              <div class="swiper-slide-bg" style="background-image: url('images/2025/new-gym-floor.jpg');"></div>
+            </div>
+            <div class="swiper-slide">
+              <div class="container"> </div>
+              <div class="swiper-slide-bg" style="background-image: url('images/2025/spiritsquad/IMG_7963.jpg'); background-position: center center;"></div>
+            </div>
+          </div>
+          <div class="slider-arrow-left"><i class="uil uil-angle-left-b"></i></div>
+          <div class="slider-arrow-right"><i class="uil uil-angle-right-b"></i></div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+    </section>
+    <section id="composite" class="target-element">
+      <div class="container-fluid pt-4">
+        <h2 class="mb-2 fs-2 text-decoration-underline text-underline-offset-5 text-uppercase text-center">Upcoming Schedule</h2>
+        <div class="comp-sched">
+          <table id="eventstable" class="mb-2">
+            <tbody>
+              <tr class="home">
+                <td class="comp-sched-lcc"><a href="wrestling/index.html">Wrestling</a></td>
+                <td class="comp-sched-day">Fri.</td>
+                <td class="comp-sched-date">11/06 </td>
+                <td class="comp-sched-opponent"><img src="images/team/team-tonkawa.png" alt="NOC logo" class="comp-sched-img" /><del>KSU &</del> NOC Dual </td>
+                <td class="comp-sched-location">Parsons, KS</td>
+                <td class="comp-sched-time"><span class="gamechange">5:30 PM</span></td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="home">
+                <td class="comp-sched-lcc"><a href="wrestling/index.html">Wrestling</a></td>
+                <td class="comp-sched-day">Wed.</td>
+                <td class="comp-sched-date">11/11</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-labette.png" alt="Labette logo" class="comp-sched-img" />Carl Albert   Dual </td>
+                <td class="comp-sched-location">Parsons, KS </td>
+                <td class="comp-sched-time">6:00 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="away">
+                <td class="comp-sched-lcc"><a href="wrestling/index.html">Wrestling</a></td>
+                <td class="comp-sched-day">Sat.</td>
+                <td class="comp-sched-date">11/14</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-labette-away.png" alt="Labette logo" class="comp-sched-img" />Grandview Open </td>
+                <td class="comp-sched-location">Des Moines, IA</td>
+                <td class="comp-sched-time">8:00 AM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="away">
+                <td class="comp-sched-lcc"><a href="wrestling/index.html">Wrestling</a></td>
+                <td class="comp-sched-day">Sun.</td>
+                <td class="comp-sched-date">11/15</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-drury.png" alt="Drury logo" class="comp-sched-img" />Drury Open </td>
+                <td class="comp-sched-location">Springfield, MO</td>
+                <td class="comp-sched-time">8:00 AM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="home">
+                <td class="comp-sched-lcc"><a href="wrestling/index.html">Wrestling</a></td>
+                <td class="comp-sched-day">Wed.</td>
+                <td class="comp-sched-date">11/18</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-labette.png" alt="Labette logo" class="comp-sched-img" />Rose State   Dual </td>
+                <td class="comp-sched-location">Parsons, KS </td>
+                <td class="comp-sched-time">6:00 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="away">
+                <td class="comp-sched-lcc"><a href="wrestling/index.html">Wrestling</a></td>
+                <td class="comp-sched-day">Sat.</td>
+                <td class="comp-sched-date">11/21</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-labette-away.png" alt="Labette logo" class="comp-sched-img" />Kauffman Brand Bayly Open  </td>
+                <td class="comp-sched-location">Warrensburg, MO </td>
+                <td class="comp-sched-time">8:00 AM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="away">
+                <td class="comp-sched-lcc"><a href="wrestling/index.html">Wrestling</a></td>
+                <td class="comp-sched-day">Wed.</td>
+                <td class="comp-sched-date">12/02</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-labette-away.png" alt="Labette logo" class="comp-sched-img" />Murray State Dual </td>
+                <td class="comp-sched-location">Ardmore, OK</td>
+                <td class="comp-sched-time">5:00 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="away">
+                <td class="comp-sched-lcc"><a href="wrestling/index.html">Wrestling</a></td>
+                <td class="comp-sched-day">Sat.</td>
+                <td class="comp-sched-date">12/05</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-labette-away.png" alt="Labette logo" class="comp-sched-img" />Mustang Invite</td>
+                <td class="comp-sched-location">Conway, AR</td>
+                <td class="comp-sched-time">8:00 AM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="away">
+                <td class="comp-sched-lcc"><a href="wrestling/index.html">Wrestling</a></td>
+                <td class="comp-sched-day">Sat.</td>
+                <td class="comp-sched-date">12/12</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-labette-away.png" alt="Labette logo" class="comp-sched-img" />918 Open </td>
+                <td class="comp-sched-location">Oklahoma City, OK</td>
+                <td class="comp-sched-time">8:00 AM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="away">
+                <td class="comp-sched-lcc"><a href="wrestling/index.html">Wrestling</a></td>
+                <td class="comp-sched-day">Fri.</td>
+                <td class="comp-sched-date">01/08</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-labette-away.png" alt="Labette logo" class="comp-sched-img" />National Duals </td>
+                <td class="comp-sched-location">Miami, OK</td>
+                <td class="comp-sched-time">8:00 AM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="away">
+                <td class="comp-sched-lcc"><a href="wrestling/index.html">Wrestling</a></td>
+                <td class="comp-sched-day">Sat.</td>
+                <td class="comp-sched-date">01/09</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-labette-away.png" alt="Labette logo" class="comp-sched-img" />National Duals </td>
+                <td class="comp-sched-location">Miami, OK</td>
+                <td class="comp-sched-time">8:00 AM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="away">
+                <td class="comp-sched-lcc"><a href="wrestling/index.html">Wrestling</a></td>
+                <td class="comp-sched-day">Tue.</td>
+                <td class="comp-sched-date">01/12</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-cowley.png" alt="Cowley logo" class="comp-sched-img" />Cowley Dual </td>
+                <td class="comp-sched-location">Ark City, KS</td>
+                <td class="comp-sched-time">6:00 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="away">
+                <td class="comp-sched-lcc"><a href="wrestling/index.html">Wrestling</a></td>
+                <td class="comp-sched-day">Sun.</td>
+                <td class="comp-sched-date">01/17</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-labette-away.png" alt="Labette logo" class="comp-sched-img" />Roger Denker Open </td>
+                <td class="comp-sched-location">Warrensburg, MO</td>
+                <td class="comp-sched-time">10:00 AM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="home">
+                <td class="comp-sched-lcc"><a href="wrestling/index.html">Wrestling</a></td>
+                <td class="comp-sched-day">Wed.</td>
+                <td class="comp-sched-date">01/20 </td>
+                <td class="comp-sched-opponent"><img src="images/team/team-labette.png" alt="Labette logo" class="comp-sched-img" />Ellsworth Dual </td>
+                <td class="comp-sched-location">Parsons, KS</td>
+                <td class="comp-sched-time">6:00 PM </td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="away">
+                <td class="comp-sched-lcc"><a href="wrestling/index.html">Wrestling</a></td>
+                <td class="comp-sched-day">Thu.</td>
+                <td class="comp-sched-date">01/21</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-pratt.png" alt="Pratt logo" class="comp-sched-img" />Pratt Dual </td>
+                <td class="comp-sched-location">Pratt, KS</td>
+                <td class="comp-sched-time">7:00 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="home">
+                <td class="comp-sched-lcc"><a href="wrestling/index.html">Wrestling</a></td>
+                <td class="comp-sched-day">Tue.</td>
+                <td class="comp-sched-date">01/26</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-neosho.png" alt="Neosho logo" class="comp-sched-img" />Neosho Dual </td>
+                <td class="comp-sched-location">Parsons, KS </td>
+                <td class="comp-sched-time">6:00 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="away">
+                <td class="comp-sched-lcc"><a href="wrestling/index.html">Wrestling</a></td>
+                <td class="comp-sched-day">Sun.</td>
+                <td class="comp-sched-date">01/31</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-kjccc.jpg" alt="KJCCC logo" class="comp-sched-img" />KJCCC Cross-Over Duals </td>
+                <td class="comp-sched-location">Great bend, KS</td>
+                <td class="comp-sched-time">10:00 AM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="away">
+                <td class="comp-sched-lcc"><a href="wrestling/index.html">Wrestling</a></td>
+                <td class="comp-sched-day">Fri.</td>
+                <td class="comp-sched-date">02/12</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-newman.svg" alt="newman logo" class="comp-sched-img" />Newman University (Battle of the Belt)</td>
+                <td class="comp-sched-location">Mulvane, KS</td>
+                <td class="comp-sched-time">TBA</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="away">
+                <td class="comp-sched-lcc"><a href="wrestling/index.html">Wrestling</a></td>
+                <td class="comp-sched-day">Sat.</td>
+                <td class="comp-sched-date">02/20</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-labette-away.png" alt="Labette logo" class="comp-sched-img" />South-Central Conference (Regionals)</td>
+                <td class="comp-sched-location">Miami, OK</td>
+                <td class="comp-sched-time">8:00 AM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="away">
+                <td class="comp-sched-lcc"><a href="wrestling/index.html">Wrestling</a></td>
+                <td class="comp-sched-day">Fri.</td>
+                <td class="comp-sched-date">03/05</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-njcaa.png" alt="Labette logo" class="comp-sched-img" />NJCAA National Championships </td>
+                <td class="comp-sched-location">Council Bluffs, IA</td>
+                <td class="comp-sched-time">8:00 AM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="away">
+                <td class="comp-sched-lcc"><a href="wrestling/index.html">Wrestling</a></td>
+                <td class="comp-sched-day">Sat.</td>
+                <td class="comp-sched-date">03/06</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-njcaa.png" alt="Labette logo" class="comp-sched-img" />NJCAA National Championships </td>
+                <td class="comp-sched-location">Council Bluffs, IA</td>
+                <td class="comp-sched-time">8:00 AM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="home">
+                <td class="comp-sched-lcc"><a href="wbball/index.html">Women's Basketball</a></td>
+                <td class="comp-sched-day">Thu.</td>
+                <td class="comp-sched-date">11/12</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-ok-wesleyan.png" alt="Oklahoma Wesleyan logo" class="comp-sched-img" />Oklahoma Wesleyan</td>
+                <td class="comp-sched-location">Parsons, KS</td>
+                <td class="comp-sched-time">5:30 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="away">
+                <td class="comp-sched-lcc"><a href="wbball/index.html">Women's Basketball</a></td>
+                <td class="comp-sched-day">Wed. </td>
+                <td class="comp-sched-date">11/18</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-statefair.png" alt="State Fair logo" class="comp-sched-img" />State Fair</td>
+                <td class="comp-sched-location">Sedalia, MO</td>
+                <td class="comp-sched-time">5:30 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="home">
+                <td class="comp-sched-lcc"><a href="wbball/index.html">Women's Basketball</a></td>
+                <td class="comp-sched-day">Sat. </td>
+                <td class="comp-sched-date">11/21</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-seminole.png" alt="Seminole logo" class="comp-sched-img" />Seminole State</td>
+                <td class="comp-sched-location">Parsons, KS</td>
+                <td class="comp-sched-time">1:00 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="away">
+                <td class="comp-sched-lcc"><a href="wbball/index.html">Women's Basketball</a></td>
+                <td class="comp-sched-day">Sat. </td>
+                <td class="comp-sched-date">11/28</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-connors.jpg" alt="Connors logo" class="comp-sched-img" />Connors State</td>
+                <td class="comp-sched-location">Warner, OK</td>
+                <td class="comp-sched-time">2:00 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="home">
+                <td class="comp-sched-lcc"><a href="wbball/index.html">Women's Basketball</a></td>
+                <td class="comp-sched-day">Tue.</td>
+                <td class="comp-sched-date">12/01</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-bethany.png" alt="Bethanylogo" class="comp-sched-img" />Bethany College JV</td>
+                <td class="comp-sched-location">Parsons, KS</td>
+                <td class="comp-sched-time">5:30 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="home">
+                <td class="comp-sched-lcc"><a href="wbball/index.html">Women's Basketball</a></td>
+                <td class="comp-sched-day">Fri.</td>
+                <td class="comp-sched-date">12/04</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-connors.jpg" alt="Connors logo" class="comp-sched-img" />Connors State</td>
+                <td class="comp-sched-location">Parsons, KS</td>
+                <td class="comp-sched-time">5:30 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="home">
+                <td class="comp-sched-lcc"><a href="wbball/index.html">Women's Basketball</a></td>
+                <td class="comp-sched-day">Wed.</td>
+                <td class="comp-sched-date">12/09</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-metropolitan.jpg" alt="Metro CC logo" class="comp-sched-img" />Metro CC-Penn Valley</td>
+                <td class="comp-sched-location">Parsons, KS</td>
+                <td class="comp-sched-time">5:30 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="home">
+                <td class="comp-sched-lcc"><a href="wbball/index.html">Women's Basketball</a></td>
+                <td class="comp-sched-day">Sat. </td>
+                <td class="comp-sched-date">12/12</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-labette-away.png" alt="Away Game logo" class="comp-sched-img" />Jefferson College</td>
+                <td class="comp-sched-location">Parsons, KS</td>
+                <td class="comp-sched-time">1:00 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="home">
+                <td class="comp-sched-lcc"><a href="wbball/index.html">Women's Basketball</a></td>
+                <td class="comp-sched-day">Wed.</td>
+                <td class="comp-sched-date">12/16</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-tonkawa.png" alt="Tonkawa logo" class="comp-sched-img" />Ok-Tonkawa </td>
+                <td class="comp-sched-location">Parsons, KS</td>
+                <td class="comp-sched-time">4:00 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="away">
+                <td class="comp-sched-lcc"><a href="wbball/index.html">Women's Basketball</a></td>
+                <td class="comp-sched-day">Wed.</td>
+                <td class="comp-sched-date">01/13</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-highland.png" alt="Highland logo" class="comp-sched-img" />Highland*</td>
+                <td class="comp-sched-location">Highland, KS</td>
+                <td class="comp-sched-time">5:30 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="home">
+                <td class="comp-sched-lcc"><a href="wbball/index.html">Women's Basketball</a></td>
+                <td class="comp-sched-day">Sat. </td>
+                <td class="comp-sched-date">01/16</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-fort-scott.png" alt="Fort Scott logo" class="comp-sched-img" />Fort Scott*</td>
+                <td class="comp-sched-location">Parsons, KS</td>
+                <td class="comp-sched-time">1:00 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="away">
+                <td class="comp-sched-lcc"><a href="wbball/index.html">Women's Basketball</a></td>
+                <td class="comp-sched-day">Wed.</td>
+                <td class="comp-sched-date">01/20</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-neosho.png" alt="Neosho logo" class="comp-sched-img" />Neosho*</td>
+                <td class="comp-sched-location">Chanute, KS</td>
+                <td class="comp-sched-time">5:30 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="home">
+                <td class="comp-sched-lcc"><a href="wbball/index.html">Women's Basketball</a></td>
+                <td class="comp-sched-day">Sat. </td>
+                <td class="comp-sched-date">01/23</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-johnson.png" alt="Johnson logo" class="comp-sched-img" />Johnson County*</td>
+                <td class="comp-sched-location">Parsons, KS</td>
+                <td class="comp-sched-time">1:00 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="away">
+                <td class="comp-sched-lcc"><a href="wbball/index.html">Women's Basketball</a></td>
+                <td class="comp-sched-day">Sat. </td>
+                <td class="comp-sched-date">01/30</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-allen.png" alt="Allen logo" class="comp-sched-img" />Allen*</td>
+                <td class="comp-sched-location">Iola, KS</td>
+                <td class="comp-sched-time">1:00 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="home">
+                <td class="comp-sched-lcc"><a href="wbball/index.html">Women's Basketball</a></td>
+                <td class="comp-sched-day">Wed.</td>
+                <td class="comp-sched-date">02/03</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-kck.png" alt="Away Game logo" class="comp-sched-img" />Kansas City Kansas*</td>
+                <td class="comp-sched-location">Parsons, KS</td>
+                <td class="comp-sched-time">5:30 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="home">
+                <td class="comp-sched-lcc"><a href="wbball/index.html">Women's Basketball</a></td>
+                <td class="comp-sched-day">Sat. </td>
+                <td class="comp-sched-date">02/06</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-highland.png" alt="Highland logo" class="comp-sched-img" />Highland*</td>
+                <td class="comp-sched-location">Parsons, KS</td>
+                <td class="comp-sched-time">1:00 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="away">
+                <td class="comp-sched-lcc"><a href="wbball/index.html">Women's Basketball</a></td>
+                <td class="comp-sched-day">Wed.</td>
+                <td class="comp-sched-date">02/10</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-fort-scott.png" alt="Fort Scott logo" class="comp-sched-img" />Fort Scott*</td>
+                <td class="comp-sched-location">Fort Scott, KS</td>
+                <td class="comp-sched-time">5:30 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="home">
+                <td class="comp-sched-lcc"><a href="wbball/index.html">Women's Basketball</a></td>
+                <td class="comp-sched-day">Sat. </td>
+                <td class="comp-sched-date">02/13</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-neosho.png" alt="Neosho logo" class="comp-sched-img" />Neosho*</td>
+                <td class="comp-sched-location">Parsons, KS</td>
+                <td class="comp-sched-time">1:00 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="away">
+                <td class="comp-sched-lcc"><a href="wbball/index.html">Women's Basketball</a></td>
+                <td class="comp-sched-day">Wed.</td>
+                <td class="comp-sched-date">02/17</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-johnson.png" alt="Johnson logo" class="comp-sched-img" />Johnson County*</td>
+                <td class="comp-sched-location">Overland Park, KS</td>
+                <td class="comp-sched-time">5:30 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="home">
+                <td class="comp-sched-lcc"><a href="wbball/index.html">Women's Basketball</a></td>
+                <td class="comp-sched-day">Wed.</td>
+                <td class="comp-sched-date">02/24</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-allen.png" alt="Allen logo" class="comp-sched-img" />Allen*</td>
+                <td class="comp-sched-location">Parsons, KS</td>
+                <td class="comp-sched-time">5:30 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="away">
+                <td class="comp-sched-lcc"><a href="wbball/index.html">Women's Basketball</a></td>
+                <td class="comp-sched-day">Sat. </td>
+                <td class="comp-sched-date">02/27</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-kck.png" alt="KCK logo" class="comp-sched-img" />Kansas City Kansas*</td>
+                <td class="comp-sched-location">Kansas City, KS</td>
+                <td class="comp-sched-time">1:00 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="away">
+                <td class="comp-sched-lcc"><a href="wbball/index.html">Women's Basketball</a></td>
+                <td class="comp-sched-day">Tue.</td>
+                <td class="comp-sched-date">03/02</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-kjccc.jpg" alt="KJCCC logo" class="comp-sched-img" />REGION TOURNAMENT </td>
+                <td class="comp-sched-time">TBA</td>
+                <td class="comp-sched-time">TBA</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="away">
+                <td class="comp-sched-lcc"><a href="wbball/index.html">Women's Basketball</a></td>
+                <td class="comp-sched-day">Fri.</td>
+                <td class="comp-sched-date">03/05</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-kjccc.jpg" alt="KJCCC logo" class="comp-sched-img" />REGION TOURNAMENT</td>
+                <td class="comp-sched-time">TBA</td>
+                <td class="comp-sched-time">TBA</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="away">
+                <td class="comp-sched-lcc"><a href="wbball/index.html">Women's Basketball</a></td>
+                <td class="comp-sched-day">Sat. </td>
+                <td class="comp-sched-date">03/06</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-kjccc.jpg" alt="KJCCC logo" class="comp-sched-img" />REGION TOURNAMENT</td>
+                <td class="comp-sched-location">TBA</td>
+                <td class="comp-sched-time">TBA</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="away">
+                <td class="comp-sched-lcc"><a href="wbball/index.html">Women's Basketball</a></td>
+                <td class="comp-sched-day">Mon-Sat.</td>
+                <td class="comp-sched-date">03/15</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-njcaa.png" alt="NJCAA logo" class="comp-sched-img" />National Tournment</td>
+                <td class="comp-sched-location">Joplin,MO</td>
+                <td class="comp-sched-time">TBA</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="home">
+                <td class="comp-sched-lcc"><a href="mbball/index.html">Men's Basketball</a></td>
+                <td class="comp-sched-day">Fri.</td>
+                <td class="comp-sched-date">10/30</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-independence.png" alt="Independence logo" class="comp-sched-img" />Independence</td>
+                <td class="comp-sched-location">Parsons, KS</td>
+                <td class="comp-sched-time">3:00 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="home">
+                <td class="comp-sched-lcc"><a href="mbball/index.html">Men's Basketball</a></td>
+                <td class="comp-sched-day">Sat.</td>
+                <td class="comp-sched-date">10/31</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-labette-away.png" alt="Away Game logo" class="comp-sched-img" />Palm Beach State College</td>
+                <td class="comp-sched-location">Parsons, KS</td>
+                <td class="comp-sched-time">3:00 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="home">
+                <td class="comp-sched-lcc"><a href="mbball/index.html">Men's Basketball</a></td>
+                <td class="comp-sched-day">Tue.</td>
+                <td class="comp-sched-date">11/03</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-ok-wesleyan.png" alt="Oklahoma Wesleyan logo" class="comp-sched-img" />Oklahoma Wesleyan JV</td>
+                <td class="comp-sched-location">Parsons, KS</td>
+                <td class="comp-sched-time">5:00 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="away">
+                <td class="comp-sched-lcc"><a href="mbball/index.html">Men's Basketball</a></td>
+                <td class="comp-sched-day">Fri.</td>
+                <td class="comp-sched-date">11/06</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-labette-away.png" alt="Away Game logo" class="comp-sched-img" />Redlands CC</td>
+                <td class="comp-sched-location">El Reno</td>
+                <td class="comp-sched-time">5:00 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="away">
+                <td class="comp-sched-lcc"><a href="mbball/index.html">Men's Basketball</a></td>
+                <td class="comp-sched-day">Tue.</td>
+                <td class="comp-sched-date">11/10</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-hutchinson.png" alt="Hutchinson logo" class="comp-sched-img" />Hutchinson</td>
+                <td class="comp-sched-location">Hutchinson, KS</td>
+                <td class="comp-sched-time">7:30 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="home">
+                <td class="comp-sched-lcc"><a href="mbball/index.html">Men's Basketball</a></td>
+                <td class="comp-sched-day">Tue.</td>
+                <td class="comp-sched-date">11/17</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-labette-away.png" alt="Away Game logo" class="comp-sched-img" />Mission University JV</td>
+                <td class="comp-sched-location">Parsons, KS</td>
+                <td class="comp-sched-time">5:30 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="home">
+                <td class="comp-sched-lcc"><a href="mbball/index.html">Men's Basketball</a></td>
+                <td class="comp-sched-day">Thu.</td>
+                <td class="comp-sched-date">11/19</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-labette-away.png" alt="Away Game logo" class="comp-sched-img" />Sterling College</td>
+                <td class="comp-sched-location">Parsons, KS</td>
+                <td class="comp-sched-time">5:30 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="home">
+                <td class="comp-sched-lcc"><a href="mbball/index.html">Men's Basketball</a></td>
+                <td class="comp-sched-day">Sat.</td>
+                <td class="comp-sched-date">11/21</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-neo.png" alt="NEO logo" class="comp-sched-img" />NEO A&amp;M</td>
+                <td class="comp-sched-location">Parsons, KS</td>
+                <td class="comp-sched-time">3:00 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="home">
+                <td class="comp-sched-lcc"><a href="mbball/index.html">Men's Basketball</a></td>
+                <td class="comp-sched-day">Tue.</td>
+                <td class="comp-sched-date">11/24</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-NCMCPirates.png" alt="NCMC logo" class="comp-sched-img" />North Central Missouri College</td>
+                <td class="comp-sched-location">Parsons, KS </td>
+                <td class="comp-sched-time">5:00 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="away">
+                <td class="comp-sched-lcc"><a href="mbball/index.html">Men's Basketball</a></td>
+                <td class="comp-sched-day">Fri.</td>
+                <td class="comp-sched-date">11/27</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-msu.png" alt="MSU logo" class="comp-sched-img" />MSU – West Plains Classic</td>
+                <td class="comp-sched-location">Garfield, MO</td>
+                <td class="comp-sched-time">7:00 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="away">
+                <td class="comp-sched-lcc"><a href="mbball/index.html">Men's Basketball</a></td>
+                <td class="comp-sched-day">Sat.</td>
+                <td class="comp-sched-date">11/28</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-NPC.jpeg" alt="NPC logo" class="comp-sched-img" />National Park – West Plains Classic</td>
+                <td class="comp-sched-location">Garfield, MO</td>
+                <td class="comp-sched-time">2:00 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="away">
+                <td class="comp-sched-lcc"><a href="mbball/index.html">Men's Basketball</a></td>
+                <td class="comp-sched-day">Tue.</td>
+                <td class="comp-sched-date">12/01</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-tonkawa.png" alt="Away Game logo" class="comp-sched-img" />NOC-Tonkawa</td>
+                <td class="comp-sched-location">Tonkawa, OK</td>
+                <td class="comp-sched-time">7:00 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="away">
+                <td class="comp-sched-lcc"><a href="mbball/index.html">Men's Basketball</a></td>
+                <td class="comp-sched-day">Fri.</td>
+                <td class="comp-sched-date">12/04</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-labette-away.png" alt="Away Game logo" class="comp-sched-img" />Dakota County Tech. College – North Central MO College Classic</td>
+                <td class="comp-sched-location">Trenton, MO</td>
+                <td class="comp-sched-time">TBA</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="away">
+                <td class="comp-sched-lcc"><a href="mbball/index.html">Men's Basketball</a></td>
+                <td class="comp-sched-day">Sat.</td>
+                <td class="comp-sched-date">12/05</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-labette-away.png" alt="Away Game logo" class="comp-sched-img" />North Central Missouri College Classic</td>
+                <td class="comp-sched-location">Trenton, MO</td>
+                <td class="comp-sched-time">TBA</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="away">
+                <td class="comp-sched-lcc"><a href="mbball/index.html">Men's Basketball</a></td>
+                <td class="comp-sched-day">Wed.</td>
+                <td class="comp-sched-date">12/09</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-neo.png" alt="NEO logo" class="comp-sched-img" />NEO A&amp;M</td>
+                <td class="comp-sched-location">Miami, OK</td>
+                <td class="comp-sched-time">7:30 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="home">
+                <td class="comp-sched-lcc"><a href="mbball/index.html">Men's Basketball</a></td>
+                <td class="comp-sched-day">Sat.</td>
+                <td class="comp-sched-date">12/12</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-labette-away.png" alt="Away Game logo" class="comp-sched-img" />Jefferson College</td>
+                <td class="comp-sched-location">Parsons, KS</td>
+                <td class="comp-sched-time">3:00 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="home">
+                <td class="comp-sched-lcc"><a href="mbball/index.html">Men's Basketball</a></td>
+                <td class="comp-sched-day">Wed.</td>
+                <td class="comp-sched-date">12/16</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-tonkawa.png" alt="Tonkawa logo" class="comp-sched-img" />NOC-Tonkawa</td>
+                <td class="comp-sched-location">Parsons, KS</td>
+                <td class="comp-sched-time">6:00 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="home">
+                <td class="comp-sched-lcc"><a href="mbball/index.html">Men's Basketball</a></td>
+                <td class="comp-sched-day">Wed.</td>
+                <td class="comp-sched-date">01/06</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-labette-away.png" alt="Away Game logo" class="comp-sched-img" />Mission University JV</td>
+                <td class="comp-sched-location">Parsons, KS</td>
+                <td class="comp-sched-time">5:00 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="away">
+                <td class="comp-sched-lcc"><a href="mbball/index.html">Men's Basketball</a></td>
+                <td class="comp-sched-day">Wed.</td>
+                <td class="comp-sched-date">01/13</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-highland.png" alt="Highland logo" class="comp-sched-img" />Highland</td>
+                <td class="comp-sched-location">Highland, KS</td>
+                <td class="comp-sched-time">7:30 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="home">
+                <td class="comp-sched-lcc"><a href="mbball/index.html">Men's Basketball</a></td>
+                <td class="comp-sched-day">Sat.</td>
+                <td class="comp-sched-date">01/16</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-fort-scott.png" alt="Fort Scott logo" class="comp-sched-img" />Fort Scott</td>
+                <td class="comp-sched-location">Parsons, KS</td>
+                <td class="comp-sched-time">3:00 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="away">
+                <td class="comp-sched-lcc"><a href="mbball/index.html">Men's Basketball</a></td>
+                <td class="comp-sched-day">Wed.</td>
+                <td class="comp-sched-date">01/20</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-neosho.png" alt="Neosho logo" class="comp-sched-img" />Neosho</td>
+                <td class="comp-sched-location">Chanute, KS</td>
+                <td class="comp-sched-time">7:30 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="home">
+                <td class="comp-sched-lcc"><a href="mbball/index.html">Men's Basketball</a></td>
+                <td class="comp-sched-day">Sat.</td>
+                <td class="comp-sched-date">01/23</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-johnson.png" alt="Johnson logo" class="comp-sched-img" />Johnson</td>
+                <td class="comp-sched-location">Parsons, KS</td>
+                <td class="comp-sched-time">3:00 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="away">
+                <td class="comp-sched-lcc"><a href="mbball/index.html">Men's Basketball</a></td>
+                <td class="comp-sched-day">Fri.</td>
+                <td class="comp-sched-date">01/30</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-allen.png" alt="Allen logo" class="comp-sched-img" />Allen</td>
+                <td class="comp-sched-location">Iola, KS</td>
+                <td class="comp-sched-time">3:00 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="home">
+                <td class="comp-sched-lcc"><a href="mbball/index.html">Men's Basketball</a></td>
+                <td class="comp-sched-day">Wed.</td>
+                <td class="comp-sched-date">02/03</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-kck.png" alt="KCK logo" class="comp-sched-img" />Kansas City Kansas</td>
+                <td class="comp-sched-location">Parsons, KS</td>
+                <td class="comp-sched-time">7:30 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="home">
+                <td class="comp-sched-lcc"><a href="mbball/index.html">Men's Basketball</a></td>
+                <td class="comp-sched-day">Sat.</td>
+                <td class="comp-sched-date">02/06</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-highland.png" alt="Highland logo" class="comp-sched-img" />Highland</td>
+                <td class="comp-sched-location">Parsons, KS</td>
+                <td class="comp-sched-time">3:00 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="away">
+                <td class="comp-sched-lcc"><a href="mbball/index.html">Men's Basketball</a></td>
+                <td class="comp-sched-day">Wed.</td>
+                <td class="comp-sched-date">02/10</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-fort-scott.png" alt="Fort Scott logo" class="comp-sched-img" />Fort Scott</td>
+                <td class="comp-sched-location">Fort Scott, KS</td>
+                <td class="comp-sched-time">7:30 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="home">
+                <td class="comp-sched-lcc"><a href="mbball/index.html">Men's Basketball</a></td>
+                <td class="comp-sched-day">Sat.</td>
+                <td class="comp-sched-date">02/13</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-neosho.png" alt="Neosho logo" class="comp-sched-img" />Neosho</td>
+                <td class="comp-sched-location">Parsons, KS</td>
+                <td class="comp-sched-time">3:00 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="away">
+                <td class="comp-sched-lcc"><a href="mbball/index.html">Men's Basketball</a></td>
+                <td class="comp-sched-day">Wed.</td>
+                <td class="comp-sched-date">02/17</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-johnson.png" alt="Johnson logo" class="comp-sched-img" />Johnson</td>
+                <td class="comp-sched-location">Overland Park, KS</td>
+                <td class="comp-sched-time">7:30 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="home">
+                <td class="comp-sched-lcc"><a href="mbball/index.html">Men's Basketball</a></td>
+                <td class="comp-sched-day">Wed.</td>
+                <td class="comp-sched-date">02/24</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-allen.png" alt="Allen logo" class="comp-sched-img" />Allen</td>
+                <td class="comp-sched-location">Parsons, KS</td>
+                <td class="comp-sched-time">7:30 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="away">
+                <td class="comp-sched-lcc"><a href="mbball/index.html">Men's Basketball</a></td>
+                <td class="comp-sched-day">Sat.</td>
+                <td class="comp-sched-date">02/27</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-kck.png" alt="KCK logo" class="comp-sched-img" />Kansas City Kansas</td>
+                <td class="comp-sched-location">Kansas City, KS</td>
+                <td class="comp-sched-time">3:00 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="away">
+                <td class="comp-sched-lcc"><a href="softball/index.html">Softball</a></td>
+                <td class="comp-sched-day">Sat.</td>
+                <td class="comp-sched-date">02/13</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-hutchinson.png" alt="hutchinson logo" class="comp-sched-img" />Hutchinson CC</td>
+                <td class="comp-sched-location">Hutchinson, KS</td>
+                <td class="comp-sched-time">2:00 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="away">
+                <td class="comp-sched-lcc"><a href="softball/index.html">Softball</a></td>
+                <td class="comp-sched-day">Tue.</td>
+                <td class="comp-sched-date">02/16</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-rose-state.png" alt="Rose State logo" class="comp-sched-img" />Rose State College</td>
+                <td class="comp-sched-location">Midwest City, OK</td>
+                <td class="comp-sched-time">2:00 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="home">
+                <td class="comp-sched-lcc"><a href="softball/index.html">Softball</a></td>
+                <td class="comp-sched-day">Thu.</td>
+                <td class="comp-sched-date">02/18</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-pratt.png" alt="pratt logo" class="comp-sched-img" />Pratt CC</td>
+                <td class="comp-sched-location">Parsons, KS</td>
+                <td class="comp-sched-time">2:00 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="home">
+                <td class="comp-sched-lcc"><a href="softball/index.html">Softball</a></td>
+                <td class="comp-sched-day">Sat.</td>
+                <td class="comp-sched-date">02/20</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-neo.png" alt="neo logo" class="comp-sched-img" />N.E.O. A&amp;M College</td>
+                <td class="comp-sched-location">Parsons, KS</td>
+                <td class="comp-sched-time">2:00 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="away">
+                <td class="comp-sched-lcc"><a href="softball/index.html">Softball</a></td>
+                <td class="comp-sched-day">Tue.</td>
+                <td class="comp-sched-date">02/23</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-crowder.jpg" alt="crowder logo" class="comp-sched-img" />Crowder College</td>
+                <td class="comp-sched-location">Neosho, MO</td>
+                <td class="comp-sched-time">1:00 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="away">
+                <td class="comp-sched-lcc"><a href="softball/index.html">Softball</a></td>
+                <td class="comp-sched-day">Thu.</td>
+                <td class="comp-sched-date">02/25</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-connors.jpg" alt="connors logo" class="comp-sched-img" />Connors State College</td>
+                <td class="comp-sched-location">Warner, OK</td>
+                <td class="comp-sched-time">2:00 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="home">
+                <td class="comp-sched-lcc"><a href="softball/index.html">Softball</a></td>
+                <td class="comp-sched-day">Sat.</td>
+                <td class="comp-sched-date">02/27</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-butler.png" alt="butler logo" class="comp-sched-img" />Butler CC</td>
+                <td class="comp-sched-location">Parsons, KS</td>
+                <td class="comp-sched-time">2:00 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="home">
+                <td class="comp-sched-lcc"><a href="softball/index.html">Softball</a></td>
+                <td class="comp-sched-day">Thu.</td>
+                <td class="comp-sched-date">03/04</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-rose-state.png" alt="Rose State logo" class="comp-sched-img" />Rose State College</td>
+                <td class="comp-sched-location">Parsons, KS</td>
+                <td class="comp-sched-time">2:00 PM</td>
+                <td class="comp-sched-results"></td>
+              </tr>
+              <tr class="home">
+                <td class="comp-sched-lcc"><a href="softball/index.html">Softball</a></td>
+                <td class="comp-sched-day">Mon.</td>
+                <td class="comp-sched-date">03/08</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-ndsu.png" alt="ndsu logo" class="comp-sched-img" />North Dakota State</td>
+                <td class="comp-sched-location">Parsons, KS</td>
+                <td class="comp-sched-time">2:00 PM</td>
+                <td class="comp-sched-results">&nbsp;</td>
+              </tr>
+              <tr class="away">
+                <td class="comp-sched-lcc"><a href="softball/index.html">Softball</a></td>
+                <td class="comp-sched-day">Thu.</td>
+                <td class="comp-sched-date">03/11</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-neo.png" alt="neo logo" class="comp-sched-img" />N.E.O. A&amp;M College</td>
+                <td class="comp-sched-location">Miami, OK</td>
+                <td class="comp-sched-time">2:00 PM</td>
+                <td class="comp-sched-results">&nbsp;</td>
+              </tr>
+              <tr class="home">
+                <td class="comp-sched-lcc"><a href="softball/index.html">Softball</a></td>
+                <td class="comp-sched-day">Sat.</td>
+                <td class="comp-sched-date">03/13</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-crowder.jpg" alt="crowder logo" class="comp-sched-img" />Crowder College</td>
+                <td class="comp-sched-location">Parsons, KS</td>
+                <td class="comp-sched-time">2:00 PM</td>
+                <td class="comp-sched-results">&nbsp;</td>
+              </tr>
+              <tr class="home">
+                <td class="comp-sched-lcc"><a href="softball/index.html">Softball</a></td>
+                <td class="comp-sched-day">Thu.</td>
+                <td class="comp-sched-date">03/18</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-southwestern-ia-cc.png" alt="southwestern ia logo" class="comp-sched-img" />Southwestern (IA)</td>
+                <td class="comp-sched-location">Parsons, KS</td>
+                <td class="comp-sched-time">2:00 PM</td>
+                <td class="comp-sched-results">&nbsp;</td>
+              </tr>
+              <tr class="away">
+                <td class="comp-sched-lcc"><a href="softball/index.html">Softball</a></td>
+                <td class="comp-sched-day">Tue.</td>
+                <td class="comp-sched-date">03/23</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-butler.png" alt="butler logo" class="comp-sched-img" />Butler CC</td>
+                <td class="comp-sched-location">El Dorado, KS</td>
+                <td class="comp-sched-time">2:00 PM</td>
+                <td class="comp-sched-results">&nbsp;</td>
+              </tr>
+              <tr class="away">
+                <td class="comp-sched-lcc"><a href="softball/index.html">Softball</a></td>
+                <td class="comp-sched-day">Sat.</td>
+                <td class="comp-sched-date">04/03</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-allen.png" alt="allen logo" class="comp-sched-img" />Allen County CC *</td>
+                <td class="comp-sched-location">Iola, KS</td>
+                <td class="comp-sched-time">1:00 PM</td>
+                <td class="comp-sched-results">&nbsp;</td>
+              </tr>
+              <tr class="home">
+                <td class="comp-sched-lcc"><a href="softball/index.html">Softball</a></td>
+                <td class="comp-sched-day">Tue.</td>
+                <td class="comp-sched-date">04/06</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-connors.jpg" alt="connors logo" class="comp-sched-img" />Connor State College</td>
+                <td class="comp-sched-location">Parsons, KS</td>
+                <td class="comp-sched-time">2:00 PM</td>
+                <td class="comp-sched-results">&nbsp;</td>
+              </tr>
+              <tr class="home">
+                <td class="comp-sched-lcc"><a href="softball/index.html">Softball</a></td>
+                <td class="comp-sched-day">Thu.</td>
+                <td class="comp-sched-date">04/08</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-coffeyville.png" alt="coffeyville logo" class="comp-sched-img" />Coffeyville CC *</td>
+                <td class="comp-sched-location">Parsons, KS</td>
+                <td class="comp-sched-time">2:00 PM</td>
+                <td class="comp-sched-results">&nbsp;</td>
+              </tr>
+              <tr class="away">
+                <td class="comp-sched-lcc"><a href="softball/index.html">Softball</a></td>
+                <td class="comp-sched-day">Mon.</td>
+                <td class="comp-sched-date">04/12</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-pratt.png" alt="pratt logo" class="comp-sched-img" />Pratt CC</td>
+                <td class="comp-sched-location">Pratt, KS</td>
+                <td class="comp-sched-time">2:00 PM</td>
+                <td class="comp-sched-results">&nbsp;</td>
+              </tr>
+              <tr class="away">
+                <td class="comp-sched-lcc"><a href="softball/index.html">Softball</a></td>
+                <td class="comp-sched-day">Thu.</td>
+                <td class="comp-sched-date">04/15</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-kck.png" alt="kck logo" class="comp-sched-img" />Kansas City Kansas CC *</td>
+                <td class="comp-sched-location">Kansas City, KS</td>
+                <td class="comp-sched-time">1:00 PM</td>
+                <td class="comp-sched-results">&nbsp;</td>
+              </tr>
+              <tr class="home">
+                <td class="comp-sched-lcc"><a href="softball/index.html">Softball</a></td>
+                <td class="comp-sched-day">Sat.</td>
+                <td class="comp-sched-date">04/17</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-fort-scott.png" alt="Fort Scott logo" class="comp-sched-img" />Fort Scott CC *</td>
+                <td class="comp-sched-location">Parsons, KS</td>
+                <td class="comp-sched-time">2:00 PM</td>
+                <td class="comp-sched-results">&nbsp;</td>
+              </tr>
+              <tr class="home">
+                <td class="comp-sched-lcc"><a href="softball/index.html">Softball</a></td>
+                <td class="comp-sched-day">Thu.</td>
+                <td class="comp-sched-date">04/22</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-johnson.png" alt="johnson logo" class="comp-sched-img" />Johnson County CC *</td>
+                <td class="comp-sched-location">Parsons, KS</td>
+                <td class="comp-sched-time">2:00 PM</td>
+                <td class="comp-sched-results">&nbsp;</td>
+              </tr>
+              <tr class="away">
+                <td class="comp-sched-lcc"><a href="softball/index.html">Softball</a></td>
+                <td class="comp-sched-day">Sat.</td>
+                <td class="comp-sched-date">04/24</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-neosho.png" alt="neosho logo" class="comp-sched-img" />Neosho County CC *</td>
+                <td class="comp-sched-location">Chanute, KS</td>
+                <td class="comp-sched-time">1:00 PM</td>
+                <td class="comp-sched-results">&nbsp;</td>
+              </tr>
+              <tr class="away">
+                <td class="comp-sched-lcc"><a href="softball/index.html">Softball</a></td>
+                <td class="comp-sched-day">Thu.</td>
+                <td class="comp-sched-date">04/29</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-highland.png" alt="highland logo" class="comp-sched-img" />Highland CC *</td>
+                <td class="comp-sched-location">Highland, KS</td>
+                <td class="comp-sched-time">1:00 PM</td>
+                <td class="comp-sched-results">&nbsp;</td>
+              </tr>
+              <tr class="home">
+                <td class="comp-sched-lcc"><a href="softball/index.html">Softball</a></td>
+                <td class="comp-sched-day">Sat.</td>
+                <td class="comp-sched-date">05/01</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-cloud.png" alt="cloud logo" class="comp-sched-img" />Cloud County CC *</td>
+                <td class="comp-sched-location">Parsons, KS</td>
+                <td class="comp-sched-time">2:00 PM</td>
+                <td class="comp-sched-results">&nbsp;</td>
+              </tr>
+              <tr class="away">
+                <td class="comp-sched-lcc"><a href="softball/index.html">Softball</a></td>
+                <td class="comp-sched-day">Tue.</td>
+                <td class="comp-sched-date">05/04</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-cowley.png" alt="cowley logo" class="comp-sched-img" />Cowley College *</td>
+                <td class="comp-sched-location">Arkansas City, KS</td>
+                <td class="comp-sched-time">1:00 PM</td>
+                <td class="comp-sched-results">&nbsp;</td>
+              </tr>
+              <tr class="home">
+                <td class="comp-sched-lcc"><a href="softball/index.html">Softball</a></td>
+                <td class="comp-sched-day">Sat.</td>
+                <td class="comp-sched-date">05/08</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-independence.png" alt="independence logo" class="comp-sched-img" />Independence CC *</td>
+                <td class="comp-sched-location">Parsons, KS</td>
+                <td class="comp-sched-time">2:00 PM</td>
+                <td class="comp-sched-results">&nbsp;</td>
+              </tr>
+              <tr class="away">
+                <td class="comp-sched-lcc"><a href="softball/index.html">Softball</a></td>
+                <td class="comp-sched-day">Sat.-Sun.</td>
+                <td class="comp-sched-date">05/15-16</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-kjccc.jpg" alt="kjccc logo" class="comp-sched-img" />Top 4 Teams host 1st Rd *</td>
+                <td class="comp-sched-location">TBD</td>
+                <td class="comp-sched-time">TBD</td>
+                <td class="comp-sched-results">&nbsp;</td>
+              </tr>
+              <tr class="away">
+                <td class="comp-sched-lcc"><a href="softball/index.html">Softball</a></td>
+                <td class="comp-sched-day">Fri.-Sun.</td>
+                <td class="comp-sched-date">05/21-23</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-kjccc.jpg" alt="kjccc logo" class="comp-sched-img" />Plains District Tournament  *</td>
+                <td class="comp-sched-location">Overland Park, KS</td>
+                <td class="comp-sched-time">TBA</td>
+                <td class="comp-sched-results">&nbsp;</td>
+              </tr>
+              <tr class="away">
+                <td class="comp-sched-lcc"><a href="softball/index.html">Softball</a></td>
+                <td class="comp-sched-day">Mon.-Fri.</td>
+                <td class="comp-sched-date">05/31-06/04</td>
+                <td class="comp-sched-opponent"><img src="images/team/team-njcaa.png" alt="njcaa logo" class="comp-sched-img" />NJCAA D/II National Tournament *</td>
+                <td class="comp-sched-location">Oxford, AL</td>
+                <td class="comp-sched-time">TBA</td>
+                <td class="comp-sched-results">&nbsp;</td>
+              </tr>
+            </tbody>
+          </table>
+          <h3 class="mb-4 text-center"><a href="schedule.html">View Full Schedule</a></h3>
+        </div>
+      </div>
+    </section>
+    <div class="bg-color section my-0 py-5 border-0" id="social">
+      <div class="row justify-content-center">
+        <div class="col-lg-10 col-12">
+          <div class="text-center mb-3">
+            <h3 class="fs-2 text-decoration-underline text-underline-offset-5 text-uppercase fw-800 text-white">Social Stream</h3>
+          </div>
+          <section class="py-0 bg-white">
+            <div class="row">
+              <div class="layout-wrapper position-relative">
+                <div class="social-widgets text-center d-flex flex-wrap flex-lg-nowrap align-items-stretch justify-content-center">
+                  <div class="item p-0 flex-grow-1 w-100">
+                    <div class="social-widgets-wrap p-4 m-3 h-100 pb-0">
+                      <div class="social-embed-content">
+                        <div class="fb-page" data-href="https://www.facebook.com/100057260928337" data-tabs="timeline" data-width="500" data-height="525" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+                          <blockquote cite="https://www.facebook.com/100057260928337" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/100057260928337">Labette Athletics</a></blockquote>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="item p-0 flex-grow-1 w-100">
+                    <div class="social-widgets-wrap p-4 m-3 h-100 pb-0">
+                      <div class="social-embed-content">
+                        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/labettecardinals/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);">
+                          <div style="padding:16px;"> <a href="https://www.instagram.com/labettecardinals/?utm_source=ig_embed&amp;utm_campaign=loading" style=" background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank">
+                            <div style=" display: flex; flex-direction: row; align-items: center;">
+                              <div style="background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 40px; margin-right: 14px; width: 40px;"></div>
+                              <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center;">
+                                <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 100px;"></div>
+                                <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 60px;"></div>
+                              </div>
+                            </div>
+                            <div style="padding: 19% 0;"></div>
+                            <div style="display:block; HEIGHT:50px; margin:0 auto 12px; width:50px;">
+                              <svg width="50px" height="50px" viewBox="0 0 60 60" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink">
+                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                  <g transform="translate(-511.000000, -20.000000)" fill="#000000">
+                                    <g>
+                                      <path d="M556.869,30.41 C554.814,30.41 553.148,32.076 553.148,34.131 C553.148,36.186 554.814,37.852 556.869,37.852 C558.924,37.852 560.59,36.186 560.59,34.131 C560.59,32.076 558.924,30.41 556.869,30.41 M541,60.657 C535.114,60.657 530.342,55.887 530.342,50 C530.342,44.114 535.114,39.342 541,39.342 C546.887,39.342 551.658,44.114 551.658,50 C551.658,55.887 546.887,60.657 541,60.657 M541,33.886 C532.1,33.886 524.886,41.1 524.886,50 C524.886,58.899 532.1,66.113 541,66.113 C549.9,66.113 557.115,58.899 557.115,50 C557.115,41.1 549.9,33.886 541,33.886 M565.378,62.101 C565.244,65.022 564.756,66.606 564.346,67.663 C563.803,69.06 563.154,70.057 562.106,71.106 C561.058,72.155 560.06,72.803 558.662,73.347 C557.607,73.757 556.021,74.244 553.102,74.378 C549.944,74.521 548.997,74.552 541,74.552 C533.003,74.552 532.056,74.521 528.898,74.378 C525.979,74.244 524.393,73.757 523.338,73.347 C521.94,72.803 520.942,72.155 519.894,71.106 C518.846,70.057 518.197,69.06 517.654,67.663 C517.244,66.606 516.755,65.022 516.623,62.101 C516.479,58.943 516.448,57.996 516.448,50 C516.448,42.003 516.479,41.056 516.623,37.899 C516.755,34.978 517.244,33.391 517.654,32.338 C518.197,30.938 518.846,29.942 519.894,28.894 C520.942,27.846 521.94,27.196 523.338,26.654 C524.393,26.244 525.979,25.756 528.898,25.623 C532.057,25.479 533.004,25.448 541,25.448 C548.997,25.448 549.943,25.479 553.102,25.623 C556.021,25.756 557.607,26.244 558.662,26.654 C560.06,27.196 561.058,27.846 562.106,28.894 C563.154,29.942 563.803,30.938 564.346,32.338 C564.756,33.391 565.244,34.978 565.378,37.899 C565.522,41.056 565.552,42.003 565.552,50 C565.552,57.996 565.522,58.943 565.378,62.101 M570.82,37.631 C570.674,34.438 570.167,32.258 569.425,30.349 C568.659,28.377 567.633,26.702 565.965,25.035 C564.297,23.368 562.623,22.342 560.652,21.575 C558.743,20.834 556.562,20.326 553.369,20.18 C550.169,20.033 549.148,20 541,20 C532.853,20 531.831,20.033 528.631,20.18 C525.438,20.326 523.257,20.834 521.349,21.575 C519.376,22.342 517.703,23.368 516.035,25.035 C514.368,26.702 513.342,28.377 512.574,30.349 C511.834,32.258 511.326,34.438 511.181,37.631 C511.035,40.831 511,41.851 511,50 C511,58.147 511.035,59.17 511.181,62.369 C511.326,65.562 511.834,67.743 512.574,69.651 C513.342,71.625 514.368,73.296 516.035,74.965 C517.703,76.634 519.376,77.658 521.349,78.425 C523.257,79.167 525.438,79.673 528.631,79.82 C531.831,79.965 532.853,80.001 541,80.001 C549.148,80.001 550.169,79.965 553.369,79.82 C556.562,79.673 558.743,79.167 560.652,78.425 C562.623,77.658 564.297,76.634 565.965,74.965 C567.633,73.296 568.659,71.625 569.425,69.651 C570.167,67.743 570.674,65.562 570.82,62.369 C570.966,59.17 571,58.147 571,50 C571,41.851 570.966,40.831 570.82,37.631"></path>
+                                    </g>
+                                  </g>
+                                </g>
+                              </svg>
+                            </div>
+                            <div style="padding: 12.5% 0;"></div>
+                            <div style="display: flex; flex-direction: row; margin-bottom: 14px; align-items: center;">
+                              <div>
+                                <div style="background-color: #F4F4F4; border-radius: 50%; HEIGHT: 12.5px; width: 12.5px; transform: translateX(0px) translateY(7px);"></div>
+                                <div style="background-color: #F4F4F4; HEIGHT: 12.5px; transform: rotate(-45deg) translateX(3px) translateY(1px); width: 12.5px; flex-grow: 0; margin-right: 14px; margin-left: 2px;"></div>
+                                <div style="background-color: #F4F4F4; border-radius: 50%; HEIGHT: 12.5px; width: 12.5px; transform: translateX(9px) translateY(-18px);"></div>
+                              </div>
+                              <div style="margin-left: 8px;">
+                                <div style=" background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 20px; width: 20px;"></div>
+                                <div style=" width: 0; HEIGHT: 0; border-top: 2px solid transparent; border-left: 6px solid #f4f4f4; border-bottom: 2px solid transparent; transform: translateX(16px) translateY(-4px) rotate(30deg)"></div>
+                              </div>
+                              <div style="margin-left: auto;">
+                                <div style=" width: 0px; border-top: 8px solid #F4F4F4; border-right: 8px solid transparent; transform: translateY(16px);"></div>
+                                <div style=" background-color: #F4F4F4; flex-grow: 0; height: 12px; width: 16px; transform: translateY(-4px);"></div>
+                                <div style=" width: 0; HEIGHT: 0; border-top: 8px solid #F4F4F4; border-left: 8px solid transparent; transform: translateY(-4px) translateX(8px);"></div>
+                              </div>
+                            </div>
+                            <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center; margin-bottom: 24px;">
+                              <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 224px;"></div>
+                              <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 144px;"></div>
+                            </div>
+                            </a>
+                            <p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;"><a href="https://www.instagram.com/labettecardinals/?utm_source=ig_embed&amp;utm_campaign=loading" style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px;" target="_blank">Labette Community College</a> (@<a href="https://www.instagram.com/labettecardinals/?utm_source=ig_embed&amp;utm_campaign=loading" style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px;" target="_blank">labettecardinals</a>) • Instagram photos and videos</p>
+                          </div>
+                        </blockquote>
+                        <script async src="https://www.instagram.com/embed.js"></script> 
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+    <div class="section my-0 py-5" id="news">
+      <div class="container">
+        <div class="text-center mb-3">
+          <h3 class="fs-2 text-decoration-underline text-underline-offset-5 text-uppercase fw-800">In the News</h3>
+        </div>
+        <div class="carousel-widget owl-carousel" data-items="1" data-items-md="2" data-items-lg="3" data-nav="true">
+          <div class="entry">
+            <div class=""> <a href="../pr/press/2026/01/LCC-Names-Jermaine-Maybank-Interim-Head-Mens-Basketball-Coach.html" class="d-block position-relative ratio ratio-16x9"> <img src="../pr/press/2026/01/MensBball2026-WithCoaches-web.jpg" alt="Men's Basketball" style="object-fit: cover; object-position: center center;"></a> </div>
+            <div class="entry-meta">
+              <ul>
+                <li><span>by</span> <a href="../pr/press/index.html" target="_blank">Labette Community College</a></li>
+                <li><i class="bi-clock"></i>January 16, 2026</li>
+              </ul>
+            </div>
+            <div class="entry-title title-sm">
+              <h3 class="my-2"><a href="../pr/press/2026/01/LCC-Names-Jermaine-Maybank-Interim-Head-Mens-Basketball-Coach.html">Labette Community College Names Jermaine Maybank Interim Head Men’s Basketball Coach </a></h3>
+            </div>
+          </div>
+          <div class="entry">
+            <div class=""> <a href="https://www.parsonssun.com/article/3377,labette-earns-eighth-win-over-indy" class="d-block position-relative ratio ratio-16x9" target="_blank"> <img src="volleyball/25-26/assets/xl-labette-earns-eighth-win-over-indy-1757043064.jpg" alt="Volleyball" style="object-fit: cover; object-position: center center;"></a> </div>
+            <div class="entry-meta">
+              <ul>
+                <li><span>by</span> <a href="https://www.parsonssun.com" target="_blank">Parsons Sun</a></li>
+                <li><i class="bi-clock"></i>September 9, 2025</li>
+              </ul>
+            </div>
+            <div class="entry-title title-sm">
+              <h3 class="my-2"><a href="https://www.parsonssun.com/article/3377,labette-earns-eighth-win-over-indy" target="_blank">Labette earns eighth win over Indy</a></h3>
+            </div>
+          </div>
+          <div class="entry">
+            <div class=""> <a href="https://www.parsonssun.com/article/3298,labette-off-to-best-start-in-school-history" class="d-block position-relative ratio ratio-16x9" target="_blank"> <img src="volleyball/25-26/assets/xl-labette-off-to-best-start-in-school-history-1756435247.jpg" alt="Volleyball" style="object-fit: cover; object-position: center center;"></a> </div>
+            <div class="entry-meta">
+              <ul>
+                <li><span>by</span> <a href="https://www.parsonssun.com" target="_blank">Parsons Sun</a></li>
+                <li><i class="bi-clock"></i>August 29, 2025</li>
+              </ul>
+            </div>
+            <div class="entry-title title-sm">
+              <h3 class="my-2"><a href="https://www.parsonssun.com/article/3298,labette-off-to-best-start-in-school-history" target="_blank">Labette off to best start in school history</a></h3>
+            </div>
+          </div>
+          <div class="entry">
+            <div class=""> <a href="https://www.parsonssun.com/article/2825,beville-joins-labette-softball-staff" class="d-block position-relative ratio ratio-16x9" target="_blank"> <img src="softball/25-26/assets/md-beville-joins-labette-softball-staff-1752201652.webp" alt="Beville" style="object-fit: cover; object-position: center center;"></a> </div>
+            <div class="entry-meta mb-0">
+              <ul>
+                <li><span>by</span> <a href="https://www.parsonssun.com" target="_blank">Parsons Sun</a></li>
+                <li><i class="bi-clock"></i>July 11, 2025</li>
+              </ul>
+            </div>
+            <div class="entry-title title-sm">
+              <h3 class="my-2"><a href="https://www.parsonssun.com/article/2825,beville-joins-labette-softball-staff" target="_blank">Beville joins Labette softball staff</a></h3>
+            </div>
+          </div>
+          <div class="entry">
+            <div class=""> <a href="https://www.parsonssun.com/article/2564,cortez-ready-to-revive-labette-women-s-hoops" class="d-block position-relative ratio ratio-16x9" target="_blank"> <img src="wbball/25-26/assets/xl-cortez-ready-to-revive-labette-women-s-hoops-1749783658.webp" alt="Cortez" style="object-fit: cover; object-position: center center;"></a> </div>
+            <div class="entry-meta mb-0">
+              <ul>
+                <li><span>by</span> <a href="https://www.parsonssun.com" target="_blank">Parsons Sun</a></li>
+                <li><i class="bi-clock"></i>June 13, 2025</li>
+              </ul>
+            </div>
+            <div class="entry-title title-sm">
+              <h3 class="my-2"><a href="https://www.parsonssun.com/article/2564,cortez-ready-to-revive-labette-women-s-hoops" target="_blank">Cortez ready to revive Labette women's hoops</a></h3>
+            </div>
+          </div>
+          <div class="entry">
+            <div class=""> <a href="https://www.kjccc.org/sports/sball/2024-25/Releases/POW/D2_SOFT_POW_Week_11" target="_blank" class="d-block position-relative ratio ratio-16x9"> <img src="softball/24-25/assets/D2_Softball_Week_11.png" alt="Softball" style="object-fit: cover; object-position: center center;" class="border"></a> </div>
+            <div class="entry-meta">
+              <ul>
+                <li><span>by</span> <a href="https://www.kjccc.org/" target="_blank">KJCCC</a></li>
+                <li><i class="bi-clock"></i>April 15, 2025</li>
+              </ul>
+            </div>
+            <div class="entry-title title-sm">
+              <h3 class="my-2"><a href="https://www.kjccc.org/sports/sball/2024-25/Releases/POW/D2_SOFT_POW_Week_11" target="_blank">KJCCC Division 2 Softball Players of the Week - Week 11</a></h3>
+            </div>
+          </div>
+          <div class="entry">
+            <div class=""> <a href="https://www.kjccc.org/sports/sball/2024-25/Releases/POW/D2_SOFT_POW_Week_7" target="_blank" class="d-block position-relative ratio ratio-16x9"> <img src="softball/24-25/assets/D2_Softball_Week_7.png" alt="Softball" style="object-fit: cover; object-position: center center;" class="border"></a> </div>
+            <div class="entry-meta">
+              <ul>
+                <li><span>by</span> <a href="https://www.kjccc.org/" target="_blank">KJCCC</a></li>
+                <li><i class="bi-clock"></i>March 18, 2025</li>
+              </ul>
+            </div>
+            <div class="entry-title title-sm">
+              <h3 class="my-2"><a href="https://www.kjccc.org/sports/sball/2024-25/Releases/POW/D2_SOFT_POW_Week_7" target="_blank">KJCCC Division 2 Softball Players of the Week - Week 7</a></h3>
+            </div>
+          </div>
+          <div class="entry">
+            <div class=""> <a href="../../pr/press/2025/03/LCC-Wrestling-Team-Set-to-Compete-at-NJCAA-Nationals.html" class="d-block position-relative ratio ratio-16x9"> <img src="https://www.labette.edu/pr/press/2025/03/Wrestling-Nationals.png" alt="Wrestling" style="object-fit: cover; object-position: center center;"></a> </div>
+            <div class="entry-meta">
+              <ul>
+                <li><span>by</span> <a href="../../pr/index.html">LCC PR</a></li>
+                <li><i class="bi-clock"></i>March 4, 2025</li>
+              </ul>
+            </div>
+            <div class="entry-title title-sm">
+              <h3 class="my-2"><a href="../../pr/press/2025/03/LCC-Wrestling-Team-Set-to-Compete-at-NJCAA-Nationals.html">Labette Community College Wrestling Team Set to Compete at NJCAA Nationals</a></h3>
+            </div>
+          </div>
+          <div class="entry">
+            <div class=""> <a href="https://www.kjccc.org/sports/wrest/2024-25/releases/All-KJCCC_Wrestling_Teams" target="_blank" class="d-block position-relative ratio ratio-16x9"> <img src="wrestling/24-25/assets/2025_All-Conference_Wrestling.png" alt="Wrestling" style="object-fit: cover; object-position: center center;" class="border"></a> </div>
+            <div class="entry-meta">
+              <ul>
+                <li><span>by</span> <a href="https://www.kjccc.org/" target="_blank">KJCCC</a></li>
+                <li><i class="bi-clock"></i>February 26, 2025</li>
+              </ul>
+            </div>
+            <div class="entry-title title-sm">
+              <h3 class="my-2"><a href="https://www.kjccc.org/sports/wrest/2024-25/releases/All-KJCCC_Wrestling_Teams" target="_blank">2024-25 All-KJCCC Wrestling Teams Announced </a></h3>
+            </div>
+          </div>
+          <div class="entry">
+            <div class=""> <a href="https://kjccc.prestosports.com/sports/bsb/2024-25/Releases/POW/East_Division/BASE_East_POW_Week_2" target="_blank" class="d-block position-relative ratio ratio-16x9"> <img src="baseball/24-25/assets/East_Week_2.png" alt="Baseball" style="object-fit: cover; object-position: center center;" class="border"></a> </div>
+            <div class="entry-meta">
+              <ul>
+                <li><span>by</span> <a href="https://www.kjccc.org/" target="_blank">KJCCC</a></li>
+                <li><i class="bi-clock"></i>February 11, 2025</li>
+              </ul>
+            </div>
+            <div class="entry-title title-sm">
+              <h3 class="my-2"><a href="https://kjccc.prestosports.com/sports/bsb/2024-25/Releases/POW/East_Division/BASE_East_POW_Week_2" target="_blank">KJCCC Baseball East Division Players of the Week - Week 2 </a></h3>
+            </div>
+          </div>
+          <div class="entry">
+            <div class=""> <a href="https://www.parsonssun.com/article/1284,kelley-hired-to-labette-volleyball-post" class="d-block position-relative ratio ratio-16x9" target="_blank"> <img src="volleyball/24-25/assets/xl-kelley-hired-to-labette-volleyball-post-1737152217-full.webp" alt="Kelley" style="object-fit: cover; object-position: center center;"></a> </div>
+            <div class="entry-meta">
+              <ul>
+                <li><span>by</span> <a href="https://www.parsonssun.com" target="_blank">Parsons Sun</a></li>
+                <li><i class="bi-clock"></i>January 17, 2025</li>
+              </ul>
+            </div>
+            <div class="entry-title title-sm">
+              <h3 class="my-2"><a href="https://www.parsonssun.com/article/1284,kelley-hired-to-labette-volleyball-post" target="_blank">Kelley hired to Labette volleyball post</a></h3>
+            </div>
+          </div>
+          <div class="entry">
+            <div class=""> <a href="https://www.njcaa.org/sports/wrest/2024-25/rankings/preseason" class="d-block position-relative ratio ratio-16x9" target="_blank"> <img src="wrestling/assets/njcaa-wrestling.jpeg" alt="NJCAA Wrestling" style="object-fit: cover; object-position: center center;"></a> </div>
+            <div class="entry-meta">
+              <ul>
+                <li><span>by</span> <a href="https://www.njcaa.org/" target="_blank">NJCAA</a></li>
+                <li><i class="bi-clock"></i>November 6, 2024</li>
+              </ul>
+            </div>
+            <div class="entry-title title-sm">
+              <h3 class="my-2"><a href="https://www.njcaa.org/sports/wrest/2024-25/rankings/preseason" target="_blank">2024-25 NJCAA Wrestling - Preseason Poll</a></h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section dark my-0" style="background: linear-gradient(rgba(88, 89, 91, 0.1), rgba(0, 0, 0,.8)), url(images/backgrounds/bg2.png) no-repeat center 85% / cover;">
+      <div class="container mb-3">
+        <div class="row align-items-center gx-4 gy-1">
+          <div class="col-lg-5"> <img src="images/athlete-cob.png" alt=".."> </div>
+          <div class="col-lg-1"></div>
+          <div class="col-lg-6">
+            <p class="mb-3">Cardinal Athletics continues to produce student athletes who go on to succeed at the academic four-year level and several at the professional level. Our student athletes compete within the Kansas Jayhawk Community College Conference and NJCAA Region VI. Historically, the conference and region has been one of the toughest in the country.</p>
+            <p> The athletic programs at Labette have been recognized at the National level by producing teams competing for the National Championships and All-Americans status for individuals. The Wrestling program has won three National Championships, Men’s Basketball one National Championship, Women’s Basketball one 3rd place finish and two appearances in the National Championship Tournament. Softball has also reached the National Championship Tournament three times, placing 5th two times. Not only are the Cardinals competitive on the field, but their GPA’s demonstrate that coaches demand athletes also take their academic futures seriously.</p>
+            <a href="honors/index.html" class="button button-large h-bg-color button-light button-black text-uppercase ls-1 fw-medium transform-skew text-white"><span>View Awards &amp; Honors<i class="bi-arrow-right ms-2 me-0"></i></span></a> </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <section class="section bg-white my-0 py-6" id="sponsors">
+    <div id="oc-clients-full" class="owl-carousel owl-carousel-full image-carousel carousel-widget" data-loop="true" data-margin="30" data-mouse-drag="true" data-nav="true" data-pagi="false" data-autoplay="4000" data-items-xs="3" data-items-sm="3" data-items-md="5" data-items-lg="6" data-items-xl="6" data-l> <a class="oc-item" href="https://www.adidas.com/us"> <img class="oc-item-image" src="images/sponsors/adidas.png" alt="adidas logo" loading="lazy" /></a> <a class="oc-item" href="https://lcmhs.com/" target="_blank"> <img class="oc-item-image" src="images/sponsors/LCMHS.png" alt="LCMHS" loading="lazy" /></a> <a class="oc-item" href="https://www.facebook.com/parsonstacomayo/" target="_blank"> <img class="oc-item-image" src="images/sponsors/tacomayo.png" alt="Taco Mayo logo" loading="lazy" /></a> <a class="oc-item" href="https://www.commercialbank.net/" target="_blank"> <img class="oc-item-image" src="images/sponsors/commercial-bank.png" alt="Commercial Bank" loading="lazy" /></a> <a class="oc-item" href="https://www.facebook.com/people/Bleacher-Gear/100063706504405/" target="_blank"> <img class="oc-item-image" src="images/sponsors/Bleacher-Gear.png" alt="Bleacher Gear logo" loading="lazy" /></a> <a class="oc-item" href="https://www.tankconnection.com/" target="_blank"> <img class="oc-item-image" src="images/sponsors/TANK_CONNECTION.png" alt="Tank Connection" loading="lazy" /></a> <a class="oc-item" href="https://sekortho.com/" target="_blank"> <img class="oc-item-image" src="images/sponsors/SEKORTHO.png" alt="SEKORTHO" loading="lazy" /></a> <a class="oc-item" href="https://www.wic.insurance/" target="_blank"> <img class="oc-item-image" src="images/sponsors/Wood-Insurance-Group-Site-Logo.png" alt="Wood Insurance" loading="lazy" /></a> <a class="oc-item" href="https://www.fleshco.com/" target="_blank"> <img class="oc-item-image" src="images/sponsors/flesh-co.png" alt="Flesh Co" loading="lazy" /></a> <a class="oc-item" href="https://www.usd503.org/" target="_blank"> <img class="oc-item-image" src="images/sponsors/parsons-usd-503.png" alt="USD 503 Parsons" loading="lazy" /></a> <a class="oc-item" href="https://www.labettehealth.com/" target="_blank"> <img class="oc-item-image" src="images/sponsors/labette-health.png" alt="Labette Health" loading="lazy" /></a> <a class="oc-item" href="https://www.bowenpharmacy.com/pharmacy" target="_blank"> <img class="oc-item-image" src="images/sponsors/Bowen.png" alt="Bowen Pharmacy" loading="lazy" /></a><a class="oc-item" href="https://www.wallfuneralservices.com/" target="_blank"> <img class="oc-item-image" src="images/sponsors/wall.png" alt="Wall Funeral" loading="lazy" /></a> </div>
+  </section>
+  <!-- InstanceEndEditable -->
+  <footer id="footer" class="bg-black dark" style="background-image: url('images/campus/gym-bw.jpg')">
+    <div class="container">
+      <div class="footer-widgets-wrap">
+        <div class="row">
+          <div class="col-md-6">
+            <h3 class="ls-1 mb-1 font-primary fw-bold fs-5 text-uppercase">Labette Community College</h3>
+            <address class="font-primary mb-2">
+            200 South 14th Street<br>
+            Parsons, KS 67357<br>
+            </address>
+            <p class="mb-3 font-primary fs-5"><i class="bi-telephone me-1 position-relative"></i> 1-888-LABETTE</p>
+            <a href="https://www.facebook.com/profile.php?id=100057260928337" class="social-icon bg-white bg-opacity-10 h-bg-redzone transform-skew rounded-0" target="_blank" title="Facebook"><i class="fa-brands fa-facebook-f"></i><i class="fa-brands fa-facebook-f"></i></a><a href="index.html#composite" class="social-icon bg-white bg-opacity-10  h-bg-redzone transform-skew rounded-0" title="Composite Schedule"><i class="fa fa-calendar-days"></i><i class="fa fa-calendar-days"></i></a><a href="https://kjcccsports.net/labette/" class="social-icon bg-white bg-opacity-10 h-bg-redzone transform-skew rounded-0" title="Watch Live" target="_blank"><i class="fa fa-video-camera"></i><i class="fa fa-video-camera"></i></a></div>
+          <div class="col-md-6">
+            <ul class="clients-grid row row-cols-3">
+              <li class="col"><a href="https://www.njcaa.org/landing/index" target="_blank" rel="noopener" class="link-image"><img src="images/logos/njcaa.png" alt="NJCAA Logo" loading="lazy"/></a></li>
+              <li class="col"><a href="https://www.kjccc.org/landing/index" target="_blank" rel="noopener" class="link-image"><img src="images/logos/kjccc.webp" alt="KJCCC Logo" loading="lazy"/></a></li>
+              <li class="col"><a class="link-image" href="https://www.kjcccsports.net"><img src="images/logos/kjccc-sports-network.png" alt="KJCCC Sports Network Logo" loading="lazy"/></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="copyrights" class="dark border-top border-light border-opacity-10 semi-transparent">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-auto"> Copyright &copy; LABETTE COMMUNITY COLLEGE ATHLETICS</div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+<div id="gotoTop" class="uil uil-angle-up"></div>
+<script src="../js/plugins.min.js"></script><script src="../js/functions.bundle.js"></script> 
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.owl-nav').forEach(function (nav) {
+    const prevButton = nav.querySelector('.owl-prev');
+    const nextButton = nav.querySelector('.owl-next');
+
+    if (prevButton) {
+      // Remove invalid ARIA role
+      prevButton.removeAttribute('role');
+
+      // Add accessible name
+      prevButton.setAttribute('aria-label', 'Previous slide');
+
+      // Hide icon from screen readers
+      const icon = prevButton.querySelector('i');
+      if (icon) {
+        icon.setAttribute('aria-hidden', 'true');
+      }
+    }
+
+    if (nextButton) {
+      nextButton.removeAttribute('role');
+      nextButton.setAttribute('aria-label', 'Next slide');
+
+      const icon = nextButton.querySelector('i');
+      if (icon) {
+        icon.setAttribute('aria-hidden', 'true');
+      }
+    }
+  });
+});
+</script> 
+<!-- InstanceBeginEditable name="footerscripts" --><script>
+document.addEventListener('DOMContentLoaded', function() {
+    const table = document.getElementById('eventstable');
+    if (!table) return;
+
+    const tbody = table.querySelector('tbody');
+    const rows = Array.from(tbody.querySelectorAll('tr'));
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    // Set forward limit to May 31
+    let limitYear = today.getFullYear();
+    if (today.getMonth() > 4) { 
+        // If today is June (5) or later, use May of NEXT year
+        limitYear++;
+    }
+    const forwardLimit = new Date(limitYear, 4, 31); // May = month 4
+    forwardLimit.setHours(23, 59, 59, 999);
+
+    function getEventDate(row) {
+        const dateCell = row.querySelector('.comp-sched-date');
+        if (!dateCell) return null;
+
+        const dateText = dateCell.textContent.trim(); // format: MM/DD
+        const [monthStr, dayStr] = dateText.split('/');
+        const month = parseInt(monthStr, 10) - 1; // JS months 0–11
+        const day = parseInt(dayStr, 10);
+
+        if (isNaN(month) || isNaN(day)) return null;
+
+        // Default year = current year
+        let eventYear = today.getFullYear();
+        let eventDate = new Date(eventYear, month, day);
+        eventDate.setHours(0, 0, 0, 0);
+
+        // If event already passed, roll to next year
+        if (eventDate < today) {
+            eventYear++;
+            eventDate = new Date(eventYear, month, day);
+            eventDate.setHours(0, 0, 0, 0);
+        }
+
+        return eventDate;
+    }
+
+    const validRows = rows
+        .map(row => ({ row, date: getEventDate(row) }))
+        .filter(item => item.date && item.date >= today && item.date <= forwardLimit)
+        .sort((a, b) => a.date - b.date);
+
+    tbody.innerHTML = '';
+    validRows.forEach(item => tbody.appendChild(item.row));
+});
+</script> 
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const rows = document.querySelectorAll("#eventstable tr");
+
+  rows.forEach(function(row, index) {
+    // Keep first 12 rows (index 0–11), remove the rest
+    if (index >= 12) {
+      row.remove();
+    }
+  });
+});
+</script> 
+<!-- InstanceEndEditable -->
+</body>
+<!-- InstanceEnd -->
+</html>

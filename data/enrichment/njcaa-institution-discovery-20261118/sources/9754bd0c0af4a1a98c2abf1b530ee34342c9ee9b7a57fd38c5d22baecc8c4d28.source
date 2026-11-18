@@ -1,0 +1,1358 @@
+<!DOCTYPE HTML><html lang="en">
+   <head>
+
+
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width">
+
+<meta HTTP-EQUIV="Access-Control-Allow-Origin" CONTENT="https://nccapps.ncc.edu">
+
+
+<!--Facebbok domain verification meta tag from VisionPoint Marketing, added on 5/26/2021 MJF-->
+<meta name="facebook-domain-verification" content="5mtnm0gk8qr6i1bqhdfuz0zmvsnp88" /> 
+
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PPMCXFSH');</script>
+<!-- End Google Tag Manager -->
+
+<!-- SPARK451 Slate Ping 1/15/26 -->
+<!--<script async="async" src="https://applynow.ncc.edu/ping">/**/</script>-->
+<!-- END SPARK451 Slate Ping -->
+
+
+<!-- favicon code -->
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#02014b">
+<meta name="msapplication-TileColor" content="#003875">
+<meta name="theme-color" content="#ffffff">
+
+<!-- end Favicon Code -->
+
+
+<!-- CSS for Print JP-->
+<link rel="stylesheet" href="/_resources/css/print.css" type="text/css" media="print">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="/_resources/plugins/bootstrap-3.3.7/css/bootstrap.min.css">
+
+<!-- font awesome -->
+<link rel="stylesheet" href="/_resources/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+
+<!-- Main CSS -->
+<link rel="stylesheet" href="/_resources/css/style.css">
+<link rel="stylesheet" href="/_resources/css/oustyles.css"> <!-- OU Styles -->
+
+	<!-- Blog CSS -->
+	<link rel="stylesheet" href="/_resources/css/blog.css">
+
+
+<!-- Responsive CSS -->
+<link rel="stylesheet" href="/_resources/css/responsive.css">
+
+<!-- animated elements CSS (JP) -->
+    <link rel="stylesheet" href="/_resources/css/animate.min.css">
+
+ 
+
+<!-- jQuery -->
+<script type="text/javascript" src="/_resources/js/jquery-3.1.1.min.js"></script>
+
+<!-- BLog jQuery -->
+	<script type="text/javascript" src="/_resources/js/blog.js" async></script>
+
+<!-- animated accordion JS  -->
+<!-- 404: FILE NOT FOUND -->
+<!-- <script src="https://s.codepen.io/assets/libs/modernizr.js" type="text/javascript"></script> -->
+
+<!-- Bootstrap JS -->
+<script src="/_resources/plugins/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+
+
+<!-- Social Feeds-->
+<script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="https://ncc.edu/plugins/fb/fbfeed/core/js/cff.js?ver3.1"></script>
+
+
+<!-- jQuery Cycle2 -->
+<script src="/_resources/plugins/jquery.cycle2/jquery.cycle2.min.js"></script>
+
+<!-- Lightbox CSS -->
+<link href="/_resources/css/featherlight.min.css" type="text/css" rel="stylesheet" />
+<!-- Lightbox JS -->
+<script src="/_resources/js/featherlight.min.js"></script>
+
+
+<!-- SelectBox -->
+<link rel="stylesheet" href="/_resources/plugins/idealSelect/jquery.idealselect.css">
+<script src="/_resources/plugins/idealSelect/jquery.idealselect.min.js"></script>
+
+<!-- Owl Carousel -->
+<link rel="stylesheet" href="/_resources/plugins/owl.carousel/owl-carousel/owl.carousel.css">
+<link rel="stylesheet" href="/_resources/plugins/owl.carousel/owl-carousel/owl.theme.css">
+<script src="/_resources/plugins/owl.carousel/owl-carousel/owl.carousel.js"></script>
+
+<!-- Accordion Menu -->
+<script src="/_resources/plugins/accordion-menu/accordion-menu.js"></script>
+
+<script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5d263109ab0f22d6"></script>
+
+
+<!-- Open all accordion menus when key tab is presssed  -->
+  <script type="text/javascript">
+    jQuery(document).ready(function(){
+      jQuery('body').keyup(function(e) {
+          var code = e.keyCode || e.which;
+          if (code == '9') {
+            jQuery('ul li.has-sub ul').css('display','block');
+            jQuery('ul li.has-sub ul').css('height','auto');
+          }
+      });
+    });
+  </script>
+
+
+
+
+
+
+
+<script type="text/javascript">
+	jQuery(document).ready(function(){
+		jQuery('.idealselect').idealselect();
+	});
+</script>
+
+<!-- ************** Fixed Header *************** -->
+<!-- ************** Fixed Header *************** -->
+<!-- ************** Fixed Header *************** -->
+<script type="text/javascript">
+
+	jQuery( document ).ready(function( $ ){
+		verifyScrollWindow();
+		jQuery(window).scroll(function() { verifyScrollWindow(); });
+		jQuery(window).resize(function() { verifyScrollWindow(); });
+	});
+
+	function verifyScrollWindow()
+	{
+		var doc = document.documentElement;
+		var left = (window.pageXOffset || doc.scrollLeft) - (doc.clientLeft || 0);
+		var top = (window.pageYOffset || doc.scrollTop)  - (doc.clientTop || 0);
+		var width = jQuery(window).width();
+
+		if(width > 767)
+		{
+			if(top>0)
+			{
+				jQuery("body").addClass("fixed-header");
+				jQuery(".wrapper-header").addClass("fixed-header-menu");
+				jQuery(".wrapper-header a.logo img").stop().stop().animate({height:50}, 100);
+			}
+			else
+			{
+				jQuery("body").removeClass("fixed-header");
+				jQuery(".wrapper-header").removeClass("fixed-header-menu");
+				jQuery(".wrapper-header a.logo img").stop().stop().animate({height:90}, "fast");
+			}
+		}    
+	}
+</script>
+<!-- ************** Fixed Header *************** -->
+<!-- ************** Fixed Header *************** -->
+<!-- ************** Fixed Header *************** -->
+
+
+<script type="text/javascript">
+	function openSearchForm()
+	{
+		jQuery('.wrapper-header-search').slideToggle( 150, function() {
+			jQuery('.wrapper-header-search').find('input[type="text"]').focus();
+		});;
+	}
+</script>
+
+
+
+  <!-- ********* New Code (Play/Pause Slider) ******** -->
+  <script type="text/javascript">
+    function playPauseSlider(slider)
+    {
+       var paused = jQuery(slider).is( '.cycle-paused' );
+
+       if(paused){ jQuery(slider).cycle('resume'); jQuery('.options-box-slider').removeClass('cycle-paused'); }
+       else{ jQuery(slider).cycle('pause'); jQuery('.options-box-slider').addClass('cycle-paused'); }
+    }
+  </script>
+  <!-- ********* New Code (Play/Pause Slider) ******** -->
+
+
+
+<!-- ***** Scroll to Top ***** --> 
+<!-- ***** Scroll to Top ***** --> 
+<script type="text/javascript">
+	jQuery( document ).ready(function( $ ){
+		verifyScrollWindowToTop();
+		jQuery(window).scroll(function() { verifyScrollWindowToTop();  });
+	});  
+	function scrollToTop()
+	{
+		jQuery('html, body').animate({
+			scrollTop: 0
+		}, 500);
+	}
+	function verifyScrollWindowToTop()
+	{
+		var doc = document.documentElement;
+		var left = (window.pageXOffset || doc.scrollLeft) - (doc.clientLeft || 0);
+		var top = (window.pageYOffset || doc.scrollTop)  - (doc.clientTop || 0);
+		var width = jQuery(window).width();
+
+		if(top>200)
+		{
+			jQuery('#scrollToTop').fadeIn(500);
+		}
+		else
+		{
+			jQuery('#scrollToTop').fadeOut(500);
+		}
+
+	}
+</script>
+<!-- ***** Scroll to Top ***** --> 
+<!-- ***** Scroll to Top ***** --> 
+<script type="text/javascript" src="/_resources/js/jquery.jfeed.js">//</script><script type="text/javascript">
+			if (!window.console) console = {log: function() {}};
+
+			var entryobj = {};
+			var alertactive = false;
+
+			function updatefeed()
+			{
+				jQuery.getFeed({
+					url: '/_resources/php/wnl/alerthandler.php?path=http://www.getrave.com/rss/ncc/channel1',
+					success: function(feed) {
+
+						entry = feed.items[0];
+
+						if (!entry || !entry.description || entry.description.toUpperCase() === "ALL CLEAR" || entry.title.toUpperCase() === "ALL CLEAR")
+						{
+							jQuery("#alertBar").attr("style", "display: none;");
+							jQuery("#alertBar").hide();
+							return;
+						}
+
+						if (!alertactive)
+						{
+							initalerthtml();	//init alert html
+							alertactive = true;
+						}
+
+						entryobj = {
+							description:entry.description.toString(),
+							title:entry.title.toString(),
+							link:entry.link.toString()
+						};
+
+						updatealerthtml(entryobj);
+
+						jQuery("#alertBar").attr("style", "display: block;");
+						jQuery("#alertBar").show();
+
+					},
+					cache: false
+				});
+			}
+
+			function initalerthtml()	//init alert html
+			{
+			var alertOutput = '<span id="alertTitle"> </span><br><span id="alertContent"> </span><span id="alertLinkHide"> - <span id="alertLink"><a href="' + entry.link + '">Read More...</a></span></span>';
+
+				
+						jQuery("#alertBarContent").html(alertOutput);
+					
+			}
+
+			function updatealerthtml(updateobj)
+			{
+				jQuery("#alertTitle").html(updateobj.title);
+				jQuery("#alertContent").html(updateobj.description);
+
+				if (updateobj.link)
+				{
+					jQuery("#alertLink a").attr("src",updateobj.link);
+					jQuery("#alertLinkHide").attr("style", "display: block;");
+					jQuery("#alertLinkHide").show();
+				}
+				else
+				{
+					jQuery("#alertLinkHide").attr("style", "display: none;");
+					jQuery("#alertLinkHide").hide();
+				}
+
+				if (updateobj.clear)
+				{
+					jQuery("#alertBar").attr("style", "display: none;");
+					jQuery("#alertBar").hide();
+				}
+				else
+				{
+					jQuery("#alertBar").attr("style", "display: block;");
+					jQuery("#alertBar").show();
+				}
+			}
+
+			function startfeedupdater()
+			{
+				updatefeed();
+				setInterval(updatefeed,60000);	//update feed every 60s
+			}
+
+			jQuery(document).ready(startfeedupdater);
+
+
+		</script>
+      		
+      
+      		
+      <style xmlns:ouc="http://omniupdate.com/XSL/Variables">.bigb {font-size:35px; padding:15px 90px; line-height:36px;}		
+  .athleticsBKND { background-image: url(/images/bknd/AthleticsParallax_Fall2024.jpg); min-height: 75vh;  }
+  .campusBKND { background-image: url(/images/bknd/JP_Spring26_Campus_1.jpg); }  
+  .socialBKND { background-image: url(/images/bknd/SocialParralx3.jpg); }
+  .slider-content .item-slide .slider-layer-box {top:50px;}
+   .fajp {margin-top:6px;}
+			
+/* Force Flockler container to stop holding empty height in Chrome */
+[id^="flockler-embed-"],
+.flockler-embed-container,
+.flockler-embed-wrapper {
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+
+/* Ensure the load-more button and end marker don't force absolute positioning bounds */
+.flockler-btn-load-more,
+[id^="flockler-end-"] {
+  position: relative !important;
+  clear: both !important;
+}
+	
+			
+		</style>
+      
+      
+      
+      	
+      <title>Nassau Community College Located on Long Island, New York | NCC</title>
+      <meta xmlns:ouc="http://omniupdate.com/XSL/Variables" name="Description" content="Nassau Community College is located on Long Island, New York. NCC offers day, evening, weekend and online courses. Earn your associates degree at NCC.">
+      <meta xmlns:ouc="http://omniupdate.com/XSL/Variables" name="Keywords" content="New York Community College, College, Higher Learning">
+   </head>
+   <body>
+      
+      	
+      <div id="alertBar">
+         <div id="alertBarContent"></div>
+      </div>
+      <div class="wrapper-website">
+<!-- ********* JP New Code (special buttons for mobile only) ******** -->
+
+    <div class="MOSB">
+
+      <ul class="MobileOnlySpecialBut">
+          <li><a href="https://www.ncc.edu/admissions"> APPLY NOW </a></li>
+          <li><a href="https://myncc.ncc.edu/"> MYNCC </a></li>
+
+      </ul>
+    </div>
+<!-- end MOSB --><div class="wrapper-header" role="banner"><a class="skip-main" href="#main">Skip to main content</a>
+   <!-- OU Search Ignore Start Here --><div class="wrapper-header-top-menu" role="navigation" aria-label="Ancillary">
+      <div class="container">
+         <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+               <ul class="top-menu">
+                  <li xmlns:ouc="http://omniupdate.com/XSL/Variables"><a href="/students.shtml">Students</a></li>
+                  <li xmlns:ouc="http://omniupdate.com/XSL/Variables"><a href="/faculty.shtml">Faculty</a></li>
+                  <li xmlns:ouc="http://omniupdate.com/XSL/Variables"><a href="/alumni/">Alumni</a></li>
+                  <li xmlns:ouc="http://omniupdate.com/XSL/Variables"><a href="/contactus/campus_directory.shtml">Directory</a></li>
+                  <li xmlns:ouc="http://omniupdate.com/XSL/Variables"><a href="https://collegecatalog.ncc.edu/current/" target="_blank" rel="noopener">Catalog</a></li>
+                  <li xmlns:ouc="http://omniupdate.com/XSL/Variables"><a href="/aboutncc/givetoncc/">Give to NCC</a></li>
+                  <li xmlns:ouc="http://omniupdate.com/XSL/Variables"><a href="http://nassaulions.com" target="_blank" rel="noopener">Athletics</a></li>
+                  <li xmlns:ouc="http://omniupdate.com/XSL/Variables"><a href="/contactus/">Contact</a></li>
+                  <li xmlns:ouc="http://omniupdate.com/XSL/Variables"><a class="button-lightblue" href="/admissions">Apply Now</a></li>
+                  <li xmlns:ouc="http://omniupdate.com/XSL/Variables"><a class="button-blue" href="https://myncc.ncc.edu" target="_blank" rel="noopener">&nbsp;MYNCC&nbsp; </a></li>
+               </ul>
+            </div>
+         </div>
+      </div>
+   </div>
+   <nav id="main-menu" class="navbar navbar-index" aria-label="Main navigation">
+      <div class="wrapper-header-logo">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12 col-sm-12 col-xs-12 text-center"><a href="/" class="logo"><img class="img-responsive " src="/_resources/img/logo.png" alt="Nassau Community College"></a><button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-main-menu-navbar-collapse" aria-expanded="false"><span class="menu-icon-title">MENU</span><span class="icon-bar-box"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></span></button><div class="content_search_post">
+                     <form class="menu-search-post">
+                        <div class="form-group margin-form-group-zero" role="search"><button type="button" aria-label="Search" onClick="javascript:openSearchForm();return false;" class="btn btn-index submit-button "><span class="fa fa-search"></span></button></div>
+                     </form>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="wrapper-header-menu">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12 col-sm-12 col-xs-12 big-submenu-static">
+                  <div class="container-fluid">
+                     <div class="collapse navbar-collapse" id="bs-main-menu-navbar-collapse">
+                        <ul class="nav navbar-nav navbar-nav-main-menu">
+                           <li class="ncc-home"><a href="/"><img alt="NCC Logo Link To Home Page" src="/_resources/img/logo_small.png"></a></li>
+                           <li class="dropdown big-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Academics<span class="caret"></span></a><ul class="dropdown-menu">
+                                 <li>
+                                    <div class="container">
+                                       <ul class="big-menu-parent">
+                                          <li><span xmlns:ouc="http://omniupdate.com/XSL/Variables" style="color: #ffffff;">.</span></li>
+                                          <li>
+                                             <h2 class="menu-title">Programs &amp; Courses</h2>
+                                             <ul xmlns:ouc="http://omniupdate.com/XSL/Variables">
+                                                <li><a href="/programsandcourses/">Overview</a></li>
+                                                <li><a href="/programsandcourses/academic_departments/">Programs of Study</a></li>
+                                                <li><a href="/programsandcourses/digital-learning/">Digital Learning</a></li>
+                                                <li><a href="/campusservices/aspires.shtml">ASPIRES</a></li>
+                                                <li><a href="/programsandcourses/weekend_college.shtml">Weekend College</a></li>
+                                                <li><a href="/programsandcourses/esl.shtml">ESL</a></li>
+                                                <li><a href="/programsandcourses/transferability.shtml">Transferability</a></li>
+                                                <li><a href="/programsandcourses/studyabroad/">Study Abroad</a></li>
+                                             </ul>
+                                          </li>
+                                          <li>
+                                             <h2 class="menu-title">Continuing Education</h2>
+                                             <ul xmlns:ouc="http://omniupdate.com/XSL/Variables">
+                                                <li><a href="/continuingeducation/">Overview</a></li>
+                                                <li><a href="/continuingeducation/registerconed.shtml">Register for Cont. Ed </a></li>
+                                                <li><a href="/continuingeducation/hse.shtml">High School Equiv.</a></li>
+                                                <li><a href="/continuingeducation/collegelevelexamprogram.shtml">CLEP</a></li>
+                                                <li><a href="/continuingeducation/teas_exam.shtml">TEAS</a></li>
+                                                <li><a href="/continuingeducation/workforcedevelopment/">Workforce Development</a></li>
+                                                <li><a href="/continuingeducation/languagecenter.shtml">Language Center</a></li>
+                                                <li><a href="/continuingeducation/senior_observer.shtml">Senior Observer Program</a></li>
+                                                <li><a href="/continuingeducation/languagecenter_spanish.shtml">Clases de Inglés</a></li>
+                                             </ul>
+                                          </li>
+                                       </ul>
+                                    </div>
+                                 </li>
+                              </ul>
+                           </li>
+                           <li class="dropdown big-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pay For College<span class="caret"></span></a><ul class="dropdown-menu">
+                                 <li>
+                                    <div class="container">
+                                       <ul class="big-menu-parent">
+                                          <li><span xmlns:ouc="http://omniupdate.com/XSL/Variables" style="color: #ffffff;">.</span></li>
+                                          <li>
+                                             <h2 class="menu-title">Financial Aid</h2>
+                                             <ul xmlns:ouc="http://omniupdate.com/XSL/Variables">
+                                                <li><a href="/financialaid/">Overview</a></li>
+                                                <li><a href="/financialaid/financial_aid_forms.shtml">Financial Aid Forms</a></li>
+                                                <li><a href="/aboutncc/givetoncc/scholarships/">Scholarships</a></li>
+                                                <li><a href="/financialaid/work_study/">Federal Work Study</a></li>
+                                                <li><a href="/financialaid/excelsior.shtml">Tuition Free Program</a></li>
+                                                <li><a href="/financialaid/grants.shtml">Grants</a></li>
+                                                <li><a href="/financialaid/loans.shtml">Loans</a></li>
+                                                <li><a href="/financialaid/faq.shtml">FAQ's</a></li>
+                                             </ul>
+                                          </li>
+                                          <li>
+                                             <h2 class="menu-title">Payment</h2>
+                                             <ul xmlns:ouc="http://omniupdate.com/XSL/Variables">
+                                                <li><a href="/payingforcollege/bursar.shtml">Overview</a></li>
+                                                <li><a href="/payingforcollege/">Tuition and Costs</a></li>
+                                                <li><a href="/payingforcollege/residency.shtml">Residency Requirements</a></li>
+                                                <li><a href="/payingforcollege/net_price_tuition_calculator.shtml">Price Calculator</a></li>
+                                                <li><a href="http://myncc.ncc.edu/" target="_blank" rel="noopener">Pay My Bill</a></li>
+                                                <li><a href="/payingforcollege/BankMobileDisbursements.shtml">Refund Disbursement Program</a></li>
+                                                <li><a href="/payingforcollege/bursarfaq.shtml">FAQ</a></li>
+                                             </ul>
+                                          </li>
+                                          <li class="item-content"><a title="Student Services Center Menu Image" href="/ssc/"><img src="/_resources/img/SSCMainMenu.jpg" alt="SSC: Student Services Center. " class="width100"></a></li>
+                                       </ul>
+                                    </div>
+                                 </li>
+                              </ul>
+                           </li>
+                           <li class="dropdown big-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Apply &amp; Register<span class="caret"></span></a><ul class="dropdown-menu">
+                                 <li>
+                                    <div class="container">
+                                       <ul class="big-menu-parent">
+                                          <li>
+                                             <h2 class="menu-title">Admissions</h2>
+                                             <ul xmlns:ouc="http://omniupdate.com/XSL/Variables">
+                                                <li><a href="/admissions/">What Type Of Student Are You</a></li>
+                                                <li><a href="/admissions/freshman.shtml">Freshman</a></li>
+                                                <li><a href="/admissions/transfer.shtml">Transfer</a></li>
+                                                <li><a href="/admissions/internationalstudents/">International Students</a></li>
+                                                <li><a href="/admissions/pdfs/newstudentenrollmentguide.pdf">Guide For Accepted Students</a></li>
+                                             </ul>
+                                          </li>
+                                          <li>
+                                             <h2 class="menu-title">Registrar</h2>
+                                             <ul xmlns:ouc="http://omniupdate.com/XSL/Variables">
+                                                <li><a href="/registrar/">Overview</a></li>
+                                                <li><a href="/registrar/requestatranscript.shtml">Request a&nbsp;Transcript</a></li>
+                                                <li><a href="/registrar/winter.shtml">Winter Registration</a></li>
+                                                <li><a href="/registrar/spring.shtml">Spring Registration</a></li>
+                                                <li><a href="/registrar/register.shtml">How Do I Register</a></li>
+                                                <li><a href="/registrar/cross_registration.shtml">SUNY Cross Registration</a></li>
+                                             </ul>
+                                          </li>
+                                          <li>
+                                             <h2 class="menu-title">Academic Advisement</h2>
+                                             <ul xmlns:ouc="http://omniupdate.com/XSL/Variables">
+                                                <li><a href="/advisement/">Overview</a></li>
+                                                <li><a href="/advisement/advisement_by_student_type/advise_new_students.shtml">Freshman Advisement</a></li>
+                                                <li><a href="/advisement/advisement_by_student_type/advise_current_students.shtml">Current Student Advisement</a></li>
+                                                <li><a href="/advisement/advisement_by_student_type/advise_readmit_students.shtml">Returning / Re-Admit</a></li>
+                                                <li><a href="/advisement/dropadd.shtml">Drop, Add or Withdrawal</a></li>
+                                                <li><a href="/advisement/helpful_tools">Helpful Tools</a></li>
+                                             </ul>
+                                          </li>
+                                          <li>
+                                             <h2 class="menu-title">Placement Testing</h2>
+                                             <ul xmlns:ouc="http://omniupdate.com/XSL/Variables">
+                                                <li><a href="/placementtesting">How Can I Prepare</a></li>
+                                                <li><a href="/placementtesting/#schedule">Schedule a Test</a></li>
+                                                <li><a href="/placementtesting/mathtest.shtml">Math Test Information</a></li>
+                                                <li><a href="/placementtesting/readingcomptest.shtml">Reading Test Information</a></li>
+                                                <li><a href="/placementtesting/englishtest.shtml">English Test Information</a></li>
+                                             </ul>
+                                          </li>
+                                       </ul>
+                                    </div>
+                                 </li>
+                              </ul>
+                           </li>
+                           <li><a href="/studentlife/">Student Life</a></li>
+                           <li><a href="/campusservices/">Campus Services</a></li>
+                           <li><a href="/aboutncc/">About NCC</a></li>
+                           <li class="dropdown big-submenu"><a href="#%09" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Quicklinks<span class="caret"></span></a><ul class="dropdown-menu">
+                                 <li>
+                                    <div class="container">
+                                       <ul class="big-menu-parent">
+                                          <li>
+                                             <ul xmlns:ouc="http://omniupdate.com/XSL/Variables">
+                                                <li><a href="http://myncc.ncc.edu/">MyNCC</a></li>
+                                                <li><a href="/programsandcourses/academic_departments/">Academic Departments</a></li>
+                                                <li><a href="https://calendar.ncc.edu/MasterCalendar/MasterCalendar.aspx">Academic Calendars</a></li>
+                                                <li><a href="/continuingeducation/">Continuing Education, Workforce</a></li>
+                                             </ul>
+                                          </li>
+                                          <li>
+                                             <ul xmlns:ouc="http://omniupdate.com/XSL/Variables">
+                                                <li><a href="/registrar/register.shtml">Registration Information</a></li>
+                                                <li><a href="http://library.ncc.edu/library">Library</a></li>
+                                                <li><a href="/payingforcollege/">Tuition</a></li>
+                                                <li><a href="https://banner.ncc.edu/pls/prod/bwckschd.p_disp_dyn_sched" target="_blank" rel="noopener">Class Schedule</a></li>
+                                                <li><a href="https://www.bkstr.com/nassaustore/home" target="_blank" rel="noopener">Bookstore</a></li>
+                                             </ul>
+                                          </li>
+                                          <li>
+                                             <ul xmlns:ouc="http://omniupdate.com/XSL/Variables">
+                                                <li><a id="root-icon" class="root" href="http://a.cms.omniupdate.com/10/#oucampus/ncc/www/browse/staging" name="Root Icon"><span class="hidden">H</span></a><a href="/ssc/servicehours.shtml">Student Service Hours</a></li>
+                                                <li><a href="/placementtesting/">Placement Testing</a></li>
+                                                <li><a href="/financialaid/">Financial Aid</a></li>
+                                                <li><a href="/advisement/">Academic Advisement</a></li>
+                                                <li><a href="/campusservices/veterans/">Military Students &amp; Veterans</a></li>
+                                             </ul>
+                                             <p xmlns:ouc="http://omniupdate.com/XSL/Variables">&nbsp;</p>
+                                          </li>
+                                          <li class="item-content"><a href="http://myncc.ncc.edu" target="_blank" rel="noopener"><img src="/images/main-menu/mynccMainmenuBannerV2.jpg" alt="My NCC. Sign in once and access everything. Link to sign in page." class="width100"></a></li>
+                                       </ul>
+                                    </div>
+                                 </li>
+                              </ul>
+                           </li>
+                           <li>
+                              <form class="menu-search-form navbar-form">
+                                 <div class="form-group" role="search"><button type="button" aria-label="Search" onclick="javascript:openSearchForm();return false;" class="btn btn-index submit-button " alt="Search Button"><span class="fa fa-search"></span></button></div>
+                                 <p id="main" style="margin:0;" tabindex="-1"></p>
+                              </form>
+                           </li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right visible-xs secondary-menu">
+                           <li><a href="/students.shtml">Students</a></li>
+                           <li><a href="/faculty.shtml">Faculty</a></li>
+                           <li><a href="/alumni/">Alumni</a></li>
+                           <li><a href="/contactus/campus_directory.shtml">Directory</a></li>
+                           <li><a href="https://collegecatalog.ncc.edu/current/" target="_blank" rel="noopener">Catalog</a></li>
+                           <li><a href="/aboutncc/givetoncc/">Give to NCC</a></li>
+                           <li><a href="http://nassaulions.com" target="_blank" rel="noopener">Athletics</a></li>
+                           <li><a href="/contactus/">Contact</a></li>
+                           <li class="active"><a href="/admissions">Apply Now</a></li>
+                           <li class="active"><a href="https://myncc.ncc.edu" target="_blank" rel="noopener">&nbsp;MYNCC&nbsp; </a></li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="progress-container">
+            <div class="progress-bar" id="myBar"></div>
+         </div>
+      </div>
+      <div class="wrapper-header-search">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-9 col-sm-7 col-xs-12"><form action="/search.php" method="get" >
+	<div class="form-search-box"> 
+		<input type="text" for="search" name="q" class="form-control search-field" placeholder="SEARCH" title="SEARCH"/>
+		<button type="submit" class="btn btn-index submit-button"><span class="fa fa-search btn-labelHide">Search</span></button>
+	</div>
+</form>
+<h2>WHAT CAN WE HELP YOU FIND</h2></div>
+               <div class="col-md-3 col-sm-5 col-xs-12"><hr style="width: 80%; margin: 9px 0 2px 0; border-width: 1px; border-color: #d9d9d9;" />
+<p style="font-size: 14px;">Search <a href="/contactus/campus_directory.shtml">Employee Name</a><br /> Look Up <a href="/contactus/deptdirectory.shtml">Department Directory</a></p></div>
+            </div>
+         </div>
+      </div>
+   </nav>
+   <!-- OU Search Ignore End Here --></div>         <main id="main" role="main">
+            <div class="wrapper-slider">
+               <div class="wrapper-slider">
+                  <div class="slider-content">
+                     <div id="home-slider" class="cycle-slideshow" data-cycle-fx="fade" data-cycle-timeout="6000" data-cycle-prev=".slider-prev" data-cycle-next=".slider-next" data-cycle-pager=".slider-pager-home" data-cycle-slides="div.item-slide">
+                        <div class="item-slide"><img class="img-responsive " src="/images/homeslide/slide_WinterRegister2.jpg" alt="Campus photo in the winter"><div class="slider-layer-box left-layer">
+                              <div class="layer-title">Get ahead this winter!</div>
+                              <div class="layer-description">Running January 4 – 21, 2027, the Winter Session at NCC provides an excellent opportunity
+                                 for students to earn college credits in just a few weeks! Registration is now open.
+                                 Current, visiting, and transfer students are welcome. </div><a href="https://ncc.edu/registrar/winter.shtml" class="button-blue">Learn More</a></div>
+                        </div>
+                        <div class="item-slide"><img class="img-responsive " src="/images/homeslide/HmSlide_SUNYReconnectInfoSession2.jpg" alt="Students on Campus"><div class="slider-layer-box right-layer">
+                              <div class="layer-title">FREE COMMUNITY COLLEGE FOR ELIGIBLE ADULT LEARNERS</div>
+                              <div class="layer-description">Beginning in January 2027, the SUNY Reconnect program will expand eligibility to include
+                                 New Yorkers ages 25 to 55 who have already earned a college degree. Learn more about
+                                 SUNY's free community college initiative - SUNY Reconnect - and the eligible degree
+                                 programs here at NCC.</div><a href="/admissions/suny-reconnect.shtml" class="button-blue">Learn More</a></div>
+                        </div>
+                        <div class="item-slide"><img class="img-responsive " src="/images/homeslide/HmSlide_Entrepreneurship.jpg" alt="Homecoming 25"><div class="slider-layer-box left-layer">
+                              <div class="layer-title">DREAMING OF STARTING YOUR OWN BUSINESS?</div>
+                              <div class="layer-description">We're here to support your vision with a new major in entrepreneurship. Start your
+                                 journey.</div><a href="https://www.ncc.edu/programsandcourses/academic_departments/marketingretailingfashion/entrepreneurship/" class="button-blue">Learn More</a></div>
+                        </div>
+                        <div class="slider-prev slider-btn-control"></div>
+                        <div class="slider-next slider-btn-control"></div>
+                     </div>
+                     <div class="options-box-slider">
+                        <div class="text-center pause-box"><a href="#" aria-label="play pause button for slider" class="play-pause-button" onclick="javascript:playPauseSlider(jQuery('#home-slider'));return false;"><i></i></a></div>
+                        <div class="slider-pager-home"></div>
+                        <div class="options-content">
+                           <div class="container">
+                              <div class="row">
+                                 <div class="col-md-4 col-sm-4 col-xs-12">
+                                    					
+                                    <p xmlns:ouc="http://omniupdate.com/XSL/Variables"><a class="button-white-border button-fullwidth" href="/admissions/index.shtml">APPLY NOW</a></p>
+                                    				</div>
+                                 <div class="col-md-4 col-sm-4 col-xs-12">
+                                    					
+                                    <p xmlns:ouc="http://omniupdate.com/XSL/Variables"><a class="button-white-border button-fullwidth" href="https://ncc.college-tour.com/?pk_campaign=Home%20Page%20Slider%20Call%20To%20Action%20Button%20(Virtual%20Map)" target="_blank">VIRTUAL MAP</a></p>
+                                    				</div>
+                                 <div class="col-md-4 col-sm-4 col-xs-12">
+                                    					
+                                    <p xmlns:ouc="http://omniupdate.com/XSL/Variables"><a class="button-white-border button-fullwidth" href="/programsandcourses/academic_departments/">OUR PROGRAMS</a></p>
+                                    				</div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="bar-detail">
+               <div class="bar-item bar-blue"></div>
+               <div class="bar-item bar-orange"></div>
+            </div>
+            <div class="wrapper-content wrapper-steelblue wrapper-padding">
+               <div class="container">
+                  
+                  <div xmlns:ouc="http://omniupdate.com/XSL/Variables" style="clear: both;">&nbsp;</div>
+                  
+                  <hr xmlns:ouc="http://omniupdate.com/XSL/Variables" style="margin-top: 0px;">
+                  
+                  <h2 xmlns:ouc="http://omniupdate.com/XSL/Variables" style="text-align: center; margin-top: 15px;">Prospective Student Information Sessions</h2>
+                  
+                  <p xmlns:ouc="http://omniupdate.com/XSL/Variables" style="text-align: center;">NCC invites prospective students and their families to attend our upcoming Informational
+                     events.</p>
+                  
+                  <p xmlns:ouc="http://omniupdate.com/XSL/Variables" style="text-align: center;"><a class="button-white-border jay" href="/admissions/infosession.shtml">INFORMATION SESSIONS</a></p>
+                  </div>
+            </div>
+            
+            <div xmlns:ouc="http://omniupdate.com/XSL/Variables" class="paralBKND campusBKND">
+               
+               <div class="row">
+                  
+                  <div class="col-lg-7 col-md-12 col-sm-12 ">
+                     
+                     <div class="embed-responsive embed-responsive-16by9 wow fadeIn                                                                     animated animated animated animated animated animated animated animated animated" style="visibility: visible; animation-name: fadeIn; margin-bottom: 24px;">
+                        
+                        <div style="padding: 56.25% 0 0 0; position: relative;"><iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" title="NCC-25-1137_Master_Video_Final_3-26_2160p" src="https://player.vimeo.com/video/1185286950?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0"></iframe></div>
+                        <script src="https://player.vimeo.com/api/player.js"></script>
+                        </div>
+                     </div>
+                  <!--End First Main Column-->
+                  
+                  <div class="col-lg-5 col-md-12 col-sm-12">
+                     
+                     <div class="row">
+                        
+                        <div class="col-lg-5 col-md-4 col-sm-6 wow fadeInLeft                                                                     animated animated animated animated animated animated animated animated animated" style="visibility: visible; animation-name: fadeInLeft;">
+                           
+                           <div class="JPCardsParallax" data-tilt="" data-tilt-axis="x" data-tilt-scale="1.05"><a href="/aboutncc/">
+                                 
+                                 <div class="JPCardsParallax_Inner">
+                                    
+                                    <h3 class="Big">20:1</h3>
+                                    
+                                    <p>STUDENT TO FACULTY RATIO</p>
+                                    </div>
+                                 </a></div>
+                           
+                           <div class="JPCardsParallax" data-tilt="" data-tilt-axis="x" data-tilt-scale="1.05"><a href="https://ncc.college-tour.com">
+                                 
+                                 <div class="JPCardsParallax_Inner">
+                                    
+                                    <h3 class="Big">BEAUTIFUL</h3>
+                                    
+                                    <p>225-ACRE CAMPUS</p>
+                                    </div>
+                                 </a></div>
+                           
+                           <div class="JPCardsParallax" data-tilt="" data-tilt-axis="x" data-tilt-scale="1.05"><a href="/programsandcourses/academic_departments/">
+                                 
+                                 <div class="JPCardsParallax_Inner">
+                                    
+                                    <h3 class="Big">60+</h3>
+                                    
+                                    <p>ASSOCIATE DEGREES &amp; CERTIFICATES</p>
+                                    </div>
+                                 </a></div>
+                           </div>
+                        
+                        <div class="col-lg-3 col-md-4 col-sm-3 wow flipInX                                                                     animated animated animated animated animated animated animated animated animated" style="visibility: visible; animation-name: flipInX;">
+                           
+                           <div class="JPCardsParallax" data-tilt="" data-tilt-axis="x" data-tilt-scale="1.05"><a href="/alumni/">
+                                 
+                                 <div class="JPCardsParallax_Inner">
+                                    
+                                    <h3 class="md" style="font-size: 30px; line-height: 35px;">166,000+</h3>
+                                    
+                                    <p>ALUMNI</p>
+                                    </div>
+                                 </a></div>
+                           
+                           <div class="JPCardsParallax" data-tilt="" data-tilt-axis="x" data-tilt-scale="1.05"><a href="/aboutncc/">
+                                 
+                                 <div class="JPCardsParallax_Inner">
+                                    
+                                    <h3 class="md">STATE-OF-THE-ART LEARNING LABS</h3>
+                                    </div>
+                                 </a></div>
+                           
+                           <div class="JPCardsParallax" data-tilt="" data-tilt-axis="x" data-tilt-scale="1.05"><a href="/financialaid/">
+                                 
+                                 <div class="JPCardsParallax_Inner">
+                                    
+                                    <h3 class="md">SCHOLARSHIPS &amp; FINANCIAL AID</h3>
+                                    </div>
+                                 </a></div>
+                           </div>
+                        
+                        <div class="col-lg-3 col-md-4 col-sm-3 wow flipInX                                                                     animated animated animated animated animated animated animated animated animated" style="visibility: visible; animation-name: flipInX;">
+                           
+                           <div class="JPCardsParallax" data-tilt="" data-tilt-axis="x" data-tilt-scale="1.05"><a href="/students.shtml">
+                                 
+                                 <div class="JPCardsParallax_Inner">
+                                    
+                                    <h3 class="md">INTERNSHIP &amp; CAREER ADVISEMENT</h3>
+                                    </div>
+                                 </a></div>
+                           
+                           <div class="JPCardsParallax" data-tilt="" data-tilt-axis="x" data-tilt-scale="1.05"><a href="/studentlife/clubs_and_organizations.shtml">
+                                 
+                                 <div class="JPCardsParallax_Inner">
+                                    
+                                    <h3 class="Big">80</h3>
+                                    
+                                    <p class="sm">CLUBS &amp; ORGANIZATIONS</p>
+                                    </div>
+                                 </a></div>
+                           
+                           <div class="JPCardsParallax" data-tilt="" data-tilt-axis="x" data-tilt-scale="1.05"><a href="https://nassaulions.com/">
+                                 
+                                 <div class="JPCardsParallax_Inner">
+                                    
+                                    <h3 class="Big">20+</h3>
+                                    
+                                    <p class="sm">ATHLETIC TEAMS</p>
+                                    </div>
+                                 </a></div>
+                           </div>
+                        
+                        <div class="col-lg-11 col-md-12 col-sm-12 wow fadeInUp                                     animated animated animated animated" style="visibility: visible; animation-name: fadeInUp;">
+                           
+                           <p><a class="button-orange button-fullwidth" style="opacity: 0.9;" href="/admissions/inquiry_form.shtml"><span style="font-size: 23px;">REQUEST INFORMATION</span></a></p>
+                           </div>
+                        </div>
+                     </div>
+                  <!--End Second Main Column--></div>
+               <!--End Parent Row--></div>
+            <!--End Parent paralBKND-->
+            <div class="wrapper-content wrapper-white-detail">
+               <div class="container">
+                  <div class="row">
+                     <div class="col-md-4 col-sm-4 col-xs-12">
+                        <div class="box-info-gray wow fadeInRight">
+                           <h2>News</h2>
+                           <div class="box-info-item">	<h4><a href="https://www.ncc.edu/aboutncc/newsreleases/2026newsreleases/11_november_2026/NCCFoundationBoard2026.shtml">Nassau Community College Foundation Announces New Board Leadership</a></h4>	<p></p></div><div class="box-info-item">	<h4><a href="https://www.ncc.edu/aboutncc/newsreleases/2026newsreleases/11_november_2026/botnov2026.shtml">The Board of Trustees' Schedule of Meetings for Tuesday, November 10, 2026</a></h4>	<p></p></div><div class="box-info-item">	<h4><a href="https://www.ncc.edu/aboutncc/newsreleases/2026newsreleases/11_november_2026/asapace2026.shtml">SUNY Schools Across Long Island Announce Significant Expansion of Highly Successful Student Retention, Graduation Support Program: ASAP|ACE</a></h4>	<p></p></div><div class="box-info-item">	<h4><a href="https://www.ncc.edu/aboutncc/newsreleases/2026newsreleases/10_october_2026/lilta.shtml">Nassau Community College Celebrates Hispanic Heritage Month with Campus Programming and Educator Recognition</a></h4>	<p></p></div><div class="box-info-item">	<h4><a href="https://www.ncc.edu/aboutncc/newsreleases/2026newsreleases/10_october_2026/freedomwriters2026.shtml">Erin Gruwell & Original Freedom Writer Mauricio "Tony" Becerra Visit Nassau Community College for Series of Workshops</a></h4>	<p></p></div>                           <p class="text-right"><a href="/aboutncc/newsreleases/" class="button-blue more-button">More News</a></p>
+                        </div>
+                     </div>
+                     <div class="col-md-4 col-sm-4 col-xs-12">
+                        <div class="row wow fadeInUp">
+                           <div class="col-md-12 col-sm-12 col-xs-12">
+                              <ul class="menu-trio">
+                                 <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="/registrar/spring.shtml">SPRING<br>COURSES<br>2027</a></li>
+                                 <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="/aboutncc/transform.shtml">WE<br>TRANSFORM<br>LIVES</a></li>
+                                 <li><a xmlns:ouc="http://omniupdate.com/XSL/Variables" href="/registrar/winter.shtml">WINTER<br>COURSES<br>2027</a></li>
+                              </ul>
+                              
+                              <div style="clear:both;"></div>
+                              <div id="banner-carousel-d16e559" class="owl-carousel navigation-inside-transparent">
+                                 <div><a href="/programsandcourses/academic_departments/student_personnel_services/career-boutique.shtml"><img class="width100" src="/images/hm-owl-slide/CareerBoutiqueSMHm.jpg" alt="NCC Career Boutique"></a></div>
+                                 <div><a href="/ssc/"><img class="width100" src="/images/hm-owl-slide/SSCsmallHome.jpg" alt="SSC, Centralized Location for Services Most Frequented"></a></div>
+                                 <div><a href="https://myit.ncc.edu"><img class="width100" src="/images/hm-owl-slide/MyIT_OWLHome.jpg" alt="My I.T. Support and Services"></a></div>
+                                 <div><a href="http://myncc.ncc.edu/" target="_blank" rel="noopener"><img class="width100" src="/images/hm-owl-slide/schedbuildSmHm.jpg" alt="NCC Schedule Builder, Build The Perfect Class Schedule For You, Step 1: log into My NCC, Step 2: in the launch pad click scheduler builder, step 3 create your perfect schedule"></a></div>
+                              </div><script type="text/javascript">
+			jQuery(document).ready(function() { 
+			jQuery("#banner-carousel-d16e559").owlCarousel({singleItem:true}); 
+			});
+		</script>
+                              
+                              <p xmlns:ouc="http://omniupdate.com/XSL/Variables">&nbsp;</p>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-4 col-sm-4 col-xs-12">
+                        <div xmlns:ouc="http://omniupdate.com/XSL/Variables" class="wow fadeInLeft                  animated animated" style="visibility: visible; animation-name: fadeInLeft;">
+                           
+                           <div class="box-info-gray">
+                              <h2>Academic Calendar</h2>
+                              <div class="box-info-item">
+                                 
+                                 <h4><a href="https://calendar.ncc.edu/MasterCalendar/MasterCalendar.aspx" target="_blank" rel="noopener">Student Calendar</a></h4>
+                                 
+                                 <ul style="list-style-type: circle;">
+                                    
+                                    <li>Academic Student Calendar</li>
+                                    
+                                    <li>Arts &amp; Special Events</li>
+                                    
+                                    <li>Athletics</li>
+                                    
+                                    <li>Recreation</li>
+                                    </ul>
+                                 </div>
+                              <div class="box-info-item">
+                                 
+                                 <h4><a href="https://calendar.ncc.edu/MasterCalendar/MasterCalendar.aspx" target="_blank" rel="noopener">Faculty &amp; Admin Calendar</a></h4>
+                                 
+                                 <ul style="list-style-type: circle;">
+                                    
+                                    <li>Academic Student Calendar</li>
+                                    
+                                    <li>Admin Calendar</li>
+                                    
+                                    <li>Arts &amp; special events</li>
+                                    
+                                    <li>Athletics</li>
+                                    
+                                    <li>Recreations</li>
+                                    </ul>
+                                 </div>
+                           </div>
+                           </div>
+                        <!--end animation--></div>
+                  </div>
+               </div>
+            </div>
+            <div class="wrapper-content">
+               <div class="container">
+                  <div class="row">
+                     <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="wow fadeInUp">
+                           <hr xmlns:ouc="http://omniupdate.com/XSL/Variables" style="margin: 8px auto; width: 10%; border-top: 1px solid #02014b; text-align: center;">
+                           
+                           <h1 xmlns:ouc="http://omniupdate.com/XSL/Variables" style="text-align: center;">FEATURED EVENTS</h1>
+                           
+                           <div class="row">
+                              <div class="col-md-6 col-sm-6 col-xs-12">
+                                 
+                                 <div xmlns:ouc="http://omniupdate.com/XSL/Variables" class="homeEventsjp2 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+                                    
+                                    <div class="eventWrap boxSh columns col2">
+                                       
+                                       <div class="imgwrap"><img class="img-responsive " src="/images/events/_EventsSpiritDays.jpg" alt="Lion Logo" width="100%">
+                                          
+                                          <div class="datejp2">
+                                             
+                                             <div class="dateWrapjp"><span class="monthjp">EVERY</span><span class="dayjp" style="font-size: 12px; padding-left: 9px;">THURSDAY</span></div>
+                                             </div>
+                                          </div>
+                                       
+                                       <div class="eventDescription2">
+                                          
+                                          <div class="title" style="overflow-wrap: break-word;">
+                                             
+                                             <h2 class="center">CAMPUS SPIRIT DAYS</h2>
+                                             </div>
+                                          
+                                          <div class="time center">Every Thursday</div>
+                                          
+                                          <div class="description" style="overflow-wrap: break-word;">It's time to show your Lion pride! Join us every Thursday throughout the year for
+                                             Campus Spirit Days and show your pride in our college community. Wear your favorite
+                                             NCC apparel or dress in blue and orange as we come together to celebrate the traditions,
+                                             achievements, and connections that make our campus unique. Go Lions!</div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              <div class="col-md-6 col-sm-6 col-xs-12">
+                                 
+                                 <div xmlns:ouc="http://omniupdate.com/XSL/Variables" class="homeEventsjp2 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+                                    
+                                    <div class="eventWrap boxSh columns col2"><a href="https://applynow.ncc.edu/portal/info">
+                                          
+                                          <div class="imgwrap"><img class="img-responsive " src="/images/events/_EventsReconnect.jpg" alt="Students In Classroom" width="100%">
+                                             
+                                             <div class="datejp2" style="width: 100px;">
+                                                
+                                                <div class="dateWrapjp"><span class="monthjp">NOV &amp; DEC</span><span class="dayjp" style="font-size: 13px;">17 &amp; 15</span></div>
+                                                </div>
+                                             </div>
+                                          
+                                          <div class="eventDescription2">
+                                             
+                                             <div class="title" style="overflow-wrap: break-word;">
+                                                
+                                                <h2 class="center">SUNY RECONNECT VIRTUAL INFORMATION SESSIONs</h2>
+                                                </div>
+                                             
+                                             <div class="time center">November 17 &amp; December 15 | 6pm</div>
+                                             
+                                             <div class="description" style="overflow-wrap: break-word;">Interested in learning more about the SUNY Reconnect program at NCC? Join us at one
+                                                of our upcoming virtual information sessions on Tuesday, November 17, or Tuesday,
+                                                December 15, at 6pm to learn more about the SUNY Reconnect program at NCC and gets
+                                                answers to your questions. <span style="color: #0662b7;">REGISTER</span></div>
+                                             </div>
+                                          </a></div>
+                                    </div>
+                                 </div>
+                           </div>
+                           
+                           <p xmlns:ouc="http://omniupdate.com/XSL/Variables" style="text-align: center;"><a class="button-blue-border" style="font-size: 24px;" href="https://calendar.ncc.edu/MasterCalendar/MasterCalendar.aspx" target="_blank" rel="noopener">VIEW ALL EVENTS</a></p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <p xmlns:ouc="http://omniupdate.com/XSL/Variables">
+               
+               <div class="LbannerHug wow fadeIn">
+                  
+                  <div class="Lbannerphoto">
+                     	  <a class="focusADA" href="/ncc_profiles/" target="_blank">
+                        <picture>
+                           
+                           <source media="(min-width: 550px)" srcset="https://www.ncc.edu/images/long-banner/LBannerProfiles.jpg" alt="We Are NCC. View Student, Alumni and Faculty profiles">
+                           
+                           <source media="(max-width: 549px)" srcset="https://www.ncc.edu/images/long-banner/LBannerProfiles_Mobile.jpg" alt="We Are NCC. View Student, Alumni and Faculty profiles">
+                           		  <img class="img-responsive " src="https://www.ncc.edu/images/long-banner/LBannerProfiles.jpg" alt="We Are NCC. View Student, Alumni and Faculty profiles">
+                           </picture>
+                        	  </a>
+                     </div>
+                  </div>
+               
+               </p>
+            <!-- 5050 SHOWCASE -->
+            
+            <div class="wrapper-content ">
+               <div class="container"><!-- First showcase -->
+                  
+                  <div xmlns:ouc="http://omniupdate.com/XSL/Variables" class="5050Showcase">
+                     
+                     <div class="row">
+                        
+                        <div class="col-md-6 col-lg-6  col-text wow fadeInRight      animated" style="visibility: visible; animation-name: fadeInRight;">
+                           
+                           <div class="Showcaseinner">
+                              
+                              <h3 class="text-orange">CONTINUING EDUCATION</h3>
+                              
+                              <p class="ShowcaseBig">Lifelong Learning</p>
+                              
+                              <p class="ShowcaseBody">Personal and professional growth courses designed to broaden your background.</p>
+                              
+                              <p><a class="button-orange" style="padding: 10px 62px;" href="/continuingeducation/">LEARN MORE</a></p>
+                              </div>
+                           </div>
+                        
+                        <div class="col-md-6 col-lg-6 col-image wow flipInX      animated" style="visibility: visible; animation-name: flipInX;"><a href="/continuingeducation/">
+                              
+                              <div class="img5050Show"><img class="img-responsive " src="/images/5050ShowcaseContEd.jpg" alt="Students On Campus"><i class="fa fa-search fa-3x"></i></div>
+                              </a></div>
+                        </div>
+                     </div>
+                  <!-- second showcase -->
+                  
+                  <div xmlns:ouc="http://omniupdate.com/XSL/Variables" class="5050Showcase">
+                     
+                     <div class="row">
+                        
+                        <div class="col-md-6 col-lg-6  wow flipInX" style="visibility: visible; animation-name: flipInX;"><a href="/continuingeducation/workforcedevelopment/">
+                              
+                              <div class="img5050Show imgLBlue"><img class="img-responsive " src="/images/5050ShowcaseWorkForceD.jpg" alt="Students On Campus"> <i class="fa fa-search fa-3x"></i></div>
+                              </a></div>
+                        
+                        <div class="col-md-6 col-lg-6 wow fadeInLeft" style="visibility: visible; animation-name: fadeInLeft;">
+                           
+                           <div class="ShowcaseinnerRT">
+                              
+                              <h3 class="text-LBlue">WORKFORCE DEVELOPMENT TRAINING</h3>
+                              
+                              <p class="ShowcaseBig">Open Enrollment Courses</p>
+                              
+                              <p class="ShowcaseBody">Interested in beginning a new career, improving your skills or credentials, or growing
+                                 your business?&nbsp;</p>
+                              
+                              <p><a class="button-orange LBlueButton" style="padding: 10px 62px;" href="/continuingeducation/workforcedevelopment/">LEARN MORE</a></p>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  <!-- end second showcase --></div>
+            </div>
+            <!-- END 5050 SHOWCASE -->
+            
+            <p xmlns:ouc="http://omniupdate.com/XSL/Variables">&nbsp;</p>
+            <!-- ***********************ATHLETICS WRAPPER***********************-->
+            
+            <div xmlns:ouc="http://omniupdate.com/XSL/Variables" class="paralBKND athleticsBKND">
+               
+               <div class="row">
+                  <div class="col-md-4 col-sm-4 col-xs-12">
+                     
+                     <div class="wow fadeInLeft                                        animated" style="visibility: visible; animation-name: fadeInLeft;">
+                        
+                        <h2><span style="color: #ffffff;">NASSAU LIONS ATHLETICS</span></h2>
+                        
+                        <p style="text-align: left;"><img class="img-responsive fl" style="float: left; margin-right: 10px;" src="/images/athletics/LionLogo.png" alt="Nassau Lions Logo" width="115px"><span style="color: #ffffff;">From Baseball, to Softball, Soccer and Lacrosse; to Track and Field, Football and
+                              Basketball– the Nassau Lions athletes consistently perform at an elite level athletically
+                              and academically.</span></p>
+                        
+                        <p style="text-align: left;"><span style="color: #ffffff;">NCC student-athletes are ambassadors for the student body, working just as hard in
+                              the classroom as they do in competition.</span></p>
+                        <!-- Trigger the modal with a button -->
+                        
+                        <p><span style="color: #ffffff;"><button class="btn btn btn-lg btn_nostyle" type="button" data-toggle="modal" data-target="#myModal">Recent Athletic Highlights</button></span></p>
+                        </div>
+                     <!--end Animation Div--> <!-- *********************** Modal *********************** -->
+                     
+                     <div id="myModal" class="modal fade" style="display: none;" role="dialog">
+                        
+                        <div class="modal-dialog"><!-- Modal content-->
+                           
+                           <div class="modal-content">
+                              
+                              <div class="modal-header"><button class="close" type="button" data-dismiss="modal">×</button>
+                                 
+                                 <h4 class="modal-title">Recent Athletic Highlights</h4>
+                                 </div>
+                              
+                              <div class="modal-body jpmodal">
+                                 
+                                 <ul>
+                                    
+                                    <li>Jospeh Mattei Awarded SUNY Student Athlete of the Year.</li>
+                                    
+                                    <li>Nassau Lacrosse Wins the 2025 District Championship!</li>
+                                    
+                                    <li>Men's Volleyball Finishes as NJCAA Runner-Up at Nationals.</li>
+                                    
+                                    <li>Baseball ends season third in the Region.</li>
+                                    </ul>
+                                 </div>
+                              
+                              <div class="modal-footer"><button class="btn btn-dark" type="button" data-dismiss="modal">Close</button></div>
+                              </div>
+                           </div>
+                        </div>
+                     <!-- ***********************END Trigger the modal with a button --></div>
+                  <div class="col-md-8 col-sm-8 col-xs-12"><!--HIDE ATHLETIC VID****	
+<div class="wow fadeInRight           animated" style="visibility: visible; animation-name: fadeInRight;">
+<div class="embed-responsive embed-responsive-16by9" style="margin-top: 9px;">
+<div style="padding: 56.25% 0 0 0; position: relative;"><iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://player.vimeo.com/video/826889365?h=90bc41ed1c&amp;color=ee7f1f&amp;byline=0&amp;portrait=0" frameborder="0" allowfullscreen="allowfullscreen"></iframe></div>
+<script src="https://player.vimeo.com/api/player.js"></script>
+</div>
+</div> 
+end Animation Div -->
+                     
+                     <div class="clear">&nbsp;</div>
+                     
+                     <div class="wow fadeInLeft                                                                     animated animated animated" style="visibility: visible; animation-name: fadeInRight;">
+                        
+                        <div class="slider-box" id="slider-box-d16e840">
+                           <div class="cycle-slideshow" data-cycle-fx="scrollHorz" data-cycle-timeout="6000" data-cycle-pager=".slider-pager#slider-pager-d16e840" data-cycle-slides="div.item-slide.item-d16e840">
+                              <div class="item-slide item-d16e840"><img src="/images/athletics/2026_LAX_AllAmericanCover.jpg" alt="Lacrosse All Americans"><div class="slider-layer-box"><a href="https://nassaulions.com/news/2026/5/21/mens-lacrosse-all-americans2026.aspx" class="button-blue">Learn More</a></div>
+                              </div>
+                              <div class="item-slide item-d16e840"><img src="/images/athletics/DanF_CoachLegacyAwards.jpg" alt="Dan Fisher. Coaches Legacy Awards"></div>
+                              <div class="item-slide item-d16e840"><img src="/images/athletics/RichardS_CoachLegacyAwards.jpg" alt="Richard Speckmann. Coaches Legacy Awards"></div>
+                           </div>
+                           <div class="slider-pager" id="slider-pager-d16e840"></div>
+                        </div>
+                        <br>
+                        
+                        <div class="row">
+                           <div class="col-md-6 col-sm-6 col-xs-12"><a class="button-orange button-fullwidth" style="margin-bottom: 10px;" href="https://nassaulions.com/" target="_blank" rel="noopener">Nassau Lions</a></div>
+                           <div class="col-md-6 col-sm-6 col-xs-12"><a class="button-orange button-fullwidth jay" href="https://nassaulions.com/watch/?Archive=257&amp;type=Live" target="_blank" rel="noopener"><i class="fa fa-video-camera">&nbsp;</i><span class="sr-only">camera icon</span> Watch Games Live</a></div>
+                        </div>
+                        </div>
+                     <!-- end animation --></div>
+               </div>
+               </div>
+            <!--*********************** END ATHLETICS WRAPPER ***********************-->
+            
+            <div xmlns:ouc="http://omniupdate.com/XSL/Variables" class="paralBKND socialBKND">
+               
+               <div class="container ">
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="/plugins/fb/fbfeed/core/css/cff.css?ver3.7">
+
+                  
+                  
+                  
+                  <h2 class="title-underline">GET SOCIAL!</h2>
+                  
+                  <ul class="social-links">
+                     
+                     <li><a href="https://www.facebook.com/nassaucommunitycollege/" target="_blank"><span class="fajp fa fa-facebook" alt="Facebook Icon" title="Facebook"></span><span class="sr-only">Facebook</span></a></li>
+                     <!--<li><a href="#"><span class="fa fa-twitter"></span></a></li>-->
+                     <!--<li><a href="#"><span class="fa fa-feed"></span></a></li>-->
+                     
+                     <li><a href="https://www.instagram.com/nassaucommunitycollege/" alt="Instagram" target="_blank"><span class="fajp fa fa-instagram"></span><span class="sr-only">Instagram</span></a></li>
+                     </ul>
+                  		  
+                  
+                  <div class="row">
+                     		  
+                     
+                     			
+                     
+                     <div class="col-md-12 col-sm-12 col-xs-12">
+                        
+                        <div class="social-box wow fadeInLeft">
+                           
+                           <div class="instagram-feed">
+                              					
+                              				
+                              					
+                              <div id="flockler-embed-1843ebf85f20f158539d8c0de1496087"></div>
+                              <script src="https://plugins.flockler.com/embed/18438af2d05008a6d7f5fd49b14e71eb/1843ebf85f20f158539d8c0de1496087" async=""></script>
+                              				  
+                              </div>
+                           <!-- instagram-feed -->
+                           
+                           <div class="social-box-icon"><a href="https://www.instagram.com/nassaucommunitycollege/" target="_blank"><img class="img-responsive " src="/_resources/img/instaget.png" alt="instagram"></a></div>
+                           				
+                           				
+                           </div>
+                        <!-- social-box -->
+                        			  
+                        			  
+                        </div>
+                     			
+                     </div>
+               </div>
+               </div>
+         </main>
+         <div class="wrapper-footer" role="contentinfo"><!-- OU Search Ignore Start Here -->
+   <div class="wrapper-footer-menu">
+      <div class="container">
+         <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+               <div class="row">
+                  <div class="col-md-4 col-sm-4 col-xs-12">
+                     <div class="row footer-menu-row">
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                           <ul class="footer-menu footer-menu-left">
+                              <li xmlns:ouc="http://omniupdate.com/XSL/Variables"><a href="/aboutncc/ourpeople/administration/environmentalhealth/emergencyprocedures.shtml">Emergency Procedures</a></li>
+                              <li xmlns:ouc="http://omniupdate.com/XSL/Variables"><a title="Accessibility Statement" href="/campusservices/accessibility_statement.shtml">Accessibility</a></li>
+                              <li xmlns:ouc="http://omniupdate.com/XSL/Variables"><a href="/aboutncc/mission.shtml">Our Mission</a></li>
+                           </ul>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                           <ul class="footer-menu footer-menu-left">
+                              <li xmlns:ouc="http://omniupdate.com/XSL/Variables"><a href="/campusservices/parkingandsafety/mapanddirections.shtml">Maps / Directions</a></li>
+                              <li xmlns:ouc="http://omniupdate.com/XSL/Variables"><a href="/sitemap.shtml">Sitemap</a></li>
+                              <li xmlns:ouc="http://omniupdate.com/XSL/Variables"><a href="/contactus/">Contact Us</a></li>
+                              <li xmlns:ouc="http://omniupdate.com/XSL/Variables"><a href="https://www.bkstr.com/nassaustore/home" target="_blank" rel="noopener">Bookstore</a></li>
+                              <li xmlns:ouc="http://omniupdate.com/XSL/Variables"><a href="https://library.ncc.edu/library" target="_blank" rel="noopener">Library</a></li>
+                           </ul>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-md-4 col-sm-4 col-xs-12 text-center"><a href="/" class="logo-footer"><img class="img-responsive " src="/_resources/img/logo-footer.png" alt="Nassau Community College"></a></div>
+                  <div class="col-md-4 col-sm-4 col-xs-12">
+                     <div class="row footer-menu-row">
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                           <ul class="footer-menu footer-menu-right">
+                              <li xmlns:ouc="http://omniupdate.com/XSL/Variables"><a href="/ssc">Student Services Center</a></li>
+                              <li xmlns:ouc="http://omniupdate.com/XSL/Variables"><a href="/campusservices/parkingandsafety/">Campus Safety</a></li>
+                           </ul>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                           <ul class="footer-menu footer-menu-right">
+                              <li xmlns:ouc="http://omniupdate.com/XSL/Variables"><a href="/aboutncc/employment_opportunities.shtml">Employment</a></li>
+                              <li xmlns:ouc="http://omniupdate.com/XSL/Variables"><a href="/aboutncc/ourpeople/administration/crb/">CRB/Title VI &amp;<br>Title IX</a></li>
+                              <li xmlns:ouc="http://omniupdate.com/XSL/Variables"><a href="https://nccapps.ncc.edu/forms/ComplaintForm/">Complaint &amp; Feedback Form</a></li>
+                              <li xmlns:ouc="http://omniupdate.com/XSL/Variables"><a href="/studentlife/whpcradiostation/">WHPC- NCC Radio</a></li>
+                           </ul>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+               <p class="footer-menu-text"><span xmlns:ouc="http://omniupdate.com/XSL/Variables"> One Education Drive, Garden City, New York 11530-6793 - 516.572.7501<br></span><span xmlns:ouc="http://omniupdate.com/XSL/Variables">Nassau Community College A Part of the State University of New York System (SUNY)</span></p>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="wrapper-footer-copyright">
+      <div class="container">
+         <div class="row">
+            <div class="col-md-2 col-md-push-2 col-sm-3 col-xs-12">
+               <div xmlns:ouc="http://omniupdate.com/XSL/Variables" id="google_translate_element" style="text-align: center; padding: 1em 0;"></div><script xmlns:ouc="http://omniupdate.com/XSL/Variables" type="text/javascript">// 
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'en,es', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+}
+// </script><script xmlns:ouc="http://omniupdate.com/XSL/Variables" type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script></div>
+            <div class="col-md-4 col-md-push-2 col-sm-6 col-xs-12">
+               <ul class="footer-social-links">
+                  <li><a href="https://www.facebook.com/nassaucommunitycollege/ "><span class="fa fa-facebook"></span><span class="sr-only">facebook Link</span></a></li>
+                  <li><a href="https://www.instagram.com/nassaucommunitycollege/"><span class="fa fa-instagram"></span><span class="sr-only">instagram Link</span></a></li>
+               </ul>
+               <p class="copyright">Copyright <span id="directedit" style="margin-right:5px;">©</span>Nassau Community College</p>
+            </div>
+            <div class="text-center"><a href="http://www.suny.edu/" class="logo-footer"><img class="img-responsive " src="/_resources/img/sunyLogo.png" alt=" SUNY The State University of New York"></a></div>
+            <div class="col-md-4 col-sm-3 col-xs-12"></div>
+         </div>
+      </div>
+      <div style="color: #02014b; text-align: right; margin-right: 30px;">N1</div></div>
+   <!-- OU Search Ignore End Here --></div>
+
+<!-- Scroll To Top -->
+<div id="scrollToTop" class="scroll-to-top" onClick="javascript:scrollToTop();return false;">
+	<span class="fa fa-angle-up"></span> 
+	<!-- For ADA complaince added my MJF on 7-2-19 --><p style="display:none; visibility:hidden;">Top of page</p>
+</div>
+<!-- Scroll To Top -->
+<!--for the accordion-->
+<script src="/_resources/js/animateaccordion.js" ></script>
+<!--for the accordion-->
+
+<script src="/_resources/js/direct-edit.js"></script>
+
+<!--for the animated elements while scrolling-->
+<script src="/_resources/js/wow.js"></script>
+
+
+<!--for the Facebook Social Feed-->
+<!-- <script src="//code.jquery.com/jquery-1.9.1.js"></script> -->
+<script type="text/javascript" src="/plugins/fb/fbfeed/core/js/cff.js?ver3.1"></script>
+
+<!-- Google Tag Manager From FROM FURMAN ROTH ADVERTISING (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MKMDJD8"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<!-- google analytics
+	<script type="text/javascript">// <![CDATA[
+var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-5482537-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript';
+ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' :
+'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0];
+s.parentNode.insertBefore(ga, s);
+  })();
+// ]]></script>
+	
+		<!-- end google analytics-->
+<script>
+// When the user scrolls the page, execute myFunction JP
+window.onscroll = function() {myFunction()};
+
+function myFunction() {
+  var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  var scrolled = (winScroll / height) * 100;
+  document.getElementById("myBar").style.width = scrolled + "%";
+} 
+
+	</script>
+
+          <!-- Userway ADA Complience Widget Script-->
+<script type="text/javascript">
+var _userway_config = {
+/* uncomment the following line to override default position*/
+/* position: '5', */
+/* uncomment the following line to override default size (values: small, large)*/
+/* size: 'small', */
+/* uncomment the following line to override default language (e.g., fr, de, es, he, nl, etc.)*/
+/* language: 'en-US', */
+/* uncomment the following line to override color set via widget (e.g., #053f67)*/
+/* color: '#053f67', */
+/* uncomment the following line to override type set via widget (1=person, 2=chair, 3=eye, 4=text)*/
+/* type: '1', */
+/* uncomment the following lines to override the accessibility statement*/
+/* statement_text: "Our Accessibility Statement", */
+/* statement_url: "http://www.example.com/accessibility", */
+/* uncomment the following line to override support on mobile devices*/
+/* mobile: true, */
+account: 'P977HHWf60'
+};
+</script>
+<script type="text/javascript" src="https://cdn.userway.org/widget.js"></script>
+
+			 <!-- END Userway ADA Complience Widget Script-->
+
+<!-- tilt and parallax effects JP -->
+<script type="text/javascript" src="/_resources/js/vanilla-tilt.min.js"></script>
+<!-- END tilt and parallax effects JP -->
+<!-- Insert google analytics here -->
+         <div id="hidden" style="display:none;"><a id="de" href="https://a.cms.omniupdate.com/11/?skin=oucampus&amp;account=ncc&amp;site=www&amp;action=de&amp;path=/index.pcf">©</a></div>
+      </div>
+   <!-- ouc:info uuid="6e6dc176-b991-450a-b684-9c14d27bda10"/ --></body>
+</html>

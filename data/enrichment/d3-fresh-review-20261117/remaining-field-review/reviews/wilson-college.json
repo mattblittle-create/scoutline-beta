@@ -1,0 +1,561 @@
+{
+  "slug": "wilson-college",
+  "collegeId": "cmovos1a300v3qt7g482wpj5y",
+  "programId": "cmovos1at00v5qt7go4rido1q",
+  "checkedAtUtc": "2026-11-17T20:38:41.836Z",
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED",
+  "missingFields": [
+    "rosterUrl",
+    "questionnaireUrl",
+    "campsUrl",
+    "generalContactEmail"
+  ],
+  "pages": [
+    {
+      "requestedUrl": "https://wilsonphoenix.com/sports/baseball",
+      "kind": "baseball-home",
+      "parent": null,
+      "status": 200,
+      "finalUrl": "https://wilsonphoenix.com/sports/baseball",
+      "sourcePath": "../sources/wilson-college-1.html",
+      "sha256": "24d4c294d3df43c8a8ce91c7940d71dbf73d20b68ee6e5eb896305dfbfa69b89",
+      "reusedEvidence": true,
+      "originalCheckedAtUtc": "2026-11-17T17:29:25.697Z",
+      "parsed": {
+        "title": "Baseball - Wilson College Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "Main Nav",
+          "Sport Nav",
+          "Schedule",
+          "Top Stories",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://wilsonphoenix.com/sports/baseball",
+            "label": "Skip To Main Content",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/index.aspx",
+            "label": "",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/womens-basketball",
+            "label": "Basketball",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/PhoenixWBB",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/phoenixathletics",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/womens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/womens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/womens-basketball/archives",
+            "label": "Basketball: News",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/field-hockey",
+            "label": "Field Hockey",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/wilsoncollegefh",
+            "label": "Field Hockey: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/wilsonfieldhockey",
+            "label": "Field Hockey: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/field-hockey/schedule",
+            "label": "Field Hockey: Schedule",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/field-hockey/roster",
+            "label": "Field Hockey: Roster",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/field-hockey/archives",
+            "label": "Field Hockey: News",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/womens-lacrosse",
+            "label": "Lacrosse",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/Ignite_the_Fire",
+            "label": "Lacrosse: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/wilsonwlax",
+            "label": "Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/womens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/womens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/womens-lacrosse/archives",
+            "label": "Lacrosse: News",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/womens-soccer",
+            "label": "Soccer",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/WilsonWSoccer",
+            "label": "Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/wilsoncollegews",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/womens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/womens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/womens-soccer/archives",
+            "label": "Soccer: News",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/softball",
+            "label": "Softball",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/wcphoenixsb",
+            "label": "Softball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/wc.softball",
+            "label": "Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/softball/archives",
+            "label": "Softball: News",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/womens-volleyball",
+            "label": "Volleyball",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/wilson_wvb",
+            "label": "Volleyball : X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/wilsoncollege_wvb",
+            "label": "Volleyball : Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/womens-volleyball/schedule",
+            "label": "Volleyball : Schedule",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/womens-volleyball/roster",
+            "label": "Volleyball : Roster",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/womens-volleyball/archives",
+            "label": "Volleyball : News",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/esports",
+            "label": "Esports",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/esports/schedule",
+            "label": "Esports: Schedule",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/esports/roster",
+            "label": "Esports: Roster",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/esports/archives",
+            "label": "Esports: News",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/WCphoenixbball",
+            "label": "Baseball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/wilsoncollegebaseball",
+            "label": "Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/baseball/schedule",
+            "label": "Baseball: Schedule",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/baseball/archives",
+            "label": "Baseball: News",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/mens-basketball",
+            "label": "Basketball",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/WilsonMensHoops",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/wilsoncollegembb",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/mens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/mens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/mens-basketball/archives",
+            "label": "Basketball: News",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/mens-golf",
+            "label": "Golf",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/wilsonmgolf",
+            "label": "Golf: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/mens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/mens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/mens-golf/archives",
+            "label": "Golf: News",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/mens-soccer",
+            "label": "Soccer",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/WilsonMSoccer",
+            "label": "Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/WilsonMSoccer",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/mens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/mens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/mens-soccer/archives",
+            "label": "Soccer: News",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/mens-volleyball",
+            "label": "Volleyball",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/wilson_mvb",
+            "label": "Volleyball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/wilsoncollege_mvb",
+            "label": "Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/mens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/mens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/mens-volleyball/archives",
+            "label": "Volleyball: News",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/huntseat",
+            "label": "Hunt Seat",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/https://x.com/ignite_the_fire",
+            "label": "Hunt Seat: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/https://www.instagram.com/wilsoncollegeequestrianteams/",
+            "label": "Hunt Seat: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/hunt-seat/schedule",
+            "label": "Hunt Seat: Schedule",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/hunt-seat/roster",
+            "label": "Hunt Seat: Roster",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/hunt-seat/archives",
+            "label": "Hunt Seat: News",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/western",
+            "label": "Western",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/ignite_the_fire",
+            "label": "Western: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/wilsoncollegeequestrianteams",
+            "label": "Western: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/western/schedule",
+            "label": "Western: Schedule",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/western/roster",
+            "label": "Western: Roster",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/western/archives",
+            "label": "Western: News",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/staff-directory",
+            "label": "Athletic Staff Directory",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/2015/9/10/0910155642.aspx",
+            "label": "Vision and Mission Statement",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/2013/11/7/1107133245.aspx",
+            "label": "Wilson Athletics",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/2013/11/12/GEN_1112133206.aspx",
+            "label": "Student-Athlete Advisory Committee (SAAC)",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/2016/10/27/sams.aspx",
+            "label": "Student-Athlete Mentors (SAMs)",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sb_output.aspx?form=26",
+            "label": "Hall of Honor",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/honors/gwendolyn-jensen-athletic-hall-of-fame",
+            "label": "Gwendolyn Jensen Hall of Fame",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/2013/10/1/1001130552.aspx",
+            "label": "Athletic Communications",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/archives",
+            "label": "Archived Stories",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/2013/10/1/sportmed.aspx",
+            "label": "Sports Medicine",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/2020/3/24/championships",
+            "label": "Championships",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/2021/8/23/student-athlete-resources",
+            "label": "Student-Athlete Resources",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/2013/11/12/GEN_1112130533.aspx",
+            "label": "Facilities",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/2013/11/12/GEN_1112132256.aspx",
+            "label": "Fitness Center",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/2013/11/6/GEN_1106131552.aspx",
+            "label": "Be Recruited",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/registrations/",
+            "label": "Camps and Clinics",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/2013/11/12/directions.aspx",
+            "label": "Directions",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/index.aspx?path=baseball",
+            "label": "Baseball",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/baseball/stats",
+            "label": "Stats",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sports/baseball/coaches",
+            "label": "Coaches",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/sb_output.aspx?frform=27",
+            "label": "Recruit Profile",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://wilsonphoenix.com/archives.aspx",
+            "label": "More News +",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          }
+        ]
+      }
+    }
+  ],
+  "status": "EVIDENCE_CAPTURED_REQUIRES_REVIEW"
+}

@@ -1,0 +1,522 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<script src="https://kit.fontawesome.com/be3304f407.js" crossorigin="anonymous"></script>
+	<!-- production environment -->
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, maximum-scale=2.0, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="theme-color" content="#552f82">
+	<link rel="profile" href="https://gmpg.org/xfn/11">
+	
+	<style>
+		.flip-card {
+			background-color: transparent;
+			width: 300px;
+			height: 300px;
+			perspective: 1000px;
+		}
+		.flip-card-inner {
+			position: relative;
+			width: 100%;
+			height: 100%;
+			text-align: center;
+			transition: transform 0.6s;
+			transform-style: preserve-3d;
+			box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+		}
+		.flip-card:hover .flip-card-inner {
+			transform: rotateY(180deg);
+		}
+		.flip-card-front, .flip-card-back {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			-webkit-backface-visibility: hidden;
+			backface-visibility: hidden;
+		}
+		.flip-card-front {
+			background-color: #bbb;
+			color: black;
+		}
+		.flip-card-back {
+			background-color: #552f82;
+			color: white;
+			transform: rotateY(180deg);
+		}
+		
+		/* Alter the sidebar position of text */
+		
+		aside .page_title {
+		    overflow: hidden;
+		    text-overflow: ellipsis;
+			top: calc(50vh + 30px) !important;
+		    max-width: calc(100vh - 300px);
+			transform-origin: 0 50 !important;
+			transform: rotate(-90deg) translateX(-50%) !important;
+		}
+		
+	</style>
+
+	
+	<link rel="shortcut icon" href="https://dc3.edu/wp-content/themes/dc3-2024/assets/images/layout/favicon_2.png?2024" type="image/png">
+
+	<title>Dodge City Community College - Together We Conquer</title>
+<link rel="stylesheet" href="https://dc3.edu/wp-content/themes/dc3-2024/assets/css/pages/home.css?2024" />	<!--[if lte IE 10]>
+	<link rel="stylesheet" type="text/css" href="https://dc3.edu/wp-content/themes/dc3-2024/assets/css/base/ie-only.css?2024">
+	<[endif]-->
+	
+	<!-- TypeKit -->
+	<script>
+		!function(e,t,n,a,c,l,m,o,d,f,h,i){c[l]&&(d=e.createElement(t),d[n]=c[l],e[a]("head")[0].appendChild(d),e.documentElement.className+=" wf-cached"),function s(){for(d=e[a](t),f="",h=0;h<d.length;h++)i=d[h][n],i.match(m)&&(f+=i);f&&(c[l]="/**/"+f),setTimeout(s,o+=o)}()}(document,"style","innerHTML","getElementsByTagName",localStorage,"tk",/^@font|^\.tk-/,100);
+	</script>
+	<script>
+		(function(d) {
+			var config = {
+				kitId: 'rem1qvr',
+				scriptTimeout: 3000
+			},
+			h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+		})(document);
+	</script>
+	<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const imgBaseUrl = "https://dc3.edu/wp-content/uploads/2017/08/";
+  const tabSections = document.querySelectorAll(".tab-section");
+  const debug = false; // set true while debugging
+
+  tabSections.forEach(section => {
+    // avoid re-initializing
+    if (section.dataset.initialized) return;
+
+    const tabButtons = Array.from(section.querySelectorAll(".tab-button"));
+    const tabPanels = Array.from(section.querySelectorAll(".tab-panel"));
+
+    if (debug) console.debug("Init tab-section", section, tabButtons.length, "buttons", tabPanels.length, "panels");
+
+    // helper to deactivate all in this section
+    function deactivateAll() {
+      tabButtons.forEach(b => {
+        b.classList.remove("active");
+        const img = b.querySelector("img");
+        if (img && img.dataset.base) {
+          img.src = `${imgBaseUrl}${img.dataset.base}-inactive.png`;
+        }
+      });
+      tabPanels.forEach(p => p.classList.remove("active"));
+    }
+
+    // helper to activate a given button (btn must be one of tabButtons)
+    function activateButton(btn) {
+      if (!btn) return;
+      const target = btn.dataset.tab;
+      if (debug) console.debug("Activating", target, "in", section);
+
+      // deactivate everything in this section only
+      deactivateAll();
+
+      // activate button
+      btn.classList.add("active");
+
+      // swap image if present
+      const img = btn.querySelector("img");
+      if (img && img.dataset.base) {
+        img.src = `${imgBaseUrl}${img.dataset.base}-active.png`;
+      }
+
+      // show matching panel(s) in this section only
+      tabPanels.forEach(panel => {
+        if (panel.id === target) {
+          panel.classList.add("active");
+        } else {
+          panel.classList.remove("active");
+        }
+      });
+    }
+
+    // attach click listeners
+    tabButtons.forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        // stop bubbling into parent sections — extrasafe
+        e.stopPropagation();
+        e.preventDefault();
+
+        activateButton(btn);
+      });
+    });
+
+    // initialize: activate first button found (without triggering click event)
+    if (tabButtons.length > 0) {
+      activateButton(tabButtons[0]);
+    }
+
+    // mark as initialized to avoid double init
+    section.dataset.initialized = "true";
+  });
+});
+</script>
+
+
+<!-- Start of HubSpot Embed Code -->
+<script type="text/javascript" id="hs-script-loader" async defer src="//js-na2.hs-scripts.com/245822148.js"></script>
+<!-- End of HubSpot Embed Code -->
+
+
+	
+    
+	<!-- Google Tag Manager -->
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+	'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-K7PVQF4');</script>
+	<!-- End Google Tag Manager -->
+  
+</head>
+
+<body class="home wp-singular page-template-default page page-id-25 page-parent wp-theme-dc3-2024 metaslider-plugin">
+	
+	<!-- Google Tag Manager (noscript) -->
+	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K7PVQF4"
+	height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+	<!-- End Google Tag Manager (noscript) -->
+	
+	<a class="skip_to_content screen_reader_only" href="#content">Skip to content</a>
+	
+	<input type="checkbox" id="aside_toggle" aria-hidden="true" title="Aside Toggle">
+	<input type="checkbox" id="nav_toggle" aria-hidden="true" title="Nav Toggle" autocomplete="off">
+	
+	<aside>
+		<a class="logomark" data-active="true">Dodge City Community College</a>
+		
+				<h1>
+			<span>Together we <span class="conq">conq</span>uer.</span>
+			<span><em>In the classroom.</em></span>
+			<span><em>On the field.</em></span>
+			<span><em>And in life.</em></span>
+		</h1>
+				
+			</aside>
+	
+	<div class="header_background"></div>
+	
+	<header>
+		<a class="wordmark" data-active="true">Dodge City Community College</a>
+		<a class="mobile_apply_button" href="https://conqs.dc3.edu/ICS/Admissions/" target="_blank" rel="noopener">Apply Now</a>
+		<!--<a class="mobile_apply_button" href="https://conqs.dc3.edu/ICS/Course_Search.jnz?portlet=Course_Search&screen=Advanced+Course+Search&screenType=next" target="_blank" rel="noopener">
+				Course Search
+			</a> -->
+	</header>
+	
+	<nav class="main_nav">
+		<ul class="items">
+			<li class="item mobile_only">
+				<a data-active="true">
+					Home
+				</a>
+			</li>
+			<li class="item mobile_only">
+				<a href="https://dc3.edu/future-students/">
+				Future Students
+				</a>
+			</li>
+			<li class="item mobile_only">
+				<a href="https://dc3.edu/current-students/">
+				Current Students
+				</a>
+			</li>
+			<li class="item mobile_only">
+				<a href="https://dc3.edu/faculty-staff/">
+				Faculty &amp; Staff
+				</a>
+			</li>
+			<li class="item mobile_only">
+				<a href="https://dc3.edu/parents/">
+				Parents
+				</a>
+			</li>
+			<li class="item mobile_only">
+				<a href="https://dc3.edu/visitors-community/">
+				Visitors &amp; Community
+				</a>
+			</li>
+			<li class="item mobile_only">
+				<a href="https://dc3.edu/alumni-giving/">
+				Alumni &amp; Giving
+				</a>
+			</li>
+			
+
+<!------------------------ 3/5/19 MW START New section -------------------------------->						
+			<!--<li class="item mobile_only">
+				<a href="https://dc3.edu/events">
+					Events
+				</a>
+			</li>-->
+<!------------------------ 3/5/19 MW END New section -------------------------------->	
+		
+			
+		</ul>
+			
+		<a class="apply_button_mobile" href="https://conqs.dc3.edu/ICS/Admissions/" target="_blank" rel="noopener">Apply Now</a>
+		
+		<div class="more_links">
+			<div class="column"><a  href="https://dc3.edu/contact-us/">Contact Us</a><a  href="https://dc3.edu/search/faculty-staff">Directory</a><a  href="https://dc3.edu/about/disclosures/">Disclosures</a><a  href="https://dc3.edu/academics/resources/">Resources</a><a  href="https://dc3.edu/media2/news/">News</a><a  href="https://dc3.edu/employment-page/">Employment</a><a  href="https://dc3.edu/bid-requests-projects/">Bid Requests &#038; Projects</a><a  href="https://conqs.dc3.edu/ics" target="_blank" rel="nofollow noopener">MyDC3</a><a  href="https://outlook.office.com" target="_blank" rel="nofollow noopener">Webmail</a><a  href="https://dc3.edu/academics/course-transferability/transcripts/">Transcripts</a></div><div class="column"><a  href="https://dc3.edu/media2/">Media</a><a  href="https://dc3.edu/about/">About Us</a><a  href="https://dc3.edu/events/calendar/">Calendar</a><a  href="https://dc3.edu/future-students/visit-campus/">Visit Campus</a><a  href="https://dc3.edu/about/mission-values/">Mission, Vision, and Core Values</a><a  href="https://dc3.edu/about/offices-services/administrative-department/business-office/">Ways to Pay Student Balances</a><a  href="https://dc3.edu/wp-content/uploads/2017/08/Open-Records-Access-Request.pdf">Open Records Access Request</a><a  href="https://dc3.edu/site-directory/">Sitemap</a><a  href="https://dc3.edu/students/health-wellness/">COVID-19</a></div>
+		</div>
+		
+		<div class="social">
+			<a class="twitter" href="https://twitter.com/DodgeCityCC" target="_blank" rel="noopener">Twitter</a><a class="facebook" href="https://www.facebook.com/dodgecitycommunitycollege/" target="_blank" rel="noopener">Facebook</a><a class="instagram" href="https://www.instagram.com/goconqs/" target="_blank" rel="noopener">Instagram</a>
+		</div>
+		
+		<div class="background"></div>
+	</nav>
+	
+	<nav class="top_nav top_right_nav"><!-- <a class="map"  href="https://dc3.edu/campus-map" title="Campus Map">
+			Campus Map
+		</a> <a   href="https://dc3.edu/events/calendar" title="Calendar">
+			Calendar
+		</a> --><a class="search"  href="https://dc3.edu/search" title="Search">
+			Search
+		</a><a class="desktop_only button" href="https://conqs.dc3.edu/ICS/Admissions/Admissions_Homepage.jnz?portlet=J1_FormFlow_-_Forms" target="_blank" rel="noopener" style="margin-right: 10px; font-size: 14px !important; line-height: 1.5 !important; padding: 2px 20px !important; border-radius: 5px !important;">
+			Apply Now
+		</a>
+		
+		<a class="nav_hamburger" title="Nav Toggle" aria-hidden="true"><span class="a"></span><span class="b"></span><span class="c"></span><span class="label">Menu</span></a>
+		
+		<div class="hamburger_menu">
+			<a href="https://dc3.edu/future-students/">Future Students</a>
+			<a href="https://dc3.edu/current-students/">Current Students</a>
+			<a href="https://dc3.edu/faculty-staff/">Faculty &amp; Staff</a>
+			<a href="https://dc3.edu/parents/">Parents</a>
+			<a href="https://dc3.edu/visitors-community/">Visitors &amp; Community</a>
+			<a href="https://dc3.edu/alumni-giving/">Alumni &amp; Giving</a>
+			<a href="https://conqs.dc3.edu/ics">MyDC3</a>
+			<a href="https://dodge.instructure.com">Canvas</a>
+			<a href="https://outlook.office.com/">Faculty &amp; Staff Email</a>
+			<a href="https://mail.google.com/">Student Email</a>
+			<a href="https://www.goconqs.com/">Athletics</a>
+		</div>
+		
+	</nav>
+	
+	<label for="nav_toggle" class="nav_hamburger" title="Nav Toggle" aria-hidden="true">
+		<span class="a"></span><span class="b"></span><span class="c"></span><span class="label">Menu</span>
+	</label>
+	
+	<div class="body_inner"><main id="content">
+		
+		<figure class="wp-block-video alignfull"><video autoplay loop muted src="https://lk1.52a.myftpupload.com/wp-content/uploads/2024/11/DC3-B-Roll-Edit.mp4" playsinline></video></figure><div class="wp-block-buttons alignfull quick_links is-horizontal is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-ee033aa9 wp-block-buttons-is-layout-flex"><div class="wp-block-button"><a class="wp-block-button__link has-dc-3-gold-background-color has-background has-text-align-left wp-element-button" href="https://dc3.edu/future-students/"><strong style="font-size: 1.5em">Future Students</strong></a></div><div class="wp-block-button"><a class="wp-block-button__link has-dc-3-gold-background-color has-background wp-element-button" href="https://dc3.edu/current-students/"><strong style="font-size: 1.5em">Current Students</strong></a></div><div class="wp-block-button"><a class="wp-block-button__link has-dc-3-gold-background-color has-background wp-element-button" href="https://dc3.edu/faculty-staff/"><strong style="font-size: 1.5em">Faculty &amp; Staff</strong></a></div></div><div class="wp-block-buttons alignfull quick_links is-horizontal is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-ee033aa9 wp-block-buttons-is-layout-flex"><div class="wp-block-button"><a class="wp-block-button__link has-dc-3-purple-background-color has-background has-text-align-left wp-element-button" href="https://dc3.edu/parents/"><strong style="font-size: 1.5em">Parents</strong></a></div><div class="wp-block-button"><a class="wp-block-button__link has-dc-3-purple-background-color has-background wp-element-button" href="https://dc3.edu/visitors-community/"><strong style="font-size: 1.5em">Visitors &amp; Community</strong></a></div><div class="wp-block-button"><a class="wp-block-button__link has-dc-3-purple-background-color has-background wp-element-button" href="https://dc3.edu/alumni-giving/"><strong style="font-size: 1.5em">Alumni &amp; Giving</strong></a></div></div><div class="wp-block-group alignfull has-dc-3-white-background-color has-background"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained"><div class="wp-block-media-text alignfull is-stacked-on-mobile is-image-fill-element"><figure class="wp-block-media-text__media"><img fetchpriority="high" decoding="async" width="916" height="429" src="https://lk1.52a.myftpupload.com/wp-content/uploads/2017/08/Boys-e1698269336403.png" alt="" class="wp-image-14200 size-full" style="object-position:50% 50%" srcset="https://dc3.edu/wp-content/uploads/2017/08/Boys-e1698269336403.png 916w, https://dc3.edu/wp-content/uploads/2017/08/Boys-e1698269336403-300x141.png 300w, https://dc3.edu/wp-content/uploads/2017/08/Boys-e1698269336403-768x360.png 768w" sizes="(max-width: 916px) 100vw, 916px" /></figure><div class="wp-block-media-text__content"><h2 class="wp-block-heading has-small-font-size"></h2><p class="has-x-large-font-size">Why Dodge City?</p><p class="has-medium-font-size">At DC3<strong>,</strong> you can take classes that meet your schedule and learning style. With in-person or online class delivery options, you can find the program that is right for you.</p></div></div><div class="wp-block-buttons alignfull is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-16018d1d wp-block-buttons-is-layout-flex"><div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="https://dc3.edu/why-go-to-dodge/"><strong>Why go to Dodge?</strong></a></div><div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="https://dc3.edu/future-students/degrees-certificates/"><strong>Degrees &amp; Certificates</strong>  </a></div><div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="https://conqs.dc3.edu/ICS/Course_Search.jnz?portlet=Course_Search&amp;screen=Advanced+Course+Search&amp;screenType=next"><strong>Course Search</strong></a></div></div></div></div><div class="wp-block-group alignfull has-dc-3-purple-background-color has-background"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained"><div class="wp-block-media-text alignfull has-media-on-the-right is-stacked-on-mobile is-image-fill-element"><div class="wp-block-media-text__content"><h2 class="wp-block-heading has-small-font-size"></h2><p class="has-x-large-font-size">How to Become a Student</p><p class="has-medium-font-size">If you’re new to DC3, we have answers to your questions. Explore our campus, financial aid options, and academic programs to see how we’re the right fit for you.</p></div><figure class="wp-block-media-text__media"><img decoding="async" width="1000" height="667" src="https://dc3.edu/wp-content/uploads/2017/08/elec_IMG_6055.jpg" alt="" class="wp-image-14224 size-full" style="object-position:50% 50%" srcset="https://dc3.edu/wp-content/uploads/2017/08/elec_IMG_6055.jpg 1000w, https://dc3.edu/wp-content/uploads/2017/08/elec_IMG_6055-300x200.jpg 300w, https://dc3.edu/wp-content/uploads/2017/08/elec_IMG_6055-768x512.jpg 768w" sizes="(max-width: 1000px) 100vw, 1000px" /></figure></div><div class="wp-block-buttons alignfull is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-16018d1d wp-block-buttons-is-layout-flex"><div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="https://conqs.dc3.edu/ICS/Admissions/"><strong>Apply Now</strong></a></div><div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="https://dc3.edu/future-students/admissions/"><strong>Admissions Overview</strong></a></div><div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="https://dc3.edu/future-students/visit-campus/"><strong>Visit Campus</strong></a></div></div></div></div><div class="wp-block-group alignfull has-dc-3-gold-background-color has-background"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained"><div class="wp-block-media-text alignfull is-stacked-on-mobile is-image-fill-element"><figure class="wp-block-media-text__media"><img decoding="async" width="1024" height="683" src="https://dc3.edu/wp-content/uploads/2017/08/IMG_9582-1024x683.jpg" alt="" class="wp-image-15287 size-full" style="object-position:50% 50%" srcset="https://dc3.edu/wp-content/uploads/2017/08/IMG_9582-1024x683.jpg 1024w, https://dc3.edu/wp-content/uploads/2017/08/IMG_9582-300x200.jpg 300w, https://dc3.edu/wp-content/uploads/2017/08/IMG_9582-768x512.jpg 768w, https://dc3.edu/wp-content/uploads/2017/08/IMG_9582-1536x1024.jpg 1536w, https://dc3.edu/wp-content/uploads/2017/08/IMG_9582-2048x1365.jpg 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure><div class="wp-block-media-text__content"><h2 class="wp-block-heading has-small-font-size"></h2><p class="has-x-large-font-size">Life on Campus</p><p class="has-medium-font-size">At DC3, we want you to have the chance to grow. Learn more about the extracurricular activities and events that help you connect and make DC3 feel like home. Enjoy the ride.</p></div></div><div class="wp-block-buttons alignfull is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-16018d1d wp-block-buttons-is-layout-flex"><div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="https://dc3.edu/current-students/life-in-dodge-city/"><strong>Life in Dodge City</strong></a></div><div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="https://dc3.edu/visitors-community/events/"><strong>Events</strong></a></div><div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="https://goconqs.com/"><strong>Athletics</strong></a></div></div></div></div><div class="wp-block-group is-style-quote_carousel is-vertical is-layout-flex wp-container-core-group-is-layout-8cf370e7 wp-block-group-is-layout-flex count-5" data-index="0"><blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow"><figure class="wp-block-image size-full is-resized"><img decoding="async" src="https://lk1.52a.myftpupload.com/wp-content/uploads/2017/08/IMG_2239-scaled-e1755205350377.jpg" alt="" class="wp-image-16815" style="width:200px"></figure><p class="has-m-font-size"><strong>As a Major in the U.S. Air Force and a former F-16 instructor pilot</strong>, <strong>I know excellence when I see it.</strong> The Dodge City Community College staff here in Arizona, both administrative and instructional, consistently demonstrate a commitment to excellence that matches the very best I’ve seen in the Air Force. Their eagerness to help students succeed, whether in the classroom or in the helicopter flight program, is unmatched by any other civilian program I know. The friendly, welcoming demeanor of the administrative team, combined with the knowledge and individualized effort of the instructors, provides every student a clear path to becoming a college-educated, professional helicopter pilot.</p><cite><strong>Terry Blakemore<br></strong>2023 Flight Instructor Program Student</cite></blockquote><blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow"><figure class="wp-block-image size-full is-resized"><img decoding="async" width="300" height="300" src="https://lk1.52a.myftpupload.com/wp-content/uploads/2017/08/erin_reese.jpg" alt="" class="wp-image-1404" style="width:200px" srcset="https://dc3.edu/wp-content/uploads/2017/08/erin_reese.jpg 300w, https://dc3.edu/wp-content/uploads/2017/08/erin_reese-150x150.jpg 150w" sizes="(max-width: 300px) 100vw, 300px" /></figure><p class="has-m-font-size"><strong>Attending Dodge City Community College helped me take classes with a small student to professor ratio.</strong> After graduation, it helped with a smooth transition to a larger university. It made sense economically and provided a stellar education at the same time.”</p><cite><strong>Erin (Schneweis)</strong> <strong>Reece<br></strong>A.A., B.S., M.A.H.R.</cite></blockquote><blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow"><figure class="wp-block-image size-full is-resized"><img decoding="async" width="300" height="300" src="https://lk1.52a.myftpupload.com/wp-content/uploads/2018/03/kierra.jpg" alt="" class="wp-image-3124" style="width:200px" srcset="https://dc3.edu/wp-content/uploads/2018/03/kierra.jpg 300w, https://dc3.edu/wp-content/uploads/2018/03/kierra-150x150.jpg 150w" sizes="(max-width: 300px) 100vw, 300px" /></figure><p class="has-m-font-size"><strong>As a single mother, I appreciated the opportunity to further my education in an affordable and supportive environment.</strong> I’m now working toward becoming an elementary school teacher in our local school district. <strong>DC3’s flexible course schedule</strong> is exactly what I needed to be able to go to school and work at the same time. I’m now on my way to becoming the first one in my family to graduate with a bachelor’s degree!”</p><cite><strong>Kierra Johnson</strong><br>Class of 2016, Associate of Applied Science, Early Childhood Education</cite></blockquote><blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow"><figure class="wp-block-image size-full is-resized"><img decoding="async" width="300" height="300" src="https://lk1.52a.myftpupload.com/wp-content/uploads/2017/08/larry_rod.jpg" alt="" class="wp-image-1403" style="width:200px" srcset="https://dc3.edu/wp-content/uploads/2017/08/larry_rod.jpg 300w, https://dc3.edu/wp-content/uploads/2017/08/larry_rod-150x150.jpg 150w" sizes="(max-width: 300px) 100vw, 300px" /></figure><p class="has-m-font-size"><strong>I wouldn’t have gotten to where I am today without the amazing faculty and learning environment at DC3.</strong> With the ongoing support of the instructors and staff, I was able to achieve more in the field of biochemistry than I ever thought was possible. I owe so much to the staff of DC3 for helping me transfer to Kansas State to complete my biochemistry degree with the help of the <strong>Bridges to the Future</strong> program. I am now working to get both a PhD in pharmaceutical science and a master’s degree in management of drug development. And I owe it all to DC3!”</p><cite><strong>Larry Rodriguez</strong><br>Class of 2012, Associate of Science</cite></blockquote><blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow"><figure class="wp-block-image size-full is-resized"><img decoding="async" width="327" height="314" src="https://lk1.52a.myftpupload.com/wp-content/uploads/2019/02/TrentonSpecht-e1550773910377.jpg" alt="" class="wp-image-5039" style="width:200px;height:auto" srcset="https://dc3.edu/wp-content/uploads/2019/02/TrentonSpecht-e1550773910377.jpg 327w, https://dc3.edu/wp-content/uploads/2019/02/TrentonSpecht-e1550773910377-300x288.jpg 300w" sizes="(max-width: 327px) 100vw, 327px" /></figure><p class="has-m-font-size"><strong>Dodge City Community College helped me to become who I am today. </strong>I chose DC3 because I was awarded a scholarship for golf. My coach instilled a toughness in me that I have today, pushing me to become a better person and man in all that I did. I am now giving back by being a high school math teacher and golf coach at Garden City High School.”</p><cite><strong>Trenton Specht</strong> <br>Class of 2011, Associate Degree of Science, GCHS Math Teacher</cite></blockquote><div class="carousel_nav"><div class="dots"><div></div><div></div><div></div><div></div><div></div></div><div class="arrows"><div class="carousel_arrow back"></div><div class="carousel_arrow forward"></div></div></div></div><div class="wp-block-group alignwide form_outer has-dc-3-purple-background-color has-background"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained"><div class="wp-block-group is-nowrap is-layout-flex wp-container-core-group-is-layout-ad2f72ca wp-block-group-is-layout-flex"><p class="has-x-large-font-size"><em>Learn More!</em></p><p class="has-medium-font-size">Let us know what email would be best to give you some more information!</p></div><div class="wpforms-container wpforms-container-full" id="wpforms-13326"><form id="wpforms-form-13326" class="wpforms-validate wpforms-form wpforms-ajax-form" data-formid="13326" method="post" enctype="multipart/form-data" action="/" data-token="340c262bedf20f3491f7fd294d177b1a" data-token-time="1795018188"><noscript class="wpforms-error-noscript">Please enable JavaScript in your browser to complete this form.</noscript><div class="wpforms-field-container"><div id="wpforms-13326-field_20-container" class="wpforms-field wpforms-field-name" data-field-type="name" data-field-id="20"><label class="wpforms-field-label" for="wpforms-13326-field_20">Your Name <span class="wpforms-required-label">*</span></label><div class="wpforms-field-row wpforms-field-large"><div class="wpforms-field-row-block wpforms-first wpforms-one-half"><input type="text" id="wpforms-13326-field_20" class="wpforms-field-name-first wpforms-field-required" name="wpforms[fields][20][first]" placeholder="First" required><label for="wpforms-13326-field_20" class="wpforms-field-sublabel after wpforms-sublabel-hide">First</label></div><div class="wpforms-field-row-block wpforms-one-half"><input type="text" id="wpforms-13326-field_20-last" class="wpforms-field-name-last wpforms-field-required" name="wpforms[fields][20][last]" placeholder="Last" required><label for="wpforms-13326-field_20-last" class="wpforms-field-sublabel after wpforms-sublabel-hide">Last</label></div></div></div><div id="wpforms-13326-field_21-container" class="wpforms-field wpforms-field-phone" data-field-type="phone" data-field-id="21"><label class="wpforms-field-label" for="wpforms-13326-field_21">Phone <span class="wpforms-required-label">*</span></label><input type="tel" id="wpforms-13326-field_21" class="wpforms-field-large wpforms-field-required wpforms-masked-input" data-inputmask="&#039;mask&#039;: &#039;(999) 999-9999&#039;" data-rule-us-phone-field="true" data-inputmask-inputmode="tel" name="wpforms[fields][21]" aria-label="Phone" required></div><div id="wpforms-13326-field_1-container" class="wpforms-field wpforms-field-email field" data-field-type="email" data-field-id="1"><label class="wpforms-field-label" for="wpforms-13326-field_1">Email <span class="wpforms-required-label">*</span></label><input type="email" id="wpforms-13326-field_1" class="wpforms-field-large wpforms-field-required" name="wpforms[fields][1]" placeholder="you@example.com" spellcheck="false" required></div><div id="wpforms-13326-field_23-container" class="wpforms-field wpforms-field-select wpforms-field-select-style-classic" data-field-type="select" data-field-id="23"><label class="wpforms-field-label" for="wpforms-13326-field_23">Program of Interest <span class="wpforms-required-label">*</span></label><select id="wpforms-13326-field_23" class="wpforms-field-large wpforms-field-required" name="wpforms[fields][23]" required="required"><option value="" class="placeholder" disabled  selected='selected'> </option><option value="12543"  class="choice-0 depth-1"  >Ag Production / Farm &amp; Ranch Management</option><option value="1046"  class="choice-1 depth-1"  >Ag Production / Farm &amp; Ranch Management (33 credit hours)</option><option value="1047"  class="choice-2 depth-1"  >Agribusiness</option><option value="1048"  class="choice-3 depth-1"  >Agriculture (Transfer)</option><option value="12648"  class="choice-4 depth-1"  >Agriculture Transfer</option><option value="12669"  class="choice-5 depth-1"  >Allied Health</option><option value="1063"  class="choice-6 depth-1"  >Art</option><option value="1065"  class="choice-7 depth-1"  >Athletic Training</option><option value="14977"  class="choice-8 depth-1"  >Automotive Technology</option><option value="15013"  class="choice-9 depth-1"  >Automotive Technology (AAS)</option><option value="1068"  class="choice-10 depth-1"  >Biology</option><option value="14333"  class="choice-11 depth-1"  >Biotechnology</option><option value="12552"  class="choice-12 depth-1"  >Building Construction Technology</option><option value="1053"  class="choice-13 depth-1"  >Building Construction Technology (18 credit hours)</option><option value="12551"  class="choice-14 depth-1"  >Building Construction Technology (34 credit hours)</option><option value="1075"  class="choice-15 depth-1"  >Business Transfer</option><option value="10230"  class="choice-16 depth-1"  >CDL/Commercial Truck Driving</option><option value="1070"  class="choice-17 depth-1"  >Chemistry</option><option value="12661"  class="choice-18 depth-1"  >Civic Engagement</option><option value="12560"  class="choice-19 depth-1"  >Cosmetology</option><option value="1045"  class="choice-20 depth-1"  >Cosmetology (44 credit hours)</option><option value="12662"  class="choice-21 depth-1"  >Creative and Performing Arts</option><option value="12563"  class="choice-22 depth-1"  >Diesel Technology</option><option value="1055"  class="choice-23 depth-1"  >Diesel Technology (53 credit hours)</option><option value="12565"  class="choice-24 depth-1"  >Early Childhood Education</option><option value="1056"  class="choice-25 depth-1"  >Early Childhood Education (31 credit hours)</option><option value="1057"  class="choice-26 depth-1"  >Electrical Technology</option><option value="1078"  class="choice-27 depth-1"  >Elementary Education</option><option value="15016"  class="choice-28 depth-1"  >Elementary Education KBOR Transfer Pathway</option><option value="1067"  class="choice-29 depth-1"  >English</option><option value="1059"  class="choice-30 depth-1"  >Flight Instructor</option><option value="12671"  class="choice-31 depth-1"  >General Studies (AA)</option><option value="12672"  class="choice-32 depth-1"  >General Studies (AGS)</option><option value="15019"  class="choice-33 depth-1"  >General Studies (AS)</option><option value="14332"  class="choice-34 depth-1"  >Health</option><option value="14334"  class="choice-35 depth-1"  >Health Sciences</option><option value="12663"  class="choice-36 depth-1"  >History</option><option value="12556"  class="choice-37 depth-1"  >HVAC</option><option value="10633"  class="choice-38 depth-1"  >HVAC (44 credit hours)</option><option value="14978"  class="choice-39 depth-1"  >Industrial Operations Technology (Industrial Maintenance)</option><option value="15014"  class="choice-40 depth-1"  >Industrial Operations Technology (Industrial Maintenance) (AAS)</option><option value="12664"  class="choice-41 depth-1"  >Language</option><option value="1071"  class="choice-42 depth-1"  >Mathematics</option><option value="15425"  class="choice-43 depth-1"  >Medication Aide</option><option value="1062"  class="choice-44 depth-1"  >Music</option><option value="12558"  class="choice-45 depth-1"  >Nail Technology (10 credit hours)</option><option value="15426"  class="choice-46 depth-1"  >Nurse Aide</option><option value="1034"  class="choice-47 depth-1"  >Nursing</option><option value="1044"  class="choice-48 depth-1"  >Para-Professional Nursing</option><option value="1073"  class="choice-49 depth-1"  >Physical Sciences</option><option value="1072"  class="choice-50 depth-1"  >Physics</option><option value="12665"  class="choice-51 depth-1"  >Political Science</option><option value="1079"  class="choice-52 depth-1"  >Psychology</option><option value="12653"  class="choice-53 depth-1"  >Secondary Education</option><option value="12666"  class="choice-54 depth-1"  >Social Science</option><option value="12667"  class="choice-55 depth-1"  >Social Work</option><option value="12668"  class="choice-56 depth-1"  >Sports Administration</option><option value="12646"  class="choice-57 depth-1"  >Welding Technology</option><option value="1061"  class="choice-58 depth-1"  >Welding Technology (20 credit hours)</option><option value="12645"  class="choice-59 depth-1"  >Welding Technology (35 credit hours)</option></select></div><div id="wpforms-13326-field_24-container" class="wpforms-field wpforms-field-textarea" data-field-type="textarea" data-field-id="24"><label class="wpforms-field-label" for="wpforms-13326-field_24">Question or Comment?</label><textarea id="wpforms-13326-field_24" class="wpforms-field-medium" name="wpforms[fields][24]" ></textarea></div></div><!-- .wpforms-field-container --><div class="wpforms-field wpforms-field-hp"><label for="wpforms-13326-field-hp" class="wpforms-field-label">Phone</label><input type="text" name="wpforms[hp]" id="wpforms-13326-field-hp" class="wpforms-field-medium"></div><div class="wpforms-recaptcha-container wpforms-is-hcaptcha" ><div class="h-captcha" data-sitekey="0720bef6-f6ac-4626-a290-731225ac9aa2"></div><input type="text" name="g-recaptcha-hidden" class="wpforms-recaptcha-hidden" style="position:absolute!important;clip:rect(0,0,0,0)!important;height:1px!important;width:1px!important;border:0!important;overflow:hidden!important;padding:0!important;margin:0!important;" data-rule-hcaptcha="1"></div><div class="wpforms-submit-container" ><input type="hidden" name="wpforms[id]" value="13326"><input type="hidden" name="wpforms[time_token]" value="1795018188.ab9a2a69e25064f480a5d1826aebc4a3ea258d438860bd547afb2285c0b0792d"><input type="hidden" name="page_title" value="Home"><input type="hidden" name="page_url" value="https://dc3.edu/"><input type="hidden" name="url_referer" value=""><input type="hidden" name="page_id" value="25"><input type="hidden" name="wpforms[post_id]" value="25"><button type="submit" name="wpforms[submit]" id="wpforms-submit-13326" class="wpforms-submit button" data-alt-text="Submitting..." data-submit-text="Submit" aria-live="assertive" value="wpforms-submit">Submit</button><img decoding="async" src="https://dc3.edu/wp-content/plugins/wpforms/assets/images/submit-spin.svg" class="wpforms-submit-spinner" style="display: none;" width="26" height="26" alt="Loading"></div></form></div>  <!-- .wpforms-container --><a id="start_button">Start</a></div></div>		
+	</main><footer>
+
+	<div class="footer_nav">
+		<div class="column">
+			<h4><strong>Information</strong></h4>
+			<a href="https://dc3.edu/about/">About Us</a>
+			<a href="https://dc3.edu/accountability/">Accountability</a>
+			<a href="https://dc3.edu/about/accreditation">Accreditation</a>
+			<a href="https://dc3.edu/bid-requests-projects/">Bid Requests & Projects</a>
+			<a href="https://dc3.edu/events/calendar/">Calendar</a>
+			<a href="https://dc3.edu/about/disclosures">Disclosures</a>
+			<a href="https://dc3.edu/employment-page/">Employment</a>
+			<a href="https://cm.maxient.com/reporting.php?DodgeCityCC" target="_blank" rel="nofollow noopener">File a Complaint</a>
+			<a href="https://dc3.edu/media2/">News</a>
+			<a href="https://dc3.edu/notice-of-nondiscrimination">Nondiscrimination Notice</a>
+			<a href="https://dc3.edu/wp-content/uploads/2017/08/Open-Records-Access-Request.pdf">Open Records Access Request</a>
+			<a href="https://dc3.edu/policies">Policies</a>
+			<a href="https://dc3.edu/site-directory/">Sitemap</a>
+			<a href="https://dc3.edu/students/title-ix">Title IX</a>
+		</div>
+		<div class="column">
+			<h4><strong>People</strong></h4>
+			<a href="https://dc3.edu/current-students/">Current Students</a>
+			<a href="https://dc3.edu/search/faculty-staff">Directory</a>
+			<a href="https://dc3.edu/faculty-staff/">Faculty & Staff</a>
+			<a href="https://dc3.edu/foundation-alumni/">Foundation & Alumni</a>
+			<a href="https://dc3.edu/future-students/">Future Students</a>
+			<a href="https://dc3.edu/about/offices-services/">Offices & Services</a>
+			<a href="https://dc3.edu/parents/">Parents</a>
+			<a href="https://dc3.edu/visitors-community/">Visitors & Community</a>
+		</div>
+		<div class="column">
+			<h4><strong>Places</strong></h4>
+			<a href="https://dc3.edu/wp-content/uploads/2017/08/Campus-Map-Updated-072023.pdf" target="_blank" rel="noopener">Campus Map & Facilities</a>
+			<a href="http://book.dc3.edu/" target="_blank" rel="noopener">Conq Shop</a>
+			<a href="https://dc3.edu/library-resources/" target="_blank" rel="noopener">Library Resources</a>
+			<a href="https://dc3.edu/academics/testing-center/">Testing Center</a>
+		</div>
+		<div class="column">
+			<h4><strong>Student Resources</strong></h4>
+			<a href="https://dc3.edu/academics/academic-advising">Academic Advising</a>
+			<a href="https://dc3.edu/students/area-counseling-services">Area Counseling Services</a>
+			<a href="https://dc3.edu/admissions/financial-aid-scholarships">Financial Aid & Scholarships</a>
+			<a href="https://dc3.edu/students/residence-life">Residence Life</a>
+			<a href="https://dc3.edu/students">Student Life</a>
+			<a href="https://sites.google.com/dc3.edu/sarc/" target="_blank" rel="noopener">Student Achievement Resource Center</a>
+			<a href="https://dc3.edu/policies/accommodations-for-students-with-disabilities/">Students with Disabilities</a>
+			<a href="https://dc3.edu/about/offices-services/administrative-department/business-office/">Ways to Pay Student Balances</a>
+		</div>
+	</div>
+
+	<div class="display_row">
+		<div class="logo"></div>
+
+		<div class="badges">
+							<a class="badge hlc" href="https://yoshki.com/validate.aspx?104108099+118097108105100097116105111110+108111103111046112110103+104116116112115058047047100099051046101100117047097098111117116047097099099114101100105116097116105111110047" target="_blank" rel="noopener">
+					Accredited by Higher Learning Commission
+				</a>
+				<a class="badge ks_degree_stats" href="http://ksdegreestats.org" target="_blank" rel="noopener">
+					KSDegreeStats.org
+				</a>
+					</div>
+
+		<div class="social">
+			<a class="twitter" href="https://twitter.com/DodgeCityCC" target="_blank" rel="noopener">Twitter</a>
+			<a class="facebook" href="https://www.facebook.com/dodgecitycommunitycollege/" target="_blank" rel="noopener">Facebook</a>
+			<a class="instagram" href="https://www.instagram.com/goconqs/" target="_blank" rel="noopener">Instagram</a>
+		</div>
+	</div>
+
+	<div class="copyright contact">
+		&copy; Copyright 2026 Dodge City Community College &nbsp;|&nbsp;
+		2501 N 14th Ave Dodge City, KS 67801 &nbsp;|&nbsp;
+		(620) 225-1321 &nbsp;|&nbsp; Toll-free: 1-800-367-3222 &nbsp;|&nbsp; Fax: (620) 227-9350
+	</div>
+
+</footer>
+
+
+	
+	<!--[if lte IE 10]>
+	<div class="browser_notice">
+		<div class="hide_background close"></div>
+		<div class="browser_notice_inner">
+			<div class="browser_notice_content">
+				<div class="heading"></div>
+				<div class="p">
+					<span class="a"></span>
+					<a class="b" href="https://www.google.com/chrome/browser/desktop/index.html" target="_blank" rel="noopener"></a>
+					<span class="c"></span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<[endif]-->
+	
+	<script>var SITE_URL = 'https://dc3.edu/';</script>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+	
+<script type="text/javascript" src="https://dc3.edu/wp-content/themes/dc3-2024/assets/js/page.js?2024"></script><script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"\/*"},{"not":{"href_matches":["\/wp-*.php","\/wp-admin\/*","\/wp-content\/uploads\/*","\/wp-content\/*","\/wp-content\/plugins\/*","\/wp-content\/themes\/dc3-2024\/*","\/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+<style id='core-block-supports-inline-css' type='text/css'>
+.wp-container-core-group-is-layout-94bc23d7{flex-wrap:nowrap;justify-content:center;}.wp-container-core-buttons-is-layout-ee033aa9{justify-content:center;align-items:flex-start;}.wp-container-core-buttons-is-layout-16018d1d{justify-content:center;}.wp-container-core-group-is-layout-8cf370e7{flex-direction:column;align-items:flex-start;}.wp-container-core-group-is-layout-ad2f72ca{flex-wrap:nowrap;}
+</style>
+<link rel='stylesheet' id='wpforms-classic-full-css' href='https://dc3.edu/wp-content/plugins/wpforms/assets/css/frontend/classic/wpforms-full.min.css?ver=2.0.2.2' type='text/css' media='all' />
+<script type="text/javascript" src="https://dc3.edu/wp-includes/js/jquery/jquery.min.js?ver=3.7.1" id="jquery-core-js"></script>
+<script type="text/javascript" src="https://dc3.edu/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1" id="jquery-migrate-js"></script>
+<script type="text/javascript" src="https://dc3.edu/wp-content/plugins/wpforms/assets/pro/js/frontend/fields/phone.min.js?ver=2.0.2.2" id="wpforms-smart-phone-field-core-js"></script>
+<script type="text/javascript" src="https://dc3.edu/wp-content/plugins/wpforms/assets/lib/jquery.validate.min.js?ver=1.21.0" id="wpforms-validation-js"></script>
+<script type="text/javascript" src="https://dc3.edu/wp-content/plugins/wpforms/assets/lib/jquery.inputmask.min.js?ver=5.0.9" id="wpforms-maskedinput-js"></script>
+<script type="text/javascript" src="https://dc3.edu/wp-content/plugins/wpforms/assets/lib/mailcheck.min.js?ver=1.1.2" id="wpforms-mailcheck-js"></script>
+<script type="text/javascript" src="https://dc3.edu/wp-content/plugins/wpforms/assets/lib/punycode.min.js?ver=1.0.0" id="wpforms-punycode-js"></script>
+<script type="text/javascript" src="https://dc3.edu/wp-content/plugins/wpforms/assets/js/share/utils.min.js?ver=2.0.2.2" id="wpforms-generic-utils-js"></script>
+<script type="text/javascript" src="https://dc3.edu/wp-content/plugins/wpforms/assets/js/frontend/wpforms.min.js?ver=2.0.2.2" id="wpforms-js"></script>
+<script type="text/javascript" src="https://hcaptcha.com/1/api.js?onload=wpformsRecaptchaLoad&amp;render=explicit&amp;recaptchacompat=off" id="wpforms-recaptcha-js"></script>
+<script type="text/javascript" id="wpforms-recaptcha-js-after">
+/* <![CDATA[ */
+var wpformsDispatchEvent = function (el, ev, custom) {
+				var e = document.createEvent(custom ? "CustomEvent" : "HTMLEvents");
+				custom ? e.initCustomEvent(ev, true, true, false) : e.initEvent(ev, true, true);
+				el.dispatchEvent(e);
+			};
+		var wpformsRecaptchaCallback = function (el) {
+				var hdn = el.parentNode.querySelector(".wpforms-recaptcha-hidden");
+				var err = el.parentNode.querySelector("#g-recaptcha-hidden-error");
+				hdn.value = "1";
+				wpformsDispatchEvent(hdn, "change", false);
+				hdn.classList.remove("wpforms-error");
+				err && hdn.parentNode.removeChild(err);
+			};
+		var wpformsRecaptchaLoad = function () {
+					Array.prototype.forEach.call(document.querySelectorAll(".h-captcha"), function (el) {
+						var captchaID = hcaptcha.render(el, {
+							callback: function () {
+								wpformsRecaptchaCallback(el);
+							}
+						});
+						el.setAttribute("data-recaptcha-id", captchaID);
+					});
+					wpformsDispatchEvent(document, "wpformsRecaptchaLoaded", true);
+				};
+			
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://dc3.edu/wp-content/plugins/wpforms/assets/js/frontend/analytics.min.js?ver=2.0.2.2" id="wpforms-analytics-js"></script>
+<script type="text/javascript" src="https://dc3.edu/wp-content/plugins/wpforms/assets/pro/js/frontend/analytics-pro.min.js?ver=2.0.2.2" id="wpforms-analytics-pro-js"></script>
+<script type="text/javascript" src="https://dc3.edu/wp-content/plugins/wpforms/assets/js/frontend/fields/address.min.js?ver=2.0.2.2" id="wpforms-address-field-js"></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var wpforms_settings = {"val_required":"This field is required.","val_email":"Please enter a valid email address.","val_email_suggestion":"Did you mean {suggestion}?","val_email_suggestion_title":"Click to accept this suggestion.","val_email_restricted":"This email address is not allowed.","val_number":"Please enter a valid number.","val_number_positive":"Please enter a valid positive number.","val_minimum_price":"Amount entered is less than the required minimum.","val_confirm":"Field values do not match.","val_checklimit":"You have exceeded the number of allowed selections: {#}.","val_limit_characters":"{count} of {limit} max characters.","val_limit_words":"{count} of {limit} max words.","val_min":"Please enter a value greater than or equal to {0}.","val_max":"Please enter a value less than or equal to {0}.","val_recaptcha_fail_msg":"Google reCAPTCHA verification failed, please try again later.","val_turnstile_fail_msg":"Cloudflare Turnstile verification failed, please try again later.","val_inputmask_incomplete":"Please fill out the field in required format.","uuid_cookie":"1","locale":"en","country":"","country_list_label":"Country list","wpforms_plugin_url":"https:\/\/dc3.edu\/wp-content\/plugins\/wpforms\/","gdpr":"","ajaxurl":"https:\/\/dc3.edu\/wp-admin\/admin-ajax.php","mailcheck_enabled":"1","mailcheck_domains":[],"mailcheck_toplevel_domains":["dev"],"is_ssl":"1","nonce":"a9b26aef73","currency_code":"USD","currency_thousands":",","currency_decimals":"2","currency_decimal":".","currency_symbol":"$","currency_symbol_pos":"left","val_requiredpayment":"Payment is required.","val_creditcard":"Please enter a valid credit card number.","val_post_max_size":"The total size of the selected files {totalSize} MB exceeds the allowed limit {maxSize} MB.","val_time12h":"Please enter time in 12-hour AM\/PM format (eg 8:45 AM).","val_time24h":"Please enter time in 24-hour format (eg 22:45).","val_time_limit":"Please enter time between {minTime} and {maxTime}.","val_url":"Please enter a valid URL.","val_fileextension":"File type is not allowed.","val_filesize":"File exceeds max size allowed. File was not uploaded.","post_max_size":"33554432","readOnlyDisallowedFields":["captcha","repeater","map","content","divider","hidden","html","entry-preview","pagebreak","layout","payment-total"],"error_updating_token":"Error updating token. Please try again or contact support if the issue persists.","network_error":"Network error or server is unreachable. Check your connection or try again later.","token_cache_lifetime":"86400","hn_data":[],"analytics_composite_field_types":["name","address","date-time","email","password","paypal-commerce"],"analytics_base64":"1","address_field":{"list_countries_without_states":["GB","DE","CH","NL"]},"val_phone":"Please enter a valid phone number.","val_password_strength":"A stronger password is required. Consider using upper and lower case letters, numbers, and symbols.","entry_preview_iframe_styles":["https:\/\/dc3.edu\/wp-includes\/js\/tinymce\/skins\/lightgray\/content.min.css?ver=6.8.2","https:\/\/dc3.edu\/wp-includes\/css\/dashicons.min.css?ver=6.8.2","https:\/\/dc3.edu\/wp-includes\/js\/tinymce\/skins\/wordpress\/wp-content.css?ver=6.8.2","https:\/\/dc3.edu\/wp-content\/plugins\/wpforms\/assets\/pro\/css\/fields\/richtext\/editor-content.min.css"]}
+/* ]]> */
+</script>
+    <script>
+        jQuery(function($){
+            $("form#wpforms-form-9330").on('change', function () {
+                var selectedval = $( "#wpforms-9330-field_1 option:selected" ).text();              
+                  if(selectedval == "I'd like to schedule a visit to campus"){
+                    $(".wpforms-submit").addClass("show-submit");
+                }
+                else{
+                    $(".wpforms-submit").removeClass("show-submit");
+                }
+            });
+           });
+    </script>
+    
+
+<style type="text/css">
+	body {
+		font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+	}
+/* 	#olark-wrapper .olark-launch-button {
+		background: #ffffff !important;
+	}
+	#olark-wrapper .olark-launch-button svg path {
+		fill: #552f82 !important;
+	}
+	@media ( max-width: 540px ) {
+		
+		#olark-wrapper .olark-launch-button {
+			left: 6px !important;
+			width: calc(20% - 12px) !important;
+			bottom: 6px !important;
+			padding: 0 !important;
+		}
+	}
+	@media ( min-width: 541px ) {
+		
+		#olark-wrapper .olark-launch-button {
+			left: 15px !important;
+		}
+	}
+	@media ( min-width: 1121px ) {
+		
+		#olark-wrapper .olark-launch-button {
+			left: 179px !important;
+		}
+		body.home #olark-wrapper .olark-launch-button {
+			left: 15px !important;
+		}
+	} */
+
+</style>
+
+<!-- begin olark code -->
+<script type="text/javascript" async> ;(function(o,l,a,r,k,y){if(o.olark)return; r="script";y=l.createElement(r);r=l.getElementsByTagName(r)[0]; y.async=1;y.src="//"+a;r.parentNode.insertBefore(y,r); y=o.olark=function(){k.s.push(arguments);k.t.push(+new Date)}; y.extend=function(i,j){y("extend",i,j)}; y.identify=function(i){y("identify",k.i=i)}; y.configure=function(i,j){y("configure",i,j);k.c[i]=j}; k=y._={s:[],t:[+new Date],c:{},l:a}; })(window,document,"static.olark.com/jsclient/loader.js");
+/* custom configuration goes here (www.olark.com/documentation) */
+olark.identify('2155-432-10-2248');</script>
+<!-- end olark code -->
+
+</body>
+<script>'undefined'=== typeof _trfq || (window._trfq = []);'undefined'=== typeof _trfd && (window._trfd=[]),_trfd.push({'tccl.baseHost':'secureserver.net'},{'ap':'cpsh-oh'},{'server':'p3plzcpnl509035'},{'dcenter':'p3'},{'cp_id':'10244850'},{'cp_cl':'8'}) // Monitoring performance to make your website faster. If you want to opt-out, please contact web hosting support.</script><script src='https://img1.wsimg.com/traffic-assets/js/tccl.min.js'></script></html>

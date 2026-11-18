@@ -1,0 +1,1473 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Seminole State College of Florida Home Page - Seminole State College</title><script>
+    window.sscDataLayer = window.sscDataLayer || [];
+
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const semTagManager = (function () {
+        const consentGranted = 'granted';
+        const consentDenied  = 'denied';
+                                const scrollObserver      = new IntersectionObserver(
+            triggerFullyScrolledEvent,
+            {'threshold': [.1, .2, .3, .4, .5, .6, .7, .8, .9, 1]}
+        );
+        let scrollTriggerElements = [];
+        let analyticsStorage      = consentDenied;
+        let adStorage             = consentDenied;
+        let cookieStatus          = {};
+
+                                setConsentObject();
+
+                document.addEventListener('userConsentChanged', function () {
+            setConsentObject(true);
+        });
+
+                document.addEventListener('DOMContentLoaded', function () {
+                        scrollTriggerElements = document.querySelectorAll('.jsScrollAnalytic');
+            scrollTriggerElements.forEach(function (element) {
+                if (element.dataset['ga4Event']) {
+                    scrollObserver.observe(element);
+                }
+            });
+                        document.addEventListener('click', function (event) {
+                handleNestedClick(event.target);
+            });
+
+                                                function handleNestedClick(target) {
+                const parent = target.parentElement;
+
+                                if (parent) {
+                    const elementData = target.dataset;
+
+                    if (elementData['ga4Event'] !== undefined) {
+                                                                        const tagObject = JSON.parse(elementData.ga4Event);
+
+                        if (tagObject.clickScrollParams.category === 'clickEvent') {
+                            semTag(tagObject);
+                        }
+                    } else {
+                        handleNestedClick(target.parentElement);
+                    }
+                }
+            }
+
+                        document.addEventListener('scrollViewEvent', function (event) {
+                semTag(JSON.parse(event.target.dataset.ga4Event));
+            });
+        });
+
+                /**
+         * @param {Object} configObject
+         */
+        function semTag(configObject) {
+            window.sscDataLayer.push(configObject);
+        }
+
+        /**
+         * Reads consent status from localStorage (defaulting to denied when nothing is stored yet)
+         * and pushes the resulting Consent Mode signals to the dataLayer.
+         *
+         * @param {Boolean} isFromEvent
+         */
+        function setConsentObject(isFromEvent) {
+            const stored = window.localStorage.getItem('sscCookieStatement');
+            cookieStatus = stored ? JSON.parse(stored) : {accept: null, types: []};
+
+            analyticsStorage = cookieStatus.accept !== null && cookieStatus.types.indexOf('performanceType') !== -1 ? consentGranted : consentDenied;
+            adStorage        = cookieStatus.accept !== null && cookieStatus.types.indexOf('marketingType') !== -1 ? consentGranted : consentDenied;
+
+            setGtagObject(isFromEvent);
+        }
+
+        /**
+         * If isFromEvent is false|null then the "event" key with "cookieChanged" does not get set which means the GTM Tag
+         * for updating the Consent in GTM does not fire.
+         *
+         * @param {Boolean} isFromEvent
+         */
+        function setGtagObject(isFromEvent) {
+            const gtagObject = {};
+
+            if (isFromEvent) {
+                gtagObject.event = 'cookieChanged';
+            }
+
+            gtagObject.analytics_storage = analyticsStorage;
+            gtagObject.ad_storage        = adStorage;
+
+            semTag(gtagObject);
+        }
+
+        function triggerFullyScrolledEvent(observerEntries, observer) {
+            observerEntries.forEach(function (entry) {
+                                                if (entry.isIntersecting
+                    && (entry.intersectionRatio >= .9 || entry.rootBounds.height <= entry.boundingClientRect.height)
+                ) {
+                                        entry.target.dispatchEvent(new Event('scrollViewEvent', {bubbles: true}));
+                                        observer.unobserve(entry.target);
+                }
+            });
+        }
+
+        return {
+            semTag,
+        };
+    })();
+
+        window.sscDataLayer.push({ip_type: 'external'});
+
+        (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
+        const f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl + '\u0026gtm_auth\u003DUQKTZq3Sc_UqG90xJVnE0Q\u0026gtm_preview\u003Denv\u002D1\u0026gtm_cookies_win\u003Dx';
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'sscDataLayer', 'GTM\u002DMSMH3HK');
+</script><link href="/ssap/assets/compiled/css/newsRoom/newsRoomHomepage-6477fa15d4.css" rel="stylesheet"><link href="/ssap/assets/compiled/css/cms/ssc/newsroom-f9b4c2ebbd.css" rel="stylesheet" /><style>
+                        @media (min-width: 1200px)
+                    {
+                .jumbotron.hero-img.hero-bg-video {
+                    background: url("/media/become-a-student/become-a-student-1138x488.jpg") no-repeat center top;
+                    -webkit-background-size: cover;
+                    -moz-background-size: cover;
+                    -o-background-size: cover;
+                    background-size: cover;
+                }
+            }
+                        @media (max-width: 1198.9999px)
+                    {
+                .jumbotron.hero-img.hero-bg-video {
+                    background: url("/media/become-a-student/become-a-student-990x424.jpg") no-repeat center top;
+                    -webkit-background-size: cover;
+                    -moz-background-size: cover;
+                    -o-background-size: cover;
+                    background-size: cover;
+                }
+            }
+                        @media (max-width: 990.9999px)
+                    {
+                .jumbotron.hero-img.hero-bg-video {
+                    background: url("/media/become-a-student/become-a-student-768x432.jpg") no-repeat center top;
+                    -webkit-background-size: cover;
+                    -moz-background-size: cover;
+                    -o-background-size: cover;
+                    background-size: cover;
+                }
+            }
+                        @media (max-width: 766.9999px)
+                    {
+                .jumbotron.hero-img.hero-bg-video {
+                    background: url("/media/become-a-student/become-a-student-624x468.jpg") no-repeat center top;
+                    -webkit-background-size: cover;
+                    -moz-background-size: cover;
+                    -o-background-size: cover;
+                    background-size: cover;
+                }
+            }
+                        @media (max-width: 571.9999px)
+                    {
+                .jumbotron.hero-img.hero-bg-video {
+                    background: url("/media/become-a-student/become-a-student-500x376.jpg") no-repeat center top;
+                    -webkit-background-size: cover;
+                    -moz-background-size: cover;
+                    -o-background-size: cover;
+                    background-size: cover;
+                }
+            }
+    </style><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" /><meta name="theme-color" content="#023087" /><meta name="geo.position" content="28.744467;-81.30648"><meta name="geo.placename" content="Sanford Lake/Mary Campus, Seminole State College of Florida, Sanford, Florida, USA"><meta name="geo.region" content="us-fl"><meta name="google-site-verification" content="K5lKyvs4YT-y6gw-Zx21fv_rP-AdqG279K0s4gwrrW4"><link rel="author" href="/humans.txt"><link rel="canonical" href="https://www.seminolestate.edu"><meta property="og:url" content="https://www.seminolestate.edu" /><meta property="og:title" content="Seminole State College of Florida Home Page - Seminole State College" /><meta property="og:site_name" content="Seminole State College" /><meta property="og:image" content="https://www.seminolestate.edu/ssap/assets/source/website/branding/ssc-facebook-og-generic.jpg?v=20250211" /><meta name="description" content="Offering bachelor&#039;s, A.A., A.S. degrees, and certificates in Central Florida. Seminole State is your learning partner for career success."><meta property="og:description" content="Offering bachelor&#039;s, A.A., A.S. degrees, and certificates in Central Florida. Seminole State is your learning partner for career success." /><meta name="robots" content="max-snippet:-1"><!--[if lt IE 9]><script async src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]--><link href="/ssap/assets/source/website/fonts/semFonts.css" rel="stylesheet"><link href="/ssap/assets/source/vendor/twitter-bootstrap/4.3.1/bootstrap.min.css" rel="stylesheet"><link rel="stylesheet" href="/ssap/assets/compiled/css/cms/ssc/layout-f000cf4a2a.css" /><link rel="stylesheet" href="/ssap/assets/compiled/css/layout/semAlert-ba79b0adae.css" /><script src="/ssap/assets/source/vendor/jquery/3.3.1/jquery.min.js"></script><script async src="https://docaccess.com/docbox.js"></script><link rel="apple-touch-icon" sizes="180x180" href="/ssap/assets/source/website/branding/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/ssap/assets/source/website/branding/favicon-32x32.png"><link rel="manifest" href="/ssap/assets/source/website/branding/site.webmanifest"><link rel="mask-icon" href="/ssap/assets/source/website/branding/safari-pinned-tab.svg" color="#023087"><meta name="msapplication-TileColor" content="#023087"><meta name="theme-color" content="#023087"><link rel="stylesheet" href="/ssap/assets/compiled/css/cms/ssc/homepage-35f1fb84fb.css" /></head>
+<body         data-logged-in="false"
+        data-environment="prod"
+        data-login-link="https://www.seminolestate.edu/ssap/security/login?_target_path=https://www.seminolestate.edu"
+                        class="cmsPage bg-light">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MSMH3HK&amp;gtm_auth=UQKTZq3Sc_UqG90xJVnE0Q&amp;gtm_preview=env-1&amp;gtm_cookies_win=x"
+                height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe>
+    </noscript>
+
+    <!--Header portion for the topBar and topNav. This is fixed to te top.--><header><div class="top-nav d-flex align-items-center flex-md-wrap flex-lg-nowrap"><div class="container"><nav><div class="navbar navbar-expand px-0 order-sm-3 order-md-2"><div class="d-flex flex-wrap flex-md-nowrap align-items-center justify-content-center justify-content-md-between"><div class="order-0 logo"><a class="jumpToContent position-absolute tab-focus autoPop ml-n3"
+                                tabindex="1"
+                                data-toggle="popover"
+                                data-placement="top"
+                                data-content="Jump to Main Content"
+                                aria-label="Jump to Main Content"
+                                href="#"><i title="Jump to content" class="fas fa-square-chevron-down text-secondary"
+                                    aria-hidden="true"></i></a><a tabindex="2"
+                                data-ga-event-category="top-nav"
+                                data-ga-event-action="User Clicked Logo"
+                                href="/"><img class="logo"
+                                    data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;top_nav_click&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;image&quot;,&quot;targetName&quot;:&quot;SSC Logo&quot;,&quot;destinationUrl&quot;:&quot;\/&quot;}}"
+                                    alt="Seminole State College of Florida"
+                                    src="/ssap/assets/source/website/branding/ssc-logo-reversed.svg"></a></div><ul class="navbar-nav mr-md-auto links order-2 order-md-1 d-flex justify-content-between"><li class="nav-item mega-one"><a tabindex="3"
+                                    data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;top_nav_click&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;link&quot;,&quot;targetName&quot;:&quot;About&quot;,&quot;destinationUrl&quot;:&quot;N\/A&quot;}}"
+                                    data-ga-event-category="top-nav"
+                                    data-ga-event-action="User Clicked About Link"
+                                    class="nav-link no-focus-outline"
+                                    href="/about">
+                                About
+                            </a><a tabindex="4"
+                                    class="jumpToActiveMega position-absolute tab-focus autoPop"
+                                    data-toggle="popover"
+                                    data-placement="top"
+                                    data-content="Jump to About Mega Menu"
+                                    aria-label="Jump to About Mega Menu"
+                                    href="#"><i title="Jump to About Mega Menu" class="fas fa-square-chevron-down text-secondary"
+                                        aria-hidden="true"></i></a></li><li class="nav-item mega-two"><a tabindex="5"
+                                    data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;top_nav_click&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;link&quot;,&quot;targetName&quot;:&quot;Academics&quot;,&quot;destinationUrl&quot;:&quot;N\/A&quot;}}"
+                                    data-ga-event-category="top-nav"
+                                    data-ga-event-action="User Clicked Academics Link"
+                                    class="nav-link no-focus-outline"
+                                    href="/catalog">
+                                Academics
+                            </a><a class="jumpToActiveMega position-absolute tab-focus autoPop"
+                                    tabindex="6"
+                                    data-toggle="popover"
+                                    data-placement="top"
+                                    data-content="Jump to Academics Mega Menu"
+                                    aria-label="Jump to Academics Mega Menu"
+                                    href="#"><i title="Jump to Academics Mega Menu" class="fas fa-square-chevron-down text-secondary"
+                                        aria-hidden="true"></i></a></li><li class="nav-item mega-three"><a tabindex="7"
+                                    data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;top_nav_click&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;link&quot;,&quot;targetName&quot;:&quot;Admissions Aid&quot;,&quot;destinationUrl&quot;:&quot;N\/A&quot;}}"
+                                    data-ga-event-category="top-nav"
+                                    data-ga-event-action="User Clicked Admissions and Aid"
+                                    class="nav-link no-focus-outline"
+                                    href="/admissions-aid">
+                                Admissions <span class="d-none d-sm-inline">&amp; Aid</span></a><a class="jumpToActiveMega position-absolute tab-focus autoPop"
+                                    tabindex="8"
+                                    data-toggle="popover"
+                                    data-placement="top"
+                                    data-content="Jump to Admissions & Aid Mega Menu"
+                                    aria-label="Jump to  Admissions & Aid Mega Menu"
+                                    href="#"><i title="Jump to  Admissions & Aid Mega Menu"
+                                        class="fas fa-square-chevron-down text-secondary"
+                                        aria-hidden="true"></i></a></li><li class="nav-item mega-four"><a tabindex=9"
+                                    data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;top_nav_click&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;link&quot;,&quot;targetName&quot;:&quot;Campus Life&quot;,&quot;destinationUrl&quot;:&quot;N\/A&quot;}}"
+                                    data-ga-event-category="top-nav"
+                                    data-ga-event-action="User Clicked Campus Life Link"
+                                    class="nav-link no-focus-outline"
+                                    href="/become-a-student/why/campus-life">
+                                Campus Life
+                            </a><a class="jumpToActiveMega position-absolute tab-focus autoPop"
+                                    tabindex="10"
+                                    data-toggle="popover"
+                                    data-placement="top"
+                                    data-content="Jump to Campus Life Mega Menu"
+                                    aria-label="Jump to Campus Life Mega Menu"
+                                    href="#"><i title="Jump to Campus Life Mega Menu"
+                                        class="fas fa-square-chevron-down text-secondary"
+                                        aria-hidden="true"></i></a></li></ul><ul class="navbar-nav mr-md-auto icons navbar-nav icons order-1 order-md-2"><li class="nav-item mega-five svg foundationGive"><a tabindex="11"
+                                    aria-label="Give to Seminole State"
+                                    data-ga-event-category="top-nav"
+                                    data-ga-event-action="User Clicked Give Icon Link"
+                                    class="nav-link"
+                                    href="/give"><svg data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;top_nav_click&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;image&quot;,&quot;targetName&quot;:&quot;Give Logo&quot;,&quot;destinationUrl&quot;:&quot;N\/A&quot;}}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512.1" xml:space="preserve"><title>Give</title><path d="M298.1,283.2c-4.9-3.2-11.8-6.2-20.4-8.9V338c3.3-0.6,6.4-1.4,9.1-2.4c14.8-5.7,22.2-16.2,22.2-31.6C309,295.1,305.4,288.1,298.1,283.2z"/><path d="M205,180.2c0,9.7,4,17,12.1,21.8c3.4,2.1,9.4,4.4,17.8,7v-60.8c-6.8,1.5-12.8,3.8-17.7,7.3C209.1,161.4,205,169.7,205,180.2z"/><path d="M468,47.7c-58.7-63.8-153.6-63.6-212,0.6c-58.4-64.2-153.3-64.5-212-0.6c-58.7,63.8-60.1,166.7,4.5,237.3c72.1,78.8,187.4,204.9,207.5,227c20.2-22.1,135.5-148.2,207.5-227C528.1,214.5,526.7,111.5,468,47.7z M332.8,361.7c-13.8,13-32.3,20.7-55.1,23.5v27.4H235v-27.7c-21.9-3-39.9-10.6-54-22.7c-18.8-16.2-28.1-38.4-28.1-66.7h49.6c1.6,12.4,4.8,21.7,9.5,27.9c5.3,6.9,13,11.6,23,14.3v-74c-25.5-6.3-43.2-13.1-52.9-20.4c-16.8-12.5-25.2-32.2-25.2-58.9c0-24.4,8.2-44.6,24.6-60.7c13-12.8,30.8-20.4,53.4-23V76.2c0,0,0,0,0,0l42.7,0.1v25.5c16.5,3.3,31.2,10.1,44.1,20.4c18.8,15.2,28.5,37.2,29.5,66.2h-50c-0.9-16.3-7.6-28-20.1-34.8c-1.1-0.6-2.3-1.1-3.5-1.6v68.4l16.2,4.2c19.1,4.9,33.5,11.5,43,19.7c14.8,12.8,22.3,31.4,22.3,55.6C359.1,324.6,350.3,345.3,332.8,361.7z"/></svg></a></li><li class="nav-item mega-six svg search"><a tabindex="12"
+                                    aria-label="Search the Seminole State Website"
+                                    aria-haspopup="dialog"
+                                    data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;top_nav_click&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;image&quot;,&quot;targetName&quot;:&quot;Search Logo&quot;,&quot;destinationUrl&quot;:&quot;N\/A&quot;}}"
+                                    data-ga-event-category="top-nav"
+                                    data-ga-event-action="User Clicked Search Icon Link"
+                                    class="nav-link"
+                                    href="#"
+                                    data-toggle="modal"
+                                    data-target="#searchModal"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512.1"><title>Search</title><path d="M505,442.7,405.3,343a24,24,0,0,0-17-7H372a207,207,0,0,0,44-128C416,93.1,322.9,0,208,0S0,93.1,0,208,93.1,416,208,416a207,207,0,0,0,128-44v16.3a24,24,0,0,0,7,17L442.7,505a23.9,23.9,0,0,0,33.9,0l28.3-28.3A24.1,24.1,0,0,0,505,442.7ZM208,336A128,128,0,1,1,336,208,127.9,127.9,0,0,1,208,336Z"/></svg></a></li><li class="nav-item mega-seven svg dropdown app-drawer-link"
+                                data-notification-url=""><a tabindex="13"
+                                    aria-label="View Seminole State App Drawer"
+                                    title="My Apps"
+                                    data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;top_nav_click&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;image&quot;,&quot;targetName&quot;:&quot;App Drawer Logo&quot;,&quot;destinationUrl&quot;:&quot;N\/A&quot;}}"
+                                    data-ga-event-category="top-nav"
+                                    data-ga-event-action="User Clicked App Drawer Icon Link"
+                                    class="nav-link dropdown-toggle "
+                                    href="#"
+                                    id="appDrawer"
+                                    role="button"
+                                    data-toggle="dropdown"><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" ><title>My Apps</title><path fill="currentColor" d="M-0.5,0.8v127.8h128.4V0.8H-0.5z M192.1,0.8v127.8h128.4V0.8H192.1z M384.6,0.8v127.8H513V0.8H384.6z M-0.5,192.5v127.8 h128.4V192.5H-0.5z M192.1,192.5v127.8h128.4V192.5H192.1z M384.6,192.5v127.8H513V192.5H384.6z M-0.5,384.2V512h128.4V384.2H-0.5z M192.1,384.2V512h128.4V384.2H192.1z M384.6,384.2V512H513V384.2H384.6z"></path></svg></a><div class="dropdown-menu dropdown-menu-right mega seven app-drawer p-0"
+                                    aria-labelledby="appDrawer"><div id="appDrawer-accordion" class="accordion" data-use-accordion-control="false"><div class="card mb-0"><div class="card-header" id="heading-apps"><h5 class="mb-0"><a class="btn btn-link accordion-link "
+                        data-ga-event-category="app-drawer"
+                        data-ga-event-action="Apps accordion expanded"
+                        href="#"
+                        data-toggle="collapse"
+                        data-target="#appDrawer-apps"
+                        aria-expanded="true"
+                        aria-controls="appDrawer-apps">
+                    Apps <i class="far fa-chevron-down"></i></a></h5></div><div id="appDrawer-apps" class="collapse show" aria-labelledby="heading-apps"
+                data-parent="#appDrawer-accordion"><div class="card-body p-0"><div id="appList"><a data-ga-event-category="app-drawer"
+            data-ga-event-action="MySeminoleState Clicked"
+            data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;app_item_clicked&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;link&quot;,&quot;targetName&quot;:&quot;MySeminoleState&quot;,&quot;destinationUrl&quot;:&quot;https:\/\/my.seminolestate.edu&quot;}}"
+            class="d-block"
+            href="https://my.seminolestate.edu"><i class="fab fa-my-sem fa-fw"></i> MySeminoleState
+    </a><a data-ga-event-category="app-drawer"
+            data-ga-event-action="College Email Clicked"
+            data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;app_item_clicked&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;link&quot;,&quot;targetName&quot;:&quot;Office 365 - College Email&quot;,&quot;destinationUrl&quot;:&quot;\/student-email&quot;}}"
+            class="d-block"
+            href="/student-email"><i class="fal fa-envelope fa-fw"></i> Office 365 - College Email
+    </a><a data-ga-event-category="app-drawer"
+            data-ga-event-action="Canvas Clicked"
+            data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;app_item_clicked&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;link&quot;,&quot;targetName&quot;:&quot;Canvas&quot;,&quot;destinationUrl&quot;:&quot;https:\/\/online.seminolestate.edu\/&quot;}}"
+            class="d-block"
+            href="https://online.seminolestate.edu/"><i class="fal fa-globe fa-fw"></i> Canvas
+    </a><a data-ga-event-category="app-drawer"
+            data-ga-event-action="Service Request System Clicked"
+            data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;app_item_clicked&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;link&quot;,&quot;targetName&quot;:&quot;Service Request System&quot;,&quot;destinationUrl&quot;:&quot;https:\/\/tdx.seminolestate.edu\/TDClient\/2433\/Portal\/Home\/&quot;}}"
+            class="d-block"
+            href="https://tdx.seminolestate.edu/TDClient/2433/Portal/Home/"><i class="fas fa-ticket-alt fa-fw"></i> Service Request System
+    </a><a data-ga-event-category="app-drawer"
+            data-ga-event-action="SSAP (Grayed Out) Clicked"
+            class="d-block"
+            data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;app_item_clicked&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;link&quot;,&quot;targetName&quot;:&quot;SSAP&quot;,&quot;destinationUrl&quot;:&quot;\/ssap\/&quot;}}"
+            href="/ssap/"><i class="far fa-compass fa-fw"></i> SSAP
+    </a><a data-ga-event-category="app-drawer"
+            data-ga-event-action="Sign Me Up (Grayed Out) Clicked"
+            data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;app_item_clicked&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;link&quot;,&quot;targetName&quot;:&quot;Sign Me Up&quot;,&quot;destinationUrl&quot;:&quot;\/ssap\/signMeUp\/&quot;}}"
+            class="d-block"
+            href="/ssap/signMeUp/"><i class="far fa-calendar-check fa-fw"></i> Sign Me Up
+    </a></div></div></div></div><div class="card mb-0"><div class="card-header" id="heading-student-resources"><h5 class="mb-0"><a class="btn btn-link accordion-link collapsed"
+                        data-ga-event-category="app-drawer"
+                        data-ga-event-action="Student Resources accordion expanded"
+                        data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;app_item_clicked&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;link&quot;,&quot;targetName&quot;:&quot;Student Resources&quot;,&quot;destinationUrl&quot;:&quot;#&quot;}}"
+                        href="#"
+                        data-toggle="collapse"
+                        data-target="#appDrawer-student-resources"
+                        aria-expanded="false"
+                        aria-controls="appDrawer-student-resources">
+                    Student Resources <i class="far fa-chevron-down"></i></a></h5></div><div id="appDrawer-student-resources" class="collapse "
+                aria-labelledby="heading-apps"
+                data-parent="#appDrawer-accordion"><div class="card-body p-0"><a data-ga-event-category="app-drawer"
+            data-ga-event-action="Advising Appointments Clicked"
+            data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;app_item_clicked&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;link&quot;,&quot;targetName&quot;:&quot;Advising Appointments&quot;,&quot;destinationUrl&quot;:&quot;\/counseling\/appointments&quot;}}"
+            class="d-block"
+            href="/counseling/appointments"><i class="far fa-calendar-check fa-fw"></i> Advising Appointments
+    </a><a data-ga-event-category="app-drawer"
+        data-ga-event-action="Navigate for Students Clicked"
+        data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;app_item_clicked&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;link&quot;,&quot;targetName&quot;:&quot;Navigate 360&quot;,&quot;destinationUrl&quot;:&quot;https:\/\/seminolestate.navigate.eab.com\/&quot;}}"
+        class="d-block"
+        href="https://seminolestate.navigate.eab.com/"><i class="fas fa-landmark-dome fa-fw"></i> Navigate 360
+</a><a data-ga-event-category="app-drawer"
+        data-ga-event-action="Test Center Clicked"
+        data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;app_item_clicked&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;link&quot;,&quot;targetName&quot;:&quot;Testing Center&quot;,&quot;destinationUrl&quot;:&quot;\/ssap\/testingCenter\/&quot;}}"
+        class="d-block"
+        href="/ssap/testingCenter/"><i class="fas fa-ballot-check fa-fw"></i> Testing Center
+</a><a data-ga-event-category="app-drawer"
+        data-ga-event-action="Student Resources Clicked"
+        data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;app_item_clicked&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;link&quot;,&quot;targetName&quot;:&quot;Student Resources&quot;,&quot;destinationUrl&quot;:&quot;\/student-info&quot;}}"
+        class="d-block"
+        href="/student-info"><i class="fas fa-link fa-fw"></i> Student Resources
+</a></div></div></div><div class="card mb-0"><div class="card-header" id="heading-faculty-resources"><h5 class="mb-0"><a class="btn btn-link accordion-link collapsed"
+                        data-ga-event-category="app-drawer"
+                        data-ga-event-action="Faculty/Staff accordion expanded"
+                        data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;app_item_clicked&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;link&quot;,&quot;targetName&quot;:&quot;Faculty &amp; Staff Resources&quot;,&quot;destinationUrl&quot;:&quot;#&quot;}}"
+                        href="#"
+                        data-toggle="collapse"
+                        data-target="#appDrawer-faculty-resources"
+                        aria-expanded="false"
+                        aria-controls="appDrawer-faculty-resources">
+                    Faculty &amp; Staff Resources <i class="far fa-chevron-down"></i></a></h5></div><div id="appDrawer-faculty-resources" class="collapse "
+                aria-labelledby="heading-apps"
+                data-parent="#appDrawer-accordion"><div class="card-body p-0"><a data-ga-event-category="app-drawer"
+        data-ga-event-action="Navigate for Employees Clicked"
+        data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;app_item_clicked&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;link&quot;,&quot;targetName&quot;:&quot;Navigate Employee Portal&quot;,&quot;destinationUrl&quot;:&quot;https:\/\/seminolestate.campus.eab.com\/&quot;}}"
+        class="d-block"
+        href="https://seminolestate.campus.eab.com/"><i class="fas fa-landmark-dome fa-fw"></i> Navigate Employee Portal
+</a><a data-ga-event-category="app-drawer"
+        data-ga-event-action="Faculty/Staff Resources Clicked"
+        data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;app_item_clicked&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;link&quot;,&quot;targetName&quot;:&quot;Faculty\/Staff Resources&quot;,&quot;destinationUrl&quot;:&quot;\/faculty-resources&quot;}}"
+        class="d-block"
+        href="/faculty-resources"><i class="fas fa-link fa-fw"></i> Faculty/Staff Resources
+</a></div></div></div><a class="btn btn-primary btn-block text-left m-0 pl-3 py-3 jsSsapSignIn"
+            data-ga-event-category="app-drawer"
+            data-ga-event-action="User Clicked Log In"
+            data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;app_item_clicked&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;link&quot;,&quot;targetName&quot;:&quot;Log In&quot;,&quot;destinationUrl&quot;:&quot;#&quot;}}"
+            href="https://www.seminolestate.edu/ssap/security/login?_target_path=https://www.seminolestate.edu"><i class="fas fa-sign-in-alt fa-fw"></i> Log In
+    </a><a class="d-block btn btn-dark text-left pl-3 m-0"
+            href="/helpdesk/password-issues"
+            data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;app_item_clicked&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;link&quot;,&quot;targetName&quot;:&quot;Forgot Password&quot;,&quot;destinationUrl&quot;:&quot;\/helpdesk\/password-issues&quot;}}"
+            data-ga-event-category="app-drawer"
+            data-ga-event-action="User Clicked Forgot Password"><i class="fas fa-question-circle"></i> Forgot Password
+                    </a><a class="closeAppDrawer tab-focus position-absolute d-block btn btn-lg btn-secondary text-left fw-bold pl-3 m-0"
+            href="#"
+            data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;app_item_clicked&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;link&quot;,&quot;targetName&quot;:&quot;Forgot Password&quot;,&quot;destinationUrl&quot;:&quot;\/helpdesk\/password-issues&quot;}}"
+            data-ga-event-category="app-drawer"
+            data-ga-event-action="User Closed App Drawer with Tabbing"><i class="fas fa-times-circle"></i> Close
+    </a></div></div></li></ul><ul class="navbar-nav mr-md-auto apply order-4"><li class="nav-item mr-0"><a tabindex="14"
+                                    class="nav-link apply"
+                                    href="/ssap/admission/student/apply"
+                                    data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;top_nav_click&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;button&quot;,&quot;targetName&quot;:&quot;Apply Button&quot;,&quot;destinationUrl&quot;:&quot;N\/A&quot;}}"
+                                    data-ga-event-category="window.location"
+                                    data-ga-event-action="Apply Button Click">
+                                Apply
+                            </a></li></ul></div></div></nav></div></div><div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModal"><button class="close" data-dismiss="modal" aria-label="Close"><i class="fal fa-times" title="Close Search"></i></button><div class="modal-dialog" role="document"><div class="modal-content border-0"><div class="modal-body p-3"><div><p class="ff-tertiary fs-sm fw-bold text-white my-2">
+                        Choose your search type:
+                    </p><ul class="nav nav-pills d-flex text-center mt-0" id="pills-tab" role="tablist"><li class="nav-item flex-grow-1" role="presentation"><button class="nav-link active" id="website" data-toggle="pill" data-target="#website-tab"
+                                    role="tab" aria-label="Search Website" aria-selected="true">Website</button></li><li class="nav-item flex-grow-1"><button class="nav-link" id="programs" data-toggle="pill" data-target="#programs-tab"
+                                    role="tab" aria-label="Search Programs" aria-selected="false">Programs</button></li><li class="nav-item flex-grow-1"><button class="nav-link" id="courses" data-toggle="pill" data-target="#courses-tab"
+                                    role="tab" aria-label="Search Courses" aria-selected="false">Courses</button></li><li class="nav-item flex-grow-1"><button class="nav-link" id="people" data-toggle="pill" data-target="#people-tab"
+                                    role="tab" aria-label="Search for People" aria-selected="false">People</button></li></ul><form class="jsSearchForm" data-use-dirty="false"><div class="input-group"><input class="form-control search"
+                                    placeholder="Search or Ask"
+                                    name="searchTerm"
+                                    type="text"><div class="input-group-append"><button class="search" type="submit"><i class="far fa-search" title="Search"></i></button></div></div></form><div class="faqs ml-0"><h5 class="text-white">Frequently Asked Questions</h5><a href="#"
+        class="jsFaqFaq btn-link cursor-pointer"
+        data-faq-url="https://www.seminolestate.edu/ssap/faq/showFaq/176%3C%5Cd+%3E"
+        data-ga-event-category="window.location"
+        data-ga-event-action="FAQ Viewed"
+        data-ga-event-label="What can I expect to pay in tuition and fees?"
+        data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;faq_viewed&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;link&quot;,&quot;targetName&quot;:&quot;What can I expect to pay in tuition and fees?&quot;,&quot;destinationUrl&quot;:&quot;https:\/\/www.seminolestate.edu\/ssap\/faq\/showFaq\/176%3C%5Cd+%3E&quot;}}"
+>
+    What can I expect to pay in tuition and fees?
+</a><a href="#"
+        class="jsFaqFaq btn-link cursor-pointer"
+        data-faq-url="https://www.seminolestate.edu/ssap/faq/showFaq/421%3C%5Cd+%3E"
+        data-ga-event-category="window.location"
+        data-ga-event-action="FAQ Viewed"
+        data-ga-event-label="When do I receive my financial aid?"
+        data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;faq_viewed&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;link&quot;,&quot;targetName&quot;:&quot;When do I receive my financial aid?&quot;,&quot;destinationUrl&quot;:&quot;https:\/\/www.seminolestate.edu\/ssap\/faq\/showFaq\/421%3C%5Cd+%3E&quot;}}"
+>
+    When do I receive my financial aid?
+</a><a href="#"
+        class="jsFaqFaq btn-link cursor-pointer"
+        data-faq-url="https://www.seminolestate.edu/ssap/faq/showFaq/170%3C%5Cd+%3E"
+        data-ga-event-category="window.location"
+        data-ga-event-action="FAQ Viewed"
+        data-ga-event-label="What are the steps for being admitted to the College?"
+        data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;faq_viewed&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;link&quot;,&quot;targetName&quot;:&quot;What are the steps for being admitted to the College?&quot;,&quot;destinationUrl&quot;:&quot;https:\/\/www.seminolestate.edu\/ssap\/faq\/showFaq\/170%3C%5Cd+%3E&quot;}}"
+>
+    What are the steps for being admitted to the College?
+</a><a href="#"
+        class="jsFaqFaq btn-link cursor-pointer"
+        data-faq-url="https://www.seminolestate.edu/ssap/faq/showFaq/296%3C%5Cd+%3E"
+        data-ga-event-category="window.location"
+        data-ga-event-action="FAQ Viewed"
+        data-ga-event-label="Does the Seminole State nursing program have a waiting list?"
+        data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;faq_viewed&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;link&quot;,&quot;targetName&quot;:&quot;Does the Seminole State nursing program have a waiting list?&quot;,&quot;destinationUrl&quot;:&quot;https:\/\/www.seminolestate.edu\/ssap\/faq\/showFaq\/296%3C%5Cd+%3E&quot;}}"
+>
+    Does the Seminole State nursing program have a waiting list?
+</a><a href="#"
+        class="jsFaqFaq btn-link cursor-pointer"
+        data-faq-url="https://www.seminolestate.edu/ssap/faq/showFaq/305%3C%5Cd+%3E"
+        data-ga-event-category="window.location"
+        data-ga-event-action="FAQ Viewed"
+        data-ga-event-label="What is the tuition for the nursing programs?"
+        data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;faq_viewed&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;link&quot;,&quot;targetName&quot;:&quot;What is the tuition for the nursing programs?&quot;,&quot;destinationUrl&quot;:&quot;https:\/\/www.seminolestate.edu\/ssap\/faq\/showFaq\/305%3C%5Cd+%3E&quot;}}"
+>
+    What is the tuition for the nursing programs?
+</a><div class="text-right fs-sm"><a class="p-0 m-0" href="/info/faq">More FAQs &raquo;</a></div></div></div></div></div></div></div><div class="mega one"><div class="container"><div class="row"><div class="col col-md-3 pl-0"><ul class="nav nav-tabs nav-tabs--vertical nav-tabs--left text-right" role="tablist"><li class="nav-item" role="presentation"><a href="#about-tabcontent1" class="nav-link" data-toggle="tab" role="tab" aria-selected="true">
+                        News &amp; Media</a></li><li class="nav-item text-nowrap"><a href="#about-tabcontent2" class="nav-link" data-toggle="tab" role="tab">
+                        Campus Maps &amp; Locations
+                    </a></li><li class="nav-item"><a href="#about-tabcontent3" class="nav-link" data-toggle="tab" role="tab">
+                        General Information</a></li><li class="nav-item"><a href="#about-tabcontent4" class="nav-link" data-toggle="tab" role="tab">
+                        Community
+                    </a></li><li class="nav-item"><a class="nav-link leaveMega d-block tab-focus" href="#"><i
+                                class="fas fa-square-chevron-down fa-rotate-180"></i> Leave Menu </a></li></ul></div><div class="tab-content col col-md-9"><div class="tab-pane show active" id="about-tabcontent1" role="tabpanel"><div class="row"><div class="col col-md-4"><ul><li><a href="/newsroom">The Newsroom</a></li><li><a href="/whats-happening">Seminole State Events</a></li><li><a href="/crm/communications/social-media">Go Social</a></li></ul></div><div class="col col-md-3 d-inline-flex justify-content-center"><div class="align-self-center"><a data-ga-event-category="Mega-menu"
+            data-ga-event-action="Great Colleges to Work For Image Clicked"
+            data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;mega_menu_click&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;image&quot;,&quot;targetName&quot;:&quot;Great Colleges to work for 2026&quot;,&quot;destinationUrl&quot;:&quot;\/newsroom\/article\/6555\/2026-great-college&quot;}}"
+            href="/newsroom/article/6555/2026-great-college"><img class="h-auto lazyload"
+                style="width:135px;"
+                alt="Great Colleges to work for 2026"
+                src="/ssap/assets/source/website/utility/img-alt.png"
+                data-src="/ssap/assets/source/website/branding/greatColleges2026.png"></a></div></div><div class="col col-md-5 d-inline-flex justify-content-center"><div class="align-self-center"><div class="social d-flex flex-wrap justify-content-center align-items-center fs-xxxl text-tertiary mb-3 mb-lg-4 mr-2 mr-lg-0"><div class="mb-2 mb-lg-3 w-100 text-center"><img class="lazyload stay-connected"
+                    src="/ssap/assets/source/website/utility/img-alt.png"
+                    data-src="/ssap/assets/source/website/branding/go-social.svg"
+                    alt="Stay Connected"></div><br><div class="d-flex justify-content-center align-items-center"><div class="social-icon px-1 mx-1"><a data-ga-event-category="Mega-menu"
+            aria-label="Facebook Link"
+            data-ga-event-action="Facebook icon click"
+            data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;social_click&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;link&quot;,&quot;targetName&quot;:&quot;Facebook&quot;,&quot;destinationUrl&quot;:&quot;https:\/\/www.facebook.com\/seminolestate&quot;}}"
+            href= "https://www.facebook.com/seminolestate"><i class="fab fa-facebook-square"
+                title="Like us on Facebook"></i></a></div><div class="social-icon px-1 mx-1"><a data-ga-event-category="Mega-menu"
+            aria-label="Twitter Link"
+            data-ga-event-action="Twitter icon click"
+            data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;social_click&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;link&quot;,&quot;targetName&quot;:&quot;Twitter&quot;,&quot;destinationUrl&quot;:&quot;https:\/\/twitter.com\/SeminoleState&quot;}}"
+            href="https://twitter.com/SeminoleState"><i class="fab fa-twitter-square"
+                title="Follow us on Twitter"></i></a></div><div class="social-icon px-1 mx-1"><a data-ga-event-category="Mega-menu"
+            aria-label="YouTube Link"
+            data-ga-event-action="YouTube icon click"
+            data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;social_click&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;link&quot;,&quot;targetName&quot;:&quot;Youtube&quot;,&quot;destinationUrl&quot;:&quot;https:\/\/www.youtube.com\/SeminoleStateCollege&quot;}}"
+            href="https://www.youtube.com/SeminoleStateCollege"><i class="fab fa-youtube-square"
+                title="Watch us on YouTube"></i></a></div><div class="social-icon px-1 mx-1"><a data-ga-event-category="Mega-menu"
+            aria-label="LinkedIn Link"
+            data-ga-event-action="LinkedIn icon click"
+            data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;social_click&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;link&quot;,&quot;targetName&quot;:&quot;LinkedIn&quot;,&quot;destinationUrl&quot;:&quot;https:\/\/www.linkedin.com\/company\/seminole-state-college-of-florida&quot;}}"
+            href="https://www.linkedin.com/company/seminole-state-college-of-florida"><i class="fab fa-linkedin"
+                title="Network with us on LinkedIn"></i></a></div><div class="social-icon px-1 mx-1"><a data-ga-event-category="Mega-menu"
+            aria-label="Instagram Link"
+            data-ga-event-action="Instagram icon click"
+            data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;social_click&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;link&quot;,&quot;targetName&quot;:&quot;Instagram&quot;,&quot;destinationUrl&quot;:&quot;https:\/\/instagram.com\/seminolestate&quot;}}"
+            href="https://instagram.com/seminolestate"><i class="fab fa-instagram"
+                title="See us on Instagram"></i></a></div></div></div></div></div></div><a class="backToMegaNav tab-focus d-block btn-link btn-sm text-nowrap" href="#"><i class="fas fa-square-chevron-down fa-rotate-90"></i> Back</a></div><div class="tab-pane" id="about-tabcontent2" role="tabpanel"><div class="row"><div class="col col-md-4"><ul><li><a href="/altamonte-springs">Altamonte Springs</a></li><li><a href="/heathrow">Heathrow</a></li><li><a href="/oviedo">Oviedo</a></li><li><a href="/slm">Sanford / Lake Mary</a></li></ul></div><div class="col col-md-4 d-inline-flex justify-content-center"><div class="align-self-center"><a data-ga-event-category="Mega-menu"
+        data-ga-event-action="Interactive Maps Image Clicked"
+        data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;mega_menu_click&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;image&quot;,&quot;targetName&quot;:&quot;Interactive Campus Maps&quot;,&quot;destinationUrl&quot;:&quot;http:\/\/maps.seminolestate.edu&quot;}}"
+        href="http://maps.seminolestate.edu"><img class="img-fluid p-3 lazyload"
+            alt="Interactive Campus Maps"
+            src="/ssap/assets/source/website/utility/img-alt.png"
+            data-src="/ssap/assets/source/website/branding/interactiveMaps.svg"></a></div></div><div class="col col-md-4 d-inline-flex justify-content-center"><div class="align-self-center"><div class="form-group"><label class="ff-secondary text-primary fs-xxl fw-bold"><i class="fas fa-map-marker-alt fa-sm"></i> Directions
+        </label><input type="text"
+                class="form-control mb-2 px-2" id="startingLocation"
+                placeholder="Enter Starting Point"><div class="dropdown"><button class="btn btn-light btn-block text-left px-2 dropdown-toggle campus-directions"
+                    type="button"
+                    id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                Select Campus
+            </button><div class="dropdown-menu ff-tertiary w-100" aria-labelledby="dropdownMenuButton"><a class="dropdown-item px-2"
+                        data-address="Seminole State - Altamonte, 850 South SR 434, Altamonte Springs, Florida 32714"
+                        href="#">
+                    Altamonte Springs
+                </a><a class="dropdown-item px-2"
+                        data-address="Seminole State College, 1055 AAA Drive, Heathrow, FL 32746"
+                        href="#">
+                    Heathrow
+                </a><a class="dropdown-item px-2"
+                        data-address="Seminole State College - Oviedo, 2505 Lockwood Blvd, Oviedo, FL 32765"
+                        href="#">
+                    Oviedo
+                </a><a class="dropdown-item px-2"
+                        data-address="Seminole State College, 100 Weldon Boulevard, Sanford, Florida 32773-6199"
+                        href="#">
+                    Sanford/Lake Mary
+                </a></div></div><button type="button" class="btn btn-primary btn-block mb-0 jsCampusDirectionsButton">
+            Get Directions
+        </button></div></div></div></div><a class="backToMegaNav tab-focus d-block btn-link btn-sm text-nowrap" href="#"><i class="fas fa-square-chevron-down fa-rotate-90"></i> Back</a></div><div class="tab-pane" id="about-tabcontent3" role="tabpanel"><div class="row"><div class="col col-md-4"><ul><li><a href="/about/accreditations">Accreditation</a></li><li><a href="/ir">Facts &amp; Figures</a></li><li><a href="/about/history">College History</a></li><li><a href="/about">Administration</a></li></ul></div><div class="col col-md-4"><ul><li><a href="/become-a-student/more-info/faqs">FAQs</a></li><li><a href="/about/public-notices">Meetings &amp; Public Notices</a></li><li><a href="/hr/employment">Employment</a></li><li><a href="/about/employee-directory">Phone Directory</a></li></ul></div><div class="col col-md-4 d-inline-flex justify-content-center"><ul><li><a href="/security">Safety &amp; Security</a></li><li><a href="/sci"> Student Consumer Info</a></li><li><a href="/info/contact-us">Contact Us</a></li></ul></div></div><a class="backToMegaNav tab-focus d-block btn-link btn-sm text-nowrap" href="#"><i class="fas fa-square-chevron-down fa-rotate-90"></i> Back</a></div><div class="tab-pane" id="about-tabcontent4" role="tabpanel"><div class="row"><div class="col col-md-4"><ul><li><a href="/foundation">Foundation</a></li><li><a href="/scholarships">Scholarships</a></li><li><a href="/foundation/presidents-club">Presidents Club</a></li><li><a href="/foundation/blue-gold">Blue &amp; Gold Circle</a></li><li><a href="/alumni">Alumni</a></li></ul></div><div class="col col-md-4"><ul><li><a href="/athletics">Athletics</a></li><li><a href="/arts/events">Fine Arts Events</a></li><li><a href="/planet">Planetarium</a></li><li><a href="/cbd">Economic Development</a></li></ul></div><div class="col col-md-4 d-inline-flex justify-content-center"><div class="align-self-center"><a data-ga-event-category="Mega-menu"
+            data-ga-event-action="Speaker Series Image Clicked"
+            data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;mega_menu_click&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;image&quot;,&quot;targetName&quot;:&quot;Seminole State Speaker Series&quot;,&quot;destinationUrl&quot;:&quot;\/speaker-series&quot;}}"
+            href="/speaker-series"><img class="img-fluid p-1 lazyload"
+                alt="Seminole State Speaker Series"
+                src="/ssap/assets/source/website/utility/img-alt.png"
+                data-src="/ssap/assets/source/website/branding/nav-logo-speaker-series.svg"></a></div></div></div><a class="backToMegaNav tab-focus d-block btn-link btn-sm text-nowrap" href="#"><i class="fas fa-square-chevron-down fa-rotate-90"></i> Back</a></div></div></div></div></div><div class="mega two"><div class="container"><div class="row"><div class="col col-md-3 pl-0"><ul class="nav nav-tabs nav-tabs--vertical nav-tabs--left text-right" role="tablist"><li class="nav-item" role="presentation"><a href="#academics-tabcontent1" class="nav-link" data-toggle="tab" role="tab" aria-selected="true">
+                        Academics
+                    </a></li><li class="nav-item"><a href="#academics-tabcontent2" class="nav-link" data-toggle="tab" role="tab">
+                        Degree Programs
+                    </a></li><li class="nav-item"><a href="#academics-tabcontent3" class="nav-link" data-toggle="tab" role="tab">
+                        Adult Education
+                    </a></li><li class="nav-item"><a class="nav-link leaveMega d-block tab-focus" href="#"><i
+                                class="fas fa-square-chevron-down fa-rotate-180"></i> Leave Menu </a></li></ul></div><div class="tab-content col col-md-9"><div class="tab-pane show active" id="academics-tabcontent1" role="tabpanel"><div class="row"><div class="col col-md-4"><ul><li><a href="/catalog/programs">Search Degrees &amp; Programs</a></li><li><a href="/catalog/courses">Search Courses</a></li><li><a href="/catalog/student-info/general/academic-calendars">View Academic Calendar</a></li><li><a href="/catalog/student-info">Browse Student Information</a></li></ul></div><div class="col col-md-4 d-inline-flex justify-content-center"><div class="align-self-center"><a data-ga-event-category="Mega-menu"
+            data-ga-event-action="Grindle Honors Institute Image Clicked"
+            data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;mega_menu_click&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;image&quot;,&quot;targetName&quot;:&quot;Grindle Honors Institute&quot;,&quot;destinationUrl&quot;:&quot;\/honors&quot;}}"
+            href="/honors"><img class="img-fluid lazyload"
+                alt="Grindle Honors Institute"
+                src="/ssap/assets/source/website/utility/img-alt.png"
+                data-src="/ssap/assets/source/website/branding/nav-logo-grindle-honors-institute.svg"></a></div></div><div class="col col-md-4 d-inline-flex justify-content-center"><div class="align-self-center text-center"><a data-ga-event-category="Mega-menu"
+        data-ga-event-action="Catalog Image Clicked"
+        data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;mega_menu_click&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;image&quot;,&quot;targetName&quot;:&quot;View Online Catalog&quot;,&quot;destinationUrl&quot;:&quot;\/catalog&quot;}}"
+        href="/catalog"><img alt="2026-2027 Seminole State College Catalog"
+            class="mega-catalog mb-2 border border-gray lazyload"
+            src="/ssap/assets/source/website/utility/img-alt.png"
+            data-src="/media/catalog/thumbs/2026-2027.jpg?v=4"></a><br><a class="ff-tertiary"
+        data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;mega_menu_click&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;link&quot;,&quot;targetName&quot;:&quot;View Online Catalog&quot;,&quot;destinationUrl&quot;:&quot;\/catalog&quot;}}"
+        data-ga-event-category="Mega-menu"
+        data-ga-event-action="Catalog Link Clicked"
+        href="/catalog">
+    View Online Catalog
+</a></div></div></div><a class="backToMegaNav tab-focus d-block btn-link btn-sm text-nowrap" href="#"><i class="fas fa-square-chevron-down fa-rotate-90"></i> Back</a></div><div class="tab-pane" id="academics-tabcontent2" role="tabpanel"><div class="row"><div class="col col-md-4"><ul><li><a href="/become-a-student/what/aa-degree">Associate in Arts</a></li><li><a href="/become-a-student/what/as-degree">Associate in Science</a></li><li><a href="/become-a-student/what/bacc-degree">Bachelor's</a></li><li><a href="/become-a-student/what/certificates">Certificates</a></li></ul></div><div class="col col-md-8 d-inline-flex justify-content-center"><div class="align-self-center"><div class="mega-prog-search text-center"><div class="programSearchModule m-auto" style="max-width: 730px"><p class="ff-secondary fw-bold fs-xxxl text-primary text-center text-capitalize">
+            Find your program
+        </p><form class="text-center"
+            method="GET"
+            action="/ssap/cms/frontEnd/megaMenuProgramSearch"
+            name="megaMenuProgramSearch"><input name="megaMenuProgramSearchTerm[]" class="form-control show-for d-none d-lg-block"
+                placeholder="Enter a program name or keyword like &quot;Nursing&quot; or &quot;Construction&quot;"
+                type="search"><input name="megaMenuProgramSearchTerm[]" class="form-control d-block d-lg-none"
+                placeholder="Enter a program name or keyword"
+                type="search"><input data-ga-event-category="Mega-menu"
+                data-ga-event-action="Program Search Submitted"
+                data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;misc_click&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;form&quot;,&quot;targetName&quot;:&quot;Search Program Catalog&quot;,&quot;destinationUrl&quot;:&quot;N\/A&quot;}}"
+                name="submit"
+                type="submit"
+                class="btn mt-3 btn-primary"
+                title="Search Seminole State College of Florida's Program Catalog"
+                value="Search for Programs"></form></div></div></div></div></div><a class="backToMegaNav tab-focus d-block btn-link btn-sm text-nowrap" href="#"><i class="fas fa-square-chevron-down fa-rotate-90"></i> Back</a></div><div class="tab-pane" id="academics-tabcontent3" role="tabpanel"><div class="row"><div class="col col-md-4"><ul><li><a href="/ged-prep">GED&reg; Prep</a></li><li><a href="/adult-workforce">Adult &amp; Workforce Education</a></li><li><a href="/els">English Language Studies</a></li></ul></div><div class="col col-md-4 d-inline-flex justify-content-center"><div class="align-self-center"><a data-ga-event-category="Mega-menu"
+            data-ga-event-action="Learn English Now Image Clicked"
+            data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;mega_menu_click&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;image&quot;,&quot;targetName&quot;:&quot;Learn English Now&quot;,&quot;destinationUrl&quot;:&quot;\/els&quot;}}"
+            href="/els"><img class="img-fluid p-1 lazyload"
+                alt="Learn English Now"
+                src="/ssap/assets/source/website/utility/img-alt.png"
+                data-src="/ssap/assets/source/website/branding/nav-learn-english-now-eli.svg"></a></div></div><div class="col col-md-4 d-inline-flex justify-content-center"><div class="align-self-center text-center"><a data-ga-event-category="Mega-menu"
+        data-ga-event-action="Catalog Image Clicked"
+        data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;mega_menu_click&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;image&quot;,&quot;targetName&quot;:&quot;View Online Catalog&quot;,&quot;destinationUrl&quot;:&quot;\/catalog&quot;}}"
+        href="/catalog"><img alt="2026-2027 Seminole State College Catalog"
+            class="mega-catalog mb-2 border border-gray lazyload"
+            src="/ssap/assets/source/website/utility/img-alt.png"
+            data-src="/media/catalog/thumbs/2026-2027.jpg?v=4"></a><br><a class="ff-tertiary"
+        data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;mega_menu_click&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;link&quot;,&quot;targetName&quot;:&quot;View Online Catalog&quot;,&quot;destinationUrl&quot;:&quot;\/catalog&quot;}}"
+        data-ga-event-category="Mega-menu"
+        data-ga-event-action="Catalog Link Clicked"
+        href="/catalog">
+    View Online Catalog
+</a></div></div></div><a class="backToMegaNav tab-focus d-block btn-link btn-sm text-nowrap" href="#"><i class="fas fa-square-chevron-down fa-rotate-90"></i> Back</a></div></div></div></div></div><div class="mega three"><div class="container"><div class="row"><div class="col col-md-3 pl-0"><ul class="nav nav-tabs nav-tabs--vertical nav-tabs--left text-right" role="tablist"><li class="nav-item" role="presentation"><a href="#admissions-tabcontent1" class="nav-link" data-toggle="tab" role="tab"
+                            aria-selected="true">
+                        College Admission
+                    </a></li><li class="nav-item"><a href="#admissions-tabcontent2" class="nav-link" data-toggle="tab" role="tab">
+                        Enrollment
+                    </a></li><li class="nav-item"><a href="#admissions-tabcontent3" class="nav-link" data-toggle="tab" role="tab">
+                        Financial Aid
+                    </a></li><li class="nav-item"><a href="#admissions-tabcontent4" class="nav-link" data-toggle="tab" role="tab">
+                        International Students
+                    </a></li><li class="nav-item"><a class="nav-link leaveMega d-block tab-focus" href="#"><i
+                                class="fas fa-square-chevron-down fa-rotate-180"></i> Leave Menu </a></li></ul></div><div class="tab-content col col-md-9"><div class="tab-pane show active" id="admissions-tabcontent1" role="tabpanel"><div class="row"><div class="col col-md-4"><ul><li><a href="/become-a-student">Become a Student</a></li><li><a href="/become-a-student/what">What We Offer</a></li><li><a href="/go">Why Choose Us</a></li><li><a href="/become-a-student/more-info/contact-us">Contact Admissions</a></li></ul></div><div class="col col-md-4 d-inline-flex justify-content-center"><div class="align-self-center"><a data-ga-event-category="Mega-menu"
+            data-ga-event-action="Go All the Way Maps Image Clicked"
+            data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;mega_menu_click&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;image&quot;,&quot;targetName&quot;:&quot;Go All the Way&quot;,&quot;destinationUrl&quot;:&quot;\/become-a-student\/what\/bacc-degree&quot;}}"
+            href="/become-a-student/what/bacc-degree"><img class="img-fluid lazyload"
+                alt="Go All the Way: Seminole State Bachelor's Degrees"
+                src="/ssap/assets/source/website/utility/img-alt.png"
+                data-src="/ssap/assets/source/website/branding/goAllTheWay.svg"></a></div></div><div class="col col-md-4 d-inline-flex justify-content-center"><div class="align-self-center"><a data-ga-event-category="Mega-menu"
+        data-ga-event-action="Direct Connect Image Clicked"
+        data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;mega_menu_click&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;image&quot;,&quot;targetName&quot;:&quot;Direct Connect to UCF&quot;,&quot;destinationUrl&quot;:&quot;\/become-a-student\/why\/direct-connect&quot;}}"
+        href="/become-a-student/why/direct-connect"><img class="img-fluid p-1 lazyload"
+            alt="Direct Connect to UCF"
+            src="/ssap/assets/source/website/utility/img-alt.png"
+            data-src="/ssap/assets/source/website/branding/nav-logo-direct-connect-ucf-r.svg"></a></div></div></div><a class="backToMegaNav tab-focus d-block btn-link btn-sm text-nowrap" href="#"><i class="fas fa-square-chevron-down fa-rotate-90"></i> Back</a></div><div class="tab-pane" id="admissions-tabcontent2" role="tabpanel"><div class="row"><div class="col col-md-4"><ul><li><a href="/become-a-student/how">Steps to Enroll</a></li><li><a href="/registrar/online-forms">Online Forms</a></li><li><a href="/registrar">Enrollment Services</a></li><li><a href="/dual-enrollment">Dual Enrollment</a></li><li><a href="/veterans">Veteran Student Services</a></li></ul></div><div class="col col-md-4 d-inline-flex justify-content-center"><div class="align-self-center"><a data-ga-event-category="Mega-menu"
+            data-ga-event-action="Why Wait Go Now Apply Image Click"
+            data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;mega_menu_click&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;image&quot;,&quot;targetName&quot;:&quot;Why Wait? Go Now!&quot;,&quot;destinationUrl&quot;:&quot;\/apply-register&quot;}}"
+            href="/apply-register"><img class="img-fluid p-1 lazyload"
+                alt="Why Wait? Go Now!"
+                src="/ssap/assets/source/website/utility/img-alt.png"
+                data-src="/ssap/assets/source/website/branding/nav-why-wait-go-now.svg"></a></div></div><div class="col col-md-4 d-inline-flex justify-content-center"><div class="align-self-center"><a data-ga-event-category="Mega-menu"
+            data-ga-event-action="Military Friendly School Image Clicked"
+            href="/veterans/gem"><img class="img-fluid p-1 lazyload"
+                alt="A shield with an Air Force Themed star and text that reads, 'Community College of the Air Force"
+                src="/ssap/assets/source/website/utility/img-alt.png"
+                data-src="/ssap/assets/source/website/branding/ccaf.svg"></a></div></div></div><a class="backToMegaNav tab-focus d-block btn-link btn-sm text-nowrap" href="#"><i class="fas fa-square-chevron-down fa-rotate-90"></i> Back</a></div><div class="tab-pane" id="admissions-tabcontent3" role="tabpanel"><div class="row"><div class="col col-md-4"><ul><li><a href="/financial-aid">Financial Aid Overview</a></li><li><a href="/financial-aid/types-of-aid/scholarships">Scholarships</a></li><li><a href="/financial-aid/types-of-aid">Types of Aid</a></li><li><a href="/financial-aid/types-of-aid/work-study">Work Study Program</a></li><li><a href="/fafsa">FAFSA</a></li></ul></div><div class="col col-md-4"><ul><li><a href="/catalog/student-info/residency/fees">Current Fees</a></li><li><a href="/financial-aid/apply-for-aid">Apply for Aid</a></li><li><a href="/financial-aid/faq">FAQs</a></li><li><a href="/financial-aid/forms-2018-19">Forms</a></li><li><a href="/financial-aid/guidelines">Guidelines</a></li></ul></div><div class="col col-md-4 d-inline-flex justify-content-center"><div class="align-self-center"><a data-ga-event-category="Mega-menu"
+            data-ga-event-action="Paying for College Made Easy Image Clicked"
+            data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;mega_menu_click&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;image&quot;,&quot;targetName&quot;:&quot;Paying for College, made easy.&quot;,&quot;destinationUrl&quot;:&quot;\/paying-for-college&quot;}}"
+            href="/paying-for-college"><img class="img-fluid p-1 lazyload"
+                alt="Paying for College, made easy."
+                src="/ssap/assets/source/website/utility/img-alt.png"
+                data-src="/ssap/assets/source/website/branding/nav-paying-for-college-made-easy.svg"></a></div></div></div><a class="backToMegaNav tab-focus d-block btn-link btn-sm text-nowrap" href="#"><i class="fas fa-square-chevron-down fa-rotate-90"></i> Back</a></div><div class="tab-pane" id="admissions-tabcontent4" role="tabpanel"><div class="row"><div class="col col-md-4"><ul><li><a href="/iso">Programs of Study</a></li><li><a href="/eli">English Language Institute</a></li><li><a href="/security">Safety &amp; Security</a></li><li><a href="/iso/current">Current <span class="d-none d-xl-inline">International</span> Students</a></li><li><a href="/iso/future">Future Students</a></li></ul></div><div class="col col-md-4"><div class="align-self-center text-center"><a data-ga-event-category="Mega-menu"
+        data-ga-event-action="Catalog Image Clicked"
+        data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;mega_menu_click&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;image&quot;,&quot;targetName&quot;:&quot;View Online Catalog&quot;,&quot;destinationUrl&quot;:&quot;\/catalog&quot;}}"
+        href="/catalog"><img alt="2026-2027 Seminole State College Catalog"
+            class="mega-catalog mb-2 border border-gray lazyload"
+            src="/ssap/assets/source/website/utility/img-alt.png"
+            data-src="/media/catalog/thumbs/2026-2027.jpg?v=4"></a><br><a class="ff-tertiary"
+        data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;mega_menu_click&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;link&quot;,&quot;targetName&quot;:&quot;View Online Catalog&quot;,&quot;destinationUrl&quot;:&quot;\/catalog&quot;}}"
+        data-ga-event-category="Mega-menu"
+        data-ga-event-action="Catalog Link Clicked"
+        href="/catalog">
+    View Online Catalog
+</a></div></div><div class="col col-md-4 d-inline-flex justify-content-center"></div></div><a class="backToMegaNav tab-focus d-block btn-link btn-sm text-nowrap" href="#"><i class="fas fa-square-chevron-down fa-rotate-90"></i> Back</a></div></div></div></div></div><div class="mega four"><div class="container"><div class="row"><div class="col col-md-3 pl-0"><ul class="nav nav-tabs nav-tabs--vertical nav-tabs--left text-right" role="tablist"><li class="nav-item" role="presentation"><a href="#campusLife-tabcontent1" class="nav-link" data-toggle="tab" role="tab"
+                            aria-selected="true">
+                        Campus Life
+                    </a></li><li class="nav-item"><a href="#campusLife-tabcontent2" class="nav-link" data-toggle="tab" role="tab">
+                        Student Essentials
+                    </a></li><li class="nav-item"><a href="#campusLife-tabcontent3" class="nav-link" data-toggle="tab" role="tab">
+                        Student Support
+                    </a></li><li class="nav-item"><a href="#campusLife-tabcontent4" class="nav-link" data-toggle="tab" role="tab">
+                        Athletics
+                    </a></li><li class="nav-item"><a class="nav-link leaveMega d-block tab-focus" href="#"><i
+                                class="fas fa-square-chevron-down fa-rotate-180"></i> Leave Menu </a></li></ul></div><div class="tab-content col col-md-9"><div class="tab-pane show active" id="campusLife-tabcontent1" role="tabpanel"><div class="row"><div class="col col-md-4"><ul><li><a href="/student-life/activities">Student Activities</a></li><li><a href="/student-life/clubs">Clubs &amp; Organizations</a></li><li><a href="/intramural">Intramural Sports</a></li><li><a href="/wellness">Health and Wellness</a></li><li><a href="/student-life/leadership">Leadership Programs</a></li></ul></div><div class="col col-md-4"><ul><li><a href="/student-life/volunteer">Volunteering Opportunities</a></li><li><a href="/student-life/sga">Student Government</a></li></ul></div><div class="col col-md-4 d-inline-flex justify-content-center"><div class="align-self-center"><a data-ga-event-category="Mega-menu"
+        data-ga-event-action="Raider Connect Image Clicked"
+        data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;mega_menu_click&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;image&quot;,&quot;targetName&quot;:&quot;Raider Connect - Get Involved with clubs&quot;,&quot;destinationUrl&quot;:&quot;https:\/\/connect.seminolestate.edu&quot;}}"
+        href="https://connect.seminolestate.edu"><img class="img-fluid p-4 lazyload"
+            alt="Raider Connect - Get Involved with clubs"
+            src="/ssap/assets/source/website/utility/img-alt.png"
+            data-src="/ssap/assets/source/website/branding/raiderConnect.svg"></a></div></div></div><a class="backToMegaNav tab-focus d-block btn-link btn-sm text-nowrap" href="#"><i class="fas fa-square-chevron-down fa-rotate-90"></i> Back</a></div><div class="tab-pane" id="campusLife-tabcontent2" role="tabpanel"><div class="row"><div class="col col-md-4"><ul><li><a href=" /catalog/calendars">Academic Calendar</a></li><li><a href="/testing">Assessment &amp; Testing</a></li><li><a href="/idcard">Blue &amp; Gold Card</a></li><li><a href="/bookstore">Bookstore</a></li><li><a href="/dining">Campus Dining</a></li></ul></div><div class="col col-md-4"><ul><li><a href="/cts/computing-and-user-services/helpdesk">Computer Help Desk</a></li><li><a href="/graduation">Graduation Information</a></li><li><a href="/library">Library</a></li><li><a href="/online">Online Classes</a></li><li><a href="/catalog/student-info/residency/payment">Payments</a></li></ul></div><div class="col col-md-4"><ul><li><a href="/security">Safety &amp; Security</a></li><li><a href="/eservices">Student Services</a></li><li><a href="/text">Text Messaging</a></li><li><a href="/registrar/transcript-policies">Transcripts</a></li></ul></div></div><a class="backToMegaNav tab-focus d-block btn-link btn-sm text-nowrap" href="#"><i class="fas fa-square-chevron-down fa-rotate-90"></i> Back</a></div><div class="tab-pane" id="campusLife-tabcontent3" role="tabpanel"><div class="row"><div class="col col-md-4"><ul><li><a href="/counseling">Advising &amp; Counseling</a></li><li><a href="/testing">Assessment &amp; Testing</a></li><li><a href="/careers">Career Center</a></li><li><a href="/dss">Disability Support Services</a></li><li><a href="/registrar">Enrollment Services</a></li></ul></div><div class="col col-md-4"><ul><li><a href="/info/faq">FAQs</a></li><li><a href="/first-generation">First Generation Program</a></li><li><a href="/info/hours">Hours of Operation</a></li><li><a href="/library">Library</a></li></ul></div><div class="col col-md-4"><ul><li><a href="/ssap/testingCenter">Testing Center Scheduling</a></li><li><a href="/raider-care">RaiderCare</a></li><li><a href="/raider-support">Raider Support</a></li><li><a href="/academic-success">Tutoring &amp; Academic Help</a></li><li><a href="/counseling/workshops">Workshops &amp; Skill Sessions</a></li></ul></div></div><a class="backToMegaNav tab-focus d-block btn-link btn-sm text-nowrap" href="#"><i class="fas fa-square-chevron-down fa-rotate-90"></i> Back</a></div><div class="tab-pane" id="campusLife-tabcontent4" role="tabpanel"><div class="row"><div class="col col-md-4"><ul><li><a href="http://www.seminolestateraiders.com">
+            Athletics Website
+        </a></li><li><a href="http://www.seminolestateraiders.com/SportSelect.dbml?DB_OEM_ID=34200&SPID=185025&SPSID=1139083&DB_OEM_ID=34200">
+            Baseball
+        </a></li><li><a href="http://www.seminolestateraiders.com/SportSelect.dbml?DB_OEM_ID=34200&SPID=189909&SPSID=1172813&DB_OEM_ID=34200">
+            Cross Country
+        </a></li><li><a href="http://www.seminolestateraiders.com/SportSelect.dbml?DB_OEM_ID=34200&SPID=185010&SPSID=1139013&DB_OEM_ID=34200">
+            Golf
+        </a></li><li><a href="http://www.seminolestateraiders.com/SportSelect.dbml?DB_OEM_ID=34200&SPID=185019&SPSID=1139056&DB_OEM_ID=34200">
+            Softball
+        </a></li></ul></div><div class="col col-md-4"><div class="align-self-center"><a data-ga-event-category="Mega-menu"
+            data-ga-event-action="Raider Center Clicked"
+            data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;mega_menu_click&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;image&quot;,&quot;targetName&quot;:&quot;Raider Center&quot;,&quot;destinationUrl&quot;:&quot;\/wellness&quot;}}"
+            href="/wellness"><img class="img-fluid mr-md-0 ml-md-3 lazyload"
+                alt="Raider Center"
+                src="/ssap/assets/source/website/utility/img-alt.png"
+                data-src="/ssap/assets/source/website/branding/raider-center.svg"></a></div></div><div class="col col-md-4 d-inline-flex justify-content-center"><div class="align-self-center"><a data-ga-event-category="Mega-menu"
+        data-ga-event-action="Raider Athletics Logo Clicked"
+        data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;mega_menu_click&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;image&quot;,&quot;targetName&quot;:&quot;Seminole State Raiders Logo&quot;,&quot;destinationUrl&quot;:&quot;http:\/\/www.seminolestateraiders.com&quot;}}"
+        href="http://www.seminolestateraiders.com"><img class="img-fluid p-lg-2 p-xl-3 mr-md-0 ml-md-3 p-3 lazyload"
+            alt="Seminole State Raiders Logo with Ralley Raider"
+            src="/ssap/assets/source/website/utility/img-alt.png"
+            data-src="/ssap/assets/source/website/branding/logo-raiders-semst.svg"></a></div></div></div><a class="backToMegaNav tab-focus d-block btn-link btn-sm text-nowrap" href="#"><i class="fas fa-square-chevron-down fa-rotate-90"></i> Back</a></div></div></div></div></div></header>
+    <div class="contentWrapper">
+        
+        
+        
+    <div class="homePageYoutube"><div class="dropdown btn-group videoHeroOptions btn-group"><button aria-label="Pause or Play Video" class="btn" id="pausePlayToggle"><i class="fas fa-pause"></i></button><button aria-label="Video Options" class="btn dropdown-toggle" id="videoHeroOptions"
+                data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false" aria-label="More Video Options"><i class="fas fa-cog"></i></button><div class="dropdown-menu dropdown-menu-right" aria-labelledby="videoHeroOptions"><button class="dropdown-item pausePlayAllVideoHeroes">Disable Autoplay Videos</button></div></div><div class="goState" style="z-index: 1;"><span class="d-none d-md-block"><img class="heroOverlayImg" alt="Go State. Go Far." src="/ssap/assets/source/website/branding/goStateGoFar.svg"></span><span class="d-block d-md-none"><img class="heroOverlayImg" alt="Go State. Go Far." src="/ssap/assets/source/website/branding/goStateGoFar.svg"></span></div></div><div class="modal fade" id="autoPlayStateModal" tabindex="-1" role="dialog"
+        aria-hidden="true"><div class="modal-dialog modal-dialog-centered" role="document"><div class="modal-content bg-transparent shadow-none mb-4 overflow-hidden"><div class="modal-body py-0 d-md-flex text-center text-md-left align-items-top"><div><img class="playStateAnimation ml-3 lazyload" alt src="/ssap/assets/source/website/utility/img-alt.png"
+                            data-src="/ssap/assets/source/website/utility/play-animation-disabled.svg"></div><div class="px-0 ff-secondary fw-regular text-white"><p class="playStateNotification">
+                        Autoplay Videos have <span class="text-nowrap videoPlayState">been <i class="mr-1 globalPlayState">Disabled </i>  Sitewide</span></p></div></div></div></div></div><a href="#scrollFromVideo" class="text-decoration-none"
+        data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;home-page-event&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;div&quot;,&quot;targetName&quot;:&quot;Learn More&quot;,&quot;destinationUrl&quot;:&quot;#scrollFromVideo&quot;}}"
+        data-ga-event-category="window.location"
+        data-ga-event-action="Learn More Hero Scroll clicked"><div class="learnMore">Learn More <br><i class="far fa-chevron-down"></i></div></a><div id="scrollFromVideo" style="position: absolute; margin-top:2px;"></div><script src="/ssap/assets/source/vendor/youtube-background/1.0.8/youtube-background.min.js"></script><script>
+    $(function () {
+
+        if ((sessionStorage.getItem('heroVideoAutoPlayPaused-' + window.location.pathname) !== null) ||
+            (localStorage.getItem('heroVideoAutoPlayPausedGlobal') !== null)) {
+            var $pauseState = 'data-ytbg-autoplay="false"';
+        } else {
+            var $pauseState = '';
+        }
+
+        $('.homePageYoutube').append(
+            '<div ' + $pauseState +
+            ' data-ytbg-play-button="true" data-ytbg-mobile="true" data-youtube="https://youtu.be/9hVNXNq_JO4"></div>');
+
+        $('[data-youtube]').youtube_background();
+        $('.youtube-background iframe').attr('title', 'Video Background')
+    });
+
+    //Smooth scrolling with links
+    $('a[href*=\\#scrollFromVideo]').on('click', function (event) {
+        event.preventDefault();
+        $('html,body').animate({scrollTop: $(this.hash).offset().top}, 510);
+    });
+</script><script src="/ssap/assets/compiled/cms/js/cmsSiteSeminoleStateBundle/autoPlayHeroVideoYouTube-7aa75b6ff5.js"></script><h1 class="visibly-hidden">Seminole State College of Florida</h1><div class="container"><div class="row"><div class="col-12"><div class="headingSection pt-5 pb-5 pb-sm-0"><div class="d-flex flex-column align-items-center py-3 py-sm-4 py-md-5"><h2 class="text-center text-primary text-balance fs-xxl">
+                        Seminole State is Your Learning Partner for Career Success
+                    </h2><p class="text-center text-balance mb-0">
+                        By fostering a career-long relationship with students and
+                        community members, Seminole State will be a trusted
+                        partner throughout college and career journeys.</p></div></div></div></div></div><div class="main-content p-0"><div class="newsroomContainer jsScrollAnalytic"
+                    data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;item_scrolled&quot;,&quot;category&quot;:&quot;scrollEvent&quot;,&quot;targetType&quot;:&quot;div&quot;,&quot;targetName&quot;:&quot;Newsroom&quot;,&quot;destinationUrl&quot;:&quot;N\/A&quot;}}"
+                    data-ga-scroll-category="window.location"
+                    data-ga-scroll-action="Element scrolled"
+                    data-ga-scroll-label="Newsroom"><div class="article"><div class="blockLocation"
+        data-container-id="/cms/sites/Seminole State/content/Blocks/content"
+        data-location="content"
+        data-can-drag="1"><div class="blocks"><div class="row"><div class="col-lg-12"><span class="position-absolute mt-n5" id="module-news-room-home-page-59946869-5765-4b77-9701-b63468f47de9"></span><div class="container newsroomHomepage mt-3 mt-sm-5 mb-sm-3"><div class="row"><div class="col-12 col-lg-5 px-lg-0 mb-0"><div class="d-flex flex-column justify-content-between mb-0"><div class="d-flex flex-row justify-content-between mb-lg-3"><div class="newsroomCallToAction itemBoxShadow bg-primary d-flex flex-column justify-content-around flex-start p-4 aos-init aos-animate"
+        data-aos="flip-right" data-aos-duration="1000" data-aos-delay="100"><div class="heading fs-xxxl text-white ff-secondary mb-2 text-balance">
+        Rally to Register: Spring Term Classes Start Jan. 11
+    </div><div class="subheading text-white mb-3 text-balance">
+        Get the schedule you want!
+    </div><div class="callToActionButton"><a href="https://www.seminolestate.edu/r2r"
+                class="btn btn-secondary"
+                data-ga-event-category="window.location"
+                data-ga-event-action="Call to action button, 'Register Now' clicked">
+            Register Now
+        </a></div></div></div><div class="d-flex flex-row justify-content-between mb-3"><div class="newsroomCard card w-100 mt-3 mt-lg-0 border-0 itemBoxShadow px-0 aos-init aos-animate"
+        data-aos="flip-left" data-aos-duration="1000" data-aos-delay="100"><a href="/newsroom/article/6566/celebrate-the-holiday-season-2026" tabindex="-1"><img class="card-img-top darken-hover lazyload"
+                alt="Holiday Concerts 2026"
+                title="Holiday Concerts 2026"
+                src="/ssap/assets/source/website/utility/img-alt.png"
+                data-src="https://www.seminolestate.edu/ssap/newsRoom/image/viewChild/15429.jpg
+"></a><div class="px-3 py-3 bg-white text-primary text-balance"><a href="/newsroom/article/6566/celebrate-the-holiday-season-2026" class="card-title fw-bold mb-0">Celebrate the holiday season with music at Seminole State</a></div></div><div class="px-2"></div><div class="newsroomCard card w-100 mt-3 mt-lg-0 border-0 itemBoxShadow px-0 aos-init aos-animate"
+        data-aos="flip-left" data-aos-duration="1000" data-aos-delay="100"><a href="/newsroom/article/6565/first-gen-2026" tabindex="-1"><img class="card-img-top darken-hover lazyload"
+                alt="Seminole State College serves more than 2,000 first-generation college students."
+                title="Seminole State College serves more than 2,000 first-generation college students."
+                src="/ssap/assets/source/website/utility/img-alt.png"
+                data-src="https://www.seminolestate.edu/ssap/newsRoom/image/viewChild/15410.jpg
+"></a><div class="px-3 py-3 bg-white text-primary text-balance"><a href="/newsroom/article/6565/first-gen-2026" class="card-title fw-bold mb-0">First Generation program: building confidence in the classroom and beyond</a></div></div></div></div></div><div class="col-12 col-lg-7 mb-0"><div class="d-flex flex-row justify-content-between"><div class="featured group w-100 aos-init aos-animate" data-aos="flip-left"
+                        data-aos-duration="1000"
+                        data-aos-delay="200"><a href="/newsroom/article/6567/nacce-college-of-the-year"
+                            tabindex="-1"
+                            title="Seminole State College honored as an Entrepreneurial College of the Year"><div class="homePageFeatured featured-item darken-hover d-flex flex-column justify-content-between"><img class="img-alt lazyloaded"
+                                    src="/ssap/assets/source/website/utility/img-alt.png"
+                                    data-src="/ssap/assets/source/website/utility/img-alt.png"
+                                    alt="Professor David Moradian (right) accepts the Entrepreneurial College of the Year Award for Seminole State College at the 2026 NACCE Annual Conference."
+                                    title="Professor David Moradian (right) accepts the Entrepreneurial College of the Year Award for Seminole State College at the 2026 NACCE Annual Conference."></div></a><style>
+    .homePageFeatured {
+        /* Default Mobile size */
+        background-image: url(https://www.seminolestate.edu/ssap/newsRoom/image/viewChild/15437.jpg
+);
+
+        @media (min-width: 576px) {
+            background-image: url(https://www.seminolestate.edu/ssap/newsRoom/image/viewChild/15438.jpg
+)
+        }
+    }
+</style><div class="featured-item-content"><div class="category ff-tertiary mb-1"><a href="/newsroom/category/31/news">
+            News
+        </a>
+         |             <a href="/newsroom/category/39/awards">
+            Awards
+        </a></div><div class="title text-balance"><a class="fw-bold" href="/newsroom/article/6567/nacce-college-of-the-year">
+        Seminole State College honored as an Entrepreneurial College of the Year
+</a></div></div></div></div></div></div><div class="w-100 text-right mt-2 mt-lg-1"><a class="ff-tertiary fw-regular fs-lg fw-bold"
+                data-aos="fade-left" data-aos-duration="1000" data-aos-delay="400" href="/newsroom"
+                data-ga-event-category="window.location"
+                data-ga-event-action="More News Newsroom Widget Link Clicked">
+            More News <i class="fas fa-chevron-double-right fa-xs"></i></a></div></div></div></div></div></div></div></div><div class="getReady lazyload d-flex flex-row-reverse align-items-center jsScrollAnalytic"
+        data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;item_scrolled&quot;,&quot;category&quot;:&quot;scrollEvent&quot;,&quot;targetType&quot;:&quot;div&quot;,&quot;targetName&quot;:&quot;Get ready&quot;,&quot;destinationUrl&quot;:&quot;N\/A&quot;}}"
+        data-ga-scroll-category="window.location"
+        data-ga-scroll-action="Element scrolled"
+        data-ga-scroll-label="Get ready"><div class="container d-flex flex-row-reverse align-items-center"><div class="getReadyText d-flex flex-column justify-content-right mx-5"><img class="w-100 getReadyImg lazyload aos-animate"
+                    alt="Get Ready"
+                    data-aos="fade-up" data-aos-duration="500" data-aos-delay="0"
+                    src="/ssap/assets/source/website/utility/img-alt.png"
+                    data-src="/ssap/assets/source/website/homepage/getReady.svg"><img class="w-100 somethingBig lazyload aos-animate"
+                    alt="This could be the start of something big"
+                    data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500"
+                    src="/ssap/assets/source/website/utility/img-alt.png"
+                    data-src="/ssap/assets/source/website/homepage/makeSomethingBig.svg"><div class="text-right pr-3 mt-2"><a class="btn btn-outline-light aos-animate"
+                        data-aos="fade-up"
+                        data-aos-duration="1200"
+                        data-aos-delay="500"
+                        data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;home-page-event&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;link&quot;,&quot;targetName&quot;:&quot;Apply to Seminole State&quot;,&quot;destinationUrl&quot;:&quot;\/ssap\/admission\/student\/apply&quot;}}"
+                        data-ga-event-category="window.location"
+                        data-ga-event-action="Get Ready Apply button clicked"
+                        href="/ssap/admission/student/apply">
+                    Apply to Seminole State
+                </a></div></div></div></div><script>
+    $(function () {
+        if (window.matchMedia('(max-width: 767px)').matches) {
+            $('div[data-aos-delay]').each(function () {
+                $(this).attr('data-aos-delay', '100');
+            });
+        }
+
+        // Check to see if the user has Reduced Motion on.
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            // If reduced motion, remove the attributes
+            $('[data-aos]').removeAttr('data-aos');
+        } else {
+            // Otherwise, animate it up!
+            AOS.init();
+        }
+    });
+</script><link href="assets/css/aos/2.3.4/aos.css" rel="stylesheet" /><script defer src="/ssap/assets/source/vendor/aos/2.3.4/aos.js"></script><script defer src="/ssap/assets/source/vendor/waypoints/4.0.1/jquery.waypoints.min.js"></script><script defer src="/ssap/assets/source/vendor/counterUp2/2.0.0/counterUp2.js"></script><div class="buildingRaiders jsScrollAnalytic"
+        data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;item_scrolled&quot;,&quot;category&quot;:&quot;scrollEvent&quot;,&quot;targetType&quot;:&quot;div&quot;,&quot;targetName&quot;:&quot;Building Raiders&quot;,&quot;destinationUrl&quot;:&quot;N\/A&quot;}}"
+        data-ga-scroll-category="window.location"
+        data-ga-scroll-action="Element scrolled"
+        data-ga-scroll-label="Building Raiders"><div class="container"><div class="row px-3 py-4 p-sm-0 justify-content-center"><div class="col-xl-3 d-sm-none d-xl-flex flex-column text-center justify-content-center pt-3 pt-md-0 px-5 px-md-0 pl-lg-5"><img class="raiderLogo w-100 aos-init lazyload"
+                        alt="Raiders logo"
+                        data-aos="fade-up" data-aos-duration="1000"
+                        data-aos-delay="200"
+                        src="/ssap/assets/source/website/homepage/logo-raiders-LAZY.png"
+                        data-src="/ssap/assets/source/website/homepage/logo-raiders.svg"></div><div class="col-sm-6 col-lg-6 col-xl-5 d-flex justify-content-center flex-column py-3 pr-sm-0 pl-lg-3 pl-xl-5"
+                    data-aos="fade-up"
+                    data-aos-duration="1000"
+                    data-aos-delay="600"><h2 class="text-secondary ml-3 mb-0 mt-2 mt-sm-0">Building Raiders</h2><p class="ml-3 mb-0">
+                    Once you become a Seminole State student, you’re automatically a member of the (unofficial…but we’ll
+                    count it anyway) Raider fan club, which means free admission to all Raider home events! Raider
+                    Athletics competes in five National Junior College Athletic Association (NJCAA) sports and is a
+                    member of the Florida College System Activities Association/Mid-Florida Conference. <br><a class="btn fs-lg mt-1 pl-0 text-white fw-bold"
+                            data-ga-event-category="window.location"
+                            data-ga-event-action="Building Raiders 'Athletics' link clicked"
+                            data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;home-page-event&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;link&quot;,&quot;targetName&quot;:&quot;Raider Athletics&quot;,&quot;destinationUrl&quot;:&quot;https:\/\/seminolestateraiders.com&quot;}}"
+                            href="https://seminolestateraiders.com">
+                        Raider Athletics <i class="fas fa-chevron-double-right fa-xs"></i></a></p></div><div class="col-sm-6 col-lg-6 col-xl-4 d-none d-sm-flex justify-content-center align-items-end flex-end"><img class="rallyRallyRally w-100 aos-init lazyload"
+                        alt="Rally, Seminole State's Mascot, with his arms crossed, wearing a Jersey"
+                        data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0" src="/ssap/assets/source/website/homepage/rally-outlined-wtrans-LAZY.png"
+                        data-src="/ssap/assets/source/website/homepage/rally-outlined-wtrans.png"></div></div></div></div><a href="http://maps.seminolestate.edu/"
+        class="interactiveCampusMapsAnchor"
+        aria-label="Campus Maps"
+        title="Go Explore Campus Maps!"
+        target="_blank"
+        data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;home-page-event&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;link&quot;,&quot;targetName&quot;:&quot;Go Explore Campus Maps&quot;,&quot;destinationUrl&quot;:&quot;http:\/\/maps.seminolestate.edu\/&quot;}}"
+        data-ga-event-category="window.location"
+        data-ga-event-action="Go Explore Campus Maps on Homepage Clicked"><div class="interactiveMapsGoExplore lazyload jsScrollAnalytic"
+            data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;item_scrolled&quot;,&quot;category&quot;:&quot;scrollEvent&quot;,&quot;targetType&quot;:&quot;div&quot;,&quot;targetName&quot;:&quot;Interactive Maps Go Explore&quot;,&quot;destinationUrl&quot;:&quot;N\/A&quot;}}"
+            data-ga-scroll-category="window.location"
+            data-ga-scroll-action="Element scrolled"
+            data-ga-scroll-label="Interactive Maps Go Explore Module"><div class="container d-flex align-items-center"><img class="w-100 interactiveCampusMaps p-3 p-md-0 lazyload aos-animate"
+                    alt="Interactive Campus Maps. Go explore!"
+                    data-aos="fade-up" data-aos-duration="500" data-aos-delay="0"
+                    src="/ssap/assets/source/website/homepage/interactiveMaps-LAZY.png"
+                    data-src="/ssap/assets/source/website/branding/interactiveMaps-white.svg"></div></div></a><div class="whySeminoleSection lazyload jsScrollAnalytic"
+        data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;item_scrolled&quot;,&quot;category&quot;:&quot;scrollEvent&quot;,&quot;targetType&quot;:&quot;div&quot;,&quot;targetName&quot;:&quot;Why Seminole State&quot;,&quot;destinationUrl&quot;:&quot;N\/A&quot;}}"
+        data-ga-scroll-category="window.location"
+        data-ga-scroll-action="Element scrolled"
+        data-ga-scroll-label="Why Seminole State Module"><div class="container whySeminoleStateStats my-n4 mt-md-4 mb-md-0 pb-1 pb-md-3"><div class="row d-flex flex-row align-items-center"><div class="col-lg-3 p-0 pl-lg-3"><div class="whySemImages d-flex align-items-center flex-lg-column mb-3"
+                        data-aos="fade-right" data-aos-duration="1000"><div class="d-none d-lg-block col-7 col-lg-12 px-0 text-center"><img class="w-100 whySolo" src="/ssap/assets/source/website/homepage/why-semst-sm.svg" alt="Why"></div><div class="d-none d-lg-block col-5 col-lg-12 px-1 text-center"><img class="w-100 semState" src="/ssap/assets/source/website/go/why-semst2.svg" alt="Seminole State"></div><div class="d-flex d-lg-none col-lg-12 text-center px-0"><img class="w-100 semStateFull" src="/ssap/assets/source/website/homepage/whySem-fullWidth-solid.svg"
+                                alt="Seminole State"></div></div></div><div class="col-lg-9 ml-sm-3 ml-md-0 ml-lg-0 row px-1 px-0 px-lg-3"><div class="col-md-6 px-0 px-lg-3"><div class="col-md-6"><div class="d-flex flex-row align-items-center mb-3 text-primary ff-tertiary"
+                                data-aos="fade-right" data-aos-duration="1000"><div><img alt="Graduation Cap Icon"
+                                        class="icon lazyload"
+                                        src="/ssap/assets/source/website/utility/img-alt.png"
+                                        data-src="/ssap/assets/source/website/go/icon-gradcap.svg"></div><div class="statNumber counter">200+</div><div class="statText text-uppercase ml-2"><span class="text-nowrap">Degree & Certificate</span><br><span class="text-nowrap fw-bold">Programs</span></div></div></div><div class="col-md-6"><div class="d-flex flex-row align-items-center mb-3 text-primary ff-tertiary"
+                                data-aos="fade-left" data-aos-duration="1000"><div><img alt="Backpack Icon"
+                                        class="icon lazyload"
+                                        src="/ssap/assets/source/website/utility/img-alt.png"
+                                        data-src="/ssap/assets/source/website/go/icon-backpack.svg"></div><div class="statNumber counter">22K</div><div class="statText text-uppercase ml-2"><span class="text-nowrap">Full & Part-Time</span><br><span class="text-nowrap fw-bold">Students</span></div></div></div></div><div class="col-md-6 px-0 px-lg-3"><div class="col-md-6"><div class="d-flex flex-row align-items-center mb-3 text-primary ff-tertiary"
+                                data-aos="fade-right" data-aos-duration="1000" data-aos-delay="250"><div><img alt="Globe Icon"
+                                        class="icon lazyload"
+                                        src="/ssap/assets/source/website/utility/img-alt.png"
+                                        data-src="/ssap/assets/source/website/go/icon-globe.svg"></div><div class="statNumber counter">98.5%</div><div class="statText text-uppercase ml-2"><span class="text-nowrap">Placement Rate</span><br><span class="text-nowrap fw-bold">for A.S. Graduates</span></div></div></div><div class="col-md-6"><div class="d-flex flex-row align-items-center mb-3 text-primary ff-tertiary"
+                                data-aos="fade-left" data-aos-duration="1000" data-aos-delay="250"><div><img alt="Salary Icon"
+                                        class="icon lazyload"
+                                        src="/ssap/assets/source/website/utility/img-alt.png"
+                                        data-src="/ssap/assets/source/website/go/icon-salary.svg"></div><div class="statNumber counter">$53K</div><div class="statText text-uppercase ml-2"><span class="text-nowrap">Average Graduate</span><br><span class="text-nowrap fw-bold">Starting Salary</span></div></div></div></div><div class="col-12 text-center" data-aos="fade-up"
+                        data-aos-duration="1000" data-aos-delay="250"><a href="/go"
+                            data-ga-event-category="window.location"
+                            data-ga-event-action="Why Seminole State Learn More button clicked"
+                            data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;home-page-event&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;link&quot;,&quot;targetName&quot;:&quot;Learn More About Seminole State&quot;,&quot;destinationUrl&quot;:&quot;\/go&quot;}}"
+                            class="btn btn-accent2 mt-3 text-nowrap">
+                        Learn More About Seminole State
+                    </a></div></div></div></div></div><div class="orlandoSkyline jsScrollAnalytic"
+        data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;item_scrolled&quot;,&quot;category&quot;:&quot;scrollEvent&quot;,&quot;targetType&quot;:&quot;div&quot;,&quot;targetName&quot;:&quot;Orlando Skyline&quot;,&quot;destinationUrl&quot;:&quot;N\/A&quot;}}"
+        data-ga-scroll-category="window.location"
+        data-ga-scroll-action="Element scrolled"
+        data-ga-scroll-label="Orlando Skyline"><picture><source media="(min-width: 2000px)"
+                srcset="/ssap/assets/source/website/homepage/orlando-3xl-matte.png"><source media="(min-width: 1500px)"
+                srcset="/ssap/assets/source/website/homepage/orlando-xxl-matte.png"><source media="(min-width: 1000px)"
+                srcset="/ssap/assets/source/website/homepage/orlando-lg-matte.png"><source media="(min-width: 750px)"
+                srcset="/ssap/assets/source/website/homepage/orlando-md-matte.png"><source media="(min-width: 1px)"
+                srcset="/ssap/assets/source/website/homepage/orlando-sm-matte.png"><img class="skyline img-fluid lazyload"
+                alt="Orlando Skyline with Lake Eola in the foreground"
+                src="/ssap/assets/source/website/utility/img-alt.png"
+                data-src="/ssap/assets/source/website/homepage/orlando-xxl-matte.png"></picture><img class="orlandoText img-fluid lazyload"
+            alt="Orlando in a cursive font"
+            data-aos="fade-up"
+            data-aos-easing="ease-out-cubic"
+            data-aos-delay="7500"
+            data-aos-anchor-placement="center-center"
+            src="/ssap/assets/source/website/utility/img-alt.png"
+            data-src="/ssap/assets/source/website/homepage/orlando.svg"></div><div class="boredNotHereHolder jsScrollAnalytic"
+        data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;item_scrolled&quot;,&quot;category&quot;:&quot;scrollEvent&quot;,&quot;targetType&quot;:&quot;div&quot;,&quot;targetName&quot;:&quot;Bored? Not here&quot;,&quot;destinationUrl&quot;:&quot;N\/A&quot;}}"
+        data-ga-scroll-category="window.location"
+        data-ga-scroll-action="Element scrolled"
+        data-ga-scroll-label="Bored? Not here"><div class="container boredNotHere"><div class="row my-3 my-md-0"><div class="col-md-5 col-lg-7 d-flex flex-column justify-content-center px-lg-5"><div class="d-flex flex-column justify-content-center py-3 aos-init"
+                        data-aos="fade-up"
+                        data-aos-duration="1000"
+                        data-aos-delay="0"
+                        data-aos-easing="ease-out-cubic"><div><h2 class="text-accent2">What makes studying in <span class="text-nowrap">Central Florida so perfect?</span></h2></div><p class="mb-0">The Orlando area has a variety of attractions,
+                        from beaches ready for splashing to scenic parks perfect for biking to world-famous theme parks.
+                        Then there are the “everyday” diversions, like a vibrant arts and performance culture that
+                        celebrates all things creative, from art gallery openings to museums to high-profile musical
+                        artists.
+                    </p></div></div><div class="col-md-7 col-lg-5 mb-3 mb-md-0 text-center"><img class="w-100 lazyload"
+                        src="/ssap/assets/source/website/homepage/bored-not-here-all-LAZY.png"
+                        alt="INFOGRAPHIC: Bored? Not here. Ways to unwind and rewind. 50 Performance Arts Theatres. 13 Zoos and Aquariums. 11 Bowling Alleys. 47 Amusement, Theme and Water Parks. 6 Biking Trails. 105 Golf Courses. 22 Art Galleries. 12 Sorts Complexes."
+                        data-src="/ssap/assets/source/website/homepage/bored-not-here-all.svg"
+                ></div></div></div></div><div class="findDegree d-flex align-content-center justify-content-center p-5 lazyload jsScrollAnalytic"
+        data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;item_scrolled&quot;,&quot;category&quot;:&quot;scrollEvent&quot;,&quot;targetType&quot;:&quot;div&quot;,&quot;targetName&quot;:&quot;Find your degree&quot;,&quot;destinationUrl&quot;:&quot;N\/A&quot;}}"
+        data-ga-scroll-category="window.location"
+        data-ga-scroll-action="Element scrolled"
+        data-ga-scroll-label="Find your degree"><div class="d-flex align-items-center"><div class="findDegreeForm px-4 py-3 text-center aos-init"
+                data-aos="fade-up"
+                data-aos-delay="0"
+                data-aos-easing="ease-out-cubic"
+                data-aos-anchor-placement="center-center"><div class="programSearchModule m-auto" style="max-width: 730px"><p class="ff-secondary fw-bold fs-xxxl text-primary text-center text-capitalize">
+            Find your program
+        </p><form class="text-center"
+            method="GET"
+            action="/ssap/cms/frontEnd/megaMenuProgramSearch"
+            name="megaMenuProgramSearch"><input name="megaMenuProgramSearchTerm[]" class="form-control show-for d-none d-lg-block"
+                placeholder="Enter a program name or keyword like &quot;Nursing&quot; or &quot;Construction&quot;"
+                type="search"><input name="megaMenuProgramSearchTerm[]" class="form-control d-block d-lg-none"
+                placeholder="Enter a program name or keyword"
+                type="search"><input data-ga-event-category="Mega-menu"
+                data-ga-event-action="Program Search Submitted"
+                data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;misc_click&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;form&quot;,&quot;targetName&quot;:&quot;Search Program Catalog&quot;,&quot;destinationUrl&quot;:&quot;N\/A&quot;}}"
+                name="submit"
+                type="submit"
+                class="btn mt-3 btn-primary"
+                title="Search Seminole State College of Florida's Program Catalog"
+                value="Search for Programs"></form></div></div></div></div><script>
+    // We need to only show one of the 4 profiles, here.
+    // We would use TWIG, however the cache is the issue
+    // So on load, we generate a random number 1-4
+    $(function () {
+        var $randomNumber = randomNumberFromRange(1, 4);
+
+        // We make that random number the randomNumber var
+        function randomNumberFromRange(min, max) {
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        }
+
+        $('.findDegree').addClass('bg' + $randomNumber);
+    });
+</script><div class="mb-n3"><div class="jsScrollAnalytic"
+        data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;item_scrolled&quot;,&quot;category&quot;:&quot;scrollEvent&quot;,&quot;targetType&quot;:&quot;div&quot;,&quot;targetName&quot;:&quot;Spotlight&quot;,&quot;destinationUrl&quot;:&quot;N\/A&quot;}}"
+        data-ga-scroll-category="window.location"
+        data-ga-scroll-action="Element scrolled"
+        data-ga-scroll-label="Spotlight"><div class="spotlight d-none "><div class="container"><div class="row"><div class="col-12 px-0"><div class="d-md-flex"><div class="col-md-6 spotlightImgHolder px-0 d-flex align-items-center "><picture><source media="(min-width: 1200px)"
+                                    srcset="/ssap/assets/source/website/homepage/1-expanding-lg.jpg"><source media="(min-width: 768px)"
+                                    srcset="/ssap/assets/source/website/homepage/1-expanding-md.jpg"><source media="(min-width: 1px)"
+                                    srcset="/ssap/assets/source/website/homepage/1-expanding-sm.jpg"><img class="img-fluid lazyload"
+                                    alt="A woman standing in the foreground with networking equipment behind her"
+                                    src="/ssap/assets/source/website/utility/img-alt.png"></picture></div><div class="col-md-6 spotlightContentHolder d-flex flex-column justify-content-center align-items-center align-items-md-left "><img class="img-fluid mt-3 mt-md-0"
+                                alt="Expanding the Field"
+                                src="/ssap/assets/source/website/homepage/expanding-the-field.svg"><p class="p-3 mt-3 ml-lg-3">
+                            Dr. Janell Robinson knows that a well-built network is important not only for computers, but people too. She aims to include more women and people of color into STEM areas and designed the curriculum for former Orlando Magic forward Aaron Gordon’s inaugural CodeOrlando summer camp for underprivileged youth.
+                                                                                        <br><a class="btn fs-lg mt-1 pl-0 fw-bold text-primary"
+                                        data-ga-event-category="window.location"
+                                        data-ga-event-action="Expanding the Field 'Read Full Profile' link clicked"
+                                        href="/newsroom/article/6070/faculty-spotlight-ist-professor-making-a-path-for-students-in-stem">
+                                    Read Full Profile <i class="fas fa-chevron-double-right fa-xs"></i></a></p></div></div></div></div></div></div><div class="spotlight d-none primary"><div class="container"><div class="row"><div class="col-12 px-0"><div class="d-md-flex"><div class="col-md-6 spotlightImgHolder px-0 d-flex align-items-center order-1"><picture><source media="(min-width: 1200px)"
+                                    srcset="/ssap/assets/source/website/homepage/2-learning-lg.jpg"><source media="(min-width: 768px)"
+                                    srcset="/ssap/assets/source/website/homepage/2-learning-md.jpg"><source media="(min-width: 1px)"
+                                    srcset="/ssap/assets/source/website/homepage/2-learning-sm.jpg"><img class="img-fluid lazyload"
+                                    alt="A woman taking a phone photo of a man cutting wrapping paper"
+                                    src="/ssap/assets/source/website/utility/img-alt.png"></picture></div><div class="col-md-6 spotlightContentHolder d-flex flex-column justify-content-center align-items-center align-items-md-left order-0"><img class="img-fluid mt-3 mt-md-0"
+                                alt="Learning the Business"
+                                src="/ssap/assets/source/website/homepage/learning-the-business.svg"><p class="p-3 mt-3 ml-lg-3">
+                            Rachel Yang is getting a hands-on education while pursuing her bachelor’s degree. As a part of the work-study program, Rachel is working with the College’s Marketing and Communications team on everything from snapping the perfect Instagram photo for the College’s platforms to volunteering at events on campus.
+                                                                                </p></div></div></div></div></div></div><div class="spotlight d-none "><div class="container"><div class="row"><div class="col-12 px-0"><div class="d-md-flex"><div class="col-md-6 spotlightImgHolder px-0 d-flex align-items-center "><picture><source media="(min-width: 1200px)"
+                                    srcset="/ssap/assets/source/website/homepage/3-world-lg.jpg"><source media="(min-width: 768px)"
+                                    srcset="/ssap/assets/source/website/homepage/3-world-md.jpg"><source media="(min-width: 1px)"
+                                    srcset="/ssap/assets/source/website/homepage/3-world-sm.jpg"><img class="img-fluid lazyload"
+                                    alt="A man in the foreground holding an advanced camera setup in a impoverished area of the world"
+                                    src="/ssap/assets/source/website/utility/img-alt.png"></picture></div><div class="col-md-6 spotlightContentHolder d-flex flex-column justify-content-center align-items-center align-items-md-left "><img class="img-fluid mt-3 mt-md-0"
+                                alt="Around The World"
+                                src="/ssap/assets/source/website/homepage/around-the-world.svg"><p class="p-3 mt-3 ml-lg-3">
+                            Brandon Widener made his childhood dream come true. After watching “The Lion King” as a child, he fell in love with the film industry. Attending Seminole State and completing his associate degree in multimedia technology gave Brandon the skills he needed to land a job working for Disney XD in Los Angeles.
+                                                                                        <br><a class="btn fs-lg mt-1 pl-0 fw-bold text-primary"
+                                        data-ga-event-category="window.location"
+                                        data-ga-event-action="Around The World 'Read Full Profile' link clicked"
+                                        href="/newsroom/article/5993/alumni-profile-alumnus-chases-successful-film-career-across-the-globe">
+                                    Read Full Profile <i class="fas fa-chevron-double-right fa-xs"></i></a></p></div></div></div></div></div></div><div class="spotlight d-none primary"><div class="container"><div class="row"><div class="col-12 px-0"><div class="d-md-flex"><div class="col-md-6 spotlightImgHolder px-0 d-flex align-items-center order-1"><picture><source media="(min-width: 1200px)"
+                                    srcset="/ssap/assets/source/website/homepage/4-distance-lg.jpg"><source media="(min-width: 768px)"
+                                    srcset="/ssap/assets/source/website/homepage/4-distance-md.jpg"><source media="(min-width: 1px)"
+                                    srcset="/ssap/assets/source/website/homepage/4-distance-sm.jpg"><img class="img-fluid lazyload"
+                                    alt="A man standing in an asile surrounded by shoe boxes"
+                                    src="/ssap/assets/source/website/utility/img-alt.png"></picture></div><div class="col-md-6 spotlightContentHolder d-flex flex-column justify-content-center align-items-center align-items-md-left order-0"><img class="img-fluid mt-3 mt-md-0"
+                                alt="Going The Distance"
+                                src="/ssap/assets/source/website/homepage/going-the-distance.svg"><p class="p-3 mt-3 ml-lg-3">
+                            Jon Hughes keeps Orlando running. Literally. With his associate degree in business from Seminole State, Jon put his lifelong passion of long-distance running to use and owns Track Shack, a specialty running store near downtown Orlando.
+                                                                                        <br><a class="btn fs-lg mt-1 pl-0 fw-bold text-white"
+                                        data-ga-event-category="window.location"
+                                        data-ga-event-action="Going The Distance 'Read Full Profile' link clicked"
+                                        href="/newsroom/article/5945/alumni-profile-seminole-state-degree-propels-track-shack-owner-s-career">
+                                    Read Full Profile <i class="fas fa-chevron-double-right fa-xs"></i></a></p></div></div></div></div></div></div><script>
+    // We need to only show one of the 4 profiles, here.
+    // We would use TWIG, however the cache is the issue
+    // So on load, we generate a random number 1-4
+    $(function () {
+        var randomNumber = randomNumberFromRange(1, 4);
+
+        // We make that random number the randomNumber var
+        function randomNumberFromRange(min, max) {
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        }
+        // We make a new variable that is the css selector, add the number to be the nth type
+        var visibleSpotlight = '.spotlight.d-none:nth-of-type(' + randomNumber + ')';
+        // We remove the display none class, so it shows up.
+        $(visibleSpotlight).removeClass('d-none');
+    });
+</script></div></div></div>
+                                        
+<footer class="pt-1 pb-4">
+    <div class="container">
+                            <div class="row my-4 d-flex justify-content-around jumbo-links">
+                                <div class="jumbo-link text-center">
+                    <div class="p-1 m-2 financial-aid">
+                                                                                                <a data-ga-event-category="Footer"
+                                data-ga-event-action="Big Financial Aid link clicked"
+                                data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;footer_click&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;image&quot;,&quot;targetName&quot;:&quot;Financial Aid&quot;,&quot;destinationUrl&quot;:&quot;\/financial-aid\/apply-for-aid&quot;}}"
+                                href="/financial-aid/apply-for-aid">
+                            <img class="lazyload"
+                                    src="/ssap/assets/source/website/utility/img-alt.png"
+                                    data-src="/ssap/assets/source/website/branding/financialAid.svg"
+                                    alt="Financial Aid">
+                        </a>
+                    </div>
+                </div>
+                                <div class="jumbo-link text-center campus-maps">
+                    <div class="p-1 m-2">
+                                                                                                <a data-ga-event-category="Footer"
+                                data-ga-event-action="Big Campus Maps link clicked"
+                                data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;footer_click&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;image&quot;,&quot;targetName&quot;:&quot;Campus Maps&quot;,&quot;destinationUrl&quot;:&quot;http:\/\/maps.seminolestate.edu&quot;}}"
+                                href="http://maps.seminolestate.edu">
+                            <img class="lazyload"
+                                    src="/ssap/assets/source/website/utility/img-alt.png"
+                                    data-src="/ssap/assets/source/website/branding/campusMaps.svg"
+                                    alt="Campus Maps">
+                        </a>
+                    </div>
+                </div>
+                                <div class="jumbo-link text-center programs">
+                    <div class="p-1 m-2">
+                                                                                                <a data-ga-event-category="Footer"
+                                data-ga-event-action="Big Programs link clicked"
+                                data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;footer_click&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;image&quot;,&quot;targetName&quot;:&quot;Programs&quot;,&quot;destinationUrl&quot;:&quot;\/catalog\/programs&quot;}}"
+                                href="/catalog/programs">
+                            <img class="lazyload"
+                                    src="/ssap/assets/source/website/utility/img-alt.png"
+                                    data-src="/ssap/assets/source/website/branding/programs.svg"
+                                    alt="Programs">
+                        </a>
+                    </div>
+                </div>
+                                <div class="jumbo-link text-center foundation">
+                    <div class="p-1 m-2">
+                                                                                                <a data-ga-event-category="Footer"
+                                aria-label="Give to Seminole State"
+                                data-ga-event-action="Big Foundation link clicked"
+                                data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;footer_click&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;image&quot;,&quot;targetName&quot;:&quot;Foundation&quot;,&quot;destinationUrl&quot;:&quot;\/give&quot;}}"
+                                href="/give">
+                            <img class="lazyload"
+                                    src="/ssap/assets/source/website/utility/img-alt.png"
+                                    data-src="/ssap/assets/source/website/branding/foundation.svg"
+                                    alt="Foundation">
+                        </a>
+                    </div>
+                </div>
+            </div>
+                        <div class="row mt-5 mt-lg-4 mb-2">
+                <div class="col col-sm-12 social d-flex flex-wrap justify-content-center align-items-center fs-xxxl text-tertiary">
+                    <div>
+                        <img class="lazyload stay-connected mr-2 mt-n2"
+                                src="/ssap/assets/source/website/utility/img-alt.png"
+                                data-src="/ssap/assets/source/website/branding/go-social.svg"
+                                alt="Stay Connected">
+                    </div>
+                    <div class="d-flex justify-content-center align-items-center">
+                        
+<div class="social-icon px-1 mx-1">
+                
+    <a data-ga-event-category="Footer"
+            aria-label="Facebook Link"
+            data-ga-event-action="Facebook icon click"
+            data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;social_click&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;link&quot;,&quot;targetName&quot;:&quot;Facebook&quot;,&quot;destinationUrl&quot;:&quot;https:\/\/www.facebook.com\/seminolestate&quot;}}"
+            href= "https://www.facebook.com/seminolestate">
+        <i class="fab fa-facebook-square"
+                title="Like us on Facebook">
+        </i>
+    </a>
+</div>
+
+<div class="social-icon px-1 mx-1">
+        <a data-ga-event-category="Footer"
+            aria-label="Twitter Link"
+            data-ga-event-action="Twitter icon click"
+            data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;social_click&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;link&quot;,&quot;targetName&quot;:&quot;Twitter&quot;,&quot;destinationUrl&quot;:&quot;https:\/\/twitter.com\/SeminoleState&quot;}}"
+            href="https://twitter.com/SeminoleState">
+        <i class="fab fa-twitter-square"
+                title="Follow us on Twitter">
+        </i>
+    </a>
+</div>
+
+<div class="social-icon px-1 mx-1">
+        <a data-ga-event-category="Footer"
+            aria-label="YouTube Link"
+            data-ga-event-action="YouTube icon click"
+            data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;social_click&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;link&quot;,&quot;targetName&quot;:&quot;Youtube&quot;,&quot;destinationUrl&quot;:&quot;https:\/\/www.youtube.com\/SeminoleStateCollege&quot;}}"
+            href="https://www.youtube.com/SeminoleStateCollege">
+        <i class="fab fa-youtube-square"
+                title="Watch us on YouTube">
+        </i>
+    </a>
+</div>
+
+<div class="social-icon px-1 mx-1">
+        <a data-ga-event-category="Footer"
+            aria-label="LinkedIn Link"
+            data-ga-event-action="LinkedIn icon click"
+            data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;social_click&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;link&quot;,&quot;targetName&quot;:&quot;LinkedIn&quot;,&quot;destinationUrl&quot;:&quot;https:\/\/www.linkedin.com\/company\/seminole-state-college-of-florida&quot;}}"
+            href="https://www.linkedin.com/company/seminole-state-college-of-florida">
+        <i class="fab fa-linkedin"
+                title="Network with us on LinkedIn">
+        </i>
+    </a>
+</div>
+
+<div class="social-icon px-1 mx-1">
+        <a data-ga-event-category="Footer"
+            aria-label="Instagram Link"
+            data-ga-event-action="Instagram icon click"
+            data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;social_click&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;link&quot;,&quot;targetName&quot;:&quot;Instagram&quot;,&quot;destinationUrl&quot;:&quot;https:\/\/instagram.com\/seminolestate&quot;}}"
+            href="https://instagram.com/seminolestate">
+        <i class="fab fa-instagram"
+                title="See us on Instagram">
+        </i>
+    </a>
+</div>
+                    </div>
+                    <div class="mx-5 mx-md-0 my-5 my-md-0 mb-n1 ml-0 ml-md-0 ml-md-5">
+                                                                        <button class="btn btn-tertiary mx-sm-5 mx-md-0 mt-md-1 mb-2 mb-2 cursor-pointer iframeModalAnchor fw-bold"
+        type="button"
+        aria-haspopup="dialog"
+        aria-controls="prospectInquiryForm"
+        aria-expanded="false"
+        data-target="#prospectInquiryForm"
+        data-ga-event-category="window.location"
+        data-ga-event-action="Prospect Inquiry Form Link Clicked"
+        data-ga4-event="Prospect Inquiry Form">
+    <i class="fas fa-messages-question"></i> Request More Information
+</button>                    </div>
+                </div>
+            </div>
+
+                        <div class="row mt-3 mt-lg-0">
+                <div class="col col-sm-12 text-center my-4 ff-secondary">
+                    <nav class="info">
+                        <ul class="nav d-flex justify-content-center fs-lg">
+                            <li class="px-3 pt-2 pb-1">
+                                                                                                                                <a data-ga-event-category="Footer"
+                                        data-ga-event-action="Site Map link clicked"
+                                        data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;footer_click&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;link&quot;,&quot;targetName&quot;:&quot;Site Map&quot;,&quot;destinationUrl&quot;:&quot;\/info&quot;}}"
+                                        href="/info">
+                                    Site Map
+                                </a>
+                            </li>
+                            <li class="px-3 pt-2 pb-1">
+                                                                                                                                <a data-ga-event-category="Footer"
+                                        data-ga-event-action="Contact Us link clicked"
+                                        data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;footer_click&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;link&quot;,&quot;targetName&quot;:&quot;Contact Us&quot;,&quot;destinationUrl&quot;:&quot;\/info\/contact-us&quot;}}"
+                                        href="/info/contact-us">
+                                    Contact Us
+                                </a>
+                            </li>
+                            <li class="px-3 pt-2 pb-1">
+                                                                                                                                <a data-ga-event-category="Footer"
+                                        data-ga-event-action="Business Hours link clicked"
+                                        href="/info/hours">
+                                    Business Hours
+                                </a>
+                            </li>
+                            <li data-ga-event-category="Footer"
+                                    data-ga-event-action="Maps link clicked"
+                                    class="px-3 pt-2 pb-1">
+                                                                                                                                <a href="/about/directions"
+                                        data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;footer_click&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;link&quot;,&quot;targetName&quot;:&quot;Maps&quot;,&quot;destinationUrl&quot;:&quot;\/about\/directions&quot;}}">
+                                    Maps
+                                </a>
+                            </li>
+                            <li class="px-3 pt-2 pb-1">
+                                                                                                                                <a data-ga-event-category="Footer"
+                                        data-ga-event-action="Employment link clicked"
+                                        data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;footer_click&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;link&quot;,&quot;targetName&quot;:&quot;Employment&quot;,&quot;destinationUrl&quot;:&quot;\/jobs&quot;}}"
+                                        href="/jobs">
+                                    Employment
+                                </a>
+                            </li>
+                            <li class="px-3 pt-2 pb-1">
+                                                                                                                                <a data-ga-event-category="Footer"
+                                        data-ga-event-action="Website Policies link clicked"
+                                        data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;footer_click&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;link&quot;,&quot;targetName&quot;:&quot;Website Policies&quot;,&quot;destinationUrl&quot;:&quot;\/website-policies&quot;}}"
+                                        href="/website-policies">
+                                    Website Policies
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        
+        <div class="row">
+            <div class="col col-sm-12 text-center mt-2 mb-4 fs-sm fw-light ff-primary">
+                <span id="lesFarewell">&#169;</span> Seminole State College of Florida<br>
+                <span class="text-nowrap">100 Weldon Boulevard, Sanford, FL 32773 </span><br><br>
+                                                                <div class="text-balance">
+                    Your Learning Partner for Career Success
+                </div>
+                <a data-ga-event-category="Footer"
+                        data-ga-event-action="Equity Statement link clicked"
+                        data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;footer_click&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;link&quot;,&quot;targetName&quot;:&quot;Equity Statement&quot;,&quot;destinationUrl&quot;:&quot;\/equity-statement&quot;}}"
+                        href="/equity-statement">
+                    <i class="fs-xs">
+                        A Diverse Learning Community <span class="d-none d-sm-inline">|</span>
+                        <span class="d-block d-sm-inline text-nowrap">
+                            An Equal Access/Equal Opportunity College
+                        </span>
+                    </i>
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- iFrame Modal -->
+<div class="modal iframeModal fade" id="prospectInquiryForm"
+        tabindex="-1"
+        aria-labelledby="prospectInquiryForm"
+        aria-hidden="true">
+    <div class="modal-dialog modal-full">
+        <div class="modal-header-transparent">
+            <a type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <i class="fal fa-times"></i>
+            </a>
+        </div>
+        <div class="modal-content">
+            <div class="modal-body p-0">
+                <iframe loading="lazy"
+                        class="prospectInquiryFrame"
+                        title="Student information request form"
+                        src="https://engagecms-100954.reach.encoura.org/seminole-prospect-inquiry">
+                </iframe>
+            </div>
+        </div>
+        <div class="modal-footer border-0 m-auto px-0">
+            <a type="button" class="btn btn-default" data-dismiss="modal">Close</a>
+        </div>
+    </div>
+</div>
+        
+    </div> 
+    <script defer src="/ssap/assets/source/vendor/popper/1.14.3/popper.min.js"></script><script defer src="/ssap/assets/source/vendor/twitter-bootstrap/4.1.3/bootstrap.min.js"></script><script defer src="/ssap/assets/source/vendor/mustache/2.3.0/mustache.min.js"></script><script defer src="/ssap/assets/source/vendor/lazysizes/4.1.5/lazysizes.min.js"></script><script src="/ssap/assets/source/vendor/jQueryIdleTimer/jQueryIdleTimer.js"></script><script defer src="/ssap/assets/compiled/layout/js/layout/cookiePolicy-b46638f97e.js"></script><script defer src="/ssap/assets/compiled/layout/js/layout/siteImproveAnalytics-000c91fab8.js"></script><script defer src="/ssap/assets/compiled/cms/js/cmsSiteSeminoleStateBundle/accessibility-06ba1fd626.js"></script><script defer src="/ssap/assets/compiled/cms/js/cmsSiteSeminoleStateBundle/ajaxAction-0485c986a8.js"></script><script defer src="/ssap/assets/compiled/cms/js/cmsSiteSeminoleStateBundle/cmsModal-a5d54013ef.js"></script><script defer src="/ssap/assets/compiled/cms/js/cmsSiteSeminoleStateBundle/facebookTracking-e5924bf4fb.js"></script><script defer src="/ssap/assets/compiled/cms/js/cmsSiteSeminoleStateBundle/faq-2d088ab386.js"></script><script defer src="/ssap/assets/compiled/cms/js/cmsSiteSeminoleStateBundle/ga-2ce23d7dac.js"></script><script defer src="/ssap/assets/compiled/cms/js/cmsSiteSeminoleStateBundle/gaEvent-750c0af0df.js"></script><script defer src="/ssap/assets/compiled/cms/js/cmsSiteSeminoleStateBundle/modal-0bd38c33b2.js"></script><script defer src="/ssap/assets/compiled/cms/js/cmsSiteSeminoleStateBundle/popoverOverrides-7737629a07.js"></script><script defer src="/ssap/assets/compiled/cms/js/cmsSiteSeminoleStateBundle/publishToggle-ecc79db2e4.js"></script><script defer src="/ssap/assets/compiled/cms/js/cmsSiteSeminoleStateBundle/scrollViewAnalytics-7015bea6fd.js"></script><script defer src="/ssap/assets/compiled/cms/js/cmsSiteSeminoleStateBundle/searchBar-b0bcb5c136.js"></script><script defer src="/ssap/assets/compiled/cms/js/cmsSiteSeminoleStateBundle/tooltips-dfde57c0f0.js"></script><script defer src="/ssap/assets/compiled/cms/js/cmsSiteSeminoleStateBundle/topNav-d170e3247b.js"></script><script defer src="/ssap/assets/compiled/cms/js/cmsSiteSeminoleStateBundle/twitterTracking-85195149ba.js"></script><script defer src="/ssap/assets/compiled/cms/js/cmsSiteSeminoleStateBundle/feedbackPopup-e4f86a6f5f.js"></script><script defer src="/ssap/assets/compiled/cms/js/cmsSiteSeminoleStateBundle/watchForHash-eae98a4488.js"></script><script defer src="/ssap/assets/compiled/crud/js/navigateToTabs-c41c7f0f48.js"></script><script defer src="/ssap/assets/compiled/crud/js/unsavedChanges-72f0d4dcfa.js"></script><script defer src="/ssap/assets/compiled/layout/js/form/dirty-aa26d6b312.js"></script><script defer src="/ssap/assets/compiled/layout/js/form/formDoubleSubmitPreventer-8589d5cc9c.js"></script><script defer src="/ssap/assets/compiled/layout/js/layout/accordion-ceed656896.js"></script><script defer src="/ssap/assets/compiled/layout/js/layout/bsPopover-80700e987f.js"></script><script defer src="/ssap/assets/compiled/layout/js/layout/confetti-3fd3cbfa80.js"></script><script defer src="/ssap/assets/compiled/layout/js/layout/environmentBanner-6db7984400.js"></script><script defer src="/ssap/assets/compiled/layout/js/layout/notification-835deae57d.js"></script><script defer src='/ssap/assets/compiled/layout/js/layout/copy-d600865699.js'></script><script defer src='/ssap/assets/compiled/layout/js/layout/countdownText-3cfce781b6.js'></script><script src="/ssap/assets/compiled/layout/js/layout/semAlert-9669e5229a.js"></script><script defer src="/ssap/assets/compiled/layout/js/layout/fontawesome-ssc-6356995487.js"></script><div id="errorModal" class="modal" tabindex="-1" role="dialog"><div class="modal-dialog modal-dialog-centered" role="document"><div class="modal-content danger"><div class="modal-header text-right">
+                        &nbsp;
+                        <button class="close" data-dismiss="modal" aria-label="Close"><i class="fal fa-times"></i></button></div><div class="modal-body"><h2 class="modal-title">An Error Occurred</h2><p class="errorMessage"></p></div><div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div></div></div></div><script id="sscCookieStatementTemplate" type="text/template"><div id="sscCookieStatement"
+            class="defaultView fixed-bottom d-flex flex-row align-self-center justify-content-between bg-lightgray bt-gray bb-gray"
+            id="sscCookieStatement"><div class="container d-md-flex"><div class="cookieNotification d-none d-md-flex justify-content-center text-primary mr-2 mr-md-0 ml-md-2 pt-0 pb-2 px-2 p-md-3"><div><div class="cookieJar"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512"
+        style="enable-background:new 0 0 512 512;" xml:space="preserve"><style type="text/css">.st0 {
+            fill: #FFE6A1
+        }
+
+        .st1 {
+            fill: #FFD796
+        }
+
+        .st2 {
+            fill: #B97850
+        }
+
+        .st3 {
+            fill: #A5694B
+        }
+
+        .st4 {
+            fill: #C98850
+        }
+
+        .st5 {
+            fill: #925F4A
+        }
+
+        <!--
+        Animations
+
+        -->
+        @keyframes fadeIn {
+            0% {
+                opacity: 0
+            }
+            100% {
+                opacity: 1
+            }
+        }
+
+        @keyframes fadeOut {
+            0% {
+                opacity: 1
+            }
+            100% {
+                opacity: 0
+            }
+        }
+
+        <!--
+        Stylin
+
+        -->
+        #wholeCookie {
+            opacity: 1;
+            animation: fadeOut .05s forwards;
+            animation-delay: 1.575s;
+            animation-iteration-count: 1
+        }
+
+        .crumbled {
+            opacity: 0;
+            animation: fadeIn .05s forwards;
+            animation-delay: 1.575s;
+            animation-iteration-count: 1
+        }</style><path id="wholeCookie" class="st0 wholeCookie"
+            d="M463,118c0-4.4-68.5-74.4-71.5-77.6L333.4,13C303.8,3.6,272-0.6,238.8,1.6 C111.5,10,8.3,113.6,0.5,240.9c-9.1,148.7,108.8,272,255.5,272c139.9,0,253.6-112.3,255.9-251.6L500,205 C496.5,203.2,466.9,117.2,463,118"></path><path class="st0"
+            d="M479.6,248.4l-24.3,4.9c-8.1,1.6-16.2-2.6-19.6-10.1l-26.1-58.7c-2.2-5-6.6-8.6-11.9-10l-13.6-3.4 c-7.9-2-13.4-9-13.4-17.1V59.8c0-4.4-1.6-8.6-4.6-11.9l-32.8-36C303.8,2.6,272-1.6,238.8,0.6C111.5,9,8.3,112.6,0.5,239.9 c-9.1,148.7,108.8,272,255.5,272c139.9,0,253.6-112.3,255.9-251.6l-21-10.5C487.5,248.1,483.5,247.6,479.6,248.4z"></path><g><path class="st1"
+                d="M335.5,432.6c-1.6,0-3.1-0.1-4.6-0.1c-9.7,10.9-23.8,17.8-39.5,17.8c-23.2,0-42.8-14.9-50-35.6 c-31.7-12.5-60.3-31.2-84.3-54.5c-3.6,1.1-7.4,1.9-11.4,1.9c-21.9,0-39.7-17.8-39.7-39.7c0-7.7,2.3-14.8,6-20.8 c-0.3-0.5-0.6-0.9-0.8-1.4c-27.6-1.9-49.3-24.8-49.3-52.8c0-16.5,7.6-31.3,19.4-41c-1.1-9.7-1.8-19.6-1.8-29.6 c0-50.3,14.6-97.3,39.7-136.9C47.6,85.1,0.1,165,0.1,256c0,141.4,114.6,256,256,256c91,0,170.9-47.6,216.3-119.1 C432.8,418,385.9,432.6,335.5,432.6L335.5,432.6z"></path><circle class="st1" cx="198.7" cy="189.8" r="22.1"></circle><circle class="st1" cx="432.6" cy="335.4" r="22.1"></circle><circle class="st1" cx="231.8" cy="342.1" r="15.4"></circle><circle class="st1" cx="351" cy="200.8" r="15.4"></circle><circle class="st1" cx="289.2" cy="64" r="15.4"></circle></g><g><path class="st2"
+                d="M243.2,227.4l-10.2,17c-6.1,10.2-0.6,23.3,10.9,26.2l30.4,7.6c9.5,2.4,19-3.4,21.4-12.8l3.5-13.9 c0.7-2.8,0.7-5.8,0-8.6l-3.7-14.7c-2.3-9.1-11.3-14.9-20.6-13l-20,4C250,220.1,245.8,223.1,243.2,227.4z M294.2,336.7l-10.6,17.7 c-5.3,8.8-2,20.3,7.2,24.9l33.9,16.9c10.1,5.1,22.3-0.6,25-11.5l3.5-14l4.1-16.3c2.5-10.2-4.3-20.3-14.6-21.8l-30.8-4.4 C304.8,327.3,297.8,330.6,294.2,336.7z M108.4,231.4l-13,21.6c-4.2,6.9-3.1,15.8,2.7,21.6l20.4,20.4c7.4,7.4,19.7,6.8,26.3-1.5 l17.5-21.9c3.4-4.3,4.7-10,3.3-15.3l-4-16c-1.7-6.6-7-11.7-13.7-13l-21-4.2C119.7,221.7,112.3,225,108.4,231.4L108.4,231.4z M180.3,88l-10,16.7c-5.8,9.7-1.2,22.3,9.6,25.8l21.7,7.2c6.3,2.1,13.3,0.5,18.1-4.3l11.7-11.7c4.4-4.4,6.1-10.7,4.6-16.8 l-3.1-12.2c-2-7.9-9-13.4-17.1-13.4h-20.4C189.2,79.4,183.5,82.7,180.3,88z M393.5,224.5l-10.2,10.2c-6.9,6.9-6.9,18.1,0,25l5,5 c5.4,5.4,13.6,6.7,20.4,3.3l28.9-14.5c7.4-3.7,11.2-12,9.2-20.1l-1.3-5.2c-2.3-9.1-11.3-14.9-20.6-13l-22.4,4.5 C399.1,220.3,396,222,393.5,224.5L393.5,224.5z M327.9,98.5l-11.7,15.6c-4.3,5.7-4.7,13.5-1,19.7l10.8,18.1 c5.2,8.6,16.5,11.2,24.9,5.6l22-14.7c8.4-5.6,10.4-17.2,4.3-25.3l-12-16c-2.2-2.9-5.1-5-8.5-6.2l-9.2-3.1 C340.4,89.9,332.4,92.4,327.9,98.5L327.9,98.5z M176.8,377.4l-11.5,14.4c-7.4,9.3-3.8,23,7.2,27.4l15.5,6.2c4.2,1.7,8.9,1.7,13.1,0 l17.4-7c10.4-4.2,14.4-16.9,8.1-26.2l-3-4.5c-1.7-2.6-4-4.6-6.8-6l-18.4-9.2C191,368.9,182,370.9,176.8,377.4L176.8,377.4z"></path></g><g><path class="st3"
+                d="M140.4,292.9L120,272.5c-5.7-5.7-6.8-14.6-2.7-21.6l13-21.6c1.1-1.8,2.6-3.3,4.2-4.6l-7.5-1.5 c-7.3-1.5-14.8,1.8-18.6,8.2l-13,21.6c-4.2,6.9-3.1,15.8,2.7,21.6l20.4,20.4c6.9,6.9,17.9,6.7,24.7,0.1 C142.2,294.5,141.3,293.8,140.4,292.9z M219.2,131.5l-21.7-7.2c-10.7-3.6-15.4-16.1-9.6-25.8l10-16.7c0.5-0.8,1.2-1.5,1.8-2.3h-4.4 c-6.2,0-11.9,3.3-15.1,8.6l-10,16.7c-5.8,9.7-1.2,22.3,9.6,25.8l21.7,7.2c6.3,2.1,13.3,0.5,18.1-4.3l1.6-1.6 C220.6,131.7,219.9,131.7,219.2,131.5L219.2,131.5z M291,273.1l-30.4-7.6c-11.5-2.9-17-16-10.9-26.2l10.2-17c1.2-2,2.8-3.7,4.7-5.1 l-9.8,2c-4.9,1-9.1,4-11.7,8.2l-10.2,17c-6.1,10.2-0.6,23.3,10.9,26.2l30.4,7.6c6.4,1.6,12.8-0.6,17-5 C291.2,273.1,291.1,273.1,291,273.1L291,273.1z M342.5,150.3l-10.8-18.1c-3.7-6.2-3.3-13.9,1-19.7l11.7-15.6 c1.3-1.7,2.9-3.1,4.6-4.2l-1.4-0.5c-7.2-2.4-15.1,0.1-19.7,6.2l-11.7,15.6c-4.3,5.7-4.7,13.5-1,19.7l10.8,18.1 c5.2,8.6,16.5,11.2,24.8,5.7C347.5,156.1,344.5,153.7,342.5,150.3L342.5,150.3z M402.5,263.5c-6.9-6.9-6.9-18.1,0-25l10.2-10.2 c2.5-2.5,5.6-4.1,9-4.8l18.8-3.8c-4-3.8-9.8-5.7-15.6-4.5l-22.4,4.5c-3.4,0.7-6.6,2.4-9,4.8l-10.2,10.2c-6.9,6.9-6.9,18.1,0,25l5,5 c5,5,12.5,6.4,19.1,3.7L402.5,263.5L402.5,263.5z M312.6,377.8c-9.2-4.6-12.5-16.1-7.2-24.9l10.6-17.7c1.4-2.3,3.4-4.1,5.5-5.5 l-9.8-1.4c-7-1-14,2.3-17.6,8.4l-10.6,17.7c-5.3,8.8-2,20.3,7.2,24.9l33.9,16.9c6.8,3.4,14.4,1.9,19.5-2.6L312.6,377.8L312.6,377.8 z M205.6,422.5l-15.5-6.2c-11-4.4-14.6-18.2-7.2-27.4l11.5-14.4c0.7-0.9,1.6-1.7,2.4-2.4c-7.1-2.7-15.2-0.6-20.1,5.4l-11.5,14.4 c-7.4,9.3-3.8,23,7.2,27.4l15.5,6.2c4.2,1.7,8.9,1.7,13.1,0l6.2-2.5C206.7,422.8,206.2,422.7,205.6,422.5z"></path></g><path class="st4"
+            d="M70.7,361.9c-4.9,0-8.8-4-8.8-8.8c0-1.4,0.3-2.7,0.9-3.9l8.8-17.7c2.2-4.4,7.5-6.1,11.8-3.9 c4.4,2.2,6.1,7.5,3.9,11.8c0,0,0,0,0,0L78.6,357C77.1,360,74,361.9,70.7,361.9z"></path><path class="st5"
+            d="M229.6,476.7h-8.8c-4.9,0-8.8-3.9-8.8-8.8c0,0,0,0,0,0c0-4.9,3.9-8.8,8.8-8.8c0,0,0,0,0,0h8.8 c4.9,0,8.8,3.9,8.8,8.8c0,0,0,0,0,0C238.4,472.7,234.5,476.7,229.6,476.7C229.6,476.7,229.6,476.7,229.6,476.7z"></path><path class="st4"
+            d="M194.3,309c-1.4,0-2.7-0.3-3.9-0.9c-4.4-2.2-6.1-7.5-3.9-11.8l8.8-17.7c2.2-4.4,7.5-6.1,11.8-3.9 c4.4,2.2,6.1,7.5,3.9,11.8c0,0,0,0,0,0l-8.8,17.7C200.7,307.1,197.6,309,194.3,309z"></path><g><path class="st5"
+                d="M141.3,167.7c-1.4,0-2.7-0.3-3.9-0.9l-17.7-8.8c-4.4-2.2-6.1-7.5-3.9-11.8c0,0,0,0,0,0 c2.2-4.4,7.5-6.1,11.8-3.9l17.7,8.8c4.4,2.2,6.1,7.5,3.9,11.8c0,0,0,0,0,0C147.7,165.8,144.6,167.7,141.3,167.7z M247.2,44.1h-17.7 c-4.9,0-8.8-3.9-8.8-8.8s4-8.8,8.8-8.8h17.7c4.9,0,8.8,3.9,8.8,8.8S252.1,44.1,247.2,44.1z"></path></g><path class="st4"
+            d="M282.5,176.6c-3.3,0-6.4-1.9-7.9-4.9l-8.8-17.7c-2.2-4.4-0.4-9.7,3.9-11.8c0,0,0,0,0,0 c4.4-2.2,9.7-0.4,11.8,3.9l8.8,17.7c2.2,4.4,0.4,9.7-3.9,11.8C285.3,176.2,283.9,176.6,282.5,176.6z"></path><g><path class="st5"
+                d="M40.3,219.8c-4.4-2.2-6.2-7.4-4-11.8c0.6-1.2,1.5-2.3,2.6-3.1l15.7-11.9c3.9-3,9.4-2.2,12.4,1.7 c2.9,3.9,2.2,9.4-1.7,12.4c0,0,0,0,0,0l-15.7,11.9C46.9,220.9,43.3,221.3,40.3,219.8L40.3,219.8z M370.8,317.8 c-2.3,0-4.6-0.9-6.2-2.6l-17.7-17.7c-3.4-3.4-3.4-9,0-12.5s9-3.4,12.5,0l17.7,17.7c3.4,3.4,3.4,9,0,12.5c0,0,0,0,0,0 C375.4,316.9,373.2,317.8,370.8,317.8z"></path></g><path class="st4"
+            d="M388.5,406.1c-2.3,0-4.6-0.9-6.2-2.6c-3.4-3.4-3.4-9,0-12.5c0,0,0,0,0,0l8.8-8.8c3.4-3.4,9-3.4,12.5,0 c0,0,0,0,0,0c3.4,3.4,3.4,9,0,12.5c0,0,0,0,0,0l-8.8,8.8C393.1,405.1,390.8,406.1,388.5,406.1z"></path><g id="crumbled" class="crumbled"><path id="crumbled_2_" class="st0"
+                d="M406.1,35.3v22.3c0,6.2,6.3,10.5,12.1,8.2l26.5-10.6c3.4-1.3,5.5-4.6,5.5-8.2V35.3 c0-4.9-4-8.8-8.8-8.8H415C410.1,26.5,406.1,30.4,406.1,35.3z M425,104.9l-5.6,39.4c-1.3,9.3,4.8,18,14,19.8l16.2,3.2 c7,1.4,14.2-1.6,18.2-7.5l6.1-9.1c3.1-4.7,3.8-10.7,1.8-16l-18.4-49.1c-2.3-6.1-10.1-7.8-14.7-3.2L430,94.9 C427.3,97.6,425.5,101.1,425,104.9z"></path><path id="crumbled_1_" class="st1"
+                d="M469.3,151.7l-16.2-3.2c-9.2-1.8-15.3-10.5-14-19.8l5.6-39.4c0.5-3.5,2.1-6.7,4.5-9.3 c-2.4-0.1-4.9,0.7-6.8,2.6L430,94.9c-2.7,2.7-4.5,6.2-5,10l-5.6,39.4c-1.3,9.3,4.8,18,14,19.8l16.2,3.2c7,1.4,14.2-1.6,18.2-7.5 l5.3-8C471.8,151.9,470.5,152,469.3,151.7L469.3,151.7z M435.9,48.1c-5.8,2.3-12.1-2-12.1-8.2V26.5H415c-4.9,0-8.8,4-8.8,8.8v22.3 c0,6.2,6.3,10.5,12.1,8.2l26.5-10.6c3.4-1.3,5.5-4.6,5.5-8.2v-4.6C450.3,42.4,435.9,48.1,435.9,48.1z M472.3,192.5l-5.2,10.4 c-1.2,2.5-1.2,5.4,0,7.9l2.4,4.8c2.4,4.7,8.4,6.3,12.8,3.4l14.2-9.5c2.5-1.6,3.9-4.4,3.9-7.3v-9.5c0-6-5.9-10.3-11.6-8.4l-11.4,3.8 C475.2,188.8,473.4,190.4,472.3,192.5L472.3,192.5z"></path></g></svg></div></div></div><p class="cookieBlurb fs-xs m-0 pt-3 pb-md-3 px-3">
+                This website or its third-party tools process personal data and use cookies or other identifiers, some
+                of which are necessary for its functioning. Other cookies are used for marketing and other analytics
+                purposes. For more information, please see our website
+                                                                                                
+                <a href="/website-policies#privacy"
+                        data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;cookie_policy_changed&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;link&quot;,&quot;targetName&quot;:&quot;privacy statement&quot;,&quot;destinationUrl&quot;:&quot;\/website-policies#privacy&quot;}}"
+                        data-ga-event-category="Cookie Policy"
+                        data-ga-event-action="Privacy Statment Clicked">
+                    privacy statement
+                </a>.
+                You accept the use of cookies or other identifiers by closing or dismissing this
+                notice, by clicking a link or button or by continuing to browse otherwise.
+                Manage your
+                                                <a href="#"
+                        class="jsAjaxAction text-nowrap"
+                        data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;cookie_policy_changed&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;link&quot;,&quot;targetName&quot;:&quot;privacy statement&quot;,&quot;destinationUrl&quot;:&quot;\/website-policies#privacy&quot;}}"
+                        data-ga-event-category="Cookie Policy"
+                        data-ga-event-action="Cookie Preferences Clicked"
+                        data-cookie-no-accept="true"
+                        data-action-url="https://www.seminolestate.edu/ssap/cms/frontEnd/manageCookiePreferences">
+                    cookie preferences
+                </a></p><div class="cookieButtons mb-3 mb-md-0 px-3 d-flex align-items-start"><button class="readMoreCookie mr-2 mt-3 mb-0 text-nowrap d-md-none fs-xs btn btn-link"
+                        data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;cookie_policy_changed&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;button&quot;,&quot;targetName&quot;:&quot;Read More&quot;,&quot;destinationUrl&quot;:&quot;#&quot;}}"
+                        data-cookie-no-accept="true"
+                        data-ga-event-category="Cookie Policy"
+                        data-ga-event-action="Mobile Read More Clicked">
+                    Read More
+                </button><button class="jsAcceptCookies btn btn-sm btn-block btn-success mt-3 mb-0 text-nowrap d-block d-lg-none"><i class="fas fa-check-circle"></i> Accept Cookies
+                </button></div><div class="cookieBlurbShadow"></div><div class="p-3 d-none d-lg-block "><button type="button"
+                       data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;cookie_policy_changed&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;button&quot;,&quot;targetName&quot;:&quot;Accept Cookies&quot;,&quot;destinationUrl&quot;:&quot;N\/A&quot;}}"
+                       class="jsAcceptCookies btn btn-sm btn-success mx-3 text-nowrap"><i class="fas fa-check-circle"></i> Accept Cookies
+                </button></div><div><a id="dismissCookiePolicy"
+                        aria-label="Dismiss Cookie Policy"
+                        href="#"
+                        data-ga4-event="{&quot;event&quot;:&quot;click_scroll&quot;,&quot;clickScrollParams&quot;:{&quot;eventName&quot;:&quot;cookie_policy_changed&quot;,&quot;category&quot;:&quot;clickEvent&quot;,&quot;targetType&quot;:&quot;link&quot;,&quot;targetName&quot;:&quot;Dismissed&quot;,&quot;destinationUrl&quot;:&quot;#&quot;}}"
+                        data-ga-event-category="Cookie Policy"
+                        data-ga-event-action="Dismissed"><i class="fal fa-times fa-2x"></i></a></div></div></div></script><script id="environmentBanner" type="text/template"><div class="notice"><h2><i class="fas  {{ icon }} "></i> {{ title }} 
+        </h2><span class="message"> {{ longText }} </span></div><div class="controls"><div class="dropdown"><a class="options dropdown-toggle p-2" data-toggle="dropdown"><i class="fas fa-ellipsis-h"></i></a><div class="dropdown-menu dark"><a class="dropdown-item smallLeft" href="#"><i class="fas fa-square-chevron-left"></i> Small Left</a><a class="dropdown-item smallRight" href="#"><i class="fas fa-square-chevron-right"></i> Small Right</a><a class="dropdown-item fullWidthBottom" href="#"><i class="fas fa-square"></i> Full Width Bottom</a><div class="dropdown-divider"></div><a class="dropdown-item dismiss1Hour" href="#"><i class="far fa-clock"></i> Dismiss for 1 Hour</a><a class="dropdown-item dismiss3Hours" href="#"><i class="fas fa-clock"></i> Dismiss for 3 Hours</a><a class="dropdown-item dismissToday" href="#"><i class="fas fa-calendar-day"></i> Dismiss for Today</a></div><a class="dismiss p-2"><i class="fas fa-times"></i></a></div></div></script><script src="/ssap/assets/compiled/cms/js/cmsSiteSeminoleStateBundle/autoPlayHeroVideo-3d9d3ef1d8.js"></script>                        <div class="blockLocation"
+        data-container-id="/cms/sites/Seminole State/content/Blocks/scriptBottom"
+        data-location="scriptBottom"
+        data-can-drag="0">
+    <div class="blocks">
+                                                            </div>
+
+    </div>
+
+
+    
+    <script>
+        $(function () {
+            if (window.matchMedia('(max-width: 767px)').matches) {
+                $('[data-aos-anchor-placement]').removeAttr('data-aos-anchor-placement');
+                $('[data-aos-delay]').each(function () {
+                    $(this).attr('data-aos-delay', '100');
+                });
+            }
+
+            // Check to see if the user has Reduced Motion on.
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                // If reduced motion, remove the attributes
+                $('[data-aos]').removeAttr('data-aos');
+            } else {
+                // Otherwise, animate it up!
+                AOS.init();
+            }
+        });
+    </script>
+
+    
+        <script id="semModal2Skeleton" type="text/template">
+    <div id="{{ uniqueId }}" class="semModal2 modal {{ modalClasses }}" tabindex="-1" role="dialog">
+        <div class="modal-dialog {{ dialogClasses }}" role="document">
+            <div class="modal-content {{ contentType }}">
+                <div class="modal-header text-right">
+                    &nbsp;
+                    <button class="close" data-dismiss="modal" aria-label="Close">
+                        <i class="fal fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body pb-3">
+                    <h2 class="modal-title">{{ title }}</h2>
+                    {{{ message }}}
+                </div>
+                <div class="modal-footer">
+                    {{#buttons}}
+                    <button id="{{ id }}" type="button" class="btn {{ btnClass }}"
+                            data-dismiss="{{ dismiss }}">{{ label }}
+                    </button>
+                    {{/buttons}}
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+<script id="semModalPleaseWait" type="text/template">
+    <div id="{{ uniqueId }}" class="semModal modal semModalPleaseWait" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered " role="document">
+            <div class="modal-content">
+                <div class="modal-body p-0 dashboardPleaseWait ff-tertiary">
+                    <img src="/ssap/assets/source/bundles/layout/images/logos/ssap-compass-white.svg"
+                            alt="Seminole State Application Portal Logo"
+                            title="Seminole State Application Portal" />
+                    Loading. Please wait.
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+    <script>
+        // Delete spurious cookie set by PeopleSoft when framing website pages in its iframe.
+        document.cookie = 'PHPSESSID=; path=/; domain=.seminolestate.edu; expires=' + new Date(0).toUTCString();
+    </script>
+</body>
+</html>

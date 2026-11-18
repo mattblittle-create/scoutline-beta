@@ -1,0 +1,46 @@
+{
+  "slug": "bunker-hill-community-college",
+  "name": "Bunker Hill Community College",
+  "collegeId": "cmox2o0qy000lqtbkb5hvpuw9",
+  "programId": "cmox2o0ro000nqtbkccxfu3vt",
+  "storedState": "MA",
+  "storedDivision": "NJCAA_D3",
+  "directoryMatch": {
+    "unitid": "165112",
+    "name": "Bunker Hill Community College",
+    "aliases": [
+      "BHCC"
+    ],
+    "state": "MA",
+    "city": "Boston",
+    "host": "bhcc.edu",
+    "decision": "UNIQUE_EXACT_NAME_OR_ALIAS_AND_STATE_DISCOVERY_LEAD_ONLY"
+  },
+  "directoryMatchStatus": "DISCOVERY_LEAD_NOT_CURRENT_CAMPUS_VERIFIED",
+  "needsHeadCoach": true,
+  "needs2027Roster": true,
+  "newPagesAttempted": 1,
+  "pages": [
+    {
+      "requestedUrl": "https://bhcc.edu/",
+      "checkedAtUtc": "2026-11-18T16:21:46.831Z",
+      "status": "FAILED",
+      "errorType": "Error",
+      "kind": "INSTITUTIONAL_DIRECTORY_HOST_LEAD",
+      "parent": {
+        "sourcePath": "../../geography/us-college-locations-ipeds2024.json",
+        "unitid": "165112",
+        "publishedName": "Bunker Hill Community College",
+        "state": "MA",
+        "city": "Boston"
+      }
+    }
+  ],
+  "unfetchedPublishedLeads": [],
+  "publishedLeads": [],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "campusIdentityReviewRequired": true,
+  "currentMembershipVerified": false,
+  "importApproval": "NOT_GRANTED"
+}

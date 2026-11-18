@@ -1,0 +1,2946 @@
+{
+  "slug": "wittenberg-university",
+  "collegeId": "cmovos1d100v9qt7gpwb7olke",
+  "programId": "cmovos1dr00vbqt7g73pmg4dx",
+  "checkedAtUtc": "2026-11-17T20:38:42.407Z",
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED",
+  "missingFields": [
+    "rosterUrl",
+    "questionnaireUrl",
+    "campsUrl",
+    "generalContactEmail"
+  ],
+  "pages": [
+    {
+      "requestedUrl": "https://www.wittenbergtigers.com/sports/bsb/index",
+      "kind": "baseball-home",
+      "parent": null,
+      "status": 200,
+      "finalUrl": "https://www.wittenbergtigers.com/sports/bsb/index",
+      "sourcePath": "../sources/wittenberg-university-0.html",
+      "sha256": "8bdd707d5cf75eabfebb5d5cf8ae8a3ef5f45ae1de974caa0a47dde5b4af7179",
+      "reusedEvidence": true,
+      "originalCheckedAtUtc": "2026-11-17T17:29:23.715Z",
+      "parsed": {
+        "title": "Baseball - Wittenberg",
+        "headings": [
+          "Hero Banner",
+          "News",
+          "Social Banners",
+          "Hero video",
+          "Sponsors",
+          "Banners"
+        ],
+        "links": [
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2024-25/schedule",
+            "label": "Baseball Baseball schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2025-26/schedule",
+            "label": "Baseball Baseball schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2026-27/schedule",
+            "label": "Baseball Baseball schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2025-26/roster",
+            "label": "Roster Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittenbergbaseball/",
+            "label": "Instagram Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://twitter.com/WittenbergUBase",
+            "label": "Twitter Baseball: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mbkb/2026-27/schedule",
+            "label": "Schedule Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mbkb/2026-27/roster",
+            "label": "Roster Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/witthoops/",
+            "label": "instagram Basketball: instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://twitter.com/WittenbergHoops",
+            "label": "X Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mxc/2026-27/schedule",
+            "label": "Schedule Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mxc/2026-27/roster",
+            "label": "Roster Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/witt_xctf/",
+            "label": "Instagram Cross Country: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://twitter.com/WittAthletics",
+            "label": "X Cross Country: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/fball/2026-27/schedule",
+            "label": "Schedule Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/fball/2026-27/roster",
+            "label": "Roster Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittfootball/",
+            "label": "instagram Football: instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://twitter.com/wittfootball",
+            "label": "Twitter Football: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mgolf/2026-27/schedule",
+            "label": "Schedule Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mgolf/2026-27/roster",
+            "label": "Roster Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittenberggolf/",
+            "label": "Instagram Golf: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mlax/2025-26/schedule",
+            "label": "Schedule Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mlax/2025-26/roster",
+            "label": "Roster Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittmlax/",
+            "label": "Instagram Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://twitter.com/WittMLax",
+            "label": "X Lacrosse: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/msoc/2026-27/schedule",
+            "label": "Schedule Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/msoc/2026-27/roster",
+            "label": "Roster Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittmsoc/",
+            "label": "Instagram Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://twitter.com/WittMensSoccer",
+            "label": "X Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mswimdive/2026-27/schedule",
+            "label": "Schedule Swimming & Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mswimdive/2026-27/roster",
+            "label": "Roster Swimming & Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittenbergswimdive/",
+            "label": "Instagram Swimming & Diving: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mten/2026-27/schedule",
+            "label": "Schedule Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mten/2026-27/roster",
+            "label": "Roster Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittenbergmwtennis/",
+            "label": "Instagram Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://twitter.com/witt_tennis",
+            "label": "X Tennis: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mtrack/2026-27/schedule",
+            "label": "Schedule Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mtrack/2026-27/roster",
+            "label": "Roster Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mvball/2026-27/schedule",
+            "label": "Schedule Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mvball/2025-26/roster",
+            "label": "Roster Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittmvb/",
+            "label": "Instagram Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mwrest/2026-27/schedule",
+            "label": "Schedule Wrestling: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mwrest/2026-27/roster",
+            "label": "Roster Wrestling: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittuwrestling",
+            "label": "instagram Wrestling: instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/wittuwrestling",
+            "label": "X Wrestling: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wbkb/2026-27/schedule",
+            "label": "Schedule Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wbkb/2026-27/roster",
+            "label": "Roster Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittenbergwomensbasketball/",
+            "label": "Instagram Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://twitter.com/wittwbb",
+            "label": "X Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wxc/2026-27/schedule",
+            "label": "Schedule Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wxc/2026-27/roster",
+            "label": "Roster Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/fh/2026-27/schedule",
+            "label": "Schedule Field Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/fh/2026-27/roster",
+            "label": "Roster Field Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/witt_fh/",
+            "label": "instagram Field Hockey: instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/flagfball/2026-27/schedule",
+            "label": "Schedule Flag Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/flagfball/2026-27/roster",
+            "label": "Roster Flag Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittwff/",
+            "label": "instagram Flag Football: instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wgolf/2026-27/schedule",
+            "label": "Schedule Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wgolf/2026-27/roster",
+            "label": "Roster Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wlax/2025-26/schedule",
+            "label": "Schedule Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wlax/2025-26/roster",
+            "label": "Roster Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittwlax/",
+            "label": "Instagram Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://twitter.com/WittWLax",
+            "label": "X Lacrosse: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wsoc/2026-27/schedule",
+            "label": "Schedule Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wsoc/2026-27/roster",
+            "label": "Roster Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittwsoccer/",
+            "label": "Instagram Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://twitter.com/wittwsoccer",
+            "label": "X Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/sball/2025-26/schedule",
+            "label": "Schedule Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/sball/2026-27/roster",
+            "label": "Roster Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittsoftball/",
+            "label": "Instagram Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://twitter.com/wittathletics",
+            "label": "X Softball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wswimdive/2026-27/schedule",
+            "label": "Schedule Swimming & Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wswimdive/2026-27/roster",
+            "label": "Roster Swimming & Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wten/2026-27/schedule",
+            "label": "Schedule Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wten/2026-27/roster",
+            "label": "Roster Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wtrack/2026-27/schedule",
+            "label": "Schedule Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wtrack/2026-27/roster",
+            "label": "Roster Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/Wittathletics",
+            "label": "X Track & Field: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wvball/2026-27/schedule",
+            "label": "Schedule Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wvball/2026-27/roster",
+            "label": "Roster Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/witt_wvb/",
+            "label": "Instagram Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://twitter.com/witt_wvb",
+            "label": "X Volleyball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wwrest/2026-27/schedule",
+            "label": "Schedule Wrestling: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wwrest/2026-27/roster",
+            "label": "Roster Wrestling: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bowl/2026-27/schedule",
+            "label": "Schedule M. Bowling: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bowl/2026-27/roster",
+            "label": "Roster M. Bowling: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittu_bowling/",
+            "label": "Instagram M. Bowling: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wbowl/2026-27/schedule",
+            "label": "Schedule W. Bowling: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wbowl/2026-27/roster",
+            "label": "Roster W. Bowling: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/information/clubsports/cheerleading/2026-27/roster",
+            "label": "Roster Cheer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittcheer/",
+            "label": "instagram Cheer: instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/acha/2026-27/schedule",
+            "label": "Schedule M. ACHA Ice Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/acha/2026-27/roster",
+            "label": "Roster M. ACHA Ice Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittmhockey",
+            "label": "Instagram M. ACHA Ice Hockey: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/achaw/2026-27/schedule",
+            "label": "Schedule W. ACHA Ice Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/achaw/2026-27/roster",
+            "label": "Roster W. ACHA Ice Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittwhockey",
+            "label": "Instagram W. ACHA Ice Hockey: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/Witt_Esports/",
+            "label": "Instagram Esports: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/composite",
+            "label": "Composite Schedule Fan Zone: Composite Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/information/directory/index",
+            "label": "Staff Directory Inside Athletics: Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/information/camps",
+            "label": "Camps & Clinics Inside Athletics: Camps & Clinics",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/recruiting/questionnaires",
+            "label": "Recruiting Questionnaires Apply: Recruiting Questionnaires",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.instagram.com/wittathletics/",
+            "label": "Instagram Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/coaches/index",
+            "label": "Coaches",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/recruiting/forms/bsb",
+            "label": "Recruiting Questionnaire",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2026-27/releases/2026-27BSBCoachingStaff",
+            "label": "Wittenberg Baseball Announces 2026-27 Coaching Staff",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/information/camps/index",
+            "label": "Camps & Clinics",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://www.wittenbergtigers.com/sports/bsb/2024-25/schedule",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/wittenberg-university-0.html",
+        "sha256": "8bdd707d5cf75eabfebb5d5cf8ae8a3ef5f45ae1de974caa0a47dde5b4af7179",
+        "url": "https://www.wittenbergtigers.com/sports/bsb/2024-25/schedule",
+        "label": "Baseball Baseball schedule"
+      },
+      "status": 200,
+      "finalUrl": "https://www.wittenbergtigers.com/sports/bsb/2024-25/schedule",
+      "checkedAtUtc": "2026-11-17T20:38:43.625Z",
+      "sourcePath": "sources/wittenberg-university-1.html",
+      "sha256": "ce5d7edb411e01a67cdb656caf761120b2ba05ea3f6d411a6f13d774dbc6ed53",
+      "parsed": {
+        "title": "2025 Wittenberg Baseball Schedule - Wittenberg",
+        "headings": [
+          "2025 Wittenberg Baseball Schedule"
+        ],
+        "links": [
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2024-25/schedule",
+            "label": "Skip to navigation",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2026-27/schedule",
+            "label": "Schedule Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2025-26/roster",
+            "label": "Roster Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittenbergbaseball/",
+            "label": "Instagram Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://twitter.com/WittenbergUBase",
+            "label": "Twitter Baseball: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mbkb/2026-27/schedule",
+            "label": "Schedule Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mbkb/2026-27/roster",
+            "label": "Roster Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/witthoops/",
+            "label": "instagram Basketball: instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://twitter.com/WittenbergHoops",
+            "label": "X Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mxc/2026-27/schedule",
+            "label": "Schedule Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mxc/2026-27/roster",
+            "label": "Roster Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/witt_xctf/",
+            "label": "Instagram Cross Country: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://twitter.com/WittAthletics",
+            "label": "X Cross Country: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/fball/2026-27/schedule",
+            "label": "Schedule Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/fball/2026-27/roster",
+            "label": "Roster Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittfootball/",
+            "label": "instagram Football: instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://twitter.com/wittfootball",
+            "label": "Twitter Football: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mgolf/2026-27/schedule",
+            "label": "Schedule Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mgolf/2026-27/roster",
+            "label": "Roster Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittenberggolf/",
+            "label": "Instagram Golf: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mlax/2025-26/schedule",
+            "label": "Schedule Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mlax/2025-26/roster",
+            "label": "Roster Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittmlax/",
+            "label": "Instagram Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://twitter.com/WittMLax",
+            "label": "X Lacrosse: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/msoc/2026-27/schedule",
+            "label": "Schedule Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/msoc/2026-27/roster",
+            "label": "Roster Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittmsoc/",
+            "label": "Instagram Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://twitter.com/WittMensSoccer",
+            "label": "X Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mswimdive/2026-27/schedule",
+            "label": "Schedule Swimming & Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mswimdive/2026-27/roster",
+            "label": "Roster Swimming & Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittenbergswimdive/",
+            "label": "Instagram Swimming & Diving: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mten/2026-27/schedule",
+            "label": "Schedule Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mten/2026-27/roster",
+            "label": "Roster Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittenbergmwtennis/",
+            "label": "Instagram Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://twitter.com/witt_tennis",
+            "label": "X Tennis: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mtrack/2026-27/schedule",
+            "label": "Schedule Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mtrack/2026-27/roster",
+            "label": "Roster Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mvball/2026-27/schedule",
+            "label": "Schedule Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mvball/2025-26/roster",
+            "label": "Roster Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittmvb/",
+            "label": "Instagram Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mwrest/2026-27/schedule",
+            "label": "Schedule Wrestling: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mwrest/2026-27/roster",
+            "label": "Roster Wrestling: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittuwrestling",
+            "label": "instagram Wrestling: instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/wittuwrestling",
+            "label": "X Wrestling: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wbkb/2026-27/schedule",
+            "label": "Schedule Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wbkb/2026-27/roster",
+            "label": "Roster Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittenbergwomensbasketball/",
+            "label": "Instagram Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://twitter.com/wittwbb",
+            "label": "X Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wxc/2026-27/schedule",
+            "label": "Schedule Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wxc/2026-27/roster",
+            "label": "Roster Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/fh/2026-27/schedule",
+            "label": "Schedule Field Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/fh/2026-27/roster",
+            "label": "Roster Field Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/witt_fh/",
+            "label": "instagram Field Hockey: instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/flagfball/2026-27/schedule",
+            "label": "Schedule Flag Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/flagfball/2026-27/roster",
+            "label": "Roster Flag Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittwff/",
+            "label": "instagram Flag Football: instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wgolf/2026-27/schedule",
+            "label": "Schedule Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wgolf/2026-27/roster",
+            "label": "Roster Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wlax/2025-26/schedule",
+            "label": "Schedule Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wlax/2025-26/roster",
+            "label": "Roster Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittwlax/",
+            "label": "Instagram Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://twitter.com/WittWLax",
+            "label": "X Lacrosse: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wsoc/2026-27/schedule",
+            "label": "Schedule Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wsoc/2026-27/roster",
+            "label": "Roster Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittwsoccer/",
+            "label": "Instagram Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://twitter.com/wittwsoccer",
+            "label": "X Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/sball/2025-26/schedule",
+            "label": "Schedule Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/sball/2026-27/roster",
+            "label": "Roster Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittsoftball/",
+            "label": "Instagram Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://twitter.com/wittathletics",
+            "label": "X Softball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wswimdive/2026-27/schedule",
+            "label": "Schedule Swimming & Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wswimdive/2026-27/roster",
+            "label": "Roster Swimming & Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wten/2026-27/schedule",
+            "label": "Schedule Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wten/2026-27/roster",
+            "label": "Roster Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wtrack/2026-27/schedule",
+            "label": "Schedule Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wtrack/2026-27/roster",
+            "label": "Roster Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/Wittathletics",
+            "label": "X Track & Field: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wvball/2026-27/schedule",
+            "label": "Schedule Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wvball/2026-27/roster",
+            "label": "Roster Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/witt_wvb/",
+            "label": "Instagram Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://twitter.com/witt_wvb",
+            "label": "X Volleyball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wwrest/2026-27/schedule",
+            "label": "Schedule Wrestling: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wwrest/2026-27/roster",
+            "label": "Roster Wrestling: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bowl/2026-27/schedule",
+            "label": "Schedule M. Bowling: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bowl/2026-27/roster",
+            "label": "Roster M. Bowling: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittu_bowling/",
+            "label": "Instagram M. Bowling: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wbowl/2026-27/schedule",
+            "label": "Schedule W. Bowling: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wbowl/2026-27/roster",
+            "label": "Roster W. Bowling: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/information/clubsports/cheerleading/2026-27/roster",
+            "label": "Roster Cheer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittcheer/",
+            "label": "instagram Cheer: instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/acha/2026-27/schedule",
+            "label": "Schedule M. ACHA Ice Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/acha/2026-27/roster",
+            "label": "Roster M. ACHA Ice Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittmhockey",
+            "label": "Instagram M. ACHA Ice Hockey: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/achaw/2026-27/schedule",
+            "label": "Schedule W. ACHA Ice Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/achaw/2026-27/roster",
+            "label": "Roster W. ACHA Ice Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittwhockey",
+            "label": "Instagram W. ACHA Ice Hockey: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/Witt_Esports/",
+            "label": "Instagram Esports: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/composite",
+            "label": "Composite Schedule Fan Zone: Composite Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/information/directory/index",
+            "label": "Staff Directory Inside Athletics: Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/information/camps",
+            "label": "Camps & Clinics Inside Athletics: Camps & Clinics",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/recruiting/questionnaires",
+            "label": "Recruiting Questionnaires Apply: Recruiting Questionnaires",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.instagram.com/wittathletics/",
+            "label": "Instagram Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/coaches/index",
+            "label": "Coaches",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/recruiting/forms/bsb",
+            "label": "Recruiting Questionnaire",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2024-25/schedule?eid=ex8467qz05dpxqqr",
+            "label": "Details Event details for Baseball vs Fredonia on Feb 22, 2025",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2024-25/schedule?eid=s9kqf0d2rbuepykb",
+            "label": "Details Event details for Baseball vs #13 Baldwin Wallace on Feb 23, 2025",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2024-25/schedule?eid=vcdc71vdu5gaupzn",
+            "label": "Details Event details for Baseball vs Bethany (W.V.) on Feb 26, 2025",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2024-25/schedule?eid=7ok64rz2s6tyk6uh",
+            "label": "Details Event details for Baseball at Bethany (W.V.) on Feb 26, 2025",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2024-25/schedule?eid=d6nngge6b8bnpbbb",
+            "label": "Details Event details for Baseball vs Immaculata on Mar 01, 2025",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2024-25/schedule?eid=l1p9hr6q7fto8dpa",
+            "label": "Details Event details for Baseball at (RV) Shenandoah on Mar 01, 2025",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2024-25/schedule?eid=r83kjphlm4h2d3ap",
+            "label": "Details Event details for Baseball vs SUNY Cortland on Mar 02, 2025",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2024-25/schedule?eid=taom3u4nuhfgw8n1",
+            "label": "Details Event details for Baseball at Centre on Mar 05, 2025",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2024-25/schedule?eid=04m1fvljt6w7ofqe",
+            "label": "Details Event details for Baseball vs Rhode Island Col. on Mar 08, 2025",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2024-25/schedule?eid=cdu23dx3cwpun4un",
+            "label": "Details Event details for Baseball vs Bridgewater St. on Mar 09, 2025",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2024-25/schedule?eid=o537zqamm0ehfr8p",
+            "label": "Details Event details for Baseball vs Ursinus on Mar 09, 2025",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2024-25/schedule?eid=8x4ei4ueyse7zjss",
+            "label": "Details Event details for Baseball vs Manhattanville on Mar 10, 2025",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2024-25/schedule?eid=bqi7qlyuh7j9vjra",
+            "label": "Details Event details for Baseball at Mount St. Joseph on Mar 12, 2025",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2024-25/schedule?eid=vyogqh4myszal6h5",
+            "label": "Details Event details for Baseball vs RV Case Western on Mar 14, 2025",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2024-25/schedule?eid=g4ad4o091w9y8gmx",
+            "label": "Details Event details for Baseball vs Spalding on Mar 16, 2025",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2024-25/schedule?eid=1gu13vxnwph38ls8",
+            "label": "Details Event details for Baseball at Wilmington (Ohio) on Mar 18, 2025",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2024-25/schedule?eid=zj4a9a60j5hpxbmq",
+            "label": "Details Event details for Baseball at Adrian on Mar 21, 2025",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2024-25/schedule?eid=xg80206vjrmaq7d0",
+            "label": "Details Event details for Baseball vs Adrian on Mar 22, 2025",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2024-25/schedule?eid=3lduxno8dntkcsjz",
+            "label": "Details Event details for Baseball vs Adrian on Mar 22, 2025",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2024-25/schedule?eid=lyw9623so8o88pr4",
+            "label": "Details Event details for Baseball vs Wilmington (Ohio) on Mar 25, 2025",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2024-25/schedule?eid=n91srhp2727axi5p",
+            "label": "Details Event details for Baseball vs Marietta on Mar 26, 2025",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2024-25/schedule?eid=3r1ghybasuo333kt",
+            "label": "Details Event details for Baseball at DePauw on Mar 29, 2025",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2024-25/schedule?eid=c904nggzyb5nlnd5",
+            "label": "Details Event details for Baseball at DePauw on Mar 29, 2025",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2024-25/schedule?eid=26y7fa63p5a8htt4",
+            "label": "Details Event details for Baseball vs Otterbein on Apr 02, 2025",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2024-25/schedule?eid=afja7r616p3lkggb",
+            "label": "Details Event details for Baseball vs Franklin on Apr 08, 2025",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2024-25/schedule?eid=zlavkut5zbjzzw8x",
+            "label": "Details Event details for Baseball at Bluffton on Apr 09, 2025",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2024-25/schedule?eid=0ziq2mmefo1l8rz2",
+            "label": "Details Event details for Baseball at Wooster on Apr 12, 2025",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2024-25/schedule?eid=6t3d0rze00sqp9rq",
+            "label": "Details Event details for Baseball at Wooster on Apr 12, 2025",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2024-25/schedule?eid=941sau5wb7v5t1nq",
+            "label": "Details Event details for Baseball vs Wabash on Apr 16, 2025",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2024-25/schedule?eid=dm8sh9ji45wf5f0a",
+            "label": "Details Event details for Baseball vs Wabash on Apr 16, 2025",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2024-25/schedule?eid=2ttq8nwv8iyc7d4x",
+            "label": "Details Event details for Baseball vs Hiram on Apr 18, 2025",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2024-25/schedule?eid=j41zx562grqhfb2j",
+            "label": "Details Event details for Baseball vs Hiram on Apr 18, 2025",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2024-25/schedule?eid=gyud9dbqz3joofln",
+            "label": "Details Event details for Baseball vs Heidelberg on Apr 22, 2025",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2024-25/schedule?eid=rh0t3sgpioqu7zdo",
+            "label": "Details Event details for Baseball vs Kenyon on Apr 24, 2025",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2024-25/schedule?eid=3elpkb8lk6fh560x",
+            "label": "Details Event details for Baseball vs Kenyon on Apr 24, 2025",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2024-25/schedule?eid=h65vmi7662h8omuu",
+            "label": "Details Event details for Baseball vs Ohio Wesleyan on Apr 26, 2025",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2024-25/schedule?eid=uk59tbhscyd99cl9",
+            "label": "Details Event details for Baseball vs Ohio Wesleyan on Apr 26, 2025",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2024-25/schedule?eid=pscan8uyrv121haq",
+            "label": "Details Event details for Baseball vs (RV) Ohio Northern on Apr 27, 2025",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2024-25/schedule?eid=rll7oktc0aiqrj0a",
+            "label": "Details Event details for Baseball at Oberlin on Apr 30, 2025",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2024-25/schedule?eid=9vp6gviywqr4zm9i",
+            "label": "Details Event details for Baseball at Oberlin on Apr 30, 2025",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2024-25/schedule?eid=no9hbrn3qosb8f77",
+            "label": "Details Event details for Baseball vs Muskingum on May 01, 2025",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2024-25/schedule?eid=cqv5gvlfjn9de8o1",
+            "label": "Details Event details for Baseball at #4 Denison on May 04, 2025",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2024-25/schedule?eid=sfir74vlg5azhy6g",
+            "label": "Details Event details for Baseball at #4 Denison on May 04, 2025",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2024-25/schedule?eid=9yj9xxqhc969teq7",
+            "label": "Details Event details for Baseball vs Wabash on May 08, 2025",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2024-25/schedule?eid=opcm4q2iqhwkfn2r",
+            "label": "Details Event details for Baseball vs Denison on May 09, 2025",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2024-25/schedule?eid=q2h8awtpphnre47m",
+            "label": "Details Event details for Baseball vs Wooster on May 09, 2025",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2024-25/schedule?print=ical",
+            "label": "Calendar",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2024-25/schedule?print=rss",
+            "label": "RSS Feed",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://facebook.com/sharer/sharer.php?u=https://WittenbergTigers.com/sports/bsb/2024-25/schedule",
+            "label": "Facebook Share this page on Facebook",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/intent/tweet/?text=2025%20Wittenberg%20Baseball%20Schedule&url=https://WittenbergTigers.com/sports/bsb/2024-25/schedule",
+            "label": "Twitter Share this page on Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "mailto:?subject=2025 Wittenberg Baseball Schedule&body=https://WittenbergTigers.com/sports/bsb/2024-25/schedule",
+            "label": "Email Share this page via email",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://wittenberg.prestosports.com/sports/bsb/2024-25/schedule?dec=printer-decorator",
+            "label": "Print Print this page Print",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://www.wittenbergtigers.com/sports/bsb/2025-26/schedule",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/wittenberg-university-0.html",
+        "sha256": "8bdd707d5cf75eabfebb5d5cf8ae8a3ef5f45ae1de974caa0a47dde5b4af7179",
+        "url": "https://www.wittenbergtigers.com/sports/bsb/2025-26/schedule",
+        "label": "Baseball Baseball schedule"
+      },
+      "status": 200,
+      "finalUrl": "https://www.wittenbergtigers.com/sports/bsb/2025-26/schedule",
+      "checkedAtUtc": "2026-11-17T20:38:45.502Z",
+      "sourcePath": "sources/wittenberg-university-2.html",
+      "sha256": "a57e7b3286aebab2343961dee7ed56fdaad1182e5b160c4d0bec82a9c0e782c1",
+      "parsed": {
+        "title": "2026 Wittenberg Baseball Schedule - Wittenberg",
+        "headings": [
+          "2026 Wittenberg Baseball Schedule"
+        ],
+        "links": [
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2025-26/schedule",
+            "label": "Skip to navigation",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2026-27/schedule",
+            "label": "Schedule Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2025-26/roster",
+            "label": "Roster Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittenbergbaseball/",
+            "label": "Instagram Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://twitter.com/WittenbergUBase",
+            "label": "Twitter Baseball: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mbkb/2026-27/schedule",
+            "label": "Schedule Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mbkb/2026-27/roster",
+            "label": "Roster Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/witthoops/",
+            "label": "instagram Basketball: instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://twitter.com/WittenbergHoops",
+            "label": "X Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mxc/2026-27/schedule",
+            "label": "Schedule Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mxc/2026-27/roster",
+            "label": "Roster Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/witt_xctf/",
+            "label": "Instagram Cross Country: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://twitter.com/WittAthletics",
+            "label": "X Cross Country: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/fball/2026-27/schedule",
+            "label": "Schedule Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/fball/2026-27/roster",
+            "label": "Roster Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittfootball/",
+            "label": "instagram Football: instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://twitter.com/wittfootball",
+            "label": "Twitter Football: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mgolf/2026-27/schedule",
+            "label": "Schedule Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mgolf/2026-27/roster",
+            "label": "Roster Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittenberggolf/",
+            "label": "Instagram Golf: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mlax/2025-26/schedule",
+            "label": "Schedule Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mlax/2025-26/roster",
+            "label": "Roster Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittmlax/",
+            "label": "Instagram Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://twitter.com/WittMLax",
+            "label": "X Lacrosse: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/msoc/2026-27/schedule",
+            "label": "Schedule Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/msoc/2026-27/roster",
+            "label": "Roster Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittmsoc/",
+            "label": "Instagram Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://twitter.com/WittMensSoccer",
+            "label": "X Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mswimdive/2026-27/schedule",
+            "label": "Schedule Swimming & Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mswimdive/2026-27/roster",
+            "label": "Roster Swimming & Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittenbergswimdive/",
+            "label": "Instagram Swimming & Diving: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mten/2026-27/schedule",
+            "label": "Schedule Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mten/2026-27/roster",
+            "label": "Roster Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittenbergmwtennis/",
+            "label": "Instagram Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://twitter.com/witt_tennis",
+            "label": "X Tennis: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mtrack/2026-27/schedule",
+            "label": "Schedule Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mtrack/2026-27/roster",
+            "label": "Roster Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mvball/2026-27/schedule",
+            "label": "Schedule Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mvball/2025-26/roster",
+            "label": "Roster Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittmvb/",
+            "label": "Instagram Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mwrest/2026-27/schedule",
+            "label": "Schedule Wrestling: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mwrest/2026-27/roster",
+            "label": "Roster Wrestling: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittuwrestling",
+            "label": "instagram Wrestling: instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/wittuwrestling",
+            "label": "X Wrestling: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wbkb/2026-27/schedule",
+            "label": "Schedule Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wbkb/2026-27/roster",
+            "label": "Roster Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittenbergwomensbasketball/",
+            "label": "Instagram Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://twitter.com/wittwbb",
+            "label": "X Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wxc/2026-27/schedule",
+            "label": "Schedule Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wxc/2026-27/roster",
+            "label": "Roster Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/fh/2026-27/schedule",
+            "label": "Schedule Field Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/fh/2026-27/roster",
+            "label": "Roster Field Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/witt_fh/",
+            "label": "instagram Field Hockey: instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/flagfball/2026-27/schedule",
+            "label": "Schedule Flag Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/flagfball/2026-27/roster",
+            "label": "Roster Flag Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittwff/",
+            "label": "instagram Flag Football: instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wgolf/2026-27/schedule",
+            "label": "Schedule Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wgolf/2026-27/roster",
+            "label": "Roster Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wlax/2025-26/schedule",
+            "label": "Schedule Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wlax/2025-26/roster",
+            "label": "Roster Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittwlax/",
+            "label": "Instagram Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://twitter.com/WittWLax",
+            "label": "X Lacrosse: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wsoc/2026-27/schedule",
+            "label": "Schedule Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wsoc/2026-27/roster",
+            "label": "Roster Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittwsoccer/",
+            "label": "Instagram Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://twitter.com/wittwsoccer",
+            "label": "X Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/sball/2025-26/schedule",
+            "label": "Schedule Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/sball/2026-27/roster",
+            "label": "Roster Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittsoftball/",
+            "label": "Instagram Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://twitter.com/wittathletics",
+            "label": "X Softball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wswimdive/2026-27/schedule",
+            "label": "Schedule Swimming & Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wswimdive/2026-27/roster",
+            "label": "Roster Swimming & Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wten/2026-27/schedule",
+            "label": "Schedule Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wten/2026-27/roster",
+            "label": "Roster Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wtrack/2026-27/schedule",
+            "label": "Schedule Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wtrack/2026-27/roster",
+            "label": "Roster Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/Wittathletics",
+            "label": "X Track & Field: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wvball/2026-27/schedule",
+            "label": "Schedule Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wvball/2026-27/roster",
+            "label": "Roster Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/witt_wvb/",
+            "label": "Instagram Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://twitter.com/witt_wvb",
+            "label": "X Volleyball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wwrest/2026-27/schedule",
+            "label": "Schedule Wrestling: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wwrest/2026-27/roster",
+            "label": "Roster Wrestling: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bowl/2026-27/schedule",
+            "label": "Schedule M. Bowling: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bowl/2026-27/roster",
+            "label": "Roster M. Bowling: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittu_bowling/",
+            "label": "Instagram M. Bowling: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wbowl/2026-27/schedule",
+            "label": "Schedule W. Bowling: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wbowl/2026-27/roster",
+            "label": "Roster W. Bowling: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/information/clubsports/cheerleading/2026-27/roster",
+            "label": "Roster Cheer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittcheer/",
+            "label": "instagram Cheer: instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/acha/2026-27/schedule",
+            "label": "Schedule M. ACHA Ice Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/acha/2026-27/roster",
+            "label": "Roster M. ACHA Ice Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittmhockey",
+            "label": "Instagram M. ACHA Ice Hockey: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/achaw/2026-27/schedule",
+            "label": "Schedule W. ACHA Ice Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/achaw/2026-27/roster",
+            "label": "Roster W. ACHA Ice Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittwhockey",
+            "label": "Instagram W. ACHA Ice Hockey: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/Witt_Esports/",
+            "label": "Instagram Esports: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/composite",
+            "label": "Composite Schedule Fan Zone: Composite Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/information/directory/index",
+            "label": "Staff Directory Inside Athletics: Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/information/camps",
+            "label": "Camps & Clinics Inside Athletics: Camps & Clinics",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/recruiting/questionnaires",
+            "label": "Recruiting Questionnaires Apply: Recruiting Questionnaires",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.instagram.com/wittathletics/",
+            "label": "Instagram Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/coaches/index",
+            "label": "Coaches",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/recruiting/forms/bsb",
+            "label": "Recruiting Questionnaire",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2025-26/schedule?eid=513trkfp2dytbfll",
+            "label": "Details Event details for Baseball vs Carroll (Wis.) on Feb 20, 2026",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2025-26/schedule?eid=81lkh4qcr9rfw020",
+            "label": "Details Event details for Baseball vs Berea on Feb 21, 2026",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2025-26/schedule?eid=8b30vynys9zmujz5",
+            "label": "Details Event details for Baseball vs (RV) Kalamazoo on Feb 21, 2026",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2025-26/schedule?eid=o4y6uk201rtwr4io",
+            "label": "Details Event details for Baseball at Maryville (Tenn.) on Feb 28, 2026",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2025-26/schedule?eid=es39powdy0nbl65g",
+            "label": "Details Event details for Baseball at Maryville (Tenn.) on Feb 28, 2026",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2025-26/schedule?eid=sxmqw4w0h59agjzr",
+            "label": "Details Event details for Baseball at Maryville (Tenn.) on Mar 01, 2026",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2025-26/schedule?eid=651ikpc3tnngb1bk",
+            "label": "Details Event details for Baseball at Transylvania on Mar 04, 2026",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2025-26/schedule?eid=ldf1dj8rq1byz88b",
+            "label": "Details Event details for Baseball vs Immaculata on Mar 07, 2026",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2025-26/schedule?eid=c02s66xp28ntciza",
+            "label": "Details Event details for Baseball at St. Joseph's (L.I.) on Mar 08, 2026",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2025-26/schedule?eid=8r9q1o2n8kdr8o41",
+            "label": "Details Event details for Baseball vs Bridgewater St. on Mar 10, 2026",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2025-26/schedule?eid=ugcg9vrsx9wdd5i2",
+            "label": "Details Event details for Baseball vs Cairn on Mar 11, 2026",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2025-26/schedule?eid=fx5m3nb79wnswkqk",
+            "label": "Details Event details for Baseball at #19 Chris. Newport on Mar 13, 2026",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2025-26/schedule?eid=z6x7okjmgqn20owf",
+            "label": "Details Event details for Baseball at #19 Chris. Newport on Mar 14, 2026",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2025-26/schedule?eid=ocfb8d7eeqa2isx6",
+            "label": "Details Event details for Baseball at #19 Chris. Newport on Mar 14, 2026",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2025-26/schedule?eid=lu94sx9ni4hpyki9",
+            "label": "Details Event details for Baseball vs Hampden-Sydney on Mar 15, 2026",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2025-26/schedule?eid=v52rvjrwh5et25jf",
+            "label": "Details Event details for Baseball at Wilmington (Ohio) on Mar 19, 2026",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2025-26/schedule?eid=t5o7ncuw9ofpr1kz",
+            "label": "Details Event details for Baseball vs Hope on Mar 20, 2026",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2025-26/schedule?eid=p3bgkhma063nyxoe",
+            "label": "Details Event details for Baseball vs Hope on Mar 21, 2026",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2025-26/schedule?eid=jtal1xuy3coba30g",
+            "label": "Details Event details for Baseball vs Hope on Mar 21, 2026",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2025-26/schedule?eid=a7668pw95ax3kzqm",
+            "label": "Details Event details for Baseball vs Wilmington (Ohio) on Mar 24, 2026",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2025-26/schedule?eid=2xpv4tqa6r31a07z",
+            "label": "Details Event details for Baseball vs DePauw on Mar 29, 2026",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2025-26/schedule?eid=drgnt4h66rtklp54",
+            "label": "Details Event details for Baseball vs DePauw on Mar 29, 2026",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2025-26/schedule?eid=fo7g484r567toibs",
+            "label": "Details Event details for Baseball at Otterbein on Apr 01, 2026",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2025-26/schedule?eid=pult835oe00por25",
+            "label": "Details Event details for Baseball at Kenyon on Apr 04, 2026",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2025-26/schedule?eid=tavmfob4fv7wnprc",
+            "label": "Details Event details for Baseball at Kenyon on Apr 04, 2026",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2025-26/schedule?eid=kkkwpbpx1ucas3l5",
+            "label": "Details Event details for Baseball vs Bluffton on Apr 08, 2026",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2025-26/schedule?eid=fwhzr3w5xpizqebw",
+            "label": "Details Event details for Baseball vs Wooster on Apr 11, 2026",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2025-26/schedule?eid=261q57q5i8kixioe",
+            "label": "Details Event details for Baseball vs Wooster on Apr 11, 2026",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2025-26/schedule?eid=zr73htp5a1brg5xs",
+            "label": "Details Event details for Baseball at Heidelberg on Apr 15, 2026",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2025-26/schedule?eid=i5hzr6bpxx3cmmwi",
+            "label": "Details Event details for Baseball at John Carroll on Apr 17, 2026",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2025-26/schedule?eid=sg4rywu9qidcwnap",
+            "label": "Details Event details for Baseball at John Carroll on Apr 17, 2026",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2025-26/schedule?eid=tcnkhiu9s8eftd4a",
+            "label": "Details Event details for Baseball at Wabash on Apr 22, 2026",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2025-26/schedule?eid=eco2h3wasya9el6j",
+            "label": "Details Event details for Baseball at Wabash on Apr 22, 2026",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2025-26/schedule?eid=ebfpukrw4zypblbn",
+            "label": "Details Event details for Baseball vs #1 Denison on Apr 25, 2026",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2025-26/schedule?eid=w5h3y04bdk4g0r93",
+            "label": "Details Event details for Baseball vs #1 Denison on Apr 25, 2026",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2025-26/schedule?eid=quw2cos4439f3oac",
+            "label": "Details Event details for Baseball vs Oberlin on Apr 28, 2026",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2025-26/schedule?eid=cuhwjpqvjy5pk0f3",
+            "label": "Details Event details for Baseball vs Oberlin on Apr 28, 2026",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2025-26/schedule?eid=4m0pucdt3wm31x7b",
+            "label": "Details Event details for Baseball at Ohio Wesleyan on May 02, 2026",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2025-26/schedule?eid=q66sitppx169thzf",
+            "label": "Details Event details for Baseball at Ohio Wesleyan on May 03, 2026",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2025-26/schedule?eid=tkzwucgrz8boskav",
+            "label": "Details Event details for Baseball vs DePauw on May 07, 2026",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2025-26/schedule?eid=wsz0tlapos6pzlw1",
+            "label": "Details Event details for Baseball vs John Carroll on May 08, 2026",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2025-26/schedule?eid=suook92mjgdn7wuv",
+            "label": "Details Event details for Baseball vs DePauw on May 08, 2026",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2025-26/schedule?eid=t704wnklvfey20ct",
+            "label": "Details Event details for Baseball vs #1 Denison on May 09, 2026",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2025-26/schedule?eid=2dflw0k2vb63wccm",
+            "label": "Details Event details for Baseball vs Webster on May 15, 2026",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2025-26/schedule?eid=dm33dw81rnubext6",
+            "label": "Details Event details for Baseball vs Adrian on May 16, 2026",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2025-26/schedule?print=ical",
+            "label": "Calendar",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2025-26/schedule?print=rss",
+            "label": "RSS Feed",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://facebook.com/sharer/sharer.php?u=https://WittenbergTigers.com/sports/bsb/2025-26/schedule",
+            "label": "Facebook Share this page on Facebook",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/intent/tweet/?text=2026%20Wittenberg%20Baseball%20Schedule&url=https://WittenbergTigers.com/sports/bsb/2025-26/schedule",
+            "label": "Twitter Share this page on Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "mailto:?subject=2026 Wittenberg Baseball Schedule&body=https://WittenbergTigers.com/sports/bsb/2025-26/schedule",
+            "label": "Email Share this page via email",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://wittenberg.prestosports.com/sports/bsb/2025-26/schedule?dec=printer-decorator",
+            "label": "Print Print this page Print",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://www.wittenbergtigers.com/sports/bsb/2026-27/schedule",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/wittenberg-university-0.html",
+        "sha256": "8bdd707d5cf75eabfebb5d5cf8ae8a3ef5f45ae1de974caa0a47dde5b4af7179",
+        "url": "https://www.wittenbergtigers.com/sports/bsb/2026-27/schedule",
+        "label": "Baseball Baseball schedule"
+      },
+      "status": 200,
+      "finalUrl": "https://www.wittenbergtigers.com/sports/bsb/2026-27/schedule",
+      "checkedAtUtc": "2026-11-17T20:38:46.875Z",
+      "sourcePath": "sources/wittenberg-university-3.html",
+      "sha256": "66daa9de85f8144e4b1c1e98dbefaaf27d530b9de09cb57e0ffca1c4daca4263",
+      "parsed": {
+        "title": "2027 Wittenberg Baseball Schedule - Wittenberg",
+        "headings": [
+          "2027 Wittenberg Baseball Schedule"
+        ],
+        "links": [
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2026-27/schedule",
+            "label": "Skip to navigation",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2025-26/roster",
+            "label": "Roster Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittenbergbaseball/",
+            "label": "Instagram Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://twitter.com/WittenbergUBase",
+            "label": "Twitter Baseball: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mbkb/2026-27/schedule",
+            "label": "Schedule Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mbkb/2026-27/roster",
+            "label": "Roster Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/witthoops/",
+            "label": "instagram Basketball: instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://twitter.com/WittenbergHoops",
+            "label": "X Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mxc/2026-27/schedule",
+            "label": "Schedule Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mxc/2026-27/roster",
+            "label": "Roster Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/witt_xctf/",
+            "label": "Instagram Cross Country: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://twitter.com/WittAthletics",
+            "label": "X Cross Country: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/fball/2026-27/schedule",
+            "label": "Schedule Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/fball/2026-27/roster",
+            "label": "Roster Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittfootball/",
+            "label": "instagram Football: instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://twitter.com/wittfootball",
+            "label": "Twitter Football: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mgolf/2026-27/schedule",
+            "label": "Schedule Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mgolf/2026-27/roster",
+            "label": "Roster Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittenberggolf/",
+            "label": "Instagram Golf: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mlax/2025-26/schedule",
+            "label": "Schedule Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mlax/2025-26/roster",
+            "label": "Roster Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittmlax/",
+            "label": "Instagram Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://twitter.com/WittMLax",
+            "label": "X Lacrosse: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/msoc/2026-27/schedule",
+            "label": "Schedule Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/msoc/2026-27/roster",
+            "label": "Roster Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittmsoc/",
+            "label": "Instagram Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://twitter.com/WittMensSoccer",
+            "label": "X Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mswimdive/2026-27/schedule",
+            "label": "Schedule Swimming & Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mswimdive/2026-27/roster",
+            "label": "Roster Swimming & Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittenbergswimdive/",
+            "label": "Instagram Swimming & Diving: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mten/2026-27/schedule",
+            "label": "Schedule Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mten/2026-27/roster",
+            "label": "Roster Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittenbergmwtennis/",
+            "label": "Instagram Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://twitter.com/witt_tennis",
+            "label": "X Tennis: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mtrack/2026-27/schedule",
+            "label": "Schedule Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mtrack/2026-27/roster",
+            "label": "Roster Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mvball/2026-27/schedule",
+            "label": "Schedule Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mvball/2025-26/roster",
+            "label": "Roster Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittmvb/",
+            "label": "Instagram Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mwrest/2026-27/schedule",
+            "label": "Schedule Wrestling: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/mwrest/2026-27/roster",
+            "label": "Roster Wrestling: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittuwrestling",
+            "label": "instagram Wrestling: instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://x.com/wittuwrestling",
+            "label": "X Wrestling: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wbkb/2026-27/schedule",
+            "label": "Schedule Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wbkb/2026-27/roster",
+            "label": "Roster Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittenbergwomensbasketball/",
+            "label": "Instagram Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://twitter.com/wittwbb",
+            "label": "X Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wxc/2026-27/schedule",
+            "label": "Schedule Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wxc/2026-27/roster",
+            "label": "Roster Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/fh/2026-27/schedule",
+            "label": "Schedule Field Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/fh/2026-27/roster",
+            "label": "Roster Field Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/witt_fh/",
+            "label": "instagram Field Hockey: instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/flagfball/2026-27/schedule",
+            "label": "Schedule Flag Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/flagfball/2026-27/roster",
+            "label": "Roster Flag Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittwff/",
+            "label": "instagram Flag Football: instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wgolf/2026-27/schedule",
+            "label": "Schedule Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wgolf/2026-27/roster",
+            "label": "Roster Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wlax/2025-26/schedule",
+            "label": "Schedule Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wlax/2025-26/roster",
+            "label": "Roster Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittwlax/",
+            "label": "Instagram Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://twitter.com/WittWLax",
+            "label": "X Lacrosse: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wsoc/2026-27/schedule",
+            "label": "Schedule Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wsoc/2026-27/roster",
+            "label": "Roster Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittwsoccer/",
+            "label": "Instagram Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://twitter.com/wittwsoccer",
+            "label": "X Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/sball/2025-26/schedule",
+            "label": "Schedule Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/sball/2026-27/roster",
+            "label": "Roster Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittsoftball/",
+            "label": "Instagram Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://twitter.com/wittathletics",
+            "label": "X Softball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wswimdive/2026-27/schedule",
+            "label": "Schedule Swimming & Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wswimdive/2026-27/roster",
+            "label": "Roster Swimming & Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wten/2026-27/schedule",
+            "label": "Schedule Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wten/2026-27/roster",
+            "label": "Roster Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wtrack/2026-27/schedule",
+            "label": "Schedule Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wtrack/2026-27/roster",
+            "label": "Roster Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/Wittathletics",
+            "label": "X Track & Field: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wvball/2026-27/schedule",
+            "label": "Schedule Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wvball/2026-27/roster",
+            "label": "Roster Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/witt_wvb/",
+            "label": "Instagram Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://twitter.com/witt_wvb",
+            "label": "X Volleyball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wwrest/2026-27/schedule",
+            "label": "Schedule Wrestling: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wwrest/2026-27/roster",
+            "label": "Roster Wrestling: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bowl/2026-27/schedule",
+            "label": "Schedule M. Bowling: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bowl/2026-27/roster",
+            "label": "Roster M. Bowling: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittu_bowling/",
+            "label": "Instagram M. Bowling: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wbowl/2026-27/schedule",
+            "label": "Schedule W. Bowling: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/wbowl/2026-27/roster",
+            "label": "Roster W. Bowling: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/information/clubsports/cheerleading/2026-27/roster",
+            "label": "Roster Cheer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittcheer/",
+            "label": "instagram Cheer: instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/acha/2026-27/schedule",
+            "label": "Schedule M. ACHA Ice Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/acha/2026-27/roster",
+            "label": "Roster M. ACHA Ice Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittmhockey",
+            "label": "Instagram M. ACHA Ice Hockey: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/achaw/2026-27/schedule",
+            "label": "Schedule W. ACHA Ice Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/achaw/2026-27/roster",
+            "label": "Roster W. ACHA Ice Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/wittwhockey",
+            "label": "Instagram W. ACHA Ice Hockey: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/Witt_Esports/",
+            "label": "Instagram Esports: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/composite",
+            "label": "Composite Schedule Fan Zone: Composite Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/information/directory/index",
+            "label": "Staff Directory Inside Athletics: Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/information/camps",
+            "label": "Camps & Clinics Inside Athletics: Camps & Clinics",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/recruiting/questionnaires",
+            "label": "Recruiting Questionnaires Apply: Recruiting Questionnaires",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.instagram.com/wittathletics/",
+            "label": "Instagram Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/coaches/index",
+            "label": "Coaches",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/recruiting/forms/bsb",
+            "label": "Recruiting Questionnaire",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2026-27/schedule?eid=4c5ur2a142yj8w5t",
+            "label": "Details Event details for Baseball vs St. John Fisher on Feb 20, 2027",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2026-27/schedule?eid=j6erlhqpogp5e2h3",
+            "label": "Details Event details for Baseball at Hampden-Sydney on Feb 20, 2027",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2026-27/schedule?eid=o34imxrxwkzu31g4",
+            "label": "Details Event details for Baseball vs Franklin & Marshall on Feb 21, 2027",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2026-27/schedule?eid=j99c3r1txrjmuh0i",
+            "label": "Details Event details for Baseball at Transylvania on Feb 26, 2027",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2026-27/schedule?eid=ixubit7iy47kacqv",
+            "label": "Details Event details for Baseball at Transylvania on Feb 27, 2027",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2026-27/schedule?eid=q047ou53qskzfsns",
+            "label": "Details Event details for Baseball at Transylvania on Feb 28, 2027",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2026-27/schedule?eid=sstbh68syr1j1isv",
+            "label": "Details Event details for Baseball vs Messiah on Mar 06, 2027",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2026-27/schedule?eid=qs6w7ntarafm50pj",
+            "label": "Details Event details for Baseball at Shenandoah on Mar 06, 2027",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2026-27/schedule?eid=kznacqo9q8rqdh44",
+            "label": "Details Event details for Baseball vs Immaculata on Mar 07, 2027",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2026-27/schedule?eid=55up76t8cvmlwo7o",
+            "label": "Details Event details for Baseball vs #4 LaGrange on Mar 12, 2027",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2026-27/schedule?eid=usr6tt08apq9tmq5",
+            "label": "Details Event details for Baseball vs Buena Vista on Mar 13, 2027",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2026-27/schedule?eid=husrtdzx5g8twwym",
+            "label": "Details Event details for Baseball at Spalding on Mar 14, 2027",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2026-27/schedule?eid=qxxschg0btxkga4l",
+            "label": "Details Event details for Baseball vs Capital on Mar 16, 2027",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2026-27/schedule?eid=ev6dttpl779tgg8z",
+            "label": "Details Event details for Baseball vs Muskingum on Mar 17, 2027",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2026-27/schedule?eid=799kuz96len4nv84",
+            "label": "Details Event details for Baseball vs Case Western on Mar 19, 2027",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2026-27/schedule?eid=lah8n98e43elf05h",
+            "label": "Details Event details for Baseball vs Case Western on Mar 19, 2027",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2026-27/schedule?eid=q9vuqqnbbpdm0b3r",
+            "label": "Details Event details for Baseball at Case Western on Mar 20, 2027",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2026-27/schedule?eid=jrafkzq1jjpk5fxp",
+            "label": "Details Event details for Baseball at Muskingum on Mar 23, 2027",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2026-27/schedule?eid=qbt1k6ju28s4ck6y",
+            "label": "Details Event details for Baseball at Wilmington (Ohio) on Mar 26, 2027",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2026-27/schedule?eid=59t7leomd7gmujju",
+            "label": "Details Event details for Baseball vs Wilmington (Ohio) on Mar 27, 2027",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2026-27/schedule?eid=bpwxvgnklj042zpb",
+            "label": "Details Event details for Baseball at Ohio Northern on Mar 30, 2027",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2026-27/schedule?eid=fn8v352dy90nvv4w",
+            "label": "Details Event details for Baseball vs Wabash on Apr 03, 2027",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2026-27/schedule?eid=sprtfs2oxt6aozxy",
+            "label": "Details Event details for Baseball vs Wabash on Apr 03, 2027",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2026-27/schedule?eid=y8vadz3n4azm7mes",
+            "label": "Details Event details for Baseball vs Heidelberg on Apr 07, 2027",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2026-27/schedule?eid=1ruc5st7mie0m4p9",
+            "label": "Details Event details for Baseball at Denison on Apr 10, 2027",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2026-27/schedule?eid=kcpunxbgeo1d53n4",
+            "label": "Details Event details for Baseball at Denison on Apr 10, 2027",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2026-27/schedule?eid=kh9kdegsezsigxxs",
+            "label": "Details Event details for Baseball vs Ohio Wesleyan on Apr 14, 2027",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2026-27/schedule?eid=git5wjx24z95f8jn",
+            "label": "Details Event details for Baseball vs Ohio Wesleyan on Apr 14, 2027",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2026-27/schedule?eid=offwrxdxmitld288",
+            "label": "Details Event details for Baseball at Oberlin on Apr 17, 2027",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2026-27/schedule?eid=r4hxkvu50rnkvyht",
+            "label": "Details Event details for Baseball at Oberlin on Apr 17, 2027",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2026-27/schedule?eid=bjmjeauihb5f1lra",
+            "label": "Details Event details for Baseball vs Kenyon on Apr 20, 2027",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2026-27/schedule?eid=8b0vedzvrn611bnd",
+            "label": "Details Event details for Baseball vs Kenyon on Apr 20, 2027",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2026-27/schedule?eid=wu2qxw9hu14up812",
+            "label": "Details Event details for Baseball vs John Carroll on Apr 24, 2027",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2026-27/schedule?eid=d7ffbrxmcw8x9el1",
+            "label": "Details Event details for Baseball vs John Carroll on Apr 24, 2027",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2026-27/schedule?eid=xh4m6tw3vlvlto4d",
+            "label": "Details Event details for Baseball at Wooster on Apr 28, 2027",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2026-27/schedule?eid=bkrziyykynz1y3e8",
+            "label": "Details Event details for Baseball at Wooster on Apr 28, 2027",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2026-27/schedule?eid=96upgwrp1fg8g18n",
+            "label": "Details Event details for Baseball vs Otterbein on May 01, 2027",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2026-27/schedule?eid=aj7g07zj6si99olt",
+            "label": "Details Event details for Baseball vs Otterbein on May 01, 2027",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2026-27/schedule?eid=4jrkpex56v72kap6",
+            "label": "Details Event details for Baseball at DePauw on May 08, 2027",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2026-27/schedule?eid=5flvdqdjstdqdzc9",
+            "label": "Details Event details for Baseball at DePauw on May 08, 2027",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2026-27/schedule?print=ical",
+            "label": "Calendar",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.wittenbergtigers.com/sports/bsb/2026-27/schedule?print=rss",
+            "label": "RSS Feed",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://facebook.com/sharer/sharer.php?u=https://WittenbergTigers.com/sports/bsb/2026-27/schedule",
+            "label": "Facebook Share this page on Facebook",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/intent/tweet/?text=2027%20Wittenberg%20Baseball%20Schedule&url=https://WittenbergTigers.com/sports/bsb/2026-27/schedule",
+            "label": "Twitter Share this page on Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "mailto:?subject=2027 Wittenberg Baseball Schedule&body=https://WittenbergTigers.com/sports/bsb/2026-27/schedule",
+            "label": "Email Share this page via email",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://wittenberg.prestosports.com/sports/bsb/2026-27/schedule?dec=printer-decorator",
+            "label": "Print Print this page Print",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          }
+        ]
+      }
+    }
+  ],
+  "status": "EVIDENCE_CAPTURED_REQUIRES_REVIEW"
+}

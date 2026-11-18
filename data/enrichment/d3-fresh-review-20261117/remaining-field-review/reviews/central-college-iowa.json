@@ -1,0 +1,318 @@
+{
+  "slug": "central-college-iowa",
+  "collegeId": "cmovornrg004cqt7gs5y6myfv",
+  "programId": "cmovornsu004eqt7gllptck8x",
+  "checkedAtUtc": "2026-11-17T20:35:24.294Z",
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED",
+  "missingFields": [
+    "questionnaireUrl",
+    "campsUrl",
+    "generalContactEmail"
+  ],
+  "pages": [
+    {
+      "requestedUrl": "https://athletics.central.edu/sports/baseball",
+      "kind": "baseball-home",
+      "parent": null,
+      "status": 200,
+      "finalUrl": "https://athletics.central.edu/sports/baseball",
+      "checkedAtUtc": "2026-11-17T20:35:28.300Z",
+      "sourcePath": "sources/central-college-iowa-0.html",
+      "sha256": "647609ff6101063393d8aa8a88357f72e3e9d1714edaa9529b668bd80b4a029c",
+      "parsed": {
+        "title": "Baseball - Central College Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "Central College Athletics",
+          "Main Navigation Menu",
+          "Sport Navigation Menu",
+          "Stories",
+          "Slideshow",
+          "Stories Secondary",
+          "Stories",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://athletics.central.edu/sports/2016/9/28/camps.aspx",
+            "label": "Camps and clinics",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.central.edu/staff-directory",
+            "label": "Staff directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.central.edu/sports/baseball/schedule",
+            "label": "Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.central.edu/sports/jv-baseball/schedule",
+            "label": "JV schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.central.edu/sports/baseball/roster",
+            "label": "Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.central.edu/sports/baseball/coaches",
+            "label": "Coaches",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://athletics.central.edu/sports/baseball/schedule",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "sources/central-college-iowa-0.html",
+        "sha256": "647609ff6101063393d8aa8a88357f72e3e9d1714edaa9529b668bd80b4a029c",
+        "url": "https://athletics.central.edu/sports/baseball/schedule",
+        "label": "Schedule"
+      },
+      "status": 200,
+      "finalUrl": "https://athletics.central.edu/sports/baseball/schedule",
+      "checkedAtUtc": "2026-11-17T20:35:29.434Z",
+      "sourcePath": "sources/central-college-iowa-1.html",
+      "sha256": "8a9108b5e4ae49ffd711cfb14fdf96682b7ff760fa615feedee6ab217c4eaa4f",
+      "parsed": {
+        "title": "2027 Baseball Schedule - Central College Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "Central College Athletics",
+          "Main Navigation Menu",
+          "Sport Navigation Menu",
+          "2027 baseball schedule",
+          "Season Record",
+          "Scheduled Games",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://athletics.central.edu/sports/baseball/schedule",
+            "label": "Skip To Main Content",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.central.edu/sports/2016/9/28/camps.aspx",
+            "label": "Camps and clinics",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.central.edu/staff-directory",
+            "label": "Staff directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.central.edu/sports/jv-baseball/schedule",
+            "label": "JV schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.central.edu/sports/baseball/roster",
+            "label": "Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.central.edu/sports/baseball/coaches",
+            "label": "Coaches",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.central.edu/sports/baseball/schedule?print=true",
+            "label": "Print Print this page",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.central.edu/sports/baseball/schedule/2027?grid=true",
+            "label": "Grid Switch to Grid View",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.central.edu/services/schedule_txt.ashx?schedule=771",
+            "label": "Text Text Format For Braille (New Tab)",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://athletics.central.edu/sports/jv-baseball/schedule",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "sources/central-college-iowa-0.html",
+        "sha256": "647609ff6101063393d8aa8a88357f72e3e9d1714edaa9529b668bd80b4a029c",
+        "url": "https://athletics.central.edu/sports/jv-baseball/schedule",
+        "label": "JV schedule"
+      },
+      "status": 200,
+      "finalUrl": "https://athletics.central.edu/sports/jv-baseball/schedule",
+      "checkedAtUtc": "2026-11-17T20:35:30.915Z",
+      "sourcePath": "sources/central-college-iowa-2.html",
+      "sha256": "7c4847adc70357ba08d484f4922a64daf782ed38e119540f1a44cca2f170a0af",
+      "parsed": {
+        "title": "2026 JV Baseball Schedule - Central College Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "Central College Athletics",
+          "Main Navigation Menu",
+          "Sport Navigation Menu",
+          "2026 JV baseball schedule",
+          "Season Record",
+          "Scheduled Games",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://athletics.central.edu/sports/jv-baseball/schedule",
+            "label": "Skip To Main Content",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.central.edu/sports/2016/9/28/camps.aspx",
+            "label": "Camps and clinics",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.central.edu/staff-directory",
+            "label": "Staff directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.central.edu/sports/jv-baseball/schedule?print=true",
+            "label": "Print Print this page",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.central.edu/sports/jv-baseball/schedule/2026?grid=true",
+            "label": "Grid Switch to Grid View",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.central.edu/services/schedule_txt.ashx?schedule=746",
+            "label": "Text Text Format For Braille (New Tab)",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://athletics.central.edu/sports/baseball/coaches",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "sources/central-college-iowa-0.html",
+        "sha256": "647609ff6101063393d8aa8a88357f72e3e9d1714edaa9529b668bd80b4a029c",
+        "url": "https://athletics.central.edu/sports/baseball/coaches",
+        "label": "Coaches"
+      },
+      "status": 200,
+      "finalUrl": "https://athletics.central.edu/sports/baseball/coaches",
+      "checkedAtUtc": "2026-11-17T20:35:31.911Z",
+      "sourcePath": "sources/central-college-iowa-3.html",
+      "sha256": "0321a92a2d857b776656a4c940749329359c3406602cdd9857a8383f576402a9",
+      "parsed": {
+        "title": "Baseball Coaches - Central College Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "Central College Athletics",
+          "Main Navigation Menu",
+          "Sport Navigation Menu",
+          "2027 Baseball Coaching Staff",
+          "2027 Baseball Support Staff",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://athletics.central.edu/sports/baseball/coaches",
+            "label": "Skip To Main Content",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.central.edu/sports/2016/9/28/camps.aspx",
+            "label": "Camps and clinics",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.central.edu/staff-directory",
+            "label": "Staff directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.central.edu/sports/baseball/schedule",
+            "label": "Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.central.edu/sports/jv-baseball/schedule",
+            "label": "JV schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.central.edu/sports/baseball/roster",
+            "label": "Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.central.edu/sports/baseball/coaches?print=true",
+            "label": "Print",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.central.edu/sports/baseball/roster/coaches/adam-carey/1339",
+            "label": "Adam Carey",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "mailto:careya@central.edu",
+            "label": "careya@central.edu",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.central.edu/sports/baseball/roster/coaches/ian-boline/1341",
+            "label": "Ian Boline",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "mailto:bolinei@central.edu",
+            "label": "bolinei@central.edu",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.central.edu/sports/baseball/roster/coaches/dom-delapaz/1381",
+            "label": "Dom DeLaPaz",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "mailto:delapazd@central.edu",
+            "label": "delapazd@central.edu",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.central.edu/sports/baseball/roster/coaches/landon-destival/1401",
+            "label": "Landon Destival",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.central.edu/sports/baseball/roster/coaches/kole-franklin/1390",
+            "label": "Kole Franklin",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.central.edu/sports/baseball/roster/staff/allysa-criss/178",
+            "label": "Allysa Criss",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "mailto:crissa@central.edu",
+            "label": "crissa@central.edu",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          }
+        ]
+      }
+    }
+  ],
+  "status": "EVIDENCE_CAPTURED_REQUIRES_REVIEW"
+}

@@ -1,0 +1,53 @@
+{
+  "slug": "grand-rapids-community-college",
+  "programId": "cmox236sx004nqtfk5n3hzm66",
+  "collegeId": "cmox236s9004lqtfkn6j77qyp",
+  "checkedAtUtc": "2026-11-18T14:43:34.369Z",
+  "sourcePath": "../njcaa-discovery-20261118/sources/grand-rapids-community-college-1.source",
+  "sourceSHA256": "d7e51796e6178747c201b973152d18e1134b56f4a52626471763572272c5c996",
+  "sourceUrl": "https://grccraiders.com/sports/baseball",
+  "socialLeads": [],
+  "recruitingLeads": [
+    {
+      "url": "https://grccraiders.com/sports/2014/9/3/ques.aspx",
+      "label": "Recruiting Questionnaires",
+      "context": "",
+      "kind": "QUESTIONNAIRE"
+    }
+  ],
+  "logoLeads": [
+    {
+      "url": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/grccraiders.com/images/logos/site/site.png",
+      "label": "The Official Athletic Website of Grand Rapids Community College undefined"
+    }
+  ],
+  "captures": [
+    {
+      "requestedUrl": "https://grccraiders.com/sports/2014/9/3/ques.aspx",
+      "kind": "QUESTIONNAIRE",
+      "status": 200,
+      "finalUrl": "https://grccraiders.com/sports/2014/9/3/ques.aspx",
+      "sourcePath": "../njcaa-core-review-20261118/sources/grand-rapids-community-college-4.source",
+      "sha256": "ef33955ca1824225b4eef8699f03a7ec0f181a4ff9f903deeb85bdca58089eeb",
+      "reusedEvidence": true
+    },
+    {
+      "requestedUrl": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/grccraiders.com/images/logos/site/site.png",
+      "kind": "LOGO_ASSET",
+      "status": 200,
+      "finalUrl": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/grccraiders.com/images/logos/site/site.png",
+      "contentType": "image/png",
+      "sourcePath": "sources/grand-rapids-community-college-1.source",
+      "sha256": "21544fa4f0956b9205bee11eeb1fc527e1b5e8c923eb40b853f14a2e682585f2",
+      "decoded": {
+        "format": "png",
+        "width": 200,
+        "height": 200
+      },
+      "assetDecoded": true
+    }
+  ],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED"
+}

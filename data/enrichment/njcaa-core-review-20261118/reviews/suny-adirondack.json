@@ -1,0 +1,41 @@
+{
+  "slug": "suny-adirondack",
+  "collegeId": "cmox2o3jc0069qtbkr283774r",
+  "programId": "cmox2o3k3006bqtbk74pycbez",
+  "name": "SUNY Adirondack",
+  "storedState": "NY",
+  "storedDivision": "NJCAA_D3",
+  "checkedAtUtc": "2026-11-18T14:21:39.643Z",
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "currentMembershipVerified": false,
+  "campusIdentityVerified": false,
+  "importApproval": "NOT_GRANTED",
+  "pages": [
+    {
+      "requestedUrl": "https://www.sunyadktimberwolves.com/sports/bsb/index",
+      "kind": "DIRECTORY_ALIAS_REQUIRES_CAMPUS_REVIEW",
+      "parent": {
+        "sourcePath": "../njcaa-discovery-20261118/sources/directory-d3.source",
+        "sha256": "3888c2777289f782525671d17b3faadb0f9e289d4cea1ba375ac777b58c7203b",
+        "label": "SUNY Adirondack CC"
+      },
+      "status": 202,
+      "finalUrl": "https://www.sunyadktimberwolves.com/sports/bsb/index",
+      "checkedAtUtc": "2026-11-18T14:21:39.763Z",
+      "sourcePath": "sources/suny-adirondack-0.source",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "discoveryAliases": [
+    {
+      "url": "https://www.sunyadktimberwolves.com/sports/bsb/index",
+      "label": "SUNY Adirondack CC",
+      "parentSourcePath": "sources/directory-d3.source",
+      "parentSHA256": "3888c2777289f782525671d17b3faadb0f9e289d4cea1ba375ac777b58c7203b",
+      "parentUrl": "https://www.thebaseballobserver.com/njcaa-diii-baseball",
+      "status": "UNVERIFIED_NORMALIZED_NAME_LEAD"
+    }
+  ],
+  "status": "HELD_NO_READABLE_SOURCE"
+}

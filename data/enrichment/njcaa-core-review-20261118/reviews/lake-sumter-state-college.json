@@ -1,0 +1,41 @@
+{
+  "slug": "lake-sumter-state-college",
+  "collegeId": "cmox237st006rqtfkrsyytyif",
+  "programId": "cmox237tj006tqtfkcnoeneli",
+  "name": "Lake-Sumter State College",
+  "storedState": "FL",
+  "storedDivision": "NJCAA_D2",
+  "checkedAtUtc": "2026-11-18T14:21:10.634Z",
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "currentMembershipVerified": false,
+  "campusIdentityVerified": false,
+  "importApproval": "NOT_GRANTED",
+  "pages": [
+    {
+      "requestedUrl": "https://lssc.prestosports.com/sports/bsb/index",
+      "kind": "DIRECTORY_ALIAS_REQUIRES_CAMPUS_REVIEW",
+      "parent": {
+        "sourcePath": "../njcaa-discovery-20261118/sources/directory-0.source",
+        "sha256": "63f1c531b007d2922e4db3aa2ba596ee54e397dbafd287df69b95213a011a404",
+        "label": "Lake-Sumter State"
+      },
+      "status": 403,
+      "finalUrl": "https://lssc.prestosports.com/sports/bsb/index",
+      "checkedAtUtc": "2026-11-18T14:21:10.783Z",
+      "sourcePath": "sources/lake-sumter-state-college-0.source",
+      "sha256": "9a0dd2cb49b005ea8ccc405b06b0026f616183d76e320fc15a49dd2b85ed9489"
+    }
+  ],
+  "discoveryAliases": [
+    {
+      "url": "https://lssc.prestosports.com/sports/bsb/index",
+      "label": "Lake-Sumter State",
+      "parentSourcePath": "sources/directory-0.source",
+      "parentSHA256": "63f1c531b007d2922e4db3aa2ba596ee54e397dbafd287df69b95213a011a404",
+      "parentUrl": "https://www.thebaseballobserver.com/njcaa-di-baseball",
+      "status": "UNVERIFIED_NORMALIZED_NAME_LEAD"
+    }
+  ],
+  "status": "HELD_NO_READABLE_SOURCE"
+}

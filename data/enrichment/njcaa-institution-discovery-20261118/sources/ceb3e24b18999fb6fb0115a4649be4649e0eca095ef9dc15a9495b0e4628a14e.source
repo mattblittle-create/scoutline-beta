@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta http-equiv="Content-Language" content="en-us" /><meta http-equiv="X-UA-Compatible" content="IE=edge" /><link rel="icon" type="image/ico" href="/favicon.ico" /><meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=2, user-scalable=yes" />
+<noscript>JavaScript is disabled or not supported!</noscript>
+<!--[if lte IE 6]>
+<link rel="stylesheet" type="text/css" href="/_includes/0-Universal/stylesheets/styleIE6.css" />
+<![endif]-->
+<!--[if IE 7]>
+<link rel="stylesheet" type="text/css" href="/_includes/0-Universal/stylesheets/styleIE7.css" />
+<![endif]-->
+
+	<link rel="stylesheet" type="text/css" href="/_includes/1-Global/MilesCcDefault/stylesheets/common.css" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="https://use.fontawesome.com/releases/v5.3.0/js/all.js"></script>
+	<link rel="stylesheet" type="text/css" href="NewsRelease.css" />	
+	<link rel="stylesheet" type="text/css" href="/_includes/1-Global/MilesCcDefault/stylesheets/transition.css" />
+	 <link rel="stylesheet" href="/_includes/1-Global/MilesCcDefault/stylesheets/Rembrandt.css">
+	 <link rel="stylesheet" href="/_includes/1-Global/MilesCcDefault/stylesheets/Beloved.css">
+	<link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab:400,700,900" rel="stylesheet">
+
+
+<!--<![if !IE]>-->
+<!-- <link rel="stylesheet" type="text/css" href="/_includes/1-Global/MilesCcDefault/stylesheets/style.css" /> -->
+<!--<![endif]>-->
+<!--[if lte IE 6]>
+<link rel="stylesheet" type="text/css" href="/_includes/1-Global/MilesCcDefault/stylesheets/styleIE6.css" />
+<![endif]-->
+<!--[if IE 7]>
+<link rel="stylesheet" type="text/css" href="/_includes/1-Global/MilesCcDefault/stylesheets/styleIE7.css" />
+<![endif]-->
+<!--[if gte IE 8]>
+<link rel="stylesheet" type="text/css" href="/_includes/1-Global/MilesCcDefault/stylesheets/style.css" />
+<link rel="stylesheet" type="text/css" href="/_includes/1-Global/MilesCcDefault/stylesheets/styleIE8.css" />
+<![endif]-->
+<!--<style>
+        .taglinelogo {
+            font-family: 'Rembrandt';
+            font-weight: Regular;
+			Font-size: large;
+        }
+</style>-->
+<style>
+.fa-search{
+		color:#fff;
+		font-size: 2.0em;
+		margin: 5px 50px 75px 15px;
+	}
+</style>
+
+	<title>Miles Community College Home Page</title>
+
+	
+<style>
+.badge-orange {
+	
+  color: #f57636;
+
+	
+}
+.badge-secondary {
+	background-color: #663300;
+}	
+	.PhotoAndCal { position: relative; }
+	.HomePageFullWidthPhotoWrapper { position: relative; }
+	.HomePageFullWidthPhoto { width: 100%; display: none; }
+	.StartHereOverlay { position: absolute; top: 0; left: 0; width: 40%; z-index: 4; pointer-events: none; }
+	.StartHereOverlay img { width: 80%; }
+	.GoAnywhereOverlay { position: absolute; bottom: 0; right: -20%; width: 60%; z-index: 4;  pointer-events: none; } 
+
+	.GoAnywhereOverlay img { width: 60%; }
+	.CampusCalPhotoOverlay {
+		display: none; /* devline */
+		position: absolute;
+		z-index: 4;
+		top: 0;
+		right: 0;
+		width: 30%;
+		height: 40%;
+		font-family: AachenRegular;
+		font-weight: normal;
+		color: #fff;
+		text-shadow: 2px 2px 5px #000;
+	}
+	.CampusCalPhotoOverlayTopAndBottom {
+		background: #646464;
+		background: rgba(30,30,30,0.75);
+		border-radius: 4px;
+		-moz-border-radius: 4px;
+		-webkit-border-radius: 4px;
+	}
+	.CampusCalPhotoOverlayTop {
+		margin-bottom: 0;
+		height: 100%;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 0;
+	}
+	.CampusCalPhotoOverlayBottom {
+		padding: 0.5em;
+		border-top-left-radius: 0;
+		border-top-right-radius: 0;
+		border-top: 5px solid #777;
+		border-top: 5px solid rgba(0,0,0,0.35);
+	}
+	.CampusCalPhotoOverlayBottom img {
+		width: 32px;
+	}
+	
+.btn-MCCBlue:link {
+	
+	font-size: 1em;
+	
+	background-color: #005199;
+	color: #fff;
+	
+}	
+.btn-MCCBlue:visited {
+	
+	font-size: 1em;
+	
+	background-color: #005199;
+	color: #fff;
+	
+}	
+
+
+.btn-MCCBlue:hover {
+	font-size: 1em;
+	font-weight: bold;
+	background-color: #005199;
+	color: #fff;
+}
+.btn-MCCBlue:active {
+	
+	font-size: 1em;
+	
+	background-color: #005199;
+	color: #fff;
+	
+}
+	
+	.TileBlockWrapper { font-size:0; position: relative; left: -25px; } /*<--half of .PromoTile margin-right to center tiles*/
+	.TileWrapper { display: inline-block; width: 33.33333%; }	
+	.EventBlockWrapper { font-size:0; position: relative; left: -25px; } /*<--half of .PromoTile margin-right to center tiles*/
+	.EventWrapper { display: inline-block; width: 32%; overflow: hidden;}
+	.PromoTile
+	{
+		margin: 0 0 10px 10px;
+		height: 340px;
+		overflow: hidden;
+		background-color:#FFFFFF;
+		background-image: url('//content.milescc.edu/images/bgpinstripe.gif');
+		
+		border-radius: 4px;
+		-moz-border-radius: 4px;
+		-webkit-border-radius: 4px;
+		box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.3);
+		-moz-box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.3);
+		-webkit-box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.3);
+	}
+	.PromoTileImage { width: 100% }
+	.PromoTileTitle { font-size: medium; margin: 10px; line-height: 22px; }
+	.PromoTileText { font-size: small; color: #595959; margin: 10px; }
+
+	@media screen and (max-width: 768px) {
+			.CampusCalPhotoOverlay {
+			position: static;
+			width: 100%;
+			height: auto;
+		}
+	}
+	@media screen and (max-width: 700px) {
+		.TileBlockWrapper { position: static; }
+		.TileWrapper { width: 100%;}
+		.PromoTile { margin: 0 10px 10px 10px; height: auto; }
+	}
+	.fa-donate, .fa-info-circle,.fa-map-marker-alt,.fa-comments-dollar,.fa-clipboard-list{
+	color: #fff;
+	font-size: 4em;
+	margin: 1rem;
+	}
+	.social a{
+		font-size: 1.5em;
+		padding: 1rem;
+	}
+	.fa-facebook{
+		color:#fff;
+	}
+
+	.fa-facebook-square{
+		color:#3b5998;
+		font-size: 2.0em;
+	}
+	.fa-twitter-square{
+		color:#00aced;
+		font-size: 2.0em;
+	}
+	.fa-blogger{
+		color:#005281;
+		font-size: 2.0em;
+	}
+	.fa-twitter{
+		color:#fff;
+	}
+	.fa-instagram{
+		color:#fff;
+	}
+	.fa-blogger-b{
+		color:#fff;
+	}
+	.fa-facebook:hover,
+	.fa-twitter:hover,
+	.fa-instagram:hover,
+	.fa-blogger-b:hover{
+		color:#d5d5d5;
+	}
+	.infographics{
+		background:#005199;
+		
+	}
+	.infoicons{
+		width: 75%;
+		margin: 0 auto;
+		}
+	.infoicons h3{
+		color: #fff;
+			padding-bottom: 1rem;
+	}
+	.tiles{
+		width: 100%;
+		
+		margin: 0 auto;
+	}
+	
+	.Infotiles{
+		
+		
+		margin: 0 auto;
+	}
+	.Infotiles2{
+	
+		
+		margin: 0 auto;
+	}
+	.tiles2{
+		width: 100%;
+		
+		margin: 0 auto;
+	}
+	.tiles2 h3{
+		font-family: 'Roboto', sans-serif;
+		font-weight: bold;
+		font-size: 150%;
+	}
+	.card-title {
+		font-family: 'Roboto Slab', serif;
+		font-weight: bold;
+		font-size: 150%;
+		color: #000;
+
+		
+	}
+	.card-text {
+		font-family: "Roboto", sans-serif;
+		font-size: 100%;
+		color: #000;
+	}
+	.tile-pic {
+		padding: .5rem;
+		border-radius: 8px;
+		background-color: #c5cad3;
+		
+			
+	}
+	.tile-pic img{
+		border-radius: 8px;
+	}
+	.prlx{
+		background: #fff;
+		background-attachment: fixed;
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+	
+		
+	}
+	.prlx-row{
+		width: 90%;
+		margin: 0 auto;
+		padding: 75px 10px;
+		
+	
+
+	}
+	.prlx2{
+		background: #fff;
+		background-attachment: fixed;
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
+	.prlx2-row{
+		width: 90%;
+		margin: 0 auto;
+		padding: 50px 0px;
+		color: #000;
+
+	}
+
+	.events-cal{
+		background-color: #f2f2f2;
+		
+		border-radius: 8px; 
+	}
+.whatsHappening {
+    background:#005199;
+    padding: 10px 0;
+
+}
+
+    .whatsHappening h2{
+		font-family: "Roboto Slab"
+        font-size: 36px;
+        font-size: 3.6rem;
+        font-weight: 700;
+        color: #fff;
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+        .whatsHappening h2 span {
+            color: #0;
+        }
+
+    .whatsHappening h3{
+        border-bottom: 1px solid #222;
+        padding-bottom: 5px;
+        margin-bottom: 15px;
+        font-size: 2.2rem;
+        color: #222;
+    }
+
+
+footer {
+	background-color: #005281;
+	color: #fff;
+	padding: 2rem;
+}
+hr.light {
+	border-top: 1px solid #d5d5d5;
+	width: 55%;
+	margin-top: .8rem;
+	margin-bottom: 1rem;
+	}
+hr.light-100 {
+	border-top: 1px solid #d5d5d5;
+	width: 85%;
+	margin-top: .8rem;
+	margin-bottom: 1rem;
+	}
+.badge-orange{
+	background-color: #ff6600;
+    color: white;
+	}
+</style>
+<style type="text/css">
+@media only screen and (max-width: 767px) {
+.fb-comments{width: 100% !important;}
+.fb-comments iframe[style]{width: 100% !important;}
+.fb-like-box{width: 100% !important;}
+.fb-like-box iframe[style]{width: 100% !important;}
+.fb-comments span{width: 100% !important;}
+.fb-comments iframe span[style]{width: 100% !important;}
+.fb-like-box span{width: 100% !important;}
+.fb-like-box iframe span[style]{width: 100% !important;} }
+
+.carousel-control-prev {
+  margin-left: -100px;
+}
+
+.carousel-control-next {
+  margin-right: -100px;
+}
+</style>
+
+
+
+<!--<script type="text/javascript" src="/_includes/0-Universal/jquery-1.7.1.min.js"></script>-->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<!--<script type="text/javascript" src="/_includes/0-Universal/jquery.cookie.js"></script>-->
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script type="text/javascript" src="/_includes/0-Universal/UniversalHeader.js"></script>
+
+<!-- <script type="text/javascript">
+    /*var myWidth = 0, myHeight = 0;
+    if (typeof (window.innerWidth) == 'number') {
+    myWidth = window.innerWidth; myHeight = window.innerHeight;
+    } else if (document.documentElement && (document.documentElement.clientWidth || document.documentElement.clientHeight)) {
+    myWidth = document.documentElement.clientWidth; myHeight = document.documentElement.clientHeight;
+    } else if (document.body && (document.body.clientWidth || document.body.clientHeight)) {
+    myWidth = document.body.clientWidth; myHeight = document.body.clientHeight;
+    }
+
+    window.onresize = displayWindowSize;
+    window.onload = displayWindowSize;
+    function displayWindowSize() {
+    // your size calculation code here
+    document.getElementById("dimensions").innerHTML = myWidth + "x" + myHeight;
+    };*/
+</script> -->
+
+<script>var UserIp = '107.140.129.6';</script>
+	<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script> -->
+	<!-- <script src="/wwwVideo/players/MediaElement/mediaelement-and-player.min.js"></script> -->
+	
+	<script type="text/javascript" src="/_includes/1-Global/MilesCcDefault/scripts/MilesCcDefaultHeader.js"></script>
+	<!-- <script src="/_includes/1-Global/MilesCcDefault/scripts/jquery.slicknav.js"></script> -->
+	<!--[if lt IE 9]> <script src="/_includes/1-Global/MilesCcDefault/scripts/CustomElementsIe8.js"></script> <![endif]-->
+
+ 
+
+
+<!-- Google tag (gtag.js) --> 
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-11XEZ4JXTP"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-11XEZ4JXTP'); </script>
+
+<title>
+
+</title></head>
+
+<body>
+ 
+
+<!-- Google Tag Manager --> 
+
+<!--<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f );
+})(window,document,'script','dataLayer','GTM-K2TNKJ');</script>-->
+ <!--End Google Tag Manager -->
+ 
+<!-- Google Tag Manager   1/28/2020-->
+<!--<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f) (https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f)) ;
+})(window,document,'script','dataLayer','GTM-NWLRK6K');</script>-->
+<!-- End Google Tag Manager -->
+
+<div id="HeaderAbsoluteRight" class="HeaderAbsoluteRight">
+
+<!-- NEW MENU 
+-->
+	
+	<ul id="menu">
+		<!--<li><a href="/search/">Search MCC</a></li> -->
+		<li><a href="/Admissions">Admissions</a></li>
+		<li><a href="/Academics/Academics.aspx">Academics</a></li>
+		<li><a href="/MCCStudents/StudentLife.aspx">Student Life</a></li>
+		<li><a href="/AboutUs/PresidentWelcome/">About Us</a></li>
+		<li><a href="https://www.mccpioneers.com/landing/index">Athletics</a></li>
+		<li><a href="/Academics/Business_and_Community.aspx">Business and Community</a></li> 
+		<li><a href="/AlumniFriends/">Alumni</a></li>
+		<li><a href="/Giving/">Giving</a></li>
+<!--		<li>Giving
+			<ul id="menu">
+				<li><a href="https://mt.accessgov.com/milescc/Forms/Page/milescc/a8c0394c-1125-4b5d-8310-ca2c2cb33354/77e9794b-26ba-4a89-9137-a19ca6279cda">Giving to the Miles Community College Foundation  </a></li>
+				<li><a href="https://mt.accessgov.com/milescc/Forms/Page/milescc/41d41ab4-af60-4569-9fbd-11588857ad2d/45a5ff86-a625-4b00-a04c-0f8b284f59f4 ">Giving to MCC Athletics   </a></li>
+				<li><a href="https://mt.accessgov.com/milescc/Forms/Page/milescc/bb847425-2aba-4b29-a897-955b21185844/9d84bc50-24d9-44ae-9623-dcfc8aba71b8">Scholarship and Memorial Giving    </a></li>
+			</ul>
+		</li> -->
+		<li><strong>TOOLS & QUICK LINKS	</strong>
+			<ul id="menu">
+				<li>College Resources</li>
+					<ul>
+						<li><a href="/HR/hr.aspx">Human Resources</a></li>
+						<li><a href="/ConsumerInformation/">Student Consumer Information</a></li>
+						<li><a href="/AboutUs/StaffDirectory/">Staff Directory</a></li>
+						<li><a href="/AboutUs/Maps/">Maps & Directions</a></li>
+						
+											
+					</ul>
+				<li>Students</li>
+					<ul>
+						<li><a href="https://milescc.instructure.com/login/canvas">Canvas Login</a></li>
+						<li><a href="/Counseling/Counseling.aspx">Counseling Services</a></li>
+						<li><a href="/finaid/">Financial Aid</a></li>
+						<li><a href="/CampusServices/Bookstore/">Bookstore</a></li>
+						<li><a href="/MCCStudents/CancelledClasses.adpx">Cancelled Classes</a></li>
+						<li><a href="https://office.com">Student eMail</a></li>
+						<li><a href="/CampusServices/StudentActivitiesClubs/">Activities & Clubs</a></li>
+					</ul>	
+				<li>Accreditation</li>
+					<ul>
+						<li><a href="/AboutUs/Accreditation/Notices.aspx">Notices of Accreditation</a></li>
+						<li><a href="/AboutUs/Accreditation/Evaluations.aspx">Accreditation Evaluations</a></li>
+						<li><a href="//content.milescc.edu/DownloadFiles/Accreditation/MissionStatement-CoreThemes.pdf">Mission Stmt./Core Themes</a></li>
+						<li><a href="//content.milescc.edu/DownloadFiles/Accreditation/MCCvision2028.pdf">Vision 2028</a></li>
+					</ul>	
+				<li>Faculty & Staff Resources</li>
+					<ul>
+						<li><a href="/FacultyStaff/">Faculty & Staff Page</a></li>
+						
+					</ul>
+			</ul>
+			
+
+			
+	</ul>
+
+<div class="GoogleMiniSearchWrapper">
+	<a href="/search/default.aspx"><i align="left" class="fas fa-search"></i>&nbsp;</a>
+</div>
+<!--<button class="btn default">Default</button> -->
+<!-- dw edit-->
+<!--	<div class="GoogleMiniSearchWrapper">
+		<i align="left" class="fas fa-search"></i>
+<form method="get" target="_blank" action="https://www.google.com/search">
+
+<table style="background-color:white" border="0" align="center" cellpadding="0">
+<tr><td>
+<input type="text"   name="q" size="25" maxlength="255" value="" />
+<input type="submit" value="Web Search" /></td></tr>
+<tr ><td align="left" style="font-size:80%">
+<input type="radio" name="sitesearch" value="milescc.edu" checked />Miles CC
+<input type="radio" name="sitesearch" value="mccpioneers.com" />Miles CC Athletics
+<input type="radio" name="sitesearch" value="" /> Google<br />
+</td></tr></table>
+</div>
+
+</form> 
+	</div> -->
+<!--dw edit -->
+	<div tabindex='0' class="CampusCalIcon" style="display: none;"><img class="CampusCalIconBlack" src="//content.milescc.edu/images/CampusCalendars/CampusCalIconBlack.png" alt="Black Campus Calendar Icon"><img class="CampusCalIconWhite" src="//content.milescc.edu/images/CampusCalendars/CampusCalIconWhite.png" alt="White Campus Calendar Icon"></div>
+
+</div>
+<!-- <script>
+	//function setCampusCalIconPosition() { jQuery('.CampusCalIcon').css( 'right', jQuery('.slicknav_btn').outerWidth() + 20 + 'px' ); }
+	//jQuery(document).ready(function () { jQuery('#menu').slicknav(); });
+	//jQuery(document).ready(function () { jQuery('.slicknav_btn').append(jQuery('.CampusCalIcon')); jQuery('.CampusCalIcon').on('click', function(event) { event.stopPropagation(); event.preventDefault(); loadCampusCal(true, 'PopUp-contentContainer', 'Events', 'Table', 0, 0, 0, false); } ); });
+
+	//jQuery(function(){ jQuery('#menu').slicknav(); });
+	//jQuery('#menu').slicknav();
+</script> -->
+
+<div class="FormsPopUpDim-dimmer" id="FormsPopUpDim-dimmer" onclick="closePopUp(getElementById('FormsPopUpDim-container'),this,getElementById('FormsPopUpDim-contentContainer'));"></div>
+<div class="FormsPopUpDim-container" id="FormsPopUpDim-container">
+	<div class="FormsPopUpDim-border" id="FormsPopUpDim-border">
+			<div class="FormsPopUpDim-closeButtonGroup">
+					<a href="javascript:void(0)" tabindex='0' onclick="closePopUp( getElementById('FormsPopUpDim-container'),getElementById('FormsPopUpDim-dimmer'),getElementById('FormsPopUpDim-contentContainer') );"><img class="FormsPopUpDim-closeButtonBorder" src="//content.milescc.edu/images/CloseBlueCircle.svg" title="Close Pop-up" alt="Close Pop-up" /><img class="FormsPopUpDim-closeButton" src="//content.milescc.edu/images/CloseWhiteX.svg" title="Close Pop-up" alt="Close Pop-up" /></a>
+			</div>
+		<div id="FormsPopUpDim-contentContainer" class="FormsPopUpDim-contentContainer"></div>
+		<div class="PrinterFriendly">
+			<a href="javascript:void(0)" onclick="PrinterFriendly();"><img class="FormsPopUpDim-PrinterFriendly" src="//content.milescc.edu/images/PrinterFriendly.gif" alt="Printer version" /></a>
+			<a href="javascript:void(0)" onclick="PrinterFriendly();">Printer version</a>
+		</div>
+	</div>
+</div>
+
+<div class='TopBackgroundWrapper'>
+
+		<div class="HeaderWrapper">
+			<div class="HeaderLogoDiv"><a href='/'><img class='HeaderLogoImg'  style="float:left" src='//content.milescc.edu/images/Logo2021b.png' alt="logo"></a>
+			
+		</div>
+
+	</div>
+ <!--<div class="left-sidebar">
+	<ul class="collection align-right">
+		<li class="collection-item"><a href="https://www.facebook.com/pg/MilesCommunityCollege/posts/?ref=page_internal" target="_blank"> <img src="//content.milescc.edu/images/socialmedia/sticky-facebook.fw.png" width="32" height="32"></img></a></li>
+		<li class="collection-item"><a href="https://twitter.com/milesccpioneers?lang=en" target="_blank"><img src="//content.milescc.edu/images/socialmedia/sticky-twitter.fw.png" width="30" height="30" hspace="3px" vspace="3px"></img></a></li>
+		<li class="collection-item"><a href="https://www.instagram.com/milescommunitycollege/" target="_blank"><span><img src="//content.milescc.edu/images/socialmedia/sticky-instagram.fw.png" width="32" height="32" hspace="3px" vspace="3px"></img></span></a></li>
+		<li class="collection-item"><a href="https://www.youtube.com/user/MilesCommunityColl/videos" target="_blank"><span><img src="//content.milescc.edu/images/socialmedia/sticky-youtube.fw.png" width="32" height="32" hspace="3px" vspace="3px"></img></span></a></li>
+		<li class="collection-item"><a href="https://admissions413.wixsite.com/mccblog" target="_blank"><span><img src="//content.milescc.edu/images/socialmedia/white-blog.png" width="32" height="32"" hspace="3px" vspace="3px"></img></span></a></li>
+	</ul>
+</div> -->
+<!-- <div class="sticky-container">
+
+    <ul class="sticky">
+        <li>
+            <img src="//content.milescc.edu/images/socialmedia/if_facebook_circle_color_107175.png" width="32" height="32">
+            <p><a href="https://www.facebook.com/pg/MilesCommunityCollege/posts/?ref=page_internal" target="_blank">Like Us on<br>Facebook</a></p>
+        </li>
+        <li>
+            <img src="//content.milescc.edu/images/socialmedia/if_twitter_circle_color_107170.png" width="32" height="32">
+            <p><a href="https://twitter.com/milesccpioneers?lang=en" target="_blank">Follow Us on<br>Twitter</a></p>
+        </li>
+        <li>
+            <img src="//content.milescc.edu/images/socialmedia/if_instagram-round-3d_1620008.png" width="32" height="32">
+            <p><a href="https://www.instagram.com/milescommunitycollege/" target="_blank">Follow Us on<br>Instagram</a></p>
+        </li>
+        <li>
+            <img src="//content.milescc.edu/images/socialmedia/if_blog_46779.png" width="32" height="32">
+            <p><a href="https://admissions413.wixsite.com/mccblog" target="_blank">Follow Our <br>Blog</a></p>
+        </li>
+
+    </ul>
+</div> -->
+<div id="NewsAlertsWrapper">
+	<div id="newsAlerts">
+		<iframe id="newsAlertsFrame" scrolling="no" frameborder="0" allowTransparency='true' src="/_includes/alerts.aspx"></iframe>
+	</div>
+<script type="text/javascript">jQuery('#menu').slicknav();setNewsAlertsFrame('newsAlertsFrame');</script>
+</div>
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+<!--<div class="carousel-item active">
+		<a href="/Health/default.aspx"><img class="d-block w-100" src="//content.milescc.edu/images/HomePage/Carousel/photos/COVID-19.jpg" alt="COVID-19 UPdate"></a>
+</div> -->
+
+<!--  Insert deleted Carousel code here and delete the  div above-->
+<!-- Normal Carousel -->
+
+
+<!--  Home Page Carousel -->
+<!--========================================================================== -->
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+	<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <!--<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+	<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+	<li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+	<li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+	<li data-target="#carouselExampleIndicators" data-slide-to="5"></li> 
+
+	<li data-target="#carouselExampleIndicators" data-slide-to="6"></li>
+	<li data-target="#carouselExampleIndicators" data-slide-to="7"></li>
+-->
+  </ol>
+  <div class="carousel-inner">
+
+
+
+
+
+
+	
+	
+
+	
+	
+	
+
+	
+	<div class="carousel-item active">
+	<a href="https://www.milescc.edu/Admissions/applynow.aspx"><img class="d-block w-100" src="//content.milescc.edu/images/HomePage/Carousel/photos/ReadytobeaPioneer.png" alt="Student smiling; text reads Welcome Home Pioneers"></a>
+	</div>
+	
+	<!--<div class="carousel-item">
+      <a href="https://www.milescc.edu/DegreesPrograms/Nursing/ApplicationProcess/"><img class="d-block w-100" src="//content.milescc.edu/images/HomePage/Carousel/photos/WEBKaplanNov2026.png" alt="Graphic of Kaplan Nursing Entrance Exam; click for more information"> </a>
+	</div>-->
+	
+	<!--<div class="carousel-item  ">
+      <a href="/CampusServices/ResidenceHall/ResidenceHall.aspx"><img class="d-block w-100" src="//content.milescc.edu/images/HomePage/Carousel/photos/HousingApp2026.png" alt="Graphic of students and housing application information"> </a>
+	</div>-->
+	
+	<!--<div class="carousel-item active">
+      <a href="https://milescommunitycollege.my.salesforce-sites.com/events/targetX_eventsb__events#/esr?eid=a1HWj000004s9s1MAA" target="_blank"><img class="d-block w-100" src="//content.milescc.edu/images/HomePage/Carousel/photos/PreviewDayOct26.png" alt="Graphic of Pioneer Preview Day flyer; click for more information"> </a>
+	</div>-->
+	
+	
+	
+	
+	
+	
+
+
+	</div>
+	<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+	</a>
+	<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+	</a>
+	</div>
+
+
+
+ <!--End Normal Carousel -->
+
+
+<map name="Anywhere">
+<area shape="rect" coords="35,400,300,470" href="//DegreesPrograms/default.aspx">
+<area shape="rect" coords="335,400,600,470" href="//forms/default.aspx?form=InfoRequest">
+<area shape="rect" coords="635,400,900,470" href="//Admissions/applynow.aspx">
+</map>
+<!--  Infographic Icons -->
+<!--========================================================================== -->
+<div class="container-fluid infographics padding">
+<div class="row infoicons text-center padding">
+	<div class="col-xs-6 col-sm-6 col-md-3">
+		<i class="fas fa-clipboard-list"></i>
+		<a href="/Admissions/applynow.aspx"><h3>Apply Now</h3></a>
+	</div>
+	<div class="col-xs-6 col-sm-6 col-md-3">
+		<i class="fas fa-map-marker-alt"></i>
+		<a href="/Visit/"><h3>Visit</h3></a>
+	</div> 
+	<div class="col-xs-6 col-sm-6 col-md-3">
+		<i class="fas fa-donate"></i>
+<!--		<ul id="menu">
+			<li><h3>Giving</h3>
+				<ul id="menu">
+					<li><a href="https://www.milescc.edu/Giving/  ">Giving to the Miles Community College Foundation  </a></li>
+					<li><a href="https://app.mt.gov/accessgov/milescc/Forms/Edit/milescc/a2cb89aa-b2ad-495d-a049-96a5cf1616e8/1">Giving to MCC Athletics   </a></li>
+					<li><a href="https://app.mt.gov/accessgov/milescc/Forms/Edit/milescc/4fc783ab-1add-4353-a3f8-be57c2f8b337/1">Scholarship and Memorial Giving    </a></li>
+				</ul>
+			</li>
+		</ul> -->
+		<a href="/Giving/"><h3>Give</h3></a>
+	</div>
+	<div class="col-xs-6 col-sm-6 col-md-3">
+		<i class="fas fa-info-circle"></i>
+		<a href="https://milescommunitycollege.my.salesforce-sites.com/inquiry/TargetX_Base__InquiryForm#?formId=a0BHp000018l5GSMAY&formType=general"><h3>Request Info</h3></a>
+	</div>
+</div>
+<!-- <div class="row infoicons text-center padding">
+	
+	<div class="col-xs-12 col-sm-12 col-md-12">
+		<i class="fas fa-comments-dollar"></i>
+		<a href="/PresSearch/PresSearch-FeedbackForm.aspx"><h3>Presidential Search<br>Feedback Form</h3></a>
+	</div>
+</div>  -->
+
+</div>
+
+<!--  Parallax -->
+<!--========================================================================== -->
+<div class="container-fluid prlx padding">
+<div class="row prlx-row text-center padding">
+	<div class="container-fluid InfoTiles padding">
+		<div class="row tiles padding">
+			<div class="col-xs-12 col-sm-12 col-md-4">
+				<div class="card tile-pic padding">
+					<img class="card-img-top" src="//content.milescc.edu/images/HomePage/PromoTileImages/StudentGym1.jpg" alt="Female student reading">
+					<div class="card-body">
+						<h4 class="card-title">Admissions</h4>
+						<p class="card-text"> Let's get started!  We will walk you through the process from Applying to Financial Aid to Residence Halls, and everything in between. </p>
+						<!--<p class="card-text"><small class="text-muted"> Last updated 3 min ago</small></p> -->
+						<a href="/Admissions/default.aspx" class="btn btn-MCCBlue">More About <br> Admissions</a>
+					</div>
+				</div>	
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-4">
+				<div class="card tile-pic padding">
+					<img class="card-img-top" src="//content.milescc.edu/images/HomePage/PromoTileImages/AcademicsNEW.jpg" alt="Two male students">
+					<div class="card-body">
+						<h4 class="card-title"><strong>  Degrees & Programs</strong> </h4>
+						<p class="card-text"> Not sure what program to pursue?  Read a detailed description of all our Degrees and Programs to see which one is for you.</p>
+						<!-- <p class="card-text"><small class="text-muted"> Last updated 3 min ago</small></p> -->
+						<a href="/DegreesPrograms/default.aspx" class="btn btn-MCCBlue">More About <br>Degrees & Programs</a>
+					</div>
+				</div>
+				
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-4">
+				<div class="card tile-pic padding">
+					<img class="card-img-top" src="//content.milescc.edu/images/HomePage/PromoTileImages/StudentLife4.jpg" alt="Group of five college students">
+					<div class="card-body">
+						<h4 class="card-title"><strong> Student Life</strong> </h4>
+						<p class="card-text"> From our many student clubs to athletics to community service, we have a variety of activities to keep you involved.</p>
+						<!-- <p class="card-text"><small class="text-muted"> Last updated 3 min ago</small></p> -->
+						<a href="/MCCStudents/StudentLife.aspx" class="btn btn-MCCBlue ">More About <br> Student Life</a>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+
+<!--  Whats Happening -->
+<!--========================================================================== -->
+<div class="container-fluid whatsHappening padding">
+		
+			
+				<h2>What's <span>HAPPENING</span> at MCC?</h2>
+			
+		
+</div>
+
+<div class="container-fluid prlx2 padding"> 
+	
+<div class="row prlx2-row text-center padding">
+	<div class="container-fluid infotiles2 padding">
+	
+				
+		<div class="row tiles2 padding">
+		
+			<div class="col-xs-12 col-sm-12 col-md-4">
+				<h3>Events Listing</h3>
+<!--				<span class="badge badge-warning">Academics</span>
+				<div class="card tile-pic padding">
+					
+					<iframe src="/aboutus/newsrelease/newst.aspx" width="100%" height="500px" frameBorder="0"></iframe>
+				<br>
+				
+				<span class="badge badge-primary">Athletics-Home</span>
+				<span class="badge badge-success">Athletics-Away</span>
+				
+				<span class="badge badge-secondary">Community</span></br>
+				<span class="badge badge-orange">MCC Only Events</span> -->
+				<div class="card tile-pic padding">
+				<iframe src="/aboutus/newsrelease/eventst.aspx" width="100%" height="640px"  frameBorder="0"></iframe>
+				</div>
+				
+				
+
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-4">
+
+
+
+                    <h3>Social Media</h3>
+					
+<!--					<ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist" >
+						<li class="nav-item ">
+							<a class="nav-link active"  data-toggle="tab" href="#facebooktab1" role="tab"  aria-selected="true"><img src="https://content.milescc.edu/images/socialmedia/if_facebook_circle_color_107175.png" width="35" height="35" alt="Facebook Logo" ></a>
+						</li>
+						<li class="nav-item" >
+							<a class="nav-link" data-toggle="tab" href="#twittertab1" role="tab"  aria-selected="false"><img src="https://content.milescc.edu/images/socialmedia/if_twitter_circle_color_107170.png" width="35" height="35" alt="Twitter Logo"></a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link"  data-toggle="tab" href="#instagramtab1" role="tab"  aria-selected="false"><img src="https://content.milescc.edu/images/socialmedia/if_instagram-round-3d_1620008.png" width="35" height="35" alt="Instagram Logo"></a>
+						</li>
+						<li class="nav-item" >
+							<a class="nav-link"  data-toggle="tab" href="#bloggertab1" role="tab"  aria-selected="false"><i class="fab fa-blogger"></i></a>
+						
+					</ul></li>-->
+					<div class="tab-content" id="myTabContent">
+						<div class="tab-pane fade show active" id="facebooktab1" role="tabpanel" >
+							
+						<!--	<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FMilesCommunityCollege%2F%3Ffref%3Dts&tabs=timeline&width=auto&height=700&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="100%" height="630px" style="border:none;overflow:hidden;wid" scrolling="no" frameborder="0" allowTransparency="true"></iframe> -->
+						<div class="fb-page" data-tabs="timeline,events,messages" data-href="https://www.facebook.com/MilesCommunityCollege" data-width="500" data-height="650" data-colorscheme="light" data-show-facespile="true" data-header="false" data-stream="true" data-show-border="false" ></div>
+						</div>
+						<div class="tab-pane fade" id="twittertab1" role="tabpanel" >
+						
+							<a class="twitter-timeline" data-height="650" href="https://twitter.com/MilesCCPioneers">Tweets by MilesCCPioneers</a>
+                            <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+						</div>
+						<div class="tab-pane fade" id="instagramtab1" role="tabpanel" >
+						
+
+							<!-- SnapWidget -->
+							<script src="https://snapwidget.com/js/snapwidget.js"></script>
+							<iframe src="https://snapwidget.com/embed/571357" class="snapwidget-widget" allowTransparency="true" frameborder="0" scrolling="yes" style="border:none; overflow:hidden; width:100%; "></iframe>
+							
+						</div>
+						<!--<div class="tab-pane fade" id="bloggertab1" role="tabpanel" >
+						
+
+							<div> 
+								<object type="text/html" data="https://admissions413.wixsite.com/mccblog" width="100%" height="700px" style="overflow:auto;border:5px ridge blue">
+								</object>
+							 </div>
+							
+						</div> -->
+					</div>
+
+              
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-4">
+			<h3>News Releases</h3>
+				<div class="card tile-pic padding">
+					
+					<iframe src="/aboutus/newsrelease/newst.aspx" width="100%" height="425px" frameBorder="0"></iframe>
+				<br>
+				<a href="/AboutUs/NewsRelease/archive.aspx" class="btn btn-MCCBlue" >News Archives</a></center>
+				<br>
+<!--				<center><a href="//content.milescc.edu/DownloadFiles/Accreditation/2017-2018_AnnualReport.pdf">Annual Report</a><br> -->
+				<a href="//content.milescc.edu/DownloadFiles/Accreditation/MCCvision2020.pdf" class="btn btn-MCCBlue">Vision 2020-Pioneering Our Future</a></center><br>
+				<a href="//content.milescc.edu/DownloadFiles/Accreditation/2016_MCC_Master_Written_Plan_February_2018.pdf" class="btn btn-MCCBlue">MCC 2017-2027 Facilities Master Plan</a></center><br>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</div>
+</div> 
+
+<!--  Connect -->
+<!--========================================================================== -->
+<!-- <div class="container-fluid padding">
+<div class="row text-center padding">
+	<div class="col-12">
+		<h2> Connect </h2>
+	</div>
+	<div class="col-12 social padding">
+		<a href="#"><i class="fab fa-facebook"></i></a>
+		<a href="#"><i class="fab fa-twitter"></i></a>
+		<a href="#"><i class="fab fa-instagram"></i></a>
+		<a href="#"><i class="fab fa-blogger-b"></i></a>
+	</div>
+</div>
+</div> -->
+
+
+<!--  Footer -->
+<!--========================================================================== 
+<embed type="text/html" src="../mcc-footer.html">-->
+
+
+
+
+<div id="bodyDiv">
+			<div id="contentCell">
+				<div class="CalWrapper">
+					<div class="CalDisplayToggle"></div>
+					<div class="CalBorder">
+						<div class="CalSelections">
+							<a href="#" class="CalSelectionsActive">Events</a>
+							<a href="#" class="CalSelectionsDim">Cafe</a>
+							<a href="#" class="CalSelectionsDim">News</a>
+						</div>
+					</div>
+				</div>
+				<div id="contentDiv">
+					<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-K2TNKJ "
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+					
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NWLRK6K (https://www.googletagmanager.com/ns.html?id=GTM-NWLRK6K) "
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+
+<!-- End Google Tag Manager (noscript) -->
+					
+
+	
+
+
+
+		
+				</div>
+			</div>
+			
+</div>
+
+
+<style>
+
+footer {
+	background-color: #005199;
+	color: #fff;
+	padding: 2rem;
+	
+}
+
+a.FooterLink:link { color: #fff; }
+a.FooterLink:visited { color: #fff; }
+a.FooterLink:active { color: #fff; }
+a.FooterLink:hover { color: #fff; text-decoration: underline;}
+a.FooterLink:focus { color: #fff; text-decoration: underline;}
+hr.light {
+	border-top: 1px solid #d5d5d5;
+	width: 55%;
+	margin-top: .8rem;
+	margin-bottom: 1rem;
+	}
+hr.light-100 {
+	border-top: 1px solid #d5d5d5;
+	width: 85%;
+	margin-top: .8rem;
+	margin-bottom: 1rem;
+	}
+.col-float{
+    float:left;
+}
+.col-float1{
+    width: 5%;
+}
+.col-float3{
+    width: 10%;
+}
+
+</style>
+
+<footer>
+<div class="container-fluid padding">
+	<div class="row text-center">
+		<div class="col-md-3">
+			<img src="//content.milescc.edu/images/LogoWhite.png" alt="MCC Logo" >
+			<hr class="light">
+			2715 Dickinson Street<br />
+			Miles City, MT  59301<br />
+			1.800.541.9281<br />
+			<br>
+<!--			<div class="row text-center padding"> -->
+<!--				<div class="col-12">
+					<h4><span> Connect with us:</span></h4>
+				</div>
+				<div class="col-12 social padding">
+					<a class="FooterLink" href="https://www.facebook.com/MilesCommunityCollege/?fref=ts"><img src="//content.milescc.edu/images/socialmedia/white-facebook.png" width="30" height="30" alt="Facebook Logo" ></a>
+					<a class="FooterLink" href="https://twitter.com/milesccpioneers?lang=en"><img src="//content.milescc.edu/images/socialmedia/white-twitter.png" width="30" height="30" alt="Twitter Logo" ></a>
+					<a class="FooterLink" href="https://www.instagram.com/milescommunitycollege/"><img src="//content.milescc.edu/images/socialmedia/white-Instagram.png" width="30" height="30" alt="Instagram Logo" ></a>
+					<a class="FooterLink" href="https://admissions413.wixsite.com/mccblog/"><img src="//content.milescc.edu/images/socialmedia/white-blog.png" width="30" height="30" alt="Blog Logo" ></a>-->
+					<br />
+					<!-- =========Go Daddy Certificate image =========  -->				
+						<!--<span id="siteseal"><script async type="text/javascript" src="https://seal.godaddy.com/getSeal?sealID=dFl0oNr8sa697U3rHihEX46LeyX5UZZu1aiQ4n5nlozfEcnJL29zV1lKF7kq"></script></span> -->
+					<!-- =========End Go Daddy Certificate image =========  -->
+<!--				</div>-->
+				<br />
+
+<!--			</div> -->
+		</div>
+	<div class="col-md-3 ">
+		<hr class="light">
+		<h4><span>Quick Links</span></h4>
+		<hr class="light">
+
+                      
+		<a class="FooterLink" href="https://milescc.instructure.com/">Canvas Login</a><br />
+		<a class="FooterLink" href="/AboutUs/CampusSafety/">Safety</a><br />
+		<a class="FooterLink" href="/TitleIX">Title IX</a><br />
+		<a class="FooterLink" href="https://www.mccpioneers.com/landing/index">Athletics</a><br />
+		<a class="FooterLink" href="/Employment/">Employment</a><br />
+		<a class="FooterLink" href="https://mt.accessgov.com/milescc">Make a Payment</a><br />
+	<!--	<h5>Facility Rental</h5> 
+		<a class="FooterLink" href="/BusinessCommunity/BusinessCommunity.aspx">Business & Community</a><br /> -->
+		<a class="FooterLink" href="https://mt.accessgov.com/milescc">Online Forms (Transcripts, Housing, etc.)</a><br />
+		<a class="FooterLink" href="/login-verify/login-verification.aspx">Student Accounts Guide & Help</a><br />
+				
+<!--		<a class="FooterLink" href="/sale/default.aspx"><h5>Sale of Assets</h5></a> -->
+	
+	</div>
+	<div class="col-md-3">
+		<hr class="light">
+		<h4><span>Resources</span></h4>
+		<hr class="light">
+		<a class="FooterLink" href="/CampusServices/Bookstore/">Bookstore/Textbooks</a><br />
+		<a class="FooterLink" href="/CampusServices/library">Library</a><br />
+		
+		<a class="FooterLink" href="/Calendar/Academic.aspx">Academic Calendar</a><br />
+		<a class="FooterLink" href="/AboutUs/StaffDirectory/">Staff Directory</a><br /> 
+		<a class="FooterLink" href="/LearningCenter/LearningCenter.aspx">The Learning Center</a><br />
+		<a class="FooterLink" href="/careerservices/careerservices.aspx">Career Services</a><br />
+		<a class="FooterLink" href="/LearningCenter/dss.aspx">Accessibility & Disability Services</a><br />
+		<a class="FooterLink" href="/Counseling/Counseling.aspx">Counseling Services</a><br />
+		<a class="FooterLink" href="/CampusServices/centra">Centra Athletic Center</a><br />
+		
+		
+		<a class="FooterLink" href="/CampusServices/BusinessServices/Facilities/AgCenter">Ag Advancement Center</a><br />
+		
+		
+<!--	<a class="FooterLink" href="/forms/default.aspx?form=ContactUs"><h5>Contact Us</h5></a> -->
+		
+
+<!--		<a id="MyCalLink-Academic" href="#">Calendars</a><div id="MyCal-Academic" class="CampusCalWrapper"></div>
+					<script>loadCampusCalLink(true, 'MyCal-Academic', 'Academic', 'Table', 0, 0, 0, false);</script> -->
+		<!-- <a class="FooterLink" id="MyCalLink-Events" href="/DegreesPrograms/default-test.aspx"><h5>Calendars</h5></a> -->
+		
+	</div>
+	<div class="col-md-3">
+		<hr class="light">
+		
+		
+				<div class="col-12">
+					<h4><span> Connect with us:</span></h4>
+					<hr class="light">
+				</div>
+				<div class="col-12 social padding">
+					<a class="FooterLink" href="https://www.facebook.com/MilesCommunityCollege/?fref=ts"><img src="//content.milescc.edu/images/socialmedia/white-facebook.png" width="30" height="30" alt="Facebook Logo" ></a>
+					<a class="FooterLink" href="https://twitter.com/milesccpioneers?lang=en"><img src="//content.milescc.edu/images/socialmedia/white-twitter.png" width="30" height="30" alt="Twitter Logo" ></a>
+					<a class="FooterLink" href="https://www.instagram.com/milescommunitycollege/"><img src="//content.milescc.edu/images/socialmedia/white-Instagram.png" width="30" height="30" alt="Instagram Logo" ></a>
+					
+					<a class="FooterLink" href="https://www.youtube.com/user/MilesCommunityColl/videos"> <img src="//content.milescc.edu/images/socialmedia/white-youtube.png"  height="30" alt="Youtube Logo"></a>
+					
+	<!--				<a class="FooterLink" href="https://admissions413.wixsite.com/mccblog/"><img src="//content.milescc.edu/images/socialmedia/white-blog.png" width="30" height="30" alt="Blog Logo" ></a> -->
+			</div>
+			<br /><br />
+			<a class="FooterLink" href="mailto:MilesCC_Admissions@milescc.edu"><h5>Contact Us</h5></a>
+	</div>
+	<div class="taglinelogo col-12">
+		<hr class="light-100">
+		<span style="font-Family: Beloved; font-size: 2em; letter-spacing: 4px; font-weight:regular">START HERE - </span>
+<!--		<span style="font-Family: Beloved; font-size: 2em; font-weight:regular">S&thinsp;T&thinsp;A&thinsp;R&thinsp;T&thinsp;&thinsp; H&thinsp;E&thinsp;R&thinsp;E &thinsp;&thinsp;-&thinsp;&thinsp; </span>--><span style="font-family: Rembrandt; font-size: 4em; font-weight:regular"><em>Go &thinsp;Anywhere</em> </span>
+		
+<!--		<img src="//content.milescc.edu/images/tagline4-white.png" alt="MCC Tagline" width="50%">-->
+	</div>
+	
+</div>
+</div>
+</footer>
+</div>
+ 
+
+
+
+	<!--<script type="text/javascript" src="/_includes/1-Global/MilesCcDefault/scripts/MilesCcDefaultFooter.js"></script>-->
+	<!--<script type="text/javascript" src="/_includes/1-Global/MilesCcDefault/scripts/SlideShow.js"></script>-->
+
+
+<!-- <div class='OutdatedBrowserWarning'>
+<img src="//content.milescc.edu/images/close_popup_red.png" alt="Minimize" title="Minimize" onclick="MinimizeBrowserWarning();$.cookie('OutdatedBrowserMinimized','true',{path:'/',expires:30});">
+The MCC website actively supports <a href="http://windows.microsoft.com/en-US/internet-explorer/downloads/ie-8">Internet Explorer 8</a> and above. Please update your browser.
+<div>Popular modern browsers:<span><a href="http://www.mozilla.org/">Firefox</a></span><span><a href="http://www.google.com/chrome/">Google Chrome</a></span><span><a href="http://windows.microsoft.com/en-US/internet-explorer/download-ie">Internet Explorer</a></span><span><a href="http://www.opera.com/">Opera</a></span><span><a href="http://www.apple.com/safari/">Safari</a></span></div>
+</div>
+<div class='OutdatedBrowserWarningMinimized'>
+The MCC website supports <a href="http://windows.microsoft.com/en-US/internet-explorer/downloads/ie-8">Internet Explorer 8</a> and above. Please update your browser.
+</div> -->
+
+<div id='dimensions' style='position: absolute; top: 0; left: 0; background: #ccc;'></div>
+
+<script type="text/javascript" src="/_includes/0-Universal/UniversalFooter.js"></script>
+</body>
+</html>

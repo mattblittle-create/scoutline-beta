@@ -1,0 +1,41 @@
+{
+  "slug": "spoon-river-college",
+  "collegeId": "cmox23ag600ccqtfkmccgt2nb",
+  "programId": "cmox23agv00ceqtfkil9k9vfh",
+  "name": "Spoon River College",
+  "state": "IL",
+  "storedDivision": "NJCAA_D2",
+  "pages": [
+    {
+      "requestedUrl": "https://njcaastats.prestosports.com/sports/bsb/2024-25/div2/teams/spoonrivercollege",
+      "kind": "STORED_URL_UNVERIFIED",
+      "checkedAtUtc": "2026-11-18T14:17:04.480Z",
+      "status": "HELD_ACCESS_NOT_RETRIED",
+      "finalUrl": "https://njcaastats.prestosports.com/sports/bsb/2024-25/div2/teams/spoonrivercollege"
+    },
+    {
+      "requestedUrl": "https://www.src.edu/student/athletics/baseball",
+      "kind": "DISCOVERY_LEAD_NOT_CAMPUS_VERIFIED",
+      "checkedAtUtc": "2026-11-18T14:17:04.482Z",
+      "status": 403,
+      "finalUrl": "https://www.src.edu/student/athletics/baseball",
+      "contentType": "text/html",
+      "sourcePath": "sources/spoon-river-college-1.source",
+      "sha256": "248b034391bf44b0e54f970e2a0a4b6a7a3366e4fcb6ae969deaf9e2851ff194"
+    }
+  ],
+  "thirdPartyExactNameLeads": [
+    {
+      "url": "https://www.src.edu/student/athletics/baseball",
+      "label": "Spoon River College",
+      "parentSourcePath": "sources/directory-1.source",
+      "parentSHA256": "496ce44f9a76dc28894dc481d97424ffa3efb0cc8fe8f218363abbc43f06de00",
+      "parentUrl": "https://www.thebaseballobserver.com/njcaa-dii-baseball"
+    }
+  ],
+  "currentMembershipVerified": false,
+  "campusIdentityVerified": false,
+  "importApproval": "NOT_GRANTED",
+  "databaseAccess": false,
+  "databaseWrites": 0
+}

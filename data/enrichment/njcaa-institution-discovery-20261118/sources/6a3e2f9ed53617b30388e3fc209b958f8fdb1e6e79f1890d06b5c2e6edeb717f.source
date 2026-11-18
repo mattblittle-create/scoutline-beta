@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <style>
+        body {
+            font-family: "Arial";
+        }
+    </style>
+    <script type="text/javascript">
+    window.awsWafCookieDomainList = [];
+    window.gokuProps = {
+"key":"AQIDAHjcYu/GjX+QlghicBgQ/7bFaQZ+m5FKCMDnO+vTbNg96AH6bHyTeCtvM+GGnXA+1TOFAAAAfjB8BgkqhkiG9w0BBwagbzBtAgEAMGgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQM3gfKZdsxv+qIsN2NAgEQgDu7QpHqaFs1KiyIanin8UEInue61eC49BzxxjSx55z/GkkkVpMt5ZhPJrNMKu+EhkSM+wZXpLu1K0AsWw==",
+          "iv":"EkQE9ADO6QAAAH5t",
+          "context":"RlLayiUk8cVfFHo1dMZ0Re77lrw8PZGrm+XpMQ3THGISDOuYJZ8nEHOrU9m3DcqW15uL7N6hLj4WN0cK3sONYto4aG3kfrm59qaXzbn93livUEzIJT7Ch7KGLb7hulxVrI6M3/K9foqpRmY0HHpMHN2D8JzQTbZ8534LrjDk/+zaMExcGguE3hf6PS/u/OQdhKlguD36fbYovbRjmBn8QM5x4vH8lCexkAmc/+pCagQbRUw+h4YsiUAoTpLvogcIeUb6s8GJ3DutKm0XPUR7mKWRk9avEwbMruBRUyHecl3ZOrqoF4trOZsVEzuUe0dB2iAhE9ZvvKtZ4R9F/eg0hTrKzKgbhnhnqxQmR7p7mon/KoDADJm7GcGb/A=="
+};
+    </script>
+    <script src="https://e51644f80c28.afec585e.us-east-2.token.awswaf.com/e51644f80c28/f442efc8ad32/f54636b039c4/challenge.js"></script>
+</head>
+<body>
+    <div id="challenge-container"></div>
+    <script type="text/javascript">
+        AwsWafIntegration.saveReferrer();
+        AwsWafIntegration.checkForceRefresh().then((forceRefresh) => {
+            if (forceRefresh) {
+                AwsWafIntegration.forceRefreshToken().then(() => {
+                    window.location.reload(true);
+                });
+            } else {
+                AwsWafIntegration.getToken().then(() => {
+                    window.location.reload(true);
+                });
+            }
+        });
+    </script>
+    <noscript>
+        <h1>JavaScript is disabled</h1>
+        In order to continue, we need to verify that you're not a robot.
+        This requires JavaScript. Enable JavaScript and then reload the page.
+    </noscript>
+</body>
+</html>

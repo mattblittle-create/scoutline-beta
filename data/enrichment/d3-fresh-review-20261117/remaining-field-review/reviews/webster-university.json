@@ -1,0 +1,914 @@
+{
+  "slug": "webster-university",
+  "collegeId": "cmovos0j000tlqt7glqtorsyg",
+  "programId": "cmovos0jq00tnqt7g1n6a9uf2",
+  "checkedAtUtc": "2026-11-17T20:38:32.052Z",
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED",
+  "missingFields": [
+    "rosterUrl",
+    "campsUrl",
+    "generalContactEmail",
+    "programXUrl",
+    "programInstagramUrl"
+  ],
+  "pages": [
+    {
+      "requestedUrl": "https://websterathletics.com/sports/baseball",
+      "kind": "baseball-home",
+      "parent": null,
+      "status": 200,
+      "finalUrl": "https://websterathletics.com/sports/baseball",
+      "sourcePath": "../sources/webster-university-1.html",
+      "sha256": "ebc03fb42e0ced33ffc2258df4a840a55b3c1f04d93aba147318b6715f055490",
+      "reusedEvidence": true,
+      "originalCheckedAtUtc": "2026-11-17T17:28:50.892Z",
+      "parsed": {
+        "title": "Baseball - Webster University Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "Webster University Athletics",
+          "Main",
+          "Sport",
+          "Top Stories",
+          "Media Wall",
+          "Gorloks of the Week",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://websterathletics.com/sports/baseball/schedule",
+            "label": "BASEBALL: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/baseball/roster",
+            "label": "BASEBALL: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/mens-basketball/schedule",
+            "label": "BASKETBALL: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/mens-basketball/roster",
+            "label": "BASKETBALL: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/mens-cross-country/schedule",
+            "label": "CROSS COUNTRY: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/mens-cross-country/roster",
+            "label": "CROSS COUNTRY: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/mens-golf/schedule",
+            "label": "GOLF: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/mens-golf/roster",
+            "label": "GOLF: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/mens-soccer/schedule",
+            "label": "SOCCER: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/mens-soccer/roster",
+            "label": "SOCCER: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/mens-tennis/schedule",
+            "label": "TENNIS: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/mens-tennis/roster",
+            "label": "TENNIS: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/mens-tf/schedule",
+            "label": "TRACK & FIELD: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/mens-tf/roster",
+            "label": "TRACK & FIELD: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/womens-basketball/schedule",
+            "label": "BASKETBALL: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/womens-basketball/roster",
+            "label": "BASKETBALL: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/womens-cross-country/schedule",
+            "label": "CROSS COUNTRY: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/womens-cross-country/roster",
+            "label": "CROSS COUNTRY: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/womens-soccer/schedule",
+            "label": "SOCCER: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/womens-soccer/roster",
+            "label": "SOCCER: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/softball/schedule",
+            "label": "SOFTBALL: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/softball/roster",
+            "label": "SOFTBALL: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/womens-tennis/schedule",
+            "label": "TENNIS: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/womens-tennis/roster",
+            "label": "TENNIS: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/womens-volleyball/schedule",
+            "label": "VOLLEYBALL: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/womens-volleyball/roster",
+            "label": "VOLLEYBALL: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/womens-tf/schedule",
+            "label": "TRACK & FIELD: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/womens-tf/roster",
+            "label": "TRACK & FIELD: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/staff-directory",
+            "label": "STAFF DIRECTORY",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://websterathletics.com/sports/2008/1/8/GORLOKCAMPS.aspx",
+            "label": "CAMPS",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://websterathletics.com/calendar",
+            "label": "COMPOSITE SCHEDULE",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/GorlokSports",
+            "label": "TWITTER",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/gorloks/",
+            "label": "INSTAGRAM",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://applywu.webster.edu/register/athletics_questionnaire",
+            "label": "RECRUITING QUESTIONNAIRE",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://websterathletics.com/sports/baseball/coaches/2026",
+            "label": "Coaches",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://websterathletics.com/sports/baseball/schedule",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/webster-university-1.html",
+        "sha256": "ebc03fb42e0ced33ffc2258df4a840a55b3c1f04d93aba147318b6715f055490",
+        "url": "https://websterathletics.com/sports/baseball/schedule",
+        "label": "BASEBALL: Schedule"
+      },
+      "status": 200,
+      "finalUrl": "https://websterathletics.com/sports/baseball/schedule",
+      "checkedAtUtc": "2026-11-17T20:38:32.563Z",
+      "sourcePath": "sources/webster-university-1.html",
+      "sha256": "9ec1fec1e99f43a4bdb45104a2bb52a7506e71f20b5c950a4c1fb5e1beab0ca8",
+      "parsed": {
+        "title": "2027 Baseball Schedule - Webster University Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "Webster University Athletics",
+          "Main",
+          "Sport",
+          "2027 Baseball Schedule",
+          "Season Record",
+          "Scheduled Games",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://websterathletics.com/sports/baseball/schedule",
+            "label": "Skip To Main Content",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/baseball/roster",
+            "label": "BASEBALL: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/mens-basketball/schedule",
+            "label": "BASKETBALL: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/mens-basketball/roster",
+            "label": "BASKETBALL: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/mens-cross-country/schedule",
+            "label": "CROSS COUNTRY: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/mens-cross-country/roster",
+            "label": "CROSS COUNTRY: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/mens-golf/schedule",
+            "label": "GOLF: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/mens-golf/roster",
+            "label": "GOLF: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/mens-soccer/schedule",
+            "label": "SOCCER: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/mens-soccer/roster",
+            "label": "SOCCER: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/mens-tennis/schedule",
+            "label": "TENNIS: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/mens-tennis/roster",
+            "label": "TENNIS: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/mens-tf/schedule",
+            "label": "TRACK & FIELD: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/mens-tf/roster",
+            "label": "TRACK & FIELD: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/womens-basketball/schedule",
+            "label": "BASKETBALL: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/womens-basketball/roster",
+            "label": "BASKETBALL: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/womens-cross-country/schedule",
+            "label": "CROSS COUNTRY: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/womens-cross-country/roster",
+            "label": "CROSS COUNTRY: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/womens-soccer/schedule",
+            "label": "SOCCER: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/womens-soccer/roster",
+            "label": "SOCCER: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/softball/schedule",
+            "label": "SOFTBALL: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/softball/roster",
+            "label": "SOFTBALL: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/womens-tennis/schedule",
+            "label": "TENNIS: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/womens-tennis/roster",
+            "label": "TENNIS: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/womens-volleyball/schedule",
+            "label": "VOLLEYBALL: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/womens-volleyball/roster",
+            "label": "VOLLEYBALL: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/womens-tf/schedule",
+            "label": "TRACK & FIELD: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/womens-tf/roster",
+            "label": "TRACK & FIELD: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/staff-directory",
+            "label": "STAFF DIRECTORY",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://websterathletics.com/sports/2008/1/8/GORLOKCAMPS.aspx",
+            "label": "CAMPS",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://websterathletics.com/calendar",
+            "label": "COMPOSITE SCHEDULE",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/GorlokSports",
+            "label": "TWITTER",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/gorloks/",
+            "label": "INSTAGRAM",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://applywu.webster.edu/register/athletics_questionnaire",
+            "label": "RECRUITING QUESTIONNAIRE",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://websterathletics.com/sports/baseball/coaches/2026",
+            "label": "Coaches",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://websterathletics.com/sports/baseball/schedule?print=true",
+            "label": "Print Print this page",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/baseball/schedule/2027?grid=true",
+            "label": "Grid Switch to Grid View",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/services/schedule_txt.ashx?schedule=1444",
+            "label": "Text Text Format For Braille (New Tab)",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://websterathletics.com/sports/baseball/coaches/2026",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/webster-university-1.html",
+        "sha256": "ebc03fb42e0ced33ffc2258df4a840a55b3c1f04d93aba147318b6715f055490",
+        "url": "https://websterathletics.com/sports/baseball/coaches/2026",
+        "label": "Coaches"
+      },
+      "status": 200,
+      "finalUrl": "https://websterathletics.com/sports/baseball/coaches/2026",
+      "checkedAtUtc": "2026-11-17T20:38:33.595Z",
+      "sourcePath": "sources/webster-university-2.html",
+      "sha256": "41dc91afca3d9a447f2e5b4ed42eed467ff8b1b789b6e5ae64778d2fc5731576",
+      "parsed": {
+        "title": "Baseball Coaches - Webster University Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "Webster University Athletics",
+          "Main",
+          "Sport",
+          "2026 Baseball Coaching Staff",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://websterathletics.com/sports/baseball/coaches/2026",
+            "label": "Skip To Main Content",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://websterathletics.com/sports/baseball/schedule",
+            "label": "BASEBALL: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/baseball/roster",
+            "label": "BASEBALL: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/mens-basketball/schedule",
+            "label": "BASKETBALL: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/mens-basketball/roster",
+            "label": "BASKETBALL: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/mens-cross-country/schedule",
+            "label": "CROSS COUNTRY: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/mens-cross-country/roster",
+            "label": "CROSS COUNTRY: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/mens-golf/schedule",
+            "label": "GOLF: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/mens-golf/roster",
+            "label": "GOLF: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/mens-soccer/schedule",
+            "label": "SOCCER: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/mens-soccer/roster",
+            "label": "SOCCER: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/mens-tennis/schedule",
+            "label": "TENNIS: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/mens-tennis/roster",
+            "label": "TENNIS: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/mens-tf/schedule",
+            "label": "TRACK & FIELD: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/mens-tf/roster",
+            "label": "TRACK & FIELD: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/womens-basketball/schedule",
+            "label": "BASKETBALL: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/womens-basketball/roster",
+            "label": "BASKETBALL: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/womens-cross-country/schedule",
+            "label": "CROSS COUNTRY: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/womens-cross-country/roster",
+            "label": "CROSS COUNTRY: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/womens-soccer/schedule",
+            "label": "SOCCER: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/womens-soccer/roster",
+            "label": "SOCCER: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/softball/schedule",
+            "label": "SOFTBALL: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/softball/roster",
+            "label": "SOFTBALL: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/womens-tennis/schedule",
+            "label": "TENNIS: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/womens-tennis/roster",
+            "label": "TENNIS: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/womens-volleyball/schedule",
+            "label": "VOLLEYBALL: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/womens-volleyball/roster",
+            "label": "VOLLEYBALL: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/womens-tf/schedule",
+            "label": "TRACK & FIELD: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/womens-tf/roster",
+            "label": "TRACK & FIELD: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/staff-directory",
+            "label": "STAFF DIRECTORY",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://websterathletics.com/sports/2008/1/8/GORLOKCAMPS.aspx",
+            "label": "CAMPS",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://websterathletics.com/calendar",
+            "label": "COMPOSITE SCHEDULE",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/GorlokSports",
+            "label": "TWITTER",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/gorloks/",
+            "label": "INSTAGRAM",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://applywu.webster.edu/register/athletics_questionnaire",
+            "label": "RECRUITING QUESTIONNAIRE",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://websterathletics.com/sports/baseball/coaches/2026?print=true",
+            "label": "Print",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://websterathletics.com/sports/baseball/roster/coaches/bill-kurich/1376",
+            "label": "Bill Kurich",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "mailto:billkurich40@webster.edu",
+            "label": "billkurich40@webster.edu",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://websterathletics.com/sports/baseball/roster/coaches/chad-hammons/1379",
+            "label": "Chad Hammons",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://websterathletics.com/sports/baseball/roster/coaches/kase-lawson/1377",
+            "label": "Kase Lawson",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "mailto:kaselawson@webster.edu",
+            "label": "kaselawson@webster.edu",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://websterathletics.com/sports/baseball/roster/coaches/austin-lahue/1378",
+            "label": "Austin LaHue",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "mailto:austinlahue10@webster.edu",
+            "label": "austinlahue10@webster.edu",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://websterathletics.com/sports/baseball/roster/coaches/john-combs/1382",
+            "label": "John Combs",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://websterathletics.com/sports/baseball/roster/coaches/jordan-smevoll/1383",
+            "label": "Jordan Smevoll",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://websterathletics.com/sports/mens-basketball/schedule",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/webster-university-1.html",
+        "sha256": "ebc03fb42e0ced33ffc2258df4a840a55b3c1f04d93aba147318b6715f055490",
+        "url": "https://websterathletics.com/sports/mens-basketball/schedule",
+        "label": "BASKETBALL: Schedule"
+      },
+      "status": 200,
+      "finalUrl": "https://websterathletics.com/sports/mens-basketball/schedule",
+      "checkedAtUtc": "2026-11-17T20:38:33.692Z",
+      "sourcePath": "sources/webster-university-3.html",
+      "sha256": "77a1c6773cac9c6166169c805afcea56401022b8acbf32098f63bd2c9c64ceb4",
+      "parsed": {
+        "title": "2026-2027 Men's Basketball Schedule - Webster University Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "Webster University Athletics",
+          "Main",
+          "Sport",
+          "2026-2027 Men's Basketball Schedule",
+          "Season Record",
+          "Scheduled Games",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://websterathletics.com/sports/mens-basketball/schedule",
+            "label": "Skip To Main Content",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/baseball/schedule",
+            "label": "BASEBALL: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/baseball/roster",
+            "label": "BASEBALL: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/mens-basketball/roster",
+            "label": "BASKETBALL: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/mens-cross-country/schedule",
+            "label": "CROSS COUNTRY: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/mens-cross-country/roster",
+            "label": "CROSS COUNTRY: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/mens-golf/schedule",
+            "label": "GOLF: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/mens-golf/roster",
+            "label": "GOLF: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/mens-soccer/schedule",
+            "label": "SOCCER: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/mens-soccer/roster",
+            "label": "SOCCER: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/mens-tennis/schedule",
+            "label": "TENNIS: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/mens-tennis/roster",
+            "label": "TENNIS: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/mens-tf/schedule",
+            "label": "TRACK & FIELD: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/mens-tf/roster",
+            "label": "TRACK & FIELD: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/womens-basketball/schedule",
+            "label": "BASKETBALL: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/womens-basketball/roster",
+            "label": "BASKETBALL: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/womens-cross-country/schedule",
+            "label": "CROSS COUNTRY: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/womens-cross-country/roster",
+            "label": "CROSS COUNTRY: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/womens-soccer/schedule",
+            "label": "SOCCER: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/womens-soccer/roster",
+            "label": "SOCCER: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/softball/schedule",
+            "label": "SOFTBALL: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/softball/roster",
+            "label": "SOFTBALL: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/womens-tennis/schedule",
+            "label": "TENNIS: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/womens-tennis/roster",
+            "label": "TENNIS: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/womens-volleyball/schedule",
+            "label": "VOLLEYBALL: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/womens-volleyball/roster",
+            "label": "VOLLEYBALL: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/womens-tf/schedule",
+            "label": "TRACK & FIELD: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/womens-tf/roster",
+            "label": "TRACK & FIELD: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/staff-directory",
+            "label": "STAFF DIRECTORY",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://websterathletics.com/sports/2008/1/8/GORLOKCAMPS.aspx",
+            "label": "CAMPS",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://websterathletics.com/calendar",
+            "label": "COMPOSITE SCHEDULE",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/GorlokSports",
+            "label": "TWITTER",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/gorloks/",
+            "label": "INSTAGRAM",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://applywu.webster.edu/register/athletics_questionnaire",
+            "label": "RECRUITING QUESTIONNAIRE",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://websterathletics.com/sports/mens-basketball/coaches",
+            "label": "Coaches",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://websterathletics.com/sports/2021/9/15/2021-22-jv-mens-basketball-schedule.aspx",
+            "label": "25-26 JV Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/mens-basketball/schedule?print=true",
+            "label": "Print Print this page",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/sports/mens-basketball/schedule/2026-2027?grid=true",
+            "label": "Grid Switch to Grid View",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://websterathletics.com/services/schedule_txt.ashx?schedule=1442",
+            "label": "Text Text Format For Braille (New Tab)",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          }
+        ]
+      }
+    }
+  ],
+  "status": "EVIDENCE_CAPTURED_REQUIRES_REVIEW"
+}

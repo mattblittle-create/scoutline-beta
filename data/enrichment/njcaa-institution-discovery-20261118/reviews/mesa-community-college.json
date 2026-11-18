@@ -1,0 +1,44 @@
+{
+  "slug": "mesa-community-college",
+  "name": "Mesa Community College",
+  "collegeId": "cmox238du0080qtfkpv9458cx",
+  "programId": "cmox238ej0082qtfkp3endxe5",
+  "storedState": "AZ",
+  "storedDivision": "NJCAA_D2",
+  "directoryMatch": {
+    "unitid": "105154",
+    "name": "Mesa Community College",
+    "aliases": [],
+    "state": "AZ",
+    "city": "Mesa",
+    "host": "mesacc.edu",
+    "decision": "UNIQUE_EXACT_NAME_OR_ALIAS_AND_STATE_DISCOVERY_LEAD_ONLY"
+  },
+  "directoryMatchStatus": "DISCOVERY_LEAD_NOT_CURRENT_CAMPUS_VERIFIED",
+  "needsHeadCoach": true,
+  "needs2027Roster": true,
+  "newPagesAttempted": 1,
+  "pages": [
+    {
+      "requestedUrl": "https://mesacc.edu/",
+      "checkedAtUtc": "2026-11-18T16:21:19.792Z",
+      "status": "FAILED",
+      "errorType": "Error",
+      "kind": "INSTITUTIONAL_DIRECTORY_HOST_LEAD",
+      "parent": {
+        "sourcePath": "../../geography/us-college-locations-ipeds2024.json",
+        "unitid": "105154",
+        "publishedName": "Mesa Community College",
+        "state": "AZ",
+        "city": "Mesa"
+      }
+    }
+  ],
+  "unfetchedPublishedLeads": [],
+  "publishedLeads": [],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "campusIdentityReviewRequired": true,
+  "currentMembershipVerified": false,
+  "importApproval": "NOT_GRANTED"
+}

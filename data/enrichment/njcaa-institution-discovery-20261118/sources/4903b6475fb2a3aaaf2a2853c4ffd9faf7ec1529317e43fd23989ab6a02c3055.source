@@ -1,0 +1,1643 @@
+<!doctype html>
+<html class="no-js" lang="en-US">
+<head>
+	<!-- Google Tag Manager -->
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+	'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-PQL2W75');</script>
+	<!-- End Google Tag Manager -->
+<meta charset="UTF-8" /><script type="text/javascript">(window.NREUM||(NREUM={})).init={"ajax":{"deny_list":["bam.nr-data.net"]},"feature_flags":["rum_v2"]};(window.NREUM||(NREUM={})).loader_config={"licenseKey":"NRJS-cba449d43d9b93387a1","applicationID":"1476992516","browserID":"1588965987"};;/*! For license information please see nr-loader-rum-1.324.1.min.js.LICENSE.txt */
+(()=>{var e={8122(e,t,r){"use strict";r.d(t,{a:()=>i});var n=r(944);function i(e,t){try{if(!e||"object"!=typeof e)return(0,n.R)(3);if(!t||"object"!=typeof t)return(0,n.R)(4);const r=Object.create(Object.getPrototypeOf(t),Object.getOwnPropertyDescriptors(t)),a=0===Object.keys(r).length?e:r;for(let s in a)if(void 0!==e[s])try{if(null===e[s]){r[s]=null;continue}Array.isArray(e[s])&&Array.isArray(t[s])?r[s]=Array.from(new Set([...e[s],...t[s]])):e[s]instanceof Map||e[s]instanceof Set||e[s]instanceof Date||e[s]instanceof RegExp?r[s]=e[s]:"object"==typeof e[s]&&null!==t[s]&&"object"==typeof t[s]?r[s]=i(e[s],t[s]):r[s]=e[s]}catch(e){r[s]||(0,n.R)(1,e)}return r}catch(e){(0,n.R)(2,e)}}},2555(e,t,r){"use strict";r.d(t,{f:()=>s});var n=r(384),i=r(8122);const a={beacon:n.NT.beacon,errorBeacon:n.NT.errorBeacon,licenseKey:void 0,applicationID:void 0,sa:void 0,queueTime:void 0,applicationTime:void 0,ttGuid:void 0,user:void 0,account:void 0,product:void 0,extra:void 0,jsAttributes:{},userAttributes:void 0,atts:void 0,transactionName:void 0,tNamePlain:void 0};function s(e){try{return!!e.licenseKey&&!!e.errorBeacon&&!!e.applicationID}catch(e){return!1}}r.d(t,["D",0,e=>(0,i.a)(e,a)])},7699(e,t,r){"use strict";var n=r(860);const i=1e6,a={[n.K7.logging]:!0,[n.K7.genericEvents]:!0,[n.K7.jserrors]:!0,[n.K7.ajax]:!0};r.d(t,["It",0,i,"KC",0,a,"qh",0,"SESSION_ERROR","zd",0,5e5])},9324(e,t,r){"use strict";r.d(t,["xv",0,"1.324.1"])},981(e,t,r){"use strict";r.d(t,["R",0,{AJAX:"AjaxRequest",PA:"PageAction",UA:"UserAction",BP:"BrowserPerformance",WS:"WebSocket",SPV:"SecurityPolicyViolation",JSE:"JavaScriptError",LOG:"Log",PVE:"PageView",PVT:"PageViewTiming",SR:"SessionReplay",ST:"SessionTrace",BI:"BrowserInteraction"}])},6154(e,t,r){"use strict";var n=r(1863);const i="undefined"!=typeof window&&!!window.document,a="undefined"!=typeof WorkerGlobalScope&&("undefined"!=typeof self&&self instanceof WorkerGlobalScope&&self.navigator instanceof WorkerNavigator||"undefined"!=typeof globalThis&&globalThis instanceof WorkerGlobalScope&&globalThis.navigator instanceof WorkerNavigator),s=i?window:"undefined"!=typeof WorkerGlobalScope&&("undefined"!=typeof self&&self instanceof WorkerGlobalScope&&self||"undefined"!=typeof globalThis&&globalThis instanceof WorkerGlobalScope&&globalThis),o=Boolean("hidden"===s?.document?.visibilityState),c=""+s?.location,u=/iPad|iPhone|iPod/.test(s.navigator?.userAgent),d=u&&"undefined"==typeof SharedWorker,l=((()=>{const e=s.navigator?.userAgent?.match(/Firefox[/\s](\d+\.\d+)/);Array.isArray(e)&&e.length>=2&&e[1]})(),Date.now()-(0,n.t)());r.d(t,["OF",0,u,"RI",0,i,"WN",0,l,"bv",0,a,"gm",0,s,"m",0,c,"mw",0,o,"sb",0,d,"zk",0,()=>{const e=s?.performance?.getEntriesByType?.("navigation")?.[0];if(e&&e.responseStart>0&&e.responseStart<s.performance.now())return e}])},3241(e,t,r){"use strict";r.d(t,{W:()=>i});var n=r(6154);function i(e={}){try{n.gm.dispatchEvent(new CustomEvent("newrelic",{detail:e}))}catch(e){}}},1687(e,t,r){"use strict";r.d(t,{Ak:()=>o,Ze:()=>u,x3:()=>c});var n=r(3241),i=r(3606),a=r(860),s=r(2646);function o(e,t){if(!e)return;const r={staged:!1,priority:a.P3[t]||0};e.runtime.drainRegistry.get(t)||e.runtime.drainRegistry.set(t,r)}function c(e,t){if(!e)return;const r=e.runtime.drainRegistry;r&&(r.get(t)&&r.delete(t),l(e,t,!1),r.size&&d(e))}function u(e,t="feature",r=!1){if(e){if(!e.runtime.drainRegistry.get(t)||r)return l(e,t);e.runtime.drainRegistry.get(t).staged=!0,d(e)}}function d(e){if(!e)return;const t=Array.from(e.runtime.drainRegistry);t.every(([e,t])=>t.staged)&&(t.sort((e,t)=>e[1].priority-t[1].priority),t.forEach(([t])=>{e.runtime.drainRegistry.delete(t),l(e,t)}))}function l(e,t,r=!0){if(!e)return;const a=e.ee,o=i.i.handlers;if(a&&!a.aborted&&a.backlog&&o){if((0,n.W)({type:"lifecycle",name:"drain",feature:t}),r){const e=a.backlog[t],r=o[t];if(r){for(let t=0;e&&t<e.length;++t)f(e[t],r);Object.entries(r).forEach(([e,t])=>{Object.values(t||{}).forEach(t=>{t[0]?.on&&t[0].context()instanceof s.y&&!t[0].listeners(e).includes(t[1])&&t[0].on(e,t[1])})})}}a.isolatedBacklog||delete o[t],a.backlog[t]=null,a.emit("drain-"+t,[])}}function f(e,t){var r=e[1];Object.values(t[r]||{}).forEach(t=>{var r=e[0];if(t[0]===r){var n=t[1],i=e[3],a=e[2];n.apply(i,a)}})}},7836(e,t,r){"use strict";var n=r(384),i=r(8990),a=r(2646),s=r(5607);const o="nr@context:".concat(s.W),c=function e(t,r){var n={},s={},d={},l=!1;try{l=16===r.length&&u.initializedAgents?.[r]?.runtime.isolatedBacklog}catch(e){}var f={on:p,addEventListener:p,removeEventListener:function(e,t){var r=n[e];if(!r)return;for(var i=0;i<r.length;i++)r[i]===t&&r.splice(i,1)},emit:function(e,r,n,i,a){!1!==a&&(a=!0);if(c.aborted&&!i)return;t&&a&&t.emit(e,r,n);var o=g(n);m(e).forEach(e=>{e.apply(o,r)});var u=v()[s[e]];u&&u.push([f,e,r,o]);return o},get:h,listeners:m,context:g,buffer:function(e,t){const r=v();if(t=t||"feature",f.aborted)return;Object.entries(e||{}).forEach(([e,n])=>{s[n]=t,t in r||(r[t]=[])})},abort:function(){f._aborted=!0,Object.keys(f.backlog).forEach(e=>{delete f.backlog[e]})},isBuffering:function(e){return!!v()[s[e]]},debugId:r,backlog:l?{}:t&&"object"==typeof t.backlog?t.backlog:{},isolatedBacklog:l};return Object.defineProperty(f,"aborted",{get:()=>{let e=f._aborted||!1;return e||(t&&(e=t.aborted),e)}}),f;function g(e){return e&&e instanceof a.y?e:e?(0,i.I)(e,o,()=>new a.y(o)):new a.y(o)}function p(e,t){n[e]=m(e).concat(t)}function m(e){return n[e]||[]}function h(t){return d[t]=d[t]||e(f,t)}function v(){return f.backlog}}(void 0,"globalEE"),u=(0,n.Zm)();u.ee||(u.ee=c),r.d(t,["P",0,o,"ee",0,c])},2646(e,t,r){"use strict";r.d(t,{y:()=>n});class n{constructor(e){this.contextId=e}}},9908(e,t,r){"use strict";r.d(t,{d:()=>n,p:()=>i});var n=r(7836).ee.get("handle");function i(e,t,r,i,a){a?(a.buffer([e],i),a.emit(e,t,r)):(n.buffer([e],i),n.emit(e,t,r))}},3606(e,t,r){"use strict";r.d(t,{i:()=>a});var n=r(9908);a.on=s;var i=a.handlers={};function a(e,t,r,a){s(a||n.d,i,e,t,r)}function s(e,t,r,i,a){a||(a="feature"),e||(e=n.d);var s=t[a]=t[a]||{};(s[r]=s[r]||[]).push([e,i])}},3878(e,t,r){"use strict";function n(e,t){return{capture:e,passive:!1,signal:t}}function i(e,t,r=!1,i){window.addEventListener(e,t,n(r,i))}function a(e,t,r=!1,i){document.addEventListener(e,t,n(r,i))}r.d(t,{DD:()=>a,jT:()=>n,sp:()=>i})},5607(e,t,r){"use strict";const n=(0,r(9566).bz)();r.d(t,["W",0,n])},9566(e,t,r){"use strict";r.d(t,{LA:()=>s,bz:()=>a});var n=r(6154);function i(e,t){return e?15&e[t]:16*Math.random()|0}function a(){const e=n.gm?.crypto||n.gm?.msCrypto;let t,r=0;return e&&e.getRandomValues&&(t=e.getRandomValues(new Uint8Array(30))),"xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".split("").map(e=>"x"===e?i(t,r++).toString(16):"y"===e?(3&i()|8).toString(16):e).join("")}function s(e){const t=n.gm?.crypto||n.gm?.msCrypto;let r,a=0;t&&t.getRandomValues&&(r=t.getRandomValues(new Uint8Array(e)));const s=[];for(var o=0;o<e;o++)s.push(i(r,a++).toString(16));return s.join("")}},2614(e,t,r){"use strict";r.d(t,["BB",0,18e5,"Wt",0,"NRBA_SESSION::","iL",0,{SAME_TAB:"same-tab",CROSS_TAB:"cross-tab"},"tS",0,{STARTED:"session-started",PAUSE:"session-pause",RESET:"session-reset",RESUME:"session-resume",UPDATE:"session-update"},"wk",0,144e5])},1863(e,t,r){"use strict";function n(){return Math.floor(performance.now())}r.d(t,{t:()=>n})},944(e,t,r){"use strict";r.d(t,{R:()=>i});var n=r(3241);function i(e,t){"function"==typeof console.debug&&(console.debug("New Relic Warning: https://github.com/newrelic/newrelic-browser-agent/blob/main/docs/warning-codes.md#".concat(e),t),(0,n.W)({drained:null,type:"data",name:"warn",feature:"warn",data:{code:e,secondary:t}}))}},8990(e,t,r){"use strict";r.d(t,{I:()=>i});var n=Object.prototype.hasOwnProperty;function i(e,t,r){if(n.call(e,t))return e[t];var i=r();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,t,{value:i,writable:!0,enumerable:!1}),i}catch(e){}return e[t]=i,i}},6389(e,t,r){"use strict";function n(e,t=500,r={}){const n=r?.leading||!1;let i;return(...r)=>{n&&void 0===i&&(e.apply(this,r),i=setTimeout(()=>{i=clearTimeout(i)},t)),n||(clearTimeout(i),i=setTimeout(()=>{e.apply(this,r)},t))}}function i(e){let t=!1;return(...r)=>{t||(t=!0,e.apply(this,r))}}r.d(t,{J:()=>i,s:()=>n})},1910(e,t,r){"use strict";r.d(t,{i:()=>a});var n=r(944);const i=new Map;function a(...e){return e.every(e=>{if(i.has(e))return i.get(e);const t="function"==typeof e?e.toString():"",r=t.includes("[native code]"),a=t.includes("nrWrapper");return r||a||(0,n.R)(64,e?.name||t),i.set(e,r),r})}},5289(e,t,r){"use strict";r.d(t,{GG:()=>s,Qr:()=>c,sB:()=>o});var n=r(3878),i=r(6389);function a(){return"undefined"==typeof document||"complete"===document.readyState}function s(e,t){if(a())return e();const r=(0,i.J)(e),s=setInterval(()=>{a()&&(clearInterval(s),r())},500);(0,n.sp)("load",r,t)}function o(e){if(a())return e();(0,n.DD)("DOMContentLoaded",e)}function c(e){if(a())return e();(0,n.sp)("popstate",e)}},384(e,t,r){"use strict";r.d(t,{Zm:()=>c,bQ:()=>d,dV:()=>u,pV:()=>l});var n=r(6154),i=r(1863),a=r(944),s=r(1910);const o={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net"};function c(){return n.gm.NREUM||(n.gm.NREUM={}),void 0===n.gm.newrelic&&(n.gm.newrelic=n.gm.NREUM),n.gm.NREUM}function u(){let e=c();return e.o||(e.o={ST:n.gm.setTimeout,SI:n.gm.setImmediate||n.gm.setInterval,CT:n.gm.clearTimeout,XHR:n.gm.XMLHttpRequest,REQ:n.gm.Request,EV:n.gm.Event,PR:n.gm.Promise,MO:n.gm.MutationObserver,FETCH:n.gm.fetch,WS:n.gm.WebSocket},(0,s.i)(...Object.values(e.o))),e}function d(e,t){let r=c();r.initializedAgents??={},t.initializedAt={ms:(0,i.t)(),date:new Date},r.initializedAgents[e]=t,2===Object.keys(r.initializedAgents).length&&(0,a.R)(69)}function l(){return function(){let e=c();const t=e.info||{};e.info={beacon:o.beacon,errorBeacon:o.errorBeacon,...t}}(),function(){let e=c();const t=e.init||{};e.init={...t}}(),u(),function(){let e=c();const t=e.loader_config||{};e.loader_config={...t}}(),c()}r.d(t,["NT",0,o])},2843(e,t,r){"use strict";r.d(t,{G:()=>a,u:()=>i});var n=r(3878);function i(e,t=!1,r,i){(0,n.DD)("visibilitychange",function(){if(t)return void("hidden"===document.visibilityState&&e());e(document.visibilityState)},r,i)}function a(e,t,r){(0,n.sp)("pagehide",e,t,r)}},9300(e,t,r){"use strict";r(860).K7.ajax;r.d(t,["mo",0,{NONE:"none",FAILURES:"failures",ALL:"all"}])},3969(e,t,r){"use strict";const n=r(860).K7.metrics;r.d(t,["TZ",0,n,"XG",0,"storeEventMetrics","xV",0,"storeSupportabilityMetrics"])},6630(e,t,r){"use strict";const n=r(860).K7.pageViewEvent;r.d(t,["T",0,n])},782(e,t,r){"use strict";const n=r(860).K7.pageViewTiming;r.d(t,["T",0,n])},4234(e,t,r){"use strict";r.d(t,{W:()=>i});var n=r(1687);class i{constructor(e,t){this.agentRef=e,this.ee=e?.ee,this.featureName=t,this.blocked=!1}deregisterDrain(){(0,n.x3)(this.agentRef,this.featureName)}}},7767(e,t,r){"use strict";var n=r(6154);r.d(t,["V",0,e=>n.RI&&!0===e?.privacy.cookies_enabled])},8362(e,t,r){"use strict";r.d(t,{d:()=>a});var n=r(9566),i=r(1741);class a extends i.W{agentIdentifier=(0,n.LA)(16)}},1741(e,t,r){"use strict";r.d(t,{W:()=>a});var n=r(944),i=r(4261);class a{#e(e,...t){if(this[e]!==a.prototype[e])return this[e](...t);(0,n.R)(35,e)}addPageAction(e,t){return this.#e(i.hG,e,t)}register(e){return this.#e(i.eY,e)}recordCustomEvent(e,t){return this.#e(i.fF,e,t)}setPageViewName(e,t){return this.#e(i.Fw,e,t)}setCustomAttribute(e,t,r){return this.#e(i.cD,e,t,r)}noticeError(e,t){return this.#e(i.o5,e,t)}setUserId(e,t=!1){return this.#e(i.Dl,e,t)}setApplicationVersion(e){return this.#e(i.nb,e)}setErrorHandler(e){return this.#e(i.bt,e)}addRelease(e,t){return this.#e(i.k6,e,t)}log(e,t){return this.#e("log",e,t)}start(){return this.#e("start")}finished(e){return this.#e(i.BL,e)}recordReplay(){return this.#e(i.CH)}pauseReplay(){return this.#e(i.Tb)}addToTrace(e){return this.#e(i.U2,e)}setCurrentRouteName(e){return this.#e(i.PA,e)}interaction(e){return this.#e(i.dT,e)}wrapLogger(e,t,r){return this.#e(i.Wb,e,t,r)}measure(e,t){return this.#e(i.V1,e,t)}consent(e){return this.#e(i.Pv,e)}}},4261(e,t,r){"use strict";r.d(t,["BL",0,"finished","CH",0,"recordReplay","Dl",0,"setUserId","Fw",0,"setPageViewName","PA",0,"setCurrentRouteName","Pv",0,"consent","Tb",0,"pauseReplay","U2",0,"addToTrace","V1",0,"measure","Wb",0,"wrapLogger","bt",0,"setErrorHandler","cD",0,"setCustomAttribute","dT",0,"interaction","eY",0,"register","fF",0,"recordCustomEvent","hG",0,"addPageAction","k6",0,"addRelease","nb",0,"setApplicationVersion","o5",0,"noticeError"])},1738(e,t,r){"use strict";r.d(t,{U:()=>l,Y:()=>d});var n=r(3241),i=r(9908),a=r(1863),s=r(944),o=r(3969),c=r(8362),u=r(860);function d(e,t,r,a){const d=a||r;!d||d[e]&&d[e]!==c.d.prototype[e]||(d[e]=function(){(0,i.p)(o.xV,["API/"+e+"/called"],void 0,u.K7.metrics,r.ee),(0,n.W)({drained:!!r.runtime?.activatedFeatures,type:"data",name:"api",feature:"api-"+e,data:{}});try{return t.apply(this,arguments)}catch(e){(0,s.R)(23,e)}})}function l(e,t,r,n,s){const o=e.info;null===r?delete o.jsAttributes[t]:o.jsAttributes[t]=r,(s||null===r)&&(0,i.p)("api-"+n,[(0,a.t)(),t,r],void 0,"session",e.ee)}},8374(e,t,r){r.nc=(()=>{try{return document?.currentScript?.nonce}catch(e){}return""})()},860(e,t,r){"use strict";const n="events",i="jserrors",a="browser/blobs",s="browser/logs",o={ajax:"ajax",genericEvents:"generic_events",jserrors:i,logging:"logging",metrics:"metrics",pageAction:"page_action",pageViewEvent:"page_view_event",pageViewTiming:"page_view_timing",sessionReplay:"session_replay",sessionTrace:"session_trace",softNav:"soft_navigations"},c={[o.pageViewEvent]:1,[o.pageViewTiming]:2,[o.metrics]:3,[o.jserrors]:4,[o.softNav]:5,[o.ajax]:6,[o.sessionTrace]:7,[o.sessionReplay]:8,[o.logging]:9,[o.genericEvents]:10},u={[o.pageViewEvent]:"rum",[o.pageViewTiming]:n,[o.ajax]:n,[o.softNav]:n,[o.metrics]:i,[o.jserrors]:i,[o.sessionTrace]:a,[o.sessionReplay]:a,[o.logging]:s,[o.genericEvents]:"ins"};r.d(t,["$J",0,u,"K7",0,o,"P3",0,c,"XX",0,i,"Yy",0,s,"df",0,a,"hg",0,"connect"])}};const t={};function r(n){const i=t[n];if(void 0!==i)return i.exports;const a=t[n]={exports:{}};return e[n](a,a.exports,r),a.exports}r.m=e,r.d=(e,t)=>{if(Array.isArray(t))for(var n=0;n<t.length;){var i=t[n++],a=t[n++];r.o(e,i)?0===a&&n++:0===a?Object.defineProperty(e,i,{enumerable:!0,value:t[n++]}):Object.defineProperty(e,i,{enumerable:!0,get:a})}else for(var i in t)r.o(t,i)&&!r.o(e,i)&&Object.defineProperty(e,i,{enumerable:!0,get:t[i]})},r.f={},r.e=e=>Promise.all(Object.keys(r.f).reduce((t,n)=>(r.f[n](e,t),t),[])),r.u=e=>"nr-rum-1.324.1.min.js",r.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t),(()=>{const e={},t="NRBA-1.324.1.PROD:";r.l=(n,i,a,s)=>{if(e[n])return void e[n].push(i);let o,c;if(void 0!==a){const e=document.getElementsByTagName("script");for(var u=0;u<e.length;u++){const r=e[u];if(r.getAttribute("src")==n||r.getAttribute("data-webpack")==t+a){o=r;break}}}if(!o){c=!0;var d={296:"sha512-zuv39xzZ8AH/HwpVrtkixvcBuOFo2ydcFzMtXjx+3Iwr5g++inX+6YDH7J/8fOCAtBetz8aDyaYCRkGy2nnG/w=="};o=document.createElement("script"),o.charset="utf-8",r.nc&&o.setAttribute("nonce",r.nc),o.setAttribute("data-webpack",t+a),o.src=n,0!==o.src.indexOf(window.location.origin+"/")&&(o.crossOrigin="anonymous"),d[s]&&(o.integrity=d[s])}e[n]=[i];const l=(t,r)=>{o.onerror=o.onload=null,clearTimeout(f);const i=e[n];if(delete e[n],o.parentNode?.removeChild(o),i?.forEach(e=>e(r)),t)return t(r)},f=setTimeout(l.bind(null,void 0,{type:"timeout",target:o}),12e4);o.onerror=l.bind(null,o.onerror),o.onload=l.bind(null,o.onload),c&&document.head.appendChild(o)}})(),r.r=e=>{Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},r.p="https://js-agent.newrelic.com/",(()=>{const e={374:0,840:0};r.f.j=(t,n)=>{let i=r.o(e,t)?e[t]:void 0;if(0!==i)if(i)n.push(i[2]);else{const a=new Promise((r,n)=>i=e[t]=[r,n]);n.push(i[2]=a);const s=r.p+r.u(t),o=new Error,c=n=>{if(r.o(e,t)&&(i=e[t],0!==i&&(e[t]=void 0),i)){const e=n&&("load"===n.type?"missing":n.type),r=n&&n.target&&n.target.src;o.message="Loading chunk "+t+" failed: ("+e+": "+r+")",o.name="ChunkLoadError",o.type=e,o.request=r,i[1](o)}};r.l(s,c,"chunk-"+t,t)}};const t=(t,n)=>{let[i,a,s]=n;var o,c,u=0;if(i.some(t=>0!==e[t])){for(o in a)r.o(a,o)&&(r.m[o]=a[o]);if(s)s(r)}for(t&&t(n);u<i.length;u++)c=i[u],r.o(e,c)&&e[c]&&e[c][0](),e[c]=0},n=self["webpackChunk:NRBA-1.324.1.PROD"]=self["webpackChunk:NRBA-1.324.1.PROD"]||[];n.forEach(t.bind(null,0)),n.push=t.bind(null,n.push.bind(n))})(),(()=>{"use strict";r(8374);var e=r(8362),t=r(860);const n=Object.values(t.K7);var i=r(384),a=r(1741);var s=r(2555),o=r(981);t.K7.genericEvents,o.R.PA,o.R.UA,o.R.BP;const c={RESOURCES:"experimental.resources",REGISTER:"register"};var u=r(9300);const d=e=>{if(!e||"string"!=typeof e)return!1;try{document.createDocumentFragment().querySelector(e)}catch{return!1}return!0};var l=r(2614),f=r(944),g=r(8122);const p="[data-nr-mask]",m=e=>(0,g.a)(e,(()=>{const e={feature_flags:[],experimental:{register:!1,resources:!1,iframe_bridge:!1,iframe_domains:[]},mask_selector:"*",block_selector:"[data-nr-block]",mask_input_options:{color:!1,date:!1,"datetime-local":!1,email:!1,month:!1,number:!1,range:!1,search:!1,tel:!1,text:!1,time:!1,url:!1,week:!1,textarea:!1,select:!1,password:!0}};return{ajax:{deny_list:void 0,block_internal:!0,enabled:!0,autoStart:!0,capture_payloads:u.mo.NONE},api:{register:{get enabled(){return e.feature_flags.includes(c.REGISTER)||e.experimental.register},set enabled(t){e.experimental.register=t},duplicate_data_to_container:!1,get allow_iframe_bridge(){return e.feature_flags.includes(c.IFRAME_BRIDGE)||e.experimental.iframe_bridge},set allow_iframe_bridge(t){e.experimental.iframe_bridge=t},get iframe_domains(){return e.experimental.iframe_domains},set iframe_domains(t){Array.isArray(t)?e.experimental.iframe_domains=t:(0,f.R)(1,t)}}},browser_consent_mode:{enabled:!1},distributed_tracing:{enabled:void 0,exclude_newrelic_header:void 0,cors_use_newrelic_header:void 0,cors_use_tracecontext_headers:void 0,allowed_origins:void 0},get feature_flags(){return e.feature_flags},set feature_flags(t){e.feature_flags=t},generic_events:{enabled:!0,autoStart:!0},harvest:{interval:30},jserrors:{enabled:!0,autoStart:!0},logging:{enabled:!0,autoStart:!0},metrics:{enabled:!0,autoStart:!0},obfuscate:void 0,page_action:{enabled:!0},page_view_event:{enabled:!0,autoStart:!0},page_view_timing:{enabled:!0,autoStart:!0},performance:{capture_marks:!1,capture_measures:!1,capture_detail:!0,resources:{get enabled(){return e.feature_flags.includes(c.RESOURCES)||e.experimental.resources},set enabled(t){e.experimental.resources=t},asset_types:[],first_party_domains:[],ignore_newrelic:!0}},privacy:{cookies_enabled:!0},proxy:{assets:void 0,beacon:void 0},session:{expiresMs:l.wk,inactiveMs:l.BB},session_replay:{autoStart:!0,enabled:!1,preload:!1,collect_fonts:!1,inline_images:!1,fix_stylesheets:!0,mask_all_inputs:!0,get mask_text_selector(){return e.mask_selector},set mask_text_selector(t){d(t)?e.mask_selector="".concat(t,",").concat(p):""===t||null===t?e.mask_selector=p:(0,f.R)(5,t)},get block_class(){return"nr-block"},get ignore_class(){return"nr-ignore"},get mask_text_class(){return"nr-mask"},get block_selector(){return e.block_selector},set block_selector(t){d(t)?e.block_selector+=",".concat(t):""!==t&&(0,f.R)(6,t)},get mask_input_options(){return e.mask_input_options},set mask_input_options(t){t&&"object"==typeof t?e.mask_input_options={...t,password:!0}:(0,f.R)(7,t)}},session_trace:{enabled:!0,autoStart:!0},soft_navigations:{enabled:!0,autoStart:!0},ssl:void 0,user_actions:{enabled:!0,elementAttributes:["id","className","tagName","type"]},web_sockets:{enabled:!1}}})());var h=r(6154),v=r(9324);let b=0;const y={buildEnv:"PROD",distMethod:"CDN",version:v.xv,originTime:h.WN},_={consented:!1},w={activatedFeatures:void 0,appMetadata:{},configured:!1,get consented(){return this.session?.state?.consent||_.consented},set consented(e){_.consented=e},customTransaction:void 0,denyList:[],disabled:!1,drainRegistry:new Map,connector:void 0,harvester:void 0,v2Target:void 0,isolatedBacklog:!1,isRecording:!1,loaderType:void 0,maxBytes:3e4,obfuscator:void 0,onerror:void 0,ptid:void 0,releaseIds:{},session:void 0,timeKeeper:void 0,registeredEntities:[],jsAttributesMetadata:{bytes:0},get harvestCount(){return++b},listeningForIframeMessages:!1},R="BA";var A=r(7836),x=r(3241);const E={accountID:void 0,trustKey:void 0,agentID:void 0,licenseKey:void 0,applicationID:void 0,xpid:void 0};var S=r(9908);const k="newrelic-iframe-";function T(e,t={},n,o){let{init:c,info:u,loader_config:d,runtime:l={},exposed:f=!0}=t;if(!u){const e=(0,i.pV)();c=e.init,u=e.info,d=e.loader_config}var p;e.init=m(c||{}),e.loader_config=(p=d||{},(0,g.a)(p,E)),u.jsAttributes??={},h.bv&&(u.jsAttributes.isWorker=!0),e.info=(0,s.D)(u);const v=e.init;e.runtime??=(e=>{const t=(0,g.a)(e,w),r=Object.keys(y).reduce((e,t)=>(e[t]={value:y[t],writable:!1,configurable:!0,enumerable:!0},e),{});return Object.defineProperties(t,r)})(l),e.runtime.v2Target??={type:R,instance:e.agentIdentifier,get id(){return e.runtime.appMetadata?.agents?.[0]?.entityGuid},get attributes(){return{"entity.guid":this.id,appId:e.info.applicationID}}},v.proxy.assets&&(e=>{const t=e.startsWith("http");e+="/",r.p=t?e:"https://"+e})(v.proxy.assets),e.runtime.configured||(Object.defineProperty(e,"beacons",{get:()=>[e.info.beacon,e.info.errorBeacon,e.init.proxy.assets,e.init.proxy.beacon].filter(Boolean)}),Object.defineProperty(e.runtime,"denyList",{get:()=>[...e.init.ajax.deny_list||[],...e.init.ajax.block_internal?e.beacons:[]]}),e.runtime.ptid=e.agentIdentifier,function(e){const t=(0,i.pV)();Object.getOwnPropertyNames(a.W.prototype).forEach(r=>{const n=a.W.prototype[r];if("function"!=typeof n||"constructor"===n)return;let i=t[r];e[r]&&!1!==e.exposed&&"micro-agent"!==e.runtime?.loaderType&&(t[r]=(...t)=>{const n=e[r](...t);return i?i(...t):n})})}(e),e.runtime.loaderType=n,e.ee=A.ee.get(e.agentIdentifier),e.exposed=f,(0,x.W)({drained:!!e.runtime.activatedFeatures,type:"lifecycle",name:"initialize",feature:void 0,data:e.config}),e.init.api.register.allow_iframe_bridge&&h.gm.addEventListener("message",t=>{"string"==typeof t.data?.type&&t.data.type.startsWith(k)&&(0,S.p)("iframe-message",[t],void 0,"IFRAME",e.ee)}),e.runtime.configured=!0)}var j=r(1863),P=r(4261),N=r(1738);var O=r(1687),M=r(4234),I=r(5289),D=r(7767);function V(e){return!!(0,i.dV)().o.MO&&(0,D.V)(e)&&!0===e?.session_trace.enabled}var W=r(6389),B=r(7699);const C=new WeakSet,K=new WeakMap;class U extends M.W{constructor(e,t){super(e,t),this.abortHandler=void 0,this.featAggregate=void 0,this.loadedSuccessfully=void 0,this.onAggregateImported=new Promise(e=>{this.loadedSuccessfully=e}),this.deferred=Promise.resolve(),!1===e.init[this.featureName].autoStart?this.deferred=new Promise((t,r)=>{this.ee.on("manual-start-all",(0,W.J)(()=>{(0,O.Ak)(e,this.featureName),t()}))}):(0,O.Ak)(e,t)}importAggregator(e,t,n={}){if(this.featAggregate)return;const i=async()=>{if(await this.deferred,this.#t(e),!(0,s.f)(e.info))return(0,f.R)(43),e.ee.abort(),void this.loadedSuccessfully(!1);try{await async function(e,t,n){if(K.has(e))return K.get(e);const i=(async()=>{if((0,D.V)(e.init))try{const{setupAgentSession:t}=await r.e(296).then(r.bind(r,1768));t(e)}catch(e){(0,f.R)(20,e),t.emit("internal-error",[e]),(0,S.p)(B.qh,[e],void 0,n,t)}if(e.init.api.register.allow_iframe_bridge)try{const{setupIframeMFEMessageListener:t}=await Promise.resolve().then(function(){const e=new Error("Cannot find module '../../loaders/configure/iframe-message-handler'");throw e.code="MODULE_NOT_FOUND",e});t(e)}catch(e){(0,f.R)(23,e)}const[{Connector:i},{Harvester:a}]=await Promise.all([r.e(296).then(r.bind(r,6589)),r.e(296).then(r.bind(r,5237))]);e.runtime.connector=new i(e),e.runtime.harvester=new a(e);const s=Object.values(e.features).filter(t=>e.runtime.drainRegistry.has(t.featureName));Promise.all(s.map(e=>e.onAggregateImported)).then(()=>e.runtime.harvester.startTimer())})();K.set(e,i),await i}(e,this.ee,this.featureName)}catch(e){return(0,f.R)(79,e),this.ee.abort(),void this.loadedSuccessfully(!1)}try{if(!this.#r(this.featureName,e.runtime.session,e.init))return this.abortHandler?.(),(0,O.Ze)(this.agentRef,this.featureName),void this.loadedSuccessfully(!1);const{Aggregate:r}=await t();this.featAggregate=new r(e,n),e.runtime.harvester.initializedAggregates.push(this.featAggregate),this.loadedSuccessfully(!0)}catch(e){(0,f.R)(34,e),this.abortHandler?.(),(0,O.Ze)(this.agentRef,this.featureName,!0),this.loadedSuccessfully(!1)}};h.RI?(0,I.GG)(()=>i(),!0):i()}#r(e,r,n){if(this.blocked)return!1;switch(e){case t.K7.sessionReplay:return V(n)&&!!r;case t.K7.sessionTrace:return!!r;default:return!0}}#t(e){if(!C.has(e)&&(C.add(e),!(0,s.f)(e.info))){const t=(0,i.pV)();let r={...t.info?.jsAttributes};try{r={...r,...e.info?.jsAttributes}}catch(e){}T(e,{...t,info:{...t.info,jsAttributes:r},runtime:e.runtime},e.runtime.loaderType)}}}var L=r(6630);class F extends U{static featureName=L.T;constructor(e){var t;super(e,L.T),this.setupInspectionEvents(),t=e,(0,N.Y)(P.Fw,function(e,r){"string"==typeof e&&("/"!==e.charAt(0)&&(e="/"+e),t.runtime.customTransaction=(r||"http://custom.transaction")+e,(0,S.p)("api-"+P.Fw,[(0,j.t)()],void 0,void 0,t.ee))},t),this.importAggregator(e,()=>e.init.feature_flags.includes("rum_v2")?r.e(296).then(r.bind(r,908)):r.e(296).then(r.bind(r,7927)))}setupInspectionEvents(){const e=(e,t)=>{e&&(0,x.W)({timeStamp:e.timeStamp,loaded:"complete"===e.target.readyState,type:"window",name:t,data:e.target.location+""})};(0,I.sB)(t=>{e(t,"DOMContentLoaded")}),(0,I.GG)(t=>{e(t,"load")}),(0,I.Qr)(t=>{e(t,"navigate")}),this.ee.on(l.tS.UPDATE,(e,t)=>{(0,x.W)({type:"lifecycle",name:"session",data:t})})}}class G extends e.d{constructor(e){var t;(super(),h.gm)?(this.features={},(0,i.bQ)(this.agentIdentifier,this),this.desiredFeatures=new Set(e.features||[]),this.desiredFeatures.add(F),T(this,e,e.loaderType||"agent"),t=this,(0,N.Y)(P.cD,function(e,r,n=!1){if("string"==typeof e){if(["string","number","boolean"].includes(typeof r)||null===r)return(0,N.U)(t,e,r,P.cD,n);(0,f.R)(40,typeof r)}else(0,f.R)(39,typeof e)},t),function(e){(0,N.Y)(P.Dl,function(t,r=!1){if("string"!=typeof t&&null!==t)return void(0,f.R)(41,typeof t);const n=e.info.jsAttributes["enduser.id"];r&&null!=n&&n!==t?(0,S.p)("api-setUserIdAndResetSession",[t],void 0,"session",e.ee):(0,N.U)(e,"enduser.id",t,P.Dl,!0)},e)}(this),function(e){(0,N.Y)(P.nb,function(t){if("string"==typeof t||null===t)return(0,N.U)(e,"application.version",t,P.nb,!1);(0,f.R)(42,typeof t)},e)}(this),function(e){(0,N.Y)("start",function(){e.ee.emit("manual-start-all")},e)}(this),function(e){(0,N.Y)(P.Pv,function(t=!0){if("boolean"==typeof t){if((0,S.p)("api-"+P.Pv,[t],void 0,"session",e.ee),e.runtime.consented=t,t){const t=e.features.page_view_event;t.onAggregateImported.then(e=>{const r=t.featAggregate;e&&!r.sentRum&&r.sendRum?.()})}}else(0,f.R)(65,typeof t)},e)}(this),this.run()):(0,f.R)(21)}get config(){return{info:this.info,init:this.init,loader_config:this.loader_config,runtime:this.runtime}}get api(){return this}run(){try{const e=function(e){const t={};return n.forEach(r=>{t[r]=!!e[r]?.enabled}),t}(this.init),r=[...this.desiredFeatures],i=this.init.feature_flags.includes("rum_v2");r.sort((e,r)=>t.P3[e.featureName]-t.P3[r.featureName]),r.forEach(r=>{if(!e[r.featureName]&&(i||r.featureName!==t.K7.pageViewEvent))return;const n=function(e){switch(e){case t.K7.ajax:return[t.K7.jserrors];case t.K7.sessionTrace:return[t.K7.ajax,t.K7.pageViewEvent];case t.K7.sessionReplay:return[t.K7.sessionTrace];case t.K7.pageViewTiming:return[t.K7.pageViewEvent];default:return[]}}(r.featureName).filter(e=>!(e in this.features));n.length>0&&(0,f.R)(36,{targetFeature:r.featureName,missingDependencies:n}),this.features[r.featureName]=new r(this)})}catch(e){(0,f.R)(22,e);for(const e in this.features)this.features[e].abortHandler?.();const t=(0,i.Zm)();delete t.initializedAgents[this.agentIdentifier]?.features,delete this.sharedAggregator;return t.ee.get(this.agentIdentifier).abort(),!1}}}var H=r(2843),z=r(782);class Y extends U{static featureName=z.T;constructor(e){super(e,z.T),h.RI&&((0,H.u)(()=>(0,S.p)("docHidden",[(0,j.t)()],void 0,z.T,this.ee),!0),(0,H.G)(()=>(0,S.p)("winPagehide",[(0,j.t)()],void 0,z.T,this.ee)),this.importAggregator(e,()=>r.e(296).then(r.bind(r,9981))))}}var Z=r(3969);class q extends U{static featureName=Z.TZ;constructor(e){super(e,Z.TZ),this.importAggregator(e,()=>r.e(296).then(r.bind(r,9623)))}}new G({features:[F,Y,q],loaderType:"lite"})})()})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="manifest" href="/site.webmanifest" />
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#ee0000">
+<meta name="msapplication-TileColor" content="#01172e" />
+<meta name="theme-color" content="#01172e" />
+<meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+
+	<!-- This site is optimized with the Yoast SEO plugin v28.0 - https://yoast.com/product/yoast-seo-wordpress/ -->
+	<title>Northland Community &amp; Technical College | Opportunity For All</title>
+	<meta name="description" content="Northland Community &amp; Technical College offers 80+ programs, affordable tuition, and hands-on learning. Start your journey today at one of Minnesota’s top technical colleges." />
+	<link rel="canonical" href="https://www.northlandcollege.edu/" />
+	<meta property="og:locale" content="en_US" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Northland Community &amp; Technical College | Opportunity For All" />
+	<meta property="og:description" content="Northland Community &amp; Technical College offers 80+ programs, affordable tuition, and hands-on learning. Start your journey today at one of Minnesota’s top technical colleges." />
+	<meta property="og:url" content="https://www.northlandcollege.edu/" />
+	<meta property="og:site_name" content="Northland Community &amp; Technical College" />
+	<meta property="article:modified_time" content="2026-11-10T12:49:12+00:00" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https:\/\/schema.org","@graph":[{"@type":"WebPage","@id":"https:\/\/www.northlandcollege.edu\/","url":"https:\/\/www.northlandcollege.edu\/","name":"Northland Community & Technical College | Opportunity For All","isPartOf":{"@id":"https:\/\/www.northlandcollege.edu\/#website"},"datePublished":"2021-12-07T05:55:06+00:00","dateModified":"2026-11-10T12:49:12+00:00","description":"Northland Community & Technical College offers 80+ programs, affordable tuition, and hands-on learning. Start your journey today at one of Minnesota’s top technical colleges.","breadcrumb":{"@id":"https:\/\/www.northlandcollege.edu\/#breadcrumb"},"inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["https:\/\/www.northlandcollege.edu\/"]}]},{"@type":"BreadcrumbList","@id":"https:\/\/www.northlandcollege.edu\/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home"}]},{"@type":"WebSite","@id":"https:\/\/www.northlandcollege.edu\/#website","url":"https:\/\/www.northlandcollege.edu\/","name":"Northland Community &amp; Technical College","description":"","potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https:\/\/www.northlandcollege.edu\/?s={search_term_string}"},"query-input":{"@type":"PropertyValueSpecification","valueRequired":true,"valueName":"search_term_string"}}],"inLanguage":"en-US"}]}</script>
+	<!-- / Yoast SEO plugin. -->
+
+
+<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="https://www.northlandcollege.edu/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.northlandcollege.edu%2F" />
+<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="https://www.northlandcollege.edu/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.northlandcollege.edu%2F&#038;format=xml" />
+<style id="wp-img-auto-sizes-contain-inline-css">
+img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
+/*# sourceURL=wp-img-auto-sizes-contain-inline-css */
+</style>
+<style id="classic-theme-styles-inline-css">
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+/*# sourceURL=/wp-includes/css/classic-themes.min.css */
+</style>
+
+<style id="global-styles-inline-css">
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #1b1b1b;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #fff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--color--blue-tint: #dde9ed;--wp--preset--color--flight-blue: #0344dc;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgb(6,147,227) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgb(252,185,0) 0%,rgb(255,105,0) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgb(255,105,0) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgb(255, 255, 255), 6px 6px rgb(0, 0, 0);--wp--preset--shadow--crisp: 6px 6px 0px rgb(0, 0, 0);}.wp-block-button{--wp--preset--dimension--25: 25%;--wp--preset--dimension--50: 50%;--wp--preset--dimension--75: 75%;--wp--preset--dimension--100: 100%;}:where(body) { margin: 0; }:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}body{padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;}:root :where(.wp-element-button, .wp-block-button__link){background-color: #32373c;border-width: 0;color: #fff;font-family: inherit;font-size: inherit;font-style: inherit;font-weight: inherit;letter-spacing: inherit;line-height: inherit;padding-top: calc(0.667em + 2px);padding-right: calc(1.333em + 2px);padding-bottom: calc(0.667em + 2px);padding-left: calc(1.333em + 2px);text-decoration: none;text-transform: inherit;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-blue-tint-color{color: var(--wp--preset--color--blue-tint) !important;}.has-flight-blue-color{color: var(--wp--preset--color--flight-blue) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-blue-tint-background-color{background-color: var(--wp--preset--color--blue-tint) !important;}.has-flight-blue-background-color{background-color: var(--wp--preset--color--flight-blue) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-blue-tint-border-color{border-color: var(--wp--preset--color--blue-tint) !important;}.has-flight-blue-border-color{border-color: var(--wp--preset--color--flight-blue) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+/*# sourceURL=global-styles-inline-css */
+</style>
+
+<link rel='stylesheet' id='ep_general_styles-css' href='https://www.northlandcollege.edu/assets/plugins/elasticpress/dist/css/general-styles.css?ver=66295efe92a630617c00' media='all' />
+<link rel='stylesheet' id='elasticpress-autosuggest-css' href='https://www.northlandcollege.edu/assets/plugins/elasticpress/dist/css/autosuggest-styles.css?ver=d87f34a78edccbda21b1' media='all' />
+<link rel='stylesheet' id='searchterm-highlighting-css' href='https://www.northlandcollege.edu/assets/plugins/elasticpress/dist/css/highlighting-styles.css?ver=252562c4ed9241547293' media='all' />
+<link rel='stylesheet' id='northlandcollege-css' href='https://www.northlandcollege.edu/assets/themes/northlandcollege/build/css/styles.bundle.production.css?ver=1794979035' media='all' />
+<script id="northlandcollege-js" src="https://www.northlandcollege.edu/assets/themes/northlandcollege/build/js/main.bundle.production.js?ver=1794979035"></script>
+<link rel="https://api.w.org/" href="https://www.northlandcollege.edu/wp-json/" /><link rel="alternate" title="JSON" type="application/json" href="https://www.northlandcollege.edu/wp-json/wp/v2/pages/690" /><link rel='shortlink' href='https://www.northlandcollege.edu/' />
+<style id="wp-custom-css">
+.gform_wrapper.gravity-theme .gsection {
+	border-bottom: 0;
+}
+
+.gform_wrapper.gravity-theme h3 {
+	font-size: 1.375rem;
+	font-weight: bold;
+}
+
+</style>
+
+<style id="wp-block-button-inline-css">
+.wp-block-button__link{align-content:center;box-sizing:border-box;cursor:pointer;display:inline-block;height:100%;text-align:center;word-break:break-word}.wp-block-button__link.aligncenter{text-align:center}.wp-block-button__link.alignright{text-align:right}:where(.wp-block-button__link){border-radius:9999px;box-shadow:none;padding:calc(.667em + 2px) calc(1.333em + 2px);text-decoration:none}.wp-block-button[style*=text-decoration] .wp-block-button__link{text-decoration:inherit}.wp-block-buttons>.wp-block-button.has-custom-width{max-width:none}.wp-block-buttons>.wp-block-button.has-custom-width .wp-block-button__link{width:100%}.wp-block-buttons>.wp-block-button.has-custom-font-size .wp-block-button__link{font-size:inherit}.wp-block-buttons>.wp-block-button[class*=wp-block-button__width]{width:calc(var(--wp--block-button--width)*1% - var(--wp--style--block-gap, .5em)*(1 - var(--wp--block-button--width)/100))}.wp-block-buttons>.wp-block-button.wp-block-button__width-25{width:calc(25% - var(--wp--style--block-gap, .5em)*.75)}.wp-block-buttons>.wp-block-button.wp-block-button__width-50{width:calc(50% - var(--wp--style--block-gap, .5em)*.5)}.wp-block-buttons>.wp-block-button.wp-block-button__width-75{width:calc(75% - var(--wp--style--block-gap, .5em)*.25)}.wp-block-buttons>.wp-block-button.wp-block-button__width-100{flex-basis:100%;width:100%}.wp-block-buttons.is-vertical>.wp-block-button[class*=wp-block-button__width]{width:calc(var(--wp--block-button--width)*1%)}.wp-block-buttons.is-vertical>.wp-block-button.wp-block-button__width-25{width:25%}.wp-block-buttons.is-vertical>.wp-block-button.wp-block-button__width-50{width:50%}.wp-block-buttons.is-vertical>.wp-block-button.wp-block-button__width-75{width:75%}.wp-block-button.is-style-squared,.wp-block-button__link.wp-block-button.is-style-squared{border-radius:0}.wp-block-button.no-border-radius,.wp-block-button__link.no-border-radius{border-radius:0!important}:root :where(.wp-block-button .wp-block-button__link.is-style-outline),:root :where(.wp-block-button.is-style-outline>.wp-block-button__link){border:2px solid;padding:.667em 1.333em}:root :where(.wp-block-button .wp-block-button__link.is-style-outline:not(.has-text-color)),:root :where(.wp-block-button.is-style-outline>.wp-block-button__link:not(.has-text-color)){color:currentColor}:root :where(.wp-block-button .wp-block-button__link.is-style-outline:not(.has-background)),:root :where(.wp-block-button.is-style-outline>.wp-block-button__link:not(.has-background)){background-color:transparent;background-image:none}
+/*# sourceURL=https://www.northlandcollege.edu/wp-includes/blocks/button/style.min.css */
+</style>
+<style id="wp-block-heading-inline-css">
+h1:where(.wp-block-heading).has-background,h2:where(.wp-block-heading).has-background,h3:where(.wp-block-heading).has-background,h4:where(.wp-block-heading).has-background,h5:where(.wp-block-heading).has-background,h6:where(.wp-block-heading).has-background{padding:1.25em 2.375em}h1.has-text-align-left[style*=writing-mode]:where([style*=vertical-lr]),h1.has-text-align-right[style*=writing-mode]:where([style*=vertical-rl]),h2.has-text-align-left[style*=writing-mode]:where([style*=vertical-lr]),h2.has-text-align-right[style*=writing-mode]:where([style*=vertical-rl]),h3.has-text-align-left[style*=writing-mode]:where([style*=vertical-lr]),h3.has-text-align-right[style*=writing-mode]:where([style*=vertical-rl]),h4.has-text-align-left[style*=writing-mode]:where([style*=vertical-lr]),h4.has-text-align-right[style*=writing-mode]:where([style*=vertical-rl]),h5.has-text-align-left[style*=writing-mode]:where([style*=vertical-lr]),h5.has-text-align-right[style*=writing-mode]:where([style*=vertical-rl]),h6.has-text-align-left[style*=writing-mode]:where([style*=vertical-lr]),h6.has-text-align-right[style*=writing-mode]:where([style*=vertical-rl]){rotate:180deg}
+/*# sourceURL=https://www.northlandcollege.edu/wp-includes/blocks/heading/style.min.css */
+</style>
+<style id="wp-block-paragraph-inline-css">
+.is-small-text{font-size:.875em}.is-regular-text{font-size:1em}.is-large-text{font-size:2.25em}.is-larger-text{font-size:3em}.has-drop-cap:not(:focus):first-letter{float:left;font-size:8.4em;font-style:normal;font-weight:100;line-height:.68;margin:.05em .1em 0 0;text-transform:uppercase}body.rtl .has-drop-cap:not(:focus):first-letter{float:none;margin-left:.1em}p.has-drop-cap.has-background{overflow:hidden}:root :where(p.has-background){padding:1.25em 2.375em}:where(p.has-text-color:not(.has-link-color)) a{color:inherit}p.has-text-align-left[style*="writing-mode:vertical-lr"],p.has-text-align-right[style*="writing-mode:vertical-rl"]{rotate:180deg}
+/*# sourceURL=https://www.northlandcollege.edu/wp-includes/blocks/paragraph/style.min.css */
+</style>
+<style id="wp-block-buttons-inline-css">
+.wp-block-buttons{box-sizing:border-box}.wp-block-buttons.is-vertical{flex-direction:column}.wp-block-buttons.is-vertical>.wp-block-button:last-child{margin-bottom:0}.wp-block-buttons>.wp-block-button{display:inline-block;margin:0}.wp-block-buttons.is-content-justification-left{justify-content:flex-start}.wp-block-buttons.is-content-justification-left.is-vertical{align-items:flex-start}.wp-block-buttons.is-content-justification-center{justify-content:center}.wp-block-buttons.is-content-justification-center.is-vertical{align-items:center}.wp-block-buttons.is-content-justification-right{justify-content:flex-end}.wp-block-buttons.is-content-justification-right.is-vertical{align-items:flex-end}.wp-block-buttons.is-content-justification-space-between{justify-content:space-between}.wp-block-buttons.aligncenter{text-align:center}.wp-block-buttons:not(.is-content-justification-space-between,.is-content-justification-right,.is-content-justification-left,.is-content-justification-center) .wp-block-button.aligncenter{margin-left:auto;margin-right:auto;width:100%}.wp-block-buttons[style*=text-decoration] .wp-block-button,.wp-block-buttons[style*=text-decoration] .wp-block-button__link{text-decoration:inherit}.wp-block-buttons.has-custom-font-size .wp-block-button__link{font-size:inherit}.wp-block-buttons .wp-block-button__link{width:100%}.wp-block-button.aligncenter{text-align:center}
+/*# sourceURL=https://www.northlandcollege.edu/wp-includes/blocks/buttons/style.min.css */
+</style>
+<style id="core-block-supports-inline-css">
+.wp-container-core-buttons-is-layout-fe48e5de{justify-content:center;}
+/*# sourceURL=core-block-supports-inline-css */
+</style>
+
+</head>
+
+<body class="home wp-singular page-template-default page page-id-690 wp-theme-northlandcollege has-alert" data-template="base.twig">
+	<!-- Google Tag Manager (noscript) -->
+	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PQL2W75"
+	height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+	<!-- End Google Tag Manager (noscript) -->
+<header class="header">
+		<a href="#main-content" class="visually-hidden-focusable">Skip to main content</a>
+		<a href="#nav-main" class="skip-nav visually-hidden-focusable">Skip to main menu</a>
+		<div class="has-international-orange-background">
+	<div class="container northland-alerts" role="status">
+		<div class="row">
+			<div class="alert-wrapper">
+				<div class="icon-wrapper"><img class="alert-icon" src="/assets/themes/northlandcollege/images/icons/notification.svg" alt="notification icon" /></div>
+				<div class="alert-text"><p>Registration for Spring &amp; Summer 2027 Classes is Now Open! Secure your classes today.</p>
+<a class="alert-link" href="https://www.northlandcollege.edu/academics/register-for-classes/">Register for Classes <img src="/assets/themes/northlandcollege/images/icons/arrow-right.svg" alt="right arrow" /></a></div>
+			</div>
+		</div>
+	</div>
+</div>
+				<div class="header-inner">
+			<div class="container">
+				<button class="mobile-nav-button" title="Toggle main menu" aria-label="Toggle main menu" aria-controls="nav-main" aria-expanded="false">
+					<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" aria-hidden="true"><circle fill="#01172e" stroke="#01172e" stroke-width="2px" cx="25" cy="25" r="24"/><rect fill="#fff" x="13" y="18" width="24" height="2"/><rect fill="#fff" x="13" y="24" width="24" height="2"/><rect fill="#fff" x="13" y="30" width="24" height="2"/></svg>
+				</button>
+				<div class="header--primary">
+					<h1>
+						<a href="https://www.northlandcollege.edu"><img src="/assets/themes/northlandcollege/images/logo-red.svg" width="197" height="20" alt="Northland Community &amp; Technical College" /></a>
+					</h1>
+
+											<nav class="global-nav navbar" aria-labelledby="header-nav-global">
+							<h2 id="header-nav-global" class="visually-hidden">Main Site Sections</h2>
+							<ul>
+																	 <li class="nav-main-item  menu-item menu-item-type-post_type menu-item-object-page menu-item-1068 menu-item-has-children">
+											 <a class="nav-main-link" href="https://www.northlandcollege.edu/academics/">Academics</a>
+									 </li>
+																	 <li class="nav-main-item  menu-item menu-item-type-post_type menu-item-object-page menu-item-1070 menu-item-has-children">
+											 <a class="nav-main-link" href="https://www.northlandcollege.edu/cost-aid/">Cost &#038; Aid</a>
+									 </li>
+																	 <li class="nav-main-item  menu-item menu-item-type-post_type menu-item-object-page menu-item-1069 menu-item-has-children">
+											 <a class="nav-main-link" href="https://www.northlandcollege.edu/admissions/">Admissions</a>
+									 </li>
+																	 <li class="nav-main-item  menu-item menu-item-type-post_type menu-item-object-page menu-item-1067 menu-item-has-children">
+											 <a class="nav-main-link" href="https://www.northlandcollege.edu/about/">About</a>
+									 </li>
+															</ul>
+						</nav> 									</div> 				<div class="header--secondary">
+											<nav class="utility-nav navbar" id="header-nav-utility" aria-labelledby="header-nav-utility-heading">
+							<h2 id="header-nav-utility-heading" class="visually-hidden">Helpful Links</h2>
+							<ul>
+																	 <li class="nav-main-item  menu-item menu-item-type-post_type menu-item-object-page menu-item-1071">
+											 <a class="nav-main-link" href="https://www.northlandcollege.edu/admissions/request-info/">Request Info</a>
+									 </li>
+																	 <li class="nav-main-item  menu-item menu-item-type-post_type menu-item-object-page menu-item-15929">
+											 <a class="nav-main-link" href="https://www.northlandcollege.edu/admissions/campus-visit/">Visit</a>
+									 </li>
+																	 <li class="nav-main-item  menu-item menu-item-type-post_type menu-item-object-page menu-item-1073">
+											 <a class="nav-main-link" href="https://www.northlandcollege.edu/admissions/apply/">Apply</a>
+									 </li>
+															</ul>
+						</nav>										<button class="search not-active" title="Search site" aria-label="Search site" aria-expanded="false"></button>
+				</div> 			</div> 		</div> 			</header> <main id="main-content">
+			<section class="component component--template1 component--hero component--hero-video has-triangles">
+	<div class="hero-component-screen">
+	</div> <!--.hero-component-screen-->
+	<div class="hero-video-wrapper">
+		<script src="https://player.vimeo.com/api/player.js"></script>
+		<iframe title=" video" src="https://player.vimeo.com/video/988178955?background=1&#038;autoplay=1&#038;loop=1">
+		</iframe>
+			</div>
+	<button class="play-pause" aria-pressed="false" aria-label="Pause video"></button>
+	<div class="hero-component-message">
+		<div class="container">
+			
+
+<div class="wp-block-northlandcollege-section-title element section-title"><h1>Northland Community &amp; Technical College</h1></div>
+
+
+
+<p class="message wp-block-paragraph"><strong>Opportunity for all.</strong></p>
+
+
+		</div>
+	</div> <!--.hero-component-message-->
+			<div class="tri-text-wrapper">
+		<div class="container">
+			<button>
+				<span class="tri-text">Welcome to Northland</span>
+				<img decoding="async" src="/wp-content/themes/northlandcollege/images/icons/down-arrow-white.svg" alt="" />
+			</button>
+		</div>
+	</div>
+	</section>
+
+
+<section class="component northland-carousel component--template1 component--three-image-cta is-style-horizon-red">
+	<div class="container">
+		<h1 class="visually-hidden">Featured</h1>
+		<div class="row row-cta">
+			<div class="col-12">
+				<div class="slider">
+					
+
+<div class="wp-block-northlandcollege-feature-element element element--feature column-feature">
+<article class="wp-block-northlandcollege-feature-module module module--feature"><div class="card img-wrapper"><img loading="lazy" decoding="async" width="672" height="640" class="card-img-top wp-image-29915" src="/files/260715-192-672x640.jpg" alt="Students standing outside of campus."/><div class="card-body"><div class="card-blocks">
+<h2 class="wp-block-heading"><strong>Schedule a campus visit and see what Northland is all about.</strong></h2>
+</div></div><div class="feature-card card-list"><a href="https://www.northlandcollege.edu/admissions/campus-visit/" class="feature-link"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50"><title>View link</title><circle cx="25" cy="25" r="25" fill="#fff"></circle><rect x="23" y="28" width="12" height="2" transform="translate(-12.01 29) rotate(-45)" fill="#01172e"></rect><rect x="28" y="15" width="2" height="12" transform="translate(-6.36 26.66) rotate(-45)" fill="#01172e"></rect><rect x="16" y="24" width="16" height="2" fill="#01172e"></rect></svg><div class="link-text">Schedule Your Visit</div></a></div></div></article>
+</div>
+
+
+
+<div class="wp-block-northlandcollege-feature-element element element--feature column-feature">
+<article class="wp-block-northlandcollege-feature-module module module--feature"><div class="card img-wrapper"><img loading="lazy" decoding="async" width="672" height="640" class="card-img-top wp-image-28386" src="/files/241121-304-1-1-672x640.jpg" alt="Northland student-athlete in economics class."/><div class="card-body"><div class="card-blocks">
+<h2 class="wp-block-heading"><strong>Northland is making college more affordable for you.</strong></h2>
+</div></div><div class="feature-card card-list"><a href="https://www.northlandcollege.edu/cost-aid/" class="feature-link"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50"><title>View link</title><circle cx="25" cy="25" r="25" fill="#fff"></circle><rect x="23" y="28" width="12" height="2" transform="translate(-12.01 29) rotate(-45)" fill="#01172e"></rect><rect x="28" y="15" width="2" height="12" transform="translate(-6.36 26.66) rotate(-45)" fill="#01172e"></rect><rect x="16" y="24" width="16" height="2" fill="#01172e"></rect></svg><div class="link-text">Explore Ways to Save on Your Education</div></a></div></div></article>
+</div>
+
+
+
+<div class="wp-block-northlandcollege-feature-element element element--feature column-feature">
+<article class="wp-block-northlandcollege-feature-module module module--feature"><div class="card img-wrapper"><img loading="lazy" decoding="async" width="672" height="640" class="card-img-top wp-image-17365" src="/files/hero-homepage-northstar-01-672x640.jpg" alt="Northland student posing outside campus."/><div class="card-body"><div class="card-blocks">
+<h2 class="wp-block-heading">Earn your degree tuition free with Minnesota’s North Star Promise.</h2>
+</div></div><div class="feature-card card-list"><a href="https://www.northlandcollege.edu/about/offices/financial-aid/north-star-promise-scholarship/" class="feature-link"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50"><title>View link</title><circle cx="25" cy="25" r="25" fill="#fff"></circle><rect x="23" y="28" width="12" height="2" transform="translate(-12.01 29) rotate(-45)" fill="#01172e"></rect><rect x="28" y="15" width="2" height="12" transform="translate(-6.36 26.66) rotate(-45)" fill="#01172e"></rect><rect x="16" y="24" width="16" height="2" fill="#01172e"></rect></svg><div class="link-text">See If You Qualify</div></a></div></div></article>
+</div>
+
+
+				</div>
+				<div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+					<span class="slider__label visually-hidden">
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+
+<section class="wp-block-northlandcollege-text-image-component component component--template1 component--text-image has-image-on-the-left spacing-top-default spacing-bottom-default is-style-gray-20"><div class="container"><div class="row"><div class="column-description">
+<div class="wp-block-northlandcollege-section-title element section-title"><h1>LOWER THE COST OF COLLEGE</h1></div>
+
+
+
+<h2 class="wp-block-heading">Apply for Spring 2027 Scholarships Today.</h2>
+
+
+
+<p class="wp-block-paragraph">Northland awards more than <strong>$220,000 in scholarships annually</strong> to help students achieve their goals. The Spring 2027 scholarship application is now open.</p>
+
+
+
+<p class="wp-block-paragraph"><strong>Application deadline:</strong> November 30, 2026</p>
+
+
+
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="https://www.northlandcollege.edu/admissions/scholarships/">Apply for Scholarships</a></div>
+</div><div class="column-image"><figure class="img-wrapper"><img loading="lazy" decoding="async" width="800" height="640" class="wp-image-31309" src="/files/0R2A0035-1-800x640.jpg" alt="" srcset="/files/0R2A0035-1-800x640.jpg 800w, /files/0R2A0035-1-300x240.jpg 300w, /files/0R2A0035-1-1024x819.jpg 1024w, /files/0R2A0035-1-768x614.jpg 768w, /files/0R2A0035-1-1536x1229.jpg 1536w, /files/0R2A0035-1-1000x800.jpg 1000w, /files/0R2A0035-1.jpg 2000w" sizes="auto, (max-width: 800px) 100vw, 800px" /></figure></div></div></div></section>
+
+
+
+<section class="wp-block-northlandcollege-text-component aligncenter component component--template1 component--text spacing-top-default is-style-space-navy spacing-bottom-none"><div class="container"><div class="row"><div class="column-text">
+<div class="wp-block-northlandcollege-section-title element section-title"><h1>Opportunity Starts Here</h1></div>
+
+
+
+<h2 class="wp-block-heading">Northland is for everyone.</h2>
+
+
+
+<p class="wp-block-paragraph">Northland meets you where you are and takes you where you want to go. High school, transfer, or new career—you’re in the right place.</p>
+</div></div></div></section>
+
+
+
+<section class="wp-block-northlandcollege-video-component component component--template1 component--video is-style-space-navy spacing-top-none spacing-bottom-default"><div class="container"><div class="row"><div class="column-media">
+<div class="wp-block-northlandcollege-section-title element section-title"></div>
+
+
+	<div class="element element--video">
+					<div class="video-wrapper">
+				<iframe src="https://player.vimeo.com/video/895020496?byline=0&amp;control=1&amp;title=0&amp;portrait=0" title="Northland Community &amp; Technical College video" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+			</div>
+							<p class="visually-hidden">Northland Community &amp;amp; Technical College</p>
+			</div>
+</div></div></div></section>
+
+
+
+<section class="wp-block-northlandcollege-hub-component component component--template1 component--hub has-inner-column is-style-space-navy spacing-bottom-default spacing-top-reduced"><div class="container"><div class="row">
+<div class="wp-block-northlandcollege-hub-element column-hub"><div class="column-inner">	<div class="icon element--icon">
+		
+<svg aria-hidden="true" width="48px" height="48px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Request Info Bubble icon</title>
+    <defs>
+        <polygon id="id_path-1_1" points="0.0003 0.086 40 0.086 40 39.9999 0.0003 39.9999"></polygon>
+        <polygon id="id_path-3_1" points="0 40.9141 40 40.9141 40 1.0001 0 1.0001"></polygon>
+    </defs>
+    <g id="id_icon_RequestInfoBubble-Navy_1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="id_Group-8_1" transform="translate(4.000000, 3.000000)">
+            <g id="id_Group-3_1" transform="translate(0.000000, 0.914100)">
+                <mask id="id_mask-2_1" fill="white">
+                    <use xlink:href="#id_path-1_1"></use>
+                </mask>
+                <g id="id_Clip-2_1"></g>
+                <path d="M32.0003,0.0859 L8.0003,0.0859 C3.6003,0.0859 0.0003,3.6859 0.0003,8.0859 L0.0003,24.0859 C0.0003,28.4859 3.6003,32.0859 8.0003,32.0859 L8.5923,32.0859 L12.5923,28.0859 L8.0003,28.0859 C5.7943,28.0859 4.0003,26.2919 4.0003,24.0859 L4.0003,8.0859 C4.0003,5.8799 5.7943,4.0859 8.0003,4.0859 L32.0003,4.0859 C34.2053,4.0859 36.0003,5.8799 36.0003,8.0859 L36.0003,24.0859 C36.0003,26.2919 34.2053,28.0859 32.0003,28.0859 L18.2483,28.0859 L14.2483,32.0859 L14.2873,32.0859 L9.2013,37.1719 L12.0293,39.9999 L19.9433,32.0859 L32.0003,32.0859 C36.3993,32.0859 40.0003,28.4859 40.0003,24.0859 L40.0003,8.0859 C40.0003,3.6859 36.3993,0.0859 32.0003,0.0859" id="id_Fill-1_1" fill="#01172E" mask="url(#id_mask-2_1)"></path>
+            </g>
+            <path d="M20.0843,9.0196 C18.9803,9.0196 18.0843,9.9156 18.0843,11.0196 C18.0843,12.1236 18.9803,13.0196 20.0843,13.0196 C21.1883,13.0196 22.0843,12.1236 22.0843,11.0196 C22.0843,9.9156 21.1883,9.0196 20.0843,9.0196" id="id_Fill-4_1" fill="#01172E"></path>
+            <mask id="id_mask-4_1" fill="white">
+                <use xlink:href="#id_path-3_1"></use>
+            </mask>
+            <g id="id_Clip-7_1"></g>
+            <polygon id="id_Fill-6_1" fill="#01172E" mask="url(#id_mask-4_1)" points="18.084 25.0191 22.084 25.0191 22.084 15.0191 18.084 15.0191"></polygon>
+        </g>
+    </g>
+</svg>
+
+	</div>
+
+
+
+<h2 class="wp-block-heading" id="request-info">Request Info</h2>
+
+
+
+<p class="wp-block-paragraph">Tell us your goals — we’ll help you find the fastest, most affordable path to your degree.</p>
+
+
+
+<div class="wp-block-button aligncenter"><a class="wp-block-button__link wp-element-button" href="https://www.northlandcollege.edu/admissions/request-info/">Request Info</a></div>
+</div></div>
+
+
+
+<div class="wp-block-northlandcollege-hub-element column-hub"><div class="column-inner">	<div class="icon element--icon">
+		
+<svg aria-hidden="true" width="48px" height="48px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Schedule Visit icon</title>
+    <g id="id_icon_ScheduleVisit-Navy_2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="id_Rectangle_2" fill="#01172E" opacity="0" x="0" y="0" width="48" height="48"></rect>
+        <g id="id_83_schedule-visit_2" transform="translate(4.000000, 3.000000)" fill="#01172E">
+            <path d="M4,12 L4,7 L10,7 L10,9 L14,9 L14,7 L26,7 L26,9 L30,9 L30,7 L36,7 L36,12 L4,12 Z M30,3 L30,0 L26,0 L26,3 L14,3 L14,0 L10,0 L10,3 L0,3 L0,40 L18,40 L18,36 L4,36 L4,16 L40,16 L40,3 L30,3 L30,3 Z" id="id_Fill-1_2"></path>
+            <polygon id="id_Fill-2_2" points="10 32 14 32 14 28 10 28"></polygon>
+            <polygon id="id_Fill-3_2" points="10 24 14 24 14 20 10 20"></polygon>
+            <path d="M31.208,29.525 L28,34.375 L24.754,29.47 C24.31,28.846 24,27.771 24,26.857 C24,24.651 25.794,22.856 28,22.856 C30.206,22.856 32,24.651 32,26.857 C32,27.786 31.697,28.836 31.208,29.525 Z M28,18.857 C23.589,18.857 20,22.446 20,26.857 C20,28.603 20.573,30.492 21.456,31.732 L28,41.625 L29.074,40 L34.506,31.788 C35.441,30.473 36,28.63 36,26.857 C36,22.446 32.411,18.857 28,18.857 L28,18.857 Z" id="id_Fill-4_2"></path>
+            <path d="M28,25 C26.896,25 26,25.895 26,27 C26,28.104 26.896,29 28,29 C29.104,29 30,28.104 30,27 C30,25.895 29.104,25 28,25" id="id_Fill-5_2"></path>
+        </g>
+    </g>
+</svg>
+
+	</div>
+
+
+
+<h2 class="wp-block-heading" id="schedule-a-visit">Schedule Visit</h2>
+
+
+
+<p class="wp-block-paragraph">We’d love to show you around — come see what life’s like at Northland!</p>
+
+
+
+<div class="wp-block-button aligncenter"><a class="wp-block-button__link wp-element-button" href="https://www.northlandcollege.edu/admissions/visit/">Visit Northland</a></div>
+</div></div>
+
+
+
+<div class="wp-block-northlandcollege-hub-element column-hub"><div class="column-inner">	<div class="icon element--icon">
+		
+<svg aria-hidden="true" width="48px" height="48px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Apply icon</title>
+    <g id="id_icon_Apply-Navy_3" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="id_Rectangle_3" fill="#01172E" opacity="0" x="0" y="0" width="48" height="48"></rect>
+        <g id="id_69_apply_3" transform="translate(4.000000, 3.000000)" fill="#01172E">
+            <path d="M29.001,11 L29.001,6.631 L33.37,11 L29.001,11 Z M29.014,0.987 L29.001,1 L5,1 L5,21 L9,21 L9,5 L25.001,5 L25.001,15 L35.001,15 L35.001,37 L17,37 L17,41 L39.001,41 L39.001,11 L39.014,10.987 L29.014,0.987 L29.014,0.987 Z" id="id_Fill-1_3"></path>
+            <path d="M12.726,31.62 L10.381,29.276 L19.855,19.801 L22.199,22.145 L12.726,31.62 Z M27.855,22.144 L19.854,14.144 L4.725,29.276 L5,29.552 L12.449,37 L12.726,37.277 L27.855,22.144 L27.855,22.144 Z" id="id_Fill-2_3"></path>
+            <polyline id="id_Fill-3_3" points="9 35.449 3.92 30.308 0.989 40.989 5 39.94 11.705 38.187 9 35.449"></polyline>
+        </g>
+    </g>
+</svg>
+
+	</div>
+
+
+
+<h2 class="wp-block-heading" id="apply-now">Apply Now</h2>
+
+
+
+<p class="wp-block-paragraph">Time to take that first step! Our quick and free application makes it easy.</p>
+
+
+
+<div class="wp-block-button aligncenter"><a class="wp-block-button__link wp-element-button" href="https://www.northlandcollege.edu/admissions/apply/"><strong>Apply to Northland</strong></a></div>
+</div></div>
+</div></div></section>
+
+
+
+<section class="wp-block-northlandcollege-text-component aligncenter component component--template1 component--text spacing-top-default spacing-bottom-reduced"><div class="container"><div class="row"><div class="column-text">
+<div class="wp-block-northlandcollege-section-title element section-title"><h1>Explore the Possibilities</h1></div>
+
+
+
+<h2 id="northland-is-for-everyone" class="wp-block-heading">Degrees &amp; programs for every interest.</h2>
+
+
+
+<p class="wp-block-paragraph">From hands-on training to academic excellence—find the program that’s right for you.</p>
+
+
+
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="https://www.northlandcollege.edu/academics/programs/">Find Your Program</a></div>
+</div></div></div></section>
+
+
+<section class="component--degree-carousel northland-carousel component ">
+	<div class="container">
+		<div class="row row-cta">
+			<div class="col-12">
+									<div class="section-title"><h1>Featured Programs</h1></div>
+								<div class="slider">
+											<article class="column-slide">
+	<div class="card card-program">
+					<picture>
+				<source srcset="/files/hero-earlychildhood-672x640.jpg" media="(min-width: 576px)">
+				<img decoding="async" src="/files/hero-earlychildhood-672x448.jpg" class="card-img-top" alt="Northland Early Childhood Program">
+			</picture>
+
+				<div class="card-body slide-card">
+			<div class="card-blocks">
+				<h2 class="feature-text">Early Childhood &amp; Paraprofessional <span class="visually-hidden">A.A.S.</span></h2>
+			</div>
+		</div>
+		<div class="card-list">
+			<div class="card-link">
+							<a href="https://www.northlandcollege.edu/academics/programs/early-childhood-paraprofessional-aas/" title="Early Childhood &amp; Paraprofessional A.A.S." aria-label="Early Childhood &amp; Paraprofessional A.A.S.">
+					<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" aria-hidden="true"><title>Early Childhood &amp; Paraprofessional A.A.S.</title><circle cx="25" cy="25" r="25" fill="#fff"/><rect x="23" y="28" width="12" height="2" transform="translate(-12.01 29) rotate(-45)" fill="#01172e"/><rect x="28" y="15" width="2" height="12" transform="translate(-6.36 26.66) rotate(-45)" fill="#01172e"/><rect x="16" y="24" width="16" height="2" fill="#01172e"/></svg>
+					<div class="story-link"><span class="visually-hidden">Early Childhood &amp; Paraprofessional</span> A.A.S.</div>
+				</a>
+						</div>
+		</div>
+	</div>
+</article>
+											<article class="column-slide">
+	<div class="card card-program">
+					<picture>
+				<source srcset="/files/card-itcyber-01.jpg" media="(min-width: 576px)">
+				<img decoding="async" src="/files/card-itcyber-01-672x448.jpg" class="card-img-top" alt="Cybersecurity students working on a laptop together.">
+			</picture>
+
+				<div class="card-body slide-card">
+			<div class="card-blocks">
+				<h2 class="feature-text">IT Cybersecurity <span class="visually-hidden">A.A.S.</span></h2>
+			</div>
+		</div>
+		<div class="card-list">
+			<div class="card-link">
+							<a href="https://www.northlandcollege.edu/academics/programs/it-cybersecurity-aas/" title="IT Cybersecurity A.A.S." aria-label="IT Cybersecurity A.A.S.">
+					<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" aria-hidden="true"><title>IT Cybersecurity A.A.S.</title><circle cx="25" cy="25" r="25" fill="#fff"/><rect x="23" y="28" width="12" height="2" transform="translate(-12.01 29) rotate(-45)" fill="#01172e"/><rect x="28" y="15" width="2" height="12" transform="translate(-6.36 26.66) rotate(-45)" fill="#01172e"/><rect x="16" y="24" width="16" height="2" fill="#01172e"/></svg>
+					<div class="story-link"><span class="visually-hidden">IT Cybersecurity</span> A.A.S.</div>
+				</a>
+						</div>
+		</div>
+	</div>
+</article>
+											<article class="column-slide">
+	<div class="card card-program">
+					<picture>
+				<source srcset="/files/card-libarts-03-640x640.jpg" media="(min-width: 576px)">
+				<img decoding="async" src="/files/card-libarts-03-640x448.jpg" class="card-img-top" alt="Northland liberal arts instructor teaching in class.">
+			</picture>
+
+				<div class="card-body slide-card">
+			<div class="card-blocks">
+				<h2 class="feature-text">Liberal Arts &amp; Sciences <span class="visually-hidden">A.A.</span></h2>
+			</div>
+		</div>
+		<div class="card-list">
+			<div class="card-link">
+							<a href="https://www.northlandcollege.edu/academics/programs/liberal-arts-sciences-aa/" title="Liberal Arts &amp; Sciences A.A." aria-label="Liberal Arts &amp; Sciences A.A.">
+					<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" aria-hidden="true"><title>Liberal Arts &amp; Sciences A.A.</title><circle cx="25" cy="25" r="25" fill="#fff"/><rect x="23" y="28" width="12" height="2" transform="translate(-12.01 29) rotate(-45)" fill="#01172e"/><rect x="28" y="15" width="2" height="12" transform="translate(-6.36 26.66) rotate(-45)" fill="#01172e"/><rect x="16" y="24" width="16" height="2" fill="#01172e"/></svg>
+					<div class="story-link"><span class="visually-hidden">Liberal Arts &amp; Sciences</span> A.A.</div>
+				</a>
+						</div>
+		</div>
+	</div>
+</article>
+											<article class="column-slide">
+	<div class="card card-program">
+					<picture>
+				<source srcset="/files/card-nursing-program-02-672x640.jpg" media="(min-width: 576px)">
+				<img decoding="async" src="/files/card-nursing-program-02-672x448.jpg" class="card-img-top" alt="">
+			</picture>
+
+				<div class="card-body slide-card">
+			<div class="card-blocks">
+				<h2 class="feature-text">Nursing <span class="visually-hidden">A.S.</span></h2>
+			</div>
+		</div>
+		<div class="card-list">
+			<div class="card-link">
+							<a href="https://www.northlandcollege.edu/academics/programs/nursing-as/" title="Nursing A.S." aria-label="Nursing A.S.">
+					<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" aria-hidden="true"><title>Nursing A.S.</title><circle cx="25" cy="25" r="25" fill="#fff"/><rect x="23" y="28" width="12" height="2" transform="translate(-12.01 29) rotate(-45)" fill="#01172e"/><rect x="28" y="15" width="2" height="12" transform="translate(-6.36 26.66) rotate(-45)" fill="#01172e"/><rect x="16" y="24" width="16" height="2" fill="#01172e"/></svg>
+					<div class="story-link"><span class="visually-hidden">Nursing</span> A.S.</div>
+				</a>
+						</div>
+		</div>
+	</div>
+</article>
+											<article class="column-slide">
+	<div class="card card-program">
+					<picture>
+				<source srcset="/files/card-compnetwork-02.jpg" media="(min-width: 576px)">
+				<img decoding="async" src="/files/card-compnetwork-02-672x448.jpg" class="card-img-top" alt="an opened notebook is repaired in a computer workshop">
+			</picture>
+
+				<div class="card-body slide-card">
+			<div class="card-blocks">
+				<h2 class="feature-text">Computer &amp; Network Technology <span class="visually-hidden">A.A.S.</span></h2>
+			</div>
+		</div>
+		<div class="card-list">
+			<div class="card-link">
+							<a href="https://www.northlandcollege.edu/academics/programs/computer-network-technology-aas/" title="Computer &amp; Network Technology A.A.S." aria-label="Computer &amp; Network Technology A.A.S.">
+					<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" aria-hidden="true"><title>Computer &amp; Network Technology A.A.S.</title><circle cx="25" cy="25" r="25" fill="#fff"/><rect x="23" y="28" width="12" height="2" transform="translate(-12.01 29) rotate(-45)" fill="#01172e"/><rect x="28" y="15" width="2" height="12" transform="translate(-6.36 26.66) rotate(-45)" fill="#01172e"/><rect x="16" y="24" width="16" height="2" fill="#01172e"/></svg>
+					<div class="story-link"><span class="visually-hidden">Computer &amp; Network Technology</span> A.A.S.</div>
+				</a>
+						</div>
+		</div>
+	</div>
+</article>
+											<article class="column-slide">
+	<div class="card card-program">
+					<picture>
+				<source srcset="/files/card-cj-01.jpg" media="(min-width: 576px)">
+				<img decoding="async" src="/files/card-cj-01-672x448.jpg" class="card-img-top" alt="">
+			</picture>
+
+				<div class="card-body slide-card">
+			<div class="card-blocks">
+				<h2 class="feature-text">Criminal Justice Transfer Pathway <span class="visually-hidden">A.S.</span></h2>
+			</div>
+		</div>
+		<div class="card-list">
+			<div class="card-link">
+							<a href="https://www.northlandcollege.edu/academics/programs/criminal-justice-transfer-pathway-as/" title="Criminal Justice Transfer Pathway A.S." aria-label="Criminal Justice Transfer Pathway A.S.">
+					<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" aria-hidden="true"><title>Criminal Justice Transfer Pathway A.S.</title><circle cx="25" cy="25" r="25" fill="#fff"/><rect x="23" y="28" width="12" height="2" transform="translate(-12.01 29) rotate(-45)" fill="#01172e"/><rect x="28" y="15" width="2" height="12" transform="translate(-6.36 26.66) rotate(-45)" fill="#01172e"/><rect x="16" y="24" width="16" height="2" fill="#01172e"/></svg>
+					<div class="story-link"><span class="visually-hidden">Criminal Justice Transfer Pathway</span> A.S.</div>
+				</a>
+						</div>
+		</div>
+	</div>
+</article>
+											<article class="column-slide">
+	<div class="card card-program">
+					<picture>
+				<source srcset="/files/card-pta-01-1.jpg" media="(min-width: 576px)">
+				<img decoding="async" src="/files/card-pta-01-1-672x448.jpg" class="card-img-top" alt="">
+			</picture>
+
+				<div class="card-body slide-card">
+			<div class="card-blocks">
+				<h2 class="feature-text">Physical Therapist Assistant <span class="visually-hidden">A.A.S.</span></h2>
+			</div>
+		</div>
+		<div class="card-list">
+			<div class="card-link">
+							<a href="https://www.northlandcollege.edu/academics/programs/physical-therapist-assistant-aas/" title="Physical Therapist Assistant A.A.S." aria-label="Physical Therapist Assistant A.A.S.">
+					<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" aria-hidden="true"><title>Physical Therapist Assistant A.A.S.</title><circle cx="25" cy="25" r="25" fill="#fff"/><rect x="23" y="28" width="12" height="2" transform="translate(-12.01 29) rotate(-45)" fill="#01172e"/><rect x="28" y="15" width="2" height="12" transform="translate(-6.36 26.66) rotate(-45)" fill="#01172e"/><rect x="16" y="24" width="16" height="2" fill="#01172e"/></svg>
+					<div class="story-link"><span class="visually-hidden">Physical Therapist Assistant</span> A.A.S.</div>
+				</a>
+						</div>
+		</div>
+	</div>
+</article>
+											<article class="column-slide">
+	<div class="card card-program">
+					<picture>
+				<source srcset="/files/231010-022-1.jpg" media="(min-width: 576px)">
+				<img decoding="async" src="/files/231010-022-1-672x448.jpg" class="card-img-top" alt="Welding technology student in the EGF campus lab.">
+			</picture>
+
+				<div class="card-body slide-card">
+			<div class="card-blocks">
+				<h2 class="feature-text">Welding Technology <span class="visually-hidden">Diploma</span></h2>
+			</div>
+		</div>
+		<div class="card-list">
+			<div class="card-link">
+							<a href="https://www.northlandcollege.edu/academics/programs/welding-technology-diploma/" title="Welding Technology Diploma" aria-label="Welding Technology Diploma">
+					<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" aria-hidden="true"><title>Welding Technology Diploma</title><circle cx="25" cy="25" r="25" fill="#fff"/><rect x="23" y="28" width="12" height="2" transform="translate(-12.01 29) rotate(-45)" fill="#01172e"/><rect x="28" y="15" width="2" height="12" transform="translate(-6.36 26.66) rotate(-45)" fill="#01172e"/><rect x="16" y="24" width="16" height="2" fill="#01172e"/></svg>
+					<div class="story-link"><span class="visually-hidden">Welding Technology</span> Diploma</div>
+				</a>
+						</div>
+		</div>
+	</div>
+</article>
+										<article class="column-slide">
+						<div class="card card-program see-all">
+							<div class="card-body slide-card">
+								<h2 class="feature-text"><span>Explore</span> all of our programs of study</h2>
+								<a href="/academics/programs/" title="All Programs">
+										<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" aria-hidden="true"><title>View program page</title><circle cx="25" cy="25" r="25" fill="#fff"/><rect x="23" y="28" width="12" height="2" transform="translate(-12.01 29) rotate(-45)" fill="#01172e"/><rect x="28" y="15" width="2" height="12" transform="translate(-6.36 26.66) rotate(-45)" fill="#01172e"/><rect x="16" y="24" width="16" height="2" fill="#01172e"/></svg>
+										<div class="story-link">See All Programs</div>
+								</a>
+							</div>
+						</div>
+					</article>
+				</div>
+				<div class="progress" role="progressbar" aria-label="Carousel progress bar" aria-valuemin="0" aria-valuemax="100">
+					<span class="slider__label visually-hidden">
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+
+<section class="wp-block-northlandcollege-stats-component component component--template1 component--stats spacing-top-default spacing-bottom-default is-style-gray-20"><div class="container"><div class="row"><div class="column-text"><div class="section-title"><h1>Key Facts &amp; Figures</h1></div></div></div><div class="row row-stats">
+<div class="wp-block-northlandcollege-stat-element column-stat stat-editor"><div class="stat">80+</div><div class="description">on-campus and online programs</div></div>
+
+
+
+<div class="wp-block-northlandcollege-stat-element column-stat stat-editor"><div class="stat">19:1</div><div class="description">student-to-faculty ratio</div></div>
+
+
+
+<div class="wp-block-northlandcollege-stat-element column-stat stat-editor"><div class="stat">86%</div><div class="description">of students receive aid</div></div>
+</div></div></section>
+
+
+
+<section class="wp-block-northlandcollege-text-component aligncenter component component--template1 component--text spacing-bottom-default spacing-top-none is-style-gray-20"><div class="container"><div class="row"><div class="column-text">
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="https://www.northlandcollege.edu/about/facts/">All Facts &amp; Figures</a></div>
+</div></div></div></section>
+
+
+
+<section class="wp-block-northlandcollege-text-component aligncenter component component--template1 component--text spacing-top-default spacing-bottom-none is-style-space-navy"><div class="container"><div class="row"><div class="column-text">
+<div class="wp-block-northlandcollege-section-title element section-title"><h1>Northland Today</h1></div>
+
+
+
+<h2 id="northland-is-for-everyone" class="wp-block-heading">What&#8217;s happening at Northland.</h2>
+
+
+
+<p class="wp-block-paragraph">The latest news, events, and more from Northland.</p>
+</div></div></div></section>
+
+
+<section class="module--news-carousel northland-carousel component is-style-space-navy spacing-top-reduced spacing-bottom-reduced">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+									<div class="section-title"><h1>News &amp; Stories</h1></div>
+								<div class="slider northland-card">
+											<article class="column-card">
+	<div class="card">
+		<div class="card-img-container">
+							<picture>
+					<source srcset="/assets/themes/northlandcollege/images/default-news.png" media="(min-width: 576px)">
+					<img decoding="async" class="card-img-top" src="/assets/themes/northlandcollege/images/default-news-mobile.png" alt="Northland monogram" />
+				</picture>
+
+					</div>
+		<div class="card-body">
+			<h2 class="feature-text">Northland Community and Technical College Foundation Invites Community to Give to the Max Day on November 19</h2>
+			<p class="description">November 12, 2026</p>		</div>
+		<ul class="card-list">
+			<li>
+				<a href="https://www.northlandcollege.edu/today/news/northland-community-and-technical-college-foundation-invites-community-to-give-to-the-max-day-on-november-19/" title="Northland Community and Technical College Foundation Invites Community to Give to the Max Day on November 19" aria-label="Read article: Northland Community and Technical College Foundation Invites Community to Give to the Max Day on November 19">
+					<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" aria-hidden="true"><title>Read article: Northland Community and Technical College Foundation Invites Community to Give to the Max Day on November 19</title><circle cx="25" cy="25" r="25" fill="#fff"/><rect x="23" y="28" width="12" height="2" transform="translate(-12.01 29) rotate(-45)" fill="#01172e"/><rect x="28" y="15" width="2" height="12" transform="translate(-6.36 26.66) rotate(-45)" fill="#01172e"/><rect x="16" y="24" width="16" height="2" fill="#01172e"/></svg>
+				</a>
+			</li>
+							<li class="category-type">Support and Giving</li>
+					</ul>
+	</div>
+</article> 											<article class="column-card">
+	<div class="card">
+		<div class="card-img-container">
+							<picture>
+					<source srcset="/assets/themes/northlandcollege/images/default-news.png" media="(min-width: 576px)">
+					<img decoding="async" class="card-img-top" src="/assets/themes/northlandcollege/images/default-news-mobile.png" alt="Northland monogram" />
+				</picture>
+
+					</div>
+		<div class="card-body">
+			<h2 class="feature-text">Our opinion: Hey, Robin Hood, don&#039;t mess with Northland Community and Technical College</h2>
+			<p class="description">October 27, 2026</p>		</div>
+		<ul class="card-list">
+			<li>
+				<a href="https://www.northlandcollege.edu/today/news/our-opinion-hey-robin-hood-dont-mess-with-northland-community-and-technical-college/" title="Our opinion: Hey, Robin Hood, don&#039;t mess with Northland Community and Technical College" aria-label="Read article: Our opinion: Hey, Robin Hood, don&#039;t mess with Northland Community and Technical College">
+					<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" aria-hidden="true"><title>Read article: Our opinion: Hey, Robin Hood, don&#039;t mess with Northland Community and Technical College</title><circle cx="25" cy="25" r="25" fill="#fff"/><rect x="23" y="28" width="12" height="2" transform="translate(-12.01 29) rotate(-45)" fill="#01172e"/><rect x="28" y="15" width="2" height="12" transform="translate(-6.36 26.66) rotate(-45)" fill="#01172e"/><rect x="16" y="24" width="16" height="2" fill="#01172e"/></svg>
+				</a>
+			</li>
+							<li class="category-type">Northland in the News</li>
+					</ul>
+	</div>
+</article> 											<article class="column-card">
+	<div class="card">
+		<div class="card-img-container">
+							<picture>
+					<source srcset="/files/download-1-800x560.webp" media="(min-width: 576px)">
+					<img decoding="async" src="/files/download-1-672x448.webp" class="card-img-top" alt="">
+				</picture>
+					</div>
+		<div class="card-body">
+			<h2 class="feature-text">Viewpoint: Northland Community &amp; Technical College is model for innovation, growth and stewardship</h2>
+			<p class="description">October 24, 2026</p>		</div>
+		<ul class="card-list">
+			<li>
+				<a href="https://www.northlandcollege.edu/today/news/viewpoint-northland-community-technical-college-is-model-for-innovation-growth-and-stewardship/" title="Viewpoint: Northland Community &amp; Technical College is model for innovation, growth and stewardship" aria-label="Read article: Viewpoint: Northland Community &amp; Technical College is model for innovation, growth and stewardship">
+					<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" aria-hidden="true"><title>Read article: Viewpoint: Northland Community &amp; Technical College is model for innovation, growth and stewardship</title><circle cx="25" cy="25" r="25" fill="#fff"/><rect x="23" y="28" width="12" height="2" transform="translate(-12.01 29) rotate(-45)" fill="#01172e"/><rect x="28" y="15" width="2" height="12" transform="translate(-6.36 26.66) rotate(-45)" fill="#01172e"/><rect x="16" y="24" width="16" height="2" fill="#01172e"/></svg>
+				</a>
+			</li>
+							<li class="category-type">Northland in the News</li>
+					</ul>
+	</div>
+</article> 											<article class="column-card">
+	<div class="card">
+		<div class="card-img-container">
+							<picture>
+					<source srcset="/files/download-800x560.webp" media="(min-width: 576px)">
+					<img decoding="async" src="/files/download-672x448.webp" class="card-img-top" alt="">
+				</picture>
+					</div>
+		<div class="card-body">
+			<h2 class="feature-text">Funding shuffle&#039;s effect on Northland Community and Technical College: $550K annually</h2>
+			<p class="description">October 24, 2026</p>		</div>
+		<ul class="card-list">
+			<li>
+				<a href="https://www.northlandcollege.edu/today/news/funding-shuffles-effect-on-northland-community-and-technical-college-550k-annually/" title="Funding shuffle&#039;s effect on Northland Community and Technical College: $550K annually" aria-label="Read article: Funding shuffle&#039;s effect on Northland Community and Technical College: $550K annually">
+					<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" aria-hidden="true"><title>Read article: Funding shuffle&#039;s effect on Northland Community and Technical College: $550K annually</title><circle cx="25" cy="25" r="25" fill="#fff"/><rect x="23" y="28" width="12" height="2" transform="translate(-12.01 29) rotate(-45)" fill="#01172e"/><rect x="28" y="15" width="2" height="12" transform="translate(-6.36 26.66) rotate(-45)" fill="#01172e"/><rect x="16" y="24" width="16" height="2" fill="#01172e"/></svg>
+				</a>
+			</li>
+							<li class="category-type">Northland in the News</li>
+					</ul>
+	</div>
+</article> 											<article class="column-card">
+	<div class="card">
+		<div class="card-img-container">
+							<picture>
+					<source srcset="/files/image_ba233159-800x640.jpg" media="(min-width: 576px)">
+					<img decoding="async" src="/files/image_ba233159-672x448.jpg" class="card-img-top" alt="">
+				</picture>
+					</div>
+		<div class="card-body">
+			<h2 class="feature-text">Northland Community Band Presents “A Day in the Life of a Soldier” Veterans Day Concert</h2>
+			<p class="description">October 21, 2026</p>		</div>
+		<ul class="card-list">
+			<li>
+				<a href="https://www.northlandcollege.edu/today/news/northland-community-band-presents-a-day-in-the-life-of-a-soldier-veterans-day-concert/" title="Northland Community Band Presents “A Day in the Life of a Soldier” Veterans Day Concert" aria-label="Read article: Northland Community Band Presents “A Day in the Life of a Soldier” Veterans Day Concert">
+					<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" aria-hidden="true"><title>Read article: Northland Community Band Presents “A Day in the Life of a Soldier” Veterans Day Concert</title><circle cx="25" cy="25" r="25" fill="#fff"/><rect x="23" y="28" width="12" height="2" transform="translate(-12.01 29) rotate(-45)" fill="#01172e"/><rect x="28" y="15" width="2" height="12" transform="translate(-6.36 26.66) rotate(-45)" fill="#01172e"/><rect x="16" y="24" width="16" height="2" fill="#01172e"/></svg>
+				</a>
+			</li>
+							<li class="category-type">Arts and Culture</li>
+					</ul>
+	</div>
+</article> 											<article class="column-card">
+	<div class="card">
+		<div class="card-img-container">
+							<picture>
+					<source srcset="/assets/themes/northlandcollege/images/default-news.png" media="(min-width: 576px)">
+					<img decoding="async" class="card-img-top" src="/assets/themes/northlandcollege/images/default-news-mobile.png" alt="Northland monogram" />
+				</picture>
+
+					</div>
+		<div class="card-body">
+			<h2 class="feature-text">State of the College: Northland Continues To Grow</h2>
+			<p class="description">October 21, 2026</p>		</div>
+		<ul class="card-list">
+			<li>
+				<a href="https://www.northlandcollege.edu/today/news/state-of-the-college-northland-continues-to-grow/" title="State of the College: Northland Continues To Grow" aria-label="Read article: State of the College: Northland Continues To Grow">
+					<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" aria-hidden="true"><title>Read article: State of the College: Northland Continues To Grow</title><circle cx="25" cy="25" r="25" fill="#fff"/><rect x="23" y="28" width="12" height="2" transform="translate(-12.01 29) rotate(-45)" fill="#01172e"/><rect x="28" y="15" width="2" height="12" transform="translate(-6.36 26.66) rotate(-45)" fill="#01172e"/><rect x="16" y="24" width="16" height="2" fill="#01172e"/></svg>
+				</a>
+			</li>
+							<li class="category-type">Northland in the News</li>
+					</ul>
+	</div>
+</article> 											<article class="column-card">
+	<div class="card">
+		<div class="card-img-container">
+							<picture>
+					<source srcset="/assets/themes/northlandcollege/images/default-news.png" media="(min-width: 576px)">
+					<img decoding="async" class="card-img-top" src="/assets/themes/northlandcollege/images/default-news-mobile.png" alt="Northland monogram" />
+				</picture>
+
+					</div>
+		<div class="card-body">
+			<h2 class="feature-text">Northland Community and Technical College maximizing opportunity, focusing on quality</h2>
+			<p class="description">October 16, 2026</p>		</div>
+		<ul class="card-list">
+			<li>
+				<a href="https://www.northlandcollege.edu/today/news/northland-community-and-technical-college-maximizing-opportunity-focusing-on-quality/" title="Northland Community and Technical College maximizing opportunity, focusing on quality" aria-label="Read article: Northland Community and Technical College maximizing opportunity, focusing on quality">
+					<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" aria-hidden="true"><title>Read article: Northland Community and Technical College maximizing opportunity, focusing on quality</title><circle cx="25" cy="25" r="25" fill="#fff"/><rect x="23" y="28" width="12" height="2" transform="translate(-12.01 29) rotate(-45)" fill="#01172e"/><rect x="28" y="15" width="2" height="12" transform="translate(-6.36 26.66) rotate(-45)" fill="#01172e"/><rect x="16" y="24" width="16" height="2" fill="#01172e"/></svg>
+				</a>
+			</li>
+							<li class="category-type">Northland in the News</li>
+					</ul>
+	</div>
+</article> 											<article class="column-card">
+	<div class="card">
+		<div class="card-img-container">
+							<picture>
+					<source srcset="/files/img-sotc2026-news-hero-800x640.png" media="(min-width: 576px)">
+					<img decoding="async" src="/files/img-sotc2026-news-hero-672x448.png" class="card-img-top" alt="">
+				</picture>
+					</div>
+		<div class="card-body">
+			<h2 class="feature-text">Northland&#039;s New Academic Leadership Team to Lead 2026 State of the College Events Oct. 15-16</h2>
+			<p class="description">September 22, 2026</p>		</div>
+		<ul class="card-list">
+			<li>
+				<a href="https://www.northlandcollege.edu/today/news/northlands-new-academic-leadership-team-to-lead-2026-state-of-the-college-events-oct-15-16/" title="Northland&#039;s New Academic Leadership Team to Lead 2026 State of the College Events Oct. 15-16" aria-label="Read article: Northland&#039;s New Academic Leadership Team to Lead 2026 State of the College Events Oct. 15-16">
+					<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" aria-hidden="true"><title>Read article: Northland&#039;s New Academic Leadership Team to Lead 2026 State of the College Events Oct. 15-16</title><circle cx="25" cy="25" r="25" fill="#fff"/><rect x="23" y="28" width="12" height="2" transform="translate(-12.01 29) rotate(-45)" fill="#01172e"/><rect x="28" y="15" width="2" height="12" transform="translate(-6.36 26.66) rotate(-45)" fill="#01172e"/><rect x="16" y="24" width="16" height="2" fill="#01172e"/></svg>
+				</a>
+			</li>
+							<li class="category-type">Events and Outreach</li>
+					</ul>
+	</div>
+</article> 											<article class="column-card">
+	<div class="card">
+		<div class="card-img-container">
+							<picture>
+					<source srcset="/files/241113-002-800x640.jpg" media="(min-width: 576px)">
+					<img decoding="async" src="/files/241113-002-672x448.jpg" class="card-img-top" alt="">
+				</picture>
+					</div>
+		<div class="card-body">
+			<h2 class="feature-text">Northland Community &amp; Technical College to Host Warroad Open House on September 30</h2>
+			<p class="description">September 10, 2026</p>		</div>
+		<ul class="card-list">
+			<li>
+				<a href="https://www.northlandcollege.edu/today/news/northland-community-technical-college-to-host-warroad-open-house-on-september-30/" title="Northland Community &amp; Technical College to Host Warroad Open House on September 30" aria-label="Read article: Northland Community &amp; Technical College to Host Warroad Open House on September 30">
+					<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" aria-hidden="true"><title>Read article: Northland Community &amp; Technical College to Host Warroad Open House on September 30</title><circle cx="25" cy="25" r="25" fill="#fff"/><rect x="23" y="28" width="12" height="2" transform="translate(-12.01 29) rotate(-45)" fill="#01172e"/><rect x="28" y="15" width="2" height="12" transform="translate(-6.36 26.66) rotate(-45)" fill="#01172e"/><rect x="16" y="24" width="16" height="2" fill="#01172e"/></svg>
+				</a>
+			</li>
+							<li class="category-type">Events and Outreach</li>
+					</ul>
+	</div>
+</article> 											<article class="column-card">
+	<div class="card">
+		<div class="card-img-container">
+							<picture>
+					<source srcset="/files/ChelseaTreboniakHeadshot-800x640.jpg" media="(min-width: 576px)">
+					<img decoding="async" src="/files/ChelseaTreboniakHeadshot-672x448.jpg" class="card-img-top" alt="">
+				</picture>
+					</div>
+		<div class="card-body">
+			<h2 class="feature-text">Northland Launches Lecture Series Sept. 17 Featuring National Speaker Chelsea Treboniak</h2>
+			<p class="description">September 2, 2026</p>		</div>
+		<ul class="card-list">
+			<li>
+				<a href="https://www.northlandcollege.edu/today/news/northland-community-technical-college-launches-new-lecture-series-with-national-speaker-chelsea-treboniak/" title="Northland Launches Lecture Series Sept. 17 Featuring National Speaker Chelsea Treboniak" aria-label="Read article: Northland Launches Lecture Series Sept. 17 Featuring National Speaker Chelsea Treboniak">
+					<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" aria-hidden="true"><title>Read article: Northland Launches Lecture Series Sept. 17 Featuring National Speaker Chelsea Treboniak</title><circle cx="25" cy="25" r="25" fill="#fff"/><rect x="23" y="28" width="12" height="2" transform="translate(-12.01 29) rotate(-45)" fill="#01172e"/><rect x="28" y="15" width="2" height="12" transform="translate(-6.36 26.66) rotate(-45)" fill="#01172e"/><rect x="16" y="24" width="16" height="2" fill="#01172e"/></svg>
+				</a>
+			</li>
+							<li class="category-type">College News</li>
+					</ul>
+	</div>
+</article> 											<article class="column-card">
+	<div class="card">
+		<div class="card-img-container">
+							<picture>
+					<source srcset="/files/260515-200-800x640.jpg" media="(min-width: 576px)">
+					<img decoding="async" src="/files/260515-200-672x448.jpg" class="card-img-top" alt="">
+				</picture>
+					</div>
+		<div class="card-body">
+			<h2 class="feature-text">Northland Graduate Earns Perfect Score on National Physical Therapist Assistant Licensure Exam</h2>
+			<p class="description">August 3, 2026</p>		</div>
+		<ul class="card-list">
+			<li>
+				<a href="https://www.northlandcollege.edu/today/news/northland-graduate-earns-perfect-score-on-national-physical-therapist-assistant-licensure-exam/" title="Northland Graduate Earns Perfect Score on National Physical Therapist Assistant Licensure Exam" aria-label="Read article: Northland Graduate Earns Perfect Score on National Physical Therapist Assistant Licensure Exam">
+					<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" aria-hidden="true"><title>Read article: Northland Graduate Earns Perfect Score on National Physical Therapist Assistant Licensure Exam</title><circle cx="25" cy="25" r="25" fill="#fff"/><rect x="23" y="28" width="12" height="2" transform="translate(-12.01 29) rotate(-45)" fill="#01172e"/><rect x="28" y="15" width="2" height="12" transform="translate(-6.36 26.66) rotate(-45)" fill="#01172e"/><rect x="16" y="24" width="16" height="2" fill="#01172e"/></svg>
+				</a>
+			</li>
+							<li class="category-type">Student Success</li>
+					</ul>
+	</div>
+</article> 										<article class="column-slide">
+						<div class="card card-program see-all">
+							<div class="card-body slide-card">
+								<h2 class="feature-text"><span>Keep</span> Up-to-date with Northland</h2>
+								<a href="/today/news/" title="All Northland Stories">
+										<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" aria-hidden="true"><title>View all news</title><circle cx="25" cy="25" r="25" fill="#fff"/><rect x="23" y="28" width="12" height="2" transform="translate(-12.01 29) rotate(-45)" fill="#01172e"/><rect x="28" y="15" width="2" height="12" transform="translate(-6.36 26.66) rotate(-45)" fill="#01172e"/><rect x="16" y="24" width="16" height="2" fill="#01172e"/></svg>
+										<div class="story-link">All News</div>
+								</a>
+							</div>
+						</div>
+					</article>
+				</div>
+				<div class="progress" role="progressbar" aria-label="Carousel progress bar" aria-valuemin="0" aria-valuemax="100">
+					<span class="slider__label visually-hidden"></span>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+
+<section class="wp-block-northlandcollege-text-component component component--template1 component--text spacing-bottom-default spacing-top-none is-style-space-navy"><div class="container"><div class="row"><div class="column-text">
+<div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-fe48e5de wp-block-buttons-is-layout-flex">
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="https://www.northlandcollege.edu/today/news/">All News &amp; Stories</a></div>
+
+
+
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="https://events.northlandcollege.edu/">Events Calendar</a></div>
+
+
+
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="https://www.northlandcollege.edu/academics/student-calendar/">Student Calendar</a></div>
+</div>
+</div></div></div></section>
+
+		</main>
+	<footer class="footer">
+	<div class="main-footer">
+		<div class="container">
+			<h1 class="visually-hidden">Page Footer</h1>
+			<div class="row">
+				<div class="col-12 col-lg-5">
+					<a href="/" aria-label="Northland Home" title="Northland Home">
+						<img src="/assets/themes/northlandcollege/images/monogram.svg" class="monogram" alt="Northland Home" />
+					</a>
+											<nav class="footer-nav" aria-labelledby="footer-nav-top">
+							<h2 id="footer-nav-top" class="visually-hidden">Footer Main Site Sections</h2>
+							<ul>
+																	 <li class="nav-main-item  menu-item menu-item-type-post_type menu-item-object-page menu-item-1068 menu-item-has-children">
+											 <a class="nav-main-link" href="https://www.northlandcollege.edu/academics/">Academics</a>
+									 </li>
+																	 <li class="nav-main-item  menu-item menu-item-type-post_type menu-item-object-page menu-item-1070 menu-item-has-children">
+											 <a class="nav-main-link" href="https://www.northlandcollege.edu/cost-aid/">Cost &#038; Aid</a>
+									 </li>
+																	 <li class="nav-main-item  menu-item menu-item-type-post_type menu-item-object-page menu-item-1069 menu-item-has-children">
+											 <a class="nav-main-link" href="https://www.northlandcollege.edu/admissions/">Admissions</a>
+									 </li>
+																	 <li class="nav-main-item  menu-item menu-item-type-post_type menu-item-object-page menu-item-1067 menu-item-has-children">
+											 <a class="nav-main-link" href="https://www.northlandcollege.edu/about/">About</a>
+									 </li>
+															</ul>
+						</nav>
+										<nav class="footer-quick-links" aria-labelledby="footer-nav-quick-links">
+						<h2 id="footer-nav-quick-links" class="visually-hidden">Footer Quick Links</h2>
+						<ul>
+							<li><a href="/admissions/request-info/" class="footer-quick-links--request-information">Request Information</a></li>
+							<li><a href="/admissions/visit/" class="footer-quick-links--schedule-visit">Schedule a Visit</a></li>
+							<li><a href="/admissions/apply/" class="footer-quick-links--start-application">Apply to Northland</a></li>
+						</ul>
+					</nav>				</div>				<div class="col-12 col-lg-6">
+					<nav class="row" aria-labelledby="footer-nav-items">
+						<h2 id="footer-nav-items" class="visually-hidden">Footer Menu</h2>
+													<div class="col-12 col-lg-4">
+								<ul class="footer-links">
+																			 <li class="nav-main-item  menu-item menu-item-type-post_type menu-item-object-page menu-item-5542">
+												 <a class="nav-main-link" href="https://www.northlandcollege.edu/admissions/">Future Students</a>
+										 </li>
+																			 <li class="nav-main-item  menu-item menu-item-type-post_type menu-item-object-page menu-item-1074">
+												 <a class="nav-main-link" href="https://www.northlandcollege.edu/students/">Current Students</a>
+										 </li>
+																			 <li class="nav-main-item  menu-item menu-item-type-post_type menu-item-object-page menu-item-14525">
+												 <a class="nav-main-link" href="https://www.northlandcollege.edu/admissions/transfer-students/">Transfer Students</a>
+										 </li>
+																			 <li class="nav-main-item  menu-item menu-item-type-post_type menu-item-object-page menu-item-21256">
+												 <a class="nav-main-link" href="https://www.northlandcollege.edu/about/offices/veteran-services/">Military Member & Veterans</a>
+										 </li>
+																			 <li class="nav-main-item  menu-item menu-item-type-post_type menu-item-object-page menu-item-4017">
+												 <a class="nav-main-link" href="https://www.northlandcollege.edu/families/">Parents &#038; Families</a>
+										 </li>
+																			 <li class="nav-main-item  menu-item menu-item-type-post_type menu-item-object-page menu-item-21258">
+												 <a class="nav-main-link" href="https://www.northlandcollege.edu/admissions/guidance-counselors/">High School Counselors</a>
+										 </li>
+																			 <li class="nav-main-item  menu-item menu-item-type-post_type menu-item-object-page menu-item-4964">
+												 <a class="nav-main-link" href="https://www.northlandcollege.edu/academics/workforce-development-solutions/">Business & Industry</a>
+										 </li>
+																			 <li class="nav-main-item  menu-item menu-item-type-custom menu-item-object-custom menu-item-24929">
+												 <a class="nav-main-link" href="https://nctcfoundation.com/">Alumni & Donors</a>
+										 </li>
+																			 <li class="nav-main-item  menu-item menu-item-type-post_type menu-item-object-page menu-item-11148">
+												 <a class="nav-main-link" href="https://www.northlandcollege.edu/employees/">Faculty &#038; Staff</a>
+										 </li>
+																	</ul>
+							</div>																			<div class="col-12 col-lg-4">
+								<ul class="footer-links">
+																			 <li class="nav-main-item  menu-item menu-item-type-post_type menu-item-object-page menu-item-1075">
+												 <a class="nav-main-link" href="https://www.northlandcollege.edu/academics/programs/">Degrees &#038; Programs</a>
+										 </li>
+																			 <li class="nav-main-item  menu-item menu-item-type-post_type menu-item-object-page menu-item-21157">
+												 <a class="nav-main-link" href="https://www.northlandcollege.edu/academics/student-calendar/">Student Calendar</a>
+										 </li>
+																			 <li class="nav-main-item  menu-item menu-item-type-post_type menu-item-object-page menu-item-4026">
+												 <a class="nav-main-link" href="https://www.northlandcollege.edu/library/">Library</a>
+										 </li>
+																			 <li class="nav-main-item  menu-item menu-item-type-post_type menu-item-object-page menu-item-21163">
+												 <a class="nav-main-link" href="https://www.northlandcollege.edu/about/offices/campus-safety/">Campus Safety</a>
+										 </li>
+																			 <li class="nav-main-item  menu-item menu-item-type-custom menu-item-object-custom menu-item-21159">
+												 <a class="nav-main-link" href="https://northlandpioneers.com/">Pioneers Athletics</a>
+										 </li>
+																			 <li class="nav-main-item  menu-item menu-item-type-custom menu-item-object-custom menu-item-4027">
+												 <a class="nav-main-link" href="https://www.thenorthlandstore.com/">Northland Store</a>
+										 </li>
+																			 <li class="nav-main-item  menu-item menu-item-type-custom menu-item-object-custom menu-item-7875">
+												 <a class="nav-main-link" href="https://sideline.bsnsports.com/schools/minnesota/thiefriverfalls/northland-pioneers-store">Shop Pioneers Gear</a>
+										 </li>
+																			 <li class="nav-main-item  menu-item menu-item-type-post_type menu-item-object-page menu-item-29796">
+												 <a class="nav-main-link" href="https://www.northlandcollege.edu/about/offices/human-resources/employment/">Employment</a>
+										 </li>
+																	</ul>
+							</div> 																			<div class="col-12 col-lg-4">
+								<ul class="footer-links">
+																			 <li class="nav-main-item  menu-item menu-item-type-post_type menu-item-object-page menu-item-4032">
+												 <a class="nav-main-link" href="https://www.northlandcollege.edu/about/contact/">Contact Northland</a>
+										 </li>
+																			 <li class="nav-main-item  menu-item menu-item-type-post_type menu-item-object-page menu-item-21162">
+												 <a class="nav-main-link" href="https://www.northlandcollege.edu/help/">Help Center</a>
+										 </li>
+																			 <li class="nav-main-item  menu-item menu-item-type-custom menu-item-object-custom menu-item-21161">
+												 <a class="nav-main-link" href="https://www.northlandcollege.edu/directory/">Directory</a>
+										 </li>
+																			 <li class="nav-main-item  menu-item menu-item-type-post_type menu-item-object-page menu-item-21160">
+												 <a class="nav-main-link" href="https://www.northlandcollege.edu/sitemap/">A to Z List</a>
+										 </li>
+																			 <li class="nav-main-item  menu-item menu-item-type-custom menu-item-object-custom menu-item-4031">
+												 <a class="nav-main-link" href="https://nctcfoundation.com/donate/">Make a Gift</a>
+										 </li>
+																			 <li class="nav-main-item  menu-item menu-item-type-post_type menu-item-object-page menu-item-1076">
+												 <a class="nav-main-link" href="https://www.northlandcollege.edu/about/facts/">Facts &#038; Figures</a>
+										 </li>
+																			 <li class="nav-main-item  menu-item menu-item-type-post_type menu-item-object-page menu-item-27873">
+												 <a class="nav-main-link" href="https://www.northlandcollege.edu/about/policies/title-ix-info/">Title IX</a>
+										 </li>
+																			 <li class="nav-main-item  menu-item menu-item-type-post_type menu-item-object-page menu-item-31541">
+												 <a class="nav-main-link" href="https://www.northlandcollege.edu/about/policies/report-a-concern/">Report a Concern</a>
+										 </li>
+																			 <li class="nav-main-item  menu-item menu-item-type-post_type menu-item-object-page menu-item-29795">
+												 <a class="nav-main-link" href="https://www.northlandcollege.edu/students/right-to-know/">Student Right-to-Know</a>
+										 </li>
+																			 <li class="nav-main-item  menu-item menu-item-type-post_type menu-item-object-page menu-item-22637">
+												 <a class="nav-main-link" href="https://www.northlandcollege.edu/about/offices/marketing-communications/website-feedback/">Website Feedback</a>
+										 </li>
+																	</ul>
+							</div>												<div class="news-updates col-12">
+							<div class="news-updates-header">
+								<a href="/today/">
+									<h2>News &amp; Events</h2>
+									<img src="/assets/themes/northlandcollege/images/right-arrow-blue-bg.svg" aria-hidden="true" alt="" />
+								</a>
+							</div>
+							<div class="news-updates--links">
+								<h3 class="visually-hidden">Social Media Links</h3>
+								<ul class="social-links">
+									<li><a href="https://www.facebook.com/northlandctc/"><img src="/assets/themes/northlandcollege/images/social-facebook.svg" alt="Facebook" /></a></li>
+									<li><a href="https://x.com/northlandctc"><img src="/assets/themes/northlandcollege/images/social-x.svg" alt="X" /></a></li>
+									<li><a href="https://www.instagram.com/northlandctc/"><img src="/assets/themes/northlandcollege/images/social-instagram.svg" alt="Instagram" /></a></li>
+									<li><a href="https://www.youtube.com/channel/UCRe0Sh1QWZZfNgwipBVlj_Q"><img src="/assets/themes/northlandcollege/images/social-youtube.svg" alt="YouTube" /></a></li>
+									<li><a href="https://www.linkedin.com/school/northland-community-and-technical-college/"><img src="/assets/themes/northlandcollege/images/social-linkedin.svg" alt="LinkedIn" /></a></li>
+								</ul>
+								<h2 class="visually-hidden">Contact Northland</h2>
+								<ul class="contact-links">
+									<li><a href="tel:+1.800.959.6282" class="contact-phone" aria-label="800.959.6282 (toll-free call)">800.959.6282</a></li>
+									<li><a href="sms:+12184963158" class="contact-text" aria-label="Text&nbsp;Us">Text&nbsp;Us</a></li>
+									<li><a href="/about/contact/" class="contact-email">Email <span class="visually-hidden">with contact form</span></a></li>
+								</ul>
+							</div>						</div>
+					</nav> 				</div> 			</div> 		</div> 	</div> 	<div class="sub-footer">
+		<div class="container">
+			<button class="top-link btn-link footer-arrow" title="Return to top" aria-label="Return to top">
+				<img src="/assets/themes/northlandcollege/images/arrow-up.svg" alt="Up arrow" />
+			</button>
+			<div class="row">
+				<div class="col-12 col-lg-5">
+					<div class="sub-footer-school">
+						<div class="sub-footer-school-logo">
+							<a href="https://www.minnstate.edu/"><img src="/assets/themes/northlandcollege/images/logo-minnesota-state.svg" alt="Minnesota State website" /></a>
+						</div> 						<div class="sub-footer-school-name">
+							<p>Northland Community &amp; Technical College,<br />
+							A member of <a href="https://minnstate.edu/">Minnesota State</a>.</p>
+						</div> 					</div> 				</div> 				<div class="sub-footer-copyright col-12 col-lg-6">
+					<p>© 2026 Northland Community and Technical College. An affirmative action, equal opportunity employer and educator. Lack of English skills will not be a barrier to admissions and participation.<br />
+					<a href="/privacy/">Privacy</a> | <a href="/about/offices/human-resources/non-discrimination-statement/">EEO/Nondiscrimination Statement</a> | <a href="/about/policies/title-ix-info/">Title IX</a></p>
+				</div> 			</div> 		</div> 	</div> </footer>
+<div class="search-overlay" aria-hidden="true">
+	<div class="search-bar">
+		<div class="container">
+			<div class="row">
+				<div class="col-12 col-md-10 offset-md-1">
+					<form action="/" method="get" class="search-form">
+						<div class="search-field-wrapper">
+							<label for="search-field" class="visually-hidden">Search Northland</label>
+							<input type="text" id="search-field" name="s" class="search-field" placeholder="What are you looking for?" />
+							<button type="submit" class="search-button" aria-label="Search site">Search</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-10 offset-md-1">
+				<div class="search-content">
+					<div class="row">
+						<div class="col-12 search-content-header">
+							<h2>Popular Searches</h2>
+						</div>
+						<div class="col-12 col-md-4 search-content-menu">
+															<ul>
+																			<li><a href="https://www.northlandcollege.edu/academics/advising/">Academic Advising</a></li>
+																			<li><a href="https://www.northlandcollege.edu/academics/programs/">Academic Programs</a></li>
+																			<li><a href="https://www.northlandcollege.edu/admissions/">Admissions</a></li>
+																			<li><a href="https://thenorthlandstore.com/home">Bookstore</a></li>
+																			<li><a href="https://www.northlandcollege.edu/academics/class-schedules/">Class Schedules</a></li>
+																	</ul>
+													</div>
+						<div class="col-12 col-md-4 search-content-menu">
+															<ul>
+																			<li><a href="https://www.northlandcollege.edu/students/desire2learn/">D2L Brightspace</a></li>
+																			<li><a href="https://www.northlandcollege.edu/directory/">Employee Directory</a></li>
+																			<li><a href="https://events.northlandcollege.edu/">Events Calendar</a></li>
+																			<li><a href="https://www.northlandcollege.edu/about/offices/financial-aid/">Financial Aid</a></li>
+																			<li><a href="https://www.northlandcollege.edu/admissions/student-housing/">Housing</a></li>
+																	</ul>
+													</div>
+						<div class="col-12 col-md-4 search-content-menu">
+															<ul>
+																			<li><a href="https://www.northlandcollege.edu/today/news/">News &#038; Stories</a></li>
+																			<li><a href="https://www.northlandcollege.edu/academics/register-for-classes/">Register for Classes</a></li>
+																			<li><a href="https://www.northlandcollege.edu/admissions/scholarships/">Scholarships</a></li>
+																			<li><a href="https://www.northlandcollege.edu/academics/student-calendar/">Student Calendar</a></li>
+																			<li><a href="https://www.northlandcollege.edu/admissions/tuition-fees/">Tuition &amp; Costs</a></li>
+																	</ul>
+													</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<nav class="main-menu main-menu--hidden" id="nav-main" aria-labelledby="nav-main-heading">
+	<h1 id="nav-main-heading" class="visually-hidden">Main Menu</h1>
+	<div class="primary-menu-wrapper menu-pane">
+		<div class="menu-heading">
+			<button title="Close main menu" aria-label="Close main menu" class="close"></button>
+			<a href="/" title="Northland Home" aria-label="Northland Home" class="logo">
+				<img src="https://www.northlandcollege.edu/assets/themes/northlandcollege/images/logo-red.svg" alt="Northland College Logo" />
+			</a>
+			<button title="Back" aria-label="Back to previous menu" class="back"></button>
+		</div>
+		<div class="menu-wrapper">
+							<div class="menu menu-1">
+					<ul>
+													<li><a href="#submenu-838" aria-haspopup="true" aria-expanded="false">Academics</a></li>
+													<li><a href="#submenu-923" aria-haspopup="true" aria-expanded="false">Cost &#038; Aid</a></li>
+													<li><a href="#submenu-900" aria-haspopup="true" aria-expanded="false">Admissions</a></li>
+													<li><a href="#submenu-701" aria-haspopup="true" aria-expanded="false">About</a></li>
+											</ul>
+				</div>
+			
+							<hr />
+				<div class="menu menu-2">
+					<ul>
+													<li><a href="#submenu-941" aria-expanded="false" has-popup="true">Current Students</a></li>
+													<li><a href="#submenu-963" aria-expanded="false" has-popup="true">Parents &#038; Families</a></li>
+													<li><a href="#submenu-890" aria-expanded="false" has-popup="true">Business & Industry</a></li>
+													<li><a href="#submenu-10791" aria-expanded="false" has-popup="true">Faculty &#038; Staff</a></li>
+													<li><a href="#submenu-973" aria-expanded="false" has-popup="true">Alumni & Donors</a></li>
+											</ul>
+				</div>
+			
+							<hr />
+				<div class="menu menu-3">
+					<ul>
+													<li><a href="https://www.northlandcollege.edu/academics/programs/" >Degrees &#038; Programs</a></li>
+													<li><a href="https://www.northlandcollege.edu/directory/" >Directory</a></li>
+													<li><a href="https://events.northlandcollege.edu/" >Events Calendar</a></li>
+													<li><a href="https://www.northlandcollege.edu/today/news/" >News &#038; Stories</a></li>
+													<li><a href="https://northlandpioneers.com/" >Athletics</a></li>
+													<li><a href="https://www.northlandcollege.edu/help/" >Help Center</a></li>
+													<li><a href="https://www.northlandcollege.edu/about/contact/" >Contact Northland</a></li>
+											</ul>
+				</div>
+					</div>
+					<div class="submenu-wrapper menu-pane">
+									<div id="submenu-838" class="submenu submenu-838 submenu--hidden" aria-hidden="true">
+						<button aria-label="Main Menu" class="back back-mobile">Main Menu</button>
+						<hr class="mobile-only" />
+						<div class="menu menu-1">
+							<ul>
+								<li>Academics</li>
+							</ul>
+						</div>
+													<div class="menu menu-3">
+								<ul>
+									<li><a href="https://www.northlandcollege.edu/academics/">Academics Overview</a></li>
+																			<li><a href="https://www.northlandcollege.edu/academics/programs/">Degrees &#038; Programs</a></li>
+																			<li><a href="https://www.northlandcollege.edu/academics/online-learning/">Online Learning</a></li>
+																			<li><a href="https://www.northlandcollege.edu/academics/career-technical-pathways/">Career &#038; Technical Pathways</a></li>
+																			<li><a href="https://www.northlandcollege.edu/academics/liberal-arts-transfer-pathways/">Liberal Arts Transfer Pathways</a></li>
+																			<li><a href="https://www.northlandcollege.edu/academics/farm-business-management/">Farm Business Management</a></li>
+																			<li><a href="https://www.northlandcollege.edu/academics/advising/">Academic Advising</a></li>
+																			<li><a href="https://www.northlandcollege.edu/academics/academic-success-center/">Academic Success Center</a></li>
+																			<li><a href="https://www.northlandcollege.edu/academics/student-calendar/">Student Calendar</a></li>
+																			<li><a href="https://www.northlandcollege.edu/academics/class-schedules/">Class Schedules</a></li>
+																			<li><a href="https://www.northlandcollege.edu/academics/register-for-classes/">Register for Classes</a></li>
+																			<li><a href="https://www.northlandcollege.edu/library/">Library & Test Proctoring</a></li>
+																			<li class="has-children" aria-expanded="false" aria-haspopup="true"><a href="#subsubmenu-890">Workforce Development Solutions</a></li>
+																	</ul>
+							</div>
+											</div>
+									<div id="submenu-923" class="submenu submenu-923 submenu--hidden" aria-hidden="true">
+						<button aria-label="Main Menu" class="back back-mobile">Main Menu</button>
+						<hr class="mobile-only" />
+						<div class="menu menu-1">
+							<ul>
+								<li>Cost &#038; Aid</li>
+							</ul>
+						</div>
+													<div class="menu menu-3">
+								<ul>
+									<li><a href="https://www.northlandcollege.edu/cost-aid/">Cost &#038; Aid Overview</a></li>
+																			<li><a href="https://www.northlandcollege.edu/admissions/tuition-fees/">Tuition &#038; Costs</a></li>
+																			<li><a href="https://www.minnstate.edu/admissions/calculator/northland.html">Net Price Calculator</a></li>
+																			<li><a href="https://www.northlandcollege.edu/about/offices/financial-aid/">Financial Aid</a></li>
+																			<li><a href="https://www.northlandcollege.edu/admissions/scholarships/">Scholarships</a></li>
+																			<li><a href="https://www.northlandcollege.edu/about/offices/financial-aid/north-star-promise/">North Star Promise</a></li>
+																			<li><a href="https://www.northlandcollege.edu/about/offices/financial-aid/student-employment/">Student Employment</a></li>
+																	</ul>
+							</div>
+											</div>
+									<div id="submenu-900" class="submenu submenu-900 submenu--hidden" aria-hidden="true">
+						<button aria-label="Main Menu" class="back back-mobile">Main Menu</button>
+						<hr class="mobile-only" />
+						<div class="menu menu-1">
+							<ul>
+								<li>Admissions</li>
+							</ul>
+						</div>
+													<div class="menu menu-3">
+								<ul>
+									<li><a href="https://www.northlandcollege.edu/admissions/">Admissions Overview</a></li>
+																			<li class="has-children" aria-expanded="false" aria-haspopup="true"><a href="#subsubmenu-918">Apply to Northland</a></li>
+																			<li class="has-children" aria-expanded="false" aria-haspopup="true"><a href="#subsubmenu-906">Visit &#038; Explore</a></li>
+																			<li><a href="https://www.northlandcollege.edu/admissions/enrollment-checklist/">Enrollment Checklist</a></li>
+																			<li><a href="https://www.northlandcollege.edu/admissions/dates-deadlines/">Dates &#038; Deadlines</a></li>
+																			<li><a href="https://www.northlandcollege.edu/admissions/orientation/">New Student Orientation</a></li>
+																			<li class="has-children" aria-expanded="false" aria-haspopup="true"><a href="#subsubmenu-21104">College for High Schoolers</a></li>
+																			<li><a href="https://www.northlandcollege.edu/admissions/transfer-students/">Info for Transfer Students</a></li>
+																			<li><a href="https://www.northlandcollege.edu/admissions/student-housing/">Student Housing</a></li>
+																			<li><a href="https://www.northlandcollege.edu/admissions/admissions-staff/">Contact the Office of Admission</a></li>
+																	</ul>
+							</div>
+											</div>
+									<div id="submenu-701" class="submenu submenu-701 submenu--hidden" aria-hidden="true">
+						<button aria-label="Main Menu" class="back back-mobile">Main Menu</button>
+						<hr class="mobile-only" />
+						<div class="menu menu-1">
+							<ul>
+								<li>About</li>
+							</ul>
+						</div>
+													<div class="menu menu-3">
+								<ul>
+									<li><a href="https://www.northlandcollege.edu/about/">About Overview</a></li>
+																			<li><a href="https://www.northlandcollege.edu/about/mission-strategic-plan/">Mission &amp; Strategic Planning</a></li>
+																			<li><a href="https://www.northlandcollege.edu/about/facts/">Facts &#038; Figures</a></li>
+																			<li><a href="https://www.northlandcollege.edu/about/go-north/">Our Communities</a></li>
+																			<li><a href="https://www.northlandcollege.edu/about/offices/president/">Office of the President</a></li>
+																			<li class="has-children" aria-expanded="false" aria-haspopup="true"><a href="#subsubmenu-713">Offices &#038; Services</a></li>
+																			<li><a href="https://www.northlandcollege.edu/about/accreditation/">Accreditation</a></li>
+																			<li><a href="https://www.northlandcollege.edu/about/consumer-information/">Consumer Information</a></li>
+																			<li><a href="https://www.northlandcollege.edu/about/policies/">Policies &amp; Procedures</a></li>
+																			<li><a href="https://www.northlandcollege.edu/about/offices/human-resources/employment/">Employment Opportunities</a></li>
+																			<li><a href="https://www.northlandcollege.edu/about/contact/">Contact Northland</a></li>
+																	</ul>
+							</div>
+											</div>
+									<div id="submenu-941" class="submenu submenu-941 submenu--hidden" aria-hidden="true">
+						<button aria-label="Main Menu" class="back back-mobile">Main Menu</button>
+						<hr class="mobile-only" />
+						<div class="menu menu-1">
+							<ul>
+								<li>Current Students</li>
+							</ul>
+						</div>
+													<div class="menu menu-3">
+								<ul>
+									<li><a href="https://www.northlandcollege.edu/students/">Current Students Overview</a></li>
+																			<li><a href="https://www.northlandcollege.edu/students/desire2learn/">D2L Brightspace</a></li>
+																			<li><a href="https://eservices.minnstate.edu/eservices/login.html?campusid=303">eServices</a></li>
+																			<li><a href="https://www.northlandcollege.edu/about/offices/its/email/">Email</a></li>
+																			<li><a href="https://www.northlandcollege.edu/academics/class-schedules/">Class Schedules</a></li>
+																			<li><a href="https://www2.northlandcollege.edu/cancelled_classes/">Cancelled Classes</a></li>
+																			<li><a href="https://www.northlandcollege.edu/library/">Library & Test Proctoring Info</a></li>
+																			<li><a href="https://www.northlandcollege.edu/about/offices/career-resources/">Career Resources</a></li>
+																			<li><a href="https://www.northlandcollege.edu/about/offices/financial-aid/student-employment/">Student Employment</a></li>
+																			<li><a href="https://www.northlandcollege.edu/admissions/scholarships/">Scholarships</a></li>
+																			<li class="has-children" aria-expanded="false" aria-haspopup="true"><a href="#subsubmenu-943">Clubs &#038; Activities</a></li>
+																			<li><a href="https://www.northlandcollege.edu/admissions/student-housing/">Student Housing</a></li>
+																			<li class="has-children" aria-expanded="false" aria-haspopup="true"><a href="#subsubmenu-3650">Bookstore</a></li>
+																			<li><a href="https://sideline.bsnsports.com/schools/minnesota/thiefriverfalls/northland-pioneers-store">Pioneers Athletics Team Store</a></li>
+																			<li class="has-children" aria-expanded="false" aria-haspopup="true"><a href="#subsubmenu-13375">Support Services</a></li>
+																			<li><a href="https://www.northlandcollege.edu/students/right-to-know/">Student Right-to-Know</a></li>
+																			<li><a href="https://www.northlandcollege.edu/students/forms/">Documents & Forms</a></li>
+																	</ul>
+							</div>
+											</div>
+									<div id="submenu-963" class="submenu submenu-963 submenu--hidden" aria-hidden="true">
+						<button aria-label="Main Menu" class="back back-mobile">Main Menu</button>
+						<hr class="mobile-only" />
+						<div class="menu menu-1">
+							<ul>
+								<li>Parents &#038; Families</li>
+							</ul>
+						</div>
+													<div class="menu menu-3">
+								<ul>
+									<li><a href="https://www.northlandcollege.edu/families/">Parents &#038; Families Overview</a></li>
+																			<li><a href="https://www.northlandcollege.edu/about/offices/financial-aid/">Financial Aid</a></li>
+																			<li><a href="https://www.northlandcollege.edu/admissions/scholarships/">Scholarships</a></li>
+																			<li><a href="https://www.northlandcollege.edu/about/offices/financial-aid/north-star-promise/">North Star Promise</a></li>
+																			<li><a href="https://www.northlandcollege.edu/admissions/student-housing/">Student Housing</a></li>
+																			<li><a href="https://www.northlandcollege.edu/students/meal-card/">Meal Cards</a></li>
+																			<li><a href="https://www.northlandcollege.edu/about/offices/campus-safety/">Campus Safety &#038; Security</a></li>
+																			<li><a href="https://www.northlandcollege.edu/about/offices/career-resources/">Career Resources</a></li>
+																			<li><a href="https://sideline.bsnsports.com/schools/minnesota/thiefriverfalls/northland-pioneers-store">Pioneers Athletics Team Store</a></li>
+																	</ul>
+							</div>
+											</div>
+									<div id="submenu-890" class="submenu submenu-890 submenu--hidden" aria-hidden="true">
+						<button aria-label="Main Menu" class="back back-mobile">Main Menu</button>
+						<hr class="mobile-only" />
+						<div class="menu menu-1">
+							<ul>
+								<li>Business & Industry</li>
+							</ul>
+						</div>
+													<div class="menu menu-3">
+								<ul>
+									<li><a href="https://www.northlandcollege.edu/academics/workforce-development-solutions/">Business & Industry Overview</a></li>
+																			<li><a href="https://www.northlandcollege.edu/academics/workforce-development-solutions/">Workforce Development Solutions</a></li>
+																			<li><a href="https://mnscu.rschooltoday.com/public/getclass/category_id/62/program_id/11/subcategory_id/6998">Minnesota Nurse Aide Testing</a></li>
+																			<li><a href="https://www.northlandcollege.edu/about/offices/career-resources/employers/">Career Resources for Employers</a></li>
+																	</ul>
+							</div>
+											</div>
+									<div id="submenu-10791" class="submenu submenu-10791 submenu--hidden" aria-hidden="true">
+						<button aria-label="Main Menu" class="back back-mobile">Main Menu</button>
+						<hr class="mobile-only" />
+						<div class="menu menu-1">
+							<ul>
+								<li>Faculty &#038; Staff</li>
+							</ul>
+						</div>
+													<div class="menu menu-3">
+								<ul>
+									<li><a href="https://www.northlandcollege.edu/employees/">Faculty &#038; Staff Overview</a></li>
+																			<li><a href="https://www.northlandcollege.edu/students/desire2learn/">D2L Brightspace</a></li>
+																			<li><a href="https://eservices.minnstate.edu/faculty/public/secure/home/index?campusid=303">eServices</a></li>
+																			<li><a href="https://www.northlandcollege.edu/about/offices/its/email/">Email</a></li>
+																			<li><a href="https://wd115.myworkday.com/minnstate/login.htmld">Workday</a></li>
+																			<li><a href="https://eservices.minnstate.edu/employee/public/secure/main/#/institutions/0303/person">Employee Home Sign In</a></li>
+																			<li><a href="http://mn.gov/selfservice">Self Service Portal</a></li>
+																			<li><a href="https://www2.northlandcollege.edu/cancelled_classes/manage/">Class Cancellation Manager</a></li>
+																			<li><a href="https://grouplink.northlandcollege.edu/ehelpdesk/login.glml">GroupLink</a></li>
+																			<li><a href="https://www.northlandcollege.edu/employees/documents-forms/">Documents &amp; Forms</a></li>
+																			<li><a href="https://www.northlandcollege.edu/employees/councils-committees/">College Councils & Committees</a></li>
+																			<li class="has-children" aria-expanded="false" aria-haspopup="true"><a href="#subsubmenu-9428">Facilities Services</a></li>
+																			<li class="has-children" aria-expanded="false" aria-haspopup="true"><a href="#subsubmenu-731">Human Resources</a></li>
+																			<li><a href="https://www.northlandcollege.edu/about/policies/">Policies &amp; Procedures</a></li>
+																	</ul>
+							</div>
+											</div>
+									<div id="submenu-973" class="submenu submenu-973 submenu--hidden" aria-hidden="true">
+						<button aria-label="Main Menu" class="back back-mobile">Main Menu</button>
+						<hr class="mobile-only" />
+						<div class="menu menu-1">
+							<ul>
+								<li>Alumni & Donors</li>
+							</ul>
+						</div>
+													<div class="menu menu-3">
+								<ul>
+									<li><a href="https://www.northlandcollege.edu/alumni/">Alumni & Donors Overview</a></li>
+																			<li><a href="https://nctcfoundation.com/">Northland Foundation</a></li>
+																			<li><a href="https://www.northlandcollege.edu/admissions/scholarships/">Scholarships</a></li>
+																			<li><a href="https://nctcfoundation.ddock.gives/">Make a Gift</a></li>
+																			<li><a href="https://www.northlandcollege.edu/about/offices/career-resources/students-alumni/">Career Resources for Alumni</a></li>
+																	</ul>
+							</div>
+											</div>
+							</div>
+			</div>
+			<div class="subsubmenu-wrapper menu-pane">
+							<div id="subsubmenu-890" class="submenu subsubmenu subsubmenu-890 subsubmenu--hidden" aria-hidden="true">
+					<button aria-label="Back" class="back back-mobile">Back</button>
+					<hr class="mobile-only" />
+					<div class="menu menu-1">
+						<ul>
+							<li>Workforce Development Solutions</li>
+						</ul>
+					</div>
+											<div class="menu menu-3">
+							<ul>
+								<li><a href="https://www.northlandcollege.edu/academics/workforce-development-solutions/">Workforce Development Solutions Overview</a></li>
+																	<li><a href="https://www.northlandcollege.edu/academics/workforce-development-solutions/courses-training/">Workforce Courses &#038; Training</a></li>
+																	<li><a href="/about/offices/registrar/register/">Register For Classes</a></li>
+																	<li><a href="https://www.northlandcollege.edu/academics/workforce-development-solutions/the-customized-process/">Customized Process</a></li>
+																	<li><a href="https://www.northlandcollege.edu/academics/workforce-development-solutions/about/">About Us</a></li>
+																	<li><a href="https://www.northlandcollege.edu/academics/workforce-development-solutions/faq/">Workforce Development FAQs</a></li>
+																	<li><a href="https://www.northlandcollege.edu/academics/workforce-development-solutions/contact/">Contact</a></li>
+															</ul>
+						</div>
+									</div>
+							<div id="subsubmenu-918" class="submenu subsubmenu subsubmenu-918 subsubmenu--hidden" aria-hidden="true">
+					<button aria-label="Back" class="back back-mobile">Back</button>
+					<hr class="mobile-only" />
+					<div class="menu menu-1">
+						<ul>
+							<li>Apply to Northland</li>
+						</ul>
+					</div>
+											<div class="menu menu-3">
+							<ul>
+								<li><a href="https://www.northlandcollege.edu/admissions/apply/">Apply to Northland Overview</a></li>
+																	<li><a href="https://www.northlandcollege.edu/admissions/apply/">New Student</a></li>
+																	<li><a href="https://www.northlandcollege.edu/admissions/apply/transfer-student/">Transfer Student</a></li>
+																	<li><a href="https://www.northlandcollege.edu/admissions/pseo/pseo-apply/">High School Student (PSEO)</a></li>
+																	<li><a href="https://www.northlandcollege.edu/admissions/apply/international-student/">International Student</a></li>
+																	<li><a href="https://www.northlandcollege.edu/admissions/apply/military-veteran/">Military & Veteran</a></li>
+																	<li><a href="https://www.northlandcollege.edu/admissions/apply/returning-student/">Returning Student</a></li>
+															</ul>
+						</div>
+									</div>
+							<div id="subsubmenu-906" class="submenu subsubmenu subsubmenu-906 subsubmenu--hidden" aria-hidden="true">
+					<button aria-label="Back" class="back back-mobile">Back</button>
+					<hr class="mobile-only" />
+					<div class="menu menu-1">
+						<ul>
+							<li>Visit &#038; Explore</li>
+						</ul>
+					</div>
+											<div class="menu menu-3">
+							<ul>
+								<li><a href="https://www.northlandcollege.edu/admissions/visit/">Visit &#038; Explore Overview</a></li>
+																	<li><a href="https://www.northlandcollege.edu/admissions/campus-visit/">Visit Northland</a></li>
+																	<li><a href="https://www.northlandcollege.edu/admissions/special-events/">Special Events</a></li>
+															</ul>
+						</div>
+									</div>
+							<div id="subsubmenu-21104" class="submenu subsubmenu subsubmenu-21104 subsubmenu--hidden" aria-hidden="true">
+					<button aria-label="Back" class="back back-mobile">Back</button>
+					<hr class="mobile-only" />
+					<div class="menu menu-1">
+						<ul>
+							<li>College for High Schoolers</li>
+						</ul>
+					</div>
+											<div class="menu menu-3">
+							<ul>
+								<li><a href="#">College for High Schoolers Overview</a></li>
+																	<li><a href="https://www.northlandcollege.edu/admissions/college-in-the-high-school/">College in the High School</a></li>
+																	<li><a href="https://www.northlandcollege.edu/admissions/pseo/">Post-Secondary Enrollment Option</a></li>
+															</ul>
+						</div>
+									</div>
+							<div id="subsubmenu-713" class="submenu subsubmenu subsubmenu-713 subsubmenu--hidden" aria-hidden="true">
+					<button aria-label="Back" class="back back-mobile">Back</button>
+					<hr class="mobile-only" />
+					<div class="menu menu-1">
+						<ul>
+							<li>Offices &#038; Services</li>
+						</ul>
+					</div>
+											<div class="menu menu-3">
+							<ul>
+								<li><a href="https://www.northlandcollege.edu/about/offices/">Offices &#038; Services Overview</a></li>
+																	<li><a href="/academics/advising/">Academic Advising</a></li>
+																	<li><a href="https://www.northlandcollege.edu/academics/academic-success-center/">Academic Success Center</a></li>
+																	<li><a href="https://www.northlandcollege.edu/about/offices/business-services/">Business Services</a></li>
+																	<li><a href="https://www.northlandcollege.edu/about/offices/campus-safety/">Campus Safety &#038; Security</a></li>
+																	<li><a href="https://www.northlandcollege.edu/about/offices/career-resources/">Career Resources</a></li>
+																	<li><a href="https://www.northlandcollege.edu/about/offices/counseling-services/">Counseling Services</a></li>
+																	<li><a href="https://www.northlandcollege.edu/about/offices/diversity-services/">Diversity, Equity, & Inclusion</a></li>
+																	<li><a href="https://www.northlandcollege.edu/about/offices/facilities-management/">Facilities Management</a></li>
+																	<li><a href="https://www.northlandcollege.edu/about/offices/financial-aid/">Financial Aid</a></li>
+																	<li><a href="https://nctcfoundation.com/">Foundation</a></li>
+																	<li><a href="https://www.northlandcollege.edu/about/offices/human-resources/">Human Resources</a></li>
+																	<li><a href="https://www.northlandcollege.edu/about/offices/its/">Information Technology Services</a></li>
+																	<li><a href="https://www.northlandcollege.edu/about/offices/institutional-research/">Institutional Research</a></li>
+																	<li><a href="https://www.northlandcollege.edu/library/">Library</a></li>
+																	<li><a href="https://www.northlandcollege.edu/about/offices/marketing-communications/">Marketing, Communications &#038; Recruiting</a></li>
+																	<li><a href="https://www.northlandcollege.edu/about/offices/registrar/">Registrar’s Office</a></li>
+																	<li><a href="https://www.northlandcollege.edu/about/offices/veteran-services/">Veteran Services</a></li>
+																	<li><a href="https://www.northlandcollege.edu/academics/workforce-development-solutions/">Workforce Development Solutions</a></li>
+															</ul>
+						</div>
+									</div>
+							<div id="subsubmenu-943" class="submenu subsubmenu subsubmenu-943 subsubmenu--hidden" aria-hidden="true">
+					<button aria-label="Back" class="back back-mobile">Back</button>
+					<hr class="mobile-only" />
+					<div class="menu menu-1">
+						<ul>
+							<li>Clubs &#038; Activities</li>
+						</ul>
+					</div>
+											<div class="menu menu-3">
+							<ul>
+								<li><a href="https://www.northlandcollege.edu/students/clubs-activities/">Clubs &#038; Activities Overview</a></li>
+																	<li><a href="https://www.northlandcollege.edu/students/clubs-activities/music/">Music Offerings</a></li>
+																	<li><a href="https://www.northlandcollege.edu/students/clubs-activities/phi-theta-kappa/">Phi Theta Kappa</a></li>
+																	<li><a href="https://www.northlandcollege.edu/students/clubs-activities/senate/">Student Senate</a></li>
+															</ul>
+						</div>
+									</div>
+							<div id="subsubmenu-3650" class="submenu subsubmenu subsubmenu-3650 subsubmenu--hidden" aria-hidden="true">
+					<button aria-label="Back" class="back back-mobile">Back</button>
+					<hr class="mobile-only" />
+					<div class="menu menu-1">
+						<ul>
+							<li>Bookstore</li>
+						</ul>
+					</div>
+											<div class="menu menu-3">
+							<ul>
+								<li><a href="https://thenorthlandstore.com/">Bookstore Overview</a></li>
+																	<li><a href="https://thenorthlandstore.com/">Northland Store</a></li>
+																	<li><a href="https://thenorthlandstore.com/selecttermdept">Order Textbooks</a></li>
+																	<li><a href="https://thenorthlandstore.com/MerchList?ID=32644">Scrubs & Uniforms</a></li>
+																	<li><a href="https://www.northlandcollege.edu/students/meal-card/">Meal Cards</a></li>
+															</ul>
+						</div>
+									</div>
+							<div id="subsubmenu-13375" class="submenu subsubmenu subsubmenu-13375 subsubmenu--hidden" aria-hidden="true">
+					<button aria-label="Back" class="back back-mobile">Back</button>
+					<hr class="mobile-only" />
+					<div class="menu menu-1">
+						<ul>
+							<li>Support Services</li>
+						</ul>
+					</div>
+											<div class="menu menu-3">
+							<ul>
+								<li><a href="https://www.northlandcollege.edu/students/student-basic-needs/">Support Services Overview</a></li>
+																	<li><a href="https://www.northlandcollege.edu/academics/academic-success-center/">Academic Success Center</a></li>
+																	<li><a href="https://www.northlandcollege.edu/students/student-basic-needs/">Basic Needs & Support</a></li>
+																	<li><a href="https://www.northlandcollege.edu/about/offices/counseling-services/">Counseling Services</a></li>
+															</ul>
+						</div>
+									</div>
+							<div id="subsubmenu-9428" class="submenu subsubmenu subsubmenu-9428 subsubmenu--hidden" aria-hidden="true">
+					<button aria-label="Back" class="back back-mobile">Back</button>
+					<hr class="mobile-only" />
+					<div class="menu menu-1">
+						<ul>
+							<li>Facilities Services</li>
+						</ul>
+					</div>
+											<div class="menu menu-3">
+							<ul>
+								<li><a href="https://www.northlandcollege.edu/about/offices/facilities-management/">Facilities Services Overview</a></li>
+																	<li><a href="https://grouplink.northlandcollege.edu/ehelpdesk/login.glml">Maintenance Request</a></li>
+																	<li><a href="https://qafederation.ngwebsolutions.com/idp/startSSO.ping?PartnerSpId=NorthlandLDAP&TargetResource=https://dynamicforms.ngwebsolutions.com/Submit/Form/Start/b4b5ade5-b68f-49e0-b502-d2fc312fe37f">On-Campus Event Form</a></li>
+																	<li><a href="https://minnstate.bookitadmin.minnstate.edu/Default.aspx">Room Scheduler</a></li>
+																	<li><a href="https://minnstate.bookitadmin.minnstate.edu/Default.aspx">Vehicle Scheduler</a></li>
+															</ul>
+						</div>
+									</div>
+							<div id="subsubmenu-731" class="submenu subsubmenu subsubmenu-731 subsubmenu--hidden" aria-hidden="true">
+					<button aria-label="Back" class="back back-mobile">Back</button>
+					<hr class="mobile-only" />
+					<div class="menu menu-1">
+						<ul>
+							<li>Human Resources</li>
+						</ul>
+					</div>
+											<div class="menu menu-3">
+							<ul>
+								<li><a href="https://www.northlandcollege.edu/about/offices/human-resources/">Human Resources Overview</a></li>
+																	<li><a href="https://www.northlandcollege.edu/about/offices/human-resources/employment/">Employment Opportunities</a></li>
+																	<li><a href="https://www2.northlandcollege.edu/motorvehiclerecordscheck/">Motor Vehicle Use Consent Form</a></li>
+																	<li><a href="https://mnscu.sharepoint.com/sites/connect/SitePages/topic.aspx?topicID=201&state=about&xsdata=MDV8MDJ8Y2hhZC5zcGVybGluZ0Bub3J0aGxhbmRjb2xsZWdlLmVkdXw5YWM0NDY0YTI0NDM0MTNmY2E3YjA4ZGQxODY1ZmMxZnw1MDExYzdjNjBhYjQ0NmFiOWVmNGZhZTc0YTkyMWE3ZnwwfDB8NjM4NjkzNTQ4NDg0MDg5ODA2fFVua25vd258VFdGcGJHWnNiM2Q4ZXlKRmJYQjBlVTFoY0draU9uUnlkV1VzSWxZaU9pSXdMakF1TURBd01DSXNJbEFpT2lKWGFXNHpNaUlzSWtGT0lqb2lUV0ZwYkNJc0lsZFVJam95ZlE9PXwwfHx8&sdata=ejJnUHY0Y3BJSEQzbXpHcEVBNG5oVE55bXByOVBGQWFTRHVyTjh2T2IxZz0%3d">Workday Resources & Training Materials</a></li>
+															</ul>
+						</div>
+									</div>
+					</div>
+				<ul class="utility-menu-links">
+							<li>
+						<a href="https://www.northlandcollege.edu/admissions/request-info/">Request Info</a>
+				</li>
+							<li>
+						<a href="https://www.northlandcollege.edu/admissions/campus-visit/">Visit</a>
+				</li>
+							<li>
+						<a href="https://www.northlandcollege.edu/admissions/apply/">Apply</a>
+				</li>
+					</ul>
+	</nav>
+<div class="menu-overlay"></div>
+<div class="nav-float" data-aos="fade-up" data-aos-offset="500" aria-hidden="true">
+	<button class="mobile-nav-button" aria-controls="nav-main" aria-expanded="false" data-bs-placement="right" data-bs-trigger="hover focus" data-bs-title="Main menu" title="Toggle main menu" aria-label="Toggle main menu">
+		<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" aria-hidden="true"><circle fill="#fff" stroke="#f1f1f3" stroke-width="2px" cx="25" cy="25" r="24"/><rect class="b" x="13" y="21" width="24" height="2"/><rect fill="#01172e" x="13" y="28" width="24" height="2"/></svg>
+	</button>
+</div>
+
+<div class="utility-float">
+	<button class="copy-float btn-link" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-trigger="hover focus" data-bs-title="Copy page link" title="Copy page link" aria-label="Copy page link">
+		<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" aria-hidden="true"><circle cx="25" cy="25" r="24" fill="#fff" stroke="#f1f1f3" stroke-width="2"/><rect x="12" y="12" width="26" height="26" fill="#01172e" fill-opacity="0"/><path d="M24.23,17.34,21.55,20l1.53,1.53,2.69-2.68a3.79,3.79,0,0,1,5.36,5.36l-2.68,2.69L30,28.45l2.68-2.68a6,6,0,1,0-8.43-8.43" fill="#01172e" fill-rule="evenodd"/><path d="M26.92,28.45l-2.69,2.68a3.79,3.79,0,0,1-5.36-5.36l2.68-2.69L20,21.55l-2.68,2.68a6,6,0,0,0,8,8.79l3.09-3-1.53-1.53" fill="#01172e" fill-rule="evenodd"/><polygon points="21.55 29.98 29.98 21.55 28.45 20.02 20.02 28.45 21.55 29.98" fill="#01172e" fill-rule="evenodd"/></svg>
+	</button>
+	<button class="top-link btn-link" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-trigger="hover focus" data-bs-title="Return to top" title="Return to top" aria-label="Return to top">
+		<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" aria-hidden="true"><circle cx="25" cy="25" r="24" fill="#fff" stroke="#f1f1f3" stroke-width="2"/><line x1="16.5" y1="28.5" x2="25.5" y2="19.5" fill="none" stroke="#01172e" stroke-linecap="square" stroke-width="2"/><line x1="34.5" y1="28.5" x2="25.5" y2="19.5" fill="none" stroke="#01172e" stroke-linecap="square" stroke-width="2"/></svg>
+	</button>
+</div>
+<script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/wp-*.php","/wp-admin/*","/files/*","/assets/*","/assets/plugins/*","/assets/themes/northlandcollege/*","/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+        <script type="text/javascript">
+            /* <![CDATA[ */
+           document.querySelectorAll("ul.nav-menu").forEach(
+               ulist => { 
+                    if (ulist.querySelectorAll("li").length == 0) {
+                        ulist.style.display = "none";
+
+                                            } 
+                }
+           );
+            /* ]]> */
+        </script>
+        <script id="wp-hooks-js" src="https://www.northlandcollege.edu/wp-includes/js/dist/hooks.min.js?ver=f0f188028580e8dc1255"></script>
+<script id="wp-i18n-js" src="https://www.northlandcollege.edu/wp-includes/js/dist/i18n.min.js?ver=1dfe7db3940c23ea9216"></script>
+<script id="wp-i18n-js-after">
+wp.i18n.setLocaleData( { 'text direction\u0004ltr': [ 'ltr' ] } );
+//# sourceURL=wp-i18n-js-after
+</script>
+<script id="elasticpress-autosuggest-js-extra">
+var epas = {"query":"{\"from\":0,\"size\":10,\"post_filter\":{\"bool\":{\"must\":[{\"terms\":{\"post_type.raw\":[\"calendar_events\",\"employee_bios\",\"page\",\"post\",\"programs\",\"success_stories\"]}},{\"terms\":{\"post_status\":[\"acf-disabled\",\"publish\"]}},{\"bool\":{\"must_not\":[{\"terms\":{\"meta.ep_exclude_from_search.raw\":[\"1\"]}}]}}]}},\"query\":{\"bool\":{\"should\":[{\"bool\":{\"must\":[{\"bool\":{\"should\":[{\"multi_match\":{\"query\":\"ep_autosuggest_placeholder\",\"type\":\"phrase\",\"fields\":[\"post_title^1\",\"terms.ep_custom_result.name^9999\"],\"boost\":3}},{\"multi_match\":{\"query\":\"ep_autosuggest_placeholder\",\"fields\":[\"post_title^1\",\"post_title.suggest^1\"],\"operator\":\"and\",\"boost\":1,\"fuzziness\":\"auto\"}},{\"multi_match\":{\"query\":\"ep_autosuggest_placeholder\",\"type\":\"cross_fields\",\"fields\":[\"post_title^1\",\"terms.ep_custom_result.name^1\"],\"boost\":1,\"analyzer\":\"standard\",\"tie_breaker\":0.5,\"operator\":\"and\"}}]}}],\"filter\":[{\"match\":{\"post_type.raw\":\"calendar_events\"}}]}},{\"bool\":{\"must\":[{\"bool\":{\"should\":[{\"multi_match\":{\"query\":\"ep_autosuggest_placeholder\",\"type\":\"phrase\",\"fields\":[\"post_title^3\",\"post_content\",\"terms.ep_custom_result.name^9999\"],\"boost\":3}},{\"multi_match\":{\"query\":\"ep_autosuggest_placeholder\",\"fields\":[\"post_title^3\",\"post_content\",\"post_title.suggest^1\"],\"operator\":\"and\",\"boost\":1,\"fuzziness\":\"auto\"}},{\"multi_match\":{\"query\":\"ep_autosuggest_placeholder\",\"type\":\"cross_fields\",\"fields\":[\"post_title^1\",\"post_content\",\"terms.ep_custom_result.name^1\"],\"boost\":1,\"analyzer\":\"standard\",\"tie_breaker\":0.5,\"operator\":\"and\"}}]}}],\"filter\":[{\"match\":{\"post_type.raw\":\"employee_bios\"}}]}},{\"bool\":{\"must\":[{\"bool\":{\"should\":[{\"multi_match\":{\"query\":\"ep_autosuggest_placeholder\",\"type\":\"phrase\",\"fields\":[\"post_title^25\",\"post_content^2\",\"terms.ep_custom_result.name^9999\"],\"boost\":3}},{\"multi_match\":{\"query\":\"ep_autosuggest_placeholder\",\"fields\":[\"post_title^25\",\"post_content^2\",\"post_title.suggest^1\"],\"operator\":\"and\",\"boost\":1,\"fuzziness\":\"auto\"}},{\"multi_match\":{\"query\":\"ep_autosuggest_placeholder\",\"type\":\"cross_fields\",\"fields\":[\"post_title^1\",\"post_content^1\",\"terms.ep_custom_result.name^1\"],\"boost\":1,\"analyzer\":\"standard\",\"tie_breaker\":0.5,\"operator\":\"and\"}}]}}],\"filter\":[{\"match\":{\"post_type.raw\":\"page\"}}]}},{\"bool\":{\"must\":[{\"bool\":{\"should\":[{\"multi_match\":{\"query\":\"ep_autosuggest_placeholder\",\"type\":\"phrase\",\"fields\":[\"post_title^1\",\"post_content^1\",\"terms.ep_custom_result.name^9999\"],\"boost\":3}},{\"multi_match\":{\"query\":\"ep_autosuggest_placeholder\",\"fields\":[\"post_title^1\",\"post_content^1\",\"post_title.suggest^1\"],\"operator\":\"and\",\"boost\":1,\"fuzziness\":\"auto\"}},{\"multi_match\":{\"query\":\"ep_autosuggest_placeholder\",\"type\":\"cross_fields\",\"fields\":[\"post_title^1\",\"post_content^1\",\"terms.ep_custom_result.name^1\"],\"boost\":1,\"analyzer\":\"standard\",\"tie_breaker\":0.5,\"operator\":\"and\"}}]}}],\"filter\":[{\"match\":{\"post_type.raw\":\"post\"}}]}},{\"bool\":{\"must\":[{\"bool\":{\"should\":[{\"multi_match\":{\"query\":\"ep_autosuggest_placeholder\",\"type\":\"phrase\",\"fields\":[\"post_title^26\",\"post_content^1\",\"terms.ep_custom_result.name^9999\",\"terms.career_interests.name^1\"],\"boost\":3}},{\"multi_match\":{\"query\":\"ep_autosuggest_placeholder\",\"fields\":[\"post_title^26\",\"post_content^1\",\"terms.career_interests.name^1\",\"post_title.suggest^1\",\"term_suggest^1\"],\"operator\":\"and\",\"boost\":1,\"fuzziness\":\"auto\"}},{\"multi_match\":{\"query\":\"ep_autosuggest_placeholder\",\"type\":\"cross_fields\",\"fields\":[\"post_title^1\",\"post_content^1\",\"terms.ep_custom_result.name^1\",\"terms.career_interests.name^1\"],\"boost\":1,\"analyzer\":\"standard\",\"tie_breaker\":0.5,\"operator\":\"and\"}}]}}],\"filter\":[{\"match\":{\"post_type.raw\":\"programs\"}}]}}]}},\"sort\":[{\"_score\":{\"order\":\"desc\"}}],\"highlight\":{\"fields\":{\"post_title\":{\"pre_tags\":[\"\u003Cmark class='ep-highlight'\u003E\"],\"post_tags\":[\"\u003C\\/mark\u003E\"],\"type\":\"plain\",\"number_of_fragments\":0},\"post_content\":{\"pre_tags\":[\"\u003Cmark class='ep-highlight'\u003E\"],\"post_tags\":[\"\u003C\\/mark\u003E\"],\"type\":\"plain\",\"number_of_fragments\":0},\"post_excerpt\":{\"pre_tags\":[\"\u003Cmark class='ep-highlight'\u003E\"],\"post_tags\":[\"\u003C\\/mark\u003E\"],\"type\":\"plain\",\"number_of_fragments\":0}}}}","placeholder":"ep_autosuggest_placeholder","endpointUrl":"https://82b2c809-dfd5-408a-90fc-46f6f298df22_live.us-east-2.pantheon.clients.hosted-elasticpress.io/82b2c809-dfd5-408a-90fc-46f6f298df22_live-northlandcollegeedu-post-1/autosuggest","selector":"ep-autosuggest","defaultSelectors":".ep-autosuggest, .search-field","action":"navigate","mimeTypes":[],"http_headers":[],"triggerAnalytics":"","addSearchTermHeader":"1","requestIdBase":"82b2c809dfd5408a90fc46f6f298df22_live","highlightingEnabled":"1","highlightingTag":"mark","highlightingClass":"ep-highlight"};
+//# sourceURL=elasticpress-autosuggest-js-extra
+</script>
+<script id="elasticpress-autosuggest-js" src="https://www.northlandcollege.edu/assets/plugins/elasticpress/dist/js/autosuggest-script.js?ver=30cc69dfd284cd83b1bd"></script>
+
+
+
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"NRJS-cba449d43d9b93387a1","applicationID":"1476992516","transactionName":"NQMDYxMEWUpRARcICgxJIFQVDFhXHxICBgA=","queueTime":0,"applicationTime":724,"atts":"GUQAFVseSkQ=","errorBeacon":"bam.nr-data.net","agent":""}</script></body>
+</html>

@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>LBW Community College | Lurleen B. Wallace Community College</title>
+    
+    <meta name="pageID" content="1" />
+    <meta name="keywords" content="affordable
+convenient
+education" />
+    <meta name="description" content="Home of the Saints | LBW Community College provides affordable academic, technical, and workforce programs with multiple class formats and flexible scheduling at 4 campuses.  The College offers dual enrollment, technical training, 2-to-4- year transfer, adult education, and community education that prepares students for Alabama’s growing workforce.
+" />
+    
+    <!-- Bootstrap css and normalize css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" integrity="sha512-P5MgMn1jBN01asBgU0z60Qk4QxiXo86+wlFahKrsQf37c9cro517WzVSPPV1tDKzhku2iJ2FVgL67wG03SGnNA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<!--2021 comment out 2.1.x     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">  -->
+
+    
+    <link rel="stylesheet" type="text/css" href="/Page/Import/template.css" />
+
+    <link rel="stylesheet" type="text/css" href="/Page/Import/tools.css" />
+
+    <link rel="stylesheet" type="text/css" href="/Page/Import/site.css" />
+
+    
+    <!-- Added templates for component based styling -->
+    <link rel="stylesheet" type="text/css" href="/Page/Import/header.css" />
+
+    <link rel="stylesheet" type="text/css" href="/Page/Import/footer.css" />
+
+    <link rel="stylesheet" type="text/css" href="/Page/Import/underpage.css" />
+
+    <link rel="stylesheet" type="text/css" href="/Page/Import/responsive.css" />
+
+    <link rel="stylesheet" type="text/css" href="/Page/Import/accordion.css" />
+
+    <link rel="stylesheet" type="text/css" href="/Page/Import/news.css" />
+
+    <link rel="stylesheet" type="text/css" href="/Page/Import/events.css" />
+
+    <link rel="stylesheet" type="text/css" href="/Page/Import/directory.css" />
+
+ 
+    <siteName>LBWCCredesign</siteName>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js" integrity="sha512-37T7leoNS06R80c8Ulq7cdCDU5MNQBwlYoy1TX/WUsLFC2eYNqtKlV0QjH7r8JpG/S0GUMZwebnVFLPd6SU5yg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js" integrity="sha512-o6XqxgrUsKmchwy9G5VRNWSSxTS4Urr4loO6/0hYdpWmFUfHqGzawGxeQGMDqYzxjY9sbktPbNlkIQJWagVZQg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!--2021 comment out 2.1.x     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> -->
+<!--2021 comment out 2.1.x     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha512-DUC8yqWf7ez3JD1jszxCWSVB0DMP78eOyBpMa5aJki1bIRARykviOuImIczkxlj1KhVSyS16w2FSQetkD4UU2w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js" integrity="sha512-XKa9Hemdy1Ui3KSGgJdgMyYlUg1gM+QhL6cnlyTe2qzMCYm4nAZ1PsVerQzTTXzonUR+dmswHqgJPuwCq1MaAg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- 2021                           <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha512-oBTprMeNEKCnqfuqKd6sbvFzmFQtlXS3e0C/RGFV0hD6QzhHV+ODfaQbAlmY6/q0ubbwlAM/nCJjkrgA3waLzg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+<!-- 2021 comment out 2.1.x         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>  -->
+
+    
+    <script src='/Scripts/fullcalendar/moment.min.js'></script>
+    <script src='/Scripts/fullcalendar/fullcalendar.min.js'></script>
+    <script src='/Scripts/fullcalendar/jquery.qtip.min.js'></script>
+    
+    <link href='/Scripts/fullcalendar/fullcalendar.css' rel='stylesheet'>
+    <link href='/Scripts/fullcalendar/fullcalendar.print.css' rel='stylesheet' media='print'>
+    <link href='/Scripts/fullcalendar/jquery.qtip.min.css' rel='stylesheet'>
+<!--2021 comment out 2.1.x      <script src='/Scripts/jquery.validate.min.js'></script> -->
+    
+    
+    <script src='/Scripts/jquery.payment.js'></script>
+    <script src='/Scripts/polyfiller.js'></script>
+    
+    
+    
+    <!-- Tools -->
+	<script type="text/javascript" src="/Page/Import/slick.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="/Page/Import/slick.css" />
+
+	<link rel="stylesheet" type="text/css" href="/Page/Import/accessible-slick-theme.css" />
+
+   <!-- <script src='/Content/Uploads/PatriotsBank/files/slick.js'></script>
+    <link href='/Content/Uploads/PatriotsBank/files/slick.css' rel='stylesheet'>
+    <link href='/Content/Uploads/PatriotsBank/files/slick-theme.css' rel='stylesheet'> -->
+	<script type="text/javascript" src="/Page/Import/site.js"></script>
+
+
+    <script>if (typeof window.JSON === 'undefined') { document.write('<script src="/Scripts/history/uncompressed/json2.js"><\/script>'); }</script>
+    <script src='/Scripts/history/bundled/html4html5/jquery.history.js'></script>
+    
+	<link rel="stylesheet" type="text/css" href="/Page/Import/superfish.css" />
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/superfish/1.7.10/js/superfish.min.js"></script>
+	<script type="text/javascript" src="/Page/Import/owl.carousel.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="/Page/Import/owl.carousel.min.css" />
+
+	<link rel="stylesheet" type="text/css" href="/Page/Import/owl.theme.default.min.css" />
+
+	
+	<!-- Favicon Here -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/Content/Uploads/LBWCCredesign/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/Content/Uploads/LBWCCredesign/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/Content/Uploads/LBWCCredesign/images/favicon-16x16.png">
+    <link rel="manifest" href="/Content/Uploads/LBWCCredesign/images/manifest.json">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    
+                <!-- Global Site Tag (gtag.js) - Google Analytics -->
+                <script async src='https://www.googletagmanager.com/gtag/js?id=G-H4RJX26NBN\'></script>
+                <script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){ dataLayer.push(arguments)};
+                    gtag('js', new Date());
+                    gtag('config', 'G-H4RJX26NBN', {cookie_flags: 'max-age=7200;secure;samesite=none'});   
+                </script >
+    
+<!-- Google Tag Manager 2024 -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PKSSKQCN');</script>
+<!-- End Google Tag Manager 2024 -->
+
+    <script async referrerpolicy="no-referrer-when-downgrade" src='https://tag.simpli.fi/sifitag/6fc53c60-0a51-0139-382d-06abc14c0bc6'></script>
+    <script async referrerpolicy="no-referrer-when-downgrade" src='https://tag.simpli.fi/sifitag/7bf5d390-bd06-013a-50f5-0cc47a8ffaac'></script>
+    <script async referrerpolicy="no-referrer-when-downgrade" src='https://tag.simpli.fi/sifitag/92790e50-117d-0139-820a-06b4c2516bae'></script>
+    <script async referrerpolicy="no-referrer-when-downgrade" src='https://tag.simpli.fi/sifitag/1c9f9ab0-799f-013b-abd0-0cc47abd0334'></script>
+  </head>
+  <body>
+      
+<!-- Google Tag Manager (noscript) 2024 -->
+<noscript><iframe src=https://www.googletagmanager.com/ns.html?id=GTM-PKSSKQCN
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) 2024 -->
+      
+    <div class="theAllDiv">
+        <!-- BEGIN HEADER-->
+<header class="container-fluid" id="header">
+    <div style="width: 100%;">
+        <!-- Alert Start -->
+            <div class="clear"></div>
+            
+            <div class="clear"></div>    
+         <!--Alert End -->
+        <div id="skiptocontent"><a href="#mainContent">skip to main content</a></div>
+        <div class="row header-section">
+            <div class="col-lg-12 col-xl-6 siteTitle">
+                <a href="/"><img id="banner" src="/Content/Uploads/LBWCCredesign/images/LBW_PRIMARY_HORZ_WM_NW.png" alt="homepage banner"></a>
+            </div>
+            <div class="col-lg-12 col-xl-6 quick-links">
+                <ul>
+	<li><a href="https://experience.elluciancloud.com/lbwcc">mylbwcc</a></li>
+	<li><a href="https://experience.elluciancloud.com/lbwcc">canvas</a></li>
+	<li><a href="/future-students/admissions/request-a-transcript">request transcript</a></li>
+	<li><a href="/employee-directory">directory</a></li>
+	<li><a href="https://outlook.office.com" target="_blank">college&nbsp;email</a></li>
+</ul>
+
+            </div>
+        </div>
+        </div>
+        <div class="navsection">
+            <div id="nav" class="container">
+                <nav id="nav-wrap">
+                    <ul id="-1" class=" sf-menu"><li id="_26885" class=""><a href='/about' class=''>About</a><ul id="_1_26885" class="_sub"><li id="_26924" class=""><a href='/about/accreditation' class=''>Accreditation</a></li><li id="_26925" class=""><a href='/about/college-history' class=''>College History</a></li><li id="_26926" class=""><a href='/about/college-mission-strategic-goals' class=''>College Mission/Strategic Goals</a></li><li id="_26927" class=""><a href='/about/presidents-welcome' class=''>President's Welcome</a></li><li id="_26928" class=""><a href='/about/campus-locations' class=''>Campus Locations</a></li><li id="_26929" class=""><a href='/about/community-engagement' class=''>Community Engagement</a></li><li id="_26931" class=""><a href='/about/administrative-areas' class=''>Administrative Areas</a></li><li id="_26961" class=""><a href='/about/careers-at-lbwcc' class=''>Careers at LBWCC</a></li><li id="_26962" class=""><a href='/about/faculty-and-staff' class=''>Faculty and Staff</a></li><li id="_26963" class=""><a href='/about/lbw-at-a-glance' class=''>LBW at a Glance</a></li><li id="_26964" class=""><a href='/about/lbwcc-foundation' class=''>LBWCC Foundation</a></li></ul></li><li id="_26886" class=""><a href='/programs' class=''>Programs</a><ul id="_1_26886" class="_sub"><li id="_26969" class=""><a href='/programs/academic-programs' class=''>Academic Programs</a></li><li id="_26971" class=""><a href='/programs/career-technical-programs' class=''>Career Technical Programs</a></li><li id="_26984" class=""><a href='/programs/health-programs' class=''>Health Programs</a></li><li id="_26990" class=""><a href='/programs/dual-enrollment' class=''>Dual Enrollment</a></li><li id="_26991" class=""><a href='/programs/workforce-development-continuing-education' class=''>Workforce Development & Continuing Education</a></li><li id="_26994" class=""><a href='/programs/adult-educationged' class=''>Adult Education/GED</a></li><li id="_26997" class=""><a href='/programs/healthcare-professional-development' class=''>Healthcare Professional Development</a></li><li id="_26998" class=""><a href='/programs/continuing-education' class=''>Continuing Education</a></li><li id="_26999" class=""><a href='/programs/concurrent-enrollment' class=''>Concurrent Enrollment</a></li><li id="_27004" class=""><a href='/programs/workkeys-testing' class=''>WorkKeys Testing</a></li><li id="_27155" class=""><a href='/programs/licensure-disclosure' class=''>Licensure Disclosure</a></li></ul></li><li id="_26887" class=""><a href='/future-students' class=''>Future Students</a><ul id="_1_26887" class="_sub"><li id="_27005" class=""><a href='/future-students/apply-now' class=''>APPLY NOW</a></li><li id="_27006" class=""><a href='/future-students/admissions' class=''>Admissions</a></li><li id="_27026" class=""><a href='/future-students/financial-aid' class=''>Financial Aid</a></li><li id="_27034" class=""><a href='/future-students/scholarships' class=''>Scholarships</a></li><li id="_27039" class=""><a href='/future-students/student-housing' class=''>Student Housing</a></li><li id="_27040" class=""><a href='/future-students/cost' class=''>Cost</a></li><li id="_27042" class=""><a href='/future-students/visit-us' class=''>Visit Us</a></li><li id="_27041" class=""><a href='/future-students/testing-assessments' class=''>Testing & Assessments</a></li><li id="_27044" class=""><a href='/future-students/success-coach' class=''>Success Coach</a></li><li id="_27053" class=""><a href='/future-students/the-lbw-experience' class=''>The LBW Experience</a></li><li id="_27054" class=""><a href='/future-students/reignited' class=''>ReignitED</a></li><li id="_27164" class=""><a href='/future-students/credit-for-prior-learning' class=''>Credit For Prior Learning</a></li><li id="_27156" class=""><a href='/future-students/mrjfstest' class=''>mrjfstest</a></li></ul></li><li id="_26888" class=""><a href='/current-students' class=''>Current Students</a><ul id="_1_26888" class="_sub"><li id="_27056" class=""><a href='/current-students/academic-calendar' class=''>Academic Calendar</a></li><li id="_27057" class=""><a href='/current-students/bookstore' class='' target='_blank'>Bookstore</a></li><li id="_27058" class=""><a href='/current-students/class-schedule' class='' target='_blank'>Class Schedule</a></li><li id="_27059" class=""><a href='/current-students/disability-accommodations' class=''>Disability Accommodations</a></li><li id="_27060" class=""><a href='/current-students/student-life' class=''>Student Life</a></li><li id="_27061" class=""><a href='/current-students/library' class=''>Library</a></li><li id="_27116" class=""><a href='/current-students/login-information' class=''>Login Information</a></li><li id="_27117" class=""><a href='/current-students/college-catalog-student-handbook' class=''>College Catalog / Student Handbook</a></li><li id="_27118" class=""><a href='/current-students/alertaware' class=''>Alertaware</a></li><li id="_27119" class=""><a href='/current-students/student-success' class=''>Student Success</a></li><li id="_27121" class=""><a href='/current-students/counseling' class=''>Counseling</a></li><li id="_27122" class=""><a href='/current-students/distance-education' class=''>Distance Education</a></li><li id="_27139" class=""><a href='/current-students/financial-aid' class=''>Financial Aid</a></li><li id="_27140" class=""><a href='/current-students/transfer-assistance' class=''>Transfer Assistance</a></li><li id="_27141" class=""><a href='/current-students/graduation' class=''>Graduation</a></li><li id="_27144" class=""><a href='/current-students/final-exam-schedule' class=''>Final Exam Schedule</a></li><li id="_27158" class=""><a href='/current-students/saints-care-resources-for-student-success' class=''>Saints Care: Resources for Student Success</a></li><li id="_27163" class=""><a href='/current-students/career-services' class=''>Career Services</a></li></ul></li><li id="_26889" class=""><a href='/alumni' class=''>Alumni</a><ul id="_1_26889" class="_sub"><li id="_27147" class=""><a href='/alumni/alumni-address-update' class=''>Alumni Address Update</a></li><li id="_27148" class=""><a href='/alumni/alumni-and-friends' class=''>Alumni and Friends</a></li><li id="_27150" class=""><a href='/alumni/lbwcc-foundation' class=''>LBWCC Foundation</a></li><li id="_27151" class=""><a href='/alumni/donate' class=''>Donate</a></li><li id="_27152" class=""><a href='/alumni/transcripts' class=''>Transcripts</a></li><li id="_27153" class=""><a href='/alumni/license-plate' class=''>License Plate</a></li></ul></li><li id="_26890" class=""><a href='/athletics' class='' target='_blank'>Athletics</a></li></ul>
+                    <!-- BEGIN MEGA MENUS-->
+<div class="sf-mega sf-mega-one" style="display:none;">
+    <div class="block container-fluid row">
+        <div class="sf-mega-section1">
+            <p><a href="/about/accreditation">Accreditation</a></p>
+
+<p><a href="/about/college-history">College History</a></p>
+
+<p><a href="/about/college-mission-strategic-goals">College Mission/Strategic Goals</a></p>
+
+<p><a href="/about/presidents-welcome">President's Welcome</a></p>
+
+<p><a href="/about/campus-locations">Campus Locations</a></p>
+
+<p><a href="/about/community-engagement">Community Engagement</a></p>
+
+        </div>
+        <div class="sf-mega-section2">
+            <p><a href="/about/administrative-areas">Administrative Areas</a></p>
+
+<p><a href="/about/careers-at-lbwcc">Careers at LBWCC</a></p>
+
+<p><a href="/about/faculty-and-staff">Faculty and Staff</a></p>
+
+<p><a href="/about/lbw-at-a-glance">LBW at a Glance</a></p>
+
+<p><a href="/about/lbwcc-foundation">LBWCC Foundation</a></p>
+
+        </div>
+        <div class="sf-mega-section3">
+            <p><img alt="LBW Locations" height="144" src="/Content/Uploads/LBWCCredesign/images/ABOUT%20Locations%20Updated%202024.jpg" style="margin: 0px;" width="250" /></p>
+
+<h2>Locations</h2>
+
+<p>Offering associate degree options and career/certificate programs, LBW&nbsp;has locations in Andalusia, Greenville, and Opp.</p>
+
+        </div>
+    <div class="clear"></div>
+    </div>
+</div>
+
+<div class="sf-mega sf-mega-two" style="display:none;">
+    <div class="block container-fluid row">
+        <div class="sf-mega-section1">
+            <p><a href="/programs/academic-programs">Academic Programs</a></p>
+
+<p><a href="/programs/career-technical-programs">Career Technical Programs</a></p>
+
+<p><a href="/programs/health-programs">Health Programs</a></p>
+
+<p><a href="/programs/dual-enrollment">Dual Enrollment</a></p>
+
+<p><a href="/programs/workforce-development-continuing-education">Workforce Development &amp; Continuing Education</a></p>
+
+        </div>
+        <div class="sf-mega-section2">
+            <p><a href="/programs/adult-educationged/adult-education-ged1">Adult Education/GED/ESL</a></p>
+
+<p><a href="/programs/concurrent-enrollment">Concurrent Enrollment</a></p>
+
+<p><a href="https://sites.google.com/view/lbw-thrive" target="_blank">LBW Thrive</a></p>
+
+<p><a href="https://www.lbwcc.edu/programs/workforce-development-continuing-education/online-career-training-and-personal-development-courses">Online Career Training</a></p>
+
+        </div>
+        <div class="sf-mega-section3">
+            <p><img alt="Programs" height="144" src="/Content/Uploads/LBWCCredesign/images/PROGRAMS_Career%20Technical%202-01.jpg" style="margin: 0px;" width="250" /></p>
+
+<h2>Career Technical</h2>
+
+<p>LBW is training&nbsp;Alabama's workforce by offering 16&nbsp;of the areas most high-demand, high-wage&nbsp;programs.</p>
+
+        </div>
+    <div class="clear"></div>
+    </div>
+</div>
+
+<div class="sf-mega sf-mega-three" style="display:none;">
+    <div class="block container-fluid row">
+        <div class="sf-mega-section1">
+            <p><a href="/future-students/apply-now" target="_blank">APPLY NOW</a></p>
+
+<p><a href="/future-students/admissions">Admissions</a></p>
+
+<p><a href="/future-students/financial-aid">Financial Aid</a></p>
+
+<p><a href="/future-students/scholarships">Scholarships</a></p>
+
+<p><a href="/future-students/student-housing">Student Housing</a></p>
+
+<p><a href="/future-students/cost">Cost</a></p>
+
+<p><a href="/future-students/testing-assessments">Testing &amp; Assessments</a></p>
+
+        </div>
+        <div class="sf-mega-section2">
+            <p><a href="/future-students/visit-us">Visit Us</a></p>
+
+<p><a href="/future-students/success-coach">Success Coach</a></p>
+
+<p><a href="/future-students/the-lbw-experience">LBW Experience</a></p>
+
+<p><a href="/future-students/reignited">ReignitED</a></p>
+
+<p><a href="https://lbwcc.my.salesforce-sites.com/inquiry/TargetX_Base__InquiryForm#?formId=a0B5f000000gq8qEAA&amp;formType=general" target="_blank">Request Information</a></p>
+
+<p><a href="/future-students/financial-aid/veteran-affairs">Veterans Affairs</a></p>
+
+<p><a href="/future-students/credit-for-prior-learning">Credit for Prior Learning</a></p>
+
+        </div>
+        <div class="sf-mega-section3">
+            <p><img alt="LBW Housing" src="/Content/Uploads/LBWCCredesign/images/FUTURESTUDENTSStudentHousing2.png" style="margin: 0px;" /></p>
+
+<h2>Student Housing</h2>
+
+<p>Saints Hall&nbsp;is located next to the Andalusia Campus.&nbsp;This two-building complex features a four-bedroom design with common areas of living room, dining room&nbsp;and kitchen.</p>
+
+        </div> 
+    <div class="clear"></div>
+    </div>
+</div>
+
+<div class="sf-mega sf-mega-four" style="display:none;">
+    <div class="block container-fluid row">
+        <div class="sf-mega-section1">
+            <p><a href="/current-students/academic-calendar">Academic Calendar</a></p>
+
+<p><a href="https://LBWSaints.bibliucampus.com" target="_blank">Bookstore</a></p>
+
+<p><a href="https://reg-prod.ec.accs.edu/StudentRegistrationSsb/ssb/term/termSelection?mode=search&amp;mepCode=LBWCC" target="_blank">Class Schedule</a></p>
+
+<p><a href="/current-students/disability-accommodations">Disability Accommodations</a></p>
+
+<p><a href="/current-students/student-life">Student Life</a></p>
+
+<p><a href="/current-students/library">Library</a></p>
+
+<p><a href="/future-students/admissions/login-instructions">Login Information</a></p>
+
+<p><a href="/current-students/college-catalog-student-handbook">College Catalog &amp;&nbsp;Student Handbook</a></p>
+
+<p><a href="/current-students/alertaware">AlertAware</a></p>
+
+<p><a href="/current-students/saints-care-resources-for-student-success">Saints Care: Resources for Student Success</a></p>
+
+        </div>
+        <div class="sf-mega-section2">
+            <p><a href="/future-students/financial-aid/veteran-affairs">Veterans Affairs</a></p>
+
+<p><a href="/current-students/student-success">Student Success</a></p>
+
+<p><a href="/current-students/counseling">Counseling</a></p>
+
+<p><a href="/current-students/career-services">Career Services</a></p>
+
+<p><a href="/current-students/distance-education">Distance Education</a></p>
+
+<p><a href="/future-students/financial-aid">Financial Aid</a></p>
+
+<p><a href="/current-students/transfer-assistance">Transfer Assistance</a></p>
+
+<p><a href="/current-students/graduation">Graduation</a></p>
+
+<p><a href="/current-students/final-exam-schedule">Final Exam Schedule</a></p>
+
+<p><a href="/future-students/admissions/withdrawal-procedures">Withdrawal Procedures</a></p>
+
+        </div>
+         <div class="sf-mega-section3">
+            <p><img alt="" src="/Content/Uploads/LBWCCredesign/images/CURRENTSTUDENTSStudentLife2.png" style="margin: 0px;" /></p>
+
+<h2>Student Life</h2>
+
+<p>Clubs and organizations at LBW offer all enrolled students an opportunity to be involved in campus activities, build friendships, and serve the school and community.</p>
+
+        </div> 
+    <div class="clear"></div>
+    </div>
+</div>
+
+<div class="sf-mega sf-mega-five" style="display:none;">
+    <div class="block container-fluid row">
+        <div class="sf-mega-section1">
+            <p><a href="/alumni/alumni-address-update">Alumni Address Update</a></p>
+
+<p><a href="/alumni/alumni-and-friends">Alumni and Friends</a></p>
+
+<p><a href="/alumni/lbwcc-foundation">LBWCC Foundation</a></p>
+
+<p><a href="/alumni/donate">Donate</a></p>
+
+<p><a href="/alumni/transcripts">Transcripts</a></p>
+
+<p><a href="/alumni/license-plate">License Plate</a></p>
+
+        </div>
+        <div class="sf-mega-section2">
+            
+        </div>
+         <div class="sf-mega-section3">
+            <p><img alt="Foundation Logo" src="/Content/Uploads/LBWCCredesign/images/ALUMNIFoundation2.png" style="margin: 0px;" /></p>
+
+<h2>Foundation</h2>
+
+<p>The LBWCC Foundation was formed&nbsp;in 1970 with the purpose of promoting and supporting the programs and activities of LBW and its students.&nbsp; The Foundation is a 501 (c)(3) organization&nbsp;and contributions are tax deductible.</p>
+
+        </div> 
+    <div class="clear"></div>
+    </div>
+</div>
+
+<div class="sf-mega sf-mega-six" style="display:none;">
+    <div class="block container-fluid row">
+        <div class="sf-mega-section1">
+            
+        </div>
+        <div class="sf-mega-section2">
+            
+        </div>
+         <div class="sf-mega-section3">
+            
+        </div> 
+    <div class="clear"></div>
+    </div>
+</div>
+<!-- END MEGA MENUS -->
+                    <div class="clear"></div>
+                </nav>
+                <div class="search-image">
+                    <img id="search" src="/Content/Uploads/LBWCCredesign/images/Search.png" alt="Search Icon">
+                </div>
+                <nav id="menu" aria-label="Mobile Site Navigation Menu">
+                    <ul id="sub-1" class="sub m-menu"><li id="sub__26885" class="sub_"><a href='/about' class=''>About</a><ul id="sub_1_26885" class="sub_sub"><li id="sub__26924" class="sub_"><a href='/about/accreditation' class=''>Accreditation</a></li><li id="sub__26925" class="sub_"><a href='/about/college-history' class=''>College History</a></li><li id="sub__26926" class="sub_"><a href='/about/college-mission-strategic-goals' class=''>College Mission/Strategic Goals</a></li><li id="sub__26927" class="sub_"><a href='/about/presidents-welcome' class=''>President's Welcome</a></li><li id="sub__26928" class="sub_"><a href='/about/campus-locations' class=''>Campus Locations</a></li><li id="sub__26929" class="sub_"><a href='/about/community-engagement' class=''>Community Engagement</a></li><li id="sub__26931" class="sub_"><a href='/about/administrative-areas' class=''>Administrative Areas</a></li><li id="sub__26961" class="sub_"><a href='/about/careers-at-lbwcc' class=''>Careers at LBWCC</a></li><li id="sub__26962" class="sub_"><a href='/about/faculty-and-staff' class=''>Faculty and Staff</a></li><li id="sub__26963" class="sub_"><a href='/about/lbw-at-a-glance' class=''>LBW at a Glance</a></li><li id="sub__26964" class="sub_"><a href='/about/lbwcc-foundation' class=''>LBWCC Foundation</a></li></ul></li><li id="sub__26886" class="sub_"><a href='/programs' class=''>Programs</a><ul id="sub_1_26886" class="sub_sub"><li id="sub__26969" class="sub_"><a href='/programs/academic-programs' class=''>Academic Programs</a></li><li id="sub__26971" class="sub_"><a href='/programs/career-technical-programs' class=''>Career Technical Programs</a></li><li id="sub__26984" class="sub_"><a href='/programs/health-programs' class=''>Health Programs</a></li><li id="sub__26990" class="sub_"><a href='/programs/dual-enrollment' class=''>Dual Enrollment</a></li><li id="sub__26991" class="sub_"><a href='/programs/workforce-development-continuing-education' class=''>Workforce Development & Continuing Education</a></li><li id="sub__26994" class="sub_"><a href='/programs/adult-educationged' class=''>Adult Education/GED</a></li><li id="sub__26997" class="sub_"><a href='/programs/healthcare-professional-development' class=''>Healthcare Professional Development</a></li><li id="sub__26998" class="sub_"><a href='/programs/continuing-education' class=''>Continuing Education</a></li><li id="sub__26999" class="sub_"><a href='/programs/concurrent-enrollment' class=''>Concurrent Enrollment</a></li><li id="sub__27004" class="sub_"><a href='/programs/workkeys-testing' class=''>WorkKeys Testing</a></li><li id="sub__27155" class="sub_"><a href='/programs/licensure-disclosure' class=''>Licensure Disclosure</a></li></ul></li><li id="sub__26887" class="sub_"><a href='/future-students' class=''>Future Students</a><ul id="sub_1_26887" class="sub_sub"><li id="sub__27005" class="sub_"><a href='/future-students/apply-now' class=''>APPLY NOW</a></li><li id="sub__27006" class="sub_"><a href='/future-students/admissions' class=''>Admissions</a></li><li id="sub__27026" class="sub_"><a href='/future-students/financial-aid' class=''>Financial Aid</a></li><li id="sub__27034" class="sub_"><a href='/future-students/scholarships' class=''>Scholarships</a></li><li id="sub__27039" class="sub_"><a href='/future-students/student-housing' class=''>Student Housing</a></li><li id="sub__27040" class="sub_"><a href='/future-students/cost' class=''>Cost</a></li><li id="sub__27042" class="sub_"><a href='/future-students/visit-us' class=''>Visit Us</a></li><li id="sub__27041" class="sub_"><a href='/future-students/testing-assessments' class=''>Testing & Assessments</a></li><li id="sub__27044" class="sub_"><a href='/future-students/success-coach' class=''>Success Coach</a></li><li id="sub__27053" class="sub_"><a href='/future-students/the-lbw-experience' class=''>The LBW Experience</a></li><li id="sub__27054" class="sub_"><a href='/future-students/reignited' class=''>ReignitED</a></li><li id="sub__27164" class="sub_"><a href='/future-students/credit-for-prior-learning' class=''>Credit For Prior Learning</a></li><li id="sub__27156" class="sub_"><a href='/future-students/mrjfstest' class=''>mrjfstest</a></li></ul></li><li id="sub__26888" class="sub_"><a href='/current-students' class=''>Current Students</a><ul id="sub_1_26888" class="sub_sub"><li id="sub__27056" class="sub_"><a href='/current-students/academic-calendar' class=''>Academic Calendar</a></li><li id="sub__27057" class="sub_"><a href='/current-students/bookstore' class='' target='_blank'>Bookstore</a></li><li id="sub__27058" class="sub_"><a href='/current-students/class-schedule' class='' target='_blank'>Class Schedule</a></li><li id="sub__27059" class="sub_"><a href='/current-students/disability-accommodations' class=''>Disability Accommodations</a></li><li id="sub__27060" class="sub_"><a href='/current-students/student-life' class=''>Student Life</a></li><li id="sub__27061" class="sub_"><a href='/current-students/library' class=''>Library</a></li><li id="sub__27116" class="sub_"><a href='/current-students/login-information' class=''>Login Information</a></li><li id="sub__27117" class="sub_"><a href='/current-students/college-catalog-student-handbook' class=''>College Catalog / Student Handbook</a></li><li id="sub__27118" class="sub_"><a href='/current-students/alertaware' class=''>Alertaware</a></li><li id="sub__27119" class="sub_"><a href='/current-students/student-success' class=''>Student Success</a></li><li id="sub__27121" class="sub_"><a href='/current-students/counseling' class=''>Counseling</a></li><li id="sub__27122" class="sub_"><a href='/current-students/distance-education' class=''>Distance Education</a></li><li id="sub__27139" class="sub_"><a href='/current-students/financial-aid' class=''>Financial Aid</a></li><li id="sub__27140" class="sub_"><a href='/current-students/transfer-assistance' class=''>Transfer Assistance</a></li><li id="sub__27141" class="sub_"><a href='/current-students/graduation' class=''>Graduation</a></li><li id="sub__27144" class="sub_"><a href='/current-students/final-exam-schedule' class=''>Final Exam Schedule</a></li><li id="sub__27158" class="sub_"><a href='/current-students/saints-care-resources-for-student-success' class=''>Saints Care: Resources for Student Success</a></li><li id="sub__27163" class="sub_"><a href='/current-students/career-services' class=''>Career Services</a></li></ul></li><li id="sub__26889" class="sub_"><a href='/alumni' class=''>Alumni</a><ul id="sub_1_26889" class="sub_sub"><li id="sub__27147" class="sub_"><a href='/alumni/alumni-address-update' class=''>Alumni Address Update</a></li><li id="sub__27148" class="sub_"><a href='/alumni/alumni-and-friends' class=''>Alumni and Friends</a></li><li id="sub__27150" class="sub_"><a href='/alumni/lbwcc-foundation' class=''>LBWCC Foundation</a></li><li id="sub__27151" class="sub_"><a href='/alumni/donate' class=''>Donate</a></li><li id="sub__27152" class="sub_"><a href='/alumni/transcripts' class=''>Transcripts</a></li><li id="sub__27153" class="sub_"><a href='/alumni/license-plate' class=''>License Plate</a></li></ul></li><li id="sub__26890" class="sub_"><a href='/athletics' class='' target='_blank'>Athletics</a></li></ul>
+                </nav>
+            </div>
+            <div class="search-row hide">
+                <div class="search">
+                    <form method='POST' action='/Page/SearchSiteAdvanced' role='search' aria-label='site search'><input type='hidden' id='predSearchTypes' name='predSearchTypes' class='searchText' value='pages,news,employee' /><input type='hidden' id='predSearchTypesLabels' name='predSearchTypesLabels' class='searchText' value='Pages,News,Employee' /><input type='hidden' id='mainSearchTypes' name='mainSearchTypes' class='searchText' value='pages,news,employee' /><input type='hidden' id='mainSearchTypesLabels' name='mainSearchTypesLabels' class='searchText' value='Pages,News,Employee' /><input type='hidden' id='predSearchCount' name='predSearchCount' class='searchText' value='5' /><label for='predSearch'>Search</label><input type='text' aria-label='search text' id='predSearch' name='search' role='search' required class='searchText' value='' autocomplete='off' /><input type='submit' aria-label='submit search query' class='searchButton' value='search' /></form><ul id='predSearchResults' style='display: none;'></ul>
+<style>
+    #predSearchResults{
+        background-color: #fff;
+        color: #000;
+        border: 1px solid #666;
+        list-style: none;
+        padding: 0px;
+        width: 213px;
+        position: absolute;
+        top: 76px;
+    }
+    .predHead {
+        background-color: #666;        
+        padding: 2px;
+        color: #fff;
+    }
+    .predItem {
+        
+    }
+    .predItem a {
+        display: block;
+        padding: 2px;
+        color: #000;
+        text-decoration: none;
+    }
+
+    
+    .predItem a:hover {
+        display: block;
+        padding: 2px;
+        color: #000;
+        text-decoration: none;
+    }
+    
+
+    .predAll {
+        background-color: #666;
+        color: #fff;
+    }
+
+    .predAll a {
+        display: block;
+        padding: 2px;
+        color: #fff;
+        text-decoration: none;
+
+    }
+
+    .predAll a:hover {
+        background-color: #AAA;
+        color: #FFF;
+        text-decoration: none;
+
+    }
+
+    #predViewAll {
+        margin: 0px;
+    }
+
+    .predSelected {
+        background-color: #ccc;
+        color: #000;
+        text-decoration: none;
+    }
+</style>
+
+<script type="text/javascript">
+    $(document).ready(function (e) {
+        var predAjaxRequest;
+        var predSearch = $('#predSearch');
+        var predTypes = $('#predSearchTypes').val();
+        var mainTypes = $('#mainSearchTypes').val();
+        var predTypesLabels = $('#predSearchTypesLabels').val();
+        var mainTypesLabels = $('#mainSearchTypesLabels').val();
+        var predCount = $('#predSearchCount').val();
+
+        $(predSearch).keypress(function (e) {
+            if (e.keyCode == 13 && $(".predItem.predSelected").length > 0) {
+                e.preventDefault();
+
+                var baseUrl = window.location.hostname;
+                if (window.location.port.length > 0) {
+                    baseUrl += ":" + window.location.port;
+                }
+                window.location = window.location.protocol + "//" + baseUrl + $(".predItem.predSelected a").attr("href");
+                $("#predSearchResults").hide();
+            }
+        });
+
+        $(predSearch).keyup(function (e) {
+            if (e.keyCode == 13)
+                return
+
+            if (e.keyCode == 40 || e.keyCode == 38) {
+                if (checkForSelect(e.keyCode))
+                    return;
+            }
+
+            switch (e.keyCode) {
+                case 40:
+                    $('#predSearchResults .predSelected').removeClass('predSelected').nextAll(".predItem, .predAll").first().addClass('predSelected').focus();
+                    break;
+                case 38:
+                    $('#predSearchResults .predSelected').removeClass('predSelected').prevAll(".predItem, .predAll").first().addClass('predSelected').focus();
+                    break;
+                case 13:
+                    console.log("enter pressed");
+                    break;
+                default:
+                    CheckPredSearch();
+                    break;
+            }
+        });
+
+        function checkForSelect(k) {
+            if (!$('.predSelected').length) {
+                if(k == 40)
+                    $(".predItem, .predAll").first().addClass("predSelected");
+                else
+                    $(".predItem, .predAll").last().addClass("predSelected");
+                return true;
+            }
+        }
+
+        $(predSearch).focus(function(e) {
+            CheckPredSearch();
+        });
+
+        $('body').click(function (e) {
+            if ($(e.target).hasClass("searchText") || $(e.target).hasClass("predHead")) {
+            } else {
+                $("#predSearchResults").hide();
+            }
+        });
+
+        function CheckPredSearch() {
+            var predSearchValue = predSearch.val();
+
+            if(predSearchValue.length > 1){
+                UpdatePredSearch(predSearchValue);
+                $("#predSearchResults").show();
+            } else {
+                $("#predSearchResults").hide();
+            }
+        }
+
+        function UpdatePredSearch(v) {
+            if (predAjaxRequest) {
+                if (predAjaxRequest.done && predAjaxRequest.fail && predAjaxRequest.always) {
+                    predAjaxRequest.abort();
+                }
+            }
+
+            predAjaxRequest = $.ajax({
+                url: "/Page/UpdatePredictiveSearch/",
+                type: "POST",
+                data: { predSearch: v, types: predTypes, typesLabels:  predTypesLabels, mainTypes: mainTypes, mainTypesLabels, mainTypesLabels, count: predCount },
+                dataType: "json",
+                beforeSend: function (x) {
+                    if (x && x.overrideMimeType) {
+                        x.overrideMimeType("application/j-son;charset=UTF-8");
+                    }
+                },
+                success: function (result) {
+                    $("#predSearchResults").empty();
+                    if (result.results.length > 0) {
+                        $("#predSearchResults").append(result.results);
+
+                        $(".predItem").on("mouseover", function (e) {
+                            $(".predItem").removeClass("predSelected");
+                            $(e.target).parent().addClass("predSelected");
+                        });
+
+                        $("#predSearchResults").show();
+                    } else {
+                        $("#predSearchResults").hide();
+                    }
+
+                },
+                error: function (result) {
+
+                }
+            });
+        }
+    });
+</script>
+
+                </div>
+            </div>
+        </div>
+</header>
+<div class="shadow-layer"></div>
+     
+                    <!-- Show or not the Profile and Logout links at top-right of pages
+                         See: HtmlTemplateBase.cs; CurrentUserStatusClass()
+                         See: Header layout search on CurrentUserStatusClass 
+                         Requires Innovate 2.0.7 or higher 
+                        <div class="index-links ">
+                            <a href="/Account/Profile">Profile</a>
+                            <a href="/Account/Logout">Logout</a>
+                        </div>-->
+<!-- 
+
+            <div id="nav-wrap" class="navSection">
+                <nav>
+                    
+                    
+                    <div class="clear"></div>
+                </nav>
+                </div>
+
+
+-->
+<!-- END HEADER -->
+        
+        <script src="https://apps.elfsight.com/p/platform.js" defer></script>
+<div role="main">
+<!-- Banner Start -->
+    <div class="jumboImage">
+    	<!-- BEGIN HOMEPAGE SLIDER-->
+<script>
+    $(document).ready(function(){
+        $('.home-slider').slick({
+            autoplay: true,
+            dots: false,
+            speed: 600,
+            slidesToShow: 1,
+            nextArrow: '<div class="fa fa-arrow-right"><img src="/Content/Uploads/LBWCCredesign/images/right-arrow.png" alt="next" /></div>',
+            prevArrow: '<div class="fa fa-arrow-left"><img src="/Content/Uploads/LBWCCredesign/images/left-arrow.png" alt="previous" /></div>',
+        });
+    });
+</script>
+
+<div class="home-slider">
+    <div style="position:relative;">
+    <a href="" title="Programs slide">
+    <img src="/Content/Uploads/LBWCCredesign/Images/Gallery/Normalized/4ixNYYQH71-2745672_WebpageImagesTechnicalPrograms_051526_norm.jpg" alt="Programs" class="big">
+    </a>
+</div><div style="position:relative;">
+    <a href="" title="ambassadors 2026 slide">
+    <img src="/Content/Uploads/LBWCCredesign/Images/Gallery/Normalized/Homepage_Desktop_Ambassadors 20262026-8-Wednesday0543_norm.png" alt="ambassadors 2026" class="big">
+    </a>
+</div><div style="position:relative;">
+    <a href="" title="LBW Volleyball slide">
+    <img src="/Content/Uploads/LBWCCredesign/Images/Gallery/Normalized/Homepage_Desktop_Volleyball 2026_norm.png" alt="LBW Volleyball" class="big">
+    </a>
+</div>
+</div>
+<!-- END HOMEPAGE SLIDER -->
+    	<!-- BEGIN HOMEPAGE MOBILE SLIDER-->
+<script>
+    $(document).ready(function(){
+        $('.home-mobile-slider').slick({
+            autoplay: true,
+            dots: false,
+            speed: 600,
+            slidesToShow: 1,
+            nextArrow: '<div class="fa fa-arrow-right"><img src="/Content/Uploads/LBWCCredesign/images/right-arrow.png" alt="next" /></div>',
+            prevArrow: '<div class="fa fa-arrow-left"><img src="/Content/Uploads/LBWCCredesign/images/left-arrow.png" alt="previous" /></div>',
+        });
+    });
+</script>
+
+<div class="home-mobile-slider" style="display:none;">
+    <div style="position:relative;">
+    <a href="" title="Career Technical Students">
+    <img src="/Content/Uploads/LBWCCredesign/Images/Gallery/Normalized/4iwjYucLDy-2745672_WebpageImagesTechnicalPrograms_Mobile6_052026_norm.jpg" alt="Career Technical Students" class="big">
+    </a>
+</div><div style="position:relative;">
+    <a href="" title="ambassadors 2026">
+    <img src="/Content/Uploads/LBWCCredesign/Images/Gallery/Normalized/Homepage_Mobile_Ambassadors 2026_norm.png" alt="ambassadors 2026" class="big">
+    </a>
+</div><div style="position:relative;">
+    <a href="" title="volleyball2026">
+    <img src="/Content/Uploads/LBWCCredesign/Images/Gallery/Normalized/Homepage_Mobile_Volleyball 2026_norm.png" alt="volleyball2026" class="big">
+    </a>
+</div>
+</div>
+<!-- END HOMEPAGE MOBILE SLIDER -->
+    	<div class="header-text">
+    	    <h1>Welcome Home</h1>
+
+<h2>Difference Makers Start Here</h2>
+
+    	</div>
+    </div>
+<!-- Banner End -->
+
+     <div id="mainContent" style="margin: 0;">
+         
+         <!-- Home page news list start-->
+         <div class="news-section">
+                <h2>Recent News</h2>
+                <div class="row news-row" style="margin:0;">
+                    <aside class="col-lg-4 col-md-12 article" role="complementary" title="Ten Students Compete for Miss LBW">
+    <figure class="img-container" style="">
+            <img src='/Content/Uploads/LBWCCredesign/Images/Content/4iajnuUfD2-2786550_MissLBW2026-Facebook_102626.png' alt='Ten Students Compete for Miss LBW'> 
+    </figure>
+    <figure class="img-container" style="display:none;" >
+        <img src='/Content/Uploads/LBWCCredesign/images/homeNewsPlaceholder.png' alt='News Placeholder Image'>
+    </figure>
+    <div class="articleText">
+        <h3>Nov 10</h3>
+        <a href="/news/miss-lbw-2026-2027"><h4>Ten Students Compete for Miss LBW</h4></a>
+        <div class="snippet">
+            <p>LBW Community College will host the annual Miss LBW Pageant on Thursday, Nov. 19, at 6:00 p.m. at the Martha and Solon Dixon Center for the Performing Arts on the Andalusia Campus</p>
+        </div>
+    </div>
+</aside>
+
+<aside class="col-lg-4 col-md-12 article" role="complementary" title="National Touring Production of A Christmas Carol Coming to Andalusia">
+    <figure class="img-container" style="">
+            <img src='/Content/Uploads/LBWCCredesign/Images/Content/CastDance.jpg' alt='National Touring Production of A Christmas Carol Coming to Andalusia'> 
+    </figure>
+    <figure class="img-container" style="display:none;" >
+        <img src='/Content/Uploads/LBWCCredesign/images/homeNewsPlaceholder.png' alt='News Placeholder Image'>
+    </figure>
+    <div class="articleText">
+        <h3>Nov 05</h3>
+        <a href="/news/a-christmas-carol-coming-to-andalusia"><h4>National Touring Production of A Christmas Carol Coming to Andalusia</h4></a>
+        <div class="snippet">
+            <p>The timeless story of redemption, generosity and holiday spirit will come to life on stage when A Christmas Carol is presented at the Martha and Solon Dixon Center for the Performing Arts on Sunday, November 29, 2026, at 2 p.m.</p>
+        </div>
+    </div>
+</aside>
+
+<aside class="col-lg-4 col-md-12 article" role="complementary" title="LBW Enrollment Rises 21.6% Since 2020 as ACCS Reaches Historic 100,000-Student Milestone">
+    <figure class="img-container" style="">
+            <img src='/Content/Uploads/LBWCCredesign/Images/Content/LBW College.jpg' alt='LBW Enrollment Rises 21.6% Since 2020 as ACCS Reaches Historic 100,000-Student Milestone'> 
+    </figure>
+    <figure class="img-container" style="display:none;" >
+        <img src='/Content/Uploads/LBWCCredesign/images/homeNewsPlaceholder.png' alt='News Placeholder Image'>
+    </figure>
+    <div class="articleText">
+        <h3>Oct 20</h3>
+        <a href="/news/lbwenrollmentincrease"><h4>LBW Enrollment Rises 21.6% Since 2020 as ACCS Reaches Historic 100,000-Student Milestone</h4></a>
+        <div class="snippet">
+            <p>Lurleen B. Wallace (LBW) Community College continues to experience strong enrollment growth while contributing to a historic achievement across Alabama's community college system.</p>
+        </div>
+    </div>
+</aside>
+
+
+                </div>
+                <a id="home-news-button" href="/news">All News</a>
+         </div>
+         <div class="events-section">
+                <h2>Upcoming Events</h2>
+                <div class="row events-row" style="margin:0;">
+                    
+                </div>
+                <a id="home-events-button" href="/events">All Events</a>
+         </div>
+         <!--Home page news list end-->
+         
+         <!-- Home page social feed start -->
+        <div class="home-social">
+            <h2>Connect With LBW</h2>
+            <div class="feeds row" style="margin:0;">
+                <aside class="col-md-12 col-lg-12">
+                    <div class="col-lg-12 multi-feed">
+                        <div class="elfsight-app-bbdbbd58-435b-435e-bcab-92004d9ccf94"></div>
+                    </div>
+                </aside>
+                <!-- <aside class="col-md-12 col-lg-4">
+                    <div class="col-lg-12 facebook-feed">
+                        <div class="elfsight-app-6ebccbb0-4305-4ae6-834e-6b8735b1f4e7"></div>
+                    </div>
+                </aside>
+                <aside class="col-md-12 col-lg-4">
+                    <div class="col-lg-12 instagram-feed">
+                        <div class="elfsight-app-6ebccbb0-4305-4ae6-834e-6b8735b1f4e7"></div>
+                    </div>
+                </aside> -->
+            </div>
+        </div>
+        <!-- Home page social feed end-->
+        
+    </div>
+</div>
+
+
+        
+        <!-- BEGIN FOOTER-->
+  <footer class="container-fluid" style="padding: 0;">
+    <div  id="footer" class="row" style="margin: 0;">
+        <div class="col-md-12 col-lg-6 footer">
+                <ul>
+	<li><img alt="Logo horizontal logo for website" height="162" src="/Content/Uploads/LBWCCredesign/images/footer-logo.png" style="margin: 0px;" width="408" /></li>
+	<li>© 2022 Lurleen B. Wallace<br />
+	Community College<br />
+	Andalusia | Greenville |<br />
+	Opp<br />
+	334.222.6591</li>
+</ul>
+
+              <div class="social-media">
+                  <ul>
+	<li><a href="https://www.facebook.com/lbwcc" target="_blank"><img alt="Lurleen B. Wallace Facebook Login Shortcut" height="59" src="/Content/Uploads/LBWCCredesign/images/FB.png" style="margin: 1px;" width="59" /></a></li>
+	<li><a href="https://twitter.com/LBWCC" target="_blank"><img alt="Lurleen B. Wallace Twitter X Login Shortcut" height="59" src="/Content/Uploads/LBWCCredesign/images/xtwitter.png" style="margin: 1px;" width="59" /></a></li>
+	<li><a href="https://www.linkedin.com/school/lbwcommunitycollege/" target="_blank"><img alt="Linked Login shortcut" height="59" src="/Content/Uploads/LBWCCredesign/images/linked.png" style="margin: 1px;" width="60" /></a></li>
+	<li><a href="https://www.instagram.com/lbwcc/" target="_blank"><img alt="Lurleen B. Wallace Instagram login Shortcuto" height="59" src="/Content/Uploads/LBWCCredesign/images/insta(1).png" style="margin: 0px;" width="59" /></a></li>
+	<li><a href="https://www.youtube.com/channel/UClbTr03jCMmA2ysX5En4wvQ" target="_blank"><img alt="Lurleen B. Wallace Youtube login Shortcut" height="59" src="/Content/Uploads/LBWCCredesign/images/youtube.png" style="margin: 0px;" width="59" /></a></li>
+</ul>
+
+              </div>
+              <div class="footer-icons">
+                   <ul>
+	<li><img alt="State Authorization Reciprocity Agreements for National Standards RA Logo" height="68" src="/Content/Uploads/LBWCCredesign/images/SARA1.png" style="margin: 0px;" width="62" /></li>
+	<li><img alt="American Recovery and Reinvestment Act Logo" height="61" src="/Content/Uploads/LBWCCredesign/images/arra.png" style="margin: 0px;" width="58" /></li>
+	<li><img alt="Accreditation logo for Southern Association of American Community CollegesACSSOS" height="67" src="/Content/Uploads/LBWCCredesign/images/accred.png" style="margin: 0px;" width="66" /></li>
+	<li><img alt="Alabama Community College System Updated Logo" height="67" src="/Content/Uploads/LBWCCredesign/images/Primary%20Logo%20-%20ACCS%20White.png" style="margin: 0px;" width="143" /></li>
+</ul>
+
+              </div>
+        </div>
+        <div class="col-xs-12 col-md-6 col-lg-3 footer-column-one">
+                <ul>
+	<li><a href="/footer-links/publications">Publications</a></li>
+	<li><a href="/footer-links/title-iii-grant">Title III Grant</a></li>
+	<li><a href="/footer-links/consumer-information">Consumer Information</a></li>
+	<li><a href="/footer-links/operating-financial-data">Operating&nbsp;Financial&nbsp;Data</a></li>
+	<li><a href="/footer-links/rfp-announcements">Request for Bids</a></li>
+	<li><a href="/footer-links/title-ix">Title IX</a></li>
+	<li><a href="https://secure.touchnet.net/C20434_tsa/web/login.jsp">Authorized User Login</a></li>
+	<li><a href="/programs/licensure-disclosure">Licensure Disclosure</a></li>
+	<li><a href="/Content/Uploads/LBWCCredesign/files/Commitment%20To%20Accessibility%20LBWCC.pdf">Commitment to Accessibility</a><br />
+	<br />
+	<br />
+	&nbsp;</li>
+</ul>
+
+        </div>
+        <div class="col-xs-12 col-md-6 col-lg-3 footer-column-two">
+                <ul>
+	<li><a href="/footer-links/heerf-grants-to-students">HEERF Reporting</a></li>
+	<li><a href="/news">News and Announcements</a></li>
+	<li><a href="/footer-links/saints-care">Saints Care</a></li>
+	<li><a href="https://outlook.office.com">Employee Email</a></li>
+	<li><a href="https://ssb-prod.ec.accs.edu/ssomanager/saml/login?relayState=/c/auth/SSB?campus=https://ssb-prod.ec.accs.edu/PROD/LBWCC/twbkwbis.P_GenMenu?name=bmenu.P_MainMnu&amp;accessibility=false">Employee Login</a></li>
+	<li><a href="/about/careers-at-lbwcc">Careers at LBWCC</a></li>
+	<li><a href="https://intranet.lbwcc.edu/" target="_blank">LBW Intranet</a></li>
+</ul>
+
+        </div>
+    </div>
+  </footer>
+<!-- END FOOTER -->
+    </div>
+    <link rel="stylesheet" href="/Scripts/mmenu/jquery.mmenu.all.css">
+    <script src="/Scripts/mmenu/jquery.mmenu.min.all.js"></script>
+    
+    <!-- mmenu -->
+    <script>
+        $(function() {
+        	$("#menu").mmenu({"extensions": ["theme-innovate"]});    
+        });
+    </script>
+    
+<!-- Monsido tracking code -->
+<script type="text/javascript">
+    window._monsido = window._monsido || {
+        token: "pDn-yrd6RRb9GYRhdZuPhA",
+        statistics: {
+            enabled: true,
+            documentTracking: {
+                enabled: true,
+                documentCls: "monsido_download",
+                documentIgnoreCls: "monsido_ignore_download",
+                documentExt: [],
+            },
+        },
+    };
+</script>
+<script type="text/javascript" async src="https://app-script.monsido.com/v2/monsido-script.js"></script>
+
+  </body>
+</html>
+
+
+
+
+
+
+
+
+

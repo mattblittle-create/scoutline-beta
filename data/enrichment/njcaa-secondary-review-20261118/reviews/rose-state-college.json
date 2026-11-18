@@ -1,0 +1,68 @@
+{
+  "slug": "rose-state-college",
+  "programId": "cmox1gjdy009kqtsg5o6j761h",
+  "collegeId": "cmox1gjd4009iqtsg9rv924hr",
+  "checkedAtUtc": "2026-11-18T14:43:31.790Z",
+  "sourcePath": "../njcaa-core-review-20261118/sources/rose-state-college-0.source",
+  "sourceSHA256": "a4f2594bacc223b4ba3ebe37d78ca104ea7dfc866be25eb532d573e7e3e7ee06",
+  "sourceUrl": "https://rscraiders.com/sports/baseball",
+  "socialLeads": [],
+  "recruitingLeads": [
+    {
+      "url": "https://rose.edu/current-students/student-services/raider-care/",
+      "label": "RAIDER CARE HEALTH CLINIC",
+      "context": "",
+      "kind": "CAMP"
+    },
+    {
+      "url": "https://rscraiders.com/sb_output.aspx?form=78",
+      "label": "Prospect Camp",
+      "context": "",
+      "kind": "CAMP"
+    }
+  ],
+  "logoLeads": [
+    {
+      "url": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/rosestate.sidearmsports.com/images/logos/site/site.png",
+      "label": "Rose State College undefined"
+    }
+  ],
+  "captures": [
+    {
+      "requestedUrl": "https://rose.edu/current-students/student-services/raider-care/",
+      "kind": "CAMP",
+      "status": 200,
+      "finalUrl": "https://rose.edu/current-students/student-services/raider-care/",
+      "sourcePath": "../njcaa-core-review-20261118/sources/rose-state-college-4.source",
+      "sha256": "a6657be22b0e902eca2137d579bb111d583043e827ab5690fa895b887d61455d",
+      "reusedEvidence": true
+    },
+    {
+      "requestedUrl": "https://rscraiders.com/sb_output.aspx?form=78",
+      "kind": "CAMP",
+      "status": 200,
+      "finalUrl": "https://rscraiders.com/sb_output.aspx?form=78",
+      "contentType": "text/html; charset=utf-8",
+      "sourcePath": "sources/rose-state-college-1.source",
+      "sha256": "f61cc66f3889ec7d456f8f48afa8889a898978bf2ccd6a96945ddb7a71b12669"
+    },
+    {
+      "requestedUrl": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/rosestate.sidearmsports.com/images/logos/site/site.png",
+      "kind": "LOGO_ASSET",
+      "status": 200,
+      "finalUrl": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/rosestate.sidearmsports.com/images/logos/site/site.png",
+      "contentType": "image/png",
+      "sourcePath": "sources/rose-state-college-2.source",
+      "sha256": "3d15a6c5d1ab43d22f9a6d5ca7b0ef0baf4c4da5909dd5f5395f8ecaecffa5fb",
+      "decoded": {
+        "format": "png",
+        "width": 200,
+        "height": 200
+      },
+      "assetDecoded": true
+    }
+  ],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED"
+}

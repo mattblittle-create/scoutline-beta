@@ -1,0 +1,41 @@
+{
+  "slug": "college-of-lake-county",
+  "collegeId": "cmox235qm002fqtfkuqtlw0fr",
+  "programId": "cmox235ra002hqtfkjpougwcj",
+  "name": "College of Lake County",
+  "storedState": "IL",
+  "storedDivision": "NJCAA_D2",
+  "checkedAtUtc": "2026-11-18T14:21:06.881Z",
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "currentMembershipVerified": false,
+  "campusIdentityVerified": false,
+  "importApproval": "NOT_GRANTED",
+  "pages": [
+    {
+      "requestedUrl": "http://www.clclancers.com/sport/0/3.php",
+      "kind": "DIRECTORY_ALIAS_REQUIRES_CAMPUS_REVIEW",
+      "parent": {
+        "sourcePath": "../njcaa-discovery-20261118/sources/directory-1.source",
+        "sha256": "496ce44f9a76dc28894dc481d97424ffa3efb0cc8fe8f218363abbc43f06de00",
+        "label": "Lake County"
+      },
+      "status": 404,
+      "finalUrl": "https://clclancers.com/sport/0/3.php",
+      "checkedAtUtc": "2026-11-18T14:21:07.539Z",
+      "sourcePath": "sources/college-of-lake-county-0.source",
+      "sha256": "2c8b7226f41e0e9fdfbefe01922807cd50911eede2e13dde66ce36111280e604"
+    }
+  ],
+  "discoveryAliases": [
+    {
+      "url": "http://www.clclancers.com/sport/0/3.php",
+      "label": "Lake County",
+      "parentSourcePath": "sources/directory-1.source",
+      "parentSHA256": "496ce44f9a76dc28894dc481d97424ffa3efb0cc8fe8f218363abbc43f06de00",
+      "parentUrl": "https://www.thebaseballobserver.com/njcaa-dii-baseball",
+      "status": "UNVERIFIED_NORMALIZED_NAME_LEAD"
+    }
+  ],
+  "status": "HELD_NO_READABLE_SOURCE"
+}

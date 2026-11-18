@@ -1,0 +1,68 @@
+{
+  "slug": "hinds-community-college",
+  "programId": "cmox23746005bqtfkz1xt9hzu",
+  "collegeId": "cmox2373g0059qtfkvko4dcah",
+  "checkedAtUtc": "2026-11-18T14:43:34.666Z",
+  "sourcePath": "../njcaa-discovery-20261118/sources/hinds-community-college-1.source",
+  "sourceSHA256": "81857adfcae5d6d55feaabeef374432173eaea64406f815b69e0518fad6e1228",
+  "sourceUrl": "https://sports.hindscc.edu/sports/baseball",
+  "socialLeads": [],
+  "recruitingLeads": [
+    {
+      "url": "https://sports.hindscc.edu/sb_output.aspx?form=27",
+      "label": "Recruit Questionnaire",
+      "context": "",
+      "kind": "QUESTIONNAIRE"
+    },
+    {
+      "url": "https://sports.hindscc.edu/sports/2022/5/25/summer-camps.aspx",
+      "label": "Camps/Clinics/Tryouts",
+      "context": "",
+      "kind": "CAMP"
+    }
+  ],
+  "logoLeads": [
+    {
+      "url": "https://sports.hindscc.edu/images/logos/site/site.png?height=84&mode=crop&quality=80",
+      "label": "The Official Site of Hinds Community College Athletics undefined"
+    }
+  ],
+  "captures": [
+    {
+      "requestedUrl": "https://sports.hindscc.edu/sb_output.aspx?form=27",
+      "kind": "QUESTIONNAIRE",
+      "status": 200,
+      "finalUrl": "https://sports.hindscc.edu/sb_output.aspx?form=27",
+      "sourcePath": "../njcaa-core-review-20261118/sources/hinds-community-college-4.source",
+      "sha256": "7bf09efceea12d8da6de5b0e2a33e71038ef8dec8d0a030856bc57e0b5bc5c91",
+      "reusedEvidence": true
+    },
+    {
+      "requestedUrl": "https://sports.hindscc.edu/sports/2022/5/25/summer-camps.aspx",
+      "kind": "CAMP",
+      "status": 200,
+      "finalUrl": "https://sports.hindscc.edu/sports/2022/5/25/summer-camps.aspx",
+      "sourcePath": "../njcaa-core-review-20261118/sources/hinds-community-college-5.source",
+      "sha256": "a1bbf8461dcda4e8466ebd6ba5668f0a15eb5dbc69cab0ebe2ef5441201a73bf",
+      "reusedEvidence": true
+    },
+    {
+      "requestedUrl": "https://sports.hindscc.edu/images/logos/site/site.png?height=84&mode=crop&quality=80",
+      "kind": "LOGO_ASSET",
+      "status": 200,
+      "finalUrl": "https://images.sidearmdev.com/resize?url=https%3a%2f%2fdxbhsrqyrr690.cloudfront.net%2fsidearm.nextgen.sites%2fhindscc.sidearmsports.com%2fimages%2flogos%2fsite%2fsite.png&height=84&type=webp",
+      "contentType": "image/webp",
+      "sourcePath": "sources/hinds-community-college-2.source",
+      "sha256": "3f921470e86f9eb5c8c19d503e3b258cdb60ccaa6d5c815e38c6098d54c23f99",
+      "decoded": {
+        "format": "webp",
+        "width": 84,
+        "height": 84
+      },
+      "assetDecoded": true
+    }
+  ],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED"
+}

@@ -1,0 +1,1562 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+
+    <base href="https://www.wosc.edu/" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="shortcut icon" href="/img/icons/W_icon_gold-white-green-40.png">
+    <meta name="language" content="en_US" />
+    <meta name="url" content="https://www.wosc.edu" />
+    <meta name="identifier-URL" content="https://www.wosc.edu" />
+    <meta name="revised" content="Fri, 17 Nov 2023 20:02:00" />
+    <!--<link rel="alternate" type="application/rss+xml" title="Pioneer News / Blog » Feed" href="https://news.wosc.edu/?feed=rss2" />-->
+    <meta name="original-source" content="https://www.wosc.edu/" />
+    <meta name="keywords" content="Western Oklahoma State College home page, WOSC, Western Pioneers" />
+    <meta name="description" content="Information for students, alumni, and parents from Western Oklahoma State College" />
+    <meta name="title" content="WESTERN - Western Oklahoma State College | Altus, OK" />
+
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <title>WESTERN - Western Oklahoma State College | Altus, OK</title>
+    <link rel="shortcut icon" href="/img/icons/W_icon_green and white-40px.ico">
+    <link rel="stylesheet" type="text/css" href="https://www.wosc.edu/tmp/cache/stylesheet_combined_33c12639f0f40379b6301f5448d7a197.css" />
+
+
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--[if lt IE 10]><link href="/css/ui-ie.css" rel="stylesheet" type="text/css"><![endif]-->
+    <!--[if lt IE 9]><script src="/js/ui-ie.js"></script><![endif]-->
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+</head>
+
+
+
+
+<body class="home">
+	
+
+<header class="site-header is-stuck222" role="banner">
+	
+    <div class="container width-extra-large">
+		
+        <div id="skip-links">
+            <a href="javascript:void(0);" onclick="document.getElementById('q').focus();" rel="nofollow" class='accessibility'>Skip to Search</a>
+            <a href="https://www.wosc.edu/#skipheader" class="accessibility">Skip to Main Content</a>
+            <a href="https://www.wosc.edu/#footer" class="accessibility">Skip to Footer Links</a>
+        </div>
+
+        <section class="site-branding">
+        	<a class="branding-wordmark" href="https://www.wosc.edu/" title="Western Oklahoma State College Homepage">
+                	<img class="wordmark-vertical" src="img/ui/W_icon_full-logo-white.png" alt="WOSC Logo"/>
+                	<img class="wordmark-horizontal" src="img/ui/W_icon_full-logo-white.png" alt="WOSC Logo"/>
+            </a>
+            <h1 class="visiblyhidden" style="color: white">Western Oklahoma State College</h1>
+        </section>
+
+        <section class="site-search" role="search">
+             <div class="container width-extra-large">
+
+                <div class="site-search-input-wrapper">
+                    <div class="site-search-input search-website">
+    <section class="search" role="search">
+        <label for="q" id="search-label">
+          <span class="accessibility">Search</span>
+        </label>
+        <input aria-labelledby="search-label" id="q" required title="Required!" type="search" name="q" class="search-field" placeholder="Search Western!" style="caret-color: red;">
+        <div style="display:block;">
+          <input type="hidden" id="holder" value="null">
+          <div class="searchrequired" style="display:none; color:red; margin-top:-29px">REQUIRED!</div>
+          <input type="submit" style="display: inline-block !important;" name=sa value="Search Website" class="searchsubmit" onclick="doSearch();">
+          <input type="submit" value="Close" style="display: inline-block !important;" onClick="$('.site-search').removeClass('is-displayed');$('.site-search-label').attr('aria-expanded', 'false');$('.site-search-input-wrapper input').attr('tabindex', -1);">
+        </div>
+    </section>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <div class="mobile-control">
+            <p class="mobile-control-button mobile-search" OnMouseDown="window.setTimeout(() => $('#q').focus(), 0);" role="search-open-close"  aria="search-open-close"><span class="fa fa-search mobile-button-open"></span><span class="fa fa-search mobile-button-close"></span></p>
+
+<!-- ###### Portal Issues Switch ###### -->
+<!--            <p id="mlogin" class="mobile-control-button mobile-search2"  title="Portal Maintenance"><a href="portal-maintenance"><span class="fa fa-unlock mobile-button-open"></span><span class="fa fa-unlock mobile-button-close"></span><span class="accessibility">Login Portal</span></a></p>
+ -->            <p id="mlogin" class="mobile-control-button mobile-search2"><a href="https://experience.elluciancloud.com/wsc/"><span class="fa fa-unlock mobile-button-open"></span><span class="fa fa-unlock mobile-button-close"></span><span class="accessibility">Login Portal</span></a></p>
+
+            <p class="mobile-control-button mobile-nav" OnMouseDown="$('.site-search').removeClass('is-displayed');$('.site-search-label').attr('aria-expanded', 'false');$('.site-search-input-wrapper input').attr('tabindex', -1); $(document).keyup(function(e) {     if (e.key === "Escape") {  } } );" role="navbar-open-close" aria="navbar-open-close"><span class="fa fa-bars mobile-button-open"></span><span class="fa fa-times mobile-button-close"></span></p>
+        </div>
+        
+        <nav id="site-nav" role="navigation">
+        
+        
+
+			<section id="nav-utility-wrapper" class="section bg-white">
+				<div class="container width-extra-large" style="padding-left: 0">
+				<div class="nav-utility-section nav-utility-section-quicklinks">
+<!--			    <div style="text-align: center; border-bottom: 1px dotted #ccc;"><a href="portal" style="display: flow; padding: .5em .7em .7em; color: #0f4020;  font-weight: bolder;" ><span class="fa fa-unlock mobile-button-open"></span> LOGIN</a></div> -->
+
+			     <div class="mobile-control" style="display:none; text-align: right; border-bottom: 1px dotted #ccc; font-style: italic; padding: .5em .1em .7em; margin-right: -.7em">
+			     <a href="/" style="#display: flow;  color: #0f4020; float:left; padding-left: 2em" > HOME</a>
+			     <a href="#" class="mobile-button-open" style="#display: flow;  color: #0f4020; padding-right: .7em" > SEARCH </a> 
+			     <a href="portal-maintenance" style="#display: flow;  color: #0f4020; padding-right: .7em" > LOGIN </a> 
+			     <a href="#" class="mobile-button-close" style="#display: flow;  color: #0f4020; " > CLOSE </a>
+			   </div>
+
+                        <ul class="nav-utility-menu nav-utility-menu-quicklinks">
+                            <li><a href="index.php?page=employee-directory"><span class="nav-icon2 fa fa-users" style="padding: 0 5px;"></span>Directory</a></li>
+                            <li><a href="index.php?page=course-schedule#skipheader"><span class="nav-icon2 fa fa-calendar" style="padding: 0 5px;"></span>Calendars</a></li>
+                            <li class="last-unit"><a href="index.php?page=visiting-wosc#map"><span class="nav-icon2 fa fa-map-marker" style="padding: 0 5px;"></span>Map</a></li>
+                            <li id="giving-link" class="search-rightside" style="margin-right: 115px; cursor:pointer">
+                <div id="scroll-top-search" class="site-search-label" tabindex="0" style="background: #668167; position:initial; opacity:1; padding: 6px 11px 6px; #border-bottom: 1px solid #668167" onClick="window.setTimeout(() => $('#q').focus(), 0); $(window).scrollTop(0);">
+                    <span class="site-search-button fa fa-search" style="color:white; font-size: 1.5em"></span>
+                </div>
+                            </li>
+                            <li id="giving-link"><a href="index.php?page=enroll#skipheader">
+                            	<span class="nav-icon fa-user-circle-o" style="font-size: 1.4em !important"></span><span class="giving-link-1" style="font-size: 1.4em">Apply</span></a></li>
+                        </ul>
+                    </div>
+                    
+
+
+		<div class="nav-utility-section nav-utility-section-resources">
+                        <ul class="nav-utility-menu nav-utility-menu-resources">
+
+<!-- ###### Portal Issues Switch ###### -->
+<!--                            <li id="login" title="Portal Maintenance"><a href="portal-maintenance" class="lock"><span style="color:#a51a0b"><span class="nav-icon fa-unlock"></span>LOGIN</span></a></li>
+ --> 
+                          <li id="login"><a href="https://experience.elluciancloud.com/wsc/" class="lock"><span style="color:#a51a0b"><span class="nav-icon fa-unlock"></span>LOGIN</span></a></li>
+
+                            <li><a style="cursor:pointer; #tabindex: 1" onClick="window.setTimeout(() => $('#q').focus(), 0); $(window).scrollTop(0);" href="javascript:void(0);"><span class="nav-icon2 fa fa-search"></span> SEARCH</a></li>
+                            <li><a href="index.php?page=enroll#skipheader"><span class="nav-icon2 fa fa-user-circle-o"></span> APPLY NOW!</a></li>
+                        </ul>
+                    </div></div>
+		</section>
+
+
+
+
+                    <ul id="nav-global">
+				<li id="nav-global-about2" class="nav-global-link">
+                    <a class="submenu-trigger" href="index.php?page=about-wosc">About Western</a>
+                    <span class="submenu-trigger-mobile"><span class="fa fa-caret-down"></span></span>
+                    <div class="nav-global-submenu-wrapper">
+						<div class="container">
+                            <div class="submenu-group image">
+                                <img src="img/ui/AboutWestern.jpg" alt="About Western graphic of the front entrance road sign.">
+                            </div>
+                            <h2 class="submenu-group-header links visiblyhidden">About Links</h2>
+                            <ul class="submenu-group links">
+                                <li class="internal-link"><a href="index.php?page=about-wosc#top" title="Westerns Mission, History and Purpose">Mission, History &amp; Purpose</a></li>
+                                <li class="internal-link"><a href="index.php?page=hea" title="Important Institution Information">Institutional Information</a></li>
+                                <li class="internal-link"><a href="index.php?page=accreditation">Accreditation</a></li>
+                                <li class="internal-link"><a href="index.php?page=office-of-the-president" title="Office of the President">President &amp; Leadership</a></li>
+                                <li class="internal-link"><a href="index.php?page=wosc-board-of-regents" title="WOSC Board of Regents">Board of Regents</a></li>
+                                <li class="internal-link"><a href="index.php?page=jobs" title="Employment (Job) Opportunities">Job Opportunities</a></li>
+                                <li class="internal-link"><a href="index.php?page=department-directory" title="Department Contact Directory">Department Directory</a></li>
+                                <li class="internal-link"><a href="index.php?page=visiting-wosc">Campus Map &amp; Area</a></li>
+                                <li class="internal-link"><a href="index.php?page=campus-life" title="Campus Life Website">Campus Life</a></li>
+                                <li class="internal-link"><a href="index.php?page=operations" title="Campus Operations">Operations</a></li>
+                            </ul>
+						</div>
+                        <section class="submenu-group-related-wrapper">
+                            <div class="container">
+                                <h3 class="submenu-group-header related">Related Links<span class="visiblyhidden">: About</span></h3>
+                                <ul class="list-buttons list-buttons-closed">
+                                    <li><a href="index.php?page=academic-event-calendar">Calendars</a></li>
+                                    <li><a href="index.php?page=visiting-wosc">Map</a></li>
+                                    <li><a href="index.php?page=employee-directory">Campus Directory</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </div>
+                </li>
+
+
+                <li id="nav-global-admissions" class="nav-global-link">
+                    <a class="submenu-trigger" href="index.php?page=admissions">Enrollment</a>
+                    <span class="submenu-trigger-mobile"><span class="fa fa-caret-down"></span></span>
+                    <div class="nav-global-submenu-wrapper">
+                        <div class="container">
+                            <div class="submenu-group image">
+                                <img src="img/ui/ui_enrollment_SMR26MKTG_057.jpg" alt="Enrollment">
+                            </div>
+                            <h2 class="submenu-group-header links visiblyhidden">Admissions</h2>
+                            <ul class="submenu-group links clear-columns">
+                                <li class="submenu-title col-4"><span>Admissions</span>
+                                    <ul class="submenu-group-menu">
+                                        <li><a href="index.php?page=admissions#skipheader">Admissions & Records</a></li>
+                                        <li><a href="index.php?page=enroll" style="font-weight:bold">Apply & Enroll</a></li>
+                                        <li><a href="index.php?page=admission-procedures-and-information">Enrollment Information</a></li>
+                                        <li><a href="index.php?page=concurrent-students">Concurrent Students</a></li>
+                                        <li><a href="index.php?page=international-students">International Students</a></li>
+                                        <li><a href="index.php?page=va-benefits">VA Benefits</a></li>
+                                        <li><a href="index.php?page=transcripts">Transcripts</a></li>
+                                        <li><a href="index.php?page=course-schedule#skipheader">Course Schedule</a></li>                                        
+                                    </ul>
+                                </li>
+                                <li class="submenu-title col-2 last-unit"><span>Billing & Financial Aid</span>
+                                    <ul>
+                                        <li><a href="index.php?page=new-student-billing">Student Billing</a></li>
+                                        <li><a href="index.php?page=financial-assistance">Financial Aid</a></li>
+                                        <li><a href="https://selfservice.wosc.edu/Student/">Bill Pay</a></li>
+                                        <li><a href="index.php?page=new-tuition-fees">Tuition & Fees</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                         <section class="submenu-group-related-wrapper">
+                            <div class="container">
+                                <h3 class="submenu-group-header related">Related Links<span class="visiblyhidden">: Admissions</span></h3>
+                                <ul class="list-buttons list-buttons-closed">
+                                    <li><a href="index.php?page=student-services">Student Services</a></li>
+                                    <li><a href="index.php?page=online-catalog">College Catalog</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </div>
+                </li>
+
+
+                <li id="nav-global-arts" class="nav-global-link">
+                    <a class="submenu-trigger" href="index.php?page=student-services">Current Students</a>
+                    <span class="submenu-trigger-mobile"><span class="fa fa-caret-down"></span></span>
+                    <div class="nav-global-submenu-wrapper">
+                        <div class="container">
+                            <div class="submenu-group image">
+                                <img src="img/ui/ui_currentstudents_SMR26MKTG_003.jpg" alt="Western Pioneers Landscape!">
+                            </div>
+                            <h2 class="submenu-group-header links visiblyhidden">Academics Links</h2>
+                            <ul class="submenu-group links">
+                                <li class="submenu-title"><span>Student Affairs</span>
+                                    <ul>
+                                        <li><a href="index.php?page=student-services#skipheader">Student Services</a></li>
+                                        <li><a href="index.php?page=student-activities">Student Activities</a></li>
+                                        <li><a href="index.php?page=library-lrc">Library</a></li>
+                                        <li><a href="index.php?page=student-store">Book Store</a></li>
+                                        <li><a href="index.php?page=counseling">Counseling</a></li>
+                                    </ul>
+                                </li>
+                                <li class="submenu-title"><span>Student Links</span>
+                                    <ul>
+                                        <li><a href="https://selfservice.wosc.edu/Student/">MyWestern</a></li>
+                                        <li><a href="https://wosc.instructure.com/" class="canvas">Canvas</a></li>
+                                        <li><a href="https://mail.google.com/a/email.wosc.edu" class="mail">Pioneer Gmail</a></li>
+                                        <li><a href="index.php?page=commencement" class="grad">Graduation</a></li>
+                                        <li><a href="index.php?page=appeals-grievances-complaint-process" class="complaint">Complaint Process</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <section class="submenu-group-related-wrapper">
+							<div class="container">
+                                <h3 class="submenu-group-header related">Related Links<span class="visiblyhidden">: Academics</span></h3>
+                                <ul class="list-buttons list-buttons-closed">
+                                    <li><a href="index.php?page=course-schedule">Course Schedule</a></li>
+                                    <li><a href="index.php?page=Student-Services#studenthandbook">Student Handbook</a></li>
+                                    <li><a href="index.php?page=student-organizations">Student Organizations</a></li>
+                                    <li><a href="index.php?page=student-billing">Student Billing</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </div>
+                </li>
+
+
+                <li id="nav-global-academics" class="nav-global-link">
+                    <a class="submenu-trigger" href="index.php?page=college-catalog">Academics</a>
+                    <span class="submenu-trigger-mobile"><span class="fa fa-caret-down"></span></span>
+                    <div class="nav-global-submenu-wrapper">
+                        <div class="container">
+                            <div class="submenu-group image">
+                                <img src="img/ui/ui_academics_SMR26MKTG_068.jpg" alt="Academics">
+                            </div>
+                            <h2 class="submenu-group-header links visiblyhidden">Academics Links</h2>
+                            <ul class="submenu-group links">
+                                 <li class="internal-link"><a href="index.php?page=online-catalog#top">College Catalog / Courses</a></li>
+                                 <li><a href="index.php?page=degree-programs#catalog">Degree Programs</a></li>
+                                 <li><a href="index.php?page=information-technology">Information Technology</a></li>
+                                 <li><a href="index.php?page=military-students">Military Students</a></li>
+<!--                                 <li><a href="index.php?page=itv">Distance Learning (ITV)</a></li> -->
+                                 <li><a href="index.php?page=assessment-reports">Research & Reports</a></li>
+                                 <li><a href="index.php?page=articulation-agreement">Articulation Agreement</a></li>
+                                 <li><a href="index.php?page=prior-learning-assessment">Prior Learning Assessment</a></li>
+                            </ul>
+                        </div>
+                        <section class="submenu-group-related-wrapper">
+							<div class="container">
+                                <h3 class="submenu-group-header related">Related Links<span class="visiblyhidden">: Academics</span></h3>
+                                <ul class="list-buttons list-buttons-closed">
+                                    <li><a href="index.php?page=admissions">Admissions & Records</a></li>
+                                    <li><a href="https://wosc.instructure.com/">Canvas</a></li>
+                                    <li><a href="index.php?page=student-assessment">Testing Center</a></li>
+                                    <li><a href="index.php?page=course-schedule#skipheader">Course Schedule</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </div>
+                </li>
+
+
+                <li id="nav-global-athletics" class="nav-global-link last-unit">
+                    <a class="submenu-trigger" href="https://pioneers.wosc.edu/">Athletics</a>
+                    <span class="submenu-trigger-mobile"><span class="fa fa-caret-down"></span></span>
+                    <div class="nav-global-submenu-wrapper">
+                        <div class="container">
+                            <div class="submenu-group image">
+                                <!--<img src="img/Pioneer-Mascot-Graphic--web-athletics-175.png" alt="Western Pioneer Athletics">-->
+                                <img src="img/ui/Athletics.jpg" alt="Western Pioneer Athletics">
+                            </div>
+                            <h2 class="submenu-group-header links visiblyhidden">Athletics Links</h2>
+                            <ul class="submenu-group links">
+                                <li><a href="index.php?page=pioneer-sports-calendar-all">Athletic Schedules</a></li>
+                                <li><a href="https://pioneers.wosc.edu/sports/bsb/" title="Baseball Website">Baseball</a></li>
+                                <li><a href="https://pioneers.wosc.edu/sports/mbkb/" title="Men's Basketball">Basketball, Men's</a></li>
+                                <li><a href="https://pioneers.wosc.edu/sports/wbkb/" title="Women's Basketball">Basketball, Women's</a></li>
+                                <li><a href="https://pioneers.wosc.edu/sports/cheer/" title="Cheerleading Website">Cheerleading</a></li>
+                                <li><a href="https://pioneers.wosc.edu/sports/esports/" title="Esports Website">Esports</a></li>
+                                <li><a href="https://pioneers.wosc.edu/sports/rodeo/" title="Rodeo Website">Rodeo</a></li>
+                                <li><a href="https://pioneers.wosc.edu/sports/sportshoot/index" title="Shooting Sports Website">Shooting Sports</a></li>
+                                <li><a href="https://pioneers.wosc.edu/sports/sball/" title="Softball Website">Softball</a></li>
+                                <li><a href="index.php?page=pioneer-sports-calendar-all#streaming">Athletic Live Streaming</a></li>
+                            </ul>
+						</div>
+						<section class="submenu-group-related-wrapper">
+                            <div class="container">
+                                <h3 class="submenu-group-header related">Related Links<span class="visiblyhidden">: Athletics</span></h3>
+                                <ul class="list-buttons list-buttons-closed">
+                                    <li><a href="index.php?page=visiting-wosc">Visit our Campus</a></li>
+                                    <li><a href="index.php?page=alumni-association">Alumni</a></li>
+                                    <li><a href="index.php?page=give">Give!</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </div>
+                </li>
+
+                <li id="nav-global-outreach" class="nav-global-link">
+                    <a class="submenu-trigger" href="index.php?page=alumni-association">Alumni & Outreach</a>
+                    <span class="submenu-trigger-mobile"><span class="fa fa-caret-down"></span></span>
+                    <div class="nav-global-submenu-wrapper">
+                        <div class="container">
+                            <div class="submenu-group image">
+                                <img src="img/hp-generic-200.jpg" alt="Alumni & Outreach">
+                            </div>
+                            <h2 class="submenu-group-header links visiblyhidden">Outreach Links</h2>
+                            <ul class="submenu-group links">
+                                <li><a href="index.php?page=alumni-association#top">Alumni & Friends</a></li>
+                                <li><a href="index.php?page=wosc-foundation-inc">Foundation & Scholarships</a></li>
+                                <li><a href="index.php?page=give">Give!</a></li>
+                                <li><a href="index.php?page=friends-of-wosc-performing-arts">WOSC Performing Arts</a></li>
+                                <li class="ext"><a href="https://www.altuschamber.com/">Altus Community</a></li>
+                                <li class="ext"><a href="https://extension.okstate.edu/county/jackson/4-h.html">4-H Youth Development</a></li>
+                                <li><a href="index.php?page=power-program">STARS</a></li>
+                                <li><a href="index.php?page=winds">WINDS</a></li>
+                                <li><a href="index.php?page=upward-bound">Upward Bound</a></li>
+                                <li><a href="index.php?page=public-relations">Public Relations</a></li>
+                            </ul>
+                        </div>
+                        <section class="submenu-group-related-wrapper">
+                            <div class="container">
+                                <h3 class="submenu-group-header related">Related Links<span class="visiblyhidden">: Outreach</span></h3>
+                                <ul class="list-buttons list-buttons-closed">
+                                    <li><a href="docs/collegeplan/collegeplan.html" class="ext">College Plan</a></li>
+                                    <li><a href="index.php?page=assessment-reports">Assessment Report</a></li>
+                                    <li><a href="index.php?page=visiting-wosc">Visiting Western</a></li>
+                                    <li><a href="index.php?page=academic-event-calendar">Calendars</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </div>
+                </li>
+
+              
+            </ul>          
+
+          
+			<div class="mobile-only mobile-nav-close-bottom">
+				<p class="mobile-nav-close"><span class="fa fa-times"></span> Close Navigation</p>
+			</div>
+
+		</nav>
+
+	</div>
+</header>
+
+
+
+<section id="content-main" role="main" class="primary-main">
+
+<h1 class="visiblyhidden">Western Oklahoma State College Homepage</h1>
+    
+    <section id="home-slideshow">
+            <h2 class="visiblyhidden">Homepage Feature Stories</h2>
+
+
+<!-- ############################ -->
+<!-- ####### Notice Start ####### -->
+<div id="notice"  class="2greenNotice" style="display: none;">
+  <div class="notice-core">
+        Please excuse the login mess, the minions are working to resolve the issue. 
+  </div>
+</div>
+
+
+
+<div id="notice"   class="greenNotice"   style="display: none;">
+  <div class="notice-core">
+        Canvas services have been restored following the earlier vendor outage. While the platform is now operational, you may still experience occasional delays or intermittent issues as services continue to stabilize.
+If you have trouble accessing Canvas or completing coursework, please wait a few moments and try again. If issues continue, contact your instructor for assistance and communication regarding assignments or deadlines.
+  </div>
+</div>
+
+
+
+<style>
+.greenNotice { background: #FFF url(/modus/img/main-pattern.png) repeat !important; border-color: #0f4020 !important; }
+.greenNotice div:before, .greenNotice:before { color: green !important; }
+</style>
+<!-- ###################################
+    Due to inclement weather, Western will closed on Tuesday, Feb. 18 and Wednesday, Feb. 19.  Stay warm Pioneers!
+<script>
+window.setInterval(function() {
+
+  var current = new Date(); //console.log(current);
+  var starty = new Date("Apr 18, 2024 20:55:00");  // SET START TIME TO START SHOWING THE NOTIFICATION MESSAGE
+  var expiry = new Date("Apr 18, 2024 23:05:00");  // SET END TIME TO STOP SHOWING THE NOTIFICATION MESSAGE
+
+  if (current.getTime() > expiry.getTime()) {
+    $('#notice').hide();    $('#login').show();    $('#mlogin').show();
+  } else if (current.getTime() < expiry.getTime()) {
+    $('#notice').show();    $('#login').hide();    $('#mlogin').hide();
+  }
+  if (current.getTime() < starty.getTime()) {
+    $('#notice').hide();    $('#login').show();    $('#mlogin').show();
+  }
+
+}, 0);
+
+</script>
+######################################## -->
+
+ <style>#notice { top:181px; }</style>
+<!-- ######## Notice End ######## -->
+<!-- ############################ -->
+
+
+
+
+<div id="c" class="carousel2">
+    <ul>
+<!--
+        <li class="slide" style="#visibility: initial; #left: 0; background-image: url('img/grad/2024_Live_Video_Streaming.jpg');">
+            <h3>
+              <a href="https://www.youtube.com/watch?v=d7p1efD7W_0">2026 Commencement Streaming is LIVE!!!</a>
+            </h3>
+        </li>img/ui/UI-Altus-Sign-2023-08--1776x950.jpg
+        <li class="slide" style="#visibility: initial; #left: 0; background-image: url('img/veteransday.jpg');">
+            <h3>
+              Thank you to all Veterans!!!
+            </h3>
+        </li>
+-->
+
+        <li class="slide" style="#visibility: initial; #left: 0; background-image: url('img/ui/UI-Homepage-2026-07--1776x950.jpg');">
+            <h3>
+              Welcome Pioneers!!!
+            </h3>
+        </li>
+        <li class="slide" style="background-image: url('img/HP-Western-Pioneers.jpg');">
+            <h3>
+                Western Oklahoma State College located in Altus, OK!
+            </h3>
+        </li>
+        <li class="slide" style="#visibility: initial; #left: 0; background-image: url('img/ui/UI-Altus-Sign-2023-08--1776x950.jpg');">
+            <h3>
+              Altus!!!
+            </h3>
+        </li>
+    </ul>
+</div>
+
+<style>
+span.visuallyhidden {
+    position: absolute;
+    left: -99999px;
+    height: 1px;
+    width: 1px;
+}
+.active .slide {
+  display: block !important;
+  visibility: hidden;
+  transition: left .6s ease-out;
+}
+
+.active .slide.current {
+  visibility: visible;
+  left: 0;
+}
+
+.active .slide.next {
+  left: 100%;
+}
+
+.active .slide.prev {
+  left: -100%;
+}
+
+.active .slide.next.in-transition,
+.active .slide.prev.in-transition {
+  visibility:visible;
+}
+
+  .carousel, .slide {
+    width: 100%;
+    padding:0;
+    margin: 0;
+    #overflow: hidden;
+  }
+  .carousel {
+    position: relative;
+  }
+  .carousel ul {
+    margin:0 63px 0 0;
+    padding: 0;
+  }
+  .slide {
+    height: 100%;
+    background-size: cover;
+    position: relative;
+    margin-bottom:1em;
+    border:1px solid #333;
+  }
+  .slide h3 {
+    display:inline-block;
+    font-weight: bold;
+    font-size: 1.25em;
+    margin:0;
+    padding: .5em 1em;
+    background-color: rgba(255,255,255,.8);
+    float:left;
+    position: absolute;
+    bottom: 0;
+    border-radius: 0 .5em 0 0;
+  }
+  .slide p {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin:0;
+    clear:both;
+    padding: 5px;
+    background-color: rgba(255,255,255,.8);
+  }
+  .slide a {
+    display:block;
+    text-align: left;
+  }
+
+.carousel.active {
+  height: 100%;
+  border: 1px solid #333;
+  position:relative;
+}
+
+.active .slide {
+  border: none;
+  display: none;
+  position:absolute;
+  top:0;
+  left:0;
+  z-index:200;
+}
+
+.slide.current {
+  display:block;
+  z-index: 500;
+}
+
+.btn-prev,
+.btn-next,
+.slidenav button {
+  position:absolute;
+  z-index: 700;
+  bottom: 0; /* 50% */
+  margin-top: -2.5em;
+  border:0;
+  background: rgba(255,255,255,.6);
+  line-height: 1;
+  padding: 6px 5px 0;
+  transition: padding .4s ease-out;
+}
+
+.btn-next:hover,
+.btn-next:focus,
+.btn-prev:hover,
+.btn-prev:focus {
+  #padding-left: 20px;
+  #padding-right: 20px;
+  background-color: gold;
+  color: #050;
+}
+.slidenav button:hover,
+.slidenav button:focus {
+  #font-size: 3em;
+  #border: 2px dotted #fff;
+  background: gold;
+}
+
+.btn-prev {
+  right: 73px;
+  border-radius: .25em 0 0 .25em;
+}
+
+.btn-next {
+  right:0;
+  border-radius: 0 .25em .25em 0;
+}
+
+.carousel.with-slidenav {
+  padding-bottom: 2.5em;
+  overflow: hidden;
+  background: #222 url(/img/seal275.png) repeat-x center;
+}
+.carousel.with-slidenav .slide {
+  border-bottom: 1px solid #333;
+}
+
+.slidenav {
+  #position: absolute;
+  #bottom: -2.25em;
+  #left: 0;
+  #right: 0;
+  z-index: 999;
+  float: right;
+}
+
+.slidenav li {
+  display:inline-block;
+  margin: 0 .5em;
+}
+
+.slidenav button {
+  line-height: .5;
+  height: .77em;
+  font-weight: bold;
+  color: #000;
+  font-size: 2.2em;
+  padding: 13px 9px 28px;
+  margin: 0;
+}
+
+.slidenav button.current {
+  border-radius: .5em;
+  background-color: #fff;
+  color: #333;
+}
+
+.slidenav button.current:hover,
+.slidenav button.current:focus {
+  border: 2px dotted #036;
+}
+.slidenav li:nth-child( n+2 ) {
+    display: none;
+}
+[data-action="start"] {
+  font-size: 1.8em !important;
+  padding: 15px 6px 26px !important;
+  background: #ff9f9f !important;
+}
+[data-action="stop"]{
+  background: #e0f7daad !important;
+}
+
+.future-pioneer { 
+  padding: 60px 100px 40px;
+  background: #265D36 url(/zeni/img/header.png) bottom left repeat-x;
+  color: white;
+  border-top: 4px solid gold;
+  border-bottom: 4px solid gold;
+  #background: linear-gradient(-495deg, #326843 0%, #265d37 100%, gold 93%, #d3b100 100%);
+}
+.future-pioneer ul { 
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: stretch;
+}
+.future-pioneer h2 { 
+  text-align:center;
+  font-size: 3em; 
+  color: white;
+}
+.future-pioneer h3 { 
+  font-weight: 900;
+  color: gold;
+  text-shadow: 2px 2px 1px #333;
+}
+.future-pioneer .pod-unit { 
+  height:auto !important;
+  margin-right: 3% !important;
+  background: transparent;
+  border: none;
+  float: none;
+  width: 47%;
+  #max-width: 600px;
+}
+.future-pioneer li { 
+  #width: 47%; 
+}
+.future-pioneer img { 
+  border-radius: 50%;
+  height: auto;
+  max-height: 175px;
+  width: 100%;
+  max-width: 175px;
+  vertical-align: middle;
+}
+.future-pioneer a { 
+  display: flex;
+  border: none !important;
+  color: white !important;
+}
+.future-pioneer .pod-unit:hover, .future-pioneer .pod-unit:focus   { 
+  border-top: none !important;
+}
+.future-pioneer a:hover, .future-pioneer a:focus, .future-pioneer .pod-unit:hover *, .future-pioneer .pod-unit:focus *, .future-pioneer .pod-unit:hover, .future-pioneer .pod-unit:focus   { 
+  background: transparent !important;
+  -webkit-transition: all 600ms ease;
+  -moz-transition: all 600ms ease;
+  -o-transition: all 600ms ease;
+  transition: all 600ms ease;
+} .future-pioneer .pod-unit:hover span, .future-pioneer .pod-unit:focus span { color: white !important; }
+.future-pioneer a:hover span, .future-pioneer a:focus span { 
+  font-size: 128%;
+  text-shadow: 2px 2px 1px #333;
+  color: gold !important;
+}
+.future-pioneer a:hover p, .future-pioneer a:focus p { 
+  color: white !important;
+}
+.future-pioneer a span { border-bottom: 1px dotted #ccc; } .future-pioneer a:hover span,.future-pioneer a:focus span { border-bottom: 1px solid gold; }
+.future-pioneer a:hover img, .future-pioneer a:focus img { 
+  border: 4px solid gold !important;
+}
+.future-pioneer p { 
+  padding: 10px 20px;
+}
+
+
+
+@media (min-width: 1400px) {
+.future-pioneer ul { 
+  margin: auto;
+  max-width: 80%;
+} }
+@media (max-width: 1080px) {
+.future-pioneer ul { 
+  margin-left: -10%;
+  width: 120%;
+}
+.future-pioneer .pod-unit div { 
+  font-size: 88%;
+} }
+@media (max-width: 960px) {
+.future-pioneer .pod-unit { 
+  width: 100%; 
+}
+.future-pioneer .pod-unit img {
+  border-radius: 9px;
+  margin-bottom: 8px;
+} }
+@media (max-width: 770px) {
+.future-pioneer .pod-unit { 
+  width: 100%; 
+  padding: 2em 0 !important;
+} }
+@media (max-width: 667px) {
+.future-pioneer .pod-unit { 
+  #text-align: left;
+}
+.future-pioneer a { 
+  display: block;
+}
+.future-pioneer .pod-unit img { 
+  width: 90%;
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
+  margin-right: -16px;
+}
+.future-pioneer p { 
+  display: none; 
+}
+.future-pioneer .pod-unit div { 
+  font-size: 100%;
+} }
+@media (max-width: 520px) {
+.future-pioneer ul { 
+  margin-left: 0;
+  width: 100%;
+}
+.future-pioneer { 
+  padding: 40px 10px 20px;
+} }
+#content-main .col-4 {
+    width: 100%; 
+}
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  /* focusin/out event polyfill (firefox) */
+!function(){
+  var w = window,
+  d = w.document;
+
+  if( w.onfocusin === undefined ){
+    d.addEventListener('focus' ,addPolyfill ,true);
+    d.addEventListener('blur' ,addPolyfill ,true);
+    d.addEventListener('focusin' ,removePolyfill ,true);
+    d.addEventListener('focusout' ,removePolyfill ,true);
+  }
+  function addPolyfill(e){
+    var type = e.type === 'focus' ? 'focusin' : 'focusout';
+    var event = new CustomEvent(type, { bubbles:true, cancelable:false });
+    event.c1Generated = true;
+    e.target.dispatchEvent( event );
+  }
+  function removePolyfill(e){
+if(!e.c1Generated){ // focus after focusin, so chrome will the first time trigger tow times focusin
+  d.removeEventListener('focus' ,addPolyfill ,true);
+  d.removeEventListener('blur' ,addPolyfill ,true);
+  d.removeEventListener('focusin' ,removePolyfill ,true);
+  d.removeEventListener('focusout' ,removePolyfill ,true);
+}
+setTimeout(function(){
+  d.removeEventListener('focusin' ,removePolyfill ,true);
+  d.removeEventListener('focusout' ,removePolyfill ,true);
+});
+}
+}();
+
+var myCarousel = (function() {
+
+  var carousel, slides, index, slidenav, settings, timer, setFocus, animationSuspended;
+
+  function forEachElement(elements, fn) {
+    for (var i = 0; i < elements.length; i++)
+      fn(elements[i], i);
+  }
+
+  function removeClass(el, className) {
+    if (el.classList) {
+      el.classList.remove(className);
+    } else {
+      el.className = el.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
+    }
+  }
+
+  function hasClass(el, className) {
+    if (el.classList) {
+      return el.classList.contains(className);
+    } else {
+      return new RegExp('(^| )' + className + '( |$)', 'gi').test(el.className);
+    }
+  }
+
+  function init(set) {
+    settings = set;
+    carousel = document.getElementById(settings.id);
+    slides = carousel.querySelectorAll('.slide');
+
+    carousel.className = 'active carousel';
+
+    var ctrls = document.createElement('ul');
+
+    ctrls.className = 'controls';
+    ctrls.innerHTML = '<li>' +
+        '<button type="button" class="btn-prev"><img src="img/ui/chevron-left.png" alt="Previous Item" width="19"></button>' +
+      '</li>' +
+      '<li>' +
+        '<button type="button" class="btn-next"><img src="img/ui/chevron-right.png" alt="Next Item" width="19"></button>' +
+      '</li>';
+
+    ctrls.querySelector('.btn-prev')
+      .addEventListener('click', function () {
+        prevSlide(true);
+      });
+    ctrls.querySelector('.btn-next')
+      .addEventListener('click', function () {
+        nextSlide(true);
+      });
+
+    carousel.appendChild(ctrls);
+
+    if (settings.slidenav || settings.animate) {
+      slidenav = document.createElement('ul');
+
+      slidenav.className = 'slidenav';
+
+      if (settings.animate) {
+        var li = document.createElement('li');
+
+        if (settings.startAnimated) {
+          li.innerHTML = '<button data-action="stop"><span class="visuallyhidden">Stop Animation </span>II</button>';
+<!--          li.innerHTML = '<button data-action="stop"><span class="visuallyhidden">Stop Animation </span>￭</button>'; -->
+        } else {
+          li.innerHTML = '<button data-action="start"><span class="visuallyhidden">Start Animation </span>▶</button>';
+        }
+
+        slidenav.appendChild(li);
+      }
+
+      if (settings.slidenav) {
+        forEachElement(slides, function(el, i){
+          var li = document.createElement('li');
+          var klass = (i===0) ? 'class="current" ' : '';
+          var kurrent = (i===0) ? ' <span class="visuallyhidden">(Current Item)</span>' : '';
+
+          li.innerHTML = '<button '+ klass +'data-slide="' + i + '"><span class="visuallyhidden">News</span> ' + (i+1) + kurrent + '</button>';
+          slidenav.appendChild(li);
+        });
+      }
+
+      slidenav.addEventListener('click', function(event) {
+        var button = event.target;
+        if (button.localName == 'button') {
+          if (button.getAttribute('data-slide')) {
+            stopAnimation();
+            setSlides(button.getAttribute('data-slide'), true);
+          } else if (button.getAttribute('data-action') == "stop") {
+            stopAnimation();
+          } else if (button.getAttribute('data-action') == "start") {
+            startAnimation();
+          }
+        }
+      }, true);
+
+      carousel.className = 'active carousel with-slidenav';
+      carousel.appendChild(slidenav);
+    }
+
+    var liveregion = document.createElement('div');
+    liveregion.setAttribute('aria-live', 'polite');
+    liveregion.setAttribute('aria-atomic', 'true');
+    liveregion.setAttribute('class', 'liveregion visuallyhidden');
+    carousel.appendChild(liveregion);
+
+      slides[0].parentNode.addEventListener('transitionend', function (event) {
+        var slide = event.target;
+        removeClass(slide, 'in-transition');
+        if (hasClass(slide, 'current'))  {
+          if(setFocus) {
+            slide.setAttribute('tabindex', '-1');
+            slide.focus();
+            setFocus = false;
+          }
+        }
+      });
+
+      carousel.addEventListener('mouseenter', suspendAnimation);
+      carousel.addEventListener('mouseleave', function(event) {
+        if (animationSuspended) {
+          startAnimation();
+        }
+      });
+
+      carousel.addEventListener('focusin', function(event) {
+        if (!hasClass(event.target, 'slide')) {
+          suspendAnimation();
+        }
+      });
+      carousel.addEventListener('focusout', function(event) {
+        if (!hasClass(event.target, 'slide') && animationSuspended) {
+          startAnimation();
+        }
+      });
+
+    index = 0;
+    setSlides(index);
+
+     if (settings.startAnimated) {
+      timer = setTimeout(nextSlide, 8000);
+    }
+  }
+
+  function setSlides(new_current, setFocusHere, transition, announceItemHere) {
+    setFocus = typeof setFocusHere !== 'undefined' ? setFocusHere : false;
+    announceItem = typeof announceItemHere !== 'undefined' ? announceItemHere : false;
+    transition = typeof transition !== 'undefined' ? transition : 'none';
+
+    new_current = parseFloat(new_current);
+
+    var length = slides.length;
+    var new_next = new_current+1;
+    var new_prev = new_current-1;
+
+    if(new_next === length) {
+      new_next = 0;
+    } else if(new_prev < 0) {
+      new_prev = length-1;
+    }
+
+    for (var i = slides.length - 1; i >= 0; i--) {
+      slides[i].className = "slide";
+    }
+
+    slides[new_next].className = 'next slide' + ((transition == 'next') ? ' in-transition' : '');
+    slides[new_next].setAttribute('aria-hidden', 'true');
+
+    slides[new_prev].className = 'prev slide' + ((transition == 'prev') ? ' in-transition' : '');
+    slides[new_prev].setAttribute('aria-hidden', 'true');
+
+
+    slides[new_current].className = 'current slide';
+    slides[new_current].removeAttribute('aria-hidden');
+
+
+    if (announceItem) {
+      carousel.querySelector('.liveregion').textContent = 'Item ' + (new_current + 1) + ' of ' +   slides.length;
+    }
+
+    if(settings.slidenav) {
+      var buttons = carousel.querySelectorAll('.slidenav button[data-slide]');
+      for (var j = buttons.length - 1; j >= 0; j--) {
+        buttons[j].className = '';
+        buttons[j].innerHTML = '<span class="visuallyhidden">News</span> ' + (j+1);
+      }
+      buttons[new_current].className = "current";
+      buttons[new_current].innerHTML = '<span class="visuallyhidden">News</span> ' + (new_current+1) + ' <span class="visuallyhidden">(Current Item)</span>';
+    }
+
+    index = new_current;
+
+  }
+
+  function nextSlide(announceItem) {
+    announceItem = typeof announceItem !== 'undefined' ? announceItem : false;
+
+    var length = slides.length,
+    new_current = index + 1;
+
+    if(new_current === length) {
+      new_current = 0;
+    }
+
+    setSlides(new_current, false, 'prev', announceItem);
+
+    if (settings.animate) {
+      timer = setTimeout(nextSlide, 8000);
+    }
+
+  }
+
+  function prevSlide(announceItem) {
+    announceItem = typeof announceItem !== 'undefined' ? announceItem : false;
+
+    var length = slides.length,
+    new_current = index - 1;
+
+    if(new_current < 0) {
+      new_current = length-1;
+    }
+
+    setSlides(new_current, false, 'next', announceItem);
+
+  }
+
+  function stopAnimation() {
+    clearTimeout(timer);
+    settings.animate = false;
+    animationSuspended = false;
+    _this = carousel.querySelector('[data-action]');
+    _this.innerHTML = '<span class="visuallyhidden">Start Animation </span>▶';
+    _this.setAttribute('data-action', 'start');
+  }
+
+  function startAnimation() {
+    settings.animate = true;
+    animationSuspended = false;
+    timer = setTimeout(nextSlide, 8000);
+    _this = carousel.querySelector('[data-action]');
+    _this.innerHTML = '<span class="visuallyhidden">Stop Animation </span>II';
+    _this.setAttribute('data-action', 'stop');
+  }
+
+  function suspendAnimation() {
+    if(settings.animate) {
+      clearTimeout(timer);
+      settings.animate = false;
+      animationSuspended = true;
+    }
+  }
+
+  return {
+    init:init,
+    next:nextSlide,
+    prev:prevSlide,
+    goto:setSlides,
+    stop:stopAnimation,
+    start:startAnimation
+  };
+});
+
+var c = new myCarousel();
+c.init({
+  id: 'c',
+  slidenav: true,
+  animate: true,
+  startAnimated: true
+});
+</script>
+
+    </section>
+
+
+
+
+<a name="skipheader"></a>
+<div class="upcoming-academic-events" >
+  <div>
+     <h2><span class="fa fa-calendar"></span> &nbsp; UPCOMING ACADEMIC EVENTS</h2>
+<!--
+     <h3 style="margin: 1.8em 0 2em;">
+     <a href="index.php?page=Evening-Program-for-Working-Adults&2"> <img src="img/aaaHOMEPAGE/2024-04--ad-ReachHigher.jpg" alt="Enrollment Event sponsored by Reach Higher" style="width: 100%; max-width: 500px"><br />
+       Enrollment Event <span>( April 10, 2024 )</span>
+     </a></h3>
+     <h3 style="margin-top: 1em;">
+     <a href="https://youtube.com/live/Z0HX96Yw2AQ" target="_blank">
+       <img src="img/grad/20XX_Live_Video_Streaming_Has_Started.jpg" style="width: 100%;max-width: 450px;"><br />
+       2026 Nursing Pinning <span>( Now LIVE Streaming )</span>
+     </a></h3>
+     <h3 style="#padding-top: 2.2em;margin-top:1em">
+     <a href="index.php?page=commencement#skipheader"> 
+       <img src="img/grad/20XX_Live_Video_Streaming_Coming_Soon.jpg" style="width: 100%;max-width: 350px;opacity:.7;"><br />
+       Commencement <span>( Friday, May 16, 2025 @ 6:00 PM )</span>
+     </a></h3>
+     <h3 style="margin-top: 1em;">
+     <a href="https://youtube.com/live/6J6wHN7cXLA" target="_blank">
+       <img src="img/grad/20XX_Live_Video_Streaming_Has_Started.jpg" style="width: 100%;max-width: 450px;"><br />
+       2026 Commencement <span> ( Now LIVE Streaming )</span>
+     </a></h3>
+     <h3 style="#padding-top: 2.2em;#margin-top:1em">
+     <a href="index.php?page=commencement"> 
+       <img src="img/grad/20XX_Live_Video_Streaming_Coming_Soon.jpg" style="width: 100%;max-width: 350px;opacity:.8;"><br />
+       Commencement <span>( Friday, May 15, 2026 @ 6:00 PM )</span>
+     </a></h3>
+     <h3 style="#padding-top: 2.2em;">
+     <a href="index.php?page=Freshman-Connection#skipheader"> 
+       Freshman Connection <span>( Aug. 11th @ 1PM )</span>
+     </a></h3>
+     <h3 style="#padding-top: 2.2em;">
+     <a href="index.php?page=student-activities#welcomeweek"> 
+       Welcome Week Events <span>( Aug. 12th - 16th )</span>
+     </a></h3>
+     <h3 style="#padding-top: 2.2em;">
+     <a href="index.php?page=course-schedule#academiccalendar"> 
+       Spring Semester Begins <span>( Jan. 15th, 2025 )</span>
+     </a></h3>
+     <h3 style="#padding-top: 2.2em;">
+     <a href="index.php?page=Winter-Session"> 
+       Winter Session Begins <span>( Dec 13th - Jan 3rd )</span>
+     </a></h3>
+<p style="padding-top: 2.2em;"><b>NOTICE:</b>  Western's campus will be closed on Thursday, January 9th, beginning at 2 PM for faculty/staff development.</p>
+     <h3 style="#padding-top: 2.2em;">
+     <a href="index.php?page=Winter-Session"> 
+       Winter Session Begins <span>( Dec 17 - Jan 7 )</span>
+     </a></h3>
+     <h3 style="#padding-top: 2.2em;">
+     <a href="index.php?page=student-activities#more"> 
+       Welcome Week Events <span>( Aug. 17th - 21st )</span>
+     </a></h3>
+-->
+
+     <h3 style="#padding-top: 2.2em;">
+     <a href="index.php?page=course-schedule#academiccalendar"> 
+       Winter Session Courses <span>( Dec. 16 - Jan. 6 )</span>
+     </a></h3>
+     <h3 style="padding-top: 2.2em;">
+     <a href="index.php?page=course-schedule#academiccalendar"> 
+       Spring 2027 Courses Begins <span>( Janurary 13, 2027 )</span>
+     </a></h3>
+
+
+
+  </div>
+</div>
+
+
+
+
+<section role="main" class="home-calendar no-padding" aria-labelledby="home-calendar" style="#margin-top: 50px">
+    <h1 id="home-calendar" class="visiblyhidden">100 Years of Service</h1>
+    <section id="home-calendar-widget" class="section border-top">
+            <div class="calendar-widget-view-all" style="width: 100%; #font-size: 2em; line-height: 0; background: #e9ffeb;">
+                <a style="padding: 1.5em;" href="index.php?page=100-years-of-service#skipheader"><span class="fa fa-party-horn"></span>Western's 100th Centennial</a>
+            </div>
+    </section>
+</section>
+
+
+<section role="main" class="home-calendar no-padding" aria-labelledby="home-calendar" style="#margin-top: 50px">
+
+    <h1 id="home-calendar" class="visiblyhidden">QuickLinks</h1>
+    <section id="home-calendar-widget" class="section border-top" >
+
+            <div class="calendar-widget-view-all">
+                <a href="index.php?page=transcripts#skipheader"><span class="fa fa-file-text"></span>&nbsp; TRANSCRIPTS & DIPLOMAS</a>
+            </div>
+            <div class="calendar-widget-view-all">
+                <a href="index.php?page=student-activities#skipheader"><span class="fa fa-users"></span>&nbsp; STUDENT ACTIVITIES</a>
+            </div>
+            <div class="calendar-widget-view-all">
+                <a href="index.php?page=concurrent-students#skipheader"><span class="fa fa-lightbulb-o"></span>&nbsp; CONCURRENT STUDENTS</a>
+            </div>
+            <div class="calendar-widget-view-all">
+                <a href="index.php?page=degree-programs#skipheader"><span class="fa fa-cloud"></span>&nbsp; DEGREE OPTIONS </a>
+            </div>
+            <div class="calendar-widget-view-all">
+                <a href="index.php?page=course-schedule#skipheader"><span class="fa fa-book"></span>&nbsp; COURSE SCHEDULE </a>
+            </div>
+            
+    </section>
+    
+</section>
+
+
+
+
+
+<div class="parallax" style="background-image: url('img/HP-Western-Pioneers.jpg'); background-attachment: fixed;  background-position: center;  background-repeat: no-repeat;  background-size: cover;   padding: 150px;   margin: 0 0 -22px;    border-top: 5px solid #000;    border-bottom: 5px solid #265d37;    #border-right: 20px solid #fff;    #border-left: 20px solid #fff; position: relative" >
+<img src="img/Pioneer-Mascot-Graphic-FINAL-web.png" alt="Pioneer Guy, Western's Mascot" style="width: 22vh; position: absolute; bottom: -75px; left: 2em">
+</div>
+
+
+
+
+
+<section class="future-pioneer pod-group cluster col-4 section border-top transition-up" style="margin-bottom:0">
+ <h2>Are you a Future Pioneer?</h2>
+  <ul>
+    <li class="pod-unit">
+      <a href="index.php?page=degree-programs#skipheader">
+        <img src="/img/ui/UI-Explore-Degree-Plans.jpg" alt="Degree Plans">
+        <div>
+          <h3>Explore Degree Plans</h3>
+          <p>Unsure of where your future can take you? Learn about every major Western has to offer.</p>
+          <span>Prepare for success</span>
+        </div>
+      </a>
+    </li>
+    <li class="pod-unit">
+      <a href="index.php?page=visiting-wosc">
+        <img src="/img/ui/UI-Schedule-A-Tour-2023.jpg" alt="Schedule a Tour">
+        <div>
+          <h3>Schedule a Tour</h3>
+          <p>Contemplating coming to Western or newly enrolled?  Take a tour to see the Campus and learn your way around.</p>
+          <span>Visit Western</span>
+        </div>
+      </a>
+    </li>
+    <li class="pod-unit">
+      <a href="index.php?page=financial-assistance">
+        <img src="/img/ui/UI-Financial-Aid-Options.jpg" alt="Financial Aid">
+        <div>
+          <h3>Financial Aid Options</h3>
+          <p>Information about scholarships, student employment and military and veterans services can be found here.</p>
+          <span>Afford your Future</span>
+        </div>
+      </a>
+    </li>
+    <li class="pod-unit">
+      <a href="index.php?page=enroll">
+        <img src="/img/ui/UI-Apply-Now.jpg" alt="Apply Now">
+        <div>
+          <h3>Apply Now</h3>
+          <p>Already decided that you're a future Pioneer?  Get started on your application today!</p>
+          <span>Start Here</span>
+        </div>
+      </a>
+    </li>
+  </ul>
+</section>
+
+
+
+
+
+    <section id="home-news" class="section border-top transition-up">
+        <div class="container width-narrow222">
+            <h2 id="home-page-news-heading222" class="heading-button color-alt" style="background-color: #0f4020"><a href="https://www.wosc.edu/news" class="pioneernews" style="border: none; background: transparent"><span class="white">pioneer</span><span class="gold">news</span></a></h2>
+            <div class="home-block" >
+            <!-- Start News Display Template -->
+
+<div class=news-grid>
+
+<div class="news-grid-unit" id="news-grid-2">
+<div class="blog-post-entry blog-post-entry-6231-405 blog-post-entry-1col" id="blog-post-entry-6231-405-1">
+	<a href="https://www.wosc.edu/index.php?mact=News,cntnt01,detail,0&amp;cntnt01articleid=496&amp;cntnt01returnid=1555" title="Western Oklahoma State College Reports 25.5% Increase in Concurrent Credit Hours" style="overflow:hidden;height:100%;display: inline-grid; margin:-2px; width: inherit;" class=eil>
+<div class=blog-img style="background: url('https://www.wosc.edu/uploads/news/id496/ui_IT_IMG_20170711_133935.jpg') center top no-repeat, url('img/icons/W_gold circle_300.png') center -20px no-repeat #f1a81f; "></div>
+		<div class="scroll-container">
+			<div class="blog-post-category">Oct 13, 2026</div>
+			<h3 class="blog-post-title">Western Oklahoma State College Reports 25.5% Increase in Concurrent Credit Hours</h3>
+			<div class="blog-post-body">
+				<div >Oct 13, 2026</div>
+									<div class="NewsSummarySummary" style="padding-top: 20px; text-overflow: ellipsis; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; font-weight: normal !important; font-size: 14px !important">
+					<p>Western Oklahoma State College has reported a 25.5% increase in concurrent credit hours for Fall 2026 compared to Fall 2025, reflecting continued growth in opportunities for high school juniors and seniors to earn college credit while completing their high school education...</p>				</div>
+							</div>
+		</div>
+	</a>
+</div><!-- End blog-post-entry -->
+</div><!-- End news-grid-2 -->
+
+
+
+<div class="news-grid-unit" id="news-grid-2">
+<div class="blog-post-entry blog-post-entry-6231-405 blog-post-entry-1col" id="blog-post-entry-6231-405-1">
+	<a href="https://www.wosc.edu/index.php?mact=News,cntnt01,detail,0&amp;cntnt01articleid=495&amp;cntnt01returnid=1555" title="WOSC receives nearly $1.6 million to fund workforce pathways initiative" style="overflow:hidden;height:100%;display: inline-grid; margin:-2px; width: inherit;" class=eil>
+<div class=blog-img style="background: url('https://www.wosc.edu/uploads/news/id495/N5U57FUXU5GPJKTRK7Z2FZONXQ.jpg') center top no-repeat, url('img/icons/W_gold circle_300.png') center -20px no-repeat #f1a81f; "></div>
+		<div class="scroll-container">
+			<div class="blog-post-category">Oct 12, 2026</div>
+			<h3 class="blog-post-title">WOSC receives nearly $1.6 million to fund workforce pathways initiative</h3>
+			<div class="blog-post-body">
+				<div >Oct 12, 2026</div>
+									<div class="NewsSummarySummary" style="padding-top: 20px; text-overflow: ellipsis; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; font-weight: normal !important; font-size: 14px !important">
+					<div class="subscriber-preview">
+<p>Western Oklahoma State College has been awarded a $1,593,701 Title III Strengthening Institutions Program (SIP) grant to support Pathways to Workforce Success, a five-year initiative focused on expanding career development and workforce placement services for students...</p>
+</div>				</div>
+							</div>
+		</div>
+	</a>
+</div><!-- End blog-post-entry -->
+</div><!-- End news-grid-2 -->
+
+
+
+<div class="news-grid-unit" id="news-grid-2">
+<div class="blog-post-entry blog-post-entry-6231-405 blog-post-entry-1col" id="blog-post-entry-6231-405-1">
+	<a href="https://www.wosc.edu/index.php?mact=News,cntnt01,detail,0&amp;cntnt01articleid=492&amp;cntnt01returnid=1555" title="Western Shooting Team Receives MidwayUSA Foundation Grant" style="overflow:hidden;height:100%;display: inline-grid; margin:-2px; width: inherit;" class=eil>
+<div class=blog-img style="background: url('https://www.wosc.edu/uploads/news/id492/26-27 Shooting Team photo for website.png') center top no-repeat, url('img/icons/W_gold circle_300.png') center -20px no-repeat #f1a81f; "></div>
+		<div class="scroll-container">
+			<div class="blog-post-category">Sep  2, 2026</div>
+			<h3 class="blog-post-title">Western Shooting Team Receives MidwayUSA Foundation Grant</h3>
+			<div class="blog-post-body">
+				<div >Sep  2, 2026</div>
+									<div class="NewsSummarySummary" style="padding-top: 20px; text-overflow: ellipsis; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; font-weight: normal !important; font-size: 14px !important">
+					<p class="isselectedend">The Western Oklahoma State College Shooting Sports Team is the recipient of a cash grant from the MidwayUSA Foundation to assist with expenses such as ammunition, targets, competition entry fees, travel, administrative fees and more.</p>				</div>
+							</div>
+		</div>
+	</a>
+</div><!-- End blog-post-entry -->
+</div><!-- End news-grid-2 -->
+
+
+<div id="studentYTlink" style="#display:none"><a target="_blank" href="https://www.youtube.com/playlist?list=PLZ13sFINhTTkOsS5RniTVVlMiZO_9DhBj">Check out the latest Pioneer News video series!</a></div>
+</div><!-- End news-grid -->
+
+ <section>
+   <ul class="text-center list-buttons list-buttons-open" style="list-style: none;">
+       <li><a class="more-headlines222" alt="Click here for all Western News!" title="Click here for all Western News!" href="index.php?page=news-all"><b> &nbsp; More  &nbsp; News &nbsp; Headlines &nbsp;</a></li>
+   </ul>
+ </section>
+
+<style>
+body.home .updated-breadcrumbs { display: none; } 
+#studentYTlink {
+  margin: 0 auto;
+  text-align: center;
+}
+#studentYTlink a {
+  background: white !important;
+  padding: .7em 3em;
+  margin: -44px auto 0;
+  width: 100%;
+  border-radius: 0 0 1em 1em;
+  border-top: 4px #3c6b34 solid;
+  transition: all 0.4s;
+  display: ruby-text;
+}
+#studentYTlink a:hover, #studentYTlink a:focus {
+  background: #fffdbe !important;
+  padding: .77em 4em !important;
+  margin: -44px auto 0 !important;
+}
+</style>
+<!-- End News Display Template -->
+
+
+            <p>&nbsp;</p>
+            <p> </p>
+<!-- <p> </p> -->    </section>
+
+
+
+
+</section>
+
+
+
+
+<footer id="site-footer" role="contentinfo">
+
+
+    <section id="footer" class="footer-resources border-top">
+        <div class="container">
+		<div class="footer-menu-resources col-1 float-right last-unit">
+                <h2 class="footer-menu-resources-header">Degree Programs</h2>
+      <ul class="footer-menu-resources-links">
+         <li><a href="index.php?page=agriculture-sciences">Agriculture Sciences</a></li>
+         <li><a href="index.php?page=criminal-justice">Criminal Justice</a></li>
+         <li><a href="index.php?page=early-childhood-child-development">Early Childhood</a></li>
+         <li><a href="index.php?page=nursing">Nursing</a></li>
+         <li><a href="index.php?page=degree-programs">[View More...]</a></li>
+      <ul>
+     </ul></ul>
+            </div>
+
+            <div class="footer-menu-resources col-1 float-right">
+                <h2 class="footer-menu-resources-header">Contact us</h2>
+                <ul class="footer-menu-resources-links">
+                    <li><a href="index.php?page=department-directory">Contact Western</a></li>
+                    <li><a href="index.php?page=campus-security">Safety & Security</a></li>
+                    <li><a href=index.php?page=visiting-wosc#tour">Schedule a Tour</a></li>
+                    <li class="last-unit"><a href="index.php?page=non-discrimination-statement">An Equal Opportunity Institution</a></li>
+
+                </ul>
+            </div>
+
+            <div class="footer-menu-resources col-1">
+                <h2 class="footer-menu-resources-header">Campus Information</h2>
+                <ul class="footer-menu-resources-links">
+                    <li><a href="index.php?page=news">pioneer<span style="color: #FDC64E">news</span></a></li>
+                    <li><a href="index.php?page=gdpr-policy">GDPR Policy</a></li>
+                    <li><a href="index.php?page=community-and-facilities">Community / Facilities</a></li>
+                    <li><a href="index.php?page=hea">Institutional Information</a></li>
+                    <li><a href="index.php?page=student-complaint-process#skipheader">Suggestions & Complaints</a></li>
+                <ul>
+    </ul></ul>
+            </div>
+
+            <div class="footer-menu-resources col-1">
+                <h2 class="footer-menu-resources-header">Resources for</h2>
+                <ul class="footer-menu-resources-links">
+                    <li><a href="index.php?page=student-activities">Current Students</a></li>
+		    <li><a href="index.php?page=prospective-students">Prospective Students</a></li>
+                    <li><a href="https://wosc.instructure.com/courses/604">Faculty &amp; Staff</a></li>
+                    <li><a href="index.php?page=alumni-association">Alumni</a></li>
+                </ul>
+            </div><div class="footer-branding col-2">
+          <a class="branding-wordmark" href="/" title="Western Pioneers Homepage">
+       		  <img class="wordmark-vertical" src="img/Pioneer-Mascot-Graphic-FINAL-web.png" alt="Western Oklahoma State College Mascot" style="width: 122px !important"/>
+              <span class="visiblyhidden" style="background-color:#f5f5f5">Western Homepage</span>
+       	  </a>
+         <div class=address><a href="index.php?page=visiting-wosc#map">2801 N. Main <br>Altus, OK 73521</a><br><a href="tel:1-580-477-2000">580.477.2000</a></div>
+        </div>
+
+        </div>
+    </section>
+
+
+    <section class="footer-site-info">
+
+    </section>
+    
+
+
+    
+
+    <section class="footer-social" style="overflow:hidden;">
+
+        <div class="container big-footer-links">
+            <h2 class="visiblyhidden" style="background:white">Website Info</h2>
+            <ul>
+                <li><a href="index.php?page=accessibility-statements-of-course-technologies"> Accessibility </a></li>
+                <li><a href="index.php?page=faqs"> FAQ's</a> </li>
+                <li><a href="index.php?page=give"> Give</a> </li>
+                <li><a href="index.php?page=accreditation"> Accreditation</a> </li>
+            </ul>
+        </div>
+
+
+        <div class="container social-icon-list">
+            <h2 class="visiblyhidden" style="background:white">Western Social Media</h2>
+		<ul>
+                <li><a href="index.php?page=campus-security" title="Security!">
+                	<span class="fa fa-phone"></span><span class="visiblyhidden">Security</span></a></li>
+                <li><a href="https://twitter.com/westernokstate" title="X (AKA: Twitter)">
+                	<!--<span class="fa fa-twitter"></span>--><img src="img/icons/X-Twitter-30-no-circle.png" style="width: 18px;margin: 0 0 -2px;padding: 0;" alt="X (Twitter)"><span class="visiblyhidden">X (AKA: Twitter)</span></a></li>
+                <li><a href="https://www.facebook.com/westernok" title="Facebook">
+                	<span class="fa fa-facebook"></span><span class="visiblyhidden">Facebook</span></a></li>
+                <li><a href="index.php?page=social-websites" title="Snapchat">
+                	<span class="fa fa-snapchat-ghost"></span><span class="visiblyhidden">Snapchat</span></a></li>
+                <li><a href="https://www.linkedin.com/school/western-oklahoma-state-college/" title="LinkedIn">
+                	<span class="fa fa-linkedin"></span><span class="visiblyhidden">LinkedIn</span></a></li>
+                <li><a href="https://www.instagram.com/westernokstate/" title="Instagram">
+                	<span class="fa fa-instagram"></span><span class="visiblyhidden">Instagram</span></a></li>
+                <li><a href="https://www.youtube.com/user/WOSCPioneer" class="eil" title="YouTube">
+                	<span class="fa fa-youtube"></span><span class="visiblyhidden">YouTube</span></a></li>
+            </ul></div>
+
+    <div class="updated-breadcrumbs" title="by: Web Admin">
+      <div class="date-updated">
+         <i>This page was updated on Friday, November 17, 2023</i>
+      </div>
+      <div class="breadcrumbs" title="Breadcrumbs are to lead you back home!">
+         <a href="/">HOME</a>&nbsp; &#8596; &nbsp;<span  class="breadcrumbs-currentpage">NEW WESTERN HOMEPAGE</span><b>WESTERN</b>
+      </div>
+    </div> 
+
+    </section>
+    
+
+    <a onclick="window.setTimeout(() => $('#q').focus(), 0); $(window).scrollTop(0);" href="javascript:void(0);" id="scroll-top">
+        <span class="fa fa-search"></span>
+        <span class="visiblyhidden">Scroll To Top and Search</span>
+    </a>
+
+</footer>
+
+
+<script type="text/javascript" src="js/ui-functions.js"></script>
+<style>body.home .updated-breadcrumbs { display: none; } #notice22222 { top2:181px; } .footer-social { padding-bottom: 2em; }</style>
+
+<!-- 
+                        ( o o )
+   .---------------.oooO--(_)--Oooo.---------------.  
+ /       _       __          __                      \
+|       | |     / /__  _____/ /____  _________        |
+|       | | /| / / _ \/ ___/ __/ _ \/ ___/ __ \       |
+|       | |/ |/ /  __(__  ) /_/  __/ /  / / / /       |
+|       |__/|__/\___/____/\__/\___/_/  /_/ /_/        |
+|                                                     |
+|                    .oooO                            |
+ \                   (   )   Oooo.                   /
+   `------------------\ (----(   )-----------------`v
+                       \_)    ) /
+                             (_/
+ -->
+</body>
+</html>

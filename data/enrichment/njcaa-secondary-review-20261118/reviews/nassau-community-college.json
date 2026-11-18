@@ -1,0 +1,68 @@
+{
+  "slug": "nassau-community-college",
+  "programId": "cmox2o2n9004hqtbkhw84u1ug",
+  "collegeId": "cmox2o2mj004fqtbko757r4pr",
+  "checkedAtUtc": "2026-11-18T14:43:38.281Z",
+  "sourcePath": "../njcaa-discovery-20261118/sources/nassau-community-college-1.source",
+  "sourceSHA256": "36bb7293f80c04e627c02b73ad9ae35ae61ed8a9c7833809e1e920f0e24d44ba",
+  "sourceUrl": "https://nassaulions.com/sports/baseball",
+  "socialLeads": [],
+  "recruitingLeads": [
+    {
+      "url": "https://nassaulions.com/sports/2017/7/25/njcaa-amateurism-questionnaire.aspx",
+      "label": "NJCAA Amateurism Questionnaire",
+      "context": "",
+      "kind": "QUESTIONNAIRE"
+    },
+    {
+      "url": "https://nassaulions.com/sb_output.aspx?form=3",
+      "label": "Prospective Athletes",
+      "context": "",
+      "kind": "QUESTIONNAIRE"
+    }
+  ],
+  "logoLeads": [
+    {
+      "url": "https://nassaulions.com/images/logos/site/site.png?height=84&mode=crop&quality=80",
+      "label": "The Official Athletics Website of the Nassau Community College Lions undefined"
+    }
+  ],
+  "captures": [
+    {
+      "requestedUrl": "https://nassaulions.com/sports/2017/7/25/njcaa-amateurism-questionnaire.aspx",
+      "kind": "QUESTIONNAIRE",
+      "status": 200,
+      "finalUrl": "https://nassaulions.com/sports/2017/7/25/njcaa-amateurism-questionnaire.aspx",
+      "sourcePath": "../njcaa-core-review-20261118/sources/nassau-community-college-4.source",
+      "sha256": "a93245dae8299d0d36e737bc54c060d908f11166b5a399c8629c86ab1abaa058",
+      "reusedEvidence": true
+    },
+    {
+      "requestedUrl": "https://nassaulions.com/sb_output.aspx?form=3",
+      "kind": "QUESTIONNAIRE",
+      "status": 200,
+      "finalUrl": "https://nassaulions.com/sb_output.aspx?form=3",
+      "contentType": "text/html; charset=utf-8",
+      "sourcePath": "sources/nassau-community-college-1.source",
+      "sha256": "df88cccde7c1ce1bd719543b0a7069e565906c8aafbdc0c4af4fcf252ad74963"
+    },
+    {
+      "requestedUrl": "https://nassaulions.com/images/logos/site/site.png?height=84&mode=crop&quality=80",
+      "kind": "LOGO_ASSET",
+      "status": 200,
+      "finalUrl": "https://images.sidearmdev.com/resize?url=https%3a%2f%2fdxbhsrqyrr690.cloudfront.net%2fsidearm.nextgen.sites%2fnassaucc.sidearmsports.com%2fimages%2flogos%2fsite%2fsite.png&height=84&type=webp",
+      "contentType": "image/webp",
+      "sourcePath": "sources/nassau-community-college-2.source",
+      "sha256": "fd8eec0926a99eede60ed5e086b4690ec91b63944a4857d9e3df81712c69c9ea",
+      "decoded": {
+        "format": "webp",
+        "width": 84,
+        "height": 84
+      },
+      "assetDecoded": true
+    }
+  ],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED"
+}

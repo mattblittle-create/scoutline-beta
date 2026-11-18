@@ -1,0 +1,53 @@
+{
+  "slug": "prairie-state-college",
+  "programId": "cmox239oi00aqqtfkigr99m48",
+  "collegeId": "cmox239nt00aoqtfkxs8kf48a",
+  "checkedAtUtc": "2026-11-18T14:43:36.401Z",
+  "sourcePath": "../njcaa-discovery-20261118/sources/prairie-state-college-1.source",
+  "sourceSHA256": "2e30a0a4270fdc88a4ad0b873fdeb40232401572a37ff91da7bfb65377204c09",
+  "sourceUrl": "https://prairiestateathletics.com/?path=baseball",
+  "socialLeads": [],
+  "recruitingLeads": [
+    {
+      "url": "https://prairiestateathletics.com/sb_output.aspx?form=3",
+      "label": "Prospective Student-Athlete Form",
+      "context": "",
+      "kind": "QUESTIONNAIRE"
+    }
+  ],
+  "logoLeads": [
+    {
+      "url": "https://prairiestateathletics.com/images/logos/site/site.png?height=84&mode=crop&quality=80",
+      "label": "Prairie State College undefined"
+    }
+  ],
+  "captures": [
+    {
+      "requestedUrl": "https://prairiestateathletics.com/sb_output.aspx?form=3",
+      "kind": "QUESTIONNAIRE",
+      "status": 200,
+      "finalUrl": "https://prairiestateathletics.com/sb_output.aspx?form=3",
+      "sourcePath": "../njcaa-core-review-20261118/sources/prairie-state-college-4.source",
+      "sha256": "f583184fc51cec65cfcc96906960313a4dfa3c1fb12180e155c63b25519068e6",
+      "reusedEvidence": true
+    },
+    {
+      "requestedUrl": "https://prairiestateathletics.com/images/logos/site/site.png?height=84&mode=crop&quality=80",
+      "kind": "LOGO_ASSET",
+      "status": 200,
+      "finalUrl": "https://images.sidearmdev.com/resize?url=https%3a%2f%2fdxbhsrqyrr690.cloudfront.net%2fsidearm.nextgen.sites%2fprairiestatecollege.sidearmsports.com%2fimages%2flogos%2fsite%2fsite.png&height=84&type=webp",
+      "contentType": "image/webp",
+      "sourcePath": "sources/prairie-state-college-1.source",
+      "sha256": "df7fa58535ab008131b9e65cf698d25504c32e628690f60d561781232b52b911",
+      "decoded": {
+        "format": "webp",
+        "width": 84,
+        "height": 84
+      },
+      "assetDecoded": true
+    }
+  ],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED"
+}

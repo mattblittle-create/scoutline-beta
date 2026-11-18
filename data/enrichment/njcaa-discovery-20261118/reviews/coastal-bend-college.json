@@ -1,0 +1,41 @@
+{
+  "slug": "coastal-bend-college",
+  "collegeId": "cmox1gfqj001rqtsgskc12egd",
+  "programId": "cmox1gfr7001tqtsg9kpxxyp8",
+  "name": "Coastal Bend College",
+  "state": "TX",
+  "storedDivision": "NJCAA_D1",
+  "pages": [
+    {
+      "requestedUrl": "https://njcaastats.prestosports.com/sports/bsb/2024-25/div1/teams/coastalbendcollege",
+      "kind": "STORED_URL_UNVERIFIED",
+      "checkedAtUtc": "2026-11-18T14:15:52.571Z",
+      "status": "HELD_ACCESS_NOT_RETRIED",
+      "finalUrl": "https://njcaastats.prestosports.com/sports/bsb/2024-25/div1/teams/coastalbendcollege"
+    },
+    {
+      "requestedUrl": "https://cbc.prestosports.com/sports/bsb/index",
+      "kind": "DISCOVERY_LEAD_NOT_CAMPUS_VERIFIED",
+      "checkedAtUtc": "2026-11-18T14:15:52.571Z",
+      "status": 403,
+      "finalUrl": "https://cbc.prestosports.com/sports/bsb/index",
+      "contentType": "text/html; charset=UTF-8",
+      "sourcePath": "sources/coastal-bend-college-1.source",
+      "sha256": "3dc5c9fb7f257200d94bc601800632f2ed329faee707e8cfd8163b1d3c4b2805"
+    }
+  ],
+  "thirdPartyExactNameLeads": [
+    {
+      "url": "https://cbc.prestosports.com/sports/bsb/index",
+      "label": "Coastal Bend College",
+      "parentSourcePath": "sources/directory-0.source",
+      "parentSHA256": "63f1c531b007d2922e4db3aa2ba596ee54e397dbafd287df69b95213a011a404",
+      "parentUrl": "https://www.thebaseballobserver.com/njcaa-di-baseball"
+    }
+  ],
+  "currentMembershipVerified": false,
+  "campusIdentityVerified": false,
+  "importApproval": "NOT_GRANTED",
+  "databaseAccess": false,
+  "databaseWrites": 0
+}

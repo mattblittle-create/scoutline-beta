@@ -1,0 +1,41 @@
+{
+  "slug": "columbia-state-community-college",
+  "collegeId": "cmox1gg1n002fqtsgwq02qnch",
+  "programId": "cmox1gg2e002hqtsgbycgauxr",
+  "name": "Columbia State Community College",
+  "storedState": "TN",
+  "storedDivision": "NJCAA_D1",
+  "checkedAtUtc": "2026-11-18T14:20:32.623Z",
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "currentMembershipVerified": false,
+  "campusIdentityVerified": false,
+  "importApproval": "NOT_GRANTED",
+  "pages": [
+    {
+      "requestedUrl": "https://www.columbiastate.edu/athletics/baseball/index.html",
+      "kind": "DIRECTORY_ALIAS_REQUIRES_CAMPUS_REVIEW",
+      "parent": {
+        "sourcePath": "../njcaa-discovery-20261118/sources/directory-0.source",
+        "sha256": "63f1c531b007d2922e4db3aa2ba596ee54e397dbafd287df69b95213a011a404",
+        "label": "Columbia State"
+      },
+      "status": 202,
+      "finalUrl": "https://athletics.columbiastate.edu/sports/bsb/index",
+      "checkedAtUtc": "2026-11-18T14:20:35.004Z",
+      "sourcePath": "sources/columbia-state-community-college-0.source",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "discoveryAliases": [
+    {
+      "url": "https://www.columbiastate.edu/athletics/baseball/index.html",
+      "label": "Columbia State",
+      "parentSourcePath": "sources/directory-0.source",
+      "parentSHA256": "63f1c531b007d2922e4db3aa2ba596ee54e397dbafd287df69b95213a011a404",
+      "parentUrl": "https://www.thebaseballobserver.com/njcaa-di-baseball",
+      "status": "UNVERIFIED_NORMALIZED_NAME_LEAD"
+    }
+  ],
+  "status": "HELD_NO_READABLE_SOURCE"
+}

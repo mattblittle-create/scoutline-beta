@@ -1,0 +1,53 @@
+{
+  "slug": "cloud-county-community-college",
+  "programId": "cmox1gfoj001nqtsg9k78ft65",
+  "collegeId": "cmox1gfnw001lqtsg7fvs7z66",
+  "checkedAtUtc": "2026-11-18T14:43:28.984Z",
+  "sourcePath": "../njcaa-discovery-20261118/sources/cloud-county-community-college-1.source",
+  "sourceSHA256": "21edd1635eebc685ef168ae129c47585c520bcd0d040352a03ac5f1e4853683b",
+  "sourceUrl": "https://cloudtbirds.com/sports/baseball?path=baseball",
+  "socialLeads": [],
+  "recruitingLeads": [
+    {
+      "url": "https://cloudtbirds.com/documents/2026/3/27/2026_volleyball_camp_brochure.pdf?path=wvball",
+      "label": "2026 Thunderbird Volleyball Camps",
+      "context": "",
+      "kind": "CAMP"
+    }
+  ],
+  "logoLeads": [
+    {
+      "url": "https://dbukjj6eu5tsf.cloudfront.net/cloudtbirds.com/images/logos/site/site.png",
+      "label": "undefined"
+    }
+  ],
+  "captures": [
+    {
+      "requestedUrl": "https://cloudtbirds.com/documents/2026/3/27/2026_volleyball_camp_brochure.pdf?path=wvball",
+      "kind": "CAMP",
+      "status": 200,
+      "finalUrl": "https://cloudtbirds.com/documents/2026/3/27/2026_volleyball_camp_brochure.pdf?path=wvball",
+      "sourcePath": "../njcaa-core-review-20261118/sources/cloud-county-community-college-4.source",
+      "sha256": "5bc176a9efb165a699a363a9b5cd25c404ae5c41ad16a568b94ce4034aca8644",
+      "reusedEvidence": true
+    },
+    {
+      "requestedUrl": "https://dbukjj6eu5tsf.cloudfront.net/cloudtbirds.com/images/logos/site/site.png",
+      "kind": "LOGO_ASSET",
+      "status": 200,
+      "finalUrl": "https://dbukjj6eu5tsf.cloudfront.net/cloudtbirds.com/images/logos/site/site.png",
+      "contentType": "image/png",
+      "sourcePath": "sources/cloud-county-community-college-1.source",
+      "sha256": "87c7769424fb5b3a4609b7a776c7fadbe28709d063d417d359e8fa5a77d99926",
+      "decoded": {
+        "format": "png",
+        "width": 200,
+        "height": 200
+      },
+      "assetDecoded": true
+    }
+  ],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED"
+}

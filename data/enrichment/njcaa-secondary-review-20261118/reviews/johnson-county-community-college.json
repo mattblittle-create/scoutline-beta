@@ -1,0 +1,54 @@
+{
+  "slug": "johnson-county-community-college",
+  "programId": "cmox1ghlk005qqtsgeovgi8gx",
+  "collegeId": "cmox1ghkq005oqtsgk5vbmhcv",
+  "checkedAtUtc": "2026-11-18T14:43:31.116Z",
+  "sourcePath": "../njcaa-discovery-20261118/sources/johnson-county-community-college-1.source",
+  "sourceSHA256": "0cd0ffcc49b4cb3fe933bb79cec8533fe82db372b55545fd92bb76c5779319c3",
+  "sourceUrl": "https://www.jcccathletics.com/sports/bsb/index",
+  "socialLeads": [],
+  "recruitingLeads": [
+    {
+      "url": "https://www.jcccathletics.com/sports/bsb/Baseball_Questionnaire_Fillable_PDF.pdf",
+      "label": "SID Questionaire",
+      "context": "",
+      "kind": "QUESTIONNAIRE"
+    }
+  ],
+  "logoLeads": [
+    {
+      "url": "https://www.jcccathletics.com/images/setup/logo.png",
+      "label": "Johnson County Community College undefined"
+    },
+    {
+      "url": "https://cdn.prestosports.com/action/cdn/logos/id/ncklnmmtwq2lvscb.png",
+      "label": "undefined"
+    }
+  ],
+  "captures": [
+    {
+      "requestedUrl": "https://www.jcccathletics.com/sports/bsb/Baseball_Questionnaire_Fillable_PDF.pdf",
+      "kind": "QUESTIONNAIRE",
+      "status": "HELD_ACCESS_NOT_RETRIED",
+      "finalUrl": "https://www.jcccathletics.com/sports/bsb/Baseball_Questionnaire_Fillable_PDF.pdf"
+    },
+    {
+      "requestedUrl": "https://www.jcccathletics.com/images/setup/logo.png",
+      "kind": "LOGO_ASSET",
+      "status": "HELD_ACCESS_NOT_RETRIED",
+      "finalUrl": "https://www.jcccathletics.com/images/setup/logo.png"
+    },
+    {
+      "requestedUrl": "https://cdn.prestosports.com/action/cdn/logos/id/ncklnmmtwq2lvscb.png",
+      "kind": "LOGO_ASSET",
+      "status": 403,
+      "finalUrl": "https://cdn.prestosports.com/action/cdn/logos/id/ncklnmmtwq2lvscb.png",
+      "contentType": "text/html; charset=UTF-8",
+      "sourcePath": "sources/johnson-county-community-college-2.source",
+      "sha256": "6f5108a64b8e9b17a37fa37c44118bca810e921e571e5c2b3272ad0d97bc09d6"
+    }
+  ],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED"
+}

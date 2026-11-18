@@ -1,0 +1,53 @@
+{
+  "slug": "coahoma-community-college",
+  "programId": "cmox235oh002bqtfktn8k7tsc",
+  "collegeId": "cmox235nt0029qtfkhy9cb6k7",
+  "checkedAtUtc": "2026-11-18T14:43:34.119Z",
+  "sourcePath": "../njcaa-discovery-20261118/sources/coahoma-community-college-1.source",
+  "sourceSHA256": "aa398808f3d44be3595e4bcf8981e5a6421860505b6729b00d1f456217a3f1fb",
+  "sourceUrl": "https://coahomasports.com/sports/baseball",
+  "socialLeads": [],
+  "recruitingLeads": [
+    {
+      "url": "https://coahomasports.com/sb_output.aspx?form=3",
+      "label": "Athletics Recruiting Form",
+      "context": "",
+      "kind": "QUESTIONNAIRE"
+    }
+  ],
+  "logoLeads": [
+    {
+      "url": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/coahomacc.sidearmsports.com/images/logos/site/site.png",
+      "label": "Coahoma Community College undefined"
+    }
+  ],
+  "captures": [
+    {
+      "requestedUrl": "https://coahomasports.com/sb_output.aspx?form=3",
+      "kind": "QUESTIONNAIRE",
+      "status": 200,
+      "finalUrl": "https://coahomasports.com/sb_output.aspx?form=3",
+      "sourcePath": "../njcaa-core-review-20261118/sources/coahoma-community-college-4.source",
+      "sha256": "cc443b793c82dc67498f4ab4588639bcf37551e11918f1796e86cac551eeddac",
+      "reusedEvidence": true
+    },
+    {
+      "requestedUrl": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/coahomacc.sidearmsports.com/images/logos/site/site.png",
+      "kind": "LOGO_ASSET",
+      "status": 200,
+      "finalUrl": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/coahomacc.sidearmsports.com/images/logos/site/site.png",
+      "contentType": "image/png",
+      "sourcePath": "sources/coahoma-community-college-1.source",
+      "sha256": "ffc2e9bdef6b9ba4feca63b324be5b46a102b8c55e8fa2ba95fec00be9e85e51",
+      "decoded": {
+        "format": "png",
+        "width": 200,
+        "height": 200
+      },
+      "assetDecoded": true
+    }
+  ],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED"
+}

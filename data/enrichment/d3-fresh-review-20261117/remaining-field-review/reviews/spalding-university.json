@@ -1,0 +1,1393 @@
+{
+  "slug": "spalding-university",
+  "collegeId": "cmovorwnp00luqt7gs61cw06r",
+  "programId": "cmovorwog00lwqt7gw11hgjio",
+  "checkedAtUtc": "2026-11-17T20:37:23.745Z",
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED",
+  "missingFields": [
+    "rosterUrl",
+    "scheduleUrl",
+    "questionnaireUrl",
+    "campsUrl",
+    "generalContactEmail"
+  ],
+  "pages": [
+    {
+      "requestedUrl": "https://spaldingathletics.com/sports/baseball",
+      "kind": "baseball-home",
+      "parent": null,
+      "status": 200,
+      "finalUrl": "https://spaldingathletics.com/sports/baseball",
+      "sourcePath": "../sources/spalding-university-1.html",
+      "sha256": "eef4e853d0a9e37b0d1b6fead12a128c5ac805eabc55923201edf7d166fdc593",
+      "reusedEvidence": true,
+      "originalCheckedAtUtc": "2026-11-17T17:26:10.939Z",
+      "parsed": {
+        "title": "Baseball - Spalding University Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "Spalding University Athletics",
+          "Main",
+          "Main",
+          "Scoreboard",
+          "Sport",
+          "Scoreboard",
+          "Top Stories",
+          "Promo Slider",
+          "Standings",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://x.com/SpaldingUBSB",
+            "label": "BASEBALL: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/SpaldingUBSB",
+            "label": "BASEBALL: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/baseball/schedule",
+            "label": "BASEBALL: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/baseball/roster",
+            "label": "BASEBALL: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/spaldingmbb",
+            "label": "BASKETBALL: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/spaldingumbb",
+            "label": "BASKETBALL: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/mens-basketball/schedule",
+            "label": "BASKETBALL: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/mens-basketball/roster",
+            "label": "BASKETBALL: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/SpaldingXC",
+            "label": "CROSS COUNTRY: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/spaldingtfxc",
+            "label": "CROSS COUNTRY: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/mens-cross-country/schedule",
+            "label": "CROSS COUNTRY: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/mens-cross-country/roster",
+            "label": "CROSS COUNTRY: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/SpaldingMWGolf",
+            "label": "GOLF: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/su_eagles",
+            "label": "GOLF: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/mens-golf/schedule",
+            "label": "GOLF: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/mens-golf/roster",
+            "label": "GOLF: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/spaldingmsoc",
+            "label": "SOCCER: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/spaldingmsoc",
+            "label": "SOCCER: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/mens-soccer/schedule",
+            "label": "SOCCER: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/mens-soccer/roster",
+            "label": "SOCCER: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/spaldingxc",
+            "label": "TRACK & FIELD: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/mens-track-and-field/schedule",
+            "label": "TRACK & FIELD: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/mens-track-and-field/roster",
+            "label": "TRACK & FIELD: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/spaldingmvb",
+            "label": "VOLLEYBALL: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/spaldingmvb",
+            "label": "VOLLEYBALL: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/mens-volleyball/schedule",
+            "label": "VOLLEYBALL: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/mens-volleyball/roster",
+            "label": "VOLLEYBALL: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/spaldingwbb",
+            "label": "BASKETBALL: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/spaldingwbb",
+            "label": "BASKETBALL: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/womens-basketball/schedule",
+            "label": "BASKETBALL: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/womens-basketball/roster",
+            "label": "BASKETBALL: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/womens-cross-country/schedule",
+            "label": "CROSS COUNTRY: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/womens-cross-country/roster",
+            "label": "CROSS COUNTRY: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/spaldingmwgolf",
+            "label": "GOLF: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/womens-golf/schedule",
+            "label": "GOLF: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/womens-golf/roster",
+            "label": "GOLF: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/spaldingwsoccer",
+            "label": "SOCCER: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/spaldingwsoccer",
+            "label": "SOCCER: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/womens-soccer/schedule",
+            "label": "SOCCER: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/womens-soccer/roster",
+            "label": "SOCCER: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/SUSoftball",
+            "label": "SOFTBALL: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/spaldinguniversitysoftball",
+            "label": "SOFTBALL: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/softball/schedule",
+            "label": "SOFTBALL: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/softball/roster",
+            "label": "SOFTBALL: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/womens-track-and-field/schedule",
+            "label": "TRACK & FIELD: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/womens-track-and-field/roster",
+            "label": "TRACK & FIELD: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/SU_Volleyball",
+            "label": "VOLLEYBALL: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/spaldingwvb",
+            "label": "VOLLEYBALL: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/womens-volleyball/schedule",
+            "label": "VOLLEYBALL: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/womens-volleyball/roster",
+            "label": "VOLLEYBALL: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/spaldingesports",
+            "label": "ESPORTS: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/spaldinguesports",
+            "label": "ESPORTS: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/esports/schedule",
+            "label": "ESPORTS: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/esports/roster",
+            "label": "ESPORTS: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/staff-directory",
+            "label": "STAFF DIRECTORY",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/2014/5/30/Recruit%20Questionnnaire.aspx",
+            "label": "RECRUIT QUESTIONNAIRE",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "http://spalding.edu/campus-life/",
+            "label": "CAMPUS LIFE",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://spaldingathletics.com/calendar",
+            "label": "COMPOSITE SCHEDULE",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "http://spalding.edu/wp-content/uploads/2017/05/Campus-Map.pdf",
+            "label": "CAMPUS MAP",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/baseball/coaches/2026",
+            "label": "COACHES",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://spaldingathletics.com/sports/baseball/schedule",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/spalding-university-1.html",
+        "sha256": "eef4e853d0a9e37b0d1b6fead12a128c5ac805eabc55923201edf7d166fdc593",
+        "url": "https://spaldingathletics.com/sports/baseball/schedule",
+        "label": "BASEBALL: Schedule"
+      },
+      "status": 200,
+      "finalUrl": "https://spaldingathletics.com/sports/baseball/schedule",
+      "checkedAtUtc": "2026-11-17T20:37:24.783Z",
+      "sourcePath": "sources/spalding-university-1.html",
+      "sha256": "b816965e6014f68b40931b9152a970e2c2c91cc83d8ce7ffbd4627dd2ac15f1b",
+      "parsed": {
+        "title": "2027 Baseball Schedule - Spalding University Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "Spalding University Athletics",
+          "Main",
+          "Main",
+          "Scoreboard",
+          "Sport",
+          "2027 Baseball Schedule",
+          "Season Record",
+          "Scheduled Games",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://spaldingathletics.com/sports/baseball/schedule",
+            "label": "Skip To Main Content",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/SpaldingUBSB",
+            "label": "BASEBALL: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/SpaldingUBSB",
+            "label": "BASEBALL: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/baseball/roster",
+            "label": "BASEBALL: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/spaldingmbb",
+            "label": "BASKETBALL: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/spaldingumbb",
+            "label": "BASKETBALL: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/mens-basketball/schedule",
+            "label": "BASKETBALL: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/mens-basketball/roster",
+            "label": "BASKETBALL: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/SpaldingXC",
+            "label": "CROSS COUNTRY: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/spaldingtfxc",
+            "label": "CROSS COUNTRY: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/mens-cross-country/schedule",
+            "label": "CROSS COUNTRY: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/mens-cross-country/roster",
+            "label": "CROSS COUNTRY: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/SpaldingMWGolf",
+            "label": "GOLF: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/su_eagles",
+            "label": "GOLF: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/mens-golf/schedule",
+            "label": "GOLF: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/mens-golf/roster",
+            "label": "GOLF: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/spaldingmsoc",
+            "label": "SOCCER: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/spaldingmsoc",
+            "label": "SOCCER: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/mens-soccer/schedule",
+            "label": "SOCCER: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/mens-soccer/roster",
+            "label": "SOCCER: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/spaldingxc",
+            "label": "TRACK & FIELD: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/mens-track-and-field/schedule",
+            "label": "TRACK & FIELD: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/mens-track-and-field/roster",
+            "label": "TRACK & FIELD: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/spaldingmvb",
+            "label": "VOLLEYBALL: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/spaldingmvb",
+            "label": "VOLLEYBALL: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/mens-volleyball/schedule",
+            "label": "VOLLEYBALL: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/mens-volleyball/roster",
+            "label": "VOLLEYBALL: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/spaldingwbb",
+            "label": "BASKETBALL: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/spaldingwbb",
+            "label": "BASKETBALL: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/womens-basketball/schedule",
+            "label": "BASKETBALL: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/womens-basketball/roster",
+            "label": "BASKETBALL: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/womens-cross-country/schedule",
+            "label": "CROSS COUNTRY: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/womens-cross-country/roster",
+            "label": "CROSS COUNTRY: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/spaldingmwgolf",
+            "label": "GOLF: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/womens-golf/schedule",
+            "label": "GOLF: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/womens-golf/roster",
+            "label": "GOLF: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/spaldingwsoccer",
+            "label": "SOCCER: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/spaldingwsoccer",
+            "label": "SOCCER: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/womens-soccer/schedule",
+            "label": "SOCCER: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/womens-soccer/roster",
+            "label": "SOCCER: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/SUSoftball",
+            "label": "SOFTBALL: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/spaldinguniversitysoftball",
+            "label": "SOFTBALL: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/softball/schedule",
+            "label": "SOFTBALL: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/softball/roster",
+            "label": "SOFTBALL: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/womens-track-and-field/schedule",
+            "label": "TRACK & FIELD: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/womens-track-and-field/roster",
+            "label": "TRACK & FIELD: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/SU_Volleyball",
+            "label": "VOLLEYBALL: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/spaldingwvb",
+            "label": "VOLLEYBALL: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/womens-volleyball/schedule",
+            "label": "VOLLEYBALL: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/womens-volleyball/roster",
+            "label": "VOLLEYBALL: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/spaldingesports",
+            "label": "ESPORTS: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/spaldinguesports",
+            "label": "ESPORTS: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/esports/schedule",
+            "label": "ESPORTS: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/esports/roster",
+            "label": "ESPORTS: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/staff-directory",
+            "label": "STAFF DIRECTORY",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/2014/5/30/Recruit%20Questionnnaire.aspx",
+            "label": "RECRUIT QUESTIONNAIRE",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "http://spalding.edu/campus-life/",
+            "label": "CAMPUS LIFE",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://spaldingathletics.com/calendar",
+            "label": "COMPOSITE SCHEDULE",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "http://spalding.edu/wp-content/uploads/2017/05/Campus-Map.pdf",
+            "label": "CAMPUS MAP",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/baseball/coaches/2026",
+            "label": "COACHES",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/baseball/schedule?print=true",
+            "label": "Print Print this page",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/baseball/schedule/2027?grid=true",
+            "label": "Grid Switch to Grid View",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/services/schedule_txt.ashx?schedule=224",
+            "label": "Text Text Format For Braille (New Tab)",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://spaldingathletics.com/sports/baseball/coaches/2026",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/spalding-university-1.html",
+        "sha256": "eef4e853d0a9e37b0d1b6fead12a128c5ac805eabc55923201edf7d166fdc593",
+        "url": "https://spaldingathletics.com/sports/baseball/coaches/2026",
+        "label": "COACHES"
+      },
+      "status": 200,
+      "finalUrl": "https://spaldingathletics.com/sports/baseball/coaches/2026",
+      "checkedAtUtc": "2026-11-17T20:37:25.637Z",
+      "sourcePath": "sources/spalding-university-2.html",
+      "sha256": "d69eff80813b17e0843f6b22f09353c8be272e2cdf7a620bc12d530f0b37a529",
+      "parsed": {
+        "title": "Baseball Coaches - Spalding University Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "Spalding University Athletics",
+          "Main",
+          "Main",
+          "Scoreboard",
+          "Sport",
+          "2026 Baseball Coaching Staff",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://spaldingathletics.com/sports/baseball/coaches/2026",
+            "label": "Skip To Main Content",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://x.com/SpaldingUBSB",
+            "label": "BASEBALL: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/SpaldingUBSB",
+            "label": "BASEBALL: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/baseball/schedule",
+            "label": "BASEBALL: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/baseball/roster",
+            "label": "BASEBALL: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/spaldingmbb",
+            "label": "BASKETBALL: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/spaldingumbb",
+            "label": "BASKETBALL: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/mens-basketball/schedule",
+            "label": "BASKETBALL: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/mens-basketball/roster",
+            "label": "BASKETBALL: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/SpaldingXC",
+            "label": "CROSS COUNTRY: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/spaldingtfxc",
+            "label": "CROSS COUNTRY: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/mens-cross-country/schedule",
+            "label": "CROSS COUNTRY: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/mens-cross-country/roster",
+            "label": "CROSS COUNTRY: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/SpaldingMWGolf",
+            "label": "GOLF: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/su_eagles",
+            "label": "GOLF: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/mens-golf/schedule",
+            "label": "GOLF: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/mens-golf/roster",
+            "label": "GOLF: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/spaldingmsoc",
+            "label": "SOCCER: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/spaldingmsoc",
+            "label": "SOCCER: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/mens-soccer/schedule",
+            "label": "SOCCER: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/mens-soccer/roster",
+            "label": "SOCCER: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/spaldingxc",
+            "label": "TRACK & FIELD: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/mens-track-and-field/schedule",
+            "label": "TRACK & FIELD: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/mens-track-and-field/roster",
+            "label": "TRACK & FIELD: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/spaldingmvb",
+            "label": "VOLLEYBALL: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/spaldingmvb",
+            "label": "VOLLEYBALL: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/mens-volleyball/schedule",
+            "label": "VOLLEYBALL: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/mens-volleyball/roster",
+            "label": "VOLLEYBALL: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/spaldingwbb",
+            "label": "BASKETBALL: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/spaldingwbb",
+            "label": "BASKETBALL: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/womens-basketball/schedule",
+            "label": "BASKETBALL: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/womens-basketball/roster",
+            "label": "BASKETBALL: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/womens-cross-country/schedule",
+            "label": "CROSS COUNTRY: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/womens-cross-country/roster",
+            "label": "CROSS COUNTRY: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/spaldingmwgolf",
+            "label": "GOLF: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/womens-golf/schedule",
+            "label": "GOLF: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/womens-golf/roster",
+            "label": "GOLF: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/spaldingwsoccer",
+            "label": "SOCCER: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/spaldingwsoccer",
+            "label": "SOCCER: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/womens-soccer/schedule",
+            "label": "SOCCER: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/womens-soccer/roster",
+            "label": "SOCCER: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/SUSoftball",
+            "label": "SOFTBALL: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/spaldinguniversitysoftball",
+            "label": "SOFTBALL: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/softball/schedule",
+            "label": "SOFTBALL: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/softball/roster",
+            "label": "SOFTBALL: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/womens-track-and-field/schedule",
+            "label": "TRACK & FIELD: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/womens-track-and-field/roster",
+            "label": "TRACK & FIELD: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/SU_Volleyball",
+            "label": "VOLLEYBALL: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/spaldingwvb",
+            "label": "VOLLEYBALL: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/womens-volleyball/schedule",
+            "label": "VOLLEYBALL: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/womens-volleyball/roster",
+            "label": "VOLLEYBALL: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/spaldingesports",
+            "label": "ESPORTS: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/spaldinguesports",
+            "label": "ESPORTS: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/esports/schedule",
+            "label": "ESPORTS: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/esports/roster",
+            "label": "ESPORTS: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/staff-directory",
+            "label": "STAFF DIRECTORY",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/2014/5/30/Recruit%20Questionnnaire.aspx",
+            "label": "RECRUIT QUESTIONNAIRE",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "http://spalding.edu/campus-life/",
+            "label": "CAMPUS LIFE",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://spaldingathletics.com/calendar",
+            "label": "COMPOSITE SCHEDULE",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "http://spalding.edu/wp-content/uploads/2017/05/Campus-Map.pdf",
+            "label": "CAMPUS MAP",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/baseball/coaches/2026?print=true",
+            "label": "Print",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/baseball/roster/coaches/larry-owens/670",
+            "label": "Larry Owens",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/baseball/roster/coaches/greg-cash/680",
+            "label": "Greg Cash",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/baseball/roster/coaches/cooper-french/672",
+            "label": "Cooper French",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/baseball/roster/coaches/michael-speck/671",
+            "label": "Michael Speck",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://spaldingathletics.com/sports/mens-basketball/schedule",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/spalding-university-1.html",
+        "sha256": "eef4e853d0a9e37b0d1b6fead12a128c5ac805eabc55923201edf7d166fdc593",
+        "url": "https://spaldingathletics.com/sports/mens-basketball/schedule",
+        "label": "BASKETBALL: Schedule"
+      },
+      "status": 200,
+      "finalUrl": "https://spaldingathletics.com/sports/mens-basketball/schedule",
+      "checkedAtUtc": "2026-11-17T20:37:26.144Z",
+      "sourcePath": "sources/spalding-university-3.html",
+      "sha256": "fe50af67775748677139a2da22fb77bce71d21b55b2f1ea13aa6885084c04b05",
+      "parsed": {
+        "title": "2026-27 Men's Basketball Schedule - Spalding University Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "Spalding University Athletics",
+          "Main",
+          "Main",
+          "Scoreboard",
+          "Sport",
+          "2026-27 Men's Basketball Schedule",
+          "Season Record",
+          "Scheduled Games",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://spaldingathletics.com/sports/mens-basketball/schedule",
+            "label": "Skip To Main Content",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/SpaldingUBSB",
+            "label": "BASEBALL: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/SpaldingUBSB",
+            "label": "BASEBALL: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/baseball/schedule",
+            "label": "BASEBALL: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/baseball/roster",
+            "label": "BASEBALL: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/spaldingmbb",
+            "label": "BASKETBALL: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/spaldingumbb",
+            "label": "BASKETBALL: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/mens-basketball/roster",
+            "label": "BASKETBALL: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/SpaldingXC",
+            "label": "CROSS COUNTRY: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/spaldingtfxc",
+            "label": "CROSS COUNTRY: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/mens-cross-country/schedule",
+            "label": "CROSS COUNTRY: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/mens-cross-country/roster",
+            "label": "CROSS COUNTRY: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/SpaldingMWGolf",
+            "label": "GOLF: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/su_eagles",
+            "label": "GOLF: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/mens-golf/schedule",
+            "label": "GOLF: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/mens-golf/roster",
+            "label": "GOLF: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/spaldingmsoc",
+            "label": "SOCCER: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/spaldingmsoc",
+            "label": "SOCCER: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/mens-soccer/schedule",
+            "label": "SOCCER: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/mens-soccer/roster",
+            "label": "SOCCER: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/spaldingxc",
+            "label": "TRACK & FIELD: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/mens-track-and-field/schedule",
+            "label": "TRACK & FIELD: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/mens-track-and-field/roster",
+            "label": "TRACK & FIELD: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/spaldingmvb",
+            "label": "VOLLEYBALL: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/spaldingmvb",
+            "label": "VOLLEYBALL: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/mens-volleyball/schedule",
+            "label": "VOLLEYBALL: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/mens-volleyball/roster",
+            "label": "VOLLEYBALL: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/spaldingwbb",
+            "label": "BASKETBALL: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/spaldingwbb",
+            "label": "BASKETBALL: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/womens-basketball/schedule",
+            "label": "BASKETBALL: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/womens-basketball/roster",
+            "label": "BASKETBALL: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/womens-cross-country/schedule",
+            "label": "CROSS COUNTRY: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/womens-cross-country/roster",
+            "label": "CROSS COUNTRY: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/spaldingmwgolf",
+            "label": "GOLF: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/womens-golf/schedule",
+            "label": "GOLF: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/womens-golf/roster",
+            "label": "GOLF: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/spaldingwsoccer",
+            "label": "SOCCER: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/spaldingwsoccer",
+            "label": "SOCCER: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/womens-soccer/schedule",
+            "label": "SOCCER: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/womens-soccer/roster",
+            "label": "SOCCER: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/SUSoftball",
+            "label": "SOFTBALL: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/spaldinguniversitysoftball",
+            "label": "SOFTBALL: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/softball/schedule",
+            "label": "SOFTBALL: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/softball/roster",
+            "label": "SOFTBALL: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/womens-track-and-field/schedule",
+            "label": "TRACK & FIELD: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/womens-track-and-field/roster",
+            "label": "TRACK & FIELD: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/SU_Volleyball",
+            "label": "VOLLEYBALL: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/spaldingwvb",
+            "label": "VOLLEYBALL: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/womens-volleyball/schedule",
+            "label": "VOLLEYBALL: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/womens-volleyball/roster",
+            "label": "VOLLEYBALL: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/spaldingesports",
+            "label": "ESPORTS: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/spaldinguesports",
+            "label": "ESPORTS: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/esports/schedule",
+            "label": "ESPORTS: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/esports/roster",
+            "label": "ESPORTS: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/staff-directory",
+            "label": "STAFF DIRECTORY",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/2014/5/30/Recruit%20Questionnnaire.aspx",
+            "label": "RECRUIT QUESTIONNAIRE",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "http://spalding.edu/campus-life/",
+            "label": "CAMPUS LIFE",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://spaldingathletics.com/calendar",
+            "label": "COMPOSITE SCHEDULE",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "http://spalding.edu/wp-content/uploads/2017/05/Campus-Map.pdf",
+            "label": "CAMPUS MAP",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/mens-basketball/coaches",
+            "label": "COACHES",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/mens-basketball/schedule?print=true",
+            "label": "Print Print this page",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/sports/mens-basketball/schedule/2026-27?grid=true",
+            "label": "Grid Switch to Grid View",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://spaldingathletics.com/services/schedule_txt.ashx?schedule=215",
+            "label": "Text Text Format For Braille (New Tab)",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          }
+        ]
+      }
+    }
+  ],
+  "status": "EVIDENCE_CAPTURED_REQUIRES_REVIEW"
+}

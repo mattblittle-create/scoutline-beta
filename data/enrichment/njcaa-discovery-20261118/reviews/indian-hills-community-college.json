@@ -1,0 +1,41 @@
+{
+  "slug": "indian-hills-community-college",
+  "collegeId": "cmox1ghcd0056qtsgvfgyb4k7",
+  "programId": "cmox1ghd10058qtsg4849kxz9",
+  "name": "Indian Hills Community College",
+  "state": "IA",
+  "storedDivision": "NJCAA_D1",
+  "pages": [
+    {
+      "requestedUrl": "https://njcaastats.prestosports.com/sports/bsb/2024-25/div1/teams/indianhillscommunitycollege",
+      "kind": "STORED_URL_UNVERIFIED",
+      "checkedAtUtc": "2026-11-18T14:16:05.351Z",
+      "status": "HELD_ACCESS_NOT_RETRIED",
+      "finalUrl": "https://njcaastats.prestosports.com/sports/bsb/2024-25/div1/teams/indianhillscommunitycollege"
+    },
+    {
+      "requestedUrl": "https://indianhills.prestosports.com/sports/bsb/index",
+      "kind": "DISCOVERY_LEAD_NOT_CAMPUS_VERIFIED",
+      "checkedAtUtc": "2026-11-18T14:16:05.352Z",
+      "status": 403,
+      "finalUrl": "https://indianhills.prestosports.com/sports/bsb/index",
+      "contentType": "text/html; charset=UTF-8",
+      "sourcePath": "sources/indian-hills-community-college-1.source",
+      "sha256": "0c6ab87e0539f1e633ce3b45cf4f4af63ad84b5bb06b49ed8f7f0b01dad35fe5"
+    }
+  ],
+  "thirdPartyExactNameLeads": [
+    {
+      "url": "https://indianhills.prestosports.com/sports/bsb/index",
+      "label": "Indian Hills CC",
+      "parentSourcePath": "sources/directory-0.source",
+      "parentSHA256": "63f1c531b007d2922e4db3aa2ba596ee54e397dbafd287df69b95213a011a404",
+      "parentUrl": "https://www.thebaseballobserver.com/njcaa-di-baseball"
+    }
+  ],
+  "currentMembershipVerified": false,
+  "campusIdentityVerified": false,
+  "importApproval": "NOT_GRANTED",
+  "databaseAccess": false,
+  "databaseWrites": 0
+}

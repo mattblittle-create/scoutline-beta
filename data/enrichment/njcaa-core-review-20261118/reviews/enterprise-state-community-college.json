@@ -1,0 +1,41 @@
+{
+  "slug": "enterprise-state-community-college",
+  "collegeId": "cmox236gw003xqtfk0srlmsdg",
+  "programId": "cmox236hm003zqtfkhkdybhvh",
+  "name": "Enterprise State Community College",
+  "storedState": "AL",
+  "storedDivision": "NJCAA_D2",
+  "checkedAtUtc": "2026-11-18T14:21:07.301Z",
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "currentMembershipVerified": false,
+  "campusIdentityVerified": false,
+  "importApproval": "NOT_GRANTED",
+  "pages": [
+    {
+      "requestedUrl": "https://www.escc.edu/baseball-schedule/",
+      "kind": "DIRECTORY_ALIAS_REQUIRES_CAMPUS_REVIEW",
+      "parent": {
+        "sourcePath": "../njcaa-discovery-20261118/sources/directory-0.source",
+        "sha256": "63f1c531b007d2922e4db3aa2ba596ee54e397dbafd287df69b95213a011a404",
+        "label": "Enterprise State"
+      },
+      "status": 404,
+      "finalUrl": "https://escc.edu/baseball-schedule/",
+      "checkedAtUtc": "2026-11-18T14:21:08.023Z",
+      "sourcePath": "sources/enterprise-state-community-college-0.source",
+      "sha256": "b0ae49c5db63579344a15e1d7d989fd9e4cc385b9393a054dc85fab3834503ea"
+    }
+  ],
+  "discoveryAliases": [
+    {
+      "url": "https://www.escc.edu/baseball-schedule/",
+      "label": "Enterprise State",
+      "parentSourcePath": "sources/directory-0.source",
+      "parentSHA256": "63f1c531b007d2922e4db3aa2ba596ee54e397dbafd287df69b95213a011a404",
+      "parentUrl": "https://www.thebaseballobserver.com/njcaa-di-baseball",
+      "status": "UNVERIFIED_NORMALIZED_NAME_LEAD"
+    }
+  ],
+  "status": "HELD_NO_READABLE_SOURCE"
+}

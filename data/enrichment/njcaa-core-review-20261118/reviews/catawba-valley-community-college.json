@@ -1,0 +1,41 @@
+{
+  "slug": "catawba-valley-community-college",
+  "collegeId": "cmox2357y001cqtfkolbve8a8",
+  "programId": "cmox2358o001eqtfkqwhmv7ak",
+  "name": "Catawba Valley Community College",
+  "storedState": "NC",
+  "storedDivision": "NJCAA_D2",
+  "checkedAtUtc": "2026-11-18T14:21:04.268Z",
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "currentMembershipVerified": false,
+  "campusIdentityVerified": false,
+  "importApproval": "NOT_GRANTED",
+  "pages": [
+    {
+      "requestedUrl": "http://gocvcc.com/sports/bsb/index",
+      "kind": "DIRECTORY_ALIAS_REQUIRES_CAMPUS_REVIEW",
+      "parent": {
+        "sourcePath": "../njcaa-discovery-20261118/sources/directory-1.source",
+        "sha256": "496ce44f9a76dc28894dc481d97424ffa3efb0cc8fe8f218363abbc43f06de00",
+        "label": "Catawba Valley College"
+      },
+      "status": 202,
+      "finalUrl": "http://gocvcc.com/sports/bsb/index",
+      "checkedAtUtc": "2026-11-18T14:21:06.109Z",
+      "sourcePath": "sources/catawba-valley-community-college-0.source",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "discoveryAliases": [
+    {
+      "url": "http://gocvcc.com/sports/bsb/index",
+      "label": "Catawba Valley College",
+      "parentSourcePath": "sources/directory-1.source",
+      "parentSHA256": "496ce44f9a76dc28894dc481d97424ffa3efb0cc8fe8f218363abbc43f06de00",
+      "parentUrl": "https://www.thebaseballobserver.com/njcaa-dii-baseball",
+      "status": "UNVERIFIED_NORMALIZED_NAME_LEAD"
+    }
+  ],
+  "status": "HELD_NO_READABLE_SOURCE"
+}

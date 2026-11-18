@@ -1,0 +1,913 @@
+
+
+
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head><title>
+	Athletics Home
+</title><meta charset="utf-8" /><meta name="HandheldFriendly" content="True" /><meta name="MobileOptimized" content="1000" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+
+    <!-- The following conditional comment appends HTML 5 DOM elements for IE 8 compatibility -->
+    <!--[if lt IE 9]>   
+        <script type="text/javascript">      
+            document.createElement('header');      
+            document.createElement('nav');      
+            document.createElement('section');      
+            document.createElement('article');      
+            document.createElement('aside');      
+            document.createElement('footer');   
+            document.createElement('main');   
+        </script>
+        <style type="text/css">
+            header, nav, section, article, aside, footer {   
+                display:block;
+            }
+        </style>
+    <![endif]-->
+
+    <!-- Fix IE bug that causes <main /> to not render as display:block -->
+    <style type="text/css">
+   
+               .sidebar {
+    width: 6.5rem;
+    min-height: 100vh;
+    height: 100% !important;
+}
+
+        #wrapper {
+    display: flex;
+}
+        .sidebar-dark .nav-item .nav-link {
+    color: rgba(255,255,255,.8);
+}
+
+        .sidebar .nav-item .nav-link, .topbar .nav-item .nav-link {
+    position: relative;
+}
+
+
+
+              .sidebar .nav-item {
+    position: relative;
+}
+        .sidebar {
+            width: 6.5rem;
+            min-height: 100vh;
+        }
+        #content-wrapper .bg-gradient-primary {
+            background-color: #003366;
+            background-image: linear-gradient(180deg,#0a3d71 10%,#003366 100%);
+            background-size: cover;
+        }
+
+        .sidebar .sidebar-heading {
+    text-align: center;
+    padding: 0 1rem;
+    font-weight: 800;
+    font-size: .65rem;
+}
+ 
+        .sidebar .nav-item .collapse {
+    position: absolute;
+    left: calc(6.5rem + 1.5rem / 2);
+    z-index: 1;
+    top: 2px;
+}
+
+.animated--grow-in, .sidebar .nav-item .collapse {
+    -webkit-animation-name: growIn;
+    animation-name: growIn;
+    -webkit-animation-duration: .2s;
+    animation-duration: .2s;
+    -webkit-animation-timing-function: transform cubic-bezier(.18,1.25,.4,1),opacity cubic-bezier(0,1,.4,1);
+    animation-timing-function: transform cubic-bezier(.18,1.25,.4,1),opacity cubic-bezier(0,1,.4,1);
+}
+
+        .sidebar-dark hr.sidebar-divider {
+            border-top: 1px solid rgba(255,255,255,.15);
+        }
+        .sidebar hr.sidebar-divider {
+            margin: 0 1rem 1rem;
+        }
+
+        .sidebar-dark .sidebar-brand {
+            color: #fff;
+        }
+
+        .sidebar-dark .sidebar-heading {
+    color: rgba(255,255,255,.4);
+}
+
+        .sidebar-dark .nav-item.active .nav-link {
+    color: #fff;
+}
+
+.sidebar .nav-item.active .nav-link {
+    font-weight: 700;
+}
+.sidebar-dark .nav-item .nav-link {
+    color: rgba(255,255,255,.8);
+}
+
+
+        .sidebar .sidebar-brand {
+            height: 4.375rem;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 800;
+            padding: 1.5rem 1rem;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: .05rem;
+            z-index: 1;
+        }
+        main {   
+            display:block;
+        }
+
+        #adminBar .btn-warning {
+            background-color:#faa523 !important;
+            border-color: #faa523 !important;
+        }
+
+        #adminBar .btn-sm {
+            padding: 0.05rem 0.25rem !important;
+        }
+
+        #PopupPage_modalBody img {
+    width: 100%;
+}
+
+        .reTool.reInsertPageURL {
+    background-image: url("https://images.app.goo.gl/X6KzbXYMxmZjJfwz5") !important;
+    background-repeat:no-repeat;
+}
+.reTool.rePrintPreview {
+    background-image: url(CustomDialog.gif) !important;
+    background-repeat:no-repeat;
+}
+.reTool.reInsertEmoticon {
+    background-image: url(Emoticons/1.gif) !important;
+    background-repeat:no-repeat;
+}
+ 
+    .reTool.reInsertPageURL:before,
+    .reTool.rePrintPreview:before,
+    .reTool.reInsertEmoticon:before {
+        display:none;
+    }
+
+    #RadWindowWrapper_ctl00_ctl00_ctl00_cphBody_cphBody_cphBody_reContent1_dialogOpenerDocumentManager {
+        z-index:12001 !important;
+    }
+
+    #wrapper #content-wrapper {
+    background-color: #f8f9fc;
+    width: 100%;
+    overflow-x: hidden;
+}
+    </style>
+    <link rel="stylesheet" /><link id="lnkCanonicalTag" rel="canonical" href="https://www.vernoncollege.edu/athletics-home" />
+
+
+        
+        <script async src="https://kit.fontawesome.com/8f3899749a.js"></script>
+       <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        
+        <link media="all" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous"/>
+        <link media="all" class="no-min-css" href="CommonStyles/Layout.css" rel="stylesheet" />
+        <link media="all" class="no-min-css" href="Styles/Navigation.css" rel="stylesheet" />
+        <link media="all" class="no-min-css" href="Styles/BaseStyle.css" rel="stylesheet" />
+        <link media="all" class="no-min-css" href="CommonStyles/CustomForms.css" rel="stylesheet" />
+
+        <link media="all" class="no-min-css" href="CommonStyles/Products.css" rel="stylesheet" />
+        <link media="all" class="no-min-css" href="Styles/Large.css" rel="stylesheet" />
+        <link media="all" class="no-min-css" href="Styles/Desktop.css" rel="stylesheet" />
+
+
+        
+        
+        
+        
+        
+        
+        
+         
+    
+    <!-- Custom HEAD Content --><link rel="shortcut icon" type="`images/png" href="/Images/favicon.png">
+<!-- Hotjar Tracking Code for VC Website -->
+<script>
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:3351408,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
+<meta name="google-site-verification" content="Yzd4_SoxTL9eIp9c4rjgI2neLN_NHg8h6v_8Vnb33lo" />
+<!-- TikTok Pixel Code Start -->
+<script>
+!function (w, d, t) {
+  w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var i="https://analytics.tiktok.com/i18n/pixel/events.js";ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=i,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};var o=document.createElement("script");o.type="text/javascript",o.async=!0,o.src=i+"?sdkid="+e+"&lib="+t;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(o,a)};
+
+
+  ttq.load('C21J31GGJBMEACGIOPMG');
+  ttq.page();
+}(window, document, 'ttq');
+</script>
+<!-- TikTok Pixel Code End -->
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "CollegeOrUniversity",
+"name": "Vernon College",
+  "alternateName": "Vernon College",
+"address" : {
+    "@type" : "PostalAddress",
+    "streetAddress" : "4400 College Drive",
+    "addressLocality" : "Vernon",
+    "addressRegion" : "Texas",
+    "postalCode" : "76384"
+  },
+  "telephone" : "9405526291",
+  "openingHours":"Mo 8:00-18:00, Tu 8:00-18:00, We 8:00-18:00, Th 8:00-18:00, Fr 8:00-12:00, , ,"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollegeOrUniversity",
+  "name": "Vernon College",
+  "alternateName": "Vernon College",
+  "url": "https://www.VernonCollege.edu",
+  "logo": "https://www.vernoncollege.edu/NavLogo.png",
+  "sameAs": [
+    "https://www.facebook.com/VernonCollege/",
+    "https://twitter.com/VernonCollege",
+    "https://www.instagram.com/vernoncollegeofficial/",
+    "https://www.youtube.com/channel/UC1aBTGGiy-iHH-iqClD4Eng",
+    "https://www.vernoncollege.edu"
+  ]
+}
+</script>
+
+<!-- Autopilot Tracking Pixel : CRANE | WEST : Generated 2025-06-06 13:45:52 -->
+<script id="apai-div-tkr-835793ed-2209d-85bd1-c1076-e4f05c8fe" type="application/javascript" >
+    !function(w,d,e,u,t,s){if(w.ft_data){return;}
+        t=d.createElement(e);t.async=!0;t.src=u;
+        s=d.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)
+    }(window,document,'script','https://apai.simpli.fi/t/CRAW/craw_unvpx.js');
+</script>
+
+<!-- Custom JS --><script type="text/javascript">$( document ).ready(function() {
+$(".HomePage").removeClass("container");
+
+$(".pathways-Subpage .col-lg-4").prepend('<div class="container-fluid"><div class="row"><span class="cb-header-text">PROGRAM INFO</span><span class="cb-icon"><em class="fas fa-chevron-circle-down"></em></span></div></div>');
+
+
+$(".calendarImage img").attr("alt", "Blog Image Picture");
+var pageWidth = $(window).width();
+
+function MobileMenu() {
+if (pageWidth < 768) {
+
+$(".navbar-toggler").removeClass("collapsed");
+$(".navbar-toggler").attr("aria-expanded","true");
+$(".navbar-collapse").addClass("show");
+}
+};
+
+$("#navbarSupportedContent li:nth-child(4) .dropdown-item:nth-child(6)").attr("href", "https://gochapsports.com");
+
+$("#navbarSupportedContent li:nth-child(1) .dropdown-item:nth-child(11)").attr("href", "https://www.vernoncollege.edu/Resources/Annual%20Public%20Notice%20CTE/Annual%20Public%20Notice%20of%20Career%20and%20Technical%20Education%20Opportunities.pdf");
+
+
+MobileMenu();
+
+$("#MainContent table").addClass("table table-bordered");
+$("#MainContent table").wrap("<div class='table-responsive-lg'></div>");
+$("#MainContent thead th").attr("scope","col");
+
+$("#MainContent tbody th").attr("scope","row");
+
+$(".CustomForm table").removeAttr("summary");
+$("#JobDescriptions table").removeAttr("summary");
+$("#JobDescriptions table table caption").remove();
+
+$( ".FinancialAid .col-lg-4:nth-child(3)" ).prepend( "<p style='text-align: center;'></p>&nbsp;&nbsp;<p style='text-align: left;'>&nbsp;</p><p style='text-align: left;'><a href='https://fsaid.ed.gov/npas/index.htm' target='_blank'><img style='border: 1px solid #000000; border-image: none;' src='/Sites/VernonCollege2021/Images/Financial Aid/FSA ID.jpg' alt='Create an FSA ID now ' title='create an FSA ID now' /></a>&nbsp;</p><p style='text-align: left;'><a title='Fed stu aid' href='http://studentaid.ed.gov/' target='_blank'>&nbsp;<img title='Fed stu aid' style='border-width: 0px; border-style: solid; width: 477px; height: 84px;' alt='Fed stu aid' src='Images/Financial Aid/student aid banner 2.PNG' width='596' height='102' /></a></p><h1 style='text-align: left;'>FOLLOW US ON&nbsp;&nbsp;&nbsp;&nbsp;<a title='Facebook' href='http://www.facebook.com/pages/Vernon-TX/Vernon-College-Financial-Aid/199315716065?ref=mf' target='_blank'><img title='Facebook Icon' style='border-width: 0px; border-style: solid;' alt='Facebook Icon' src='Images/Financial Aid/icon_facebook.jpg' width='105' height='82' /></a></h1>" );
+$("#Navigation .navbar .container").addClass("container-fluid");
+$("#Navigation .navbar div").removeClass("container");
+
+$('.pathways iframe').attr('src',function(){this.src = this.src.replace('#','%23')});
+$("#cphBody_cphBody_cphBody_ctl04_pBlogListView").addClass("container");
+$("#ctl00_ctl00_ctl00_cphBody_cphBody_cphBody_ctl06_rapAjaxPanel").addClass("container");
+$("#cphBody_cphBody_cphBody_ctl02_CardData .card").addClass("border-left-warning shadow");
+$("#cphBody_cphBody_cphBody_ctl02_CardData .col-lg-3").addClass("col-lg-4");
+$("#cphBody_cphBody_cphBody_ctl02_CardData div").removeClass("col-lg-3");
+$("#cphBody_cphBody_cphBody_ctl02_CardData .card-body div:nth-child(3)").addClass("cardURL");
+$("#cphBody_cphBody_cphBody_ctl03_CardData .card-body div:nth-child(3)").addClass("cardURL");
+$(".pathways #cphBody_cphBody_cphBody_ctl02_CardData .cardURL a").addClass("btn btn-warning");
+$(".pathways #cphBody_cphBody_cphBody_ctl03_CardData .cardURL a").addClass("btn btn-warning");
+$(".pathways #cphBody_cphBody_cphBody_ctl02_CardData .card-body div:nth-child(2)").addClass("cardDescription");
+
+$("#cphBody_cphBody_cphBody_ctl02_CardData .card-body div:nth-child(1)").addClass("cardText");
+
+$("#cphBody_cphBody_cphBody_ctl02_CardData .card-body .cardText:nth-child(1)").addClass("cardTitle");
+$("#cphBody_cphBody_cphBody_ctl02_CardData .card-body .cardText:nth-child(2)").addClass("cardDescription");
+
+$("#cphBody_cphBody_cphBody_ctl03_CardData .card-body .cardText:nth-child(1)").addClass("cardTitle");
+$("#cphBody_cphBody_cphBody_ctl03_CardData .card-body .cardText:nth-child(2)").addClass("cardDescription");
+
+$("#cphBody_cphBody_cphBody_ctl03_CardData .card").addClass("border-left-warning shadow");
+$("#cphBody_cphBody_cphBody_ctl03_CardData .col-lg-3").addClass("col-lg-4");
+$("#cphBody_cphBody_cphBody_ctl03_CardData div").removeClass("col-lg-3");
+$(".pathways #cphBody_cphBody_cphBody_ctl03_CardData .cardURL a").addClass("btn btn-warning");
+
+$(".StudentChecklistClass .CustomListCard .col-lg-3").addClass("col-lg-12");
+$(".StudentChecklistClass .CustomListCard .col-lg-12").removeClass("col-lg-3");
+$("#cphBody_cphBody_cphBody_ctl03_CardData .card-body .cardText:nth-child(1)").addClass("cardTitle");
+$("#cphBody_cphBody_cphBody_ctl03_CardData .card-body .cardText:nth-child(2)").addClass("cardDescription");
+$("#cphBody_cphBody_cphBody_ctl03_CardData .card-body .cardText11 span").addClass("cardTitle");
+$("#cphBody_cphBody_cphBody_ctl03_CardData .card-body .cardText12").addClass("cardDescription");
+$(".StudentChecklistClass .CustomListCard .col-lg-4").addClass("col-lg-12");
+$(".StudentChecklistClass .CustomListCard .col-lg-12").removeClass("col-lg-4");
+
+$(".StudentChecklistClass .CustomListCard .card").removeClass("border-left-warning");
+$(".StudentChecklistClass .CustomListCard .card").removeClass("shadow");
+
+$(".StudentChecklistClass .col-lg-8 .col-lg-12:nth-child(1) .CustomListCard").attr("id","CustomListCardSC");
+$(".StudentChecklistClass .col-lg-8 .col-lg-12:nth-child(2) .CustomListCard").attr("id","CustomListCardLinks");
+
+$("#CustomListCardLinks .col-lg-12").addClass("col-lg-3");
+$("#CustomListCardLinks .col-lg-3").removeClass("col-lg-12");
+
+
+$('.StudentChecklistClass .card-body div:nth-child(2)').each(function() {
+  $(this).add($(this).next('.StudentChecklistClass .card-body div:nth-child(3)')).wrapAll('<div class="SCWrap"></div>')
+});
+
+
+$("#runSyncWrap").hide();
+$('#runSyncWrap').append("<br><div class='defconMessage'><strong>VC ALERT Message: Vernon College campuses closed Thursday and Friday. All classes cancelled.<br></div><br>")
+
+       
+var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+
+var defconLevel = "";
+var defconMessage = "";
+
+
+
+/*    $.getJSON("https://service.runsync.com/MessageJSON.svc/json/86c3a379e04b219e9146bb68faa657fe", function (response) {
+        if (response != "") {
+            defconMessage = response;
+console.log(defconMessage);
+$("#runSyncWrap").hide();
+$('#runSyncWrap').append("<br><div class='defconMessage'><strong>VC ALERT Message:<br> " + defconMessage + "</div><br>")
+        }
+    });
+*/
+$('.CalendarEventList').addClass('row');
+$('.CalendarEventItem').addClass('col-lg');
+
+$('#ctl00_ctl00_ctl00_cphBody_cphBody_cphBody_ctl06_ctl00_ctl00_ctl00_cphBody_cphBody_cphBody_ctl06_rapAjaxPanelPanel').prepend('<div style="box-shadow: 0 5px 6px rgba(164,164,164,.5);"  class="event-header">EVENTS</div>');
+
+$('.CalendarEventList').after('<div style="text-align: center;"><a class="btn btn-warning text-center" href="/vc-calendar">VIEW ALL EVENTS</a></div>');
+
+$('#cphBody_ctl04_pBlogListView').addClass('container');
+$('#cphBody_ctl04_pBlogListView').addClass('text-center');
+$('#cphBody_cphBody_cphBody_ctl01_pBlogListView').addClass('container');
+$('#cphBody_cphBody_cphBody_ctl01_pBlogListView').addClass('text-center');
+
+$('#ctl00_ctl00_ctl00_cphBody_cphBody_cphBody_ctl05_rapAjaxPanel').addClass('container');
+
+$('#cphBody_cphBody_cphBody_ctl03_pBlogListView').addClass('container');
+$('#cphBody_cphBody_cphBody_ctl03_pBlogListView').addClass('text-center');
+
+
+
+
+
+        $('.NewBannerWrap .sub-banner-wrap').attr('style','background-color:#003366;background-image:url("/Images/New Site Design/Headers/' + Math.floor((Math.random() * 32) + 1) + '.jpg")');
+$('.NewBannerWrapStatic .sub-banner-wrap').attr('style','background-color:#003366;background-image:url("/Images/New Site Design/Headers/2.jpg")');
+
+
+
+ 
+
+$("#sub-no-banner #cphBody_cphBody_cphBody_ctl02_CardData .col-lg-4").addClass("col-lg-6");
+$("#sub-no-banner #cphBody_cphBody_cphBody_ctl02_CardData .col-lg-6").removeClass("col-lg-4");
+
+});
+
+
+</script>
+    
+    
+    
+
+
+<meta name="ROBOTS" content="INDEX,FOLLOW" /><script type="application/ld+json">{"url":"athletics-home","name":"Athletics Home","description":"","image":"https://www.vernoncollege.edu/Images/SEOLogo.png","@context":"http://schema.org","@type":"WebSite"}</script><meta property="og:site_name" content="Vernon College" /><meta itemprop="og:name" content="Athletics Home" /><meta property="og:image" content="https://www.vernoncollege.edu/Images/SEOLogo.png" /><meta property="og:title" content="Athletics Home - Vernon College" /><meta property="og:url" content="https://www.vernoncollege.edu/athletics-home" /><meta itemprop="url" content="https://www.vernoncollege.edu/athletics-home" /><meta property="og:type" content="website" /><meta property="og:description" content="Athletics at Vernon College" /><meta itemprop="description" content="Athletics at Vernon College" /><meta name="twitter:title" content="Athletics Home - Vernon College" /><meta name="twitter:image" content="https://www.vernoncollege.edu/Images/SEOLogo.png" /><meta name="twitter:url" content="https://www.vernoncollege.edu/athletics-home" /><meta name="twitter:card" content="summary" /><meta name="twitter:description" content="Athletics at Vernon College" /><meta name="description" content="Athletics at Vernon College" /><link rel="alternate" type="application/rss+xml" title="Vernon College" href="https://www.vernoncollege.edu/RSSFeed.aspx" /><link rel="stylesheet" type="text/css" href="/Styles/site/Site639274367067595573.css" /><link rel="stylesheet" type="text/css" href="/Styles/tablet/Tablet637511390462937653.css" /><link rel="stylesheet" type="text/css" href="/Styles/handheld/Handheld638790514440235057.css" /><link href="/WebResource.axd?d=QKX1AO1vX8ebWKfbb4eOTO8Bl6eEDDznvs7wV-o40V9T-UHxzkKzBJMiCYeWSFLncZZUs9Jg_qMef95vEB7I9ly-OPo2xQdNe0uwWLJmIFBeEVRG0&amp;t=637366237740000000" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=CZyj38teAn4i1MlX6JKQURbzSkhUbqya4eZKJz6xqq8IxhTKLAg6xWqCIz5uaiUC1-ygtaf6gqrn6ChilYFM5r1jjoOlqUBirzCwXuwBNICpYE4LHmHvMT0jRpRqT7-Kpq9-C9I2ZyDrdvS5Smh3SgefQ_o1&amp;t=637366237740000000" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><meta name="description" content="Athletics at Vernon College" /></head>
+<body id="page-top">
+    
+<style>
+    #AlertsPage_alertWrap a {
+        color:white !important;
+    }
+    #AlertsPage_alertWrap a:hover {
+        color:white !important;
+    }
+</style>
+<div id="AlertsPage_alertWrap" style="position:relative;z-index:1005;padding:10px 0px;text-align:center;color:#FF0000;;background:#FFFFFF;;"><strong><a href="https://www.vernoncollege.edu/registration" target="_blank">Registration/Payment Dates Fall 2026/Spring 2027</a></strong></div>
+
+    
+
+
+    <form method="post" action="./athletics-home" id="form1">
+<input type="hidden" name="rsmScriptManager_TSM" id="rsmScriptManager_TSM" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="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" />
+
+
+<script src="/Telerik.Web.UI.WebResource.axd?_TSM_HiddenField_=rsmScriptManager_TSM&amp;compress=1&amp;_TSM_CombinedScripts_=%3b%3bSystem.Web.Extensions%2c+Version%3d4.0.0.0%2c+Culture%3dneutral%2c+PublicKeyToken%3d31bf3856ad364e35%3aen-US%3a95047a2c-8908-49e3-b68e-d249be89f134%3aea597d4b%3bTelerik.Web.UI%2c+Version%3d2020.2.512.45%2c+Culture%3dneutral%2c+PublicKeyToken%3d121fae78165ba3d4%3aen-US%3a88f9a2dc-9cbf-434f-a243-cf2dd9f642dc%3a16e4e7cd%3aed16cbdc%3af7645509%3a24ee1bba%3ac128760b%3a19620875%3a874f8ea2%3af46195d3%3ab2e06756%3a92fe8ea0%3afa31b949%3a4877f69a%3a33715776%3a490a9d4e%3abd8f85e4" type="text/javascript"></script>
+<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="CA0B0334" />
+        
+        
+        
+        <div id="wrapper">
+
+            
+
+
+
+
+            
+    
+
+
+
+             <div id="content-wrapper" class="d-flex flex-column">
+                
+    
+
+    <style>
+    #Run_CMS_Toolbox #AdminToolbox_imgGear {
+    width:100% !important;
+    }
+    #emp-button {
+    margin: 5px;
+    color: white !important;
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 800 !important;
+    font-size: 31px;
+    text-align:center;
+    display: inline-block;
+    }
+    .employee .col-lg {
+    background:#EA7D2B;
+    padding:25px;
+    margin:5px;
+    }
+    .defconMessage {
+    text-align: center;
+    color: white;
+    font-size: 21px;
+    }
+    #runSyncWrap {
+    background: red;
+    }
+    .container.corona {
+    padding: 21px 0;
+    text-align: center;
+    }
+    .RightLarge ul, .RightLarge ol{
+    margin-inline-start: 40px;
+    color:#646464;
+    font-size:14px;
+    font-family: 'Montserrat', sans-serif !important;
+    }
+    .SubMenu {
+    padding:0;
+    margin:0;
+    }
+    #SubMenu a {
+    list-style-type: none;
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 400 !important;
+    color:#174769 !important;
+    font-size:14px;
+    }
+    #cphBody_cphBody_cphBody_ctl03_pBlogListView .BlogListViewItem {
+    display:block;
+    width: 100%;
+    background: white;
+    height: auto;
+    border-radius: 0px;
+    margin: 0px 00px;
+    padding: 0px 0px 00px 0px;
+    vertical-align: top;
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
+    text-align:left;
+    }
+    #cphBody_cphBody_cphBody_ctl03_pBlogListView .BlogListViewItem .BlogListText {
+    display: block;
+    text-align: left;
+    padding: 0px 15px;
+    }
+    .SubMenu ul {
+    padding-inline-start: 0px !important;
+    -webkit-padding-start: 0px;
+    }
+    #ctl00_ctl00_ctl00_cphBody_cphBody_cphBody_ctl02_rdp586_dateInput_Label, #ctl00_ctl00_ctl00_cphBody_cphBody_cphBody_ctl02_rdtp589_dateInput_Label {
+    width:100% !important;
+    }
+    .employee .col-lg-5 {
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(rgba(0,0,0,.5)), to(rgb(0, 0, 0,.5))) 0 0, url('/Images/New Site Design/vc_banner2.jpg') no-repeat;
+    padding:100px 0px;
+    background-size: cover;
+    margin: 15px;
+    background-color:#000000;
+    }
+</style>
+<style>
+    .siteSearch {
+    display: inline-block;
+    width: 275px;
+    margin-left:10px;
+    }
+    .ss360-custom-search .ss360-custom-search__searchbox {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-position: 4px 10px;
+    background-repeat: no-repeat;
+    background-size: 24px 24px;
+    border: 1px solid #dedede;
+    border-radius: 0;
+    border-bottom-left-radius: 3px;
+    border-top-left-radius: 3px;
+    box-shadow: 2px 2px 4px rgb(0 0 0 / 12%);
+    box-sizing: border-box;
+    font-size: 1.2em;
+    height: 38px !important;
+    margin: 0;
+    max-width: 420px;
+    padding: 0 8px;
+    width: 100%;
+    }
+    .ss360-custom-search .ss360-custom-search__searchbutton {
+    align-items: center;
+    box-shadow: 2px 2px 4px rgb(0 0 0 / 12%);
+    box-sizing: border-box;
+    cursor: pointer;
+    display: flex;
+    font-size: 1em;
+    height: 38px !important;
+    left: -49px;
+    position: relative;
+    justify-content: center;
+    margin-top: 0;
+    padding: 0 16px;
+    transition: background-color .3s ease-in-out,border-color .3s ease-in-out;
+    }
+</style>
+<div id="top-header">
+<div id="left-header">
+<a href="/"><img alt="vernon home page" class="nav-logo" src="/Images/New Site Design/vc_logo.png" /></a>
+<div class="siteSearch">
+<section role="search" data-ss360="true">
+<input type="search" id="searchBox" placeholder="Search…" />
+<button id="searchButton"></button>
+</section>
+</div>
+</div>
+<div id="right-header">
+<a href="/parents">Parents</a> / <a href="/faculty-home">Faculty &amp; Staff</a> / <a href="/ex-students-association-overview">Alumni</a> / <a href="alumni-and-friends-homepage"><em class="fas fa-heart"></em> Donate</a>
+</div>
+</div>
+<div class="navigation-bar">
+<div class="nav-container">
+<div class="header-icons">
+<a aria-label="Student Email link" href="https://outlook.office365.com" title="Email" data-toggle="tooltip" data-placement="bottom" target="_blank">
+<span class="fa-stack fa-lg">
+<em aria-hidden="true" class="fa fa-circle fa-stack-2x"></em>
+<em aria-hidden="true" class="far fa-envelope fa-stack-1x fa-inverse"></em>
+</span>
+</a>
+<a aria-label="Canvas link" href="https://vernon.instructure.com/login/saml" title="Canvas" data-toggle="tooltip" data-placement="bottom"><img alt="canvas link" src="/Images/New Site Design/canvas transparent_web.png"></a>
+<a href="/my-vc-2023"><img alt="My VC2 Link" src="/Images/New Site Design/my_vc_button.png"></a>
+<a href="/cares-act-report"><img alt="Cares ACT Rport Link" height="30px" src="/Images/heerf_button.png"></a>
+<div class="small-icons">
+<a aria-label="Facebook link" href="https://www.facebook.com/VernonCollege/" target="_blank">
+<span class="fa-stack fa-lg">
+<em aria-hidden="true" class="fa fa-circle fa-stack-2x hover"></em>
+<em aria-hidden="true" class="fa fa-facebook fa-stack-1x fa-inverse"></em>
+</span>
+</a>
+<a aria-label="Twitter link" href="https://twitter.com/VernonCollege" target="_blank">
+<span class="fa-stack fa-lg">
+<em aria-hidden="true" class="fa fa-circle fa-stack-2x"></em>
+<em aria-hidden="true" class="fa fa-twitter fa-stack-1x fa-inverse"></em>
+</span>
+</a>
+<a aria-label="Instagramlink" href="https://www.instagram.com/vernoncollegeofficial/" target="_blank">
+<span class="fa-stack fa-lg">
+<em aria-hidden="true" class="fa fa-circle fa-stack-2x"></em>
+<em aria-hidden="true" class="fa fa-circle fa-stack-2x"></em>
+<em aria-hidden="true" class="fa fa-instagram fa-stack-1x fa-inverse"></em>
+</span>
+</a>
+<a aria-label="youtube link" href="https://www.youtube.com/channel/UC1aBTGGiy-iHH-iqClD4Eng" target="_blank">
+<span class="fa-stack fa-lg">
+<em aria-hidden="true" class="fa fa-circle fa-stack-2x"></em>
+<em aria-hidden="true" class="fa fa-youtube-play fa-stack-1x fa-inverse"></em>
+</span>
+</a>
+</div>
+</div>
+
+<nav id="Navigation">
+    
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+          <a class="navbar-brand" href="/"><img alt="Company Logo" class="NavLogo" src="/Images/NavLogo.png" /></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class='nav-item dropdown'><a class='nav-link dropdown-toggle' href='/#' id='navbarDropdownABOUT' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>ABOUT</a><div class='dropdown-menu' aria-labelledby='navbarDropdownABOUT'><a class='dropdown-item' href="facilities-request">Facilities Request</a><a class='dropdown-item' href="history-of-vernon-college">History</a><a class='dropdown-item' href="about-vc-home">College Overview</a><a class='dropdown-item' href="board-of-trustees-home">Board of Trustees</a><a class='dropdown-item' href="VC-Calendar">Calendar / Academic Calendar</a><a class='dropdown-item' href="president-s-message">Office of the President</a><a class='dropdown-item' href="campus-safety-tips">Campus Safety</a><a class='dropdown-item' href="alumni-and-friends-homepage">Vernon College Foundation</a><a class='dropdown-item' href="news">News and Events</a><a class='dropdown-item' href="ferpa">Consumer Information</a><a class='dropdown-item' href="annual-public-notice-cte">Annual Public Notice CTE</a><a class='dropdown-item' href="college-effectiveness-home">College Effectiveness</a><a class='dropdown-item' href="publications-home">Publications</a><a class='dropdown-item' href="faculty-senate">Faculty Senate</a></div></li><li class='nav-item dropdown'><a class='nav-link dropdown-toggle' href='/#' id='navbarDropdownAPPLY' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>APPLY</a><div class='dropdown-menu' aria-labelledby='navbarDropdownAPPLY'><a class='dropdown-item' href="education-navigation">Education Navigation </a><a class='dropdown-item' href="admissions-home">Admissions</a><a class='dropdown-item' href="financial-aid-home-page">Financial Aid</a><a class='dropdown-item' href="scholarships">Scholarships</a><a class='dropdown-item' href="new-beginnings">New Beginnings</a><a class='dropdown-item' href="veterans-affairs-services">Veterans Affairs Education Benefits</a><a class='dropdown-item' href="business-office-home">Business Office</a><a class='dropdown-item' href="student-services-home">Student Services</a><a class='dropdown-item' href="new-student-orientation">Chaparral Orientation</a><a class='dropdown-item' href="registration-guide">Registration Guide</a><a class='dropdown-item' href="student-services-handbooks-manuals">Student Guide</a><a class='dropdown-item' href="ada-home">ADA Home</a><a class='dropdown-item' href="testing-home">Testing</a><a class='dropdown-item' href="housing-homepage">Housing</a></div></li><li class='nav-item dropdown'><a class='nav-link dropdown-toggle' href='/#' id='navbarDropdownDEGREES&PROGRAMS' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>DEGREES & PROGRAMS</a><div class='dropdown-menu' aria-labelledby='navbarDropdownDEGREES&PROGRAMS'><a class='dropdown-item' href="parenting">Parenting Students</a><a class='dropdown-item' href="coaching-students">Career Coach</a><a class='dropdown-item' href="academic-advising-course-schedule-advising">Advising</a><a class='dropdown-item' href="dual-credit-home">Dual Credit</a><a class='dropdown-item' href="instructional-services-home">Instructional Services</a><a class='dropdown-item' href="continuing-education-home">Continuing Education</a><a class='dropdown-item' href="distance-education-1188">Distance Education</a><a class='dropdown-item' href="catalog">Catalog</a><a class='dropdown-item' href="academic-credit">Registration Information</a><a class='dropdown-item' href="final-exams">Final Exam Schedule</a></div></li><li class='nav-item dropdown'><a class='nav-link dropdown-toggle' href='/#' id='navbarDropdownSTUDENTLIFE' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>STUDENT LIFE</a><div class='dropdown-menu' aria-labelledby='navbarDropdownSTUDENTLIFE'><a class='dropdown-item' href="king-center-pool-and-gym">King Center Pool and Gym</a><a class='dropdown-item' href="campus-police-homepage">Campus Police</a><a class='dropdown-item' href="student-activities-homepage">Student Activities</a><a class='dropdown-item' href="century-city-fitness-center">Century City Fitness Center</a><a class='dropdown-item' href="Dining-Menu">Dining Menu</a><a class='dropdown-item' href="athletics-home">Athletics</a><a class='dropdown-item' href="library">Library</a><a class='dropdown-item' href="additional-resources">Resource Center</a><a class='dropdown-item' href="bookstore-home">Bookstore</a><a class='dropdown-item' href="tutoring-centers">Tutoring</a><a class='dropdown-item' href="emergency-aid">Emergency Aid</a><a class='dropdown-item' href="mental-health-resources">Mental Health Resources</a><a class='dropdown-item' href="emergency-management">Emergency Management</a></div></li><li class='nav-item dropdown'><a class='nav-link dropdown-toggle' href='/#' id='navbarDropdownCONTACTUS' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>CONTACT US</a><div class='dropdown-menu' aria-labelledby='navbarDropdownCONTACTUS'><a class='dropdown-item' href="faculty-and-staff-contact-page">Personnel</a><a class='dropdown-item' href="vernon-campus">Locations</a><a class='dropdown-item' href="all-departments">Department Listing</a></div></li><li class="nav-item apply-now"><a class='nav-link' href="https://apply.vernoncollege.edu/">APPLY NOW</a></li>
+                </ul>
+           </div>
+       </div>
+    </nav>
+
+
+</nav>
+</div>
+</div>
+<div id="runSyncWrap">&nbsp;</div>
+<div id="SubContent" class="NewBannerWrap">
+<div style="position:relative;">
+<div class="sub-banner-wrap" id="sub-banner">
+<h1>Athletics</h1>
+</div>
+</div>
+
+    
+    
+    
+    
+
+    <div id="cphBody_cphBody_cphBody_BannerWrap"></div>
+    <main id="MainContent" class="MainContent container Layout3 SubPage"><div class="row"><div class="col-lg-4"><div class="col-lg-12" style=""></div><div class="col-lg-12"></div></div><div class="col-lg-8" style="">This address has changed. <a href="https://gochapsports.com/">Please click HERE</a></div></div><div style="clear:both;"></div></main>
+        
+
+
+    
+</div>
+<div id="FooterWrap">
+<div id="FooterCont">
+<img alt="vernon college logo" width="141px" height="40px" src="/Images/New Site Design/vc_logo.png" /><br />
+<br />
+<span>TEACHING. LEARNING. LEADING.</span>
+<div class="header-icons">
+<a title="facebook link" href="https://www.facebook.com/VernonCollege/" target="_blank">
+<span class="fa-stack fa-lg">
+<em class="fa fa-circle fa-stack-2x hover"></em>
+<em class="fa fa-facebook fa-stack-1x fa-inverse"></em>
+</span>
+</a>
+<a title="twitter link" href="https://twitter.com/VernonCollege" target="_blank">
+<span class="fa-stack fa-lg">
+<em class="fa fa-circle fa-stack-2x"></em>
+<em class="fa fa-twitter fa-stack-1x fa-inverse"></em>
+</span>
+</a>
+<a title="instagramlink" href="https://www.instagram.com/vernoncollegeofficial/" target="_blank">
+<span class="fa-stack fa-lg">
+<em class="fa fa-circle fa-stack-2x"></em>
+<em class="fa fa-instagram fa-stack-1x fa-inverse"></em>
+</span>
+</a>
+<a title="youtube link" href="https://www.youtube.com/channel/UC1aBTGGiy-iHH-iqClD4Eng" target="_blank">
+<span class="fa-stack fa-lg">
+<em class="fa fa-circle fa-stack-2x"></em>
+<em class="fa fa-youtube-play fa-stack-1x fa-inverse"></em>
+</span>
+</a>
+</div>
+<br />
+<span>Monday-Thursday 8:00 a.m. - 5 p.m. // Friday - 8:00 a.m. - 12 p.m.&nbsp;</span><br />
+<ul>
+    <li>
+    <strong>Vernon Campus</strong><br />
+    4400 College Drive<br />
+    Vernon, TX 76384<br />
+    <a href="tel:9405526291">940.552.6291</a>
+    </li>
+    <li>
+    <strong>Century City Center</strong><br />
+    4105 Maplewood<br />
+    Wichita Falls, TX 76308<br />
+    <a href="tel:9406968752">940.696.8752</a>
+    </li>
+    <li>
+    <strong>Skills Training Center</strong><br />
+    2813 Central Expressway East<br />
+    Wichita Falls, TX 76302<br />
+    <a href="tel:9407663369">940.766.3369</a>
+    </li>
+</ul>
+<div class="FooterLinks">
+<a href="/legal-information-home">Legal Information</a> / <a href="https://texvet.org/partners/texasgov">Texas Veteran Portal</a> / <a href="/instructional-information-home">House bill</a> / <a href="#">Site Map</a> / <a href="/Resources/Admissions/Vernon College Online Institutional Resume 03212018.pdf">Online Resume</a> / <a href="/admin">Login</a> / <a href="/emergency-procedures">Emergency Procedures</a>
+&copy;2026 Vernon College
+</div>
+</div>
+</div>
+<script>
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+
+$("#Run_CMS_Toolbox .navbar-nav").addClass("toggled");
+</script>
+<div style="display:none;">
+1970 marked the beginning of Vernon College.  Throughout this decade the College continued to grow and more students enrolled in both on- and off-campus courses.  On January 20, 1970, a majority of the citizens of Wilbarger County voted to create the Wilbarger County Junior College District.  Following that decision, Vernon Regional Junior College was established and on April 9, 1970, the newly elected Board of Trustees appointed Dr. David L. Norton as the College’s first president.  Campus construction began in May 1971, and included an Academic Science Center, Administration-Fine Arts Center, Applied Arts Center, Library, and Student Center.  The following year, on September 5, 1972, classes met for the first time on the Vernon campus with a total of 608 students.  On August 1, 1974, Dr. Jim M. Williams became the College’s second president.  In the fall semester of that year, combined on- and off-campus enrollment exceeded 800 students.  During the 1975-76 academic year, the College expanded its services to include a learning center on Sheppard Air Force Base.  During this year, enrollment in credit courses, both on- and off-campus, rose to a level of 1,199.  The scope of the Vocational Nursing Program was enlarged during the 1976-77 academic year with the assumption of the Bethania School of Vocational Nursing in Wichita Falls.  In August 1976 the Physical Education Center was dedicated in honor of Dr. and Mrs. Thomas A. King longtime benefactors of Vernon College.
+Growth and changes continued during the 1980s.  In August 1980 a Student Residence Center, designed to house 128 students, opened for occupancy.  Further expansion of program offerings in the Wichita Falls area was accomplished through absorption of an existing proprietary school that was renamed the Vernon College Technical Center and the integration of the nursing program from the Wichita Falls Independent School District.  On March 22, 1982, Dr. Joe Mills took over the leadership of the College as the third president.  That fall, the College fielded its first intercollegiate rodeo team. During 1983-84, the Department of Cosmetology and the Career Development Center (previously known as the North Texas Skills Center) were established in Wichita Falls.  On the Vernon campus, the Chaparral Center was completed, and the Pease River farm purchased through a state land trade.   The following academic year, 1984-85, Vernon College reached a record credit enrollment of 1,863 and a record continuing education enrollment of 7,056 registrations.  A Vocational Nursing Program opened in Seymour, and the Board of Trustees established a college foundation and approved an agreement to allow construction of the Red River Valley Museum on the Vernon campus.  In February 1987 the College played its first intercollegiate baseball game on the Vernon campus.  During May of that year, the new Natatorium was opened in the King Physical Education Center. A newly constructed Athletic Dormitory opened to house 28 athletes in August 1988.  In October, Trustees voted to add women’s volleyball as a varsity sport, effective with the fall 1989 semester.  In May 1989 Vernon College moved all Wichita Falls programs to one centralized location—Century City Center. Since the College opened its doors 38 years ago, many individuals, corporations, foundations, and organizations have made an investment in our students through the creation of endowed and annual scholarships. As of this year, more than 100 scholarship funds are available to help students pursue their educational dreams.VERNON COLLEGE PHILOSOPHY: Vernon College is a constantly evolving institution, dedicated primarily to effective teaching and regional enhancement. With this dedication to teaching and to the community, the College encourages open inquiry, personal and social responsibility, critical thinking, and life-long learning for students, faculty, and other individuals within its service area. The College takes as its guiding educational principle the proposition that, insofar as available resources permit, instruction should be adapted to student needs. This principle requires both flexibility in instructional strategies and maintenance of high academic standards. Strong programs of assessment and accountability complement this educational principle. VC accepts the charge of providing a college atmosphere free of bias, in which students can exercise initiative and personal judgment, leading to a greater awareness of personal self-worth. It strives to provide every student with opportunities to develop the tools necessary to become a contributing, productive member of society.
+Vision
+VERNON COLLEGE VISION: Vernon College will promote a culture of success for our students and communities through learner-centered quality instructional programs and exemplary services.
+Values
+VERNON COLLEGE VALUES: Vernon College promotes a culture of success through our shared values and commitment to:
+Accessibility
+Accountability
+Building Relationships
+Diversity
+Inclusion
+Innovation
+Leadership
+Quality
+Student Success
+Teamwork
+Our values define who we are and guide us in conducting our business every day. Our values are our morals – what is important to us at our college.
+Mission
+VERNON COLLEGE MISSION The mission of Vernon College is teaching, learning, and leading. Vernon College is a comprehensive community college that integrates education with opportunity through our instructional programs and student support services by means of traditional and distance learning modes. Therefore, to fulfill its mission, the College will provide access, within its available resources, to:
+Career technical/workforce programs up to two years in length leading to associate degrees or certificates;
+Career technical/workforce programs leading directly to employment in semi-skilled and skilled occupations;
+Freshman and sophomore courses in arts and sciences, including the curricula leading to associate and baccalaureate degrees;
+Ongoing adult education programs for occupational upgrading or personal enrichment;
+Compensatory education programs designed to fulfill the commitment of an admissions policy allowing the enrollment of disadvantaged students; ;
+A continuing program of counseling and guidance designed to assist students in achieving their individual educational goals;
+Career technical/workforce development programs designed to meet local and statewide needs;
+Support services for educational programs and college-related activities;
+Adult literacy and other basic skills programs for adults; and
+Other To help prospective and current students, faculty, and staff locate important information about Vernon College, this webpage provides links to helpful information on a variety of government mandated and consumer information. Examples are academic programs, cost of attendance, financial aid, safety and security, and institutional financial reports. Vernon College’s presentation of this information complies with the Higher Education Act, as amended, and implementing regulations.</div>
+<script async="" src="https://js.sitesearch360.com/plugin/bundle/2877.js"></script>
+
+    
+        <script>
+            (function (i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+            ga('create', 'UA-26373513-1', 'vernoncollege.edu');
+            ga('send', 'pageview');
+
+    
+
+
+        </script>
+    
+
+             </div>
+        </div>
+        
+        <!-- 2020.2.512.45 --><div id="ramAjaxManagerSU">
+	<span id="ctl00_ctl00_ctl00_ramAjaxManager" style="display:none;"></span>
+</div>
+        <div id="ctl00_ctl00_ctl00_rwmWindowManager" style="display:none;">
+	<div id="ctl00_ctl00_ctl00_rwmWindowManager_alerttemplate" style="display:none;">
+		<div class="rwDialogPopup radalert">			
+			<div class="rwDialogText">
+			{1}				
+			</div>
+			
+			<div>
+				<a  onclick="$find('{0}').close(true);"
+				class="rwPopupButton" href="javascript:void(0);">
+					<span class="rwOuterSpan">
+						<span class="rwInnerSpan">##LOC[OK]##</span>
+					</span>
+				</a>				
+			</div>
+		</div>
+		</div><div id="ctl00_ctl00_ctl00_rwmWindowManager_prompttemplate" style="display:none;">
+		 <div class="rwDialogPopup radprompt">			
+			    <div class="rwDialogText">
+			    {1}				
+			    </div>		
+			    <div>
+				    <script type="text/javascript">
+				    function RadWindowprompt_detectenter(id, ev, input)
+				    {							
+					    if (!ev) ev = window.event;                
+					    if (ev.keyCode == 13)
+					    {															        
+					        var but = input.parentNode.parentNode.getElementsByTagName("A")[0];					        
+					        if (but)
+						    {							
+							    if (but.click) but.click();
+							    else if (but.onclick)
+							    {
+							        but.focus(); var click = but.onclick; but.onclick = null; if (click) click.call(but);							 
+							    }
+						    }
+					       return false;
+					    } 
+					    else return true;
+				    }	 
+				    </script>
+				    <input title="Enter Value" onkeydown="return RadWindowprompt_detectenter('{0}', event, this);" type="text"  class="rwDialogInput" value="{2}" />
+			    </div>
+			    <div>
+				    <a onclick="$find('{0}').close(this.parentNode.parentNode.getElementsByTagName('input')[0].value);"				
+					    class="rwPopupButton" href="javascript:void(0);" ><span class="rwOuterSpan"><span class="rwInnerSpan">##LOC[OK]##</span></span></a>
+				    <a onclick="$find('{0}').close(null);" class="rwPopupButton"  href="javascript:void(0);"><span class="rwOuterSpan"><span class="rwInnerSpan">##LOC[Cancel]##</span></span></a>
+			    </div>
+		    </div>				       
+		</div><div id="ctl00_ctl00_ctl00_rwmWindowManager_confirmtemplate" style="display:none;">
+		<div class="rwDialogPopup radconfirm">			
+			<div class="rwDialogText">
+			{1}				
+			</div>						
+			<div>
+				<a onclick="$find('{0}').close(true);"  class="rwPopupButton" href="javascript:void(0);" ><span class="rwOuterSpan"><span class="rwInnerSpan">##LOC[OK]##</span></span></a>
+				<a onclick="$find('{0}').close(false);" class="rwPopupButton"  href="javascript:void(0);"><span class="rwOuterSpan"><span class="rwInnerSpan">##LOC[Cancel]##</span></span></a>
+			</div>
+		</div>		
+		</div><input id="ctl00_ctl00_ctl00_rwmWindowManager_ClientState" name="ctl00_ctl00_ctl00_rwmWindowManager_ClientState" type="hidden" />
+</div>
+    
+
+<script type="text/javascript">
+//<![CDATA[
+window.__TsmHiddenField = $get('rsmScriptManager_TSM');Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadAjaxManager, {"_updatePanels":"","ajaxSettings":[],"clientEvents":{OnRequestStart:"",OnResponseEnd:""},"defaultLoadingPanelID":"","enableAJAX":true,"enableHistory":false,"links":[],"styles":[],"uniqueID":"ctl00$ctl00$ctl00$ramAjaxManager","updatePanelsRenderMode":0}, null, null, $get("ctl00_ctl00_ctl00_ramAjaxManager"));
+});
+Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadWindowManager, {"clientStateFieldID":"ctl00_ctl00_ctl00_rwmWindowManager_ClientState","formID":"form1","iconUrl":"","minimizeIconUrl":"","name":"rwmWindowManager","skin":"Bootstrap","windowControls":"[]"}, null, null, $get("ctl00_ctl00_ctl00_rwmWindowManager"));
+});
+//]]>
+</script>
+</form>
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".ClearAfter").after("<div style='clear:both'></div>");
+        });
+    </script>
+    
+<style>
+    #AlertsPage_alertWrap a {
+        color:white !important;
+    }
+    #AlertsPage_alertWrap a:hover {
+        color:white !important;
+    }
+</style>
+<div id="ScriptPage_scriptWrap">
+	
+<!--Facebook Script -->
+<!-- Facebook Pixel Code -->
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '358101544986331');
+  fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=358101544986331&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Facebook Pixel Code -->
+<!--End of Facebook-->
+</div>
+
+</body>
+</html>

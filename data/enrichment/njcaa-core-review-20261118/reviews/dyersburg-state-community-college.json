@@ -1,0 +1,41 @@
+{
+  "slug": "dyersburg-state-community-college",
+  "collegeId": "cmox1ggcw0033qtsgry6iilxh",
+  "programId": "cmox1ggdo0035qtsgm3qx9pi0",
+  "name": "Dyersburg State Community College",
+  "storedState": "TN",
+  "storedDivision": "NJCAA_D1",
+  "checkedAtUtc": "2026-11-18T14:20:35.945Z",
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "currentMembershipVerified": false,
+  "campusIdentityVerified": false,
+  "importApproval": "NOT_GRANTED",
+  "pages": [
+    {
+      "requestedUrl": "https://www.dscc.edu/athletics/baseball",
+      "kind": "DIRECTORY_ALIAS_REQUIRES_CAMPUS_REVIEW",
+      "parent": {
+        "sourcePath": "../njcaa-discovery-20261118/sources/directory-0.source",
+        "sha256": "63f1c531b007d2922e4db3aa2ba596ee54e397dbafd287df69b95213a011a404",
+        "label": "Dyersburg State"
+      },
+      "status": 404,
+      "finalUrl": "https://www.dscc.edu/athletics/baseball",
+      "checkedAtUtc": "2026-11-18T14:20:36.943Z",
+      "sourcePath": "sources/dyersburg-state-community-college-0.source",
+      "sha256": "a36703b28e6875f2d192d4b97695b32ec3f9648eb8beaf77c78610133bf9d082"
+    }
+  ],
+  "discoveryAliases": [
+    {
+      "url": "https://www.dscc.edu/athletics/baseball",
+      "label": "Dyersburg State",
+      "parentSourcePath": "sources/directory-0.source",
+      "parentSHA256": "63f1c531b007d2922e4db3aa2ba596ee54e397dbafd287df69b95213a011a404",
+      "parentUrl": "https://www.thebaseballobserver.com/njcaa-di-baseball",
+      "status": "UNVERIFIED_NORMALIZED_NAME_LEAD"
+    }
+  ],
+  "status": "HELD_NO_READABLE_SOURCE"
+}

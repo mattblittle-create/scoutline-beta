@@ -1,0 +1,1796 @@
+{
+  "slug": "albertus-magnus-college",
+  "collegeId": "cmovorli30003qt7ghyzowd2w",
+  "programId": "cmovorliu0005qt7g7mg1gz62",
+  "checkedAtUtc": "2026-11-17T20:34:49.198Z",
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED",
+  "missingFields": [
+    "rosterUrl",
+    "scheduleUrl",
+    "questionnaireUrl",
+    "campsUrl",
+    "generalContactEmail",
+    "programXUrl"
+  ],
+  "pages": [
+    {
+      "requestedUrl": "https://www.albertusfalcons.com/sports/bsb/index",
+      "kind": "baseball-home",
+      "parent": null,
+      "status": 200,
+      "finalUrl": "https://www.albertusfalcons.com/sports/bsb/index",
+      "sourcePath": "../sources/albertus-magnus-college-0.html",
+      "sha256": "0aa884a0068f9e8c80b50d857d72d7a9f3459e40608f26106cdfa06d5da68b4d",
+      "reusedEvidence": true,
+      "originalCheckedAtUtc": "2026-11-17T17:20:07.807Z",
+      "parsed": {
+        "title": "Albertus Magnus Athletics",
+        "headings": [
+          "Baseball",
+          "Top Stories",
+          "Schedule",
+          "More Falcons Headlines",
+          "Athletic Department’s Fourth Annual Golf Tournament Sets New Bar",
+          "Albertus Baseball To Host Alumni Game On October 10th",
+          "2025-26: The Year-In-Review",
+          "Athlete Of The Week",
+          "Albertus Magnus College"
+        ],
+        "links": [
+          {
+            "url": "https://www.albertusfalcons.com/sports/wbkb/2026-27/schedule",
+            "label": "Schedule Sports: Women's Sports: Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wbkb/2026-27/roster",
+            "label": "Roster Sports: Women's Sports: Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/AlbertusWBB",
+            "label": "Twitter Sports: Women's Sports: Basketball: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/albertus_wbb/",
+            "label": "Instagram Sports: Women's Sports: Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wgolf/2026-27/schedule",
+            "label": "Schedule Sports: Women's Sports: Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wgolf/2026-27/roster",
+            "label": "Roster Sports: Women's Sports: Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/Albertus_Sports",
+            "label": "Twitter Sports: Women's Sports: Golf: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/albertusgolf",
+            "label": "Instagram Sports: Women's Sports: Golf: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wice/2026-27/schedule",
+            "label": "Schedule Sports: Women's Sports: Ice Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wice/2026-27/roster",
+            "label": "Roster Sports: Women's Sports: Ice Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/Albertus_WIH",
+            "label": "Twitter Sports: Women's Sports: Ice Hockey: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/Albertus_WIH",
+            "label": "Instagram Sports: Women's Sports: Ice Hockey: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wtrack-ind/2026-27/schedule",
+            "label": "Schedule Sports: Women's Sports: Indoor T&F (27-28): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wtrack-ind/2026-27/roster",
+            "label": "Roster Sports: Women's Sports: Indoor T&F (27-28): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wlax/2025-26/schedule",
+            "label": "Schedule Sports: Women's Sports: Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wlax/2025-26/roster",
+            "label": "Roster Sports: Women's Sports: Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/amcwlax",
+            "label": "Twitter Sports: Women's Sports: Lacrosse: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/albertus_wlax",
+            "label": "Instagram Sports: Women's Sports: Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wtrack-out/2026-27/schedule",
+            "label": "Schedule Sports: Women's Sports: Outdoor T&F (27-28): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wtrack-out/2026-27/roster",
+            "label": "Roster Sports: Women's Sports: Outdoor T&F (27-28): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wsoc/2026-27/schedule",
+            "label": "Schedule Sports: Women's Sports: Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wsoc/2026-27/roster",
+            "label": "Roster Sports: Women's Sports: Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/AMCWOMENSSOCCER",
+            "label": "Twitter Sports: Women's Sports: Soccer: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/amcws",
+            "label": "Instagram Sports: Women's Sports: Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/sball/2025-26/schedule",
+            "label": "Schedule Sports: Women's Sports: Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/sball/2025-26/roster",
+            "label": "Roster Sports: Women's Sports: Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/amc_sb",
+            "label": "Twitter Sports: Women's Sports: Softball: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/albertusmagnussoftball/",
+            "label": "Instagram Sports: Women's Sports: Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wten/2026-27/schedule",
+            "label": "Schedule Sports: Women's Sports: Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wten/2026-27/roster",
+            "label": "Roster Sports: Women's Sports: Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/albertus_tennis/",
+            "label": "Instagram Sports: Women's Sports: Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wvball/2026-27/schedule",
+            "label": "Schedule Sports: Women's Sports: Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wvball/2026-27/roster",
+            "label": "Roster Sports: Women's Sports: Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/albertusvolleyball/",
+            "label": "Instagram Sports: Women's Sports: Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/bsb/2025-26/schedule",
+            "label": "Schedule Sports: Men's Sports: Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/bsb/2025-26/roster",
+            "label": "Roster Sports: Men's Sports: Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/AlbertusCast",
+            "label": "Twitter Sports: Men's Sports: Baseball: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/albertusbaseball/",
+            "label": "Instagram Sports: Men's Sports: Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/mbkb/2026-27/schedule",
+            "label": "Schedule Sports: Men's Sports: Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/mbkb/2026-27/roster",
+            "label": "Roster Sports: Men's Sports: Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/AlbertusMBB",
+            "label": "Twitter Sports: Men's Sports: Basketball: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/albertusmbb/",
+            "label": "Instagram Sports: Men's Sports: Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/mgolf/2026-27/schedule",
+            "label": "Schedule Sports: Men's Sports: Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/mgolf/2026-27/roster",
+            "label": "Roster Sports: Men's Sports: Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/albertusgolf/",
+            "label": "Instagram Sports: Men's Sports: Golf: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/mice/2026-27/schedule",
+            "label": "Schedule Sports: Men's Sports: Ice Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/mice/2026-27/roster",
+            "label": "Roster Sports: Men's Sports: Ice Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.twitter.com/Albertus_MIH/",
+            "label": "Twitter Sports: Men's Sports: Ice Hockey: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/albertus_mih/",
+            "label": "Instagram Sports: Men's Sports: Ice Hockey: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/mtrack-ind/2026-27/schedule",
+            "label": "Schedule Sports: Men's Sports: Indoor T&F (27-28): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/mtrack-ind/2026-27/roster",
+            "label": "Roster Sports: Men's Sports: Indoor T&F (27-28): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/mlax/2025-26/schedule",
+            "label": "Schedule Sports: Men's Sports: Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/mlax/2025-26/roster",
+            "label": "Roster Sports: Men's Sports: Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/AMCmlax",
+            "label": "Twitter Sports: Men's Sports: Lacrosse: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/amcmlax/",
+            "label": "Instagram Sports: Men's Sports: Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/mtrack-out/2026-27/schedule",
+            "label": "Schedule Sports: Men's Sports: Outdoor T&F (27-28): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/mtrack-out/2026-27/roster",
+            "label": "Roster Sports: Men's Sports: Outdoor T&F (27-28): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/msoc/2026-27/schedule",
+            "label": "Schedule Sports: Men's Sports: Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/msoc/2026-27/roster",
+            "label": "Roster Sports: Men's Sports: Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/AlbertusMSoc",
+            "label": "Twitter Sports: Men's Sports: Soccer: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/albertus_menssoccer/",
+            "label": "Instagram Sports: Men's Sports: Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/mten/2025-26/schedule",
+            "label": "Schedule Sports: Men's Sports: Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/mten/2025-26/roster",
+            "label": "Roster Sports: Men's Sports: Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/albertus_tennis",
+            "label": "Instagram Sports: Men's Sports: Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/cheer/2025-26/schedule",
+            "label": "Schedule Sports: Coed Sports: Cheerleading: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/cheer/2025-26/roster",
+            "label": "Roster Sports: Coed Sports: Cheerleading: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/dance/2025-26/schedule",
+            "label": "Schedule Sports: Coed Sports: Dance: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/dance/2025-26/roster",
+            "label": "Roster Sports: Coed Sports: Dance: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/information/Camps_-_Clinics/Camps_and_Clinics",
+            "label": "Camps and Clinics Inside Athletics: Camps and Clinics",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/information/directory/index",
+            "label": "Staff Directory Inside Athletics: Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/composite",
+            "label": "Composite Schedule Fan Central: Composite Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.ticketsmarter.com/?utm_source=Ticketsmarter&utm_medium=dropdownad&utm_campaign=partners",
+            "label": "TicketSmarter - Official Ticket Resale Marketplace Fan Central: TicketSmarter - Official Ticket Resale Marketplace",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/information/Albertus_Magnus_College_Athletics_Alumni_Questionnaire",
+            "label": "Alumni Questionnaire Traditions: Alumni Questionnaire",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://admissions.albertus.edu/register/become_a_falcon",
+            "label": "Athletics Recruiting Form Get Recruited: Athletics Recruiting Form",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/bsb/coaches/index",
+            "label": "Coaches",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.ticketsmarter.com/?utm_source=Ticketsmarter&utm_medium=logo&utm_campaign=partners",
+            "label": "TicketSmarter",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://www.albertusfalcons.com/sports/bsb/2025-26/schedule",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/albertus-magnus-college-0.html",
+        "sha256": "0aa884a0068f9e8c80b50d857d72d7a9f3459e40608f26106cdfa06d5da68b4d",
+        "url": "https://www.albertusfalcons.com/sports/bsb/2025-26/schedule",
+        "label": "Schedule Sports: Men's Sports: Baseball: Schedule"
+      },
+      "status": 200,
+      "finalUrl": "https://www.albertusfalcons.com/sports/bsb/2025-26/schedule",
+      "checkedAtUtc": "2026-11-17T20:34:50.612Z",
+      "sourcePath": "sources/albertus-magnus-college-1.html",
+      "sha256": "db4692b54d7bba8128967b156b5134eb170480b571dbbc6139d99d9515eb4ca7",
+      "parsed": {
+        "title": "2025-26 Albertus Magnus Baseball Schedule - Albertus Magnus Athletics",
+        "headings": [
+          "Baseball",
+          "2025-26 Albertus Magnus Baseball Schedule",
+          "Albertus Magnus College"
+        ],
+        "links": [
+          {
+            "url": "https://www.albertusfalcons.com/sports/bsb/2025-26/schedule",
+            "label": "Skip to navigation",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wbkb/2026-27/schedule",
+            "label": "Schedule Sports: Women's Sports: Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wbkb/2026-27/roster",
+            "label": "Roster Sports: Women's Sports: Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/AlbertusWBB",
+            "label": "Twitter Sports: Women's Sports: Basketball: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/albertus_wbb/",
+            "label": "Instagram Sports: Women's Sports: Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wgolf/2026-27/schedule",
+            "label": "Schedule Sports: Women's Sports: Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wgolf/2026-27/roster",
+            "label": "Roster Sports: Women's Sports: Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/Albertus_Sports",
+            "label": "Twitter Sports: Women's Sports: Golf: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/albertusgolf",
+            "label": "Instagram Sports: Women's Sports: Golf: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wice/2026-27/schedule",
+            "label": "Schedule Sports: Women's Sports: Ice Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wice/2026-27/roster",
+            "label": "Roster Sports: Women's Sports: Ice Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/Albertus_WIH",
+            "label": "Twitter Sports: Women's Sports: Ice Hockey: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/Albertus_WIH",
+            "label": "Instagram Sports: Women's Sports: Ice Hockey: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wtrack-ind/2026-27/schedule",
+            "label": "Schedule Sports: Women's Sports: Indoor T&F (27-28): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wtrack-ind/2026-27/roster",
+            "label": "Roster Sports: Women's Sports: Indoor T&F (27-28): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wlax/2025-26/schedule",
+            "label": "Schedule Sports: Women's Sports: Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wlax/2025-26/roster",
+            "label": "Roster Sports: Women's Sports: Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/amcwlax",
+            "label": "Twitter Sports: Women's Sports: Lacrosse: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/albertus_wlax",
+            "label": "Instagram Sports: Women's Sports: Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wtrack-out/2026-27/schedule",
+            "label": "Schedule Sports: Women's Sports: Outdoor T&F (27-28): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wtrack-out/2026-27/roster",
+            "label": "Roster Sports: Women's Sports: Outdoor T&F (27-28): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wsoc/2026-27/schedule",
+            "label": "Schedule Sports: Women's Sports: Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wsoc/2026-27/roster",
+            "label": "Roster Sports: Women's Sports: Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/AMCWOMENSSOCCER",
+            "label": "Twitter Sports: Women's Sports: Soccer: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/amcws",
+            "label": "Instagram Sports: Women's Sports: Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/sball/2025-26/schedule",
+            "label": "Schedule Sports: Women's Sports: Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/sball/2025-26/roster",
+            "label": "Roster Sports: Women's Sports: Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/amc_sb",
+            "label": "Twitter Sports: Women's Sports: Softball: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/albertusmagnussoftball/",
+            "label": "Instagram Sports: Women's Sports: Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wten/2026-27/schedule",
+            "label": "Schedule Sports: Women's Sports: Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wten/2026-27/roster",
+            "label": "Roster Sports: Women's Sports: Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/albertus_tennis/",
+            "label": "Instagram Sports: Women's Sports: Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wvball/2026-27/schedule",
+            "label": "Schedule Sports: Women's Sports: Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wvball/2026-27/roster",
+            "label": "Roster Sports: Women's Sports: Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/albertusvolleyball/",
+            "label": "Instagram Sports: Women's Sports: Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/bsb/2025-26/roster",
+            "label": "Roster Sports: Men's Sports: Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/AlbertusCast",
+            "label": "Twitter Sports: Men's Sports: Baseball: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/albertusbaseball/",
+            "label": "Instagram Sports: Men's Sports: Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/mbkb/2026-27/schedule",
+            "label": "Schedule Sports: Men's Sports: Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/mbkb/2026-27/roster",
+            "label": "Roster Sports: Men's Sports: Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/AlbertusMBB",
+            "label": "Twitter Sports: Men's Sports: Basketball: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/albertusmbb/",
+            "label": "Instagram Sports: Men's Sports: Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/mgolf/2026-27/schedule",
+            "label": "Schedule Sports: Men's Sports: Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/mgolf/2026-27/roster",
+            "label": "Roster Sports: Men's Sports: Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/albertusgolf/",
+            "label": "Instagram Sports: Men's Sports: Golf: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/mice/2026-27/schedule",
+            "label": "Schedule Sports: Men's Sports: Ice Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/mice/2026-27/roster",
+            "label": "Roster Sports: Men's Sports: Ice Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.twitter.com/Albertus_MIH/",
+            "label": "Twitter Sports: Men's Sports: Ice Hockey: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/albertus_mih/",
+            "label": "Instagram Sports: Men's Sports: Ice Hockey: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/mtrack-ind/2026-27/schedule",
+            "label": "Schedule Sports: Men's Sports: Indoor T&F (27-28): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/mtrack-ind/2026-27/roster",
+            "label": "Roster Sports: Men's Sports: Indoor T&F (27-28): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/mlax/2025-26/schedule",
+            "label": "Schedule Sports: Men's Sports: Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/mlax/2025-26/roster",
+            "label": "Roster Sports: Men's Sports: Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/AMCmlax",
+            "label": "Twitter Sports: Men's Sports: Lacrosse: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/amcmlax/",
+            "label": "Instagram Sports: Men's Sports: Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/mtrack-out/2026-27/schedule",
+            "label": "Schedule Sports: Men's Sports: Outdoor T&F (27-28): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/mtrack-out/2026-27/roster",
+            "label": "Roster Sports: Men's Sports: Outdoor T&F (27-28): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/msoc/2026-27/schedule",
+            "label": "Schedule Sports: Men's Sports: Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/msoc/2026-27/roster",
+            "label": "Roster Sports: Men's Sports: Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/AlbertusMSoc",
+            "label": "Twitter Sports: Men's Sports: Soccer: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/albertus_menssoccer/",
+            "label": "Instagram Sports: Men's Sports: Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/mten/2025-26/schedule",
+            "label": "Schedule Sports: Men's Sports: Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/mten/2025-26/roster",
+            "label": "Roster Sports: Men's Sports: Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/albertus_tennis",
+            "label": "Instagram Sports: Men's Sports: Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/cheer/2025-26/schedule",
+            "label": "Schedule Sports: Coed Sports: Cheerleading: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/cheer/2025-26/roster",
+            "label": "Roster Sports: Coed Sports: Cheerleading: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/dance/2025-26/schedule",
+            "label": "Schedule Sports: Coed Sports: Dance: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/dance/2025-26/roster",
+            "label": "Roster Sports: Coed Sports: Dance: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/information/Camps_-_Clinics/Camps_and_Clinics",
+            "label": "Camps and Clinics Inside Athletics: Camps and Clinics",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/information/directory/index",
+            "label": "Staff Directory Inside Athletics: Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/composite",
+            "label": "Composite Schedule Fan Central: Composite Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.ticketsmarter.com/?utm_source=Ticketsmarter&utm_medium=dropdownad&utm_campaign=partners",
+            "label": "TicketSmarter - Official Ticket Resale Marketplace Fan Central: TicketSmarter - Official Ticket Resale Marketplace",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/information/Albertus_Magnus_College_Athletics_Alumni_Questionnaire",
+            "label": "Alumni Questionnaire Traditions: Alumni Questionnaire",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://admissions.albertus.edu/register/become_a_falcon",
+            "label": "Athletics Recruiting Form Get Recruited: Athletics Recruiting Form",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/bsb/coaches/index",
+            "label": "Coaches",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/bsb/2025-26/schedule?print=ical",
+            "label": "iCalendar",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/bsb/2025-26/schedule?print=rss",
+            "label": "RSS Feed",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://facebook.com/sharer/sharer.php?u=https://www.albertusfalcons.com/sports/bsb/2025-26/schedule",
+            "label": "Facebook Share this page on Facebook",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/intent/tweet/?text=2025-26%20Albertus%20Magnus%20Baseball%20Schedule&url=https://www.albertusfalcons.com/sports/bsb/2025-26/schedule",
+            "label": "Twitter Share this page on Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "mailto:?subject=2025-26 Albertus Magnus Baseball Schedule&body=https://www.albertusfalcons.com/sports/bsb/2025-26/schedule",
+            "label": "Email Share this page via email",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://albertusmagnus.prestosports.com/sports/bsb/2025-26/schedule?dec=printer-decorator",
+            "label": "Print Print this page Print",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.ticketsmarter.com/?utm_source=Ticketsmarter&utm_medium=logo&utm_campaign=partners",
+            "label": "TicketSmarter",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://www.albertusfalcons.com/sports/bsb/coaches/index",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/albertus-magnus-college-0.html",
+        "sha256": "0aa884a0068f9e8c80b50d857d72d7a9f3459e40608f26106cdfa06d5da68b4d",
+        "url": "https://www.albertusfalcons.com/sports/bsb/coaches/index",
+        "label": "Coaches"
+      },
+      "status": 200,
+      "finalUrl": "https://www.albertusfalcons.com/sports/bsb/coaches/index",
+      "checkedAtUtc": "2026-11-17T20:34:51.256Z",
+      "sourcePath": "sources/albertus-magnus-college-2.html",
+      "sha256": "4234562afdba4c68ca955f53a6b2345973844bdfdb093369dd4dc2a414f60d6d",
+      "parsed": {
+        "title": "Baseball - Albertus Magnus Athletics",
+        "headings": [
+          "Baseball",
+          "Albertus Magnus College"
+        ],
+        "links": [
+          {
+            "url": "https://www.albertusfalcons.com/sports/bsb/coaches/index",
+            "label": "Skip to navigation",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wbkb/2026-27/schedule",
+            "label": "Schedule Sports: Women's Sports: Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wbkb/2026-27/roster",
+            "label": "Roster Sports: Women's Sports: Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/AlbertusWBB",
+            "label": "Twitter Sports: Women's Sports: Basketball: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/albertus_wbb/",
+            "label": "Instagram Sports: Women's Sports: Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wgolf/2026-27/schedule",
+            "label": "Schedule Sports: Women's Sports: Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wgolf/2026-27/roster",
+            "label": "Roster Sports: Women's Sports: Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/Albertus_Sports",
+            "label": "Twitter Sports: Women's Sports: Golf: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/albertusgolf",
+            "label": "Instagram Sports: Women's Sports: Golf: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wice/2026-27/schedule",
+            "label": "Schedule Sports: Women's Sports: Ice Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wice/2026-27/roster",
+            "label": "Roster Sports: Women's Sports: Ice Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/Albertus_WIH",
+            "label": "Twitter Sports: Women's Sports: Ice Hockey: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/Albertus_WIH",
+            "label": "Instagram Sports: Women's Sports: Ice Hockey: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wtrack-ind/2026-27/schedule",
+            "label": "Schedule Sports: Women's Sports: Indoor T&F (27-28): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wtrack-ind/2026-27/roster",
+            "label": "Roster Sports: Women's Sports: Indoor T&F (27-28): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wlax/2025-26/schedule",
+            "label": "Schedule Sports: Women's Sports: Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wlax/2025-26/roster",
+            "label": "Roster Sports: Women's Sports: Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/amcwlax",
+            "label": "Twitter Sports: Women's Sports: Lacrosse: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/albertus_wlax",
+            "label": "Instagram Sports: Women's Sports: Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wtrack-out/2026-27/schedule",
+            "label": "Schedule Sports: Women's Sports: Outdoor T&F (27-28): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wtrack-out/2026-27/roster",
+            "label": "Roster Sports: Women's Sports: Outdoor T&F (27-28): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wsoc/2026-27/schedule",
+            "label": "Schedule Sports: Women's Sports: Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wsoc/2026-27/roster",
+            "label": "Roster Sports: Women's Sports: Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/AMCWOMENSSOCCER",
+            "label": "Twitter Sports: Women's Sports: Soccer: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/amcws",
+            "label": "Instagram Sports: Women's Sports: Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/sball/2025-26/schedule",
+            "label": "Schedule Sports: Women's Sports: Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/sball/2025-26/roster",
+            "label": "Roster Sports: Women's Sports: Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/amc_sb",
+            "label": "Twitter Sports: Women's Sports: Softball: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/albertusmagnussoftball/",
+            "label": "Instagram Sports: Women's Sports: Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wten/2026-27/schedule",
+            "label": "Schedule Sports: Women's Sports: Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wten/2026-27/roster",
+            "label": "Roster Sports: Women's Sports: Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/albertus_tennis/",
+            "label": "Instagram Sports: Women's Sports: Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wvball/2026-27/schedule",
+            "label": "Schedule Sports: Women's Sports: Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wvball/2026-27/roster",
+            "label": "Roster Sports: Women's Sports: Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/albertusvolleyball/",
+            "label": "Instagram Sports: Women's Sports: Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/bsb/2025-26/schedule",
+            "label": "Schedule Sports: Men's Sports: Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/bsb/2025-26/roster",
+            "label": "Roster Sports: Men's Sports: Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/AlbertusCast",
+            "label": "Twitter Sports: Men's Sports: Baseball: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/albertusbaseball/",
+            "label": "Instagram Sports: Men's Sports: Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/mbkb/2026-27/schedule",
+            "label": "Schedule Sports: Men's Sports: Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/mbkb/2026-27/roster",
+            "label": "Roster Sports: Men's Sports: Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/AlbertusMBB",
+            "label": "Twitter Sports: Men's Sports: Basketball: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/albertusmbb/",
+            "label": "Instagram Sports: Men's Sports: Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/mgolf/2026-27/schedule",
+            "label": "Schedule Sports: Men's Sports: Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/mgolf/2026-27/roster",
+            "label": "Roster Sports: Men's Sports: Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/albertusgolf/",
+            "label": "Instagram Sports: Men's Sports: Golf: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/mice/2026-27/schedule",
+            "label": "Schedule Sports: Men's Sports: Ice Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/mice/2026-27/roster",
+            "label": "Roster Sports: Men's Sports: Ice Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.twitter.com/Albertus_MIH/",
+            "label": "Twitter Sports: Men's Sports: Ice Hockey: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/albertus_mih/",
+            "label": "Instagram Sports: Men's Sports: Ice Hockey: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/mtrack-ind/2026-27/schedule",
+            "label": "Schedule Sports: Men's Sports: Indoor T&F (27-28): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/mtrack-ind/2026-27/roster",
+            "label": "Roster Sports: Men's Sports: Indoor T&F (27-28): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/mlax/2025-26/schedule",
+            "label": "Schedule Sports: Men's Sports: Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/mlax/2025-26/roster",
+            "label": "Roster Sports: Men's Sports: Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/AMCmlax",
+            "label": "Twitter Sports: Men's Sports: Lacrosse: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/amcmlax/",
+            "label": "Instagram Sports: Men's Sports: Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/mtrack-out/2026-27/schedule",
+            "label": "Schedule Sports: Men's Sports: Outdoor T&F (27-28): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/mtrack-out/2026-27/roster",
+            "label": "Roster Sports: Men's Sports: Outdoor T&F (27-28): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/msoc/2026-27/schedule",
+            "label": "Schedule Sports: Men's Sports: Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/msoc/2026-27/roster",
+            "label": "Roster Sports: Men's Sports: Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/AlbertusMSoc",
+            "label": "Twitter Sports: Men's Sports: Soccer: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/albertus_menssoccer/",
+            "label": "Instagram Sports: Men's Sports: Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/mten/2025-26/schedule",
+            "label": "Schedule Sports: Men's Sports: Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/mten/2025-26/roster",
+            "label": "Roster Sports: Men's Sports: Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/albertus_tennis",
+            "label": "Instagram Sports: Men's Sports: Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/cheer/2025-26/schedule",
+            "label": "Schedule Sports: Coed Sports: Cheerleading: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/cheer/2025-26/roster",
+            "label": "Roster Sports: Coed Sports: Cheerleading: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/dance/2025-26/schedule",
+            "label": "Schedule Sports: Coed Sports: Dance: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/dance/2025-26/roster",
+            "label": "Roster Sports: Coed Sports: Dance: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/information/Camps_-_Clinics/Camps_and_Clinics",
+            "label": "Camps and Clinics Inside Athletics: Camps and Clinics",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/information/directory/index",
+            "label": "Staff Directory Inside Athletics: Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/composite",
+            "label": "Composite Schedule Fan Central: Composite Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.ticketsmarter.com/?utm_source=Ticketsmarter&utm_medium=dropdownad&utm_campaign=partners",
+            "label": "TicketSmarter - Official Ticket Resale Marketplace Fan Central: TicketSmarter - Official Ticket Resale Marketplace",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/information/Albertus_Magnus_College_Athletics_Alumni_Questionnaire",
+            "label": "Alumni Questionnaire Traditions: Alumni Questionnaire",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://admissions.albertus.edu/register/become_a_falcon",
+            "label": "Athletics Recruiting Form Get Recruited: Athletics Recruiting Form",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/information/directory/bios/Ian_Ratchford",
+            "label": "Ian Ratchford",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "mailto:iratchford@albertus.edu",
+            "label": "iratchford@albertus.edu",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/information/directory/bios/Conor_Farrell",
+            "label": "Conor Farrell",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "mailto:",
+            "label": "",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/information/directory/bios/Mike_Gaboury",
+            "label": "Michael Gaboury",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "mailto:mgaboury@albertus.edu",
+            "label": "mgaboury@albertus.edu",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/information/directory/bios/Billy_Gerlott",
+            "label": "Billy Gerlott",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "mailto:",
+            "label": "",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/bsb/coaches/Elijah_Spataj",
+            "label": "Elijah Spataj",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "mailto:",
+            "label": "",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/information/directory/bios/Tom_Murphy",
+            "label": "Tom Murphy",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "mailto:",
+            "label": "",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/information/directory/bios/Sean_Croken",
+            "label": "Sean Croken",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "mailto:",
+            "label": "",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://facebook.com/sharer/sharer.php?u=https://www.albertusfalcons.com/sports/bsb/coaches/index",
+            "label": "Facebook Share this page on Facebook",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://twitter.com/intent/tweet/?text=Baseball&url=https://www.albertusfalcons.com/sports/bsb/coaches/index",
+            "label": "Twitter Share this page on Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "mailto:?subject=Baseball&body=https://www.albertusfalcons.com/sports/bsb/coaches/index",
+            "label": "Email Share this page via email",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://albertusmagnus.prestosports.com/sports/bsb/coaches/index?dec=printer-decorator",
+            "label": "Print Print this page Print",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/bsb/coaches/CUNYAC",
+            "label": "https://cunyathletics.com/index.aspx",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.ticketsmarter.com/?utm_source=Ticketsmarter&utm_medium=logo&utm_campaign=partners",
+            "label": "TicketSmarter",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://www.albertusfalcons.com/sports/wbkb/2026-27/schedule",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/albertus-magnus-college-0.html",
+        "sha256": "0aa884a0068f9e8c80b50d857d72d7a9f3459e40608f26106cdfa06d5da68b4d",
+        "url": "https://www.albertusfalcons.com/sports/wbkb/2026-27/schedule",
+        "label": "Schedule Sports: Women's Sports: Basketball: Schedule"
+      },
+      "status": 200,
+      "finalUrl": "https://www.albertusfalcons.com/sports/wbkb/2026-27/schedule",
+      "checkedAtUtc": "2026-11-17T20:34:51.998Z",
+      "sourcePath": "sources/albertus-magnus-college-3.html",
+      "sha256": "bc3849ca85a2cb525ed4ef4af521b79453b9addf5a29c7efda56506da78539d6",
+      "parsed": {
+        "title": "2026-27 Albertus Magnus Women's Basketball Schedule - Albertus Magnus Athletics",
+        "headings": [
+          "Women's Basketball",
+          "2026-27 Albertus Magnus Women's Basketball Schedule",
+          "Albertus Magnus College"
+        ],
+        "links": [
+          {
+            "url": "https://www.albertusfalcons.com/sports/wbkb/2026-27/schedule",
+            "label": "Skip to navigation",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wbkb/2026-27/roster",
+            "label": "Roster Sports: Women's Sports: Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/AlbertusWBB",
+            "label": "Twitter Sports: Women's Sports: Basketball: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/albertus_wbb/",
+            "label": "Instagram Sports: Women's Sports: Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wgolf/2026-27/schedule",
+            "label": "Schedule Sports: Women's Sports: Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wgolf/2026-27/roster",
+            "label": "Roster Sports: Women's Sports: Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/Albertus_Sports",
+            "label": "Twitter Sports: Women's Sports: Golf: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/albertusgolf",
+            "label": "Instagram Sports: Women's Sports: Golf: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wice/2026-27/schedule",
+            "label": "Schedule Sports: Women's Sports: Ice Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wice/2026-27/roster",
+            "label": "Roster Sports: Women's Sports: Ice Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/Albertus_WIH",
+            "label": "Twitter Sports: Women's Sports: Ice Hockey: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/Albertus_WIH",
+            "label": "Instagram Sports: Women's Sports: Ice Hockey: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wtrack-ind/2026-27/schedule",
+            "label": "Schedule Sports: Women's Sports: Indoor T&F (27-28): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wtrack-ind/2026-27/roster",
+            "label": "Roster Sports: Women's Sports: Indoor T&F (27-28): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wlax/2025-26/schedule",
+            "label": "Schedule Sports: Women's Sports: Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wlax/2025-26/roster",
+            "label": "Roster Sports: Women's Sports: Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/amcwlax",
+            "label": "Twitter Sports: Women's Sports: Lacrosse: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/albertus_wlax",
+            "label": "Instagram Sports: Women's Sports: Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wtrack-out/2026-27/schedule",
+            "label": "Schedule Sports: Women's Sports: Outdoor T&F (27-28): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wtrack-out/2026-27/roster",
+            "label": "Roster Sports: Women's Sports: Outdoor T&F (27-28): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wsoc/2026-27/schedule",
+            "label": "Schedule Sports: Women's Sports: Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wsoc/2026-27/roster",
+            "label": "Roster Sports: Women's Sports: Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/AMCWOMENSSOCCER",
+            "label": "Twitter Sports: Women's Sports: Soccer: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/amcws",
+            "label": "Instagram Sports: Women's Sports: Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/sball/2025-26/schedule",
+            "label": "Schedule Sports: Women's Sports: Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/sball/2025-26/roster",
+            "label": "Roster Sports: Women's Sports: Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/amc_sb",
+            "label": "Twitter Sports: Women's Sports: Softball: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/albertusmagnussoftball/",
+            "label": "Instagram Sports: Women's Sports: Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wten/2026-27/schedule",
+            "label": "Schedule Sports: Women's Sports: Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wten/2026-27/roster",
+            "label": "Roster Sports: Women's Sports: Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/albertus_tennis/",
+            "label": "Instagram Sports: Women's Sports: Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wvball/2026-27/schedule",
+            "label": "Schedule Sports: Women's Sports: Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wvball/2026-27/roster",
+            "label": "Roster Sports: Women's Sports: Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/albertusvolleyball/",
+            "label": "Instagram Sports: Women's Sports: Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/bsb/2025-26/schedule",
+            "label": "Schedule Sports: Men's Sports: Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/bsb/2025-26/roster",
+            "label": "Roster Sports: Men's Sports: Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/AlbertusCast",
+            "label": "Twitter Sports: Men's Sports: Baseball: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/albertusbaseball/",
+            "label": "Instagram Sports: Men's Sports: Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/mbkb/2026-27/schedule",
+            "label": "Schedule Sports: Men's Sports: Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/mbkb/2026-27/roster",
+            "label": "Roster Sports: Men's Sports: Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/AlbertusMBB",
+            "label": "Twitter Sports: Men's Sports: Basketball: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/albertusmbb/",
+            "label": "Instagram Sports: Men's Sports: Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/mgolf/2026-27/schedule",
+            "label": "Schedule Sports: Men's Sports: Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/mgolf/2026-27/roster",
+            "label": "Roster Sports: Men's Sports: Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/albertusgolf/",
+            "label": "Instagram Sports: Men's Sports: Golf: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/mice/2026-27/schedule",
+            "label": "Schedule Sports: Men's Sports: Ice Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/mice/2026-27/roster",
+            "label": "Roster Sports: Men's Sports: Ice Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.twitter.com/Albertus_MIH/",
+            "label": "Twitter Sports: Men's Sports: Ice Hockey: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/albertus_mih/",
+            "label": "Instagram Sports: Men's Sports: Ice Hockey: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/mtrack-ind/2026-27/schedule",
+            "label": "Schedule Sports: Men's Sports: Indoor T&F (27-28): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/mtrack-ind/2026-27/roster",
+            "label": "Roster Sports: Men's Sports: Indoor T&F (27-28): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/mlax/2025-26/schedule",
+            "label": "Schedule Sports: Men's Sports: Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/mlax/2025-26/roster",
+            "label": "Roster Sports: Men's Sports: Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/AMCmlax",
+            "label": "Twitter Sports: Men's Sports: Lacrosse: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/amcmlax/",
+            "label": "Instagram Sports: Men's Sports: Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/mtrack-out/2026-27/schedule",
+            "label": "Schedule Sports: Men's Sports: Outdoor T&F (27-28): Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/mtrack-out/2026-27/roster",
+            "label": "Roster Sports: Men's Sports: Outdoor T&F (27-28): Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/msoc/2026-27/schedule",
+            "label": "Schedule Sports: Men's Sports: Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/msoc/2026-27/roster",
+            "label": "Roster Sports: Men's Sports: Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/AlbertusMSoc",
+            "label": "Twitter Sports: Men's Sports: Soccer: Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/albertus_menssoccer/",
+            "label": "Instagram Sports: Men's Sports: Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/mten/2025-26/schedule",
+            "label": "Schedule Sports: Men's Sports: Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/mten/2025-26/roster",
+            "label": "Roster Sports: Men's Sports: Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.instagram.com/albertus_tennis",
+            "label": "Instagram Sports: Men's Sports: Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/cheer/2025-26/schedule",
+            "label": "Schedule Sports: Coed Sports: Cheerleading: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/cheer/2025-26/roster",
+            "label": "Roster Sports: Coed Sports: Cheerleading: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/dance/2025-26/schedule",
+            "label": "Schedule Sports: Coed Sports: Dance: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/dance/2025-26/roster",
+            "label": "Roster Sports: Coed Sports: Dance: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/information/Camps_-_Clinics/Camps_and_Clinics",
+            "label": "Camps and Clinics Inside Athletics: Camps and Clinics",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/information/directory/index",
+            "label": "Staff Directory Inside Athletics: Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/composite",
+            "label": "Composite Schedule Fan Central: Composite Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.ticketsmarter.com/?utm_source=Ticketsmarter&utm_medium=dropdownad&utm_campaign=partners",
+            "label": "TicketSmarter - Official Ticket Resale Marketplace Fan Central: TicketSmarter - Official Ticket Resale Marketplace",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/information/Albertus_Magnus_College_Athletics_Alumni_Questionnaire",
+            "label": "Alumni Questionnaire Traditions: Alumni Questionnaire",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://admissions.albertus.edu/register/become_a_falcon",
+            "label": "Athletics Recruiting Form Get Recruited: Athletics Recruiting Form",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wbkb/coaches/index",
+            "label": "Coaches",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wbkb/2026-27/schedule?print=ical",
+            "label": "iCalendar",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.albertusfalcons.com/sports/wbkb/2026-27/schedule?print=rss",
+            "label": "RSS Feed",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://facebook.com/sharer/sharer.php?u=https://www.albertusfalcons.com/sports/wbkb/2026-27/schedule",
+            "label": "Facebook Share this page on Facebook",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/intent/tweet/?text=2026-27%20Albertus%20Magnus%20Women%27s%20Basketball%20Schedule&url=https://www.albertusfalcons.com/sports/wbkb/2026-27/schedule",
+            "label": "Twitter Share this page on Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "mailto:?subject=2026-27 Albertus Magnus Women's Basketball Schedule&body=https://www.albertusfalcons.com/sports/wbkb/2026-27/schedule",
+            "label": "Email Share this page via email",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://albertusmagnus.prestosports.com/sports/wbkb/2026-27/schedule?dec=printer-decorator",
+            "label": "Print Print this page Print",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.ticketsmarter.com/?utm_source=Ticketsmarter&utm_medium=logo&utm_campaign=partners",
+            "label": "TicketSmarter",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          }
+        ]
+      }
+    }
+  ],
+  "status": "EVIDENCE_CAPTURED_REQUIRES_REVIEW"
+}

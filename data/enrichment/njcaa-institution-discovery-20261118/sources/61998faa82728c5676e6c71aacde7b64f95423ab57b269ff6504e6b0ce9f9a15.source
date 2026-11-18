@@ -1,0 +1,738 @@
+<!DOCTYPE HTML><html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      <title>Ranger College Home Page</title>
+      <link rel="canonical" href="https://rangercollege.edu/index.php">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="/_resources/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/_resources/css/bootstrap-grid.min.css" />
+<link rel="stylesheet" href="/_resources/css/bootstrap-reboot.min.css" />
+
+<!-- College CSS -->
+<link rel="stylesheet" href="/_resources/css/styles.css" />
+<link rel="stylesheet" href="/_resources/css/print.css" />
+<link rel="stylesheet" href="/_resources/css/totopstyle.css" />
+<link rel="stylesheet" href="/_resources/css/slick.css" />
+<link rel="stylesheet" href="/_resources/css/slick-theme.css" />
+<link rel="stylesheet" href="/_resources/css/slick-lightbox.css" />
+<link rel="stylesheet" href="/_resources/css/animate.css" />
+<!--[if lt IE 9]>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+
+<!-- Font Awescome CDN -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"/>
+
+<!-- Web Fonts -->
+<link rel="stylesheet" href="/_resources/css/webfonts/quincy-cf.css" />
+<link rel="stylesheet" href="/_resources/css/webfonts/odudo-regular-oblique.css"/>
+
+<link rel="stylesheet" href="/_resources/css/oustyles.css?v=2024-01-11" />
+<link rel="stylesheet" href="/_resources/css/webfonts/odudo-bold.css" />
+
+<link
+  rel="stylesheet"
+  type="text/css"
+  media="screen"
+  href="//cdn.omniupdate.com/ldp-galleries/v2/fancybox/bootstrap-thumbnails.min.css"
+/>
+<link
+  rel="stylesheet"
+  type="text/css"
+  media="screen"
+  href="//cdn.omniupdate.com/ldp-galleries/v2/fancybox/jquery.fancybox.min.css"
+/>
+<link
+  rel="stylesheet"
+  type="text/css"
+  media="screen"
+  href="//cdn.omniupdate.com/ldp-galleries/v2/fancybox/ou.fancybox.accessibility.min.css"
+/>
+
+<link
+  rel="stylesheet"
+  href="https://use.fontawesome.com/releases/v5.13.0/css/all.css"
+/>
+<!-- Insert google analytics here -->
+
+      <meta property="og:title" content="Ranger College Home Page">
+      <meta property="og:url" content="https://rangercollege.edu/index.php">
+      <meta property="og:description" content="">
+      <meta property="og:type" content="">
+      <meta property="og:updated_time" content="2026-06-04T15:12:49.093907939-07:00">
+      <meta name="twitter:card" content="summary_large_image">
+      <meta name="twitter:url" content="https://rangercollege.edu/index.php">
+      <meta name="twitter:title" content="Ranger College Home Page">
+      <meta name="twitter:description" content="">
+   </head>
+   <body><header class="siteHeader sticky-wrapper">
+   <div class="container-fluid mobile-header">
+      <div class="row">
+         <div class="col-12">
+            <div class="mobile-logo"><a href="/index.php" style="background: url('/_resources/images/logo.png') no-repeat; background-size: contain;"><span class="sr-only">Mobile College Logo</span></a></div>
+            <div class="mobile-buttons-wrapper"><button type="button" data-toggle="modal" data-target="#site-navigation" class="menuToggle" aria-label="Open Menu"><span class="fas fa-bars"></span></button></div>
+         </div>
+      </div>
+   </div>
+   <div class="modal fade site-navigation" id="site-navigation" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+         <div class="modal-content">
+            <div class="modal-body"><button type="button" class="btn menuClose" data-dismiss="modal" aria-label="Close Menu"><span class="far fa-times-circle"></span></button><nav class="main-navigation" aria-label="Primary navigation">
+                  <div class="top-row">
+                     <div class="container-fluid">
+                        <div class="row">
+                           <div class="col-xl-5">
+                              <nav class="audience">
+                                 <ul class="nav">
+                                    <li class="nav-item"><a href="/about-us/brown-county-campus/index.php" class="nav-link">Brown County Center</a></li>
+                                    <li class="nav-item"><a href="/about-us/erath-county-campus/index.php" class="nav-link">Erath County Center</a></li>
+                                    <li class="nav-item"><a href="/about-us/index.php" class="nav-link">Ranger Campus</a></li>
+                                    <li class="nav-item"><a href="/about-us/visitor-info/index.php" class="nav-link">Visitor Info</a></li>
+                                 </ul>
+                              </nav>
+                           </div>
+                           <div class="col-xl-7">
+                              <nav class="audience audience-2">
+                                 <ul class="nav justify-content-end">
+                                    <li class="nav-item"><a href="https://rctportal.jenzabarcloud.com/ICS/" class="nav-link">MyRanger</a></li>
+                                    <li class="nav-item"><a href="https://rangercollege.instructure.com/" class="nav-link">Canvas</a></li>
+                                    <li class="nav-item"><a href="/about-us/foundation/index.php" class="nav-link">Give</a></li>
+                                    <li>
+                                       <div class="header-search hidden-xs pt-3 pt-md-0">
+                                          <div class="gcse-search"></div>
+                                       </div>
+                                    </li>
+                                 </ul>
+                              </nav>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="bottom-row">
+                     <div class="container-fluid">
+                        <div class="row">
+                           <div class="col-xl-3">
+                              <div class="logo"><a href="/index.php" style="background: url('/_resources/images/main-logo.png') no-repeat; background-size: contain;"><span class="sr-only">Ranger College Logo</span></a></div>
+                           </div>
+                           <div class="col">
+                              <ul class="nav justify-content-end nav-fill">
+                                 <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="" id="aboutus" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">About Us</a><ul class="dropdown-menu" aria-labelledby="aboutus">
+                                       <li>
+                                          <div class="sub-menu">
+                                             <div class="container">
+                                                <div class="row">
+                                                   <div class="col menu-image"><img class="pt-2 pb-2" src="" alt=""></div>
+                                                   <div class="col-12 col-xl-4">
+                                                      <ul class="list-unstyled">
+                                                         <li class="nav-item"><a class="dropdown-item" href="/about-us/index.php">About Us</a></li>
+                                                         <li class="nav-item"><a class="dropdown-item" href="/about-us/administration/">Administration</a></li>
+                                                         <li class="nav-item"><a class="dropdown-item" href="/about-us/board-of-regents/index.php">Board of Regents</a></li>
+                                                         <li class="nav-item"><a class="dropdown-item" href="/about-us/business-office/index.php">Business Office</a></li>
+                                                         <li class="nav-item"><a class="dropdown-item" href="/about-us/compact_with_texans.php">Compact with Texans</a></li>
+                                                         <li class="nav-item"><a class="dropdown-item" href="/about-us/faculty-staff-directory/index.php">Directory</a></li>
+                                                      </ul>
+                                                   </div>
+                                                   <div class="col-12 col-xl-4">
+                                                      <ul class="list-unstyled">
+                                                         <li class="nav-item"><a class="dropdown-item" href="/about-us/events-attractions/events-attractions/index.php">Events &amp; Attractions</a></li>
+                                                         <li class="nav-item"><a class="dropdown-item" href="/calendar.php">Events Calendar</a></li>
+                                                         <li class="nav-item"><a class="dropdown-item" href="/about-us/human-resources/index.php">Human Resources</a></li>
+                                                         <li class="nav-item"><a class="dropdown-item" href="/about-us/institutional-effectiveness/">Accreditation &amp; Institutional Effectiveness</a></li>
+                                                         <li class="nav-item"><a class="dropdown-item" href="/about-us/president/index.php">Office of the President</a></li>
+                                                         <li class="nav-item"><a class="dropdown-item" href="/about-us/foundation/index.php">Ranger College Foundation</a></li>
+                                                         <li class="nav-item"><a class="dropdown-item" href="/about-us/ranger-history/">History of Ranger</a></li>
+                                                      </ul>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </li>
+                                    </ul>
+                                 </li>
+                                 <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="" id="academics" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Academics</a><ul class="dropdown-menu" aria-labelledby="academics">
+                                       <li>
+                                          <div class="sub-menu">
+                                             <div class="container">
+                                                <div class="row">
+                                                   <div class="col menu-image"><img class="pt-2 pb-2" src="" alt=""></div>
+                                                   <div class="col-12 col-xl-4">
+                                                      <ul class="list-unstyled">
+                                                         <li class="nav-item"><a class="dropdown-item" href="/academics/index.php">Academics</a></li>
+                                                         <li class="nav-item"><a class="dropdown-item" href="/academic-catalogs/2026-2027-academic-catalog/academic-calendar/index.php">Academic Calendar</a></li>
+                                                         <li class="nav-item"><a class="dropdown-item" href="/academic-catalogs/index.php">Academic Catalogs</a></li>
+                                                         <li class="nav-item"><a class="dropdown-item" href="/academics/academic-programs/index.php">Academic Programs</a></li>
+                                                         <li class="nav-item"><a class="dropdown-item" href="https://www.bkstr.com/rangerstore/home">Bookstore</a></li>
+                                                         <li class="nav-item"><a class="dropdown-item" href="/student-services/student-resources/canvas/index.php">Canvas</a></li>
+                                                      </ul>
+                                                   </div>
+                                                   <div class="col-12 col-xl-4">
+                                                      <ul class="list-unstyled">
+                                                         <li class="nav-item"><a class="dropdown-item" href="https://www.rangercollege.edu/academics/digitex/digitex.php">DigiTex</a></li>
+                                                         <li class="nav-item"><a class="dropdown-item" href="/academics/dual-credit/index.php">Dual Credit</a></li>
+                                                         <li class="nav-item"><a class="dropdown-item" href="https://library.rangercollege.edu/homepage">Library</a></li>
+                                                         <li class="nav-item"><a class="dropdown-item" href="/student-services/student-resources/myranger/index.php">MyRanger</a></li>
+                                                         <li class="nav-item"><a class="dropdown-item" href="/academics/guided-pathways/index.php">Pathways</a></li>
+                                                         <li class="nav-item"><a class="dropdown-item" href="/academic-catalogs/2026-2027-academic-catalog/scholarships/index.php">Scholarships</a></li>
+                                                         <li class="nav-item"><a class="dropdown-item" href="/academics/workforce-programs/">Workforce Programs</a></li>
+                                                      </ul>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </li>
+                                    </ul>
+                                 </li>
+                                 <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="" id="admissions&amp;aid" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admissions &amp; Aid</a><ul class="dropdown-menu" aria-labelledby="admissions&amp;aid">
+                                       <li>
+                                          <div class="sub-menu">
+                                             <div class="container">
+                                                <div class="row">
+                                                   <div class="col menu-image"><img class="pt-2 pb-2" src="" alt=""></div>
+                                                   <div class="col-12 col-xl-4">
+                                                      <ul class="list-unstyled">
+                                                         <li class="nav-item"><a class="dropdown-item" href="/admissions/index.php">Admissions</a></li>
+                                                         <li class="nav-item"><a class="dropdown-item" href="https://rctportal.jenzabarcloud.com/ICS/Admissions/">Apply to Ranger</a></li>
+                                                         <li class="nav-item"><a class="dropdown-item" href="/admissions/course-schedules/index.php">Course Schedules</a></li>
+                                                         <li class="nav-item"><a class="dropdown-item" href="/financial-aid/index.php">Financial Aid</a></li>
+                                                      </ul>
+                                                   </div>
+                                                   <div class="col-12 col-xl-4">
+                                                      <ul class="list-unstyled">
+                                                         <li class="nav-item"><a class="dropdown-item" href="/admissions/graduation/index.php">Graduation</a></li>
+                                                         <li class="nav-item"><a class="dropdown-item" href="/admissions/international-students/index.php">International Students</a></li>
+                                                         <li class="nav-item"><a class="dropdown-item" href="/admissions/testing/index.php">Testing</a></li>
+                                                         <li class="nav-item"><a class="dropdown-item" href="/student-services/transfer-services/index.php">Transfer Services</a></li>
+                                                      </ul>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </li>
+                                    </ul>
+                                 </li>
+                                 <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="" id="studentservices" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Student Services</a><ul class="dropdown-menu" aria-labelledby="studentservices">
+                                       <li>
+                                          <div class="sub-menu">
+                                             <div class="container">
+                                                <div class="row">
+                                                   <div class="col menu-image"><img class="pt-2 pb-2" src="" alt=""></div>
+                                                   <div class="col-12 col-xl-4">
+                                                      <ul class="list-unstyled">
+                                                         <li class="nav-item"><a class="dropdown-item" href="/student-services/advising/index.php">Advising</a></li>
+                                                         <li class="nav-item"><a class="dropdown-item" href="/student-services/campus-security/index.php">Campus Security</a></li>
+                                                         <li class="nav-item"><a class="dropdown-item" href="/student-services/catholic-charities/index.php">Catholic Charities</a></li>
+                                                         <li class="nav-item"><a class="dropdown-item" href="/student-services/counseling-services/index.php">Counseling Services</a></li>
+                                                         <li class="nav-item"><a class="dropdown-item" href="/student-services/campus-life/index.php">Campus Life</a></li>
+                                                         <li class="nav-item"><a class="dropdown-item" href="/student-services/student-clubs.php">Student Organizations</a></li>
+                                                      </ul>
+                                                   </div>
+                                                   <div class="col-12 col-xl-4">
+                                                      <ul class="list-unstyled">
+                                                         <li class="nav-item"><a class="dropdown-item" href="/news/newsroom/newsroom_index.php">Ranger News</a></li>
+                                                         <li class="nav-item"><a class="dropdown-item" href="/student-services/ranger-reach/index.php">Ranger REACH, Grants &amp; Continuing Education Department</a></li>
+                                                         <li class="nav-item"><a class="dropdown-item" href="/student-services/index.php">Ranger Resource Center</a></li>
+                                                         <li class="nav-item"><a class="dropdown-item" href="/about-us/business-office/student-payment-center/index.php">Student Payment Center</a></li>
+                                                         <li class="nav-item"><a class="dropdown-item" href="/student-services/title-ix/">Title IX</a></li>
+                                                         <li class="nav-item"><a class="dropdown-item" href="/student-services/trio-student-support-services/index.php">TRIO</a></li>
+                                                         <li class="nav-item"><a class="dropdown-item" href="/student-services/upward-bound/index.php">Upward Bound</a></li>
+                                                      </ul>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </li>
+                                    </ul>
+                                 </li>
+                                 <li class="nav-item dropdown"><a class="nav-link dropdown-toggle single" href="https://www.rangersports.net/landing/index" target="_top" id="athletics">Athletics</a></li>
+                              </ul>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </nav>
+            </div>
+         </div>
+      </div>
+   </div>
+</header>      <main id="main-content">
+         
+         <div class="slider-wrapper">
+            
+            <div class="slider-wrapper">
+               
+               <div class="hero-slider">
+                  
+                  <div class="slide">
+                     	
+                     <div class="slider-img" style="background-image: url('/media/Welcome%20Center%20Cropped.jpg');">
+                        	</div>
+                     	
+                     <div class="carousel-caption">
+                        		
+                        <div class="vertical-alignment">
+                           			
+                           <h2>
+                              				Get an inside look at campus through a virtual tour!
+                              			</h2>
+                           			<a href="/admissions/campus-tours/index.php" target="/admissions/campus-tours/index.php" class="btn btn-default btn-light">Tour the Campus Virtually!</a>
+                           		</div>
+                        	</div>
+                     </div>
+                  <div class="slide">
+                     	
+                     <div class="slider-img" style="background-image: url('/media/ranger-legends-golf-tournament.png');">
+                        	</div>
+                     	
+                     <div class="carousel-caption">
+                        		
+                        <div class="vertical-alignment">
+                           			
+                           <h2>
+                              				Join us for the 2026 Ranger Legends Golf Tournament!
+                              			</h2>
+                           			<a href="/2026-ranger-legends-golf-tournament.php" target="/2026-ranger-legends-golf-tournament.php" class="btn btn-default btn-light">Register Here!</a>
+                           		</div>
+                        	</div>
+                     </div>
+                  <div class="slide">
+                     	
+                     <div class="slider-img" style="background-image: url('/media/new-student-orientation.png');">
+                        	</div>
+                     	
+                     <div class="carousel-caption">
+                        		
+                        <div class="vertical-alignment">
+                           			
+                           <h2>
+                              				Start Your Ranger Journey
+                              			</h2>
+                           			<a href="/student-services/rangerroundup/index.php" target="/student-services/rangerroundup/index.php" class="btn btn-default btn-light">Register for New Student Orientation</a>
+                           		</div>
+                        	</div>
+                     </div>
+                  </div>
+               
+               <div class="slide-dots"></div>
+               
+               <div class="slide-controllers">
+                  <button class="pause-play" aria-label="Pause/Play" type="button">
+                     <span class="sr-only">Pause/Play</span>
+                     </button>
+                  </div>
+               </div>
+            </div>
+         
+         <div class="content">
+            	
+            <div class="section bg-purple">
+               		
+               <div class="container">
+                  			<br>
+                  			
+                  <div class="row">
+                     				
+                     <div class="col-md-9">
+                        					
+                        <h2 class="mt-3 font-size-lg">
+                           						Apply to Ranger College Today!
+                           					</h2>
+                        				</div>
+                     				
+                     <div class="col-md-3 pt-3">
+                        					
+                        <p>
+                           						<a href="https://rctportal.jenzabarcloud.com/ICS/Admissions/Admissions_Home_Page.jnz?portlet=J1_FormFlow_-_Forms&amp;screen=FormView&amp;form=8e5ee061-7b57-41c4-ac70-b70c2f758b29" target="_blank" class="btn btn-default btn-light float-md-right">
+                              							Apply to Ranger College!
+                              						</a>
+                           					</p>
+                        				</div>
+                     			</div>
+                  		</div>
+               	</div>
+             
+            
+            
+            	
+            <div class="bg-gray fullwidth-split">
+               		
+               <div class="container-fluid">
+                  			
+                  <div class="row no-gutters">
+                     				
+                     <div class="col-md-6 fullwidth-split-image order-md-2">
+                        					<img class="bg-image" src="/_resources/images/grid-image-1.jpg" alt="Picture of construction management students. ">
+                        				</div>
+                     				
+                     <div class="col-md-6 fullwidth-split-text order-md-1">
+                        					
+                        <div class="text-wrapper text-right">
+                           						
+                           <h2 class="sans-serif">Program Feature</h2>
+                           						
+                           <h3 class="sans-serif">Construction Management</h3>
+                           						
+                           <p class="pb-3"> 
+                              							Build your future in a high-demand industry with Ranger College’s Construction
+                              Management program. Designed for both beginners and those already working in the field,
+                              this program equips students with the practical skills and knowledge needed to oversee
+                              construction projects, manage teams, and ensure job site safety and efficiency. With
+                              hands-on training and industry-relevant instruction, students are prepared to step
+                              confidently into leadership roles across the construction sector.
+                              						</p>
+                           						
+                           <p>
+                              							<a class="btn btn-default btn-dark" href="/academics/workforce-programs/continuing-ed/index.php" target="_blank" rel="noopener">Explore Construction Management Program</a>
+                              						</p>
+                           					</div>
+                        				</div>
+                     			</div>
+                  		</div>
+               	</div>
+            	
+             
+            
+            
+            	
+            	
+            <div class="bg-gray fullwidth-split">
+               		
+               <div class="container-fluid">
+                  			
+                  <div class="row no-gutters">
+                     				
+                     <div class="col-md-6 fullwidth-split-image">
+                        					<img class="bg-image" src="/media/AAT-Program-Feature-Picture.png" alt="Teacher pointing at a whiteboard">
+                        				</div>
+                     				
+                     <div class="col-md-6 fullwidth-split-text">
+                        					
+                        <div class="text-wrapper">
+                           						
+                           <h2 class="sans-serif">Program Feature</h2>
+                           						
+                           <h3 class="sans-serif">Associate of Arts in Teaching</h3>
+                           						
+                           <p class="pb-3"> 
+                              							Earn an Associate Degree in Teaching from Ranger College. Gain the knowledge
+                              and skills to become an elementary or secondary school teacher in a fast, affordable
+                              program.
+                              						</p>
+                           						
+                           <p>
+                              							<a class="btn btn-default btn-dark" href="/academics/academic-programs/associate-of-art-in-teaching/index.php" target="_self" rel="noopener">Learn More About Associate of Arts in Teaching</a>
+                              						</p>
+                           					</div>
+                        				</div>
+                     			</div>
+                  		</div>
+               	</div>
+             
+            
+            
+            <div class="section section-with-background dark" style="background-image: url('/_resources/images/stats-background.jpg')">
+               <div class="container">
+                  <div class="row">
+                     <div class="col">
+                        <h2 class="text-center mt-5 mb-5 white-text">
+                           Ranger College Tradition
+                           </h2>
+                     </div>
+                  </div>
+               </div>
+               
+               <td data-name="content" data-type="wysiwyg">
+                  
+                  	
+                  <div class="container">
+                     		
+                     <div class="row">
+                        			
+                        <div class="col">
+                           				
+                           			</div>
+                        		</div>
+                     		
+                     <div class="row">
+                        			
+                        <div class="col-lg-4">
+                           	
+                           <div class="card card-borderless text-center mt-5">
+                              		
+                              <div class="card-body">
+                                 			
+                                 <div class="icon"><span class="fa fa-thumbs-up"></span></div>
+                                 			
+                                 <h2 class="font-size-xl blue-text-light sans-serif mt-5">
+                                    				99 Years
+                                    			</h2>
+                                 			
+                                 <p>of Academic Excellence</p>
+                                 		</div>
+                              	</div>
+                           </div>
+                        <div class="col-lg-4">
+                           	
+                           <div class="card card-borderless text-center mt-5">
+                              		
+                              <div class="card-body">
+                                 			
+                                 <div class="icon"><span class="fa fa-hand-holding-heart"></span></div>
+                                 			
+                                 <h2 class="font-size-xl blue-text-light sans-serif mt-5">
+                                    				19:1
+                                    			</h2>
+                                 			
+                                 <p>Student to Faculty Ratio</p>
+                                 		</div>
+                              	</div>
+                           </div>
+                        <div class="col-lg-4">
+                           	
+                           <div class="card card-borderless text-center mt-5">
+                              		
+                              <div class="card-body">
+                                 			
+                                 <div class="icon"><span class="fa fa-chalkboard-teacher"></span></div>
+                                 			
+                                 <h2 class="font-size-xl blue-text-light sans-serif mt-5">
+                                    				12+
+                                    			</h2>
+                                 			
+                                 <p>Programs</p>
+                                 		</div>
+                              	</div>
+                           </div>
+                        		</div>
+                     	</div>
+                   
+                  </td>
+               </div>
+            
+            <omnicms-calendar data-calendar-id="304f0b85-db7d-4e56-8f38-eebfb4a53e35" data-categories="da8bbc0c-302d-4400-9093-d28c9e3f20d4,83a8fd1d-476b-48a1-9012-90acc4771e27,30ef7e9c-0ffe-42fb-9812-6b8d766bd38d,2c691b14-7ae0-4e66-9ffd-5de123be9536,6657bbbd-98b7-476f-979a-5c747cc12849,a8d1a52f-2dc0-4c46-ba07-61a6c2398f41,d6e283ee-e339-4158-9579-6070fb048ca6,267e7ade-9525-4f6e-9276-d41979b68e8a,3f70b29e-4fd9-4767-a454-6dc34d168ee9,c9251254-ba32-45b9-b48a-f7426a8d3c52" data-title="All Events Calendar"></omnicms-calendar><script>(function (src) {if (document.querySelector(`script[src="${src}"]`) !== null) return;const s = document.createElement('script');s.async = true;s.src = src;s.id = 'omnicms-calendar';document.getElementsByTagName("head")[0].appendChild(s);})('https://widget.calendar.moderncampus.net/app.js');</script>
+            
+            <p style="text-align: center;"><span style="font-size: 24px; color: #7030a0;"><strong> 
+                     
+                     <div class="section bg-gray">
+                        <div class="container">
+                           <p>&nbsp;</p>
+                           <div class="row">
+                              <div class="col">
+                                 <h2 class="text-center sans-serif">Ranger News</h2>
+                              </div>
+                           </div>
+                           <div data-type="component" data-name="component">
+                              <div class="row featured-news"><div class="col-lg-4">			<div class="card card-shadowless">				<div class="image-overlay">					<div class="card-img-top" style="background-image: url(/news/news_media/rcapparel.png);"></div>				</div>				<div class="card-body">					<h3><a href="/ranger_news/rcapparel.php">Ranger College Apparel Now Available at Wal-Mart in Stephenville!</a></h3>					<p></p>				</div>			</div>		</div><div class="col-lg-4">			<div class="card card-shadowless">				<div class="image-overlay">					<div class="card-img-top" style="background-image: url(/news/news_media/Texas%20Higher%20Education.png);"></div>				</div>				<div class="card-body">					<h3><a href="/ranger_news/truegrantprogram.php">Exciting News: Ranger College Chosen for Texas TRUE Grant Program!</a></h3>					<p></p>				</div>			</div>		</div><div class="col-lg-4">			<div class="card card-shadowless">				<div class="image-overlay">					<div class="card-img-top" style="background-image: url(/news/news_media/hoco.jpg);"></div>				</div>				<div class="card-body">					<h3><a href="/ranger_news/homecoming2025.php">Ranger College Celebrates Homecoming 2025 with Inaugural Hall of Fame Induction Ceremony</a></h3>					<p></p>				</div>			</div>		</div></div>
+                           </div>
+                           <div class="row">
+                              <div class="col">
+                                 <p><a href="/ranger_news/index.php" target="_blank" class="btn btn-default btn-dark btn-centered">
+                                       								Read all about Ranger College!
+                                       							</a></p>
+                              </div>
+                           </div>
+                        </div>
+                     </div> 
+                     </strong></span></p>
+            
+            <div style="text-align: center;"><span style="font-size: 24px; color: #7030a0;"><strong><a style="color: #7030a0;" href="/about-us/institutional-effectiveness/institutional-resumes/index.php" target="_blank" rel="noopener">
+                        <hr><span style="color: #000000;">Ranger College Institutional Resumes</span></a></strong></span></div>
+            
+            <hr>
+            
+            	
+            <div class="section bg-purple">
+               		
+               <div class="container">
+                  			<br>
+                  			
+                  <div class="row">
+                     				
+                     <div class="col-md-9">
+                        					
+                        <h2 class="mt-3 font-size-lg">
+                           						Ranger College invites you to join us in our mission and become a part of our
+                           scholastic community.
+                           					</h2>
+                        				</div>
+                     				
+                     <div class="col-md-3 pt-3">
+                        					
+                        <p>
+                           						<a href="https://rctportal.jenzabarcloud.com/ICS/Admissions/Admissions_Home_Page.jnz?portlet=J1_FormFlow_-_Forms&amp;screen=FormView&amp;form=8e5ee061-7b57-41c4-ac70-b70c2f758b29" target="_blank" class="btn btn-default btn-light float-md-right">
+                              							Apply to Ranger College!
+                              						</a>
+                           					</p>
+                        				</div>
+                     			</div>
+                  		</div>
+               	</div>
+            </div>
+      </main>
+      <footer id="footer">
+   <div class="container">
+      <div class="row">
+         <div class="col-lg-4">
+            <h2>Mission Statement</h2>
+            <p>“The mission of Ranger College is to transform lives and give students the skills
+               to be a positive influence in their communities.”</p>
+            <h2 class="mt-5">Find Us Online</h2>
+            <ul class="footer-social nav">
+               <li class="nav-item"><a href="https://www.facebook.com/RangerCollege/" class="facebook"><span class="sr-only">Facebook</span></a></li>
+               <li class="nav-item"><a href="https://x.com/Ranger_College" class="twitter"><span class="sr-only">Twitter</span></a></li>
+               <li class="nav-item"><a href="https://www.instagram.com/rangercollege/" class="instagram"><span class="sr-only">Instagram</span></a></li>
+               <li class="nav-item"><a href="https://youtube.com/@rangercollegelivestreameve3930?si=VEJheElWsgCqWOai" class="youtube"><span class="sr-only">YouTube</span></a></li>
+            </ul>
+         </div>
+         <div class="col-10 offset-1 col-lg-7">
+            <div class="row footer-nav justify-content-center">
+               <div class="col-md-6 py-3 py-md-0">
+                  <h2>Resources</h2>
+                  <ul class="list-unstyled">
+                     <li><a href="/about-us/visitor-info/index.php">Contact Us</a></li>
+                     <li><a title="Virtual Campus Tour" href="/admissions/campus-tours/index.php">Virtual Tour</a></li>
+                     <li><a href="https://library.rangercollege.edu/homepage/aboutus">Library</a></li>
+                     <li><a href="https://www.bkstr.com/rangerstore/home">Book Store Kiosk</a></li>
+                     <li><a href="/about-us/business-office/caresact_/index.php">Cares Act</a></li>
+                  </ul>
+               </div>
+               <div class="col-md-6 pt-3 py-md-0">
+                  <h2 class="pb-2">Featured News</h2>
+                  <div class="row mb-4 news-list"><div class="col-5">	<img src="/news/news_media/rcapparel.png" alt="Stephenville Wal-Mart"/></div><div class="col-7">	<h3 class="serif pt-2"><a href="/ranger_news/rcapparel.php">Ranger College Apparel Now Available at Wal-Mart in Stephenville!</a></h3></div></div><div class="row mb-4 news-list"><div class="col-5">	<img src="/news/news_media/Texas%20Higher%20Education.png" alt="THECB"/></div><div class="col-7">	<h3 class="serif pt-2"><a href="/ranger_news/truegrantprogram.php">Exciting News: Ranger College Chosen for Texas TRUE Grant Program!</a></h3></div></div></div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="copyright">
+      <div class="container">
+         <div class="row">
+            <div class="col-12">
+               <ul class="list-inline">
+                  <li class="list-inline-item"><span id="directedit">©</span><p>2023 Ranger College</p>
+                  </li>
+               </ul>
+            </div>
+         </div>
+      </div>
+   </div>
+</footer>
+<!-- OU Search Ignore Start Here -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"
+		integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+		crossorigin="anonymous"
+		></script>
+<script src="/_resources/js/bootstrap.js"></script>
+<script src="/_resources/js/scripts.js"></script>
+<script src="/_resources/js/slick-lightbox.js"></script>
+<script src="/_resources/js/slick.min.js"></script>
+<script src="/_resources/js/lightbox.js"></script>
+
+<!-- The below should be moved to Faculty Directory foodcode-->
+<!--Data Sort Tables JS-->
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+<!-- OU Search Ignore End Here -->
+<!-- OU Search Ignore Start Here -->
+<!-- Insert google analytics here -->
+<script async src="https://cse.google.com/cse.js?cx=b2b248986a4834581"></script>
+
+
+<!-- OU Search Ignore End Here -->
+<script src="//cdn.omniupdate.com/ldp-galleries/v2/fancybox/jquery.fancybox.min.js"></script>
+<script>
+	$(document).ready(function () {
+		$("[data-fancybox]").fancybox({
+			buttons: [],
+			afterLoad: function (i, slide) {
+				slide.$image.attr("alt", slide.$thumb.attr("alt"));
+			},
+			btnTpl: {
+				download:
+				'<a download data-fancybox-download class="fancybox-button fancybox-button--download" title="{{DOWNLOAD}}" aria-label="{{DOWNLOAD}}" href="javascript:;">' +
+				'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18.62 17.09V19H5.38v-1.91zm-2.97-6.96L17 11.45l-5 4.87-5-4.87 1.36-1.32 2.68 2.64V5h1.92v7.77z"/></svg>' +
+				"</a>",
+
+				zoom:
+				'<button data-fancybox-zoom class="fancybox-button fancybox-button--zoom" title="{{ZOOM}}" aria-label="{{ZOOM}}">' +
+				'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18.7 17.3l-3-3a5.9 5.9 0 0 0-.6-7.6 5.9 5.9 0 0 0-8.4 0 5.9 5.9 0 0 0 0 8.4 5.9 5.9 0 0 0 7.7.7l3 3a1 1 0 0 0 1.3 0c.4-.5.4-1 0-1.5zM8.1 13.8a4 4 0 0 1 0-5.7 4 4 0 0 1 5.7 0 4 4 0 0 1 0 5.7 4 4 0 0 1-5.7 0z"/></svg>' +
+				"</button>",
+
+				fullScreen:
+				'<button data-fancybox-fullscreen class="fancybox-button fancybox-button--fsenter" title="{{FULL_SCREEN}}" aria-label="{{FULL_SCREEN}}>' +
+				'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 16h3v3h2v-5H5zm3-8H5v2h5V5H8zm6 11h2v-3h3v-2h-5zm2-11V5h-2v5h5V8z"/></svg>' +
+				"</button>",
+
+				slideShow:
+				'<button data-fancybox-play class="fancybox-button fancybox-button--play" title="{{PLAY_START}}" aria-label="{{PLAY_START}}">' +
+				'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.5 5.4v13.2l11-6.6z"/></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.33 5.75h2.2v12.5h-2.2V5.75zm5.15 0h2.2v12.5h-2.2V5.75z"/></svg>' +
+				"</button>",
+
+				close:
+				'<button data-fancybox-close class="fancybox-button fancybox-button--close" title="{{CLOSE}}" aria-label="{{CLOSE}}">' +
+				'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 10.6L6.6 5.2 5.2 6.6l5.4 5.4-5.4 5.4 1.4 1.4 5.4-5.4 5.4 5.4 1.4-1.4-5.4-5.4 5.4-5.4-1.4-1.4-5.4 5.4z"/></svg>' +
+				"</button>",
+
+				thumbs:
+				'<button data-fancybox-thumbs class="fancybox-button fancybox-button--thumbs" title="{{THUMBS}}" aria-label="{{THUMBS}}">' +
+				'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.59 14.59h3.76v3.76h-3.76v-3.76zm-4.47 0h3.76v3.76h-3.76v-3.76zm-4.47 0h3.76v3.76H5.65v-3.76zm8.94-4.47h3.76v3.76h-3.76v-3.76zm-4.47 0h3.76v3.76h-3.76v-3.76zm-4.47 0h3.76v3.76H5.65v-3.76zm8.94-4.47h3.76v3.76h-3.76V5.65zm-4.47 0h3.76v3.76h-3.76V5.65zm-4.47 0h3.76v3.76H5.65V5.65z"/></svg>' +
+				"</button>",
+
+				// Arrows
+				arrowLeft:
+				'<button data-fancybox-prev class="fancybox-button fancybox-button--arrow_left" title="{{PREV}}" aria-label="{{PREV}}">' +
+				'<div><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11.28 15.7l-1.34 1.37L5 12l4.94-5.07 1.34 1.38-2.68 2.72H19v1.94H8.6z"/></svg></div>' +
+				"</button>",
+
+				arrowRight:
+				'<button data-fancybox-next class="fancybox-button fancybox-button--arrow_right" title="{{NEXT}}" aria-label="{{NEXT}}">' +
+				'<div><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15.4 12.97l-2.68 2.72 1.34 1.38L19 12l-4.94-5.07-1.34 1.38 2.68 2.72H5v1.94z"/></svg></div>' +
+				"</button>",
+
+				// This small close button will be appended to your html/inline/ajax content by default,
+				// if "smallBtn" option is not set to false
+				smallBtn:
+				'<button type="button" data-fancybox-close class="fancybox-button fancybox-close-small" title="{{CLOSE}}" aria-label="{{CLOSE}}">' +
+				'<svg xmlns="http://www.w3.org/2000/svg" version="1" viewBox="0 0 24 24"><path d="M13 12l5-5-1-1-5 5-5-5-1 1 5 5-5 5 1 1 5-5 5 5 1-1z"/></svg>' +
+				"</button>",
+			},
+		});
+	});
+</script>
+
+<!-- Pixel Code 7/1/2025 Ticket#249147 -->
+<script src="https://js.adsrvr.org/up_loader.1.1.0.js"></script>
+<script>
+	ttd_dom_ready( function() {
+		if (typeof TTDUniversalPixelApi === 'function') {
+			var universalPixelApi = new TTDUniversalPixelApi();
+			universalPixelApi.init("yiifbfh", ["q3687jm"], "https://insight.adsrvr.org/track/up");
+		}
+	});
+</script><button data-target="#0" class="cd-top"><span class="sr-only">Back to Top</span></button><div class="alert cookiealert" role="alert">
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-10"><span id="cookieconsent:desc" class="cc-message">
+                     									By using this site, you agree to our
+                     									<a aria-label="learn more about cookies" role="button" tabindex="0" class="cc-link" href="" rel="noopener noreferrer nofollow" target="_blank">
+                        										Privacy Policy
+                        									</a></span></div>
+               <div class="col-lg-2">
+                  <div class="cc-compliance"><a aria-label="dismiss cookie message" role="button" tabindex="0" class="btn btn-default btn-dark acceptcookies">
+                        										I agree.
+                        									</a></div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="ou-hidden" style="display:none;"><a id="de" rel="nofollow" href="https://a.cms.omniupdate.com/11/?skin=rangercollege&amp;account=RangerCollege&amp;site=www&amp;action=de&amp;path=/index.pcf">©</a></div><script>
+			if(document.getElementById("de") != null && document.getElementById("directedit")) {
+				var link = document.getElementById("de").parentNode.innerHTML;
+				document.getElementById("de").parentNode.innerHTML = "";
+				document.getElementById("directedit").innerHTML = link.replace(/^\s+|\s+$/gm,'');
+			}
+		</script></body>
+</html>

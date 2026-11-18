@@ -1,0 +1,53 @@
+{
+  "slug": "queensborough-community-college",
+  "programId": "cmox2o322005bqtbkm4rqidap",
+  "collegeId": "cmox2o31b0059qtbkrd1etcak",
+  "checkedAtUtc": "2026-11-18T14:43:39.343Z",
+  "sourcePath": "../njcaa-discovery-20261118/sources/queensborough-community-college-1.source",
+  "sourceSHA256": "4f307ccbdadfbd470f740963c58f81e9327a5aa8a091584d712a348ca49c51e5",
+  "sourceUrl": "https://qcctigers.com/sports/baseball?path=baseball",
+  "socialLeads": [],
+  "recruitingLeads": [
+    {
+      "url": "https://qcctigers.com/sb_output.aspx?form=3",
+      "label": "Prospective Athlete Form",
+      "context": "",
+      "kind": "QUESTIONNAIRE"
+    }
+  ],
+  "logoLeads": [
+    {
+      "url": "https://qcctigers.com/images/logos/site/site.png?height=72&mode=crop&anchor=middlecenter",
+      "label": "Queensborough Community College Go to homepage undefined"
+    }
+  ],
+  "captures": [
+    {
+      "requestedUrl": "https://qcctigers.com/sb_output.aspx?form=3",
+      "kind": "QUESTIONNAIRE",
+      "status": 200,
+      "finalUrl": "https://qcctigers.com/sb_output.aspx?form=3",
+      "sourcePath": "../njcaa-core-review-20261118/sources/queensborough-community-college-4.source",
+      "sha256": "f889c83798d3761fe7a17c0b834f77a1af20a28110aebb7f675a678f10368e53",
+      "reusedEvidence": true
+    },
+    {
+      "requestedUrl": "https://qcctigers.com/images/logos/site/site.png?height=72&mode=crop&anchor=middlecenter",
+      "kind": "LOGO_ASSET",
+      "status": 200,
+      "finalUrl": "https://images.sidearmdev.com/resize?url=https%3a%2f%2fdxbhsrqyrr690.cloudfront.net%2fsidearm.nextgen.sites%2fqbcc.sidearmsports.com%2fimages%2flogos%2fsite%2fsite.png&height=72&type=webp&gravity=centre",
+      "contentType": "image/webp",
+      "sourcePath": "sources/queensborough-community-college-1.source",
+      "sha256": "e45305ed07a2e3625214c0c55c5380462e3feeb8ba7cf9ca53929ecb5e54c351",
+      "decoded": {
+        "format": "webp",
+        "width": 72,
+        "height": 72
+      },
+      "assetDecoded": true
+    }
+  ],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED"
+}

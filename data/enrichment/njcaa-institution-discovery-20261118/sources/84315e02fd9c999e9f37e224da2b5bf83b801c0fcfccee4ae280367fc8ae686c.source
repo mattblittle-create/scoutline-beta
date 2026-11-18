@@ -1,0 +1,1475 @@
+<!-- Get PHP Head -->
+
+
+<!DOCTYPE html> 
+<html lang="en">
+  <head id="homepage-bs5">
+    <!-- Metadata -->
+    <title>Elgin.edu | Elgin Community College (ECC)</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome-1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="canonical" href="https://elgin.edu/" />
+    <link rel="alternate" hreflang="en" href="https://elgin.edu">
+    <link rel="alternate" hreflang="es" href="https://es.elgin.edu">
+    <meta name="author" content="Elgin Community College">
+    <link rel="shortcut icon" type="image/x-icon" href="/media/website/site-assets/images/favicon.ico">  
+    <link rel="preload" fetchpriority="high" as="image" href="https://elgin.edu/media/myelginedu/spaces/ecc-75th-anniversary/images/ecc-circle-logo.svg" type="image/svg+xml"> <!-- 1780656 ecc-circle-logo.svg -->
+    
+    <meta name="description" content="At Elgin Community College, we commit to student success and empower students to reach their full potential through our dedicated faculty and programs." />
+    <meta name="msvalidate.01" content="02C65E8C675E0236D7DDC97976CAA772" />
+    <meta property="fb:app_id" content="137357969477">
+    <meta property="og:image" content="https://pxl-elginedu.terminalfour.net/prod01/cdn-pxl-elginedu-prod/media/website/site-assets/images/og-image/homepage-og.jpg" /><meta property="og:image:alt" content="Two students wearing hoodies study together in a dimly lit library, sitting at a wooden table and looking at a silver HP laptop." />
+    <meta property="og:description" content="At Elgin Community College, we commit to student success and empower students to reach their full potential through our dedicated faculty and programs." />
+    <meta property=og:title content="Elgin.edu | Elgin Community College (ECC)"/>
+    <meta property="og:url" content='https://elgin.edu/' />
+    <!-- Global meta tags --><!--og:type 37, og:site_name 51, twitter:card 40, twitter:site 41,twitter:creator 57-->
+    <!-- Facebook /////////////////////////////////-->
+    <!--og:type              id 37                                                      --><meta property="og:type" content="website">
+    <!--og:site_name         id 51                                                  --><meta property="og:site_name" content="Elgin Community College">
+<!-- Twitter  /////////////////////////////////-->
+    <!--twitter:card         id 40                                                      --><meta name="twitter:card" content="summary_large_image">
+    <!--twitter:site         id 41                                                        --><meta name="twitter:site" content="@elgincommcoll">
+    <!--twitter:creator      id 57                                                     --><meta name="twitter:creator" content="@elgincommcoll">	
+
+    <!-- /Global meta tags -->  
+    <!-- /Metadata -->
+      
+    <!-- name="Retrieve Global CSS and GTM - bs5" id="640"  OLD:id="28" -->
+    <!-- 0) Osano consent defaults -->
+<!-- Osano Consent script -->
+<script>
+  window.dataLayer = window.dataLayer ||[];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent','default',{
+    'ad_storage':'denied',
+    'analytics_storage':'denied',
+    'ad_user_data':'denied',
+    'ad_personalization':'denied',
+    'personalization_storage':'denied',
+    'functionality_storage':'granted',
+    'security_storage':'granted',
+    'wait_for_update': 500
+  });
+  gtag("set", "ads_data_redaction", true);
+  gtag("set", "url_passthrough",true);
+</script>
+<!-- /Osano Consent script -->
+
+<!-- Google Fonts -->
+<!-- OG - link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700&display=swap"-->
+<!-- Now with blocking removed -->
+
+<!-- 1) Preconnects -->
+<link rel="preconnect" href="https://cmp.osano.com" crossorigin>
+<link rel="preconnect" href="https://pxl-elginedu.terminalfour.net" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com"> 
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+
+<!-- //2a) Salesforce gate: place this BEFORE Osano -->
+
+<!-- 2b) Osano Consent JS  Osano CMP early-->
+<script defer src="https://cmp.osano.com/AzyhvNU9y5TWh5HnG/9e143b44-add9-45dc-958c-cf6bb53f88d9/osano.js"></script>
+<!-- /Osano Consent JS -->
+
+<!-- 3) Google Fonts (non-blocking) -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700&display=swap" onload="this.onload=null;this.rel='stylesheet'"> 
+<noscript>
+ <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700&display=swap"> 
+</noscript>
+
+<!-- 3b) Critical inline CSS option -->
+<!-- //4) Calendar XML after paint -->
+
+<!-- 5b) Bootstrap (blocking)
+<!-- Bootstrap Master -->
+<!--bootstrap-master.5.2.3.css--><!--t4 type="media" id="1583980" formatter="css/*" cdn="true" /-->
+<!--bootstrap-master.5.2.3.min.css--><link rel="stylesheet" type="text/css" media="" href="/media/website/site-assets/css/bootstrap/v523/bootstrap-master.5.2.3.min.css" />
+<!-- 01.29.26 Swap line above for this once critical CSS is inlined...
+<link rel="preload" as="style" href="https://pxl-elginedu.terminalfour.net/prod01/cdn-pxl-elginedu-prod/media/website/site-assets/css/bootstrap/v523/bootstrap-master.5.2.3.min.css" onload="this.onload=null;this.rel='stylesheet'"> 
+<noscript>
+ <link rel="stylesheet" href="https://pxl-elginedu.terminalfour.net/prod01/cdn-pxl-elginedu-prod/media/website/site-assets/css/bootstrap/v523/bootstrap-master.5.2.3.min.css"> 
+</noscript-->
+
+<!-- Retrieve Google and Osano Consent plus gtag Manager Head Code - BS5 -->
+<!-- GTM Head Code -->
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TXT7CH');</script>
+<!-- End Google Tag Manager -->
+
+<!-- Google tag (gtag.js) Google Ads -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-990377392"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-990377392');
+</script>
+
+<!-- End Google Ads Tag -->
+<!-- /GTM Head Code -->
+
+<!-- 6) Osano CSS (non-blocking) -->
+<!-- Osano CSS : Osano - Unminified id: 1895239 -->
+<!-- Osano CSS : Osano - Minified id: 1895240 -->
+<link rel="preload"
+      as="style"
+      href="https://pxl-elginedu.terminalfour.net/prod01/cdn-pxl-elginedu-prod/media/website/site-assets/css/bootstrap/v523/osano.min.css"
+      onload="this.onload=null;this.rel='stylesheet'">
+
+<noscript>
+  <link rel="stylesheet"
+        href="https://pxl-elginedu.terminalfour.net/prod01/cdn-pxl-elginedu-prod/media/website/site-assets/css/bootstrap/v523/osano.min.css">
+</noscript>
+<!-- /Osano CSS-->
+
+<!-- 7) Print stylesheet -->
+<link rel="stylesheet" type="text/css" href="/media/website/site-assets/css/print.css" media="print">
+
+<!-- 8) Third-party CSS that is not needed for first paint and GTM/gtag and all other pixels AFTER consent + CMP --><!-- Font Awesome Kit -->   
+<script async src="https://kit.fontawesome.com/788a2ee235.js" crossorigin="anonymous"></script>
+<!-- /Font Awesome Kit -->   
+    <!-- Removed 102125 - script src="https://kit.fontawesome.com/6302e304b2.js" crossorigin="anonymous"></script-->
+    <!-- name="Code (Head)" id="79" --><style>@media screen and (max-width: 767px) {#badges img.img-fluid {max-width: 240px !important;}}.marketing-box, .marketing-box .quote p {text-align: left !important;}@media screen and (max-width: 767.9px) {.marketing-message button, .marketing-message .button {width: 100%;}}<!-- z-index --> .open-button, p.open-button .btn {z-index: 98 !important;}.container-video button {z-index:90 !important;}.ratio-8x3 {position: relative;aspect-ratio: 8 / 3;width: 100%;overflow: hidden;}.blurup__placeholder {position: absolute;inset: 0;background-size: cover;background-position: center;filter: blur(18px);transform: scale(1.05);}.blurup__img {position: relative;inset: 0;width: 100%;height: 100%;object-fit: cover;opacity: 0;transition: opacity 250ms ease;}.blurup.is-loaded .blurup__img {opacity: 1;}.blurup__placeholder {z-index: 0;filter: blur(18px);transform: scale(1.05);background-color: #f1f2f3;}.blurup__img {z-index: 1;}</style><style>
+/* Lazy BG placeholders */
+.lazy-bg{
+  background-position:center;
+  background-repeat:no-repeat;
+  background-size:cover;
+  background-color:#f2f2f2; /* placeholder */
+}
+.lazy-bg.is-bg-loaded{
+  background-color:transparent;
+}
+
+#areas-of-study .card-body{ min-height:280px; }
+
+/* HERO: establish stacking + clip */
+.container-video{
+  position:relative;
+  overflow:hidden;
+}
+@media only screen and (max-width: 575.98px) {
+    .container-video {
+      position:relative;
+      overflow:visible; 
+    }
+}
+
+/* Media layers fill container */
+#backgroundImage,
+#backgroundVideo{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  pointer-events:none; /* hero media never steals clicks */
+}
+
+/* Layer order: image behind, video above */
+#backgroundImage{ z-index:0; display:block !important; }
+#backgroundVideo{ z-index:1; }
+
+/* Overlay must be positioned for z-index to work */
+.container-video .overlay-text{
+/*  position:relative;*/
+  z-index:10;
+  pointer-events:auto;
+}
+
+/* Pause button above overlay/media */
+/*.container-video #pauseButton{
+  position:relative;
+  z-index:20;
+  pointer-events:auto;
+}*/
+
+/* JS toggles this once video is playing (desktop) */
+#backgroundImage.is-hidden{ display:none !important; }
+</style>
+    <!--link href="//cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel="stylesheet" type="text/css"-->
+<style>
+body#ECC-secondary {
+padding-right: 0 !important;
+}
+#admissions-intake .form-control {
+  width: 100%;
+}
+/* Button used to open the chat form - fixed at the bottom of the page */
+.open-button, p.open-button .btn, .close-button, p.close-button .btn {
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: 400;
+  opacity: 0.95;
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  width: auto;
+  z-index: 99;
+  padding: 10px 15px;
+}
+a.chat-icon::before, a.email-icon::before {
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 700;
+  text-rendering: auto;
+  margin-right: 10px;
+  -webkit-font-smoothing: antialiased;
+}
+a.chat-icon::before {
+  font-family: "Font Awesome 6 Pro";
+  content: "\f4b6";
+}
+a.email-icon::before {
+  font-family: "Font Awesome 6 Pro";
+  content: "\f0e0";
+}
+/*a.open-button:hover:after {
+    content: ' Questions? Open chat';
+    animation: right_to_left 3s ease;
+}
+a.close-button:hover:after {
+    content: ' Questions? Email us.';
+    animation: right_to_left 3s ease;
+}*/
+a.open-button.btn-success:active, a.open-button.btn-success:visited, a.open-button.btn-success:focus {
+    background-color: #538000;
+    border-color: #476e00;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+    text-decoration: none;
+}
+a.close-button.btn-secondary:active, a.close-button.btn-secondary:visited, a.close-button.btn-secondary:focus {
+    background-color: #dee1e3;
+    color: #262626;
+    border-color: #5c5c5c;
+    text-decoration: none;
+}
+
+/* DD */
+.open-button .btn-secondary {
+    color: white;
+}
+.open-button .btn-secondary {
+    background: linear-gradient(135deg, #80744c 0%, #80744c 94%, transparent 91%, transparent 100%)!important;
+}
+.open-button a:hover,
+.open-button a:active,
+.open-button a:focus {
+	border-bottom: 0 solid transparent!important;
+	background: linear-gradient(135deg, #003a69 0%, #003a69 94%, transparent 91%, transparent 100%) !important;
+    opacity: 1 !important;
+}
+</style>
+  </head>
+      
+  <body id="ECC-home">
+    	<!-- name="Retrieve Google Tag Manager Body Code - BS5 (noscript)" id="752"  OLD:id="29" -->
+      <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TXT7CH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+      <header>
+        <a class="skip-to-content container-xxl bd-gutter flex-wrap flex-lg-nowrap" href="#main-content" tabindex="-1">Skip to content</a>
+        <!-- Global Navigation -->
+        	<nav id="nav" class="navbar navbar-expand-lg navbar-light bg-white container-xxl bd-gutter flex-wrap flex-lg-nowrap" aria-label="Mobile navigation">
+		<div class="container-fluid">			
+		    <button id="menu-icon" class="navbar-toggler ms-3 collapsed d-flex d-lg-none flex-column justify-content-around" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="toggler-icon bar top-bar"></span>
+			<span class="toggler-icon bar middle-bar"></span>
+			<span class="toggler-icon bar bottom-bar"></span>
+		    </button>
+					
+		    <a class="navbar-brand p-0 me-0 me-lg-2" href="/">
+			<!--img class="img-fluid d-block my-1 p-1" src="/media/elginedu/index/ecc-logo-75-golden.svg" alt="Elgin Community College. Bright Choice. Bright Future." loading="lazy"-->
+                        <img class="img-fluid d-block my-1 p-1" src="/media/myelginedu/spaces/ecc-75th-anniversary/images/ecc-circle-logo.svg" alt="Elgin Community College. Bright Choice. Bright Future." loading="lazy">
+	            </a>
+		    <div class="d-flex nav-search search-desktop Solo">
+        		<div class="ecc-search pe-3">
+			    <a class="nav-link last" href="/search/" aria-label="Search" alt="site search">
+			        <button type="button" class="btn btn-transparent btn-circle btn-lg"  aria-label="Site search">
+				    <span class="fa-solid fa-magnifying-glass" aria-hidden="true"></span>
+				</button>
+		             </a>	
+			 </div>
+     	             </div>
+
+		<!-- Offcanvas wrapper -->
+					<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"><!-- aria-labelledby="offcanvasExampleLabel"-->
+						<div class="offcanvas-header">
+
+							<!--<button type="button" class="btn-close btn-close-white px-4" data-bs-dismiss="offcanvas" aria-label="Close"></button>-->
+							<button id="close-button" type="button" class="btn-close btn-close-white px-4" data-bs-dismiss="offcanvas" aria-label="Close button"></button>
+							
+							<h5 class="offcanvas-title" id="offcanvasExampleLabel">
+								<!--a href="https://elgin.edu"><img class="img-fluid" src="/media/elginedu/index/ecc-logo-75-golden.svg" alt="Elgin Community College. Bright Choice. Bright Future." loading="lazy"></a-->
+                                                               <a href="https://elgin.edu"><img class="img-fluid" src="/media/myelginedu/spaces/ecc-75th-anniversary/images/ecc-circle-logo.svg" alt="Elgin Community College. Bright Choice. Bright Future." loading="lazy"></a>
+							</h5>
+
+							</div>
+							
+							<div class="top-nav-container"><!--` class="row">-->
+								<div class="container">	<!-- to keep the navigation from spaning the width of the site.-->					
+									<div class="navbar-nav container-fluid nav-row-1 order-last order-lg-first">
+										<div class="col">
+
+										<!-- Left links -->
+										<ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100 justify-content-center nav-fill ml-auto ">
+											<li class="nav-item">
+												<a class="nav-link" aria-current="page" href="/adult-education/">Adult&nbsp;Education</a><!-- class="... active" -->
+											</li>
+											<li class="nav-item">
+												<a class="nav-link" href="https://foundation.elgin.edu/" target="_blank" rel="noopener">Foundation</a>
+											</li>
+											<li class="nav-item">
+												<a class="nav-link" href="/community/">Community</a>
+											</li>
+											<li class="nav-item" id="custom-switcher">
+													<a  id="weglot-es" class="nav-link" href="#" onclick="Weglot.switchTo('es'); return false;">Español</a>
+  <a id="weglot-en" class="nav-link" href="#" onclick="Weglot.switchTo('en'); return false;">English</a>
+												</li> 
+										</ul>
+										<!-- /Left links -->
+
+										</div>
+										<div class="col p-3">
+											<!-- Center space -->
+											<ul class="navbar-nav ms-auto mb-2 mb-lg-0 w-100 justify-content-center nav-fill ml-auto">
+												<li>&nbsp;</li>
+											</ul>	
+											<!-- /Center space-->
+										</div>
+										<div class="col text-end">
+											<!-- Right links -->
+											<ul class="navbar-nav ms-auto mb-2 mb-lg-0 w-100 justify-content-center nav-fill ml-auto"><!--offcanvas offcanvas-start offcanvas-body"-->
+												<!-- <li class="nav-item" id="custom-switcher">
+													<button class="nav-link">Español</button>
+												</li> -->
+												<li class="nav-item">
+													<!--<a class="nav-link" href="/calendar/" >Calendar</a>-->
+                                                                                                        <a class="nav-link" href="https://my.elgin.edu/ " title="MyElgin" target="_blank" rel="noopener">MyElgin</a>
+												</li>
+												<li class="nav-item">
+													<a class="nav-link" href="https://experience.elluciancloud.com/ecc116/" title="AccessECC" target="_blank" rel="noopener">AccessECC</a>
+												</li>
+												<li class="nav-item">
+													<a class="nav-link" href="https://distancelearning.elgin.edu/" target="_blank" rel="noopener">D2L</a>
+												</li>
+												<li class="nav-item">
+													<a class="nav-link" href="/directory/">Directory</a>
+												</li>
+												<!--<li class="nav-item">
+													<a class="nav-link last search" href="/search/" aria-label="Search" alt="search">
+														<div class="btn btn-transparent btn-circle btn-lg oc-search">
+															<span class="fa-solid fa-magnifying-glass" aria-hidden="true"></span>
+														</div>
+													</a>	
+												</li>-->
+												<li class="nav-item search- Solo3" id="_search">
+  <a class="nav-link last" href="/search/" aria-label="Search" alt="Search site" href="
+/search/" role="search">
+    <div class="btn btn-transparent btn-circle btn-lg oc-search">
+      <span aria-hidden="true" class="visually-hidden">Search</span><span class="fa-solid fa-magnifying-glass" aria-hidden="true"></span>
+    </div>
+  </a>
+  <!--<button type="button" class="btn btn-transparent btn-circle btn-lg">
+<a class="nav-link" href="#" aria-label="Search"><span class="fa-solid fa-magnifying-glass" aria-hidden="true"></span><span class="search-title">Search</span></a></button>-->
+  <!--<a class="nav-link" href="#" aria-label="Search"><span class="fa-solid fa-magnifying-glass" aria-hidden="true"></span></a>-->
+</li>
+
+											</ul>
+											<!-- /Right links -->
+										</div>
+									</div>
+								</div>
+							<!-- Navigation Row 2 -->
+							<!--<div class="row navbar-light bg-blue">-->
+								<nav id="main" class="d-md-flex flex-md-equal d-flex w-100" aria-label="Main menu">
+									<div class="container-fluid navbar-dark bg-blue align-items-center d-flex">	<!-- to keep the navigation from spaning the width of the site.-->
+									<!--<div class="container">-->
+										<div class="navbar-nav container nav-row-2 align-items-center d-flex order-first order-lg-last">
+										<!--<div class="navbar-nav container-fluid nav-row-2 navbar-dark bg-blue align-items-center d-flex order-first order-lg-last">-->
+											<div class="p-0 flex-fill">
+												<!-- Left links -->
+												<ul class="navbar-nav me-auto justify-content-center nav-fill ml-auto d-flex mb-2 mb-lg-0 w-100">
+													<li class="nav-item">
+														<a class="nav-link" href="/admissions/">Admissions</a><!--class="nav-link active"-->
+													</li>
+													<li class="nav-item">
+														<a class="nav-link" href="/pay-for-college/">Pay for College</a>
+													</li>
+													<li class="nav-item">
+														<a class="nav-link" href="/areas-of-study/"	>Areas of Study</a>
+													</li>
+												</ul>
+												<!-- /Left links -->
+											</div>
+
+											<!-- ECC logo 12.19.2024 -->
+											<div class="col p-0 flex-fill text-center nav-logo">
+												<!-- https://pxl-elginedu.terminalfour.net/prod01/cdn-pxl-elginedu-prod/media/website/site-assets/images/ecc-circle-logo.svg-->
+<a class="navbar-brand align-items-center" href="/">
+													<img id="eccLogo" class="img-fluid" src="/media/myelginedu/spaces/ecc-75th-anniversary/images/ecc-circle-logo.svg" alt="Elgin Community College. Bright Choice. Bright Future." style="top: 0 !important"><!-- loading="lazy"-->
+												</a>
+											</div>
+											<!---->
+											<!-- ECC 75 logo -- 
+											<div class="col p-0 flex-fill text-center nav-logo">
+												<a class="navbar-brand align-items-center" href="/">
+													<img id="eccLogo" class="img-fluid ecc-75" src="/media/elginedu/index/ecc-logo-75-golden.svg" alt="Elgin Community College 75th Anniversary. Bright Choice. Bright Future.">
+												</a>
+											</div>
+                                                      -->
+											<div class="p-0 flex-fill">
+												<!-- Right links -->
+												<!--<ul class="navbar-nav ms-auto mb-2 mb-lg-0">-->
+												<ul class="navbar-nav ms-auto mb-2 mb-lg-0 w-100 justify-content-center nav-fill ">
+													<li class="nav-item">
+														<a class="nav-link" href="/academics/">Academics</a>
+													</li>
+													<li class="nav-item">
+														<a class="nav-link" href="/student-services/">Student Services</a>
+													</li>
+													<li class="nav-item">
+														<a class="nav-link" href="/about/">About</a>
+													</li>
+													<li id="add-search" class="nav-item "><!-- JS to expose class="sticky-search" -->
+														<a class="" href="/search/" aria-label="Search" alt="Search site" role="search">
+                                                                                                                        <div class="btn btn-transparent btn-circle btn-lg" name="search">
+																<span class="fa-solid fa-magnifying-glass" aria-hidden="true"></span>
+															</div>
+													        </a>
+													</li>
+												</ul>
+												<!-- /Right links -->
+											</div>
+										</div>
+
+									</div>
+								</nav>
+						<!-- /Navigation Row 2 -->
+						
+						</div>
+					</div>
+					<!-- /Offcanvas wrapper -->
+					
+				</div>
+			</nav>
+
+        <!-- /Global Navigation -->
+      </header>    
+    <!-- Main Body-->
+    <!-- Dynamic Emergency Notice -->    
+    <div id="raveNotification" class="mw-100 emergencynotice" aria-live="assertive" aria-atomic="true"></div>
+    <!-- /Dynamic Emergency Notice --> 
+    
+    <!-- Site wide notice -->
+    
+    <!-- ct:Site Wide Notice - eNet | media id 2563646 -->
+    <!-- ct:Site Wide Notice - global | media id 2666758 -->
+    <div id="alertNotification" class="mw-100" data-t4-emergency-notices="/media/website/site-assets/js/notice/emergency-notice.json" aria-atomic="true"></div><!--id       
+    <!-- Hardcoded -- >
+    <div class="container-fluid">		
+	  	<div class="" aria-live="assertive" aria-atomic="true">   
+					<div class="notice info">
+							<div class="row">
+								<span class="fa fa-times fa-lg" data-id="09212020-1025"></span>
+								<a href="/about-ecc/campus-central/">ECC will be closed Thursday, Dec. 21 at 5 p.m. through Tuesday, Jan. 2 for Winter Recess. ECC will reopen Wednesday, Jan. 3. Classes begin on Tuesday Jan. 16.</a>
+							</div>
+					</div>
+			</div>
+	  </div>	
+    <!-- /Site wide notice -->
+
+    <main id="main-content" role="main" tabindex="-1">
+      <h1 class="visually-hidden">Home</h1><!-- 11.09.26 - 1435  --><!-- Video/Image -->
+	<div class="container-fluid">
+		<div class="spotlight">
+			<div class="container-video">
+              
+              <div class="overlay-text">
+					<div class="d-grid gap-2">
+						
+	<a id="home-btn-inquire" class="btn btn-ltgold"  href="/request-information/" aria-label="Request Information">Request Information<span class="fa-solid fa-chevron-right" aria-hidden="true"></span></a>
+						
+	<a id="home-btn-visit-campus" class="btn btn-ltgold"  href="/admissions/visit-ecc/" aria-label="Visit Campus">Visit Campus<span class="fa-solid fa-chevron-right" aria-hidden="true"></span></a>
+						
+	<a id="home-btn-apply" class="btn btn-ltblue" target=&#39;_blank&#39; href="https://elginedu.my.site.com/admissions/" aria-label="Apply Now">Apply Now<span class="fa-solid fa-chevron-right" aria-hidden="true"></span></a>
+                      <!--<button class="btn btn-dkblue" type="button" aria-label="Enroll Now">Enroll Now<span class="fa-solid fa-chevron-right" aria-hidden="true"></span></button>-->
+                      
+					</div>
+
+					<div class="hero-messaging" style="">
+						<h2 style="" class="connect-h2-text display-1 fs-1"><!--You'll Fit Right In-->Bright Choice. Bright Future.</h2>
+							<div id="hiddenDiv" style="display: none; clear: both">
+								<p><!--Education is an investment in your future. From graduates' higher salaries to lasting friendships, meaningful faculty interactions, and networking opportunities, studying at ECC sets you in the right direction for your future.-->Education is an investment in your future. From graduates' higher salaries to lasting friendships, meaningful faculty interactions, and networking opportunities, studying at ECC sets you in the right direction for your future.</p>
+							</div>
+							<!-- <p class="btn btn-primary btn btn-transparent btn-circle btn-lg" id="toggleButton" ><span class="reveal">...</span></p> -->
+					</div>
+				</div>	
+	            <!-- ============================================== -->
+                <!-- IMAGE FALLBACK (mobile when video hidden) -->
+                <!-- ============================================== -->
+
+                <img id="backgroundImage"
+                     src="
+                          https://pxl-elginedu.terminalfour.net/filters:format(webp)/prod01/cdn-pxl-elginedu-prod/media/website/site-assets/video/sp27-web-banner-img_738X300.jpg"
+                     loading="eager"
+					 fetchpriority="high"
+                     decoding="async"
+                     alt="Campus of Elgin Community College" />
+              
+              
+                <!-- ============================================== -->
+                <!-- VIDEO LOGIC: One <video> tag, Media or URL src -->
+                <!-- ============================================== -->
+
+                <video
+                  id='backgroundVideo'
+                  data-src='
+                       https://pxl-elginedu.terminalfour.net/prod01/cdn-pxl-elginedu-prod/media/website/site-assets/video/sp27-web-banner-v3.mp4'
+                  poster='
+                          https://pxl-elginedu.terminalfour.net/filters:format(webp)/prod01/cdn-pxl-elginedu-prod/media/website/site-assets/video/sp27-web-banner-img_738X300.jpg'
+                  autoplay
+                  loop
+                  muted
+                  playsinline
+                  preload='none'
+				  fetchpriority="low">
+                </video>
+
+
+		      <button id="pauseButton"
+        	      class="btn btn-transparent btn-circle btn-lg play"
+        	      aria-label="Pause/Play video banner">
+        		<span class="reveal fa-solid fa-pause" aria-hidden="true"></span>
+      		  </button>
+
+	    </div>
+	  </div>
+	</div>
+<!-- /Video/Image --> <div id="quick-links"  class="ql-container">
+		<div class="container-fluid">
+				<div class="row text-center ql-row">                  
+                  
+                    <div class="ql-box col-6 col-sm-4 col-lg-2 active">
+                      <!-- Main body 1 <a href=""> -->
+                      <a title="Visit the ECC Bookstore website" aria-label='Visit the ECC Bookstore website'  href="/student-services/bookstore/">
+							<div class="features-icons-item pb-5 pb-lg-0">
+								<div class="features-icons-icon pt-4">
+                              		<span class="fa-thin fa-store" aria-hidden="true"></span>
+								</div>
+								<p class="lead mb-0 pt-4">Bookstore&nbsp;<span class="fa-solid fa-chevron-right" aria-hidden="true"></span></p>
+							</div>
+						</a>
+					</div>		
+					<div class="ql-box col-6 col-sm-4 col-lg-2 active">
+						<!-- Main body 2 <a href=""> -->
+                        <a title="Visit the Renner Academic Library website" aria-label='Visit the Renner Academic Library website'  href="/academics/library/">
+							<div class="features-icons-item pb-5 pb-lg-0">
+								<div class="features-icons-icon pt-4">
+									<span class="fa-thin fa-book" aria-hidden="true"></span>
+								</div>
+								<p class="lead mb-0 pt-4">Library&nbsp;<span class="fa-solid fa-chevron-right" aria-hidden="true"></span></p>
+							</div>
+						</a>
+					</div>
+					<div class="ql-box col-6 col-sm-4 col-lg-2 active">
+						<!-- Main body 3 <a href=""> -->
+                        <a title="Visit the Arts Center website" aria-label='Visit the Arts Center website' target='_blank' href="https://eccartscenter.org/">
+							<div class="features-icons-item pb-5 pb-lg-0">
+								<div class="features-icons-icon pt-4">
+									<span class="fa-thin fa-masks-theater" aria-hidden="true"></span>
+								</div>
+								<p class="lead mb-0 pt-4">Arts Center&nbsp;<span class="fa-solid fa-chevron-right" aria-hidden="true"></span></p>
+							</div>
+						</a>
+					</div>
+                  
+                  	<div class="ql-box col-6 col-sm-4 col-lg-2 active">
+                      <!-- Main body 4 <a href=""> -->
+                      <a title="Visit the Elgin Community College Athletics website" aria-label='Visit the Elgin Community College Athletics website' target='_blank' href="https://elginspartans.com/landing/index">
+							<div class="features-icons-item pb-5 pb-lg-0">
+								<div class="features-icons-icon"><!-- removed for Spartan Athletics logo pt-4"-->
+									<span class="fa-kit fa-spartan-athletics" aria-hidden="true"></span>
+								</div>
+								<p class="lead mb-0 pt-4">Athletics&nbsp;<span class="fa-solid fa-chevron-right" aria-hidden="true"></span></p>	
+							</div>
+						</a>
+					</div>
+                  
+                  
+                    <div class="ql-box col-6 col-sm-4 col-lg-2 active">
+                      <!-- Main body 5 <a href=""> -->
+                      <a title="View the Latest News" aria-label='View the Latest News'  href="/news/">
+							<div class="features-icons-item pb-5 pb-lg-0">
+								<div class="features-icons-icon pt-4">
+									<span class="fa-thin fa-bullhorn" aria-hidden="true"></span>
+								</div>
+								<p class="lead mb-0 pt-4">Latest News&nbsp;<span class="fa-solid fa-chevron-right" aria-hidden="true"></span></p>	
+							</div>
+						</a>
+					</div>
+                  
+                  	<div class="ql-box col-6 col-sm-4 col-lg-2 active">
+                      <!-- Main body 6 <a href=""> -->
+                      <a title="View Jobs at ECC" aria-label='View Jobs at ECC' target='_blank' href="https://elgin-community-college.career-pages.com/ecc-careers-elgin-community-college">
+							<div class="features-icons-item pb-5 pb-lg-0">
+								<div class="features-icons-icon pt-4">
+									<span class="fa-thin fa-briefcase" aria-hidden="true"></span>
+								</div>
+								<p class="lead mb-0 pt-4">Jobs at ECC&nbsp;<span class="fa-solid fa-chevron-right" aria-hidden="true"></span></p>	
+							</div>
+						</a>
+					</div>
+				</div>
+		</div>
+	</div><!-- Marketing Message -->
+	<div class="marketing-message container-fluid full-width-block bg-f1f2f3">		
+		<div class="container marketing-box hp-item">
+			<div class="card">
+				<div class="row g-0">
+                  <div class="col col-12 col-md-6"> 
+						<div class="card-body quote">
+							<h2 class="fs-1">Register Now for Spring Classes</h2>
+                            <p><p data-renderer-start-pos="624">With supportive faculty and hands-on learning, ECC can help spark your success and achieve your educational dreams. Secure your spring classes today. To keep your class seat, be sure to make payment arrangements by Tuesday, January 5, at 7 pm.</p></p>
+						</div>
+					</div>
+                  	
+					<div class="col col-12 col-md-6"><!-- manually add class="col-sm-4 pt-4" at the end --> 
+                      <!--Image-- >
+                      <img class="img-fluid mb-3"  src="https://pxl-elginedu.terminalfour.net/filters:format(webp)/prod01/cdn-pxl-elginedu-prod/media/website/site-assets/images/hero-banners/spring-2026-register-hero.jpg" alt="3 ECC science students in lab working together">
+                      <!--Image (SVG)-- >
+                      
+                      -->
+					
+<!--Image-->
+
+<div class="ratio-8x3 mb-3 blurup">
+  <!-- Placeholder layer -->
+  <div class="blurup__placeholder"
+       style="background-image:url('https://pxl-elginedu.terminalfour.net/prod01/cdn-pxl-elginedu-prod/media/website/site-assets/images/hero-banners/spring-2026-register-hero.jpg');"></div>
+
+  <!-- Real image -->
+  <img class="blurup__img img-fluid"
+       src="https://pxl-elginedu.terminalfour.net/filters:format(webp)/prod01/cdn-pxl-elginedu-prod/media/website/site-assets/images/hero-banners/spring-2026-register-hero.jpg"
+       alt="3 ECC science students in lab working together"
+       loading="lazy"
+       decoding="async"
+       onload="this.closest('.blurup') &amp;&amp; this.closest('.blurup').classList.add('is-loaded')">
+</div>
+
+
+
+<!--Image (SVG)-->
+
+
+
+					</div>
+					<div class="col-12"><a class="button btn btn-dkblue" href='/admissions/register-for-classes/'  title=''>Register for Classes</a></div>
+				</div>
+			</div>
+		</div>
+	</div>
+<!--/End  Marketing Message --><!-- text/before-bs5-->
+<!-- Connect -->
+	<div id="connect" class="container-fluid container-bg fade-effect" style="background-size: cover; transition: background-color 0.5s; background-image: url('https://pxl-elginedu.terminalfour.net/filters:format(webp)/prod01/cdn-pxl-elginedu-prod/media/elginedu/index/ecc-welding.jpg');">
+		<div id="connect-container" class="d-md-flex flex-md-equal w-100 text-bg-transparent ">
+			<header class="p-sm-5 px-sm-5">
+				<div id="connect-left" class="">
+					<h2 id="header-text" class="display-5 pb-4 connect-h2-text fs-1">Connecting Classrooms to Careers</h2>
+					<p>ECC excels at blending the practical with the theoretical. Explore what makes us unique.</p>
+					<div class="d-grid gap-2 col-6">
+        
+						
+                      <a id="connect-btn-1" class="btn btn-dkblue" 
+href='https://catalog.elgin.edu/' target="_blank" title='Catalog'>Catalog</a>
+                      <a 
+id="connect-btn-2" class="btn btn-dkblue" 
+href='/admissions/register-for-classes/registration-procedures/'  title='Register'>Register</a>
+
+					</div>
+				</div>
+			<div>
+				<p id="body-text" class="pe-5"></p>
+			</div>
+			</header>
+
+
+			<div class="text-bg-transparent-over px-md-5 connect-right hp-item">
+				<div class=" position-relative connect-middle align-middle">
+					<div class="container-fluid text-center">
+						<div class="row row-cols-1 row-cols-lg-2">
+<!-- text/before-bs5-->  <!-- text/middle-bs5 -->
+						<div class="col connect" data-image-url="https://pxl-elginedu.terminalfour.net/filters:format(webp)/prod01/cdn-pxl-elginedu-prod/media/elginedu/index/ecc-music.jpg"> <a class="connect-link" href="/academics/ecc-faculty-in-action/" title="World-Class Faculty"><span class="connect-link-label fs-5">World-Class Faculty<span class="fa-solid fa-chevron-right" aria-hidden="true"></span></span></a><p class="connect-text align-bottom">Your educational journey at ECC is guided by faculty dedicated to your growth and success.</p></div>
+
+							<div class="col connect" data-image-url="https://pxl-elginedu.terminalfour.net/filters:format(webp)/prod01/cdn-pxl-elginedu-prod/media/elginedu/index/scholarships.jpg"> <a class="connect-link" href="/pay-for-college/scholarships/" title="Generous Scholarships"><span class="connect-link-label fs-5">Generous Scholarships<span class="fa-solid fa-chevron-right" aria-hidden="true"></span></span></a><p class="connect-text align-bottom">Get a great education that opens doors and boosts your income &mdash; all while saving thousands on your degree.</p></div>
+
+<div class="col connect" data-image-url="https://pxl-elginedu.terminalfour.net/filters:format(webp)/prod01/cdn-pxl-elginedu-prod/media/elginedu/index/student-activities.jpg"> <a class="connect-link" href="/info/elginedu-sections2/student-life/" title="Vibrant Campus Life"><span class="connect-link-label fs-5">Vibrant Campus Life<span class="fa-solid fa-chevron-right" aria-hidden="true"></span></span></a><p class="connect-text align-bottom">Taking classes on campus gives ECC a strong sense of community. You can also choose online courses to fit your busy schedule.</p></div>
+
+<div class="col connect" data-image-url="https://pxl-elginedu.terminalfour.net/filters:format(webp)/prod01/cdn-pxl-elginedu-prod/media/elginedu/index/community-connections.jpg"> <a class="connect-link" href="/community/" title="Community Connections"><span class="connect-link-label fs-5">Community Connections<span class="fa-solid fa-chevron-right" aria-hidden="true"></span></span></a><p class="connect-text align-bottom">We&rsquo;re part of the community and help prepare future leaders. Our ties with local companies give you job connections when you finish school.</p></div>
+
+
+
+
+
+
+
+<!-- /text/middle-bs5 --><!-- text/after-bs5-->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- /text/after-bs5--><!-- Marketing Message -->
+	<div class="marketing-message container-fluid full-width-block bg-f1f2f3">		
+		<div class="container marketing-box hp-item">
+			<div class="card">
+				<div class="row g-0">
+                  <div class="col col-12 col-md-6"> 
+						<div class="card-body quote">
+							<h2 class="fs-1">Now Open: Manufacturing and Technology Center</h2>
+                            <p><p>Explore ECC&rsquo;s new 150,000-square-foot facility, featuring cutting-edge training for in-demand manufacturing and technology careers.</p></p>
+						</div>
+					</div>
+                  	
+					<div class="col col-12 col-md-6 pt-4"><!-- manually add class="col-sm-4 pt-4" at the end --> 
+                      <!--Image-- >
+                      <img class="img-fluid mb-3"  src="https://pxl-elginedu.terminalfour.net/filters:format(webp)/prod01/cdn-pxl-elginedu-prod/media/website/site-assets/images/hero-banners/mtc-homepage-hero-now-open.png" alt="Drone image of the new manufacturing and technology center.">
+                      <!--Image (SVG)-- >
+                      
+                      -->
+					
+<!--Image-->
+
+<div class="ratio-8x3 mb-3 blurup">
+  <!-- Placeholder layer -->
+  <div class="blurup__placeholder"
+       style="background-image:url('https://pxl-elginedu.terminalfour.net/prod01/cdn-pxl-elginedu-prod/media/website/site-assets/images/hero-banners/mtc-homepage-hero-now-open.png');"></div>
+
+  <!-- Real image -->
+  <img class="blurup__img img-fluid"
+       src="https://pxl-elginedu.terminalfour.net/filters:format(webp)/prod01/cdn-pxl-elginedu-prod/media/website/site-assets/images/hero-banners/mtc-homepage-hero-now-open.png"
+       alt="Drone image of the new manufacturing and technology center."
+       loading="lazy"
+       decoding="async"
+       onload="this.closest('.blurup') &amp;&amp; this.closest('.blurup').classList.add('is-loaded')">
+</div>
+
+
+
+<!--Image (SVG)-->
+
+
+
+					</div>
+					<div class="col-12"><a class="button btn btn-dkblue" href='/about/campus-visitor-information/mtc/'  title=''>Learn More</a></div>
+				</div>
+			</div>
+		</div>
+	</div>
+<!--/End  Marketing Message --><!-- text/before-bs5-->
+<!-- Areas of Study -->
+<div id="areas-of-study" class="container-fluid">
+  <div class="container-fluid overflow-hidden hp-cql">
+    <div class="flex-row row gx-5">
+  	  <div class="col-md-12 areas-of-study">
+        <div class="card bg-white border-0 hp-item"><!-- shadow-sm"-->
+		  <div class="card-header fw-bold">
+			<h2 class="fs-1 mt-3">Browse Areas of Study</h2>
+		  </div>
+		  <div class="card-body bg-white center-both justify-content-center"
+style="background-size: cover; transition: background-color 0.5s; background-image: url('https://pxl-elginedu.terminalfour.net/filters:format(webp)/prod01/cdn-pxl-elginedu-prod/media/elginedu/index/link-bg.jpg');">
+          
+          <!--<div
+            class="card-body bg-white center-both justify-content-center"
+            style="background-size: cover; transition: background-color 0.5s;"
+            data-bg='https://pxl-elginedu.terminalfour.net/filters:format(webp)/prod01/cdn-pxl-elginedu-prod/media/elginedu/index/link-bg.jpg'
+          >-->
+			<div class="d-md-flex flex-md-equal w-100 text-bg-transparent">				
+			  <div class="text-bg-transparent-aos">
+				<div class="p-md-5"><!-- connect-right "-->
+        		  <div class="container-fluid text-center">
+           			<div class="row row-cols-1 row-cols-lg-2">
+<!-- /text/before-bs5-->
+<!-- text/middle-bs5 -->
+<div class="col connect"><a class="connect-link" title="Visit the Art, Theatre, and Music page" href="/areas-of-study/art-design-theatre-music/"><span class="connect-link-label">Art, Theatre, and Music<span class="fa-solid fa-chevron-right" aria-hidden="true"></span></span></a></div>
+<!-- /text/middle-bs5 -->
+<!-- text/middle-bs5 -->
+<div class="col connect"><a class="connect-link" title="Visit the Business and Information Technology page" href="/areas-of-study/business-info-technology/"><span class="connect-link-label">Business and Information Technology<span class="fa-solid fa-chevron-right" aria-hidden="true"></span></span></a></div>
+<!-- /text/middle-bs5 -->
+<!-- text/middle-bs5 -->
+<div class="col connect"><a class="connect-link" title="Visit the Career and Technical Programs page" href="/areas-of-study/career-and-technical-programs/"><span class="connect-link-label">Career and Technical Programs<span class="fa-solid fa-chevron-right" aria-hidden="true"></span></span></a></div>
+<!-- /text/middle-bs5 -->
+<!-- text/middle-bs5 -->
+<div class="col connect"><a class="connect-link" title="Visit the Continuing Education page" href="/academics/continuing-education/"><span class="connect-link-label">Continuing Education<span class="fa-solid fa-chevron-right" aria-hidden="true"></span></span></a></div>
+<!-- /text/middle-bs5 -->
+<!-- text/middle-bs5 -->
+<div class="col connect"><a class="connect-link" title="Visit the Culinary Arts and Hospitality page" href="/areas-of-study/culinary-arts-hospitality-management/"><span class="connect-link-label">Culinary Arts and Hospitality<span class="fa-solid fa-chevron-right" aria-hidden="true"></span></span></a></div>
+<!-- /text/middle-bs5 -->
+<!-- text/middle-bs5 -->
+<div class="col connect"><a class="connect-link" title="Visit the Education and Liberal Arts page" href="/areas-of-study/education-liberal-arts/"><span class="connect-link-label">Education and Liberal Arts<span class="fa-solid fa-chevron-right" aria-hidden="true"></span></span></a></div>
+<!-- /text/middle-bs5 -->
+<!-- text/middle-bs5 -->
+<div class="col connect"><a class="connect-link" title="Visit the Fire Science and Public Safety page" href="/areas-of-study/fire-science-public-safety/"><span class="connect-link-label">Fire Science and Public Safety<span class="fa-solid fa-chevron-right" aria-hidden="true"></span></span></a></div>
+<!-- /text/middle-bs5 -->
+<!-- text/middle-bs5 -->
+<div class="col connect"><a class="connect-link" title="Visit the Health Professions page" href="/areas-of-study/health-professions/"><span class="connect-link-label">Health Professions<span class="fa-solid fa-chevron-right" aria-hidden="true"></span></span></a></div>
+<!-- /text/middle-bs5 -->
+<!-- text/middle-bs5 -->
+<div class="col connect"><a class="connect-link" title="Visit the Human and Public Services page" href="/areas-of-study/human-public-services/"><span class="connect-link-label">Human and Public Services<span class="fa-solid fa-chevron-right" aria-hidden="true"></span></span></a></div>
+<!-- /text/middle-bs5 -->
+<!-- text/middle-bs5 -->
+<div class="col connect"><a class="connect-link" title="Visit the Manufacturing Careers page" href="/areas-of-study/manufacturing-careers/"><span class="connect-link-label">Manufacturing Careers<span class="fa-solid fa-chevron-right" aria-hidden="true"></span></span></a></div>
+<!-- /text/middle-bs5 -->
+<!-- text/middle-bs5 -->
+<div class="col connect"><a class="connect-link" title="Visit the Science, Engineering, and Math page" href="/areas-of-study/stem-programs/"><span class="connect-link-label">Science, Engineering, and Math<span class="fa-solid fa-chevron-right" aria-hidden="true"></span></span></a></div>
+<!-- /text/middle-bs5 -->
+<!-- text/middle-bs5 -->
+<div class="col connect"><a class="connect-link" title="Visit the All Programs page" href="/areas-of-study/"><span class="connect-link-label">All Programs<span class="fa-solid fa-chevron-right" aria-hidden="true"></span></span></a></div>
+<!-- /text/middle-bs5 -->
+<!-- text/after-bs5-->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+		</div>
+          
+  	  </div>
+    </div>
+  </div>
+</div>                      
+<!-- /text/after-bs5-->
+
+
+<section id="ecc-news-">
+	<!-- News in Card format -->
+	<div id="hp-events-news" class="container-fluid overflow-hidden px-4">
+		<div class="container">
+	
+		<div class="row gx-5">
+			<p>&nbsp;</p>
+			<div class="col-md-12">
+				<h2 class="fs-1">Keeping up with ECC</h2>
+				<p>Hear from students, faculty, and staff about the incredible learning community in Elgin through blog posts, news releases, and quick ECC stories.</p>
+			</div>
+			
+	<div class="flex-row row gx-5 mb-5 pe-0">		
+			
+			<div class="col-md-12 col-lg-4 mb-5 hp-events"><!--hp-item scroll-reveal box left"-->
+					<div class="card bg-white border-0"><!-- shadow-sm"-->
+						<div class="card-header fw-bold">
+							<h3>Upcoming Events</h3>
+						</div>
+						<!-- Navigation - Homepage Events -->
+						<div class="card-body bg-white" id="c-widget">
+							<div id="events-loader-2490665" class="events-loader" style="display:none;">
+    <div class="events-progress">
+    	<div class="events-progress-bar"></div>
+    </div>
+	<p class="small text-black">Please wait while we load event information.</p>
+</div>
+<ul id="content-2490665" class="list-unstyled m-0 p-0">
+
+</ul>
+						</div>
+						<div class="card-footer bg-transparent">
+							<p class="card-text">
+								<a class="btn btn-link p-0" href="/calendar/" aria-label="View Calendar"><!-- removed btn-sm -->
+									View Calendar<span class="fa-solid fa-chevron-right" aria-hidden="true"></span></a>
+							</p>
+						</div>
+					</div>
+				</div>
+			
+			<div id="hp-news"  class="col-md-12 col-lg-8">
+			<div class="row row-cols-1 row-cols-md-2 g-4">
+				         <div class="col hp-item">
+			<div class="card h-100">
+				<div class="flex-shrink-0">
+    <img src="https://pxl-elginedu.terminalfour.net/filters:format(webp)/prod01/cdn-pxl-elginedu-prod/media/elginedu/news-and-events/featured/original/Amari001.jpg" class="flex-shrink-0 me-3 p-0 img-thumbnail shadow-sm d-none d-sm-block ls-is-cached lazyloaded" alt="Poet Amari Amai read a poem at ECC's Writers Center's Open Mic Coffee House on November 3, 2026."> </div>
+					<div class="card-body">
+			    		<p class="card-text">ECC's Writers Center's Open Mic Coffee House event brought students and community together on November 3, where Chicago Poet Amari Amai led the event. </p>
+					</div>
+					<div class="card-footer">
+    <a href="/news/ecc-stories/2026/chicago-poet-leads-writing-workshop-at-eccs-open-mic-coffee-house.php" title="Chicago Poet Leads Writing Workshop at ECC’s Open Mic Coffee House" aria-label="Read Story about how Chicago Poet Leads Writing Workshop at ECC&rsquo;s Open Mic Coffee House">Read story<span class="fa-solid fa-chevron-right" aria-hidden="true"></span></a>
+</div>
+          	</div>
+		</div>        <div class="col hp-item">
+			<div class="card h-100">
+				<div class="flex-shrink-0">
+    <img src="https://pxl-elginedu.terminalfour.net/filters:format(webp)/prod01/cdn-pxl-elginedu-prod/media/elginedu/news-and-events/featured/original/MiguelM800X500.jpg" class="flex-shrink-0 me-3 p-0 img-thumbnail shadow-sm d-none d-sm-block ls-is-cached lazyloaded" alt="ECC Police Officer Miguel Martinez poses next to an ECC Police car."> </div>
+					<div class="card-body">
+			    		<p class="card-text">As a first-generation college student, Miguel Martinez found direction and inspiration through ECC&rsquo;s Criminal Justice Program. Among those who influenced him were Richard Martin, the program director at the time and an Indiana State Trooper, and Jane Barbosa, who founded ECC's Organization of Latin American Students.&nbsp;</p>
+					</div>
+					<div class="card-footer">
+    <a href="/news/ecc-stories/2026/alum-returns-to-ecc-as-a-police-officer-.php" title="Alum Returns to ECC as a Police Officer " aria-label="Read Story about how Alum Returns to ECC as a Police Officer ">Read story<span class="fa-solid fa-chevron-right" aria-hidden="true"></span></a>
+</div>
+          	</div>
+		</div>        <div class="col hp-item">
+			<div class="card h-100">
+				<div class="flex-shrink-0">
+    <img src="https://pxl-elginedu.terminalfour.net/filters:format(webp)/prod01/cdn-pxl-elginedu-prod/media/elginedu/news-and-events/featured/original/Rachael-S-class.jpg" class="flex-shrink-0 me-3 p-0 img-thumbnail shadow-sm d-none d-sm-block ls-is-cached lazyloaded" alt="English professor Rachael Stewart teaches her class."> </div>
+					<div class="card-body">
+			    		<p class="card-text">As her retirement approaches, English professor Rachael Stewart reflects on her career at ECC, which began in the 1990s. </p>
+					</div>
+					<div class="card-footer">
+    <a href="/news/ecc-stories/2026/longtime-english-faculty-has-only-ever-wanted-to-teach-at-ecc.php" title="Longtime English Faculty Has Only Ever Wanted to Teach at ECC" aria-label="Read Story about how Longtime English Faculty Has Only Ever Wanted to Teach at ECC">Read story<span class="fa-solid fa-chevron-right" aria-hidden="true"></span></a>
+</div>
+          	</div>
+		</div>        <div class="col hp-item">
+			<div class="card h-100">
+				<div class="flex-shrink-0">
+    <img src="https://pxl-elginedu.terminalfour.net/filters:format(webp)/prod01/cdn-pxl-elginedu-prod/media/elginedu/news-and-events/ecc-in-the-news/original/Zach-Lorenz-800X500.jpg" class="flex-shrink-0 me-3 p-0 img-thumbnail shadow-sm d-none d-sm-block ls-is-cached lazyloaded" alt="Zach Lorenz"> </div>
+					<div class="card-body">
+			    		<p class="card-text">Zach Lorenz became the owner of Lorenz Calibration in October 2024, following his father&rsquo;s death. Now, the young business owner is navigating everything from hiring his first employee to expanding the company&rsquo;s services, and he sees ECC as a potential partner.</p>
+					</div>
+					<div class="card-footer">
+    <a href="/news/ecc-stories/2026/stepping-up.php" title="Stepping Up" aria-label="Read Story about how Stepping Up">Read story<span class="fa-solid fa-chevron-right" aria-hidden="true"></span></a>
+</div>
+          	</div>
+		</div>
+                 <div class="d-grid gap-2 col-12 col-6 news-more"><!--col-xs-12 p-md-5"">-->
+					<div class="">
+						<div class="hp-more-news d-grid gap-2 col-sm-4">
+                            <div id="moreStories" class="btn btn-gold">
+					            <a href="/news/" title="" aria-label="More Stories " >More Stories<span class="fa-solid fa-chevron-right" aria-hidden="true"></span></a>
+                            </div>
+						</div>
+					</div>	
+				</div>
+			</div>
+		</div>	
+			
+		</div>	
+		
+		
+		</div>
+		
+		</div>	
+	</div>	
+	<!-- /News in Card format -->
+</section><!--Badges -->
+	<div id="badges" class="container-fluid">
+		<div  class="container">
+			<div class="row center-both">	
+      
+      <div class="col center-both badge d-flex justify-content-sm-center hp-item col-12 col-md-4"><a  href="/about/" aria-label="ECC was a Semifinalist for the 2023 Aspen Prize for Community College Excellence" title="About being an Aspen Prize Semifinalist"><img class="img-fluid max-height-250" src="https://pxl-elginedu.terminalfour.net/filters:format(webp)/prod01/cdn-pxl-elginedu-prod/media/elginedu/info/congratulations-graduates/aspen-prize-2027.png" alt="2027 Aspen Prize Top 200"></a></div>
+
+      
+
+      
+      
+
+      <div class="col center-both badge d-flex justify-content-sm-center hp-item col-12 col-md-4"><a target='_blank' rel='noopener noreferrer' href="https://achievingthedream.org/awards-recognition/leader-colleges/" aria-label="Certified Leader College by Achieving the Dream" title="About Leader Colleges"><img class="img-fluid max-height-250" src="/media/website/site-assets/images/atd-badge-leader-college-logo.png" alt="Achieving The Dream Leader College 2026 Logo"></a></div>
+
+      
+      
+
+      <div class="col center-both badge d-flex justify-content-sm-center hp-item col-12 col-md-4"><a  href="/about/hsi/" aria-label="ECC is 25% or higher total undergraduate Hispanic or Latino full-time equivalent" title="About being a Hispanic Serving Institution"><img class="img-fluid max-height-250" src="/media/website/site-assets/images/hsi-circle-logo.svg" alt="Hispanic Serving Institution circle logo"></a></div>
+
+    </div>
+  </div>
+</div>
+<!-- /Badges --><script>
+  document.addEventListener("DOMContentLoaded", function(event) { 
+    var targetDiv = document.getElementsByClassName("col-md-4 two-col-right")[0];
+
+    // Create the outer div element
+    var outerDiv = document.createElement('div');
+    outerDiv.id = '2490665';
+    outerDiv.className = 'event-container';  
+
+    // Create input elements
+    var firstInput = document.createElement('input');
+    firstInput.id = 'current-' + outerDiv.id;
+    firstInput.type = 'hidden';
+
+    var secondInput = document.createElement('input');
+    secondInput.id = 'show-' + outerDiv.id;
+    secondInput.type = 'hidden';
+
+    // Create the events div
+    var eventsDiv = document.createElement('div');
+    eventsDiv.className = 'events';
+    
+    // Create the heading h2
+    var heading = document.createElement('h2');
+    heading.innerHTML = 'Upcoming Events';
+
+    // Create the border div
+    var borderDiv = document.createElement('div');
+    borderDiv.className = 'mb-3';
+
+    // Create loader div
+    var loaderDiv = document.createElement('div');
+    loaderDiv.id = 'events-loader-' + outerDiv.id;
+    loaderDiv.className = 'events-loader';
+    loaderDiv.style.display = 'none';
+
+    var progressDiv = document.createElement('div');
+    progressDiv.className = 'events-progress';
+
+    var progressBarDiv = document.createElement('div');
+    progressBarDiv.className = 'events-progress-bar';
+
+    var loaderText = document.createElement('p');
+    loaderText.className = 'small';
+    loaderText.textContent = 'Please wait while we load event information.';
+
+    progressDiv.appendChild(progressBarDiv);
+    loaderDiv.appendChild(progressDiv);
+    loaderDiv.appendChild(loaderText);
+
+    // Create the list group div
+    var listGroupDiv = document.createElement('div');
+    listGroupDiv.id = 'content-' + outerDiv.id;
+    listGroupDiv.className = 'list-group';
+
+    // Create the page navigation div
+    var pageNavigationDiv = document.createElement('div');
+    pageNavigationDiv.id = 'page_navigation-' + outerDiv.id;
+
+    // Create calendar link
+    var calLink = document.createElement('a');
+    calLink.className = 'my-3';
+    calLink.id = 'eCalBtn';
+    calLink.href = 'https://elgin.edu/calendar/';
+    calLink.title = 'Full Calendar';
+    calLink.textContent = 'Full Calendar';
+
+    // Append the elements to their respective parents
+    pageNavigationDiv.appendChild(calLink);
+
+    borderDiv.appendChild(loaderDiv);
+    borderDiv.appendChild(listGroupDiv);
+    borderDiv.appendChild(pageNavigationDiv);
+
+    eventsDiv.appendChild(heading);
+    eventsDiv.appendChild(borderDiv);
+
+    outerDiv.appendChild(firstInput);
+    outerDiv.appendChild(secondInput);
+    outerDiv.appendChild(eventsDiv);
+
+    targetDiv.appendChild(outerDiv);
+  });
+</script>	</main>	
+	<!--========= /Main Body Area  =========-->
+
+	<!--==========  Footer  ==========-->
+  <!--Retrieve Footer Content - bs5-->
+  <!--Footer-->
+<footer id="footer-mega" itemscope itemtype="http://schema.org/WPFooter" aria-label="Main Footer" class="container-fluid" role="contentinfo">
+	<div class="container-fluid">
+		<div class="container">
+		<div class="row">
+			<div class="col-lg-9">
+				<div class="row justify-content-start">
+					<div class="col-sm-12 col-md-6 px-2 footer-address me-auto">
+						<ul>
+							<li><a href="/about/campus-visitor-information/" title="Spartan Drive Campus Map"><span class="fa-regular fa-location-dot" aria-hidden="true"></span>1700 Spartan Drive, Elgin, IL 60123</a></li>
+						</ul>
+					</div>
+					<div class="col-sm-12 col-md-6 footer-phone ms-auto">
+						<ul>
+							<li><a href="tel:847-697-1000" title="Contact ECC for general information"><span class="fa-regular fa-phone-flip" aria-hidden="true"></span>847-697-1000</a></li>
+						</ul>
+					</div>
+					
+				</div>
+<div class="row footer-links-row-1">
+					<div class="col-md text-start">
+						<ul class="list-group list-group-horizontal">
+                            <li class="list-group-item ">
+                            	<a  href=" /about/legal-notices/" title="Legal Notices">Legal Notices</a>
+                            </li>
+							
+							<li class="list-group-item ">
+                            	<a  href=" /academics/degrees-certificates/" title="Degrees &amp; Certificates">Degrees &amp; Certificates</a>                  
+                            </li>
+                          
+                            <li class="list-group-item ">
+                            	<a target=&#39;_blank&#39; href="https://experience.elluciancloud.com/ecc116/ " title="AccessECC">AccessECC</a>
+                            </li>
+                          
+                            <li class="list-group-item ">
+                              	<a  href=" /contact-us/" title="Contact Us">Contact Us</a>
+                            </li>
+                          
+                            <li class="list-group-item ">
+                              	<a  href=" /site-map/" title="Sitemap">Sitemap</a>
+                            </li>
+						</ul>
+					</div>
+				</div>
+				<div class="row footer-links-row-2">
+					<div class="col-md text-start">
+						<ul class="list-group list-group-horizontal">
+							<li class="list-group-item">
+                              <a  href=" /about/administration/report-concern-incident/" title="Report a Complaint">Report a Complaint</a>
+                            </li>
+							<li class="list-group-item">
+                              <a  href=" /calendar/" title="Calendar">Calendar</a>
+                            </li>	                          
+							<li class="list-group-item">
+                              	<a  href=" /business/" title="Business">Business</a>
+                            </li>
+							<li class="list-group-item">
+                              	<a  href=" /about/equity-diversity-inclusion/" title="Institutional Success &amp; Engagement">Institutional Success &amp; Engagement</a>
+                          	</li>
+							<li class="list-group-item">
+                              	<a  href=" /accessibility/" title="Accessibility">Accessibility</a>
+                            </li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div id="footer-logo" class="col-lg-3 solo">
+				<a href="/"><figure><img src="https://elgin.edu/media/elginedu/index/elgin-community-college-stacked-logo-white.svg" alt="Elgin Community College Logo" class="img-fluid" style="max-width:280px;"></figure></a>
+				<p class="footer-cta-link">
+					<a href="/about/campus-visitor-information/campus-map/">
+                      Campus Map<span class="fa-solid fa-chevron-right" aria-hidden="true"></span></a>
+              	</p>
+			</div>
+
+		</div>
+		</div>
+	</div>		
+</footer>	
+	
+<footer id="footer-bottom" aria-label="Auxillary Footer" style="">
+	<div class="container">
+  <div class="col-xs-12">
+    <div class="row px-2">
+      <!-- 1st column -->
+	  <!--<div class="col-lg-7 copyright t4Directedit" aria-hidden="true"> -->
+      <div class="col-lg-7 copyright" aria-hidden="true">
+      	<p>
+          &copy;&nbsp;2026&nbsp;Elgin Community College. All Rights Reserved
+        </p>
+      </div>
+      <!-- /1st column-->
+      <div class="col-lg-5 footer-right  text-end">
+        <a id="social_facebook" class="p-2" href="https://www.facebook.com/ElginCommunityCollege" title="Facebook" target="_blank" rel="noopener" aria-label="Find us on Facebook.">
+          <span class="fa fa-facebook fa-2x social" aria-hidden="true"></span>
+        </a>
+		<a id="social_linkedin" class="p-2" href="https://www.linkedin.com/school/elgin-community-college/" title="LinkedIn" target="_blank" rel="noopener" aria-label="Find us on LinkedIn">
+          <span class="fa fa-linkedin fa-2x social" aria-hidden="true"></span>
+        </a>			
+        <a id="social_youtube" class="p-2" href="https://www.youtube.com/user/ElginSpartans" title="YouTube" target="_blank" rel="noopener" aria-label="Watch us on YouTube.">
+          <span class="fa fa-youtube-play fa-2x social" aria-hidden="true"></span>
+        </a>
+		<a id="social_twitter" class="p-2" href="https://twitter.com/elgincommcoll" title="X, formerly known as Twitter." target="_blank" rel="noopener" aria-label="Follow us on X, formerly known as Twitter.">
+		  <span class="fa-kit fa-x-twitter fa-2x social" aria-hidden="true"></span>
+        </a>	
+        <a id="social_tiktok" class="p-2" href="https://www.tiktok.com/@elgincommunitycollege/" title="TikTok" target="_blank" rel="noopener" aria-label="Find us on TikTok.">
+          <span class="fab fa-tiktok fa-2x social" aria-hidden="true"></span>
+        </a>
+		<a id="social_instagram" class="p-2" href="https://www.instagram.com/elgincc/" title="Instagram" target="_blank" rel="noopener" aria-label="Find us on Instagram.">
+          <span class="fa fa-instagram fa-2x social" aria-hidden="true"></span>
+        </a>
+      </div>
+      <!--/column -->
+    </div>
+      <!-- Direct Edit -->
+          <div class="col-lg-7 copyright t4Directedit"><!-- aria-hidden="true"-->
+      	    <p>
+              <a class="t4Edit-page" href="https://t4.elgin.edu/terminalfour/page/directEdit#edit/12/en/3755"><span class='fa-sharp fa-light fa-square-plus fa-fw'></span></a>
+            </p>
+          </div>
+          <!-- /Direct Edit -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--== /Copyright ==-->
+   </footer>
+	<!--========== /Footer  ==========-->
+  
+	<!--Global JS Files-->
+  <!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<!-- Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+
+<!--  75th Anniversary Nav JS - bs5 -  Minified-->
+<!--t4 type="media" id="1760743" formatter="javascript/*" cdn="true" /-->
+
+<!-- Nav JS - bs5 -  Minified-->
+<script src="https://pxl-elginedu.terminalfour.net/prod01/cdn-pxl-elginedu-prod/media/website/site-assets/js/bootstrap/v523/sticky-nav.min.js"></script> 
+
+<!-- Master JS - Minified -->
+<script src="https://pxl-elginedu.terminalfour.net/prod01/cdn-pxl-elginedu-prod/media/website/site-assets/js/bootstrap/v523/master.min.js"></script> 
+
+<!-- Weglot -->
+<script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script>
+<script src="https://pxl-elginedu.terminalfour.net/prod01/cdn-pxl-elginedu-prod/media/website/site-assets/js/bootstrap/v523/weglot-custom-switcher.min.js"></script> 
+
+<!-- Siteimprove-->
+<script src="https://pxl-elginedu.terminalfour.net/prod01/cdn-pxl-elginedu-prod/media/website/site-assets/js/siteimprove.js"></script> 
+
+<!-- Rave Alert & Emergency Notice -->
+      <!-- Rave Alert JS BS5--><script src="/media/website/site-assets/js/bootstrap/v523/populate-ecc-rave-alert-banner-bs5.min.js"></script>
+
+<!-- Site Wide Notice (my.elgin) --><!-- emergency.js -->
+<!-- Methods for calling a Media Library file globally as a publically accessible PXL file -->
+<!--t4 type="media" id="65541" formatter="javascript/*" cdn="true"/-->
+<!--script src="https://pxl-elginedu.terminalfour.net/prod01/channel_34/media/website/intranet-site-assets/javascript/emergency.js"></script-->
+<!-- emergency.min.js -->
+<!--t4 type="media" id="2689291" formatter="javascript/*" cdn="true"/ -->
+<script src="https://pxl-elginedu.terminalfour.net/prod01/channel_34/media/website/intranet-site-assets/javascript/emergency.min.js"></script>
+  <!-- Live Agent Chat -->
+  
+	
+		<script type='text/javascript'>
+	function initEmbeddedMessaging() {
+		try {
+			embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
+
+			embeddedservice_bootstrap.init(
+				'00DDn000005K9vz',
+				'Elgin_Experience_Site',
+				'https://elginedu.my.site.com/ESWElginExperienceSite1764606235948',
+				{
+					scrt2URL: 'https://elginedu.my.salesforce-scrt.com'
+				}
+			);
+		} catch (err) {
+			console.error('Error loading Embedded Messaging: ', err);
+		}
+	};
+</script>
+<script type='text/javascript' src='https://elginedu.my.site.com/ESWElginExperienceSite1764606235948/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>    
+	
+ 
+
+  <!--Homepage JS - bs5--><!-- Homepage scripts - bs5 -->
+<!--homepage-bs5.js--><!--t4 type="media" id="1459689" formatter="javascript/*" cdn="true" /-->
+<!-- homepage-bs5.min.js -->
+<script src="https://pxl-elginedu.terminalfour.net/prod01/cdn-pxl-elginedu-prod/media/website/site-assets/js/bootstrap/v523/homepage-bs5.min.js"></script> 
+  <script>
+  if("" === "College Meetings"){
+    findEvents('https://elgin.edu/calendar/xml-bot/', 2490665, "", "", "" , "", 10, 1, "myelgin-homepage", "");
+  }else{
+	findEvents('https://elgin.edu/calendar/xml/', 2490665, "", "", "" , "", 10, 1, "myelgin-homepage", "", '');
+  }
+  
+  var pickButton = "";
+  if(pickButton === "Yes" && pickButton != null){  
+    function registerWithTitle(dateStr, title) {
+      const session = '';
+      var scriptSrc;
+      const [mm, dd, yyyy] = dateStr.split("/").map(Number);
+      const enterDate = new Date(yyyy, mm - 1, dd);
+      const reminderDate = new Date(enterDate);
+      reminderDate.setDate(reminderDate.getDate() - 1);
+      const pad = (n) => String(n).padStart(2, "0");
+      var params = new URLSearchParams({
+          "enterA[month]": pad(enterDate.getMonth() + 1),
+          "enterA[day]": pad(enterDate.getDate()),
+          "enterA[year]": enterDate.getFullYear(),
+          "reminderDate[month]": pad(reminderDate.getMonth() + 1),
+          "reminderDate[day]": pad(reminderDate.getDate()),
+          "reminderDate[year]": reminderDate.getFullYear(),
+          session
+      });
+      if(session === "Writers Center"){
+        //scriptSrc = `https://elginedu.jotform.com/jsform/252963425149968?enterA=${dateStr}&type=${encodeURIComponent(title)}`;
+        scriptSrc = `https://elginedu.jotform.com/jsform/252963425149968?${params.toString()}&type=${encodeURIComponent(title)}`;
+      }
+      
+      const modalEl = document.getElementById('formModal');
+      const wrapper = modalEl.querySelector('#jotform-wrapper');
+      wrapper.innerHTML = '';
+
+      const script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.src = scriptSrc;
+      wrapper.appendChild(script);
+
+      const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+      modal.show();
+    }
+    function register(dateStr, timeStr, LocationStr) {
+      const encodedDate = dateStr;
+      const session = '';
+      var scriptSrc;
+      
+      // Prefer the clicked title ONLY for Writers Center
+      const effectiveType = (session === "Writers Center" && typeFromTitle)
+        ? typeFromTitle
+        : session;
+      
+        const [mm, dd, yyyy] = dateStr.split("/").map(Number);
+        const enterDate = new Date(yyyy, mm - 1, dd);
+      
+        // Sessions that only need a 24-hour reminder
+        const oneDayReminderSessions = [
+          "Resume Workshop",
+          "Interview Workshop",
+          "WIOA Information Session",
+          "Pre-Apprenticeship Inquiry",
+          "Fire Science and Safety",
+          "Certified Recovery Support Specialist"
+        ];
+      
+        // Everything else (Health Professions) gets 48 hours
+        const reminderOffsetDays = oneDayReminderSessions.includes(session) ? 1 : 2;
+        const reminderDate = new Date(enterDate);
+        reminderDate.setDate(reminderDate.getDate() - reminderOffsetDays);
+        const pad = (n) => String(n).padStart(2, "0");
+        var params = new URLSearchParams({
+          "enterA[month]": pad(enterDate.getMonth() + 1),
+          "enterA[day]": pad(enterDate.getDate()),
+          "enterA[year]": enterDate.getFullYear(),
+          "reminderDate[month]": pad(reminderDate.getMonth() + 1),
+          "reminderDate[day]": pad(reminderDate.getDate()),
+          "reminderDate[year]": reminderDate.getFullYear(),
+          session
+        });
+      
+      if(session === "Resume Workshop" || session === "Interview Workshop"){
+        params.append("eTime", timeStr);
+        params.append("eLocation", LocationStr);
+        scriptSrc = `https://elginedu.jotform.com/jsform/252265205322952?${params.toString()}&type=${encodeURIComponent(session)}`;
+        //scriptSrc = `https://elginedu.jotform.com/jsform/252265205322952?enterA=${dateStr}&type=${encodeURIComponent(session)}`;
+      }else if(session === "WIOA Information Session"){
+        params.append("eTime", timeStr);
+        params.append("eLocation", LocationStr);
+        scriptSrc = `https://elginedu.jotform.com/jsform/222285290720957?${params.toString()}`;
+      }else if(session === "Pre-Apprenticeship Inquiry"){
+        params.append("eTime", timeStr);
+        params.append("eLocation", LocationStr);
+        scriptSrc = `https://elginedu.jotform.com/jsform/252664819834974?${params.toString()}`;
+      }else if(session === "Truck Driving"){
+        scriptSrc = `https://elginedu.jotform.com/jsform/242056430791959?${params.toString()}`;
+      }else if(session === "Fire Science and Safety"){
+        scriptSrc = `https://elginedu.jotform.com/jsform/232336167814861?enterA=${dateStr}&session=${encodeURIComponent(session)}`;
+      }else if(session === "Certified Recovery Support Specialist"){
+        scriptSrc = `https://elginedu.jotform.com/jsform/260425535688970?${params.toString()}`;
+      }else{ //Health profession information session
+        params.append("eTime", timeStr);
+        params.append("eLocation", LocationStr);
+        scriptSrc = `https://elginedu.jotform.com/jsform/230094381441955?${params.toString()}&type=${encodeURIComponent(session)}`;
+      }
+
+      // Get modal and form wrapper
+      const modalEl = document.getElementById('formModal');
+      const wrapper = modalEl.querySelector('#jotform-wrapper');
+
+      // Clear previous form if any
+      wrapper.innerHTML = '';
+
+      // Inject new JotForm script with dynamic prefill
+      const script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.src = scriptSrc;
+      wrapper.appendChild(script);
+
+      /*Update URL (optional)
+      const url = new URL(window.location);
+      if(session === "Resume Workshop" || session === "Interview Workshop"){
+        url.searchParams.set('type', session);
+      }else{
+        url.searchParams.set('Session', session);
+      }window.history.pushState({}, '', url);*/
+    
+      // Show the modal
+      const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+      modal.show();
+    }
+  } //End of if looop
+</script>
+  <script>
+(() => {
+  const video = document.getElementById('backgroundVideo');
+  const img = document.getElementById('backgroundImage');
+  if (!video || !img) return;
+
+  const mqDesktop = window.matchMedia('(min-width: 576px)');
+
+  const showImg = () => img.classList.remove('is-hidden');
+  const hideImg = () => img.classList.add('is-hidden');
+
+  const isVideoVisible = () => getComputedStyle(video).display !== 'none';
+
+  // Prevent "stuck hidden" after resizing (removes inline display overrides on desktop)
+  const normalizeVideoDisplay = () => {
+    if (mqDesktop.matches) video.style.display = '';
+  };
+
+  const ensureVideoSrc = () => {
+    // If src already exists, do nothing
+    if (video.getAttribute('src')) return true;
+
+    // Attach from data-src
+    const ds = (video.getAttribute('data-src') || '').trim();
+    if (!ds) return false;
+
+    video.setAttribute('src', ds);
+    video.load();
+    return true;
+  };
+
+  const tryPlay = () => {
+    const p = video.play && video.play();
+    if (p && typeof p.catch === 'function') p.catch(() => {});
+  };
+
+  const sync = () => {
+    normalizeVideoDisplay();
+
+    // Mobile OR CSS-hidden video => image stays visible
+    if (!mqDesktop.matches || !isVideoVisible()) {
+      showImg();
+      try { video.pause(); } catch (e) {}
+      return;
+    }
+
+    // Desktop: keep image visible for LCP, then hide only when video plays
+    showImg();
+
+    const onPlaying = () => {
+      if (mqDesktop.matches && isVideoVisible()) hideImg();
+    };
+    video.addEventListener('playing', onPlaying, { once: true });
+
+    // If already playing
+    if (!video.paused && video.readyState >= 3) onPlaying();
+  };
+
+  // IMPORTANT: attach video src only after window.load (keeps MP4 from competing with LCP)
+  const attachAfterLoad = () => {
+    if (ensureVideoSrc()) tryPlay();
+    sync();
+  };
+
+  // Initial run (shows image immediately, handles mobile/desktop state)
+  sync();
+
+  // Attach mp4 only after load
+  if (document.readyState === 'complete') {
+    attachAfterLoad();
+  } else {
+    window.addEventListener('load', attachAfterLoad, { once: true });
+  }
+
+  // Keep in sync across breakpoint changes / resizes
+  if (mqDesktop.addEventListener) mqDesktop.addEventListener('change', sync);
+  window.addEventListener('resize', sync, { passive: true });
+})();
+</script>
+  <script async src="https://siteimproveanalytics.com/js/siteanalyze_66357093.js"></script><!-- [+] 02/06/26 -->
+	</body>
+</html>

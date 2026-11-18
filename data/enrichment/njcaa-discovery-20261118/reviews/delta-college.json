@@ -1,0 +1,41 @@
+{
+  "slug": "delta-college",
+  "collegeId": "cmox2o1h80023qtbkgkrhwidh",
+  "programId": "cmox2o1i00025qtbk5xn14rvn",
+  "name": "Delta College",
+  "state": "MI",
+  "storedDivision": "NJCAA_D3",
+  "pages": [
+    {
+      "requestedUrl": "https://njcaastats.prestosports.com/sports/bsb/2024-25/div3/teams/deltacollege",
+      "kind": "STORED_URL_UNVERIFIED",
+      "checkedAtUtc": "2026-11-18T14:17:13.937Z",
+      "status": "HELD_ACCESS_NOT_RETRIED",
+      "finalUrl": "https://njcaastats.prestosports.com/sports/bsb/2024-25/div3/teams/deltacollege"
+    },
+    {
+      "requestedUrl": "https://www.deltapioneers.com/sports/bsb/index",
+      "kind": "DISCOVERY_LEAD_NOT_CAMPUS_VERIFIED",
+      "checkedAtUtc": "2026-11-18T14:17:13.938Z",
+      "status": 404,
+      "finalUrl": "https://www.deltapioneers.com/sports/bsb/index",
+      "contentType": "text/plain; charset=utf-8",
+      "sourcePath": "sources/delta-college-1.source",
+      "sha256": "7515bf959b73b956ceb967351c7e299cbb3668a53d35f9c770eb72e00d93ced6"
+    }
+  ],
+  "thirdPartyExactNameLeads": [
+    {
+      "url": "https://www.deltapioneers.com/sports/bsb/index",
+      "label": "Delta College",
+      "parentSourcePath": "sources/directory-d3.source",
+      "parentSHA256": "3888c2777289f782525671d17b3faadb0f9e289d4cea1ba375ac777b58c7203b",
+      "parentUrl": "https://www.thebaseballobserver.com/njcaa-diii-baseball"
+    }
+  ],
+  "currentMembershipVerified": false,
+  "campusIdentityVerified": false,
+  "importApproval": "NOT_GRANTED",
+  "databaseAccess": false,
+  "databaseWrites": 0
+}

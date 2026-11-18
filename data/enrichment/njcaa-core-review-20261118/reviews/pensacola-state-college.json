@@ -1,0 +1,41 @@
+{
+  "slug": "pensacola-state-college",
+  "collegeId": "cmox1gj4r0090qtsgw4rlbl51",
+  "programId": "cmox1gj5i0092qtsg2d8orzxg",
+  "name": "Pensacola State College",
+  "storedState": "FL",
+  "storedDivision": "NJCAA_D1",
+  "checkedAtUtc": "2026-11-18T14:20:44.027Z",
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "currentMembershipVerified": false,
+  "campusIdentityVerified": false,
+  "importApproval": "NOT_GRANTED",
+  "pages": [
+    {
+      "requestedUrl": "https://athletics.pensacolastate.edu/sports/bsb/index",
+      "kind": "DIRECTORY_ALIAS_REQUIRES_CAMPUS_REVIEW",
+      "parent": {
+        "sourcePath": "../njcaa-discovery-20261118/sources/directory-0.source",
+        "sha256": "63f1c531b007d2922e4db3aa2ba596ee54e397dbafd287df69b95213a011a404",
+        "label": "Pensacola State"
+      },
+      "status": 202,
+      "finalUrl": "https://athletics.pensacolastate.edu/sports/bsb/index",
+      "checkedAtUtc": "2026-11-18T14:20:44.163Z",
+      "sourcePath": "sources/pensacola-state-college-0.source",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "discoveryAliases": [
+    {
+      "url": "https://athletics.pensacolastate.edu/sports/bsb/index",
+      "label": "Pensacola State",
+      "parentSourcePath": "sources/directory-0.source",
+      "parentSHA256": "63f1c531b007d2922e4db3aa2ba596ee54e397dbafd287df69b95213a011a404",
+      "parentUrl": "https://www.thebaseballobserver.com/njcaa-di-baseball",
+      "status": "UNVERIFIED_NORMALIZED_NAME_LEAD"
+    }
+  ],
+  "status": "HELD_NO_READABLE_SOURCE"
+}

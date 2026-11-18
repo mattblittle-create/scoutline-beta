@@ -1,0 +1,41 @@
+{
+  "slug": "gateway-community-college-az",
+  "collegeId": "cmox236nw004cqtfkxex1lctm",
+  "programId": "cmox236oj004eqtfkgok70ut2",
+  "name": "GateWay Community College - AZ",
+  "storedState": "AZ",
+  "storedDivision": "NJCAA_D2",
+  "checkedAtUtc": "2026-11-18T14:21:07.818Z",
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "currentMembershipVerified": false,
+  "campusIdentityVerified": false,
+  "importApproval": "NOT_GRANTED",
+  "pages": [
+    {
+      "requestedUrl": "https://www.gatewaycc.edu/mens-baseball",
+      "kind": "DIRECTORY_ALIAS_REQUIRES_CAMPUS_REVIEW",
+      "parent": {
+        "sourcePath": "../njcaa-discovery-20261118/sources/directory-1.source",
+        "sha256": "496ce44f9a76dc28894dc481d97424ffa3efb0cc8fe8f218363abbc43f06de00",
+        "label": "GateWay CC (AZ)"
+      },
+      "status": 403,
+      "finalUrl": "https://www.gatewaycc.edu/mens-baseball",
+      "checkedAtUtc": "2026-11-18T14:21:08.196Z",
+      "sourcePath": "sources/gateway-community-college-az-0.source",
+      "sha256": "86230cd4d42c140be9a3db3169ddc0c8a83483ff4aee6b7c535164f8448ee3a8"
+    }
+  ],
+  "discoveryAliases": [
+    {
+      "url": "https://www.gatewaycc.edu/mens-baseball",
+      "label": "GateWay CC (AZ)",
+      "parentSourcePath": "sources/directory-1.source",
+      "parentSHA256": "496ce44f9a76dc28894dc481d97424ffa3efb0cc8fe8f218363abbc43f06de00",
+      "parentUrl": "https://www.thebaseballobserver.com/njcaa-dii-baseball",
+      "status": "UNVERIFIED_NORMALIZED_NAME_LEAD"
+    }
+  ],
+  "status": "HELD_NO_READABLE_SOURCE"
+}

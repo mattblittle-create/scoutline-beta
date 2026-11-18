@@ -1,0 +1,2773 @@
+{
+  "slug": "amherst-college",
+  "collegeId": "cmovorlwv000uqt7gxo4s68kz",
+  "programId": "cmovorlxl000wqt7g8keo5uza",
+  "checkedAtUtc": "2026-11-17T20:34:55.286Z",
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED",
+  "missingFields": [
+    "rosterUrl",
+    "scheduleUrl",
+    "questionnaireUrl",
+    "campsUrl",
+    "generalContactEmail"
+  ],
+  "pages": [
+    {
+      "requestedUrl": "https://athletics.amherst.edu/sports/baseball",
+      "kind": "baseball-home",
+      "parent": null,
+      "status": 200,
+      "finalUrl": "https://athletics.amherst.edu/sports/baseball",
+      "sourcePath": "../sources/amherst-college-1.html",
+      "sha256": "6f8be8387a828e6101a6f3185bb61110671e0e8b4ecf9a38053cf7038a27a8cb",
+      "reusedEvidence": true,
+      "originalCheckedAtUtc": "2026-11-17T17:20:27.545Z",
+      "parsed": {
+        "title": "Baseball - Amherst College Sidearm Sports, opens a new window",
+        "headings": [
+          "Amherst College Athletics",
+          "Main Navigation Menu",
+          "Sport Navigation Menu",
+          "Stories",
+          "Awards",
+          "Social",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://athletics.amherst.edu/index.aspx",
+            "label": "The official home of the var obj = {\"start\":0,\"count\":10,\"name\":\"social-icon-c10521\",\"sport_id\":null,\"count_breakpoints\":null,\"css_class\":\"\",\"pinned_id\":\"\",\"extra\":{},\"context\":null,\"dummy\":false,\"type\":\"ads\",\"id\":\"49cf3000-5a9c-4257-acb3-3e0235df6311\",\"data\":{\"location\":{\"id\":142,\"title\":\"Social Icon\",\"type\":\"icons\",\"effect\":\"none\",\"fixed_image_sizes\":false,\"excluded_sport_ids\":[],\"slick\":false,\"dfp\":false,\"sidearm_dfp\":false,\"common_page\":false,\"html_template\":null,\"name\":\"social-icon-c10521\",\"autoplay_speed\":8,\"accessibility_icons\":false,\"sizes\":null,\"slick_options\":null,\"dfp_sizes\":null},\"campaigns\":[{\"id\":6,\"title\":\"Twitter\",\"start_date\":\"2020-07-09T00:00:00\",\"end_date\":null,\"open_in_new_window\":true,\"link\":\"/common/controls/adhandler.aspx?ad_id=6&target=https://twitter.com/amherstmammoths\",\"icon\":\"sf-twitter\",\"html\":null,\"picture\":null,\"css_class\":null,\"is_dummy\":false,\"hover_text\":null},{\"id\":7,\"title\":\"Instagram\",\"start_date\":\"2020-07-09T00:00:00\",\"end_date\":null,\"open_in_new_window\":true,\"link\":\"/common/controls/adhandler.aspx?ad_id=7&target=https://www.instagram.com/amherstmammoths/\",\"icon\":\"sf-instagram\",\"html\":null,\"picture\":null,\"css_class\":null,\"is_dummy\":false,\"hover_text\":null},{\"id\":8,\"title\":\"Facebook\",\"start_date\":\"2020-07-09T00:00:00\",\"end_date\":null,\"open_in_new_window\":true,\"link\":\"/common/controls/adhandler.aspx?ad_id=8&target=https://www.facebook.com/amherstmammoths\",\"icon\":\"sf-facebook\",\"html\":null,\"picture\":null,\"css_class\":null,\"is_dummy\":false,\"hover_text\":null}],\"content_id\":\"social-icon-c10521\",\"content_title\":\"social-icon-c10521\",\"content_date\":null,\"content_url\":null,\"content_image_url\":null},\"mode\":\"web\"}; if (!(\"sidearmComponents\" in window)) window.sidearmComponents = []; window.sidearmComponents.push(obj);",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://x.com/AmherstBaseball",
+            "label": "Baseball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/mammobaseball",
+            "label": "Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/baseball/schedule",
+            "label": "Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/AmherstMBball",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/amherstmensbball",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/AmherstXCTF",
+            "label": "Cross Country: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/amhersttfxc",
+            "label": "Cross Country: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/AmherstCollFB",
+            "label": "Football: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/amherstfootball",
+            "label": "Football: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/football/schedule",
+            "label": "Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/football/roster",
+            "label": "Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/AmherstMensGolf",
+            "label": "Golf: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/acmensgolf",
+            "label": "Golf: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/AmherstMHockey",
+            "label": "Ice Hockey: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/amherstmhockey",
+            "label": "Ice Hockey: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-ice-hockey/schedule",
+            "label": "Ice Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-ice-hockey/roster",
+            "label": "Ice Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/AmherstLacrosse",
+            "label": "Lacrosse: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/Amherstmlax",
+            "label": "Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/AmherstMSoccer",
+            "label": "Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/amherstmsoccer",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/amherstsquash",
+            "label": "Squash: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/amherstmsquash",
+            "label": "Squash: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-squash/schedule",
+            "label": "Squash: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-squash/roster",
+            "label": "Squash: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/AmherstSwimDive",
+            "label": "Swimming & Diving: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/amherstswim",
+            "label": "Swimming & Diving: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-swimming-and-diving/schedule",
+            "label": "Swimming & Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-swimming-and-diving/roster",
+            "label": "Swimming & Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/AmherstMTennis",
+            "label": "Tennis: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/amherstmtennis",
+            "label": "Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-track-and-field/schedule",
+            "label": "Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-track-and-field/roster",
+            "label": "Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/amherstwbasketball",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/AmherstFH",
+            "label": "Field Hockey: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/amherstfieldhockey",
+            "label": "Field Hockey: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/field-hockey/schedule",
+            "label": "Field Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/field-hockey/roster",
+            "label": "Field Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/amherstwomensgolf",
+            "label": "Golf: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/AmherstWIH",
+            "label": "Ice Hockey: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/amherstwhockey",
+            "label": "Ice Hockey: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-ice-hockey/schedule",
+            "label": "Ice Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-ice-hockey/roster",
+            "label": "Ice Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/AmherstWLax",
+            "label": "Lacrosse: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/amherstwlacrosse",
+            "label": "Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/amherstwsoccer",
+            "label": "Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/amherstwsoccer",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/Amherst_SBall",
+            "label": "Softball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/amherst_sball",
+            "label": "Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/amherstwsquash",
+            "label": "Squash: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-squash/schedule",
+            "label": "Squash: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-squash/roster",
+            "label": "Squash: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-swimming-and-diving/schedule",
+            "label": "Swimming & Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-swimming-and-diving/roster",
+            "label": "Swimming & Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/AmherstWTennis",
+            "label": "Tennis: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/amherstwtennis",
+            "label": "Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-track-and-field/schedule",
+            "label": "Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-track-and-field/roster",
+            "label": "Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/amherstwvolleyball",
+            "label": "Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory",
+            "label": "Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/2020/6/15/information-camps-clinics-copy.aspx",
+            "label": "Camps/Clinics",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/2020/6/15/prospective-students-recruiting-form.aspx",
+            "label": "Recruiting Forms",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.amherst.edu/documents/2015/2/26/Prospective_Student-Athlete_Policy.pdf",
+            "label": "Overnight Hosting Program",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/2020/6/15/prospective-students-NESCAC-Factors.aspx",
+            "label": "NESCAC Factors in Admission Decisions",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/2020/6/15/prospective-students-NESCAC-Practices.aspx",
+            "label": "NESCAC Statement of Common Admissions Practices",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.amherst.edu/calendar",
+            "label": "Composite Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/2020/9/30/Directions%20and%20Parking.aspx",
+            "label": "Directions to Campus",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.amherst.edu/academiclife/support",
+            "label": "Academic Support on Campus",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://amherst.campuslabs.com/engage/organization/athletesandallies",
+            "label": "Queer Athlete Alliance",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/baseball-department/1",
+            "label": "Coaches",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/schedule.aspx?path=baseball",
+            "label": "Composite Calendar",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://athletics.amherst.edu/sports/baseball/schedule",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/amherst-college-1.html",
+        "sha256": "6f8be8387a828e6101a6f3185bb61110671e0e8b4ecf9a38053cf7038a27a8cb",
+        "url": "https://athletics.amherst.edu/sports/baseball/schedule",
+        "label": "Baseball: Schedule"
+      },
+      "status": 200,
+      "finalUrl": "https://athletics.amherst.edu/sports/baseball/schedule",
+      "checkedAtUtc": "2026-11-17T20:34:56.018Z",
+      "sourcePath": "sources/amherst-college-1.html",
+      "sha256": "1990eabf11c7407137e0ec5acef8c616c3d773be906c9ebe4855a7874610443e",
+      "parsed": {
+        "title": "2026 Baseball Schedule - Amherst College Sidearm Sports, opens a new window",
+        "headings": [
+          "Amherst College Athletics",
+          "Main Navigation Menu",
+          "Sport Navigation Menu",
+          "2026 Baseball Schedule",
+          "Season Record",
+          "Scheduled Games",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://athletics.amherst.edu/sports/baseball/schedule",
+            "label": "Skip To Main Content",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/index.aspx",
+            "label": "The official home of the var obj = {\"start\":0,\"count\":10,\"name\":\"social-icon-c10521\",\"sport_id\":null,\"count_breakpoints\":null,\"css_class\":\"\",\"pinned_id\":\"\",\"extra\":{},\"context\":null,\"dummy\":false,\"type\":\"ads\",\"id\":\"0eab22c2-622c-4ab7-9f0d-f1a5d97dcba7\",\"data\":{\"location\":{\"id\":142,\"title\":\"Social Icon\",\"type\":\"icons\",\"effect\":\"none\",\"fixed_image_sizes\":false,\"excluded_sport_ids\":[],\"slick\":false,\"dfp\":false,\"sidearm_dfp\":false,\"common_page\":false,\"html_template\":null,\"name\":\"social-icon-c10521\",\"autoplay_speed\":8,\"accessibility_icons\":false,\"sizes\":null,\"slick_options\":null,\"dfp_sizes\":null},\"campaigns\":[{\"id\":6,\"title\":\"Twitter\",\"start_date\":\"2020-07-09T00:00:00\",\"end_date\":null,\"open_in_new_window\":true,\"link\":\"/common/controls/adhandler.aspx?ad_id=6&target=https://twitter.com/amherstmammoths\",\"icon\":\"sf-twitter\",\"html\":null,\"picture\":null,\"css_class\":null,\"is_dummy\":false,\"hover_text\":null},{\"id\":7,\"title\":\"Instagram\",\"start_date\":\"2020-07-09T00:00:00\",\"end_date\":null,\"open_in_new_window\":true,\"link\":\"/common/controls/adhandler.aspx?ad_id=7&target=https://www.instagram.com/amherstmammoths/\",\"icon\":\"sf-instagram\",\"html\":null,\"picture\":null,\"css_class\":null,\"is_dummy\":false,\"hover_text\":null},{\"id\":8,\"title\":\"Facebook\",\"start_date\":\"2020-07-09T00:00:00\",\"end_date\":null,\"open_in_new_window\":true,\"link\":\"/common/controls/adhandler.aspx?ad_id=8&target=https://www.facebook.com/amherstmammoths\",\"icon\":\"sf-facebook\",\"html\":null,\"picture\":null,\"css_class\":null,\"is_dummy\":false,\"hover_text\":null}],\"content_id\":\"social-icon-c10521\",\"content_title\":\"social-icon-c10521\",\"content_date\":null,\"content_url\":null,\"content_image_url\":null},\"mode\":\"web\"}; if (!(\"sidearmComponents\" in window)) window.sidearmComponents = []; window.sidearmComponents.push(obj);",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://x.com/AmherstBaseball",
+            "label": "Baseball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/mammobaseball",
+            "label": "Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/AmherstMBball",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/amherstmensbball",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/AmherstXCTF",
+            "label": "Cross Country: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/amhersttfxc",
+            "label": "Cross Country: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/AmherstCollFB",
+            "label": "Football: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/amherstfootball",
+            "label": "Football: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/football/schedule",
+            "label": "Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/football/roster",
+            "label": "Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/AmherstMensGolf",
+            "label": "Golf: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/acmensgolf",
+            "label": "Golf: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/AmherstMHockey",
+            "label": "Ice Hockey: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/amherstmhockey",
+            "label": "Ice Hockey: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-ice-hockey/schedule",
+            "label": "Ice Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-ice-hockey/roster",
+            "label": "Ice Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/AmherstLacrosse",
+            "label": "Lacrosse: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/Amherstmlax",
+            "label": "Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/AmherstMSoccer",
+            "label": "Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/amherstmsoccer",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/amherstsquash",
+            "label": "Squash: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/amherstmsquash",
+            "label": "Squash: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-squash/schedule",
+            "label": "Squash: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-squash/roster",
+            "label": "Squash: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/AmherstSwimDive",
+            "label": "Swimming & Diving: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/amherstswim",
+            "label": "Swimming & Diving: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-swimming-and-diving/schedule",
+            "label": "Swimming & Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-swimming-and-diving/roster",
+            "label": "Swimming & Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/AmherstMTennis",
+            "label": "Tennis: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/amherstmtennis",
+            "label": "Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-track-and-field/schedule",
+            "label": "Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-track-and-field/roster",
+            "label": "Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/amherstwbasketball",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/AmherstFH",
+            "label": "Field Hockey: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/amherstfieldhockey",
+            "label": "Field Hockey: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/field-hockey/schedule",
+            "label": "Field Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/field-hockey/roster",
+            "label": "Field Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/amherstwomensgolf",
+            "label": "Golf: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/AmherstWIH",
+            "label": "Ice Hockey: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/amherstwhockey",
+            "label": "Ice Hockey: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-ice-hockey/schedule",
+            "label": "Ice Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-ice-hockey/roster",
+            "label": "Ice Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/AmherstWLax",
+            "label": "Lacrosse: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/amherstwlacrosse",
+            "label": "Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/amherstwsoccer",
+            "label": "Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/amherstwsoccer",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/Amherst_SBall",
+            "label": "Softball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/amherst_sball",
+            "label": "Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/amherstwsquash",
+            "label": "Squash: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-squash/schedule",
+            "label": "Squash: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-squash/roster",
+            "label": "Squash: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-swimming-and-diving/schedule",
+            "label": "Swimming & Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-swimming-and-diving/roster",
+            "label": "Swimming & Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/AmherstWTennis",
+            "label": "Tennis: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/amherstwtennis",
+            "label": "Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-track-and-field/schedule",
+            "label": "Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-track-and-field/roster",
+            "label": "Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/amherstwvolleyball",
+            "label": "Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory",
+            "label": "Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/2020/6/15/information-camps-clinics-copy.aspx",
+            "label": "Camps/Clinics",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/2020/6/15/prospective-students-recruiting-form.aspx",
+            "label": "Recruiting Forms",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.amherst.edu/documents/2015/2/26/Prospective_Student-Athlete_Policy.pdf",
+            "label": "Overnight Hosting Program",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/2020/6/15/prospective-students-NESCAC-Factors.aspx",
+            "label": "NESCAC Factors in Admission Decisions",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/2020/6/15/prospective-students-NESCAC-Practices.aspx",
+            "label": "NESCAC Statement of Common Admissions Practices",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.amherst.edu/calendar",
+            "label": "Composite Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/2020/9/30/Directions%20and%20Parking.aspx",
+            "label": "Directions to Campus",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.amherst.edu/academiclife/support",
+            "label": "Academic Support on Campus",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://amherst.campuslabs.com/engage/organization/athletesandallies",
+            "label": "Queer Athlete Alliance",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/baseball-department/1",
+            "label": "Coaches",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/schedule.aspx?path=baseball",
+            "label": "Composite Calendar",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/baseball/schedule?print=true",
+            "label": "Print Print this page",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/baseball/schedule/2026?grid=true",
+            "label": "Grid Switch to Grid View",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/services/schedule_txt.ashx?schedule=744",
+            "label": "Text Text Format For Braille (New Tab)",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://athletics.amherst.edu/staff-directory/baseball-department/1",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/amherst-college-1.html",
+        "sha256": "6f8be8387a828e6101a6f3185bb61110671e0e8b4ecf9a38053cf7038a27a8cb",
+        "url": "https://athletics.amherst.edu/staff-directory/baseball-department/1",
+        "label": "Coaches"
+      },
+      "status": 200,
+      "finalUrl": "https://athletics.amherst.edu/staff-directory/baseball-department/1",
+      "checkedAtUtc": "2026-11-17T20:34:56.562Z",
+      "sourcePath": "sources/amherst-college-2.html",
+      "sha256": "16f262ad0d4703054ee4d156f26b851a34932345ee0c1a6bb60693c0a5dcb61b",
+      "parsed": {
+        "title": "Staff Directory - Amherst College Sidearm Sports, opens a new window",
+        "headings": [
+          "Amherst College Athletics",
+          "Main Navigation Menu",
+          "Staff Directory",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/baseball-department/1",
+            "label": "Skip To Main Content",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/index.aspx",
+            "label": "The official home of the var obj = {\"start\":0,\"count\":10,\"name\":\"social-icon-c10521\",\"sport_id\":null,\"count_breakpoints\":null,\"css_class\":\"\",\"pinned_id\":\"\",\"extra\":{},\"context\":null,\"dummy\":false,\"type\":\"ads\",\"id\":\"7520d256-3e11-4468-a5be-628878ef7bc9\",\"data\":{\"location\":{\"id\":142,\"title\":\"Social Icon\",\"type\":\"icons\",\"effect\":\"none\",\"fixed_image_sizes\":false,\"excluded_sport_ids\":[],\"slick\":false,\"dfp\":false,\"sidearm_dfp\":false,\"common_page\":false,\"html_template\":null,\"name\":\"social-icon-c10521\",\"autoplay_speed\":8,\"accessibility_icons\":false,\"sizes\":null,\"slick_options\":null,\"dfp_sizes\":null},\"campaigns\":[{\"id\":6,\"title\":\"Twitter\",\"start_date\":\"2020-07-09T00:00:00\",\"end_date\":null,\"open_in_new_window\":true,\"link\":\"/common/controls/adhandler.aspx?ad_id=6&target=https://twitter.com/amherstmammoths\",\"icon\":\"sf-twitter\",\"html\":null,\"picture\":null,\"css_class\":null,\"is_dummy\":false,\"hover_text\":null},{\"id\":7,\"title\":\"Instagram\",\"start_date\":\"2020-07-09T00:00:00\",\"end_date\":null,\"open_in_new_window\":true,\"link\":\"/common/controls/adhandler.aspx?ad_id=7&target=https://www.instagram.com/amherstmammoths/\",\"icon\":\"sf-instagram\",\"html\":null,\"picture\":null,\"css_class\":null,\"is_dummy\":false,\"hover_text\":null},{\"id\":8,\"title\":\"Facebook\",\"start_date\":\"2020-07-09T00:00:00\",\"end_date\":null,\"open_in_new_window\":true,\"link\":\"/common/controls/adhandler.aspx?ad_id=8&target=https://www.facebook.com/amherstmammoths\",\"icon\":\"sf-facebook\",\"html\":null,\"picture\":null,\"css_class\":null,\"is_dummy\":false,\"hover_text\":null},{\"id\":10,\"title\":\"YouTube\",\"start_date\":\"2022-02-03T00:00:00\",\"end_date\":null,\"open_in_new_window\":true,\"link\":\"/common/controls/adhandler.aspx?ad_id=10&target=https://www.youtube.com/user/AmherstSports/videos\",\"icon\":\"sf-youtube-play\",\"html\":null,\"picture\":null,\"css_class\":null,\"is_dummy\":false,\"hover_text\":null}],\"content_id\":\"social-icon-c10521\",\"content_title\":\"social-icon-c10521\",\"content_date\":null,\"content_url\":null,\"content_image_url\":null},\"mode\":\"web\"}; if (!(\"sidearmComponents\" in window)) window.sidearmComponents = []; window.sidearmComponents.push(obj);",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/baseball-department/AmherstCollegeBaseball",
+            "label": "Baseball: Facebook",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://x.com/AmherstBaseball",
+            "label": "Baseball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/mammobaseball",
+            "label": "Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/baseball/schedule",
+            "label": "Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/baseball-department/Amherstbball",
+            "label": "Basketball: Facebook",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://x.com/AmherstMBball",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/amherstmensbball",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/AmherstXCTF",
+            "label": "Cross Country: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/amhersttfxc",
+            "label": "Cross Country: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/AmherstCollFB",
+            "label": "Football: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/amherstfootball",
+            "label": "Football: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/football/schedule",
+            "label": "Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/football/roster",
+            "label": "Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/AmherstMensGolf",
+            "label": "Golf: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/acmensgolf",
+            "label": "Golf: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/AmherstMHockey",
+            "label": "Ice Hockey: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/amherstmhockey",
+            "label": "Ice Hockey: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-ice-hockey/schedule",
+            "label": "Ice Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-ice-hockey/roster",
+            "label": "Ice Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/AmherstLacrosse",
+            "label": "Lacrosse: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/Amherstmlax",
+            "label": "Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/AmherstMSoccer",
+            "label": "Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/amherstmsoccer",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/amherstsquash",
+            "label": "Squash: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/amherstmsquash",
+            "label": "Squash: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-squash/schedule",
+            "label": "Squash: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-squash/roster",
+            "label": "Squash: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/AmherstSwimDive",
+            "label": "Swimming & Diving: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/amherstswim",
+            "label": "Swimming & Diving: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-swimming-and-diving/schedule",
+            "label": "Swimming & Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-swimming-and-diving/roster",
+            "label": "Swimming & Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/baseball-department/AmherstMT",
+            "label": "Tennis: Facebook",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://x.com/AmherstMTennis",
+            "label": "Tennis: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/amherstmtennis",
+            "label": "Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-track-and-field/schedule",
+            "label": "Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-track-and-field/roster",
+            "label": "Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/amherstwbasketball",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/AmherstFH",
+            "label": "Field Hockey: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/amherstfieldhockey",
+            "label": "Field Hockey: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/field-hockey/schedule",
+            "label": "Field Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/field-hockey/roster",
+            "label": "Field Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/amherstwomensgolf",
+            "label": "Golf: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/baseball-department/AmherstWomensHockey",
+            "label": "Ice Hockey: Facebook",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://x.com/AmherstWIH",
+            "label": "Ice Hockey: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/amherstwhockey",
+            "label": "Ice Hockey: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-ice-hockey/schedule",
+            "label": "Ice Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-ice-hockey/roster",
+            "label": "Ice Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/baseball-department/ACWLAX",
+            "label": "Lacrosse: Facebook",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://x.com/AmherstWLax",
+            "label": "Lacrosse: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/amherstwlacrosse",
+            "label": "Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/amherstwsoccer",
+            "label": "Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/amherstwsoccer",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/baseball-department/amherstsball",
+            "label": "Softball: Facebook",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://x.com/Amherst_SBall",
+            "label": "Softball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/amherst_sball",
+            "label": "Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/amherstwsquash",
+            "label": "Squash: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-squash/schedule",
+            "label": "Squash: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-squash/roster",
+            "label": "Squash: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-swimming-and-diving/schedule",
+            "label": "Swimming & Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-swimming-and-diving/roster",
+            "label": "Swimming & Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/AmherstWTennis",
+            "label": "Tennis: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/amherstwtennis",
+            "label": "Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-track-and-field/schedule",
+            "label": "Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-track-and-field/roster",
+            "label": "Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/amherstwvolleyball",
+            "label": "Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory",
+            "label": "Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/2020/6/15/information-camps-clinics-copy.aspx",
+            "label": "Camps/Clinics",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/2020/6/15/prospective-students-recruiting-form.aspx",
+            "label": "Recruiting Forms",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.amherst.edu/documents/2015/2/26/Prospective_Student-Athlete_Policy.pdf",
+            "label": "Overnight Hosting Program",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/2020/6/15/prospective-students-NESCAC-Factors.aspx",
+            "label": "NESCAC Factors in Admission Decisions",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/2020/6/15/prospective-students-NESCAC-Practices.aspx",
+            "label": "NESCAC Statement of Common Admissions Practices",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.amherst.edu/calendar",
+            "label": "Composite Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/2020/9/30/Directions%20and%20Parking.aspx",
+            "label": "Directions to Campus",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.amherst.edu/academiclife/support",
+            "label": "Academic Support on Campus",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://amherst.campuslabs.com/engage/organization/athletesandallies",
+            "label": "Queer Athlete Alliance",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory?print=true",
+            "label": "Print",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/don-faulstick/177",
+            "label": "Don Faulstick Don Faulstick, Administration, Director of Athletics",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/sonali-roche/283",
+            "label": "Sonali Roche Sonali Roche, Administration, Executive Assistant to the Director of Athletics",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/maria-rello/12",
+            "label": "Maria Rello Maria Rello, Administration, Senior Woman Administrator / Associate Director of Athletics / Director of Sports Medicine / Title IX Deputy Coordinator",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/billy-mcbride/172",
+            "label": "Billy McBride Billy McBride, Administration, Associate Director of Athletics – Diversity, Equity & Inclusion / Director of Club Sports",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/jennifer-chuks-crabill/284",
+            "label": "Jennifer Chuks-Crabill Jennifer Chuks-Crabill, Administration, Associate Director of Athletics / Compliance Officer / Diversity, Equity & Inclusion",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/jess-lapachinski/297",
+            "label": "Jess Lapachinski Jess Lapachinski, Administration, Associate Director of Athletics – Finance and Business Operations",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/chris-paradis/138",
+            "label": "Chris Paradis Chris Paradis, Administration, Director of Wellness",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/nate-cash/368",
+            "label": "Nate Cash Nate Cash, Administration, Assistant Director of Athletics, Facilities",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/chris-durr/340",
+            "label": "Chris Durr Chris Durr, Administration, Faculty Athletics Representative / Faculty Liaison",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/justin-serpone/73",
+            "label": "Justin Serpone Justin Serpone, Amherst LEADS, Head Coach, Mens Soccer / Director of Amherst LEADS",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/jordan-hayslip-94/167",
+            "label": "Jordan Hayslip '94 Jordan Hayslip 94, Amherst LEADS, Program Coordinator",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/kris-dufour/267",
+            "label": "Kris Dufour Kris Dufour, Athletic Communications, Director of Athletic Communications",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/brad-kasnet/259",
+            "label": "Brad Kasnet Brad Kasnet, Athletic Communications, Assistant Director of Athletic Communications",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/mark-klingensmith/184",
+            "label": "Mark Klingensmith Mark Klingensmith, Sports Medicine, Assistant Director of Sports Medicine",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/kathy-jekanowski/133",
+            "label": "Kathy Jekanowski Kathy Jekanowski, Sports Medicine, Senior Athletic Trainer",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/kevin-konstant/317",
+            "label": "Kevin Konstant Kevin Konstant, Sports Medicine, Athletic Trainer",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/peng-wen-washington-lin/318",
+            "label": "Peng-Wen Washington-Lin Peng-Wen Washington-Lin, Sports Medicine, Athletic Trainer",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/joe-ouimet/393",
+            "label": "Joe Ouimet Joe Ouimet, Sports Medicine, Athletic Trainer",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/sammy-horowitz/403",
+            "label": "Sammy Horowitz Sammy Horowitz, Sports Medicine, Athletic Trainer",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/dale-gurek/176",
+            "label": "Dale Gurek Dale Gurek, Equipment Room, Director of Equipment Operations",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/chris-boyko/5",
+            "label": "Chris Boyko Chris Boyko, Strength and Conditioning, Head Strength & Conditioning Coach / Fitness Center Director",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/kalen-evans/395",
+            "label": "Kalen Evans Kalen Evans, Strength and Conditioning, Assistant Strength & Conditioning Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/j-p-pyne/10",
+            "label": "J.P. Pyne J.P. Pyne, Baseball, Head Coach, Baseball",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/kevin-murphy/321",
+            "label": "Kevin Murphy Kevin Murphy, Baseball, Assistant Coach, Baseball – Pitching Coach / Recruiting Coordinator",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/kyle-decker/413",
+            "label": "Kyle Decker Kyle Decker, Baseball, Assistant Coach, Baseball",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/austin-sarat/204",
+            "label": "Austin Sarat Austin Sarat, Baseball, Faculty Liaison",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/greg-call/352",
+            "label": "Greg Call Greg Call, Baseball, Faculty Liaison",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/lauren-reutenauer/353",
+            "label": "Lauren Reutenauer Lauren Reutenauer, Baseball, Faculty Liaison",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/trent-maxey/354",
+            "label": "Trent Maxey Trent Maxey, Baseball, Faculty Liaison",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/marlon-sears/236",
+            "label": "Marlon Sears Marlon Sears, Mens Basketball, Head Coach, Mens Basketball",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/casey-lane/383",
+            "label": "Casey Lane Casey Lane , Mens Basketball, Assistant Coach, Mens Basketball",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/blake-waldron/330",
+            "label": "Blake Waldron Blake Waldron, Mens Basketball, Assistant Coach, Mens Basketball",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/stefan-bradley/355",
+            "label": "Stefan Bradley Stefan Bradley, Mens Basketball, Faculty Liaison",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/sarah-turgeon/341",
+            "label": "Sarah Turgeon Sarah Turgeon, Mens Basketball, Faculty Liaison",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/g-p-gromacki/118",
+            "label": "G.P. Gromacki G.P. Gromacki, Womens Basketball, Head Coach, Womens Basketball",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/kate-sullivan-21/325",
+            "label": "Kate Sullivan '21 Kate Sullivan 21, Womens Basketball, Assistant Coach, Womens Basketball",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/danielle-benedetto/342",
+            "label": "Danielle Benedetto Danielle Benedetto, Womens Basketball, Faculty Liaison",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/robert-benedetto/356",
+            "label": "Robert Benedetto Robert Benedetto, Womens Basketball, Faculty Liaison",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/ayush-maini/387",
+            "label": "Ayush Maini Ayush Maini, Womens Basketball, Student Assistant, Womens Basketball",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/hannah-chappell-dick/302",
+            "label": "Hannah Chappell-Dick Hannah Chappell-Dick, Mens Cross Country, Head Coach, Mens & Womens Cross Country / Assistant Coach, Mens & Womens Track & Field",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/chase-worthen/384",
+            "label": "Chase Worthen Chase Worthen, Mens Cross Country, Assistant Coach, Mens & Womens Cross Country and Track & Field",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/ashley-carter/229",
+            "label": "Ashley Carter Ashley Carter, Mens Cross Country, Faculty Liaison",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/sarah-gillespie/401",
+            "label": "Sarah Gillespie Sarah Gillespie, Mens Cross Country, Faculty Liaison",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/carol-knerr/35",
+            "label": "Carol Knerr Carol Knerr, Field Hockey, Head Coach, Field Hockey",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/emma-thompson/394",
+            "label": "Emma Thompson Emma Thompson, Field Hockey, Assistant Coach, Field Hockey",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/serena-pisacano/337",
+            "label": "Serena Pisacano Serena Pisacano, Field Hockey, Assistant Coach, Womens Lacrosse and Field Hockey",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/elizabeth-kneeland-10/339",
+            "label": "Elizabeth Kneeland '10 Elizabeth Kneeland 10, Field Hockey, Faculty Liaison",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/e-j-mills/20",
+            "label": "E.J. Mills E.J. Mills, Football, Head Coach, Football",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/luke-bussard/26",
+            "label": "Luke Bussard Luke Bussard, Football, Assistant Coach, Football – Defensive Coordinator / Linebackers",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/malik-grove/274",
+            "label": "Malik Grove Malik Grove, Football, Assistant Coach, Football – Offensive Coordinator / Quarterbacks",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/eddy-augustin/21",
+            "label": "Eddy Augustin Eddy Augustin, Football, Assistant Coach, Football – Special Teams Coordinator / Defensive Line",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/turner-geenty/349",
+            "label": "Turner Geenty Turner Geenty, Football, Assistant Coach, Football – Offensive Line / Recruiting Coordinator",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/mitchell-thompson/30",
+            "label": "Mitchell Thompson Mitchell Thompson, Football, Assistant Coach, Football – Wide Receivers & Tight Ends",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/jack-hughes/396",
+            "label": "Jack Hughes Jack Hughes, Football, Assistant Coach, Football – Outside Linebackers",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/otha-yarborough/397",
+            "label": "Otha Yarborough Otha Yarborough, Football, Assistant Coach, Football – Running Backs",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/kemit-fisher-26/398",
+            "label": "Kemit Fisher '26 Kemit Fisher 26, Football, Hitchcock Fellow",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/andrew-jennings-28/410",
+            "label": "Andrew Jennings '28 Andrew Jennings 28, Football, Student Assistant, Football",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/vanessa-walker/343",
+            "label": "Vanessa Walker Vanessa Walker, Football, Faculty Liaison",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/elizabeth-geene/128",
+            "label": "Elizabeth Geene Elizabeth Geene, Mens Golf, Head Coach, Mens & Womens Golf",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/meredith-mayes/300",
+            "label": "Meredith Mayes Meredith Mayes, Mens Golf, Assistant Coach, Mens & Womens Golf",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/stephen-cartier/351",
+            "label": "Stephen Cartier Stephen Cartier, Mens Golf, Faculty Liaison",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/carmen-granda/357",
+            "label": "Carmen Granda Carmen Granda, Mens Golf, Faculty Liaison",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/jason-robinson/402",
+            "label": "Jason Robinson Jason Robinson, Mens Golf, Faculty Liaison",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/eddie-effinger-12/54",
+            "label": "Eddie Effinger '12 Eddie Effinger 12, Mens Ice Hockey, Head Coach, Mens Ice Hockey",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/conor-tierney/379",
+            "label": "Conor Tierney Conor Tierney, Mens Ice Hockey, Assistant Coach, Mens Ice Hockey",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/ruxandra-paul/411",
+            "label": "Ruxandra Paul Ruxandra Paul, Mens Ice Hockey, Faculty Liaison",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/jeff-matthews/131",
+            "label": "Jeff Matthews Jeff Matthews, Womens Ice Hockey, Head Coach, Womens Ice Hockey",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/kathryn-truban/380",
+            "label": "Kathryn Truban Kathryn Truban, Womens Ice Hockey, Assistant Coach, Womens Ice Hockey",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/kelsey-czerniawski/414",
+            "label": "Kelsey Czerniawski Kelsey Czerniawski, Womens Ice Hockey, Assistant Coach, Womens Ice Hockey",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/frank-couvares/359",
+            "label": "Frank Couvares Frank Couvares, Womens Ice Hockey, Faculty Liaison",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/matteo-riondato/360",
+            "label": "Matteo Riondato Matteo Riondato, Womens Ice Hockey, Faculty Liaison",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/sean-woods/247",
+            "label": "Sean Woods Sean Woods, Mens Lacrosse, Head Coach, Mens Lacrosse",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/sam-horning/312",
+            "label": "Sam Horning Sam Horning, Mens Lacrosse, Assistant Coach, Mens Lacrosse / Recruiting Coordinator",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/kyle-o-dea/405",
+            "label": "Kyle O'Dea Kyle ODea, Mens Lacrosse, Assistant Coach, Mens Lacrosse",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/brooke-diamond-o-brien-03/281",
+            "label": "Brooke Diamond O'Brien '03 Brooke Diamond OBrien 03, Womens Lacrosse, Head Coach, Womens Lacrosse",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/erica-erb/311",
+            "label": "Erica Erb Erica Erb, Womens Lacrosse, Assistant Coach, Womens Lacrosse",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/carrie-palmquist/361",
+            "label": "Carrie Palmquist Carrie Palmquist, Womens Lacrosse, Faculty Liaison",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/derek-shea/70",
+            "label": "Derek Shea Derek Shea, Mens Soccer, Assistant Coach, Mens Soccer",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/rye-jaran/391",
+            "label": "Rye Jaran Rye Jaran, Mens Soccer, Assistant Coach, Mens Soccer",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/jeff-huffman/72",
+            "label": "Jeff Huffman Jeff Huffman, Mens Soccer, Assistant Coach, Mens & Womens Soccer",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/jen-hughes/148",
+            "label": "Jen Hughes Jen Hughes, Womens Soccer, Head Coach, Womens Soccer",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/su-delguercio/146",
+            "label": "Su DelGuercio Su DelGuercio, Womens Soccer, Assistant Coach, Womens Soccer",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/for-all-recruiting-purposes/376",
+            "label": "For all recruiting purposes For all recruiting purposes, Womens Soccer,",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/marc-edwards/335",
+            "label": "Marc Edwards Marc Edwards, Womens Soccer, Faculty Liaison",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/diann-ramsey/299",
+            "label": "Diann Ramsey Diann Ramsey, Softball, Head Coach, Softball",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/sarah-harker/348",
+            "label": "Sarah Harker Sarah Harker, Softball, Assistant Coach, Softball",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/riain-keefe/415",
+            "label": "Riain Keefe Riain Keefe, Softball, Assistant Coach, Softball",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/busani-xaba/239",
+            "label": "Busani Xaba Busani Xaba, Mens Squash, Head Coach, Squash",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/chad-smith/406",
+            "label": "Chad Smith Chad Smith, Mens Squash, Assistant Coach, Mens & Womens Squash",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/weston-dripps-92/412",
+            "label": "Weston Dripps '92 Weston Dripps 92, Mens Squash, Faculty Liaison",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/jackie-bagwell/153",
+            "label": "Jackie Bagwell Jackie Bagwell, Mens Squash, Intermin Coach of Squash",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/connor-beaulieu-14/301",
+            "label": "Connor Beaulieu '14 Connor Beaulieu 14, Mens Swimming and Diving, Head Coach, Mens & Womens Swimming & Diving",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/lianne-mccluskey/327",
+            "label": "Lianne McCluskey Lianne McCluskey, Mens Swimming and Diving, Assistant Coach, Mens & Womens Swimming & Diving",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/noah-labich/407",
+            "label": "Noah Labich Noah Labich, Mens Swimming and Diving, Assistant Coach, Mens & Womens Swimming & Diving",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/courtney-ross/408",
+            "label": "Courtney Ross Courtney Ross, Mens Swimming and Diving, Diving Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/scott-kaplan-95/364",
+            "label": "Scott Kaplan '95 Scott Kaplan 95, Mens Swimming and Diving, Faculty Liaison",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/todd-doebler/91",
+            "label": "Todd Doebler Todd Doebler, Mens Tennis, Head Coach, Mens Tennis",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/ross-silverberg/381",
+            "label": "Ross Silverberg Ross Silverberg, Mens Tennis, Assistant Coach, Mens Tennis – Recruiting Coordinator",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/joe-moore/214",
+            "label": "Joe Moore Joe Moore, Mens Tennis, Faculty Liaison",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/allen-hart-82/365",
+            "label": "Allen Hart '82 Allen Hart 82, Mens Tennis, Faculty Liaison",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/erin-ness/399",
+            "label": "Erin Ness Erin Ness, Womens Tennis, Head Coach, Womens Tennis",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/leo-galarza/409",
+            "label": "Leo Galarza Leo Galarza, Womens Tennis, Assistant Coach, Womens Tennis",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/richmond-ampiah-bonney/367",
+            "label": "Richmond Ampiah-Bonney Richmond Ampiah-Bonney, Womens Tennis, Faculty Liaison",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/steve-rubin/102",
+            "label": "Steve Rubin Steve Rubin, Mens Track and Field, Head Coach, Mens & Womens Track & Field",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/andre-dubois/386",
+            "label": "Andre Dubois Andre Dubois, Mens Track and Field, Assistant Coach, Mens & Womens Track & Field",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/alena-maes-polan/416",
+            "label": "Alena Maes-Polan Alena Maes-Polan, Mens Track and Field, Assistant Coach, Mens & Womens Track & Field",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/steve-talbot/103",
+            "label": "Steve Talbot Steve Talbot, Mens Track and Field, Assistant Coach, Mens & Womens Track & Field",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/rebecca-sinos/216",
+            "label": "Rebecca Sinos Rebecca Sinos, Mens Track and Field, Faculty Liaison",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/stacey-murrell/404",
+            "label": "Stacey Murrell Stacey Murrell, Mens Track and Field, Faculty Liaison",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/val-jones/164",
+            "label": "Val Jones Val Jones, Womens Volleyball, Head Coach, Volleyball",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/carly-pry/377",
+            "label": "Carly Pry Carly Pry, Womens Volleyball, Assistant Coach, Volleyball",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/jallicia-jolly/338",
+            "label": "Jallicia Jolly Jallicia Jolly, Womens Volleyball, Faculty Liaison",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/ivan-contreras/400",
+            "label": "Ivan Contreras Ivan Contreras, Womens Volleyball, Faculty Liaison",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://athletics.amherst.edu/schedule.aspx?path=baseball",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/amherst-college-1.html",
+        "sha256": "6f8be8387a828e6101a6f3185bb61110671e0e8b4ecf9a38053cf7038a27a8cb",
+        "url": "https://athletics.amherst.edu/schedule.aspx?path=baseball",
+        "label": "Composite Calendar"
+      },
+      "status": 200,
+      "finalUrl": "https://athletics.amherst.edu/sports/baseball/schedule",
+      "checkedAtUtc": "2026-11-17T20:34:57.040Z",
+      "sourcePath": "sources/amherst-college-3.html",
+      "sha256": "1990eabf11c7407137e0ec5acef8c616c3d773be906c9ebe4855a7874610443e",
+      "parsed": {
+        "title": "2026 Baseball Schedule - Amherst College Sidearm Sports, opens a new window",
+        "headings": [
+          "Amherst College Athletics",
+          "Main Navigation Menu",
+          "Sport Navigation Menu",
+          "2026 Baseball Schedule",
+          "Season Record",
+          "Scheduled Games",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://athletics.amherst.edu/sports/baseball/schedule",
+            "label": "Skip To Main Content",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/index.aspx",
+            "label": "The official home of the var obj = {\"start\":0,\"count\":10,\"name\":\"social-icon-c10521\",\"sport_id\":null,\"count_breakpoints\":null,\"css_class\":\"\",\"pinned_id\":\"\",\"extra\":{},\"context\":null,\"dummy\":false,\"type\":\"ads\",\"id\":\"0eab22c2-622c-4ab7-9f0d-f1a5d97dcba7\",\"data\":{\"location\":{\"id\":142,\"title\":\"Social Icon\",\"type\":\"icons\",\"effect\":\"none\",\"fixed_image_sizes\":false,\"excluded_sport_ids\":[],\"slick\":false,\"dfp\":false,\"sidearm_dfp\":false,\"common_page\":false,\"html_template\":null,\"name\":\"social-icon-c10521\",\"autoplay_speed\":8,\"accessibility_icons\":false,\"sizes\":null,\"slick_options\":null,\"dfp_sizes\":null},\"campaigns\":[{\"id\":6,\"title\":\"Twitter\",\"start_date\":\"2020-07-09T00:00:00\",\"end_date\":null,\"open_in_new_window\":true,\"link\":\"/common/controls/adhandler.aspx?ad_id=6&target=https://twitter.com/amherstmammoths\",\"icon\":\"sf-twitter\",\"html\":null,\"picture\":null,\"css_class\":null,\"is_dummy\":false,\"hover_text\":null},{\"id\":7,\"title\":\"Instagram\",\"start_date\":\"2020-07-09T00:00:00\",\"end_date\":null,\"open_in_new_window\":true,\"link\":\"/common/controls/adhandler.aspx?ad_id=7&target=https://www.instagram.com/amherstmammoths/\",\"icon\":\"sf-instagram\",\"html\":null,\"picture\":null,\"css_class\":null,\"is_dummy\":false,\"hover_text\":null},{\"id\":8,\"title\":\"Facebook\",\"start_date\":\"2020-07-09T00:00:00\",\"end_date\":null,\"open_in_new_window\":true,\"link\":\"/common/controls/adhandler.aspx?ad_id=8&target=https://www.facebook.com/amherstmammoths\",\"icon\":\"sf-facebook\",\"html\":null,\"picture\":null,\"css_class\":null,\"is_dummy\":false,\"hover_text\":null}],\"content_id\":\"social-icon-c10521\",\"content_title\":\"social-icon-c10521\",\"content_date\":null,\"content_url\":null,\"content_image_url\":null},\"mode\":\"web\"}; if (!(\"sidearmComponents\" in window)) window.sidearmComponents = []; window.sidearmComponents.push(obj);",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://x.com/AmherstBaseball",
+            "label": "Baseball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/mammobaseball",
+            "label": "Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/AmherstMBball",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/amherstmensbball",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/AmherstXCTF",
+            "label": "Cross Country: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/amhersttfxc",
+            "label": "Cross Country: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/AmherstCollFB",
+            "label": "Football: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/amherstfootball",
+            "label": "Football: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/football/schedule",
+            "label": "Football: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/football/roster",
+            "label": "Football: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/AmherstMensGolf",
+            "label": "Golf: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/acmensgolf",
+            "label": "Golf: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/AmherstMHockey",
+            "label": "Ice Hockey: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/amherstmhockey",
+            "label": "Ice Hockey: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-ice-hockey/schedule",
+            "label": "Ice Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-ice-hockey/roster",
+            "label": "Ice Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/AmherstLacrosse",
+            "label": "Lacrosse: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/Amherstmlax",
+            "label": "Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/AmherstMSoccer",
+            "label": "Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/amherstmsoccer",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/amherstsquash",
+            "label": "Squash: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/amherstmsquash",
+            "label": "Squash: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-squash/schedule",
+            "label": "Squash: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-squash/roster",
+            "label": "Squash: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/AmherstSwimDive",
+            "label": "Swimming & Diving: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/amherstswim",
+            "label": "Swimming & Diving: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-swimming-and-diving/schedule",
+            "label": "Swimming & Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-swimming-and-diving/roster",
+            "label": "Swimming & Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/AmherstMTennis",
+            "label": "Tennis: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/amherstmtennis",
+            "label": "Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-track-and-field/schedule",
+            "label": "Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/mens-track-and-field/roster",
+            "label": "Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/amherstwbasketball",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/AmherstFH",
+            "label": "Field Hockey: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/amherstfieldhockey",
+            "label": "Field Hockey: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/field-hockey/schedule",
+            "label": "Field Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/field-hockey/roster",
+            "label": "Field Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/amherstwomensgolf",
+            "label": "Golf: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/AmherstWIH",
+            "label": "Ice Hockey: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/amherstwhockey",
+            "label": "Ice Hockey: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-ice-hockey/schedule",
+            "label": "Ice Hockey: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-ice-hockey/roster",
+            "label": "Ice Hockey: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/AmherstWLax",
+            "label": "Lacrosse: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/amherstwlacrosse",
+            "label": "Lacrosse: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-lacrosse/schedule",
+            "label": "Lacrosse: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-lacrosse/roster",
+            "label": "Lacrosse: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/amherstwsoccer",
+            "label": "Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/amherstwsoccer",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/Amherst_SBall",
+            "label": "Softball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/amherst_sball",
+            "label": "Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/amherstwsquash",
+            "label": "Squash: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-squash/schedule",
+            "label": "Squash: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-squash/roster",
+            "label": "Squash: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-swimming-and-diving/schedule",
+            "label": "Swimming & Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-swimming-and-diving/roster",
+            "label": "Swimming & Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/AmherstWTennis",
+            "label": "Tennis: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/amherstwtennis",
+            "label": "Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-track-and-field/schedule",
+            "label": "Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-track-and-field/roster",
+            "label": "Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://instagram.com/amherstwvolleyball",
+            "label": "Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/womens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory",
+            "label": "Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/2020/6/15/information-camps-clinics-copy.aspx",
+            "label": "Camps/Clinics",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/2020/6/15/prospective-students-recruiting-form.aspx",
+            "label": "Recruiting Forms",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.amherst.edu/documents/2015/2/26/Prospective_Student-Athlete_Policy.pdf",
+            "label": "Overnight Hosting Program",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/2020/6/15/prospective-students-NESCAC-Factors.aspx",
+            "label": "NESCAC Factors in Admission Decisions",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/2020/6/15/prospective-students-NESCAC-Practices.aspx",
+            "label": "NESCAC Statement of Common Admissions Practices",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.amherst.edu/calendar",
+            "label": "Composite Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/2020/9/30/Directions%20and%20Parking.aspx",
+            "label": "Directions to Campus",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://www.amherst.edu/academiclife/support",
+            "label": "Academic Support on Campus",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://amherst.campuslabs.com/engage/organization/athletesandallies",
+            "label": "Queer Athlete Alliance",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.amherst.edu/staff-directory/baseball-department/1",
+            "label": "Coaches",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.amherst.edu/schedule.aspx?path=baseball",
+            "label": "Composite Calendar",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/baseball/schedule?print=true",
+            "label": "Print Print this page",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/sports/baseball/schedule/2026?grid=true",
+            "label": "Grid Switch to Grid View",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.amherst.edu/services/schedule_txt.ashx?schedule=744",
+            "label": "Text Text Format For Braille (New Tab)",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          }
+        ]
+      }
+    }
+  ],
+  "status": "EVIDENCE_CAPTURED_REQUIRES_REVIEW"
+}

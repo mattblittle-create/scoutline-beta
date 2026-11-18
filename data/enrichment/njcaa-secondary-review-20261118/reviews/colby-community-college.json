@@ -1,0 +1,68 @@
+{
+  "slug": "colby-community-college",
+  "programId": "cmox1gfvb0022qtsg1afwh3ea",
+  "collegeId": "cmox1gfum0020qtsgezoyy7fd",
+  "checkedAtUtc": "2026-11-18T14:43:29.125Z",
+  "sourcePath": "../njcaa-discovery-20261118/sources/colby-community-college-1.source",
+  "sourceSHA256": "544b64faf7d7f6b6d26ee9f84aa5252821157c72321933118b991230f5bdbcf6",
+  "sourceUrl": "https://www.colbytrojans.com/sports/bsb/index",
+  "socialLeads": [],
+  "recruitingLeads": [
+    {
+      "url": "https://www.colbytrojans.com/sports/bsb/Recruitment_Form",
+      "label": "Baseball",
+      "context": "Recruit Information: Baseball",
+      "kind": "QUESTIONNAIRE"
+    },
+    {
+      "url": "https://www.colbytrojans.com/sports/mbkb/Recruitment_Form",
+      "label": "Men's Basketball",
+      "context": "Recruit Information: Men's Basketball",
+      "kind": "QUESTIONNAIRE"
+    }
+  ],
+  "logoLeads": [
+    {
+      "url": "https://www.colbytrojans.com/assets/PRIMARY_LOGO-0.5new.png",
+      "label": "Colby Community College Athletics Logo img-fluid"
+    }
+  ],
+  "captures": [
+    {
+      "requestedUrl": "https://www.colbytrojans.com/sports/bsb/Recruitment_Form",
+      "kind": "QUESTIONNAIRE",
+      "status": 200,
+      "finalUrl": "https://www.colbytrojans.com/sports/bsb/Recruitment_Form",
+      "contentType": "text/html; charset=UTF-8",
+      "sourcePath": "sources/colby-community-college-0.source",
+      "sha256": "32d30d61594fa66061a7845f49fa47402ea4a5e9f04337b3cd902220d6040bf1"
+    },
+    {
+      "requestedUrl": "https://www.colbytrojans.com/sports/mbkb/Recruitment_Form",
+      "kind": "QUESTIONNAIRE",
+      "status": 200,
+      "finalUrl": "https://www.colbytrojans.com/sports/mbkb/Recruitment_Form",
+      "contentType": "text/html; charset=UTF-8",
+      "sourcePath": "sources/colby-community-college-1.source",
+      "sha256": "88f74e188afdfd7d12dde6ecf189705172dfba5c83b0b0d74e89599802d77710"
+    },
+    {
+      "requestedUrl": "https://www.colbytrojans.com/assets/PRIMARY_LOGO-0.5new.png",
+      "kind": "LOGO_ASSET",
+      "status": 200,
+      "finalUrl": "https://www.colbytrojans.com/assets/PRIMARY_LOGO-0.5new.png",
+      "contentType": "image/png",
+      "sourcePath": "sources/colby-community-college-2.source",
+      "sha256": "a5df38c49193153d477e66014962e0491c331b81cb86817a4bb1b6cbf252e3cb",
+      "decoded": {
+        "format": "png",
+        "width": 400,
+        "height": 303
+      },
+      "assetDecoded": true
+    }
+  ],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED"
+}

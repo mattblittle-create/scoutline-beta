@@ -1,0 +1,48 @@
+{
+  "slug": "queensborough-community-college",
+  "name": "Queensborough Community College",
+  "collegeId": "cmox2o31b0059qtbkrd1etcak",
+  "programId": "cmox2o322005bqtbkm4rqidap",
+  "storedState": "NY",
+  "storedDivision": "NJCAA_D3",
+  "directoryMatch": {
+    "unitid": "190673",
+    "name": "CUNY Queensborough Community College",
+    "aliases": [
+      "QCC",
+      "Queensborough CC",
+      "Queensborough Community College"
+    ],
+    "state": "NY",
+    "city": "Bayside",
+    "host": "qcc.cuny.edu",
+    "decision": "UNIQUE_EXACT_NAME_OR_ALIAS_AND_STATE_DISCOVERY_LEAD_ONLY"
+  },
+  "directoryMatchStatus": "DISCOVERY_LEAD_NOT_CURRENT_CAMPUS_VERIFIED",
+  "needsHeadCoach": false,
+  "needs2027Roster": true,
+  "newPagesAttempted": 1,
+  "pages": [
+    {
+      "requestedUrl": "https://qcc.cuny.edu/",
+      "checkedAtUtc": "2026-11-18T16:22:01.280Z",
+      "status": "FAILED",
+      "errorType": "Error",
+      "kind": "INSTITUTIONAL_DIRECTORY_HOST_LEAD",
+      "parent": {
+        "sourcePath": "../../geography/us-college-locations-ipeds2024.json",
+        "unitid": "190673",
+        "publishedName": "CUNY Queensborough Community College",
+        "state": "NY",
+        "city": "Bayside"
+      }
+    }
+  ],
+  "unfetchedPublishedLeads": [],
+  "publishedLeads": [],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "campusIdentityReviewRequired": true,
+  "currentMembershipVerified": false,
+  "importApproval": "NOT_GRANTED"
+}

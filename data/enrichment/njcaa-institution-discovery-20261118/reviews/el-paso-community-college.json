@@ -1,0 +1,44 @@
+{
+  "slug": "el-paso-community-college",
+  "name": "El Paso Community College",
+  "collegeId": "cmox1ggjv003iqtsgin1vp932",
+  "programId": "cmox1ggki003kqtsgdpo1hpm6",
+  "storedState": "TX",
+  "storedDivision": "NJCAA_D1",
+  "directoryMatch": {
+    "unitid": "224642",
+    "name": "El Paso Community College",
+    "aliases": [],
+    "state": "TX",
+    "city": "El Paso",
+    "host": "epcc.edu",
+    "decision": "UNIQUE_EXACT_NAME_OR_ALIAS_AND_STATE_DISCOVERY_LEAD_ONLY"
+  },
+  "directoryMatchStatus": "DISCOVERY_LEAD_NOT_CURRENT_CAMPUS_VERIFIED",
+  "needsHeadCoach": true,
+  "needs2027Roster": true,
+  "newPagesAttempted": 1,
+  "pages": [
+    {
+      "requestedUrl": "https://epcc.edu/",
+      "checkedAtUtc": "2026-11-18T16:10:05.544Z",
+      "status": "FAILED",
+      "errorType": "TypeError",
+      "kind": "INSTITUTIONAL_DIRECTORY_HOST_LEAD",
+      "parent": {
+        "sourcePath": "../../geography/us-college-locations-ipeds2024.json",
+        "unitid": "224642",
+        "publishedName": "El Paso Community College",
+        "state": "TX",
+        "city": "El Paso"
+      }
+    }
+  ],
+  "unfetchedPublishedLeads": [],
+  "publishedLeads": [],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "campusIdentityReviewRequired": true,
+  "currentMembershipVerified": false,
+  "importApproval": "NOT_GRANTED"
+}

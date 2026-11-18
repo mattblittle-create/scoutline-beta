@@ -1,0 +1,41 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>
+	Front Rush- No Questionnaire
+</title>  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#btnback").click(function () {
+                window.history.back();
+            });
+        })
+    </script>
+</head>
+<body>
+    <form name="form1" method="post" action="./noquestionnaires.aspx" id="form1">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwULLTEzNDEyMDg2NjYPFgIeE1ZhbGlkYXRlUmVxdWVzdE1vZGUCAWRk/iyAF6s+exFzjE6+LdqgY31lgi0=" />
+
+<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="1A02B3F3" />
+      <link href="https://www.frontrush.com/Static/V1/StyleSheets/no-questionnaires.css" rel="stylesheet" type="text/css" />
+     <div class="container-noquestionnaires">
+     <div class="inner-container-noquestionnaires">
+      
+         <img src="https://www.frontrush.com/Static/V1/Images//FR Full Logo.jpg" class="fulllogo-noquestionnaires" />
+         <div class="row-noquestionnaires custommargin-noquestionnaires">
+             <div class="column-noquestionnaires heading-noquestionnaires fontsize-noquestionnaires">This questionnaire is no longer available to fill out!</div>
+         </div>
+         <div class="row-noquestionnaires custommargin-noquestionnaires">
+             <div class="column-noquestionnaires fontsize-noquestionnaires fontfamilyregular-noquestionnaires"> Please contact the sender for an updated link.</div>
+         </div>
+         <div class="row-noquestionnaires custommargin-noquestionnaires">
+             <div class="column-noquestionnaires fontsize-noquestionnaires fontfamilyregular-noquestionnaires">Have a great day!</div>
+         </div>
+     </div>
+ </div>
+    </form>
+</body>
+</html>

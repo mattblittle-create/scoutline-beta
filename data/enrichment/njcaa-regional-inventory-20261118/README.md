@@ -1,0 +1,1 @@
+Public regional/conference baseball and membership evidence collection. Nine source roots were published by saved officialschoolpages. No database changes or import approval. Run collect-regional.cjs --preflight, then noargs on success. See NEXT-SESSION-NOTES.md.

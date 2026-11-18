@@ -1,0 +1,68 @@
+{
+  "slug": "monroe-university-bronx",
+  "programId": "cmox2o2kb004bqtbknwcghdhl",
+  "collegeId": "cmox2o2jl0049qtbkdr59b165",
+  "checkedAtUtc": "2026-11-18T14:43:38.234Z",
+  "sourcePath": "../njcaa-core-review-20261118/sources/monroe-university-bronx-0.source",
+  "sourceSHA256": "11442284d1d9c9e7e2be3da5641f899b8ce0142df15459a0ea5a21bd4f32b6d8",
+  "sourceUrl": "https://monroeexpress.com/sports/baseball",
+  "socialLeads": [],
+  "recruitingLeads": [
+    {
+      "url": "https://monroeexpress.com/sb_output.aspx?form=5",
+      "label": "Student-Athlete Bio Questionnaire",
+      "context": "",
+      "kind": "QUESTIONNAIRE"
+    },
+    {
+      "url": "https://admissions.monroeu.edu/register/AthleticRecruitForm?sys:field:expected_campus=b616c135-4353-4b7a-b6e9-9800a6690432&applicationtype=1",
+      "label": "Recruit Form",
+      "context": "",
+      "kind": "QUESTIONNAIRE"
+    }
+  ],
+  "logoLeads": [
+    {
+      "url": "https://monroeexpress.com/images/logo-main.png",
+      "label": "Monroe Express Logo - Go to homepage undefined"
+    }
+  ],
+  "captures": [
+    {
+      "requestedUrl": "https://monroeexpress.com/sb_output.aspx?form=5",
+      "kind": "QUESTIONNAIRE",
+      "status": 200,
+      "finalUrl": "https://monroeexpress.com/sb_output.aspx?form=5",
+      "sourcePath": "../njcaa-core-review-20261118/sources/monroe-university-bronx-4.source",
+      "sha256": "ef06935b41f12482ebde4190cc7a908f9e5218ee3c9ca57ec38ededf05cc2384",
+      "reusedEvidence": true
+    },
+    {
+      "requestedUrl": "https://admissions.monroeu.edu/register/AthleticRecruitForm?sys:field:expected_campus=b616c135-4353-4b7a-b6e9-9800a6690432&applicationtype=1",
+      "kind": "QUESTIONNAIRE",
+      "status": 200,
+      "finalUrl": "https://admissions.monroeu.edu/register/AthleticRecruitForm?sys:field:expected_campus=b616c135-4353-4b7a-b6e9-9800a6690432&applicationtype=1",
+      "contentType": "text/html; charset=utf-8",
+      "sourcePath": "sources/monroe-university-bronx-1.source",
+      "sha256": "90c853011c510f9f38cb26b4992a8beb89271d9143d832faa8ae3052c13aae74"
+    },
+    {
+      "requestedUrl": "https://monroeexpress.com/images/logo-main.png",
+      "kind": "LOGO_ASSET",
+      "status": 200,
+      "finalUrl": "https://images.sidearmdev.com/convert?url=https%3a%2f%2fdxbhsrqyrr690.cloudfront.net%2fsidearm.nextgen.sites%2fmonroebronx.sidearmsports.com%2fimages%2flogo-main.png&type=webp",
+      "contentType": "image/webp",
+      "sourcePath": "sources/monroe-university-bronx-2.source",
+      "sha256": "ec3efff957040f861516b2ca8b17e199798777319d1314a26a7bf53ae966fff8",
+      "decoded": {
+        "format": "webp",
+        "width": 3000,
+        "height": 1439
+      },
+      "assetDecoded": true
+    }
+  ],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED"
+}

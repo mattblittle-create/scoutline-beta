@@ -1,0 +1,41 @@
+{
+  "slug": "bossier-parish-community-college",
+  "collegeId": "cmox1gf9h000rqtsg5p7im7p5",
+  "programId": "cmox1gfa7000tqtsgn36y7udb",
+  "name": "Bossier Parish Community College",
+  "state": "LA",
+  "storedDivision": "NJCAA_D1",
+  "pages": [
+    {
+      "requestedUrl": "https://njcaastats.prestosports.com/sports/bsb/2024-25/div1/teams/bossierparishcommunitycollege",
+      "kind": "STORED_URL_UNVERIFIED",
+      "checkedAtUtc": "2026-11-18T14:15:46.055Z",
+      "status": "HELD_ACCESS_NOT_RETRIED",
+      "finalUrl": "https://njcaastats.prestosports.com/sports/bsb/2024-25/div1/teams/bossierparishcommunitycollege"
+    },
+    {
+      "requestedUrl": "https://bpcc.prestosports.com/sports/bsb/index",
+      "kind": "DISCOVERY_LEAD_NOT_CAMPUS_VERIFIED",
+      "checkedAtUtc": "2026-11-18T14:15:46.057Z",
+      "status": 403,
+      "finalUrl": "https://bpcc.prestosports.com/sports/bsb/index",
+      "contentType": "text/html; charset=UTF-8",
+      "sourcePath": "sources/bossier-parish-community-college-1.source",
+      "sha256": "e519b63bc071457c38cc5f524cdab3dc7d739f586bceecec4f7f1efd21b838c1"
+    }
+  ],
+  "thirdPartyExactNameLeads": [
+    {
+      "url": "https://bpcc.prestosports.com/sports/bsb/index",
+      "label": "Bossier Parish CC",
+      "parentSourcePath": "sources/directory-0.source",
+      "parentSHA256": "63f1c531b007d2922e4db3aa2ba596ee54e397dbafd287df69b95213a011a404",
+      "parentUrl": "https://www.thebaseballobserver.com/njcaa-di-baseball"
+    }
+  ],
+  "currentMembershipVerified": false,
+  "campusIdentityVerified": false,
+  "importApproval": "NOT_GRANTED",
+  "databaseAccess": false,
+  "databaseWrites": 0
+}

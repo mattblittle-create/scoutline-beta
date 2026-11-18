@@ -1,0 +1,72 @@
+{
+  "slug": "mercer-county-community-college",
+  "programId": "cmox238bs007wqtfku4g7e8z0",
+  "collegeId": "cmox238b4007uqtfk9cdvx3p4",
+  "checkedAtUtc": "2026-11-18T14:43:35.592Z",
+  "sourcePath": "../njcaa-discovery-20261118/sources/mercer-county-community-college-1.source",
+  "sourceSHA256": "545df32401266745e104cf4664ff9504ab86e6cbf1c74e44a0f13d7730c9601b",
+  "sourceUrl": "https://www.mccc.edu/athletics_men_baseball.shtml",
+  "socialLeads": [],
+  "recruitingLeads": [
+    {
+      "url": "https://www.mccc.edu/athletics_prospective.shtml",
+      "label": "Prospective Athletes - Forms - Participation Packet",
+      "context": "",
+      "kind": "QUESTIONNAIRE"
+    }
+  ],
+  "logoLeads": [
+    {
+      "url": "https://www.mccc.edu/images/govikings.png",
+      "label": "GO VIKINGS pull-right"
+    },
+    {
+      "url": "https://www.mccc.edu/images/athletics/mccc-athletics-green.png",
+      "label": "Mercer County Community College Athletics img-responsive"
+    }
+  ],
+  "captures": [
+    {
+      "requestedUrl": "https://www.mccc.edu/athletics_prospective.shtml",
+      "kind": "QUESTIONNAIRE",
+      "status": 200,
+      "finalUrl": "https://www.mccc.edu/athletics_prospective.shtml",
+      "sourcePath": "../njcaa-core-review-20261118/sources/mercer-county-community-college-4.source",
+      "sha256": "2c14c329b209d5a8cf9623bbe3bd0691ddd93ffd791a6bac10a8cd0c113c14f8",
+      "reusedEvidence": true
+    },
+    {
+      "requestedUrl": "https://www.mccc.edu/images/govikings.png",
+      "kind": "LOGO_ASSET",
+      "status": 200,
+      "finalUrl": "https://www.mccc.edu/images/govikings.png",
+      "contentType": "image/png",
+      "sourcePath": "sources/mercer-county-community-college-1.source",
+      "sha256": "f8bcca97888c2e290bee4ece2691a58758f4d18c6501d8acf2185678c4522956",
+      "decoded": {
+        "format": "png",
+        "width": 200,
+        "height": 18
+      },
+      "assetDecoded": true
+    },
+    {
+      "requestedUrl": "https://www.mccc.edu/images/athletics/mccc-athletics-green.png",
+      "kind": "LOGO_ASSET",
+      "status": 200,
+      "finalUrl": "https://www.mccc.edu/images/athletics/mccc-athletics-green.png",
+      "contentType": "image/png",
+      "sourcePath": "sources/mercer-county-community-college-2.source",
+      "sha256": "9464523d206ae4482df081a511e26420ff200c2fee2e65192f7638e974f753e5",
+      "decoded": {
+        "format": "png",
+        "width": 280,
+        "height": 81
+      },
+      "assetDecoded": true
+    }
+  ],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED"
+}

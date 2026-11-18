@@ -1,0 +1,262 @@
+{
+  "slug": "howard-payne-university",
+  "collegeId": "cmovorquu00aiqt7gdj1esg9g",
+  "programId": "cmovorqvk00akqt7gt37r36os",
+  "checkedAtUtc": "2026-11-17T20:36:11.740Z",
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED",
+  "missingFields": [
+    "rosterUrl",
+    "scheduleUrl",
+    "questionnaireUrl",
+    "campsUrl",
+    "generalContactEmail",
+    "programXUrl",
+    "programInstagramUrl"
+  ],
+  "pages": [
+    {
+      "requestedUrl": "https://hpusports.com/sports/baseball",
+      "kind": "baseball-home",
+      "parent": null,
+      "status": 200,
+      "finalUrl": "https://hpusports.com/sports/baseball",
+      "sourcePath": "../sources/howard-payne-university-1.html",
+      "sha256": "a6b09e8534fc3f7397d7c76f2c8f9dc0380395eb319f22d4523ef4393c248d71",
+      "reusedEvidence": true,
+      "originalCheckedAtUtc": "2026-11-17T17:23:05.429Z",
+      "parsed": {
+        "title": "Baseball - Howard Payne University Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "Official Site of Howard Payne University Athletics",
+          "Howard Payne University Athletics",
+          "Howard Payne University",
+          "HPU Sports",
+          "Main",
+          "Sport Navigation Menu",
+          "Top Stories",
+          "Events",
+          "Events",
+          "HPU On Youtube",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://hpusports.com/staff-directory",
+            "label": "Athletic Staff",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.hpusportscamps.com/?path=gen",
+            "label": "Sports Camps",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://twitter.com/HPUTXBASEBALL",
+            "label": "@HPUTXBASEBALL",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hpusports.com/sports/baseball/roster",
+            "label": "ROSTER",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hpusports.com/sports/baseball/schedule",
+            "label": "SCHEDULE/RESULTS",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hpusports.com/sports/baseball/coaches",
+            "label": "COACHING STAFF",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://hpusports.com/sports/baseball",
+            "label": "Schedules",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://twitter.com/hpusports",
+            "label": "Twitter",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://www.instagram.com/hpusports/",
+            "label": "Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://hpusports.com/sports/baseball/schedule",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/howard-payne-university-1.html",
+        "sha256": "a6b09e8534fc3f7397d7c76f2c8f9dc0380395eb319f22d4523ef4393c248d71",
+        "url": "https://hpusports.com/sports/baseball/schedule",
+        "label": "SCHEDULE/RESULTS"
+      },
+      "status": 200,
+      "finalUrl": "https://hpusports.com/sports/baseball/schedule",
+      "checkedAtUtc": "2026-11-17T20:36:12.355Z",
+      "sourcePath": "sources/howard-payne-university-1.html",
+      "sha256": "554f82ccdaa4b642a065736564e2c57d131cef9a8cea24ffd05790c89089ddbe",
+      "parsed": {
+        "title": "2026 Baseball Schedule - Howard Payne University Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "Official Site of Howard Payne University Athletics",
+          "Howard Payne University Athletics",
+          "Howard Payne University",
+          "HPU Sports",
+          "Main",
+          "Sport Navigation Menu",
+          "2026 Baseball Schedule",
+          "Season Record",
+          "Scheduled Games",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://hpusports.com/sports/baseball/schedule",
+            "label": "Skip To Main Content",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hpusports.com/staff-directory",
+            "label": "Athletic Staff",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.hpusportscamps.com/?path=gen",
+            "label": "Sports Camps",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://twitter.com/HPUTXBASEBALL",
+            "label": "@HPUTXBASEBALL",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hpusports.com/sports/baseball/roster",
+            "label": "ROSTER",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hpusports.com/sports/baseball/coaches",
+            "label": "COACHING STAFF",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://hpusports.com/sports/baseball/schedule?print=true",
+            "label": "Print Print this page",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hpusports.com/sports/baseball/schedule/2026?grid=true",
+            "label": "Grid Switch to Grid View",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hpusports.com/services/schedule_txt.ashx?schedule=287",
+            "label": "Text Text Format For Braille (New Tab)",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hpusports.com/documents/2025/11/24/2026_Schedule.docx",
+            "label": "Download (DOCX)",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://hpusports.com/sports/baseball/coaches",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/howard-payne-university-1.html",
+        "sha256": "a6b09e8534fc3f7397d7c76f2c8f9dc0380395eb319f22d4523ef4393c248d71",
+        "url": "https://hpusports.com/sports/baseball/coaches",
+        "label": "COACHING STAFF"
+      },
+      "status": 200,
+      "finalUrl": "https://hpusports.com/sports/baseball/coaches",
+      "checkedAtUtc": "2026-11-17T20:36:12.550Z",
+      "sourcePath": "sources/howard-payne-university-2.html",
+      "sha256": "a235dbabe95b6d014f17e04844079838b20f0288ca53fa7852d19e7dfa5bd43e",
+      "parsed": {
+        "title": "Baseball Coaches - Howard Payne University Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "Official Site of Howard Payne University Athletics",
+          "Howard Payne University Athletics",
+          "Howard Payne University",
+          "HPU Sports",
+          "Main",
+          "Sport Navigation Menu",
+          "2026 Baseball Coaching Staff",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://hpusports.com/sports/baseball/coaches",
+            "label": "Skip To Main Content",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://hpusports.com/staff-directory",
+            "label": "Athletic Staff",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://www.hpusportscamps.com/?path=gen",
+            "label": "Sports Camps",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://twitter.com/HPUTXBASEBALL",
+            "label": "@HPUTXBASEBALL",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://hpusports.com/sports/baseball/roster",
+            "label": "ROSTER",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hpusports.com/sports/baseball/schedule",
+            "label": "SCHEDULE/RESULTS",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://hpusports.com/sports/baseball/coaches?print=true",
+            "label": "Print",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://hpusports.com/sports/baseball/roster/coaches/stephen-lynn/1099",
+            "label": "Stephen Lynn",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "mailto:slynn@hputx.edu",
+            "label": "slynn@hputx.edu",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://hpusports.com/sports/baseball/roster/coaches/tony-heiser/1100",
+            "label": "Tony Heiser",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "mailto:theiser@hputx.edu",
+            "label": "theiser@hputx.edu",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          }
+        ]
+      }
+    }
+  ],
+  "status": "EVIDENCE_CAPTURED_REQUIRES_REVIEW"
+}

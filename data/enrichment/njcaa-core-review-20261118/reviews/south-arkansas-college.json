@@ -1,0 +1,41 @@
+{
+  "slug": "south-arkansas-college",
+  "collegeId": "cmox23a3j00blqtfk5wkn3bpa",
+  "programId": "cmox23a4700bnqtfkxzd6esnr",
+  "name": "South Arkansas College",
+  "storedState": "AR",
+  "storedDivision": "NJCAA_D2",
+  "checkedAtUtc": "2026-11-18T14:21:18.057Z",
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "currentMembershipVerified": false,
+  "campusIdentityVerified": false,
+  "importApproval": "NOT_GRANTED",
+  "pages": [
+    {
+      "requestedUrl": "https://southarkstars.com/index.php/home-sport/baseball",
+      "kind": "DIRECTORY_ALIAS_REQUIRES_CAMPUS_REVIEW",
+      "parent": {
+        "sourcePath": "../njcaa-discovery-20261118/sources/directory-1.source",
+        "sha256": "496ce44f9a76dc28894dc481d97424ffa3efb0cc8fe8f218363abbc43f06de00",
+        "label": "South Arkansas CC (AR)"
+      },
+      "status": 404,
+      "finalUrl": "https://www.southarkstars.com/index.php/home-sport/baseball",
+      "checkedAtUtc": "2026-11-18T14:21:20.039Z",
+      "sourcePath": "sources/south-arkansas-college-0.source",
+      "sha256": "62d2a37dcea4d452a8cc590941f9d27b5c10a850d26d562a01a4b40ed4cd018b"
+    }
+  ],
+  "discoveryAliases": [
+    {
+      "url": "https://southarkstars.com/index.php/home-sport/baseball",
+      "label": "South Arkansas CC (AR)",
+      "parentSourcePath": "sources/directory-1.source",
+      "parentSHA256": "496ce44f9a76dc28894dc481d97424ffa3efb0cc8fe8f218363abbc43f06de00",
+      "parentUrl": "https://www.thebaseballobserver.com/njcaa-dii-baseball",
+      "status": "UNVERIFIED_NORMALIZED_NAME_LEAD"
+    }
+  ],
+  "status": "HELD_NO_READABLE_SOURCE"
+}

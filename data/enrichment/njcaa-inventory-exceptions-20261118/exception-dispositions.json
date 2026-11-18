@@ -1,0 +1,289 @@
+[
+  {
+    "kind": "DIVISION",
+    "key": "Harper College",
+    "outcome": "CORRECTION_DRAFT_SUPPORT",
+    "sourceKeys": [
+      "harper"
+    ],
+    "note": "DIII to DII supported by current indexed catalog and the single-filter official entry. Capture live catalog before write preview.",
+    "proposedDivision": "NJCAA_D2",
+    "databaseWrites": 0
+  },
+  {
+    "kind": "DIVISION",
+    "key": "Hocking College",
+    "outcome": "CORRECTION_DRAFT_SUPPORT",
+    "sourceKeys": [
+      "hocking"
+    ],
+    "note": "DII to DIII is corroborated by institutional page and official baseball filter; institution page is not season-specific.",
+    "proposedDivision": "NJCAA_D3",
+    "databaseWrites": 0
+  },
+  {
+    "kind": "DIVISION",
+    "key": "Kishwaukee College",
+    "outcome": "CURRENT_DIVISION_EVIDENCE_HOLD",
+    "sourceKeys": [
+      "kish"
+    ],
+    "note": "Retain stored value pending independent baseball-specific division proof.",
+    "databaseWrites": 0
+  },
+  {
+    "kind": "DIVISION",
+    "key": "Sullivan County Community College",
+    "outcome": "CONFLICTING_DIVISION_EVIDENCE_HOLD",
+    "sourceKeys": [
+      "sullivan"
+    ],
+    "note": "Retain stored value pending current baseball division proof.",
+    "databaseWrites": 0
+  },
+  {
+    "kind": "DIVISION",
+    "key": "Frontier Community College",
+    "outcome": "CONFLICTING_DIVISION_EVIDENCE_HOLD",
+    "sourceKeys": [
+      "frontier"
+    ],
+    "note": "Retain stored value pending current baseball division proof.",
+    "databaseWrites": 0
+  },
+  {
+    "kind": "UNMATCHED_OFFICIAL",
+    "key": "Carteret Community College",
+    "outcome": "NEW_PROGRAM_IDENTITY_AND_DIVISION_REVIEW",
+    "sourceKeys": [
+      "carteret"
+    ],
+    "note": "2026-27 baseball entry supported; division and complete institution match still required.",
+    "databaseWrites": 0
+  },
+  {
+    "kind": "UNMATCHED_OFFICIAL",
+    "key": "Northeast Iowa Community College",
+    "outcome": "NEW_PROGRAM_IDENTITY_AND_DIVISION_REVIEW",
+    "sourceKeys": [
+      "nicc"
+    ],
+    "note": "New baseball sponsorship and NJCAA membership supported; validate campus and DII classification before creation.",
+    "databaseWrites": 0
+  },
+  {
+    "kind": "UNMATCHED_OFFICIAL",
+    "key": "Quincy College",
+    "outcome": "NEW_PROGRAM_IDENTITY_AND_DIVISION_REVIEW",
+    "sourceKeys": [
+      "quincy"
+    ],
+    "note": "Current NJCAA baseball support; division unresolved across all three filters.",
+    "databaseWrites": 0
+  },
+  {
+    "kind": "UNMATCHED_OFFICIAL",
+    "key": "Bryant & Stratton College - Virginia",
+    "outcome": "CAMPUS_BASEBALL_AND_DIVISION_HOLD",
+    "sourceKeys": [
+      "bsc"
+    ],
+    "note": "System membership does not prove campus baseball identity or division.",
+    "databaseWrites": 0
+  },
+  {
+    "kind": "UNMATCHED_OFFICIAL",
+    "key": "Robeson Community College",
+    "outcome": "INDEPENDENT_BASEBALL_CONTENT_ACCESS_HOLD",
+    "sourceKeys": [
+      "robeson"
+    ],
+    "note": "Capture current athletics content and map institution before creation.",
+    "databaseWrites": 0
+  },
+  {
+    "kind": "UNMATCHED_OFFICIAL",
+    "key": "Southwestern Oregon Community College",
+    "outcome": "NWAC_BASEBALL_CONFLICT_DO_NOT_ADD_AS_NJCAA",
+    "sourceKeys": [
+      "swocc"
+    ],
+    "note": "Keep outside NJCAA baseball addition batch pending association resolution.",
+    "databaseWrites": 0
+  },
+  {
+    "kind": "UNMATCHED_OFFICIAL",
+    "key": "Berkshire Community College",
+    "outcome": "SEASONAL_NONCONTINUATION_RECHECK_2027",
+    "sourceKeys": [
+      "berkshire"
+    ],
+    "note": "Do not add as active 2027 baseball solely from directory; no permanent closure inferred.",
+    "databaseWrites": 0
+  },
+  {
+    "kind": "UNMATCHED_OFFICIAL",
+    "key": "Sandhills Community College",
+    "outcome": "VARSITY_BASEBALL_SPONSORSHIP_HOLD",
+    "sourceKeys": [
+      "sandhills"
+    ],
+    "note": "Do not infer varsity sponsorship from a field or summer baseball team.",
+    "databaseWrites": 0
+  },
+  {
+    "kind": "UNMATCHED_STORED",
+    "key": "community-christian-college",
+    "outcome": "CURRENT_ROSTER_AND_CAMPUS_REVIEW",
+    "sourceKeys": [
+      "ccCA"
+    ],
+    "note": "Current roster recovery lead; no closure inferred, no namesake merge.",
+    "databaseWrites": 0
+  },
+  {
+    "kind": "UNMATCHED_STORED",
+    "key": "monroe-university",
+    "outcome": "NCAA_PURSUIT_NOT_ACTIVE_MEMBERSHIP_HOLD",
+    "sourceKeys": [
+      "monroe"
+    ],
+    "note": "Distinguish New Rochelle from Bronx; confirm current competition status without promoting NCAA membership.",
+    "databaseWrites": 0
+  },
+  {
+    "kind": "UNMATCHED_STORED",
+    "key": "community-christian",
+    "outcome": "MICHIGAN_CAMPUS_IDENTITY_HOLD",
+    "sourceKeys": [
+      "ccMI"
+    ],
+    "note": "California evidence cannot be reused for Michigan; retain identity hold.",
+    "databaseWrites": 0
+  },
+  {
+    "kind": "UNMATCHED_STORED",
+    "key": "lackawanna-college",
+    "outcome": "NJCAA_EXIT_TRANSITION_STATUS_REVIEW",
+    "sourceKeys": [
+      "lackawanna"
+    ],
+    "note": "Final NJCAA season stated; baseball continues under transition. No automatic active NCAA membership promotion.",
+    "databaseWrites": 0
+  },
+  {
+    "kind": "UNMATCHED_STORED",
+    "key": "northern-oklahoma-college-tonkawa",
+    "outcome": "RETAIN_SEPARATE_CAMPUS_LOCATION_CORRECTION_REVIEW",
+    "sourceKeys": [
+      "tonkawa",
+      "tonkawaStaff"
+    ],
+    "note": "Tonkawa and Enid are separate baseball programs; stored WA conflicts with official OK address.",
+    "proposedState": "OK",
+    "databaseWrites": 0
+  },
+  {
+    "kind": "UNMATCHED_STORED",
+    "key": "southwest-virginia",
+    "outcome": "ATHLETICS_DISCONTINUED_STATUS_REVIEW",
+    "sourceKeys": [
+      "swva"
+    ],
+    "note": "Explicit end after 2025-26; propose status review, never delete college or program history.",
+    "proposedState": "VA",
+    "databaseWrites": 0
+  },
+  {
+    "kind": "UNMATCHED_STORED",
+    "key": "dallas-college-brookhaven",
+    "outcome": "RETAIN_SEPARATE_CAMPUS_PROGRAM",
+    "sourceKeys": [
+      "dallas"
+    ],
+    "note": "Independent institutional baseball support; directory team-ID mapping remains unresolved.",
+    "databaseWrites": 0
+  },
+  {
+    "kind": "UNMATCHED_STORED",
+    "key": "dallas-college-cedar-valley",
+    "outcome": "RETAIN_SEPARATE_CAMPUS_PROGRAM",
+    "sourceKeys": [
+      "dallas"
+    ],
+    "note": "Independent institutional baseball support; directory team-ID mapping remains unresolved.",
+    "databaseWrites": 0
+  },
+  {
+    "kind": "UNMATCHED_STORED",
+    "key": "dallas-college-eastfield",
+    "outcome": "RETAIN_SEPARATE_CAMPUS_PROGRAM",
+    "sourceKeys": [
+      "dallas"
+    ],
+    "note": "Independent institutional baseball support; directory team-ID mapping remains unresolved.",
+    "databaseWrites": 0
+  },
+  {
+    "kind": "UNMATCHED_STORED",
+    "key": "dallas-college-mountain-view",
+    "outcome": "RETAIN_SEPARATE_CAMPUS_PROGRAM",
+    "sourceKeys": [
+      "dallas"
+    ],
+    "note": "Independent institutional baseball support; directory team-ID mapping remains unresolved.",
+    "databaseWrites": 0
+  },
+  {
+    "kind": "UNMATCHED_STORED",
+    "key": "dallas-college-north-lake",
+    "outcome": "RETAIN_SEPARATE_CAMPUS_PROGRAM",
+    "sourceKeys": [
+      "dallas"
+    ],
+    "note": "Independent institutional baseball support; directory team-ID mapping remains unresolved.",
+    "databaseWrites": 0
+  },
+  {
+    "kind": "UNMATCHED_STORED",
+    "key": "luzerne-county-community-college",
+    "outcome": "BASEBALL_PUBLISHED_MEMBERSHIP_RECHECK",
+    "sourceKeys": [
+      "luzerne"
+    ],
+    "note": "Baseball page published; absence does not establish closure.",
+    "databaseWrites": 0
+  },
+  {
+    "kind": "UNMATCHED_STORED",
+    "key": "minnesota-north-college-itasca",
+    "outcome": "RETAIN_SEPARATE_CAMPUS_PROGRAM",
+    "sourceKeys": [
+      "mn",
+      "itasca"
+    ],
+    "note": "Independent institutional campus baseball and DIII support; retain campus identity.",
+    "proposedState": "MN",
+    "databaseWrites": 0
+  },
+  {
+    "kind": "UNMATCHED_STORED",
+    "key": "minnesota-north-college-mesabi-range",
+    "outcome": "RETAIN_SEPARATE_CAMPUS_PROGRAM",
+    "sourceKeys": [
+      "mn"
+    ],
+    "note": "Independent institutional campus baseball and DIII support; retain campus identity.",
+    "databaseWrites": 0
+  },
+  {
+    "kind": "UNMATCHED_STORED",
+    "key": "minnesota-north-college-vermilion",
+    "outcome": "RETAIN_SEPARATE_CAMPUS_PROGRAM",
+    "sourceKeys": [
+      "mn"
+    ],
+    "note": "Independent institutional campus baseball and DIII support; retain campus identity.",
+    "databaseWrites": 0
+  }
+]

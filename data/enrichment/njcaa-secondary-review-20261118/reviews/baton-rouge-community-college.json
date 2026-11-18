@@ -1,0 +1,53 @@
+{
+  "slug": "baton-rouge-community-college",
+  "programId": "cmox1gf7h000nqtsg35fr8hif",
+  "collegeId": "cmox1gf6p000lqtsgw810db4k",
+  "checkedAtUtc": "2026-11-18T14:43:27.999Z",
+  "sourcePath": "../njcaa-discovery-20261118/sources/baton-rouge-community-college-1.source",
+  "sourceSHA256": "e7ced2e6a9c2b4ef685c62fdee45e1f48e4d3ecc15b68f3adda243532905acbd",
+  "sourceUrl": "https://www.brccathletics.com/sports/bsb/index",
+  "socialLeads": [],
+  "recruitingLeads": [
+    {
+      "url": "https://www.brccathletics.com/sports/bsb/questionnaire",
+      "label": "Recruiting Questionnaire",
+      "context": "",
+      "kind": "QUESTIONNAIRE"
+    }
+  ],
+  "logoLeads": [
+    {
+      "url": "https://www.brccathletics.com/assets/Primary_Logo_-_.5x.png",
+      "label": "Baton Rouge CC d-inline-block align-text-top"
+    }
+  ],
+  "captures": [
+    {
+      "requestedUrl": "https://www.brccathletics.com/sports/bsb/questionnaire",
+      "kind": "QUESTIONNAIRE",
+      "status": 200,
+      "finalUrl": "https://www.brccathletics.com/sports/bsb/questionnaire",
+      "sourcePath": "../njcaa-core-review-20261118/sources/baton-rouge-community-college-4.source",
+      "sha256": "6ac67f171520282316e806a504e2f564a0cd42479c06d3aac675993b7dada034",
+      "reusedEvidence": true
+    },
+    {
+      "requestedUrl": "https://www.brccathletics.com/assets/Primary_Logo_-_.5x.png",
+      "kind": "LOGO_ASSET",
+      "status": 200,
+      "finalUrl": "https://www.brccathletics.com/assets/Primary_Logo_-_.5x.png",
+      "contentType": "image/png",
+      "sourcePath": "sources/baton-rouge-community-college-1.source",
+      "sha256": "b1bd343200b135207a4d7d9dfa5c9661fa08f60f4e578fe3428f9b7e26cd4367",
+      "decoded": {
+        "format": "png",
+        "width": 161,
+        "height": 201
+      },
+      "assetDecoded": true
+    }
+  ],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED"
+}

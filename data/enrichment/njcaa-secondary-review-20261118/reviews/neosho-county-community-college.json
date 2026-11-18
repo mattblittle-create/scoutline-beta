@@ -1,0 +1,96 @@
+{
+  "slug": "neosho-county-community-college",
+  "programId": "cmox1gihf007nqtsg2bbzmidw",
+  "collegeId": "cmox1gigo007lqtsg36v9z5kk",
+  "checkedAtUtc": "2026-11-18T14:43:31.468Z",
+  "sourcePath": "../njcaa-discovery-20261118/sources/neosho-county-community-college-1.source",
+  "sourceSHA256": "4bf0b5e9c38f42f8ae6d72e90b6d4672822be4139475eb978a435c46f82bad83",
+  "sourceUrl": "https://goneosho.com/sports/baseball",
+  "socialLeads": [
+    {
+      "url": "https://x.com/GoNeoshoBasebal",
+      "label": "Baseball: X",
+      "context": "",
+      "kind": "HTML"
+    },
+    {
+      "url": "https://instagram.com/nc_baseball",
+      "label": "Baseball: Instagram",
+      "context": "",
+      "kind": "HTML"
+    }
+  ],
+  "recruitingLeads": [
+    {
+      "url": "https://goneosho.com/sb_output.aspx?form=6",
+      "label": "Recruit Questionnaire",
+      "context": "",
+      "kind": "QUESTIONNAIRE"
+    },
+    {
+      "url": "https://goneosho.com/sports/2021/8/5/Baseball%20Camps.aspx",
+      "label": "Baseball Camps",
+      "context": "",
+      "kind": "CAMP"
+    },
+    {
+      "url": "https://goneosho.com/sports/2021/8/13/WBB.aspx",
+      "label": "Women's Basketball Camps",
+      "context": "",
+      "kind": "CAMP"
+    }
+  ],
+  "logoLeads": [
+    {
+      "url": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/neosho.sidearmsports.com/images/logos/site/site.png",
+      "label": "Neosho County Community College undefined"
+    }
+  ],
+  "captures": [
+    {
+      "requestedUrl": "https://goneosho.com/sb_output.aspx?form=6",
+      "kind": "QUESTIONNAIRE",
+      "status": 200,
+      "finalUrl": "https://goneosho.com/sb_output.aspx?form=6",
+      "sourcePath": "../njcaa-core-review-20261118/sources/neosho-county-community-college-4.source",
+      "sha256": "3694457797c83bbf974bd8178e996a145e56f10168e6ecc107c4ffa81db90782",
+      "reusedEvidence": true
+    },
+    {
+      "requestedUrl": "https://goneosho.com/sports/2021/8/5/Baseball%20Camps.aspx",
+      "kind": "CAMP",
+      "status": 200,
+      "finalUrl": "https://goneosho.com/sports/2021/8/5/Baseball%20Camps.aspx",
+      "sourcePath": "../njcaa-core-review-20261118/sources/neosho-county-community-college-5.source",
+      "sha256": "5fc6ba4b097c10c86dc6741906016bb9e926213adbd188380069c5ee907f0270",
+      "reusedEvidence": true
+    },
+    {
+      "requestedUrl": "https://goneosho.com/sports/2021/8/13/WBB.aspx",
+      "kind": "CAMP",
+      "status": 200,
+      "finalUrl": "https://goneosho.com/sports/2021/8/13/WBB.aspx",
+      "contentType": "text/html; charset=utf-8",
+      "sourcePath": "sources/neosho-county-community-college-2.source",
+      "sha256": "cedb21ce87cb2d2c774d8633378dc6d87ecccec73d21ed871404d6a1ba1f6e96"
+    },
+    {
+      "requestedUrl": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/neosho.sidearmsports.com/images/logos/site/site.png",
+      "kind": "LOGO_ASSET",
+      "status": 200,
+      "finalUrl": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/neosho.sidearmsports.com/images/logos/site/site.png",
+      "contentType": "image/png",
+      "sourcePath": "sources/neosho-county-community-college-3.source",
+      "sha256": "3d47c131eeee6cbd223474825c41db83eb4bce0a38001358dc2d2d7b2e1797fb",
+      "decoded": {
+        "format": "png",
+        "width": 200,
+        "height": 200
+      },
+      "assetDecoded": true
+    }
+  ],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED"
+}

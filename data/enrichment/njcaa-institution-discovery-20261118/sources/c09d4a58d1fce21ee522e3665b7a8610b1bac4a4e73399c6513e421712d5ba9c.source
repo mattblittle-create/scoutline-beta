@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+        <title>
+            Hill College
+        </title>
+        <meta content="width=device-width, initial-scale=1" name="viewport"/>
+        <meta content="Hill College" name="keywords"/>
+		<meta content="Hill College provides high quality, comprehensive educational programs and services. The college enhances the educational, cultural, and economic development of its service area and prepares individuals for a more productive life.​" name="description"/>
+		<meta content="Wed, 18 Nov 2026 000:45:000 -0440" name="date"/>
+		
+        <meta content="2b22cddcac10016433535eafecd42faf" name="id"/>
+        
+	<!-- favicon -->
+	<link href="images/Icons/favicon-old.ico" rel="icon" type="image/x-icon"/>
+	<link href="https://fonts.googleapis.com/css?family=Crimson+Text:400,600,700|PT+Sans:400,700" rel="stylesheet"/>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+	<link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet"/>
+	<link href="css/styles.css" rel="stylesheet"/>
+	<script src="https://hilbot.jenzabarcloud.com/bot/bot-configuration.js"></script>
+    <script src="https://hilbot.jenzabarcloud.com/bot/bot-client.js"></script>
+
+	
+
+        
+	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js"></script>
+	<script src="https://www.hillcollege.edu/js/script.min.js"></script>
+	
+	<script>
+	    $(document).ready(function() {
+             $(".feature-carousel").slick({
+            	autoplay: false,
+            	autoplaySpeed: 5e3,
+            	focusOnSelect: true,
+            	focusOnChange:false,
+            	dots: false,
+            	arrows: true,
+            	infinite: true,
+            	speed: 300,
+            	slidesToShow: 3,
+            	slide: 'div',
+            	slidesToScroll: 1,
+            	pauseOnHover: true,
+            	responsive: [{
+            		breakpoint: 992,
+            		settings: {
+            			slidesToShow: 3,
+            			slidesToScroll: 3,
+            		}
+            		}, {
+            			breakpoint: 767,
+            			settings: {
+            				slidesToShow: 1,
+            				slidesToScroll: 1
+            			}
+            		}]
+              	});
+              $(".hero-carousel").slick({
+            	autoplay: true,
+            	autoplaySpeed: 5e3,
+            	focusOnSelect: true,
+            	focusOnChange:false,
+            	dots: false,
+            	arrows: true,
+            	infinite: true,
+            	speed: 300,
+            	slidesToShow: 1,
+            	slide: 'div',
+            	slidesToScroll: 1,
+            	pauseOnHover: false,
+            	fade: true,
+            	responsive: [{
+                      breakpoint: 992,
+                      settings: {
+                          fade: false
+            }
+            },
+            {
+            breakpoint: 768,
+            settings: {
+            arrows: true,	
+            dots: false
+            }
+            }]
+              });
+            	$(".faculty-carousel").slick({
+            	autoplay: false,
+            	autoplaySpeed: 5e3,
+            	focusOnSelect: true,
+            	focusOnChange: false,
+            	dots: false,
+            	arrows: true,
+            	infinite: true,
+            	speed: 300,
+            	slidesToShow: 1,
+            	slide: 'div',
+            	slidesToScroll: 1,
+            	pauseOnHover: true
+              	});
+            });
+
+
+	</script>
+	
+
+	
+
+        
+        
+<script type="text/javascript">
+    /*
+            <![CDATA[*/
+(function(window, document, dataLayerName, id) {
+window[dataLayerName]=window[dataLayerName]||[],window[dataLayerName].push({start:(new Date).getTime(),event:"stg.start"});var scripts=document.getElementsByTagName('script')[0],tags=document.createElement('script');
+function stgCreateCookie(a,b,c){var d="";if(c){var e=new Date;e.setTime(e.getTime()+24*c*60*60*1e3),d="; expires="+e.toUTCString()}document.cookie=a+"="+b+d+"; path=/"}
+var isStgDebug=(window.location.href.match("stg_debug")||document.cookie.match("stg_debug"))&&!window.location.href.match("stg_disable_debug");stgCreateCookie("stg_debug",isStgDebug?1:"",isStgDebug?14:-1);
+var qP=[];dataLayerName!=="dataLayer"&&qP.push("data_layer_name="+dataLayerName),isStgDebug&&qP.push("stg_debug");var qPString=qP.length>0?("?"+qP.join("&")):"";
+tags.async=!0,tags.src="//display-logix.containers.piwik.pro/"+id+".js"+qPString,scripts.parentNode.insertBefore(tags,scripts);
+!function(a,n,i){a[n]=a[n]||{};for(var c=0;c<i.length;c++)!function(i){a[n][i]=a[n][i]||{},a[n][i].api=a[n][i].api||function(){var a=[].slice.call(arguments,0);"string"==typeof a[0]&&window[dataLayerName].push({event:n+"."+i+":"+a[0],parameters:[].slice.call(arguments,1)})}}(i[c])}(window,"ppms",["tm","cm"]);
+})(window, document, 'dataLayer', 'adb6d468-c912-4801-b806-15a0f6871cad');
+/*]]>*/
+</script><noscript><iframe height="0" src="//display-logix.containers.piwik.pro/adb6d468-c912-4801-b806-15a0f6871cad/noscript.html" style="display:none;visibility:hidden" title="marketing container" width="0"></iframe></noscript>
+
+<div class="gtranslate_wrapper"></div> 
+
+
+    </head>
+    <body>
+       <header class="header headroom" id="header" role="banner">
+             <a class="sr-only sr-only-focusable" href="#pagecontent" id="skippy"><span class="skiplink-text">SKIP TO PAGE CONTENT</span></a>
+            <div class="container-fluid mob-nav-wrap">
+                <div class="row">
+                    <div class="col-md-12">
+                        <a class="logo-mob" href="index.html"><img alt="Hill College Home" src="images/hc-logo.png"/></a>
+                        <div class="mob-nav"><a class="search-toggle-mob" href="#"><span class="sr-only">Toggle for Search</span></a><a class="nav-trigger" href="#"> Menu <span aria-hidden="true"></span> <span class="sr-only">Mobile Menu Navigation Toggle</span></a></div>
+                     </div>
+                </div>
+            </div>
+            <a class="logo" href="index.html"><img alt="Hill College Logo" src="images/hc-logo.png"/></a>
+            <div aria-label="main navigation" class="navigation" role="navigation">
+               <div class="top-nav-wrap">
+                    <div class="container-fluid">
+                        <div class="row topNavRow">
+                            <div class="col-sm-12">
+                                <nav>
+<ul class="top-nav">
+<li><a href="https://www.hillcollege.edu/Safety/COVID-19.html" title="Covid-19 information">COVID-19 Update</a></li>
+<li><a href="About/index.html" title="About Hill College">About</a></li>
+<li><a href="About/InstAdvancement/Index.html" title="Giving to Hill College">Giving</a></li>
+<li><a href="Museum/Index.html" title="Texas Heritage Museum">Texas Heritage Museum</a></li>
+<li class="search-toggle"><a href="javascript:void(0)" title="Search the site"><span class="sr-only">Search the Hill College Website</span></a></li>
+</ul>
+</nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--<form action="" class="site-search" method="get" role="search">
+<div class="form-group label-floating is-empty"><label class="control-label">Search Our Website</label> <input class="form-control" name="q" type="text" /> <span class="material-input"></span> <span class="material-input"></span></div>
+</form>
+--> 
+<script>
+  (function() {
+    var cx = '015876846325648010079:s6g_uwu9o0a';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+<div class="site-search" role="search">
+<gcse:search></gcse:search>
+</div>
+
+                 <div class="main-nav-wrap">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <ul class="navbar navbar-light">
+<li class="nav-item mainNavLi"><a class="svDesktop" href="#">Apply Now<span class="sr-only"> click enter to tab through Apply menu links</span></a> <a class="svMobile" href="Admissions_Aid/ApplyNow/Index.html" target="_parent">Apply Now</a>
+<ul class="dropdown-menu">
+<li class="dropdown-item"><a href="Admissions_Aid/ApplyNow/Index.html">Apply Texas</a></li>
+<li class="dropdown-item"><a href="Admissions_Aid/FinancialAid/ApplyFinAid.html">FAFSA</a></li>
+<li class="dropdown-item"><a href="Admissions_Aid/FinancialAid/Scholar-Grants-WkStudy.html">Scholarships</a></li>
+<li class="dropdown-item"><a href="Admissions_Aid/FinancialAid/Work Study.html">Work Study</a></li>
+<li class="dropdown-item"><a href="https://myhc.hillcollege.edu/ICS/" rel="noopener" target="_blank">Graduation Application</a></li>
+</ul>
+</li>
+<li class="nav-item mainNavLi"><a class="svDesktop" href="#">Admissions &amp; Aid<span class="sr-only sr-desktop"> click enter to tab through Admissions menu links</span></a> <a class="svMobile" href="Admissions_Aid/index.html" target="_parent">Admissions &amp; Aid</a>
+<ul class="dropdown-menu">
+<li class=" dropdown-item svDesktop"><a href="Admissions_Aid/index.html">Admissions &amp; Aid Home</a></li>
+<li class=" dropdown-item"><a href="Admissions_Aid/Admissions/Adm_index.html" title="Admissions">Admissions</a></li>
+<li class=" dropdown-item"><a href="Admissions_Aid/FERPA.html">FERPA</a></li>
+<li class=" dropdown-item"><a href="Admissions_Aid/FinancialAid/About-FA.html">Financial Aid</a></li>
+<li class=" dropdown-item"><a href="Admissions_Aid/Admissions/Hazlewood.html">Hazlewood Exemption</a></li>
+<li class="dropdown-item"><a href="Admissions_Aid/Admissions/International.html">International Students</a></li>
+<li class=" dropdown-item"><a href="https://myhc.hillcollege.edu/ICS/">MyHC</a></li>
+<li class=" dropdown-item"><a href="Admissions_Aid/Admissions/Transcripts.html">Official Transcript Request</a></li>
+<li class=" dropdown-item"><a href="Business/PmtOptDis/payment-options.html"><span data-teams="true">Payment Options</span></a></li>
+<li class=" dropdown-item"><a href="Admissions_Aid/Admissions/RegRecords.html">Registration &amp; Record</a></li>
+<li class=" dropdown-item"><a href="Student/StudentSupportResources/Student Emergency Aid.html">Student Emergency Aid</a></li>
+<li class=" dropdown-item"><a href="Admissions_Aid/Admissions/Veteran.html">Veterans</a></li>
+</ul>
+</li>
+<li class="nav-item mainNavLi"><a class="svDesktop" href="#">Courses &amp; Programs<span class="sr-only sr-desktop"> click enter to tab through Academic menu links</span></a> <a class="svMobile" href="Courses and Programs/Index.html" target="_parent">Courses &amp; Programs</a>
+<ul class="dropdown-menu">
+<li class=" dropdown-item svDesktop"><a href="Courses and Programs/Index.html">Courses &amp; Programs Home</a></li>
+<li class=" dropdown-item"><a href="Student/Advising/Index.html">Academic Advising</a></li>
+<li class=" dropdown-item"><a href="Courses and Programs/Arts And Humanities/Arts-Humt.html">Arts &amp; Humanities</a></li>
+<li class=" dropdown-item"><a href="Courses and Programs/Business-Industry/Bus-Ind.html">Business &amp; Industry</a></li>
+<li class=" dropdown-item"><a href="Student/Catalog/Index.html" title="Catalog">Catalog</a></li>
+<li class=" dropdown-item"><a href="https://myhc.hillcollege.edu/ICS/Academics/Course_Schedule__Syllabus.jnz?portlet=Student_Registration&amp;screen=StudentRegistrationPortlet_CourseSearchView" rel="noopener noreferrer" target="_blank">Class Schedules</a></li>
+<li class=" dropdown-item"><a href="CD/Cyber.html">Cybersecurity Center</a></li>
+<li class=" dropdown-item"><a href="_Files/Final Exam Schedule.pdf" rel="noopener noreferrer" target="_blank">Exam Schedule</a></li>
+<li class=" dropdown-item"><a href="Courses and Programs/HealthPublicSvc/HealthPublicSvc.html">Health &amp; Public Service</a></li>
+<li class=" dropdown-item"><a href="JobTraining/index.html">Job Training &amp; Workforce Partnerships</a></li>
+<li class=" dropdown-item"><a href="CampusLife/Library/index.html">Library</a></li>
+<li class=" dropdown-item"><a href="Admissions_Aid/Admissions/Eval-of-Credit.html">Prior Learning Assessment</a></li>
+<li class=" dropdown-item"><a href="Courses and Programs/STEM/STEM.html">STEM </a></li>
+<li class=" dropdown-item"><a href="Testing/index.html">Testing</a></li>
+<li class=" dropdown-item"><a href="Student/Advising/U-Partners.html">University Partners</a></li>
+<li class=" dropdown-item"><a href="https://ntccdfw.org/" rel="noopener noreferrer" target="_blank">University Transfer Collaborative</a></li>
+</ul>
+</li>
+<li><a class="svDesktop" href="https://www.hillcollegeathletics.com/landing/index">Athletics</a> <a class="svMobile" href="https://www.hillcollegeathletics.com/landing/index" target="_parent">Athletics</a></li>
+<li class="nav-item mainNavLi"><a class="svDesktop" href="#">Campus Life<span class="sr-only sr-desktop"> click enter to tab through Admissions menu links</span></a> <a class="svMobile" href="CampusLife/index.html" target="_parent">Campus Life</a>
+<ul class="dropdown-menu">
+<li class=" dropdown-item svDesktop"><a href="CampusLife/index.html">Campus Life Home</a></li>
+<li class=" dropdown-item"><a href="Business/index.html">Administrative Services</a></li>
+<li class=" dropdown-item"><a href="CampusLife/Bookstore.html">Online Bookstore</a></li>
+<li class=" dropdown-item"><a href="CampusLife/Cafeteria.html">Cafeteria</a></li>
+<li class=" dropdown-item"><a href="Safety/Index.html">Campus Safety</a></li>
+<li class=" dropdown-item"><a href="CampusLife/Student Activities/Intramural.html">Intramural Sports</a></li>
+<li class=" dropdown-item"><a href="CampusLife/Library/index.html">Library</a></li>
+<li class=" dropdown-item"><a href="About/Locations/index.html">Locations/Campuses</a></li>
+<li class=" dropdown-item"><a href="CampusLife/PerformingArts/PASeries.html">Performing Arts&#160;Series</a></li>
+<li class=" dropdown-item"><a href="Student/RebelResource.html" title="Rebel Resource Room">Rebel Resource Room</a></li>
+<li class=" dropdown-item"><a href="Residential Life/Index.html">Residential Life</a></li>
+<li class=" dropdown-item"><a href="CampusLife/Student Activities/index.html" title="Student Activities">Student Activities</a></li>
+<li class=" dropdown-item"><a href="CampusLife/Student Center.html">Student Center</a></li>
+<li class=" dropdown-item"><a href="Museum/Index.html">Texas Heritage Museum</a></li>
+<li class=" dropdown-item"><a href="CampusLife/WellnessCenter.html">Wellness Center</a></li>
+<li class=" dropdown-item"><a href="Faculty_Staff/Marketing/VTOnline.html">Tours</a></li>
+</ul>
+</li>
+<!--<li class="nav-item mainNavLi"><a href="/Community/Community">Community</a>
+<ul class="dropdown-menu">
+<li class=" dropdown-item"><a href="/Community/CyberDefense/Cyber">Cyber Security Center</a></li>
+</ul>
+</li>-->
+<li class="nav-item mainNavLi"><a href="#">I Am A:<span class="sr-only sr-desktop"> click enter to tab through I Am A: menu links</span></a>
+<ul class="dropdown-menu">
+<li class=" dropdown-item svDesktop"><a href="Admissions_Aid/Admissions/New Students.html">Future Student</a></li>
+<li class=" dropdown-item"><a href="Student/Index.html">Current Student</a></li>
+<li class=" dropdown-item"><a href="Admissions_Aid/Admissions/DualCredit1/DualCredit.html">Dual Credit Student</a></li>
+<li class=" dropdown-item"><a href="About/InstAdvancement/Alumni/index.html">Alumni</a></li>
+<li class=" dropdown-item"><a href="Faculty_Staff/index.html">Employee</a></li>
+<li class=" dropdown-item"><a href="Faculty_Staff/HR/Employment.html">Job Seeker</a></li>
+</ul>
+</li>
+</ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div id="pagecontent">
+            
+
+
+
+
+        		        <div class="hero"> 
+                     <div aria-label="Carousel with 2 featured slides, use arrow keys to scroll between slides or tab to arrow icons to navigate" aria-roledescription="carousel" class="hero-carousel" role="region">
+				<button aria-label="Pause" class="slick-pause" style="" type="button">Pause</button>
+																										
+						<div aria-label="Featured Content 1 of 2" aria-roledescription="slide" class="item" role="group">
+							<div class="inner-wrap">
+								<div class="media-wrap">
+									<img alt="" src="images/home-slider/Climb-Web-Slider.png"/>
+								</div>
+													    <div class="inner">
+						            <div class="hero-title-text">
+																			</div>
+									<p>
+																			</p>
+						    									
+																																				<br/>
+									<img alt="" class="bottom-line" src="images/hero-line.png"/> 
+																	</div>
+														</div>
+						</div>
+																															
+						<div aria-label="Featured Content 2 of 2" aria-roledescription="slide" class="item" role="group">
+							<div class="inner-wrap">
+								<div class="media-wrap">
+									<img alt="Texas Heritage Museum wins National Award with the IMLS" src="images/home-slider/23-24/Museum-IMLS-Web-Slider-11.png"/>
+								</div>
+													    <div class="inner">
+						            <div class="hero-title-text">
+										Texas Heritage Museum wins National Award with the IMLS									</div>
+									<p>
+																			</p>
+						    									
+																			<a class="slide-button cta" href="https://www.hillcollege.edu/news/2026/02/Hill Colleges Texas Heritage Museum receives Institute of Museum and Library Services highest award.html">
+											Read more about the incredible achievement here.											<span class="sr-only"> about Hill College’s Texas Heritage Museum receives Institute of Museum and Library Services highest award</span>
+										</a>
+																																				<br/>
+									<img alt="" class="bottom-line" src="images/hero-line.png"/> 
+																	</div>
+														</div>
+						</div>
+									            </div>
+        </div>
+	
+
+
+
+			<div role="main">
+
+ 										<section><div class="white ">
+				<div class="container">
+														
+			
+	
+																	  	  									<div class="row">
+		<div class="col-lg-12">
+				
+		<br/>
+<div class="row">
+<div class="col-lg-2">
+<div class="thumbnail"><a href="https://sso.hillcollege.edu" title=""> <img alt="Single sign-on login page" height="847" src="images/Icons/Singlesignon.svg" width="1440"/></a>
+<div style="text-align: center;">
+<p>Single Sign-On</p>
+</div>
+</div>
+</div>
+<div class="col-lg-2">
+<div class="thumbnail"><a href="CampusLife/Library/BrightspaceLogin.html" rel="noreferrer" title=""> <img alt="How to login to Brightspace information" height="312" src="images/Icons/brightspace-03.png" width="519"/></a>
+<div style="text-align: center;">
+<p>Brightspace</p>
+</div>
+</div>
+</div>
+<div class="col-lg-2">
+<div class="thumbnail"><a href="https://www.getrave.com/login/hillcollege" rel="noreferrer" title=""> <img alt="Rave login page for emergency notifications" height="847" src="images/Icons/rebel-alert.svg" width="1440"/></a>
+<div style="text-align: center;">
+<p>Rebel Alert</p>
+</div>
+</div>
+</div>
+<div class="col-lg-2">
+<div class="thumbnail"><a href="https://www.hillcollege.edu/Faculty_Staff/Marketing/VTOnline.html#Virtualtour"><img alt="Campus Visitation, tour reservation form" height="989" src="images/Icons/tour-04.svg" width="1682"/></a>
+<div style="text-align: center;">
+<p>Tour</p>
+</div>
+</div>
+</div>
+<div class="col-lg-2">
+<div class="thumbnail"><a href="Student/Index.html" title=""> <img alt="Access the student survival page" height="847" src="images/Icons/student-survival-05.svg" width="1440"/></a>
+<div style="text-align: center;">
+<p>Student</p>
+</div>
+</div>
+</div>
+<div class="col-lg-2">
+<div class="thumbnail"><a href="Faculty_Staff/index.html" title=""> <img alt="Faculty and staff survival page" height="847" src="images/Icons/facultysurvival-06.svg" width="1440"/></a>
+<div style="text-align: center;">
+<p>Employee</p>
+</div>
+</div>
+</div>
+</div>
+		</div>
+		</div>
+						</div>
+		</div></section>
+																								
+				
+	
+																		
+																  	  																			 	<section><div class="white campus-events">
+				<div class="container">
+							 
+	    	     	   	     	        	        	     	   	     	        	        	     	   	     	   	     	        	        	     	   	     	        	        	     	   	     	   	     	        	        	     	   	     	   	     	        	        	     	   	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	     	   	     	        	        	        	     	   	     	        	        	        	     	   	     	        	        	        	     	   	     	        	        	        	            	 	     	               	   <div class="row">
+           	            	        <div class="col-md-6">
+    	          <ul class="event-links">
+    	            <li class="cal-date">
+    	            <a href="Events/2026/11/SGA Tree Decorating2.html">
+    	                <span class="sr-only">details about the</span>
+    	                <span class="event-date"><span class="event-month">Nov</span> 
+    	                <span class="event-day">18</span></span>
+    	                <span class="sr-only">event: </span>
+    	                <span class="title">SGA Tree Decorating</span>
+    	                    	                    <p class="campus">BHEC Commons</p>
+    	                    	                <p class="excerpt"></p></a>
+    	            </li>
+    	          </ul>
+    	       </div>
+            	       	            	        <div class="col-md-6">
+    	          <ul class="event-links">
+    	            <li class="cal-date">
+    	            <a href="Events/2026/11/Bingo Night.html">
+    	                <span class="sr-only">details about the</span>
+    	                <span class="event-date"><span class="event-month">Nov</span> 
+    	                <span class="event-day">18</span></span>
+    	                <span class="sr-only">event: </span>
+    	                <span class="title">Bingo Night</span>
+    	                    	                    <p class="campus">HCC Student Center</p>
+    	                    	                <p class="excerpt"></p></a>
+    	            </li>
+    	          </ul>
+    	       </div>
+            	               	   </div>
+        	  <div class="row">
+	       	            	        <div class="col-md-6">
+    	          <ul class="event-links">
+    	            <li class="cal-date">
+    	            <a href="Events/2026/11/Thanksgiving Gratitude  Go.html">
+    	                <span class="sr-only">details about the</span>
+    	                <span class="event-date"><span class="event-month">Nov</span> 
+    	                <span class="event-day">19</span></span>
+    	                <span class="sr-only">event: </span>
+    	                <span class="title">Thanksgiving Gratitude &amp; Go</span>
+    	                    	                    <p class="campus">JCC Student Center</p>
+    	                    	                <p class="excerpt"></p></a>
+    	            </li>
+    	          </ul>
+    	       </div>
+            	       	            	        <div class="col-md-6">
+    	          <ul class="event-links">
+    	            <li class="cal-date">
+    	            <a href="Events/2026/11/Thanksgiving Meal.html">
+    	                <span class="sr-only">details about the</span>
+    	                <span class="event-date"><span class="event-month">Nov</span> 
+    	                <span class="event-day">19</span></span>
+    	                <span class="sr-only">event: </span>
+    	                <span class="title">Thanksgiving Meal</span>
+    	                    	                    <p class="campus">HCC Cafeteria</p>
+    	                    	                <p class="excerpt"></p></a>
+    	            </li>
+    	          </ul>
+    	       </div>
+                       </div>
+                  <div style="text-align: center;"><a class="btn btn-default" href="Events/index.html" style="color: #0077c8; background-color: #fff; border-color: #fff;">View All Events</a></div>
+							</div>
+		</div></section>
+																	
+			
+	
+																		<div class="fixed" style="background-image: url('images/HillCollegeSign.jpg');">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12" style="background-color: rgba(26, 26, 26, .7);">
+                        <h2>Hill College empowers student learning and community enrichment through quality education. </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+											
+			
+		<section><div class="dk-grey area pay">
+				<div class="container">
+			<div class="row">
+				<div class="col-lg-2">
+						<h2>Pay for Hill College</h2>
+			</div>
+		<div class="col-lg-10">
+		            <div class="row white-text">
+																		
+				
+	
+																					<div class="col-6 col-md-2 text-center">
+						<a href="Business/Tuition-Fees/Tuition-Fees.html" target="_top">
+							<img alt="Tuition and required fees information" src="images/icon-fees.png"/>
+							<br/>
+							<span class="sr-only">Read more about </span>
+							Tuition &amp; Fees
+						</a>
+					</div>
+														
+			
+	
+																					<div class="col-6 col-md-2 text-center">
+						<a href="Admissions_Aid/FinancialAid/ApplyFinAid.html" target="_top">
+							<img alt="Apply for Financial Aid page" src="images/icon-aid.png"/>
+							<br/>
+							<span class="sr-only">Read more about </span>
+							Financial Aid
+						</a>
+					</div>
+														
+			
+	
+																					<div class="col-6 col-md-2 text-center">
+						<a href="Admissions_Aid/FinancialAid/Scholar-Grants-WkStudy.html" target="_top">
+							<img alt="Find information on Scholarships and work study" src="images/icon-scholarship.png"/>
+							<br/>
+							<span class="sr-only">Read more about </span>
+							Scholarships
+						</a>
+					</div>
+														
+			
+	
+																					<div class="col-6 col-md-2 text-center">
+						<a href="Admissions_Aid/Admissions/Veteran.html" target="_top">
+							<img alt="Information on Veteran's Administration and college processes" src="images/icon-veteran.png"/>
+							<br/>
+							<span class="sr-only">Read more about </span>
+							Veteran Services
+						</a>
+					</div>
+														
+			
+	
+																					<div class="col-6 col-md-2 text-center">
+						<a href="Business/PmtOptDis/payment-options.html" target="_top">
+							<img alt="Payment Options for tuition and fees page" src="images/icon-pay-plan.png"/>
+							<br/>
+							<span class="sr-only">Read more about </span>
+							Payment Plan
+						</a>
+					</div>
+							</div>
+				</div>
+			</div>
+					</div>
+		</div></section>
+								
+		<section><div class="white area">
+				<div class="container">
+							<div class="row">
+		<div class="col-lg-12">
+			<div class="feature-carousel">
+																												<div class="item">
+						<div class="inner-wrap">
+							<div class="media-wrap">
+								<img alt="Default image of the Hill College Logo" src="images/hc-logo.png"/>
+							</div>
+							<div class="content">
+								<h2>Board of Regents December 2026 Meeting Agenda</h2>
+								Agenda For the Regular Meeting of the Hill College Board of Regents
+To be held Tuesday, November ...
+								<p align="center" id="slick-slide00">
+									<a class="slide-button" href="https://www.hillcollege.edu/news/2026/11/Board of Regents December 2026 Meeting Agenda.html" target="_blank">Read More <span class="sr-only">about the article Board of Regents December 2026 Meeting Agenda</span></a>
+								</p>
+							</div>
+						</div>
+					</div>
+										
+																																							<div class="item">
+						<div class="inner-wrap">
+							<div class="media-wrap">
+								<img alt="Default image of the Hill College Logo" src="images/hc-logo.png"/>
+							</div>
+							<div class="content">
+								<h2>Program Spotlight: Hill College Cosmetology turns creativity into career opportunities </h2>
+								Hill College&#8217;s Cosmetology Program was featured during the October Board of Regents ...
+								<p align="center" id="slick-slide01">
+									<a class="slide-button" href="https://www.hillcollege.edu/news/2026/11/Program Spotlight Hill College Cosmetology turns creativity into career opportunities .html" target="_blank">Read More <span class="sr-only">about the article Program Spotlight: Hill College Cosmetology turns creativity into career opportunities </span></a>
+								</p>
+							</div>
+						</div>
+					</div>
+										
+																																							<div class="item">
+						<div class="inner-wrap">
+							<div class="media-wrap">
+								<img alt="Default image of the Hill College Logo" src="images/hc-logo.png"/>
+							</div>
+							<div class="content">
+								<h2>Hill College Students Earn 2026 American FFA Degrees </h2>
+								 For the second year in a row, two Hill College students, Ashlynn Martinolich and Travis ...
+								<p align="center" id="slick-slide02">
+									<a class="slide-button" href="https://www.hillcollege.edu/news/2026/11/Hill College Students Earn 2026 American FFA Degrees .html" target="_blank">Read More <span class="sr-only">about the article Hill College Students Earn 2026 American FFA Degrees </span></a>
+								</p>
+							</div>
+						</div>
+					</div>
+										
+																																							<div class="item">
+						<div class="inner-wrap">
+							<div class="media-wrap">
+								<img alt="Default image of the Hill College Logo" src="images/hc-logo.png"/>
+							</div>
+							<div class="content">
+								<h2>Hill College Partners with Lively Aviation to Offer Private Pilot Ground School </h2>
+								Hill College is partnering with Lively Aviation to offer private pilot ground school, providing ...
+								<p align="center" id="slick-slide03">
+									<a class="slide-button" href="https://www.hillcollege.edu/news/2026/10/Hill College Partners with Lively Aviation to Offer Private Pilot Ground School .html" target="_blank">Read More <span class="sr-only">about the article Hill College Partners with Lively Aviation to Offer Private Pilot Ground School </span></a>
+								</p>
+							</div>
+						</div>
+					</div>
+										
+																																							<div class="item">
+						<div class="inner-wrap">
+							<div class="media-wrap">
+								<img alt="Default image of the Hill College Logo" src="images/hc-logo.png"/>
+							</div>
+							<div class="content">
+								<h2>The Power of Starting Here: Reese Reynolds's Hill College Experience </h2>
+								For Reese Reynolds, choosing Hill College was a decision that changed the course of her future. ...
+								<p align="center" id="slick-slide04">
+									<a class="slide-button" href="https://www.hillcollege.edu/news/2026/10/The Power of Starting Here Reese Reynoldss Hill College Experience .html" target="_blank">Read More <span class="sr-only">about the article The Power of Starting Here: Reese Reynolds's Hill College Experience </span></a>
+								</p>
+							</div>
+						</div>
+					</div>
+										
+																																							<div class="item">
+						<div class="inner-wrap">
+							<div class="media-wrap">
+								<img alt="Default image of the Hill College Logo" src="images/hc-logo.png"/>
+							</div>
+							<div class="content">
+								<h2>Hill College welcomes UTA Jazz Orchestra for free performance  </h2>
+								
+Hill College will welcome the University of Texas at Arlington Jazz Orchestra to the Hill ...
+								<p align="center" id="slick-slide05">
+									<a class="slide-button" href="https://www.hillcollege.edu/news/2026/10/Hill College welcomes UTA Jazz Orchestra for free performance  .html" target="_blank">Read More <span class="sr-only">about the article Hill College welcomes UTA Jazz Orchestra for free performance  </span></a>
+								</p>
+							</div>
+						</div>
+					</div>
+					 			</div>
+		</div>
+	</div>
+					</div>
+		</div></section>
+											<section><div class="white ">
+				<div class="container">
+														
+			
+	
+																	  	  									<div class="row">
+		<div class="col-lg-12">
+				
+		<div id="webchat"></div>
+<script type="text/javascript">// <![CDATA[
+botClient.renderChat({
+  "targetId": "webchat"
+});
+// ]]></script>
+		</div>
+		</div>
+						</div>
+		</div></section>
+	
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+        <footer class="footer">
+            <div class="brandrow">
+<div class="container">
+<div class="row">
+<div class="col-md-12 text-center"><img alt="Hill College" height="74" src="images/hc-logo-foot2.svg" width="313"/></div>
+</div>
+</div>
+</div>
+<div class="toprow" role="contentinfo">
+<div class="container">
+<div class="row">
+<div class="d-none d-md-block col-md-3">
+<ul class="footer-links">
+<li><a href="About/Locations/index.html" title="Locations">Locations</a></li>
+<li><a href="Faculty_Staff/HR/Employment.html" title="Employment">Employment</a></li>
+<li><a href="About/HB2504.html" rel="noreferrer">HB2504</a></li>
+<li><a href="https://apps.highered.texas.gov/resumes/" rel="noopener noreferrer" target="_blank" title="Online Institutional Resume">Online Institutional Resume</a></li>
+<li><a href="Directory/index.html" rel="noopener noreferrer" target="_blank" title="Contact Us">Contact Us</a></li>
+<li><a href="Disclaimer.html" title="Nondiscrimination Statement">Nondiscrimination Statement</a></li>
+<li><a href="Faculty_Staff/HR/Title9.html" title="Title IX Contact">Title IX</a></li>
+<li><a href="https://form.jotform.com/80028865568164" title="Violence Anonymous Reporting Form">Sexual Misconduct/<br/>Violence Anonymous Reporting</a></li>
+</ul>
+</div>
+<div class="d-none d-md-block col-md-3">
+<ul class="footer-links">
+<li><a href="Calendars/Calendar26-27.html" rel="noreferrer">Academic Calendar</a></li>
+<li><a href="_Files/Final Exam Schedule.pdf" rel="noopener noreferrer" target="_blank" title="Final Exam Schedule">Final Exam Schedule</a></li>
+<li><a href="https://myhc.hillcollege.edu/ICS/Academics/Transcript_Requests.jnz" rel="noopener" target="_blank" title="Official Transcript Request">Official Transcript Request</a></li>
+<li><a href="Directory/EmpDir.html" title="Directory">Directory</a></li>
+<li><a href="CampusLife/PerformingArts/PASeries.html" title="Performing Arts Series">Performing Arts Series</a></li>
+<li><a href="https://pol.tasb.org/PolicyOnline?key=649" title="Policy Manual">Policy Manual</a></li>
+<li><a href="https://www.hillcollege.edu/news/index.html" title="News">News</a></li>
+<li><a href="Faculty_Staff/Marketing/VTOnline.html" title="Virtual Tour">Virtual Tour</a></li>
+<li><a href="Faculty_Staff/FacultyCouncil.html">Faculty Council</a></li>
+</ul>
+</div>
+<div class="d-none d-md-block col-md-3">
+<ul class="footer-links">
+<li><a href="Events/index.html" title="Events">Events</a></li>
+<li><a href="About/HB2504.html" rel="noreferrer" title="Syllabus Search">Syllabus Search</a></li>
+<li><a href="https://myhc.hillcollege.edu/ICS/Academics/Course_Schedule__Syllabus.jnz?portlet=Student_Registration&amp;screen=StudentRegistrationPortlet_CourseSearchView" rel="noopener noreferrer" target="_blank" title="Class Schedule">Class Schedule</a></li>
+<li><a href="Student/Catalog/Index.html" title="Catalog">Catalog</a></li>
+<li><a href="Business/index.html" title="Administrative Services">Administrative Services</a></li>
+<li><a href="Business/FinTrnsp.html" title="Financial Transparency">Financial Transparency</a></li>
+<li><a href="About/Reporting Fraud.html">Reporting Fraud</a></li>
+<li><a href="Faculty_Staff/IT/index.html" title="Information Technology and Learning Innovation">Information Technology and <br/>Learning Innovation</a></li>
+</ul>
+</div>
+<div class="d-block d-md-none col-6">
+<ul class="footer-links">
+<li><a href="About/Locations/index.html" title="Locations">Locations</a></li>
+<li><a href="Faculty_Staff/HR/Employment.html" title="Employment">Employment</a></li>
+<li><a href="About/HB2504.html" rel="noreferrer" title="HB2504">HB2504</a></li>
+<li><a href="https://apps.highered.texas.gov/resumes/" rel="noopener noreferrer" target="_blank" title="Online Institutional Resume">Online Institutional Resume</a></li>
+<li><a href="Directory/index.html" rel="noopener noreferrer" target="_blank" title="Contact Us">Contact Us</a></li>
+<li><a href="Calendars/Calendar26-27.html" rel="noreferrer">Academic Calendar</a></li>
+<li><a href="_Files/Final Exam Schedule.pdf" rel="noopener noreferrer" target="_blank" title="Final Exam Schedule">Final Exam Schedule</a></li>
+<li><a href="Disclaimer.html" title="Nondiscrimination Statement">Nondiscrimination Statement</a></li>
+<li><a href="Faculty_Staff/HR/Title9.html" title="Title IX Contact">Title IX</a></li>
+<li><a href="https://form.jotform.com/80028865568164" title="Violence Anonymous Reporting Form">Sexual Misconduct/<br/>Violence Anonymous Reporting</a></li>
+</ul>
+</div>
+<div class="d-block d-md-none col-6">
+<ul class="footer-links">
+<li><a href="https://myhc.hillcollege.edu/ICS/Academics/Transcript_Requests.jnz" rel="noopener" target="_blank" title="Official Transcript Request">Official Transcript Request</a></li>
+<li><a href="Directory/EmpDir.html" title="Directory">Directory</a></li>
+<li><a href="CampusLife/PerformingArts/PASeries.html">Performing Arts Series</a></li>
+<li><a href="https://pol.tasb.org/PolicyOnline?key=649">Policy Manual</a></li>
+<li><a href="https://www.hillcollege.edu/news/index.html">News</a></li>
+<li><a href="Faculty_Staff/Marketing/VTOnline.html" title="Virtual Tour">Virtual Tour</a></li>
+<li><a href="Events/index.html">Events</a></li>
+<li><a href="About/HB2504.html" rel="noreferrer">Syllabus Search</a></li>
+<li><a href="https://myhc.hillcollege.edu/ICS/Academics/Course_Schedule__Syllabus.jnz?portlet=Student_Registration&amp;screen=StudentRegistrationPortlet_CourseSearchView" rel="noopener noreferrer" target="_blank">Class Schedule</a></li>
+<li><a href="Student/Catalog/Index.html">Catalog</a></li>
+<li><a href="Business/index.html" title="Administrative Services">Administrative Services</a></li>
+<li><a href="Faculty_Staff/IT/index.html">Information Technology and <br/>Learning Innovation</a></li>
+</ul>
+</div>
+<div class="col-12 col-lg-3 gift-social"><!-- <a class="btn btn-footer" href="/About/Development/Dev-Index">Contribute</a>
+<p style="line-height: 1.5;">Your gift will provide students with scholarships to achieve their educational goals at Hill College.</p> -->
+<div class="social-icons"><img alt="Aspen Top 150 Colleges logo" height="175" src="images/aspen_150_logo.svg" width="154"/><br/><a href="https://twitter.com/HillCollege" title="Hill College Twitter Page"><span aria-hidden="true" class="fa-brands fa-square-x-twitter"></span><span class="sr-only">Link to the Twitter Page</span></a><a href="https://www.instagram.com/hillcollege" title="Hill College Instagram Page"><span aria-hidden="true" class="fa-brands fa-instagram"></span><span class="sr-only">Link to the Hill College Instagram Page</span></a><a href="https://www.facebook.com/hillcollege" title="Hill College Facebook Page"><span aria-hidden="true" class="fa-brands fa-square-facebook"></span><span class="sr-only">Link to the Hill College Facebook Page</span></a><a href="https://www.linkedin.com/edu/hill-college-32314" title="Hill College Linkedin Page"><span aria-hidden="true" class="fa-brands fa-linkedin"></span><span class="sr-only">Link to the Hill College Linkedin Page</span></a><a href="https://www.flickr.com/photos/hillcollege/albums" title="Hill College Flickr Page"><span aria-hidden="true" class="fa-brands fa-flickr"></span><span class="sr-only">Link to the Hill College Flickr Page</span></a><a class="lastIcon" href="https://www.youtube.com/user/HillCollegeRebels" title="Hill College Youtube Page"><span aria-hidden="true" class="fa-brands fa-square-youtube"></span> <span class="sr-only">Link to the Hill College Youtube Page</span></a></div>
+</div>
+</div>
+</div>
+</div>
+<div class="midrow">
+<div class="container">
+<div class="row">
+<div class="col-md-12">
+<ul class="bottom-links">
+<li tabindex="0"><a href="Accessibility/Accessibility.html">Accessibility</a></li>
+<li tabindex="0"><a href="Safety/Index.html">Campus Safety</a></li>
+<li tabindex="0"><a href="Safety/HealthWellness.html">Mental Health Resources</a></li>
+<li tabindex="0"><a href="sitemap.html">Sitemap</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="bottomrow">
+<div class="container">
+<div class="row">
+<div class="col-md-12 text-center address">112 Lamar Dr. Hillsboro, Texas 76645 | 254.659.7500 <br/>Copyright &#169; 2026 | Hill College | All rights reserved</div>
+</div>
+</div>
+</div>
+        </footer>
+        
+		
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-0L3T22349Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0L3T22349Q');
+</script>
+
+
+<script>window.gtranslateSettings = {"default_language":"en","languages":["en","es"],"wrapper_selector":".gtranslate_wrapper","horizontal_position":"right","vertical_position":"top","select_language_label":"Select language"}</script>
+<script src="https://cdn.gtranslate.net/widgets/latest/dropdown.js" defer></script>
+
+
+
+        	
+	<script src="https://hilbot.jenzabarcloud.com/bot/bot-configuration.js"></script>
+    <script src="https://hilbot.jenzabarcloud.com/bot/bot-client.js"></script>
+        
+        
+<script type="text/javascript">
+/*<![CDATA[*/
+(function() {
+ var sz = document.createElement('script'); sz.type = 'text/javascript'; sz.async = true;
+ sz.src = '//siteimproveanalytics.com/js/siteanalyze_16108.js';
+ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sz, s);
+})();
+/*]]>*/
+</script>
+
+        
+    </body>
+</html>

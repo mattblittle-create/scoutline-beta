@@ -1,0 +1,72 @@
+{
+  "slug": "lenoir-community-college",
+  "programId": "cmox237xp0072qtfkyq6d1rp1",
+  "collegeId": "cmox237x00070qtfkegjy06th",
+  "checkedAtUtc": "2026-11-18T14:43:35.101Z",
+  "sourcePath": "../njcaa-discovery-20261118/sources/lenoir-community-college-1.source",
+  "sourceSHA256": "6ed0ea0e0da1b16a496696343738c97ea061a60067c2687de81bbfda923fd697",
+  "sourceUrl": "https://www.lenoircc.edu/athletics/lancers-baseball/",
+  "socialLeads": [],
+  "recruitingLeads": [
+    {
+      "url": "https://www.lenoircc.edu/prospectiveathlete",
+      "label": "Prospective Student Athlete Form",
+      "context": "",
+      "kind": "QUESTIONNAIRE"
+    }
+  ],
+  "logoLeads": [
+    {
+      "url": "https://static.lenoircc.edu/uploads/2023/01/lancerheadwht.png",
+      "label": "responsive-image"
+    },
+    {
+      "url": "https://static.lenoircc.edu/uploads/2025/07/LCC-Logo-White-Transparent1.png",
+      "label": "Lenoir Community College Home fusion-standard-logo"
+    }
+  ],
+  "captures": [
+    {
+      "requestedUrl": "https://www.lenoircc.edu/prospectiveathlete",
+      "kind": "QUESTIONNAIRE",
+      "status": 200,
+      "finalUrl": "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=6oWec3enZEC9voWRTxXotdXo9AGe_NNIlX2IGdt85gRURjMxWjVWU0c2VllYVlRaNU9KRVBHM1gzQSQlQCN0PWcu",
+      "sourcePath": "../njcaa-core-review-20261118/sources/lenoir-community-college-3.source",
+      "sha256": "c226e3691365e36a0497c41831798b2b773725bd1dc9b2dade548c4a13e13f0d",
+      "reusedEvidence": true
+    },
+    {
+      "requestedUrl": "https://static.lenoircc.edu/uploads/2023/01/lancerheadwht.png",
+      "kind": "LOGO_ASSET",
+      "status": 200,
+      "finalUrl": "https://static.lenoircc.edu/uploads/2023/01/lancerheadwht.png",
+      "contentType": "image/png",
+      "sourcePath": "sources/lenoir-community-college-1.source",
+      "sha256": "5e3e04568938f148f1c9774bf32bd16af6c89438a2a45c0f7d1942727ae839b2",
+      "decoded": {
+        "format": "png",
+        "width": 72,
+        "height": 64
+      },
+      "assetDecoded": true
+    },
+    {
+      "requestedUrl": "https://static.lenoircc.edu/uploads/2025/07/LCC-Logo-White-Transparent1.png",
+      "kind": "LOGO_ASSET",
+      "status": 200,
+      "finalUrl": "https://static.lenoircc.edu/uploads/2025/07/LCC-Logo-White-Transparent1.png",
+      "contentType": "image/png",
+      "sourcePath": "sources/lenoir-community-college-2.source",
+      "sha256": "60869f3ba1694f12db86fe64f7acd2542e798df3127e5f8ccf7fca34e425df8b",
+      "decoded": {
+        "format": "png",
+        "width": 260,
+        "height": 80
+      },
+      "assetDecoded": true
+    }
+  ],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED"
+}

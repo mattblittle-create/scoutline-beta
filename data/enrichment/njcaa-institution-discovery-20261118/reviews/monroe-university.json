@@ -1,0 +1,44 @@
+{
+  "slug": "monroe-university",
+  "name": "Monroe University",
+  "collegeId": "cmox1gicg007cqtsg99jv080v",
+  "programId": "cmox1gid5007eqtsg6twf0qjo",
+  "storedState": "NY",
+  "storedDivision": "NJCAA_D1",
+  "directoryMatch": {
+    "unitid": "193308",
+    "name": "Monroe University",
+    "aliases": [],
+    "state": "NY",
+    "city": "Bronx",
+    "host": "monroecollege.edu",
+    "decision": "UNIQUE_EXACT_NAME_OR_ALIAS_AND_STATE_DISCOVERY_LEAD_ONLY"
+  },
+  "directoryMatchStatus": "DISCOVERY_LEAD_NOT_CURRENT_CAMPUS_VERIFIED",
+  "needsHeadCoach": true,
+  "needs2027Roster": true,
+  "newPagesAttempted": 1,
+  "pages": [
+    {
+      "requestedUrl": "https://monroecollege.edu/",
+      "checkedAtUtc": "2026-11-18T16:20:14.440Z",
+      "status": "FAILED",
+      "errorType": "Error",
+      "kind": "INSTITUTIONAL_DIRECTORY_HOST_LEAD",
+      "parent": {
+        "sourcePath": "../../geography/us-college-locations-ipeds2024.json",
+        "unitid": "193308",
+        "publishedName": "Monroe University",
+        "state": "NY",
+        "city": "Bronx"
+      }
+    }
+  ],
+  "unfetchedPublishedLeads": [],
+  "publishedLeads": [],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "campusIdentityReviewRequired": true,
+  "currentMembershipVerified": false,
+  "importApproval": "NOT_GRANTED"
+}

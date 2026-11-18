@@ -1,0 +1,93 @@
+{
+  "slug": "eastern-oklahoma-state-college",
+  "programId": "cmox1ggj7003hqtsghqgfoki0",
+  "collegeId": "cmox1ggii003fqtsgde85zy4y",
+  "checkedAtUtc": "2026-11-18T14:43:30.391Z",
+  "sourcePath": "../njcaa-core-review-20261118/sources/eastern-oklahoma-state-college-0.source",
+  "sourceSHA256": "f29c0f6df769c885b451bf26fac77f523f8a3840baba52403bb479fab95233a5",
+  "sourceUrl": "https://www.eoscathletics.com/sports/bsb/index",
+  "socialLeads": [
+    {
+      "url": "https://www.instagram.com/eosc_baseball/",
+      "label": "Instagram",
+      "context": "Men's Baseball Instagram",
+      "kind": "HTML"
+    },
+    {
+      "url": "https://twitter.com/EOSC_Baseball",
+      "label": "Twitter",
+      "context": "Men's Baseball Twitter",
+      "kind": "HTML"
+    }
+  ],
+  "recruitingLeads": [
+    {
+      "url": "https://www.eoscathletics.com/recruiting/baseball_recruiting_form",
+      "label": "Baseball Recruiting Form",
+      "context": "Recruits: Baseball Recruiting Form",
+      "kind": "QUESTIONNAIRE"
+    },
+    {
+      "url": "https://www.eoscathletics.com/recruiting/women_soccer_recruiting_form",
+      "label": "Women's Soccer Recruiting Form",
+      "context": "Recruits: Women's Soccer Recruiting Form",
+      "kind": "QUESTIONNAIRE"
+    },
+    {
+      "url": "https://www.playnsports.com/event/eastern-oklahoma-state-baseball-prospect-camp-with-trackman-data-2/",
+      "label": "Baseball Camps",
+      "context": "Camps: Baseball Camps",
+      "kind": "CAMP"
+    },
+    {
+      "url": "https://www.easternsoccercamps.com/",
+      "label": "Women's Soccer Camps",
+      "context": "Camps: Women's Soccer Camps",
+      "kind": "CAMP"
+    }
+  ],
+  "logoLeads": [
+    {
+      "url": "https://www.eoscathletics.com/images/setup-redesign/Primary_Logo-0-3x.png",
+      "label": "undefined"
+    }
+  ],
+  "captures": [
+    {
+      "requestedUrl": "https://www.eoscathletics.com/recruiting/baseball_recruiting_form",
+      "kind": "QUESTIONNAIRE",
+      "status": "HELD_ACCESS_NOT_RETRIED",
+      "finalUrl": "https://www.eoscathletics.com/recruiting/baseball_recruiting_form"
+    },
+    {
+      "requestedUrl": "https://www.eoscathletics.com/recruiting/women_soccer_recruiting_form",
+      "kind": "QUESTIONNAIRE",
+      "status": "HELD_ACCESS_NOT_RETRIED",
+      "finalUrl": "https://www.eoscathletics.com/recruiting/women_soccer_recruiting_form"
+    },
+    {
+      "requestedUrl": "https://www.playnsports.com/event/eastern-oklahoma-state-baseball-prospect-camp-with-trackman-data-2/",
+      "kind": "CAMP",
+      "status": 200,
+      "finalUrl": "https://www.playnsports.com/event/eastern-oklahoma-state-baseball-prospect-camp-with-trackman-data-2/",
+      "contentType": "text/html; charset=UTF-8",
+      "sourcePath": "sources/eastern-oklahoma-state-college-2.source",
+      "sha256": "97278be51bd0db9320ff0f1be956e72badf24e91ae3e093b8e5bacbca68da7c4"
+    },
+    {
+      "requestedUrl": "https://www.easternsoccercamps.com/",
+      "kind": "CAMP",
+      "status": "FAILED",
+      "errorType": "TypeError"
+    },
+    {
+      "requestedUrl": "https://www.eoscathletics.com/images/setup-redesign/Primary_Logo-0-3x.png",
+      "kind": "LOGO_ASSET",
+      "status": "HELD_ACCESS_NOT_RETRIED",
+      "finalUrl": "https://www.eoscathletics.com/images/setup-redesign/Primary_Logo-0-3x.png"
+    }
+  ],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED"
+}

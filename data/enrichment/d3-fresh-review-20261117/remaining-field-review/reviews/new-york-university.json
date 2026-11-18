@@ -1,0 +1,2408 @@
+{
+  "slug": "new-york-university",
+  "collegeId": "cmovortuq00giqt7gtidu6e1m",
+  "programId": "cmovortvg00gkqt7gb7h9w9xr",
+  "checkedAtUtc": "2026-11-17T20:36:50.045Z",
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED",
+  "missingFields": [
+    "rosterUrl",
+    "scheduleUrl",
+    "questionnaireUrl",
+    "campsUrl",
+    "generalContactEmail"
+  ],
+  "pages": [
+    {
+      "requestedUrl": "https://gonyuathletics.com/sports/baseball",
+      "kind": "baseball-home",
+      "parent": null,
+      "status": 200,
+      "finalUrl": "https://gonyuathletics.com/sports/baseball",
+      "sourcePath": "../sources/new-york-university-1.html",
+      "sha256": "c98432e6c176b4d7ef01a3aa8559c4b20f60a539b33821cab694146c0d2cbda4",
+      "reusedEvidence": true,
+      "originalCheckedAtUtc": "2026-11-17T17:24:31.926Z",
+      "parsed": {
+        "title": "Baseball - NYU Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "NYU Athletics",
+          "Main Navigation Menu",
+          "Sport Navigation Menu",
+          "Top Stories",
+          "Events",
+          "Videos",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://gonyuathletics.com/staff-directory",
+            "label": "Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/calendar?vtype=list&preset=current",
+            "label": "Composite Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/NYU_Baseball",
+            "label": "Baseball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/nyubaseball",
+            "label": "Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/baseball/schedule",
+            "label": "Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/nyumenshoops",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/nyumenshoops",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/nyuxctf",
+            "label": "Cross Country: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/nyuxctf",
+            "label": "Cross Country: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/nyu_fencing",
+            "label": "Fencing: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/nyufencing",
+            "label": "Fencing: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-fencing/schedule",
+            "label": "Fencing: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-fencing/roster",
+            "label": "Fencing: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/NYU_MGolf",
+            "label": "Golf: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/nyugolf_official",
+            "label": "Golf: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/nyumenssoccer",
+            "label": "Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/nyumenssoccer",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/NYUSwimDive",
+            "label": "Swimming & Diving: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/nyuswimdive",
+            "label": "Swimming & Diving: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-swimming-diving/schedule",
+            "label": "Swimming & Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-swimming-diving/roster",
+            "label": "Swimming & Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/nyutennis",
+            "label": "Tennis: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/nyutennis",
+            "label": "Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-track-field/schedule",
+            "label": "Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-track-field/roster",
+            "label": "Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/NYUMensVolley",
+            "label": "Volleyball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/nyumensvolley",
+            "label": "Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/NYUWrestling",
+            "label": "Wrestling: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/nyuwrestling",
+            "label": "Wrestling: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/wrestling/schedule",
+            "label": "Wrestling: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/wrestling/roster",
+            "label": "Wrestling: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/nyuwomenshoops",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/nyuwomenshoops",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-fencing/schedule",
+            "label": "Fencing: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-fencing/roster",
+            "label": "Fencing: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/NYU_WGolf",
+            "label": "Golf: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/nyuwomenssoccer",
+            "label": "Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/nyuwomenssoccer",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/NYUSoftball",
+            "label": "Softball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/nyusoftball",
+            "label": "Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-swimming-diving/schedule",
+            "label": "Swimming & Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-swimming-diving/roster",
+            "label": "Swimming & Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/NYUtennis",
+            "label": "Tennis: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/nyuwomenstennis",
+            "label": "Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-track-field/schedule",
+            "label": "Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-track-field/roster",
+            "label": "Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/nyuwomensvolley",
+            "label": "Volleyball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/nyuwomensvolley",
+            "label": "Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/2008/8/20/recruitquestionnaire.aspx",
+            "label": "Recruiting Questionnaires",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://gonyuathletics.com/sports/baseball/schedule",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/new-york-university-1.html",
+        "sha256": "c98432e6c176b4d7ef01a3aa8559c4b20f60a539b33821cab694146c0d2cbda4",
+        "url": "https://gonyuathletics.com/sports/baseball/schedule",
+        "label": "Baseball: Schedule"
+      },
+      "status": 200,
+      "finalUrl": "https://gonyuathletics.com/sports/baseball/schedule",
+      "checkedAtUtc": "2026-11-17T20:36:50.857Z",
+      "sourcePath": "sources/new-york-university-1.html",
+      "sha256": "4645fa6d1ffb70dd186b15756dec019946f929d826dd47cf51c6098e9e580824",
+      "parsed": {
+        "title": "2026 Baseball Schedule - NYU Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "NYU Athletics",
+          "Main Navigation Menu",
+          "Sport Navigation Menu",
+          "2026 Baseball Schedule",
+          "Season Records",
+          "Scheduled Games",
+          "Related Videos",
+          "Related Headlines",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://gonyuathletics.com/sports/baseball/schedule",
+            "label": "Skip To Main Content",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory",
+            "label": "Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/calendar?vtype=list&preset=current",
+            "label": "Composite Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/NYU_Baseball",
+            "label": "Baseball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/nyubaseball",
+            "label": "Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/nyumenshoops",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/nyumenshoops",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/nyuxctf",
+            "label": "Cross Country: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/nyuxctf",
+            "label": "Cross Country: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/nyu_fencing",
+            "label": "Fencing: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/nyufencing",
+            "label": "Fencing: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-fencing/schedule",
+            "label": "Fencing: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-fencing/roster",
+            "label": "Fencing: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/NYU_MGolf",
+            "label": "Golf: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/nyugolf_official",
+            "label": "Golf: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/nyumenssoccer",
+            "label": "Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/nyumenssoccer",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/NYUSwimDive",
+            "label": "Swimming & Diving: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/nyuswimdive",
+            "label": "Swimming & Diving: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-swimming-diving/schedule",
+            "label": "Swimming & Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-swimming-diving/roster",
+            "label": "Swimming & Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/nyutennis",
+            "label": "Tennis: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/nyutennis",
+            "label": "Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-track-field/schedule",
+            "label": "Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-track-field/roster",
+            "label": "Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/NYUMensVolley",
+            "label": "Volleyball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/nyumensvolley",
+            "label": "Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/NYUWrestling",
+            "label": "Wrestling: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/nyuwrestling",
+            "label": "Wrestling: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/wrestling/schedule",
+            "label": "Wrestling: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/wrestling/roster",
+            "label": "Wrestling: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/nyuwomenshoops",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/nyuwomenshoops",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-fencing/schedule",
+            "label": "Fencing: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-fencing/roster",
+            "label": "Fencing: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/NYU_WGolf",
+            "label": "Golf: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/nyuwomenssoccer",
+            "label": "Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/nyuwomenssoccer",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/NYUSoftball",
+            "label": "Softball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/nyusoftball",
+            "label": "Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-swimming-diving/schedule",
+            "label": "Swimming & Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-swimming-diving/roster",
+            "label": "Swimming & Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/NYUtennis",
+            "label": "Tennis: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/nyuwomenstennis",
+            "label": "Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-track-field/schedule",
+            "label": "Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-track-field/roster",
+            "label": "Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/nyuwomensvolley",
+            "label": "Volleyball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/nyuwomensvolley",
+            "label": "Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/2008/8/20/recruitquestionnaire.aspx",
+            "label": "Recruiting Questionnaires",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/baseball/schedule?print=true",
+            "label": "Print Print this page",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/baseball/schedule/2026?grid=true",
+            "label": "Grid Switch to Grid View",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/services/schedule_txt.ashx?schedule=545",
+            "label": "Text Text Format For Braille (New Tab)",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://gonyuathletics.com/staff-directory",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/new-york-university-1.html",
+        "sha256": "c98432e6c176b4d7ef01a3aa8559c4b20f60a539b33821cab694146c0d2cbda4",
+        "url": "https://gonyuathletics.com/staff-directory",
+        "label": "Staff Directory"
+      },
+      "status": 200,
+      "finalUrl": "https://gonyuathletics.com/staff-directory",
+      "checkedAtUtc": "2026-11-17T20:36:51.069Z",
+      "sourcePath": "sources/new-york-university-2.html",
+      "sha256": "900247280d6a977300847fb2db0aa0cfed98958097054e07a05ee0b5da2bc181",
+      "parsed": {
+        "title": "Staff Directory - NYU Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "NYU Athletics",
+          "Main Navigation Menu",
+          "Staff Directory",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://gonyuathletics.com/staff-directory",
+            "label": "Skip To Main Content",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/calendar?vtype=list&preset=current",
+            "label": "Composite Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/NYU_Baseball",
+            "label": "Baseball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/nyubaseball",
+            "label": "Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/baseball/schedule",
+            "label": "Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/nyumenshoops",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/nyumenshoops",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/nyuxctf",
+            "label": "Cross Country: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/nyuxctf",
+            "label": "Cross Country: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/nyu_fencing",
+            "label": "Fencing: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/nyufencing",
+            "label": "Fencing: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-fencing/schedule",
+            "label": "Fencing: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-fencing/roster",
+            "label": "Fencing: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/NYU_MGolf",
+            "label": "Golf: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/nyugolf_official",
+            "label": "Golf: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/nyumenssoccer",
+            "label": "Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/nyumenssoccer",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/NYUSwimDive",
+            "label": "Swimming & Diving: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/nyuswimdive",
+            "label": "Swimming & Diving: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-swimming-diving/schedule",
+            "label": "Swimming & Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-swimming-diving/roster",
+            "label": "Swimming & Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/nyutennis",
+            "label": "Tennis: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/nyutennis",
+            "label": "Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-track-field/schedule",
+            "label": "Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-track-field/roster",
+            "label": "Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/NYUMensVolley",
+            "label": "Volleyball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/nyumensvolley",
+            "label": "Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/NYUWrestling",
+            "label": "Wrestling: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/nyuwrestling",
+            "label": "Wrestling: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/wrestling/schedule",
+            "label": "Wrestling: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/wrestling/roster",
+            "label": "Wrestling: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/nyuwomenshoops",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/nyuwomenshoops",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-fencing/schedule",
+            "label": "Fencing: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-fencing/roster",
+            "label": "Fencing: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/NYU_WGolf",
+            "label": "Golf: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/nyuwomenssoccer",
+            "label": "Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/nyuwomenssoccer",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/NYUSoftball",
+            "label": "Softball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/nyusoftball",
+            "label": "Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-swimming-diving/schedule",
+            "label": "Swimming & Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-swimming-diving/roster",
+            "label": "Swimming & Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/NYUtennis",
+            "label": "Tennis: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/nyuwomenstennis",
+            "label": "Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-track-field/schedule",
+            "label": "Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-track-field/roster",
+            "label": "Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/nyuwomensvolley",
+            "label": "Volleyball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/nyuwomensvolley",
+            "label": "Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/2008/8/20/recruitquestionnaire.aspx",
+            "label": "Recruiting Questionnaires",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory?print=true",
+            "label": "Print",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/jake-olkkola/715",
+            "label": "Jake Olkkola Jake Olkkola, ADMINISTRATIVE STAFF, Director of Athletics, Intramurals, and Recreation",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/janice-quinn/7",
+            "label": "Janice Quinn Janice Quinn, ADMINISTRATIVE STAFF, Deputy Athletic Director/Senior Womens Administrator",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/dominick-ciaccia/37",
+            "label": "Dominick Ciaccia Dominick Ciaccia, ADMINISTRATIVE STAFF, Senior Associate Athletic Director for Varsity Facilities and Capital Projects",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/matt-huck/221",
+            "label": "Matt Huck Matt Huck, ADMINISTRATIVE STAFF, Senior Associate Athletic Director for Recreation",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/malik-williams/673",
+            "label": "Malik Williams Malik Williams, ADMINISTRATIVE STAFF, Associate Director of Athletics for Compliance and Policy",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/nikki-webb/789",
+            "label": "Nikki Webb Nikki Webb, ADMINISTRATIVE STAFF, Associate Athletic Director for Student-Athlete Health and Performance",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/devin-roban/335",
+            "label": "Devin Roban Devin Roban, ADMINISTRATIVE STAFF, Assistant Athletic Director for Intramurals, Club Sports & Recreation",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/michele-canning/293",
+            "label": "Michele Canning Michele Canning, ADMINISTRATIVE STAFF, Assistant Athletic Director for Strategic Initiatives and Student Development",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/jeffrey-bernstein/9",
+            "label": "Jeffrey Bernstein Jeffrey Bernstein, ADMINISTRATIVE STAFF, Assistant Athletic Director for Communications",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/myles-rudnick/714",
+            "label": "Myles Rudnick Myles Rudnick, ADMINISTRATIVE STAFF, Assistant Athletic Director for Business Operations/Business Manager",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/matthew-devens/374",
+            "label": "Matthew Devens Matthew Devens, ADMINISTRATIVE STAFF, Assistant Athletic Director for Sports Medicine, Head Athletic Trainer",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/hunter-remley/828",
+            "label": "Hunter Remley Hunter Remley, ADMINISTRATIVE STAFF, Assistant Director for Varsity and Special Events",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/jonathan-skidmore/719",
+            "label": "Jonathan Skidmore Jonathan Skidmore, ADMINISTRATIVE STAFF, Senior Director of Development, University Life and Athletics",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/kirsten-kiki-zeise/716",
+            "label": "Kirsten \"Kiki\" Zeise Kirsten Kiki Zeise, ADMINISTRATIVE STAFF, Assistant Director for Alumni Relations",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/elizabeth-miller/12",
+            "label": "Elizabeth Miller Elizabeth Miller, ADMINISTRATIVE STAFF, Assistant to the Director",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/gina-antoniello/804",
+            "label": "Gina Antoniello Gina Antoniello, ADMINISTRATIVE STAFF, Faculty Athletics Representative",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/dr-dennis-cardone/811",
+            "label": "Dr. Dennis Cardone Dr. Dennis Cardone, PERFORMANCE ELEVATION TEAM, Head Team Physician",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/holly-crane/794",
+            "label": "Holly Crane Holly Crane, PERFORMANCE ELEVATION TEAM, Athletic Performance Head Coach/Strength & Conditioning",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/paige-leonard/813",
+            "label": "Paige Leonard Paige Leonard, PERFORMANCE ELEVATION TEAM, Performance Science/Data Analytics",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/daniel-cerquera/613",
+            "label": "Daniel Cerquera Daniel Cerquera, PERFORMANCE ELEVATION TEAM, Athletic Trainer",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/morgan-church/771",
+            "label": "Morgan Church Morgan Church, PERFORMANCE ELEVATION TEAM, Athletic Trainer",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/avital-liberzon/776",
+            "label": "Avital Liberzon Avital Liberzon, PERFORMANCE ELEVATION TEAM, Athletic Trainer",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/t-owens/725",
+            "label": "T. Owens T. Owens, PERFORMANCE ELEVATION TEAM, Athletic Trainer",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/grace-sperrazza/806",
+            "label": "Grace Sperrazza Grace Sperrazza, PERFORMANCE ELEVATION TEAM, Athletic Trainer",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/cemi-abreu/797",
+            "label": "Cemi Abreu Cemi Abreu, PERFORMANCE ELEVATION TEAM, Athletic Trainer",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/ashley-robbins/770",
+            "label": "Ashley Robbins Ashley Robbins, PERFORMANCE ELEVATION TEAM, Athletic Trainer",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/max-grzymala/795",
+            "label": "Max Grzymala Max Grzymala, PERFORMANCE ELEVATION TEAM, Athletic Performance Coach/Strength & Conditioning",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/patrick-ortiz/805",
+            "label": "Patrick Ortiz Patrick Ortiz, PERFORMANCE ELEVATION TEAM, Athletic Performance Coach/Strength & Conditioning",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/lily-dean/808",
+            "label": "Lily Dean Lily Dean, PERFORMANCE ELEVATION TEAM, Mental Performance Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/amanda-fazio/809",
+            "label": "Amanda Fazio Amanda Fazio, PERFORMANCE ELEVATION TEAM, Mental Performance Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/ari-miller/756",
+            "label": "Ari Miller Ari Miller, PERFORMANCE ELEVATION TEAM, Mental Performance Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/reed-steele/812",
+            "label": "Reed Steele Reed Steele, PERFORMANCE ELEVATION TEAM, Mental Performance Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/kelly-jones/810",
+            "label": "Kelly Jones Kelly Jones, PERFORMANCE ELEVATION TEAM, Performance Dietitian",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/emily-kaley/807",
+            "label": "Emily Kaley Emily Kaley, PERFORMANCE ELEVATION TEAM, Performance Dietitian",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/dr-neena-mathew/681",
+            "label": "Dr. Neena Mathew Dr. Neena Mathew, PERFORMANCE ELEVATION TEAM, Sports Psychologist",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/andrew-nesci/413",
+            "label": "Andrew Nesci Andrew Nesci, ATHLETIC COMMUNICATIONS & CREATIVE SERVICES, Brand Manager",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/john-wagoner/751",
+            "label": "John Wagoner John Wagoner, ATHLETIC COMMUNICATIONS & CREATIVE SERVICES, Assistant Manager - Social Media, Communications",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/kieran-cantwell/796",
+            "label": "Kieran Cantwell Kieran Cantwell, ATHLETIC COMMUNICATIONS & CREATIVE SERVICES, Assistant Communications Manager",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/abby-conrad/830",
+            "label": "Abby Conrad Abby Conrad, ALUMNI RELATIONS & ATHLETIC DEVELOPMENT, Assistant Director of Development",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/margie-mandels/19",
+            "label": "Margie Mandels Margie Mandels, BUSINESS OFFICE, Assistant Business Manager",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/cindi-king/22",
+            "label": "Cindi King Cindi King, BUSINESS OFFICE, Administrative Aide",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/annette-maysonette/20",
+            "label": "Annette Maysonette Annette Maysonette, BUSINESS OFFICE, Administrative Aide",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/yaridis-rimolo/708",
+            "label": "Yaridis Rimolo Yaridis Rimolo, BUSINESS OFFICE, Administrative Aide",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/matt-huck/221",
+            "label": "Matt Huck Matt Huck, CAMPUS RECREATION, Senior Associate Athletic Director for Recreation",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/devin-roban/335",
+            "label": "Devin Roban Devin Roban, CAMPUS RECREATION, Assistant Athletic Director for Intramurals, Club Sports & Recreation",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/ronald-morales/631",
+            "label": "Ronald Morales Ronald Morales, CAMPUS RECREATION, Assistant Athletic Director - 404 Fitness",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/kira-keegstra/21",
+            "label": "Kira Keegstra Kira Keegstra, CAMPUS RECREATION, Recreation Coordinator - Aquatics and Fitness",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/alex-dalhausser/644",
+            "label": "Alex Dalhausser Alex Dalhausser, CAMPUS RECREATION, Recreation Coordinator - Club Sports",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/philip-cavallo/642",
+            "label": "Philip Cavallo Philip Cavallo, CAMPUS RECREATION, Recreation Coordinator - Club Sports and Esports",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/benjamin-latorre/582",
+            "label": "Benjamin Latorre Benjamin Latorre, CAMPUS RECREATION, Facility Operations Manager - Brooklyn",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/zakaria-berkane/672",
+            "label": "Zakaria Berkane Zakaria Berkane, CAMPUS RECREATION, Facility Operations Manager - 404 Fitness",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/nikola-mandic/721",
+            "label": "Nikola Mandic Nikola Mandic, CAMPUS RECREATION, Facility/Events Supervisor - 404 Fitness",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/lynsey-duverglas/636",
+            "label": "Lynsey Duverglas Lynsey Duverglas, CAMPUS RECREATION, Administrative Aide - Recreation",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/shay-branch-el-vielot/498",
+            "label": "Shay Branch-El-Vielot Shay Branch-El-Vielot , EQUIPMENT ROOM, Equipment Room Manager",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/darren-baptiste/29",
+            "label": "Darren Baptiste Darren Baptiste, EQUIPMENT ROOM, Equipment Room & Retail Sales Assistant",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/rafael-ortiz/621",
+            "label": "Rafael Ortiz Rafael Ortiz, EQUIPMENT ROOM, Equipment Room & Retail Sales Assistant",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/ethan-andersen/670",
+            "label": "Ethan Andersen Ethan Andersen, EQUIPMENT ROOM, Equipment Room & Retail Sales Assistant",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/george-cormane/726",
+            "label": "George Cormane George Cormane, EQUIPMENT ROOM, Equipment Room & Retail Sales Assistant",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/general-information/695",
+            "label": "General Information General Information, EQUIPMENT ROOM, Paulson Equipment Room",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/general-information/696",
+            "label": "General Information General Information, EQUIPMENT ROOM, Palladium Equipment Room",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/craven-wright/628",
+            "label": "Craven Wright Craven Wright, EVENTS & MARKETING, Events & Marketing Manager",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/nicholas-ducheine/630",
+            "label": "Nicholas Ducheine Nicholas Ducheine, EVENTS & MARKETING, Events & Marketing Manager",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/adam-fazlee/720",
+            "label": "Adam Fazlee Adam Fazlee, EVENTS & MARKETING, Events and Marketing Manager",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/steve-herishen/80",
+            "label": "Steve Herishen Steve Herishen, PAULSON/PALLADIUM OPERATIONS, Assistant Athletic Director - John A. Paulson Center",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/dan-vogel/583",
+            "label": "Dan Vogel Dan Vogel, PAULSON/PALLADIUM OPERATIONS, Assistant Athletic Director - Palladium",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/damian-driver/77",
+            "label": "Damian Driver Damian Driver, PAULSON/PALLADIUM OPERATIONS, Facility Operations Manager - Palladium",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/chase-nixon/634",
+            "label": "Chase Nixon Chase Nixon, PAULSON/PALLADIUM OPERATIONS, Facility Operations Manager - John A. Paulson Center",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/nicole-bula/826",
+            "label": "Nicole Bula Nicole Bula, PAULSON/PALLADIUM OPERATIONS, Facility and Event Supervisor - John A. Paulson Center",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/alex-hernandez/616",
+            "label": "Alex Hernandez Alex Hernandez, INFORMATION TECHNOLOGIES, Network Administrator",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/rose-bowen/440",
+            "label": "Rose Bowen Rose Bowen, NATATORIUM, Natatorium Manager",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/todd-kolean/187",
+            "label": "Todd Kolean Todd Kolean, NATATORIUM, Head Diving Coach/Natatorium Manager - Palladium",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/ryan-westman/504",
+            "label": "Ryan Westman Ryan Westman, OFFICE OF STUDENT-ATHLETE EXCELLENCE, Director of Academic and Student-Athlete Support Services & Compliance Officer",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/mindy-reger/543",
+            "label": "Mindy Reger Mindy Reger, OFFICE OF STUDENT-ATHLETE EXCELLENCE, Associate Director of Academic and Student-Athlete Support Services",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/marissa-muoio/787",
+            "label": "Marissa Muoio Marissa Muoio, OFFICE OF STUDENT-ATHLETE EXCELLENCE, Academic and Program Administrator",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/caroline-quan/4",
+            "label": "Caroline Quan Caroline Quan, OFFICE OF STUDENT-ATHLETE EXCELLENCE, Administrative Aide II",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/doug-kimbler/371",
+            "label": "Doug Kimbler Doug Kimbler, BASEBALL, Head Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/frank-delgado/615",
+            "label": "Frank Delgado Frank Delgado, BASEBALL, Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/ryan-ruddy/743",
+            "label": "Ryan Ruddy Ryan Ruddy, BASEBALL, Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/zach-kirschner/788",
+            "label": "Zach Kirschner Zach Kirschner, BASEBALL, Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/waleed-farid/754",
+            "label": "Waleed Farid Waleed Farid, MENS BASKETBALL, Head Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/chris-thompson/624",
+            "label": "Chris Thompson Chris Thompson, MENS BASKETBALL, Associate Head Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/ethan-feldman/654",
+            "label": "Ethan Feldman Ethan Feldman, MENS BASKETBALL, Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/adam-anderson/766",
+            "label": "Adam Anderson Adam Anderson, MENS BASKETBALL, Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/connor-acton/774",
+            "label": "Connor Acton Connor Acton, MENS BASKETBALL, Manager",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/meg-barber/509",
+            "label": "Meg Barber Meg Barber, WOMENS BASKETBALL, Head Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/nettie-respondek/513",
+            "label": "Nettie Respondek Nettie Respondek, WOMENS BASKETBALL, Associate Head Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/annie-barrett/626",
+            "label": "Annie Barrett Annie Barrett, WOMENS BASKETBALL, Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/erin-strauss/820",
+            "label": "Erin Strauss Erin Strauss, WOMENS BASKETBALL, Director of Basketball Operations",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/selina-de-dios/817",
+            "label": "Selina de Dios Selina de Dios, WOMENS BASKETBALL, Manager",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/yinka-kruyswijk/819",
+            "label": "Yinka Kruyswijk Yinka Kruyswijk, WOMENS BASKETBALL, Manager",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/jamie-lac/818",
+            "label": "Jamie Lac Jamie Lac, WOMENS BASKETBALL, Manager",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/tyler-deck-shipley/579",
+            "label": "Tyler Deck Shipley Tyler Deck Shipley, MENS & WOMENS CROSS COUNTRY, Head Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/nic-jacobsen/757",
+            "label": "Nic Jacobsen Nic Jacobsen, MENS & WOMENS CROSS COUNTRY, Associate Head Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/john-trautmann/449",
+            "label": "John Trautmann John Trautmann, MENS & WOMENS CROSS COUNTRY, Assistant Coach (Distance)",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/joanna-thompson/602",
+            "label": "Joanna Thompson Joanna Thompson, MENS & WOMENS CROSS COUNTRY, Assistant Coach (Distance)",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/grace-richardson/728",
+            "label": "Grace Richardson Grace Richardson, MENS & WOMENS CROSS COUNTRY, Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/ben-bratton/593",
+            "label": "Ben Bratton Ben Bratton, MENS & WOMENS FENCING, Head Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/brian-kaneshige/648",
+            "label": "Brian Kaneshige Brian Kaneshige, MENS & WOMENS FENCING, Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/alex-sourimto/742",
+            "label": "Alex Sourimto Alex Sourimto, MENS & WOMENS FENCING, Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/yarik-ponomarenko/769",
+            "label": "Yarik Ponomarenko Yarik Ponomarenko, MENS & WOMENS FENCING, Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/jackie-dubrovich/816",
+            "label": "Jackie Dubrovich Jackie Dubrovich, MENS & WOMENS FENCING, Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/adam-rodney/739",
+            "label": "Adam Rodney Adam Rodney, MENS & WOMENS FENCING, Volunteer Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/brad-johnson/678",
+            "label": "Brad Johnson Brad Johnson, MENS & WOMENS GOLF, Head Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/daniel-moneymaker/680",
+            "label": "Daniel Moneymaker Daniel Moneymaker, MENS & WOMENS GOLF, Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/kim-wyant/422",
+            "label": "Kim Wyant Kim Wyant, MENS SOCCER, Head Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/joseph-ruesgen/445",
+            "label": "Joseph Ruesgen Joseph Ruesgen, MENS SOCCER, Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/max-kaplan/800",
+            "label": "Max Kaplan Max Kaplan, MENS SOCCER, Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/scott-waddell/674",
+            "label": "Scott Waddell Scott Waddell, WOMENS SOCCER, Head Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/nikki-driesse/576",
+            "label": "Nikki Driesse Nikki Driesse, WOMENS SOCCER, Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/carmen-proffitt/585",
+            "label": "Carmen Proffitt Carmen Proffitt, WOMENS SOCCER, Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/nathan-davis/801",
+            "label": "Nathan Davis Nathan Davis, WOMENS SOCCER, Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/nicole-bellini/727",
+            "label": "Nicole Bellini Nicole Bellini, SOFTBALL, Head Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/jen-richard/764",
+            "label": "Jen Richard Jen Richard, SOFTBALL, Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/rylea-sandel/790",
+            "label": "Rylea Sandel Rylea Sandel, SOFTBALL, Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/tonimarie-valeriano/792",
+            "label": "ToniMarie Valeriano ToniMarie Valeriano, SOFTBALL, Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/trevor-miele/315",
+            "label": "Trevor Miele Trevor Miele, MENS & WOMENS SWIMMING & DIVING, Head Swimming Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/teddy-cross/814",
+            "label": "Teddy Cross Teddy Cross, MENS & WOMENS SWIMMING & DIVING, Assistant Swimming Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/hank-browning/470",
+            "label": "Hank Browning Hank Browning, MENS & WOMENS SWIMMING & DIVING, Assistant Swimming Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/emma-reaney/584",
+            "label": "Emma Reaney Emma Reaney, MENS & WOMENS SWIMMING & DIVING, Assistant Swimming Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/derek-maas/724",
+            "label": "Derek Maas Derek Maas, MENS & WOMENS SWIMMING & DIVING, Assistant Swimming Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/issara-schmidt/793",
+            "label": "Issara Schmidt Issara Schmidt, MENS & WOMENS SWIMMING & DIVING, Assistant Diving Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/dillon-pottish/803",
+            "label": "Dillon Pottish Dillon Pottish, MENS & WOMENS TENNIS, Head Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/spencer-bozsik/815",
+            "label": "Spencer Bozsik Spencer Bozsik, MENS & WOMENS TENNIS, Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/ron-moreno/765",
+            "label": "Ron Moreno Ron Moreno, MENS & WOMENS TENNIS, Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/dylan-friedman/827",
+            "label": "Dylan Friedman Dylan Friedman, MENS & WOMENS TENNIS, Volunteer Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/chudi-ikpeazu/698",
+            "label": "Chudi Ikpeazu Chudi Ikpeazu, MENS & WOMENS TRACK & FIELD, Assistant Coach (Throws)",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/hazem-miawad/778",
+            "label": "Hazem Miawad Hazem Miawad, MENS & WOMENS TRACK & FIELD, Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/cedric-williams/713",
+            "label": "Cedric Williams Cedric Williams, MENS & WOMENS TRACK & FIELD, Volunteer Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/oliver-fideler/779",
+            "label": "Oliver Fideler Oliver Fideler, MENS & WOMENS TRACK & FIELD, Volunteer Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/jon-diaz/780",
+            "label": "Jon Diaz Jon Diaz, MENS & WOMENS TRACK & FIELD, Volunteer Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/matt-marcelo/781",
+            "label": "Matt Marcelo Matt Marcelo, MENS & WOMENS TRACK & FIELD, Volunteer Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/evan-sherman/782",
+            "label": "Evan Sherman Evan Sherman, MENS & WOMENS TRACK & FIELD, Volunteer Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/jose-pina/62",
+            "label": "Jose Pina Jose Pina, MENS VOLLEYBALL, Head Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/patrick-dietz/595",
+            "label": "Patrick Dietz Patrick Dietz, MENS VOLLEYBALL, Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/andrew-brown/499",
+            "label": "Andrew Brown Andrew Brown, WOMENS VOLLEYBALL, Head Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/angel-agu/798",
+            "label": "Angel Agu Angel Agu, WOMENS VOLLEYBALL, Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/rachel-bello/505",
+            "label": "Rachel Bello Rachel Bello, WOMENS VOLLEYBALL, Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/yooni-park/758",
+            "label": "Yooni Park Yooni Park, WOMENS VOLLEYBALL, Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/bruce-haberli/64",
+            "label": "Bruce Haberli Bruce Haberli, WRESTLING, Head Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/corey-luce/66",
+            "label": "Corey Luce Corey Luce, WRESTLING, Associate Head Coach/Recruiting Coordinator",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/nathan-pike/605",
+            "label": "Nathan Pike Nathan Pike, WRESTLING, Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/edgar-jaramillo/667",
+            "label": "Edgar Jaramillo Edgar Jaramillo, WRESTLING, Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/jason-geyer/734",
+            "label": "Jason Geyer Jason Geyer, WRESTLING, Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/matt-beyer/735",
+            "label": "Matt Beyer Matt Beyer, WRESTLING, Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/ty-finn/823",
+            "label": "Ty Finn Ty Finn, WRESTLING, Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/nick-sulzer/745",
+            "label": "Nick Sulzer Nick Sulzer, WRESTLING, Volunteer Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/benny-bautista/772",
+            "label": "Benny Bautista Benny Bautista, WRESTLING, Volunteer Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/staff-directory/mathew-cover/824",
+            "label": "Mathew Cover Mathew Cover, WRESTLING, Volunteer Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://gonyuathletics.com/calendar?vtype=list&preset=current",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "../sources/new-york-university-1.html",
+        "sha256": "c98432e6c176b4d7ef01a3aa8559c4b20f60a539b33821cab694146c0d2cbda4",
+        "url": "https://gonyuathletics.com/calendar?vtype=list&preset=current",
+        "label": "Composite Schedule"
+      },
+      "status": 200,
+      "finalUrl": "https://gonyuathletics.com/calendar?vtype=list&preset=current",
+      "checkedAtUtc": "2026-11-17T20:36:51.289Z",
+      "sourcePath": "sources/new-york-university-3.html",
+      "sha256": "e5256550a16ab6a658f4cf6029f8f9d1bd4a2c5e6fd78b0de2913ef813202346",
+      "parsed": {
+        "title": "Composite Schedule - NYU Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "NYU Athletics",
+          "Main Navigation Menu",
+          "Composite Calendar",
+          "Events for the week of",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://gonyuathletics.com/staff-directory",
+            "label": "Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://gonyuathletics.com/calendar?vtype=list&preset=current",
+            "label": "Composite Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/NYU_Baseball",
+            "label": "Baseball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/nyubaseball",
+            "label": "Baseball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/baseball/schedule",
+            "label": "Baseball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/baseball/roster",
+            "label": "Baseball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/nyumenshoops",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/nyumenshoops",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/nyuxctf",
+            "label": "Cross Country: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/nyuxctf",
+            "label": "Cross Country: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/nyu_fencing",
+            "label": "Fencing: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/nyufencing",
+            "label": "Fencing: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-fencing/schedule",
+            "label": "Fencing: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-fencing/roster",
+            "label": "Fencing: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/NYU_MGolf",
+            "label": "Golf: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/nyugolf_official",
+            "label": "Golf: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/nyumenssoccer",
+            "label": "Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/nyumenssoccer",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/NYUSwimDive",
+            "label": "Swimming & Diving: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/nyuswimdive",
+            "label": "Swimming & Diving: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-swimming-diving/schedule",
+            "label": "Swimming & Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-swimming-diving/roster",
+            "label": "Swimming & Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/nyutennis",
+            "label": "Tennis: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/nyutennis",
+            "label": "Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-track-field/schedule",
+            "label": "Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-track-field/roster",
+            "label": "Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/NYUMensVolley",
+            "label": "Volleyball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/nyumensvolley",
+            "label": "Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/mens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/NYUWrestling",
+            "label": "Wrestling: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/nyuwrestling",
+            "label": "Wrestling: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/wrestling/schedule",
+            "label": "Wrestling: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/wrestling/roster",
+            "label": "Wrestling: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/nyuwomenshoops",
+            "label": "Basketball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/nyuwomenshoops",
+            "label": "Basketball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-basketball/schedule",
+            "label": "Basketball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-basketball/roster",
+            "label": "Basketball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-cross-country/schedule",
+            "label": "Cross Country: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-cross-country/roster",
+            "label": "Cross Country: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-fencing/schedule",
+            "label": "Fencing: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-fencing/roster",
+            "label": "Fencing: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/NYU_WGolf",
+            "label": "Golf: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-golf/schedule",
+            "label": "Golf: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-golf/roster",
+            "label": "Golf: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/nyuwomenssoccer",
+            "label": "Soccer: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/nyuwomenssoccer",
+            "label": "Soccer: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-soccer/schedule",
+            "label": "Soccer: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-soccer/roster",
+            "label": "Soccer: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/NYUSoftball",
+            "label": "Softball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/nyusoftball",
+            "label": "Softball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/softball/schedule",
+            "label": "Softball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/softball/roster",
+            "label": "Softball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-swimming-diving/schedule",
+            "label": "Swimming & Diving: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-swimming-diving/roster",
+            "label": "Swimming & Diving: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/NYUtennis",
+            "label": "Tennis: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/nyuwomenstennis",
+            "label": "Tennis: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-tennis/schedule",
+            "label": "Tennis: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-tennis/roster",
+            "label": "Tennis: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-track-field/schedule",
+            "label": "Track & Field: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-track-field/roster",
+            "label": "Track & Field: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://x.com/nyuwomensvolley",
+            "label": "Volleyball: X",
+            "kind": "X_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://instagram.com/nyuwomensvolley",
+            "label": "Volleyball: Instagram",
+            "kind": "INSTAGRAM_REQUIRES_BASEBALL_IDENTITY"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-volleyball/schedule",
+            "label": "Volleyball: Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/womens-volleyball/roster",
+            "label": "Volleyball: Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://gonyuathletics.com/sports/2008/8/20/recruitquestionnaire.aspx",
+            "label": "Recruiting Questionnaires",
+            "kind": "QUESTIONNAIRE_REQUIRES_BASEBALL_CONTEXT"
+          }
+        ]
+      }
+    }
+  ],
+  "status": "EVIDENCE_CAPTURED_REQUIRES_REVIEW"
+}

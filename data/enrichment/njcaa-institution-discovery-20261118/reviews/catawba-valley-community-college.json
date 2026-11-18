@@ -1,0 +1,49 @@
+{
+  "slug": "catawba-valley-community-college",
+  "name": "Catawba Valley Community College",
+  "collegeId": "cmox2357y001cqtfkolbve8a8",
+  "programId": "cmox2358o001eqtfkqwhmv7ak",
+  "storedState": "NC",
+  "storedDivision": "NJCAA_D2",
+  "directoryMatch": {
+    "unitid": "198233",
+    "name": "Catawba Valley Community College",
+    "aliases": [
+      "CVCC"
+    ],
+    "state": "NC",
+    "city": "Hickory",
+    "host": "cvcc.edu",
+    "decision": "UNIQUE_EXACT_NAME_OR_ALIAS_AND_STATE_DISCOVERY_LEAD_ONLY"
+  },
+  "directoryMatchStatus": "DISCOVERY_LEAD_NOT_CURRENT_CAMPUS_VERIFIED",
+  "needsHeadCoach": true,
+  "needs2027Roster": true,
+  "newPagesAttempted": 1,
+  "pages": [
+    {
+      "requestedUrl": "https://cvcc.edu/",
+      "checkedAtUtc": "2026-11-18T16:20:53.840Z",
+      "finalUrl": "https://cvcc.edu/",
+      "status": 403,
+      "contentType": "text/html; charset=UTF-8",
+      "sha256": "e5f878770996a02cceaf6abb871fd64fb58693c63c95966cc5fe2bd1cdfe1d6a",
+      "sourcePath": "sources/1c04cf618b2ff499c47fa87f6ba10f70e957d34c8316335c58f20d1119ab9e48.source",
+      "kind": "INSTITUTIONAL_DIRECTORY_HOST_LEAD",
+      "parent": {
+        "sourcePath": "../../geography/us-college-locations-ipeds2024.json",
+        "unitid": "198233",
+        "publishedName": "Catawba Valley Community College",
+        "state": "NC",
+        "city": "Hickory"
+      }
+    }
+  ],
+  "unfetchedPublishedLeads": [],
+  "publishedLeads": [],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "campusIdentityReviewRequired": true,
+  "currentMembershipVerified": false,
+  "importApproval": "NOT_GRANTED"
+}

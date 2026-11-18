@@ -1,0 +1,45 @@
+{
+  "slug": "st-charles-community-college",
+  "programId": "cmox1gk2w00b2qtsg94pwpilq",
+  "collegeId": "cmox1gk2700b0qtsginc3y1s2",
+  "checkedAtUtc": "2026-11-18T14:43:33.354Z",
+  "sourcePath": "../njcaa-discovery-20261118/sources/st-charles-community-college-1.source",
+  "sourceSHA256": "ece1e60ae9c4fe60b9792eca292453ba570ba86210b6bd73d77704bcd135c418",
+  "sourceUrl": "https://www.sccathletics.com/sports/bsb/index",
+  "socialLeads": [],
+  "recruitingLeads": [
+    {
+      "url": "https://www.sccathletics.com/sports/bsb/2025-26/releases/BaseballCamps2026",
+      "label": "SCC Youth Baseball Camps 2026",
+      "context": "",
+      "kind": "CAMP"
+    },
+    {
+      "url": "https://twitter.com/intent/tweet?text=SCC%20Youth%20Baseball%20Camps%202026&url=http://stchas.prestosports.com/sports/bsb/2025-26/releases/BaseballCamps2026&related=",
+      "label": "Twitter",
+      "context": "Share SCC Youth Baseball Camps 2026 to Twitter",
+      "kind": "CAMP"
+    }
+  ],
+  "logoLeads": [],
+  "captures": [
+    {
+      "requestedUrl": "https://www.sccathletics.com/sports/bsb/2025-26/releases/BaseballCamps2026",
+      "kind": "CAMP",
+      "status": "HELD_ACCESS_NOT_RETRIED",
+      "finalUrl": "https://www.sccathletics.com/sports/bsb/2025-26/releases/BaseballCamps2026"
+    },
+    {
+      "requestedUrl": "https://twitter.com/intent/tweet?text=SCC%20Youth%20Baseball%20Camps%202026&url=http://stchas.prestosports.com/sports/bsb/2025-26/releases/BaseballCamps2026&related=",
+      "kind": "CAMP",
+      "status": 200,
+      "finalUrl": "https://x.com/i/jf/onboarding/web?redirect_after_login=%2Fintent%2Ftweet%3Ftext%3DSCC%2BYouth%2BBaseball%2BCamps%2B2026%26url%3Dhttp%253A%252F%252Fstchas.prestosports.com%252Fsports%252Fbsb%252F2025-26%252Freleases%252FBaseballCamps2026%26related%3D&mode=login",
+      "contentType": "text/html; charset=UTF-8",
+      "sourcePath": "sources/st-charles-community-college-1.source",
+      "sha256": "562ba92a1ae8b5b5eab4de7b872b225930e554e569fd7e4ab2bd968f8b3c635e"
+    }
+  ],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED"
+}

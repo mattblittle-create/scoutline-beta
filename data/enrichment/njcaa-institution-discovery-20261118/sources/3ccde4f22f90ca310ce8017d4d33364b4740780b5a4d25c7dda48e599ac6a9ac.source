@@ -1,0 +1,1368 @@
+<!DOCTYPE HTML><html lang="en">
+   <head><meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+<script src="/_resources/js/_new/modernizr.js"></script>
+<!-- set the encoding of your site -->
+<meta charset="utf-8"/>
+<!-- set the viewport width and initial-scale on mobile devices  -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<!-- include the site stylesheet -->
+<link media="all" rel="stylesheet" type="text/css" href="/_resources/css/_new/main.css" />
+<link href="/_resources/css/_new/css.css" type="text/css" rel="stylesheet" />
+<!-- Font Awesome Pro 6.4.0-->
+<link rel="stylesheet" type="text/css" href="/_resources/css/_new/all.css" />
+<link rel="stylesheet" type="text/css" href="/_resources/css/_new/font-awesome.min.css" />
+<!-- Font Awesome Pro 6.7.2-->
+<link rel="stylesheet" type="text/css" href="/_resources/fonts/fontawesome-pro-6.7.2-web/css/all.min.css" />
+<!-- include jQuery library -->
+<script src="/_resources/js/_new/jquery.min.js" defer="defer"></script>
+<script defer="defer">
+  window.jQuery ||
+	document.write(
+	  '<script src="/_resources/js/_new/jquery.min.js"><\/script>'
+	);
+</script>
+<!-- include custom JavaScript -->
+<script src="/_resources/js/_new/jquery.main.js" defer="defer"></script>
+
+<link rel="stylesheet" type="text/css" href="/_resources/css/_new/bootstrap-custom.css" />
+<link rel="stylesheet" type="text/css" href="/_resources/css/_new/navigation.css" />
+<!-- <link rel="stylesheet" type="text/css" href="" /> -->
+
+<!--BE IXF: JavaScript begin-->
+		<script src="//cdn.bc0a.com/autopilot/f00000000137853/autopilot_sdk.js"></script>
+<!--BE IXF: JavaScript end--> 
+
+<!-- USERWAY Accessibility Tool -->
+<script data-account="wiCxl6shQ1" src="https://cdn.userway.org/widget.js"></script>
+
+<!-- Facebook Pixel Code -->
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '283836712182136');
+  fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" alt="Facebook pixel" style="display:none"
+  src="https://www.facebook.com/tr?id=283836712182136&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Facebook Pixel Code -->
+
+<!-- this is the headcode include -->
+<link rel="stylesheet" href="/_resources/css/oustyles.css"/>
+<link rel="stylesheet" media="print" href="/_resources/css/print.css"/>
+<link href=”{{Page URL Canonical}}” />
+
+<style>
+/*----- Accordion -----*/
+.accordion,
+.accordion * {
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+}
+
+.accordion {
+    overflow:hidden;
+    box-shadow:0px 1px 3px rgba(0,0,0,0.25);
+    border-radius:3px;
+    background:#f7f7f7;
+}
+
+/*----- Section Titles -----*/
+.accordion-section-title {
+    width:100%;
+    padding:15px;
+    display:inline-block;
+    border-bottom:1px solid #0082ca;
+    background:#003a70;
+    transition:all linear 0.15s;
+    /* Type */
+    font-size:1.200em;
+    text-shadow:0px 1px 0px #1a1a1a;
+    color:#fff;
+}
+
+.accordion-section-title.active,
+.accordion-section-title:hover {
+    background:#003a70;
+    /* Type */
+    text-decoration:none;
+}
+
+.accordion-section:last-child .accordion-section-title {
+    border-bottom:none;
+}
+
+/*----- Section Content -----*/
+.accordion-section-content {
+    padding:15px;
+    display:none;
+}
+
+</style>
+      <style>
+		.main-content #content {width:calc(100%); max-width:1170px; float:none; padding:50px 30px 0px 30px; margin:0px auto;}
+			.programs-text a {color: white; text-decoration: underline;}
+			:root {
+  --blue: #0183c9;
+  --green: #78ba21;
+  --orange: #ef7f0f;
+  --red: #b32615;
+  --steel-gray: #435263;
+  --yellow: #fec83f;
+
+  --gray: #e1e1e1;
+  --slcc-primary-blue: #003a70;
+}
+
+/* colors - start */
+.bg-blue {
+  background-color: var(--blue);
+  color: #111;
+}
+
+.bg-green {
+  background-color: var(--green);
+  color: #111;
+}
+
+.bg-orange {
+  background-color: var(--orange);
+  color: #111;
+}
+
+.bg-red {
+  background-color: var(--red);
+  color: white;
+}
+
+.bg-steel-gray {
+  background-color: var(--steel-gray);
+  color: white;
+}
+
+.bg-yellow {
+  background-color: var(--yellow);
+  color: #111;
+}
+
+.bg-white {
+  background-color: white;
+  color: #111;
+}
+
+.bg-gray {
+  background-color: var(--gray);
+  color: #111;
+}
+
+.bg-primary-blue {
+  background-color: var(--slcc-primary-blue);
+  color: white;
+}
+
+/* colors - end */
+
+/* global - start */
+.p-text-bold {
+  font-weight: 800;
+}
+
+.programs-container {
+  position: relative;
+  max-width: 1170px;
+  margin: 0 auto;
+}
+
+.programs-button {
+  min-width: 160px;
+  font-weight: 900;
+  text-transform: capitalize;
+  padding: 16px 30px;
+  font-size: 20px;
+}
+
+.p-button-primary {
+  background-color: var(--slcc-primary-blue);
+  color: white;
+}
+
+.p-button-blue {
+  background-color: #00b3e3;
+  color: var(--slcc-primary-blue);
+}
+
+.programs-container h2 {
+  color: var(--slcc-primary-blue);
+  font-weight: 900;
+  font-size: 40px;
+  margin-bottom: 30px;
+}
+
+.programs-iframe-div iframe {
+  object-fit: cover;
+  width: 100%;
+  height: 340px;
+}
+
+/* global - end */
+
+/* program banner - start */
+.program-banner {
+  width: 100%;
+  position: relative;
+  min-height: 280px;
+  padding: 20px 30px;
+}
+
+.program-banner .banner-container {
+  max-width: 1360px;
+  margin: 0 auto;
+}
+
+.program-banner .banner-title-layout {
+  display: flex;
+  align-items: center;
+}
+
+.program-banner .banner-title-layout h1 {
+  font-size: 46px;
+  font-weight: 900;
+  line-height: 3.6rem !important;
+  padding-top: 30px;
+}
+
+.program-banner .banner-title-layout img {
+  width: 200px;
+  height: auto;
+}
+
+.program-banner .banner-text {
+  font-size: 60px;
+  font-weight: 900;
+  text-align: right;
+  line-height: 1;
+}
+
+.program-banner .banner-text-stroke-black {
+  -webkit-text-stroke: 2px #111;
+  color: transparent !important;
+}
+
+.program-banner .banner-text-stroke-white {
+  -webkit-text-stroke: 2px white;
+  color: transparent !important;
+}
+
+/* program banner - end */
+
+/* col 2 div - start */
+.col-2-div {
+  display: flex;
+  gap: 50px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.col-2-div>div {
+  flex: 1;
+}
+
+.col-2-div img {
+  width: 100%;
+}
+
+.col-2-div p {
+  margin-bottom: 50px;
+}
+
+/* col 2 div - end */
+
+/* col 4 div - start */
+.programs-included-container h2 {
+  color: white !important;
+  text-align: center;
+  margin-bottom: 60px;
+  font-weight: 900;
+  font-size: 32px;
+}
+
+.col-4-div {
+  display: flex;
+  gap: 50px;
+  justify-content: space-between;
+
+}
+			
+			.inner-card {
+				min-width: 25%;
+			}
+
+.col-4-div h3 {
+  font-weight: 900;
+  font-size: 26px;
+}
+
+.col-4-div img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  margin-bottom: 20px;
+}
+
+/* col 4 div - end */
+
+/* bg div - start */
+.cta-bg-div {
+  background: url('https://designstudio.moderncampus.com/clients/stlcc-programs/_resources/images/pathway/bg-div.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 44px 0;
+}
+
+.cta-bg-div p {
+  font-weight: 900;
+  font-size: 32px;
+  margin-bottom: 0;
+}
+
+.cta-bg-div .programs-button {
+  float: right;
+}
+
+/* bg div - end */
+
+/* bubble bg - start */
+.bubble-bg {
+  background-repeat: no-repeat;
+  background-position-x: 120%;
+  background-position-y: 100%;
+  background-size: 900px;
+  background-color: white;
+  overflow: hidden;
+  color: #111;
+}
+
+.bubble-bg-blue {
+  background-image: url('https://designstudio.moderncampus.com/clients/stlcc-programs/_resources/images/pathway/pathway-illustrations/path-illustrations_bubble-education.svg');
+}
+
+.bubble-bg-green {
+  background-image: url('https://designstudio.moderncampus.com/clients/stlcc-programs/_resources/images/pathway/pathway-illustrations/path-illustrations_bubble-art.svg');
+}
+
+.bubble-bg-orange {
+  background-image: url('https://designstudio.moderncampus.com/clients/stlcc-programs/_resources/images/pathway/pathway-illustrations/bubble-health.svg');
+}
+
+.bubble-bg-red {
+  background-image: url('https://designstudio.moderncampus.com/clients/stlcc-programs/_resources/images/pathway/pathway-illustrations/path-illustrations_bubble-culinary.svg');
+}
+
+.bubble-bg-steel-gray {
+  background-image: url('https://designstudio.moderncampus.com/clients/stlcc-programs/_resources/images/pathway/pathway-illustrations/path-illustrations_bubble-transportation.svg');
+}
+
+.bubble-bg-yellow {
+  background-image: url('https://designstudio.moderncampus.com/clients/stlcc-programs/_resources/images/pathway/pathway-illustrations/path-illustrations_bubble-stem.svg');
+}
+
+/* bubble bg - end */
+
+/* illustration bg - start */
+.illustration-bg {
+  background-repeat: no-repeat;
+  background-position: top left;
+  background-size: 36%;
+  background-color: white;
+  overflow: hidden;
+}
+
+.illustration-bg-blue {
+  background-image: url('https://designstudio.moderncampus.com/clients/stlcc-programs/_resources/images/pathway/pathway-illustrations/path-illustrations_education.svg');
+}
+
+.illustration-bg-green {
+  background-image: url('https://designstudio.moderncampus.com/clients/stlcc-programs/_resources/images/pathway/pathway-illustrations/path-illustrations_art.svg');
+}
+
+.illustration-bg-orange {
+  background-image: url('https://designstudio.moderncampus.com/clients/stlcc-programs/_resources/images/pathway/pathway-illustrations/path-illustrations_health.svg');
+}
+
+.illustration-bg-red {
+  background-image: url('https://designstudio.moderncampus.com/clients/stlcc-programs/_resources/images/pathway/pathway-illustrations/path-illustrations_culinary.svg');
+}
+
+.illustration-bg-steel-gray {
+  background-image: url('https://designstudio.moderncampus.com/clients/stlcc-programs/_resources/images/pathway/pathway-illustrations/path-illustrations_auto.svg');
+}
+
+.illustration-bg-yellow {
+  background-image: url('https://designstudio.moderncampus.com/clients/stlcc-programs/_resources/images/pathway/pathway-illustrations/path-illustrations_stem.svg');
+}
+
+.illustration-bg-text {
+  margin-top: 100px;
+  margin-left: 36%;
+}
+
+/* illustration bg - end */
+
+/* bottom tabs - start */
+.programs-tabs .tab {
+  overflow: hidden;
+  width: 100%;
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+}
+
+.programs-tabs .tab button {
+  flex-grow: 1;
+  background-color: inherit;
+  text-align: left !important;
+  border: none;
+  border-bottom: 10px solid var(--slcc-primary-blue);
+  color: var(--slcc-primary-blue);
+  outline: none;
+  cursor: pointer;
+  padding: 10px 16px 4px 16px;
+  font-size: 22px;
+  font-weight: 900;
+}
+
+.programs-tabs .tab button::after {
+  font: var(--fa-font-solid);
+  content: "\f0d7";
+  float: right;
+  margin-top: 6px;
+}
+
+.programs-tabs .tab button.active,
+.programs-tabs .tab button:hover {
+  background-color: var(--slcc-primary-blue);
+  color: white;
+}
+
+.programs-tabs .programs-mobile-tab {
+  display: none;
+}
+
+.programs-tabs .programs-panel {
+  display: none;
+  padding: 20px 20px 0 20px;
+}
+
+.programs-tabs .programs-detail {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+}
+
+.programs-tabs .programs-detail img {
+  max-width: 400px;
+  max-height: 220px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.programs-tabs .programs-detail p {
+  margin: 6px 0;
+}
+
+.programs-tabs .programs-detail p:last-of-type {
+  margin-bottom: 40px;
+}
+
+.programs-tabs .programs-button {
+  font-size: 16px;
+  padding: 10px 30px;
+}
+
+/* bottom tabs - end */
+			@media only screen and (min-width: 1201px) and (max-width: 1400px) {
+  .illustration-bg {
+    padding-bottom: 100px;
+  }
+}
+
+@media only screen and (min-width: 993px) and (max-width: 1200px) {
+  .illustration-bg {
+    padding-bottom: 20px;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+
+  /* global - start */
+  .programs-container {
+    max-width: 100%;
+    padding: 47px 30px;
+  }
+
+  .programs-container h2 {
+    font-size: 36px;
+  }
+
+  .programs-iframe-div iframe {
+    height: 300px;
+    margin-bottom: 20px;
+  }
+
+  /* global - end */
+
+  /* program banner - start */
+  .program-banner {
+    min-height: 150px;
+    padding: 30px 0;
+  }
+
+  .program-banner .banner-container {
+    max-width: 100%;
+  }
+
+  .program-banner .banner-title-layout h1 {
+    font-size: 26px;
+    line-height: 2.4rem !important;
+    max-width: 100%;
+  }
+
+  .program-banner .banner-title-layout img {
+    width: 100px;
+  }
+
+  .program-banner .banner-text {
+    display: none;
+  }
+
+  /* program banner - end */
+
+  /* col 2 div - start */
+  .col-2-div {
+    display: block;
+  }
+
+  .col-2-div img {
+    margin-bottom: 30px;
+  }
+
+  /* col 2 div - end */
+
+  /* col 4 div - start */
+  .programs-included-container h2 {
+    margin: 0 30px 30px 30px;
+  }
+
+  .programs-included-container .programs-container {
+    padding: 67px 0;
+  }
+
+  .programs-included-container .programs-text {
+    padding: 0 30px;
+  }
+
+  .col-4-div-container h2 {
+    margin-bottom: 44px;
+  }
+
+  .col-4-div {
+    display: block;
+  }
+
+  .col-4-div img {
+    width: 100%;
+    height: auto;
+    max-height: 280px;
+    object-fit: cover;
+    margin-top: 40px;
+    margin-bottom: 20px;
+  }
+
+  /* col 4 div - end */
+
+  /* bg div - start */
+  .cta-bg-div {
+    background: url('https://designstudio.moderncampus.com/clients/stlcc-programs/_resources/images/pathway/bg-div-mobile.png');
+    background-position: center;
+    padding: 40px 0 50px 0;
+    text-align: center;
+  }
+
+  .cta-bg-div p {
+    margin-bottom: 60px;
+  }
+
+  .cta-bg-div .programs-button {
+    float: none;
+  }
+
+  /* bg div - end */
+
+  /* bubble bg - start */
+  .bubble-bg {
+    background-position-x: 8%;
+    background-position-y: 100%;
+    background-size: 450px;
+    background-color: white;
+    overflow: hidden;
+  }
+
+  .bubble-bg .programs-container {
+    padding-bottom: 60px;
+  }
+
+  /* bubble bg - end */
+
+  /* illustration bg - start */
+  .illustration-bg {
+    background-position: bottom left;
+    background-size: 350px;
+    padding-bottom: 280px;
+  }
+
+  .illustration-bg-text {
+    margin-top: 0;
+    margin-left: 0;
+    margin-bottom: 40px;
+  }
+
+  /* illustration bg - end */
+
+  /* bottom tabs - start */
+  .programs-tabs .tab {
+    display: block;
+  }
+
+  .programs-tabs .programs-desktop-tab {
+    display: none;
+  }
+
+  .programs-tabs .programs-mobile-tab {
+    display: block;
+  }
+
+  .programs-tabs .tab button {
+    width: 100%;
+    border: 1px solid var(--slcc-primary-blue);
+    padding: 16px;
+    font-size: 18px;
+  }
+
+  .programs-tabs .tab button::after {
+    margin-top: 4px;
+  }
+
+  .programs-tabs .tab button.active::after {
+    font: var(--fa-font-solid);
+    content: "\f0d8";
+    float: right;
+  }
+
+  .programs-tabs .programs-panel {
+    border: 1px solid var(--slcc-primary-blue);
+    padding: 20px 20px 30px 20px;
+  }
+
+  .programs-tabs .programs-detail {
+    display: block;
+  }
+
+  .programs-tabs .programs-detail img {
+    width: 100%;
+  }
+
+  /* bottom tabs - end */
+}
+			.new-program-content {width:100%; display:table; margin-top:15px;}
+			.new-program-content > div {display:table-row;}
+			.new-program-content .new-program-video {width:50%; display:table-cell; vertical-align:middle; padding-right:15px}
+			.new-program-content .new-program-video iframe {width:100%; aspect-ratio:16 / 9; outline:2px solid #002453;}
+			.new-program-content .new-program-text {width:50%; display:table-cell; vertical-align:middle; padding-left:15px;}
+			.new-program-content .new-program-career {width:50%; display:table-cell; vertical-align:middle;padding-right:15px; padding-left:20px;}
+			.new-program-info {width:100%; display:table; margin-top:35px;}
+			.new-program-info > div {display:table-row;}
+			.new-program-info-left, .new-program-info-right {width:50%; display:table-cell; vertical-align:top; padding:0px 15px 0px 15px;}
+			.new-program-info-left-content, .new-program-info-right-content {width:100%; display:table;}
+			.new-program-info-left-content > div {display:table-row;}
+			.new-program-info-right-content > div {display:table-row;}
+			.new-program-info-icon {width:30px; display:table-cell; vertical-align:top}
+			.new-program-info-text {display:table-cell; vertical-align:middle; padding:0px 20px 0px 20px;}
+			.new-program-info-text p {font-size:22px}
+			.new-program-info-text span {font-weight:600} 
+			
+			
+			
+			
+			.new-program-at-a-glance {display:flex; flex-wrap:wrap; justify-content:center; margin-top:35px;}
+			.new-program-at-a-glance div {flex-basis: 33.33%; text-align:center; padding:0px 20px 15px 20px;}
+			
+			
+			
+			.new-program-contact-text {display:table-cell; vertical-align:middle; padding:0px 20px 0px 20px;}
+			.new-program-contact-name {font-size:22px}
+			.custom-style--career-widget-single-column {width:100%; background:#eee;}
+			.custom-style--data-column {width:100%; background:transparent;}
+		
+	
+                      /* NEW EVENTS FEED - start */
+                      .event-item {
+                        margin-bottom: 15px;
+                      }
+
+
+                      .event-item-header,
+                      .event-item-header h3 {
+                        font-size: 18px;
+                        line-height: 24px;
+                      }
+
+
+                      .event-item-header a {
+                        text-decoration: none;
+                        color: #013b70;
+                      }
+
+
+                      .event-item-header a:hover,
+                      .event-item-header a:focus {
+                        text-decoration: underline;
+                      }
+
+
+                      .event-item-copy p {
+                        margin-bottom: 5px;
+                      }
+
+
+                      .event-item-date {
+                        font-size: 12px;
+                      }
+
+
+                      .events .event-item {
+                        display: table;
+                        margin-bottom: 20px;
+                        position: relative;
+                      }
+
+
+                      .events .event-item .event-date,
+                      .events .event-item .event-text {
+                        display: table-cell;
+                        position: relative;
+                      }
+
+
+                      .event-item .event-date .event-month {
+                        display: block;
+                        text-align: center;
+                        text-transform: uppercase;
+                        font-size: 20px;
+                        font-weight: bold;
+                        color: white;
+                      }
+
+
+                      .event-item .event-date .event-day {
+                        display: block;
+                        text-align: center;
+                        font-size: 40px;
+                        font-weight: bold;
+                        color: white;
+                      }
+
+
+                      .event-item .event-date .year {
+                        color: white;
+                        text-align: center;
+                        display: block;
+                      }
+
+
+                      .event-item .event-text {
+                        position: relative;
+                        vertical-align: top;
+                        padding-left: 20px;
+                      }
+
+
+                      .event-item .event-date-bg {
+                        background-color: #013b70;
+                        padding: 10px 20px 20px 20px;
+                        line-height: 36px;
+                        border-radius: 4px;
+                      }
+
+
+                      .event-item .event-item-time-location {
+                        margin-bottom: 10px;
+                      }
+
+
+                      .event-item .event-item-time-location .time:before {
+                        display: inline-block;
+                        font-style: normal;
+                        font-variant: normal;
+                        text-rendering: auto;
+                        -webkit-font-smoothing: antialiased;
+                        font-family: "Font Awesome 6 Pro";
+                        font-weight: 900;
+                        content: "\f017";
+                        font-size: 14px;
+                        margin-right: 5px;
+                        color: #013b70;
+                      }
+
+
+                      .event-item .event-item-time-location .location {
+                        margin-left: 10px;
+                      }
+
+
+                      .event-item .event-item-time-location .location:before {
+                        display: inline-block;
+                        font-style: normal;
+                        font-variant: normal;
+                        text-rendering: auto;
+                        -webkit-font-smoothing: antialiased;
+                        font-family: "Font Awesome 6 Pro";
+                        font-weight: 900;
+                        content: "\f3c5";
+                        font-size: 14px;
+                        margin-right: 5px;
+                        color: #013b70;
+                      }
+
+
+                      /* responsive */
+                
+                    
+		</style>
+      <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-56HDT7Z');</script>
+<!-- End Google Tag Manager -->
+      	<!-- Page Layout -->
+      		
+      <style>
+			#main {background-color:#fff}
+			#main #content {padding-top:0px}
+			.hero-block .holder > * {vertical-align:bottom;}
+			.hero-block h1 {font-weight:600; font-size:40px;}
+			.breadcrumbs ul {padding:20px 32px 75px}
+			.pathways-container {max-width:1170px; margin:0px auto; padding:50px 30px 50px 30px;}
+			.pathways-container-top {padding-top:0px}
+			.pathways-tabs-container {max-width:1170px; margin:0px auto; padding:15px 30px 45px 30px;}
+			.pathways-container h2 {font-size:40px; line-height:1; font-weight:bold; color:#003a70;}
+			.pathways-container h2.default-headline {font-size:30px; font-weight:600; line-height:1; color:#111;}
+			.pathways-container .content-center-text h2 {text-align:center}
+			.pathways-tabs-container h2 {font-size:40px; line-height:1; font-weight:bold; color:#003a70;}
+			.pathways-tabs-container a {text-decoration:underline;}
+			.pathways-outline-blue {-webkit-text-fill-color:white; -webkit-text-stroke-width:1.5px; -webkit-text-stroke-color:#003a70;}
+			.pathways-container .accordion-section-title {background:#fff; color:#111;}
+			.snippets-container {background-color:#fff; padding:50px 30px 50px 30px;}
+			.snippets-container .programs-container {padding:0;}
+			.snippets-container a {text-decoration:underline;}
+			.content-center-text {text-align:center}
+			
+			@media (max-width:992px){
+				.program-banner .banner-title-layout h1 {font-size:32px; padding-top:20px !important}
+				.main-content {margin-top:-6px}
+			}
+			
+			@media (min-width:699px){
+				.hero-block .holder {height:410px; padding:20px 45px;}
+			}
+			
+			@media (max-width:699px){
+				.hero-block .holder {height:260px; padding:20px 30px;}
+				.hero-block h1 {font-size:40px}
+				.hero-block .holder:after {display:inline-block}
+				.pathways-container {padding:40px 30px 40px 30px;}
+				.pathways-container h2 {font-size:38px;}
+				.pathways-container h2.default-headline {font-size:28px;}
+				.pathways-tabs-container h2 {font-size:38px;}
+			}
+		</style>
+      		
+      	<!-- Page Layout Home Demo-->
+      		
+      <style>
+			.hero-block .holder > * {vertical-align:middle}
+			.hero-block . caption-wrap {max-width:600px;}
+			.pathways-home-page-demo h1 {font-size:40px; font-weight:bold;}
+			.pathways-home-page-demo h1 span {-webkit-text-fill-color:transparent; -webkit-text-stroke-width:2px; -webkit-text-stroke-color:#fff;}
+			.stlcc-background-logo {background-image:url(https://stlcc.edu/images/logos-icons/stlcc-home-page-demo-bg-logo.png); background-position:top right; background-position-y:-130px; background-size:770px; background-repeat:no-repeat;}
+			.stlcc-whats-happening {background-color:#d8dfe2}
+			.whats-happening-content {width:100%; display:flex; flex-wrap:wrap; align-items:top; justify-content:space-between; margin-top:50px;}
+			.whats-happening-events {width:61%; background-color:#fff; padding:50px 30px 30px 30px;}
+			.whats-happening-news {width:37%; background-color:#fff; background-image:url(https://stlcc.edu/images/logos-icons/stlcc-home-page-demo-bg-archie.png); background-repeat:no-repeat; padding:50px 30px 30px 30px;}
+			.whats-happening-news-articles div {border-bottom:2px solid #003a70; padding-top:10px;}
+			.whats-happening-news-articles div:last-child {border-bottom:none;}
+			
+			.news-article-headline {font-weight:bold}
+			.news-article-content {font-size:16px}
+			.news-article-info {font-style:italic; font-size:16px}
+			
+			.education-for-life {background-color:#003a70}
+			.education-for-life h2 {color:#fff !important; text-align:center;}
+			.education-for-life-icons {width:100%; display:flex; flex-wrap:wrap; align-items:top; justify-content:space-around;}
+			.education-for-life-icon {width:20%; text-align:center; padding:4px;}
+			.education-for-life-icon a {text-decoration:none; font-weight:bold; color:#fff;}
+			.education-for-life-icon i {display:block; font-size:50px; line-height:1.25;}
+			.education-for-life-icon a:hover {color:#00b3e3; transition:0.05s linear;}
+			
+			.pathways-to-success-home {background-color:#003a70}
+			.pathways-to-success-home h2 {font-size:60px; color:#fff !important;}
+			.pathways-to-success-home .content-block-video-text {color:#fff}
+			.pathways-to-success-home .cta-text-stroke-white {-webkit-text-fill-color:transparent; -webkit-text-stroke-width:2px; -webkit-text-stroke-color:#fff;}
+			.pathways-to-success-home-spacer {width:100px; height:15px; background-color:#00b3e3;}
+			
+			@media (max-width:992px){
+				.whats-happening-events {width:100%}
+				.whats-happening-news {width:100%; background-position:top center; margin-top:35px;}
+			}
+
+			@media (max-width:699px) {
+				.hero-block .holder {height:360px; padding:0px;}
+				.hero-block .holder > * {vertical-align:bottom}
+				.stlcc-background-logo {background-position:bottom center; background-position-y:100%; background-size:120px;}
+				.hero-block .caption-wrap {max-width:100%; width:100%; background:rgba(0, 58, 112, .65); padding:20px 30px 25px 30px;}
+				.pathways-home-page-demo h1 {min-height:0px; font-size:40px; padding-top:0;}
+				.education-for-life-icon {width:50%; padding:12px;}
+				
+				.pathways-to-success-home h2 {font-size:42px}
+				.pathways-to-success-home-spacer {width:80px; height:10px;}
+			}
+		
+		</style>
+      		
+      		<!-- Breadcrumb Remove -->
+      		
+      <style>
+			.breadcrumbs {display:none}
+			.main-content {margin-top:0px}
+			.content-block-top {border-top-left-radius:0px !important;}
+			
+			@media (max-width:1023px){
+				.main-content {margin-top:-20px}
+			}
+			
+			@media (max-width:992px){
+				.main-content {margin-top:-25px}
+			}
+			
+			@media (max-width:699px){
+				.main-content {margin-top:-16px}
+			}
+		</style>
+      		
+      		
+      		<!-- Content Blocks with Images -->
+      		
+      <style>
+			.content-block-top {background-color:#eee; border-top-left-radius:60px;}
+			
+			.content-block-video {width:100%; display:flex; flex-wrap:wrap; align-items:center; margin-top:8px;}
+			.content-block-video-iframe, .content-block-video-text {width:50%}
+			.content-block-video-iframe .pathways-video {width:100%; aspect-ratio:16 / 9; border:none; border-radius:8px;}
+			.content-block-video > div:nth-child(odd) {padding-right:15px;}
+			.content-block-video > div:nth-child(even) {padding-left:15px;}
+			.content-block-video #blue-button-snippet {margin-bottom:5px;}
+			
+			@media (max-width:699px){
+				.content-block-video-iframe {order:1}
+				.content-block-video-text {order:2; padding-top:45px;}
+				.content-block-video-iframe, .content-block-video-text {width:100%}
+				.content-block-video > div:nth-child(odd) {padding-right:0px}
+				.content-block-video > div:nth-child(even) {padding-left:0px}
+				.content-block-video #blue-button-snippet {margin-bottom:0px}
+			}
+		</style>
+      		
+      		<!-- Buttons -->
+      		
+      <style>
+			.blue-button-snippet-inverse-home {background-color:#fff !important; border:2px solid #003a70; color:#003a70 !important; transition:0.1s linear;}
+			.blue-button-snippet-inverse-home:hover {background-color:#00b3e3 !important; color:#003a70 !important;}			
+			.pathways-catalog-button-container {text-align:center; margin:30px 0px 30px 0px;}
+			
+			@media (max-width:992px){
+				.pathways-catalog-button-container {margin-top:40px; margin-bottom:36px;}
+			}
+		</style>
+      		
+      		<!-- Pathways Home Page CTA -->
+      		
+      <style>
+			.pathways-home-page-cta {width:100%; background-color:#fff; display:flex; flex-wrap:wrap; align-items:center; margin-top:130px; margin-bottom:10px;}
+			.pathways-home-page-cta-logo {width:35%; padding:0px 25px 0px 50px;}
+			.pathways-home-page-cta-text {width:65%; padding:0px 50px 0px 25px;}
+			.pathways-home-page-cta-text h2 {font-size:65px; color:#003a70}
+			.cta-text-stroke-blue {-webkit-text-stroke: 2px #003a70; color:transparent !important;}
+			
+			@media (max-width:699px){
+			.pathways-home-page-cta {margin-top:50px;}
+			.pathways-home-page-cta-logo {width:100%; padding:0px 30px 30px 30px;}
+			.pathways-home-page-cta-text {width:100%; padding:0px 30px 0px 30px;}
+			.pathways-home-page-cta-text h2 {font-size:42px; color:#003a70}
+			}
+		
+		</style>
+      		
+      		<!-- Banner Button-->
+      		
+      <style>
+			.hero-block .btn {width:250px;}
+			.hero-block .btn {background-color:#00b3e3  !important; border:2px solid #00b3e3; color:#003a70 !important; transition:0.1s linear;}
+			.hero-block .btn:hover, .blue-button-snippet-inverse:hover {background-color:#003a70 !important; border:2px solid #fff; color:#fff !important;}
+		</style>
+      		<script src="/_resources/js/emergency-message.js"></script>
+      	
+      <title>STLCC: Affordable Education That Changes Lives</title>
+      <meta name="Description" content="St. Louis Community College transforms lives through high-quality education and career-focused programs. As a top college in St. Louis, we invite you to visit or apply online today.">
+      <!--open graph tags-->
+      <meta property="og:image" content="https://stlcc.edu/images/logos-icons/archie-fox-mascot-paper-plane.jpg">
+      <meta property="og:title" content="STLCC: Affordable Education That Changes Lives">
+      <meta property="og:url" content="https://stlcc.edu/index.aspx">
+      <meta property="og:description" content="St. Louis Community College transforms lives through high-quality education and career-focused programs. As a top college in St. Louis, we invite you to visit or apply online today.">
+      <meta property="og:site_name" content="STLCC">
+      <meta property="og:type" content="website">
+      <meta name="twitter:card" content="summary">
+      <meta name="twitter:site" content="https://twitter.com/stlcc"><script async src="https://www.googletagmanager.com/gtag/js?id=G-4FEZ0FG70H"></script><script>
+					window.dataLayer = window.dataLayer || [];
+					function gtag(){dataLayer.push(arguments);}
+					gtag('js', new Date());
+
+					gtag('config', 'G-4FEZ0FG70H');
+				</script></head>
+   <body class="campus_page"><!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-56HDT7Z"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) --><noscript>
+         <div>Javascript must be enabled for the correct page display</div></noscript><a class="accessibility skip" accesskey="c" href="#main">Skip to Content</a><div id="wrapper"><header class="main-header" id="site-navigation"><div class="top-nav d-none d-lg-block"><div class="container"><div class="row"><div class="col-2"><div><a class="light-blue-button" href="/info-tours/index.aspx">Visit</a><a class="dark-blue-button" href="/apply/index.aspx">Apply</a><a class="dark-blue-button" href="/register/index.aspx">Register</a></div></div><div class="col-10 d-flex justify-content-end px-1"><div><a href="/future-students/index.aspx">Future Students</a><a href="/current-students/index.aspx">Current Students</a><a href="/employers/index.aspx">Employers</a><a href="/connect">Archer Connect</a></div><div class="search-container"><form action="/search" id="searchForm" class="d-none"><label for="search"><span class="sr-only">Search</span></label><input type="text" placeholder="Search…" name="q" id="search"><button type="submit"><i class="fa fa-search"></i><span class="sr-only">Submit Search</span></button></form><button id="headerSearchButton"><span class="fa fa-magnifying-glass"></span><span class="sr-only">Toggle Search</span></button></div></div></div></div></div><nav class="navbar navbar-expand-lg"><div class="container"><div class="row mx-0 px-0"><div class="col-6 col-lg-5 px-0 navbar-brand-desktop"><a class="navbar-brand" href="/"><img src="/_resources/images/_new/stlcc-logo-secondary.png" alt="St. Louis Community College Expanding Minds. Changing Lives."></a></div><div class="col-8 col-lg-5 navbar-brand-mobile"><a class="navbar-brand" href="/"><img src="/_resources/images/_new/stlcc-logo-secondary.png" alt="St. Louis Community College Expanding Minds. Changing Lives."></a></div><div class="col-4 d-lg-none d-flex justify-content-end toggler-column"><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"><span class="fa fa-bars"></span></button></div><div class="col-12 mx-0 px-0 col-lg-7"><div class="collapse navbar-collapse" id="navbarNavDropdown"><div class="top-nav-mobile d-lg-none"><div class="search-container"><form action="/search"><label for="mobile-search"><span class="sr-only">Search</span></label><input type="text" placeholder="Search…" name="q" id="mobile-search"><button type="submit"><i class="fa fa-search"></i><span class="sr-only">Submit Search</span></button></form></div><div class="mobile-footer-nav"><a href="/future-students/index.aspx"><span class="fa fa-compass"></span><span>Future Students</span></a><a href="/current-students/index.aspx"><span class="fa fa-book"></span><span>Current Students</span></a><a href="/employers/index.aspx"><span class="fa fa-person-chalkboard"></span><span>Employers</span></a><a href="/connect"><span class="fa fa-user-graduate"></span><span>Archer Connect</span></a></div></div><div class="navbar-nav"><div class="nav-dropdown-div dropdown"><a href="/about/" class="nav-link">About STLCC</a><button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="sr-only">Toggle Dropdown</span></button><ul class="dropdown-menu"><li class="dropdown-item"><a href="/campus-life/index.aspx">Campus Life</a></li><li class="dropdown-item"><a href="/transformed/index.aspx">Transformed</a></li><li class="dropdown-item"><a href="/about/commencement/index.aspx">Commencement</a></li><li class="dropdown-item"><a href="/about/athletics/index.aspx">Archer's Athletics</a></li><li class="dropdown-item"><a href="/about/accreditation/">Accreditation</a></li><li class="dropdown-item"><a href="/college-policy-procedures/">Policy and Procedures</a></li></ul></div><div class="nav-dropdown-div dropdown"><a href="/programs/index.aspx" class="nav-link">Programs</a><button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="sr-only">Toggle Dropdown</span></button><ul class="dropdown-menu"><li class="dropdown-item"><a href="/pathways/index.aspx">Academic Pathways</a></li><li class="dropdown-item"><a href="/programs/high-school/index.aspx">High School</a></li><li class="dropdown-item"><a href="/programs-academics/online-education/index.aspx">Online Programs</a></li><li class="dropdown-item"><a href="/continuing-education/index.aspx">Continuing Education</a></li><li class="dropdown-item"><a href="/workforce/training-programs/index.aspx">Short-Term Career Training</a></li><li class="dropdown-item"><a href="/office-of-the-registrar/academic-calendar.aspx">Academic Calendar</a></li></ul></div><div class="nav-dropdown-div dropdown"><a href="/tuition/" class="nav-link">Tuition</a><button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="sr-only">Toggle Dropdown</span></button><ul class="dropdown-menu"><li class="dropdown-item"><a href="/tuition/">Cost and Fees</a></li><li class="dropdown-item"><a href="/tuition/payment-plans/">Payment Plans</a></li><li class="dropdown-item"><a href="/scholarships/">Scholarships</a></li><li class="dropdown-item"><a href="/admissions/financial-aid/fed-grants-loans.aspx">Federal Aid</a></li><li class="dropdown-item"><a href="/enrollment-services/">Enrollment Services</a></li></ul></div><div class="nav-dropdown-div dropdown"><a href="/student-support/index.aspx" class="nav-link">Support</a><button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="sr-only">Toggle Dropdown</span></button><ul class="dropdown-menu"><li class="dropdown-item"><a href="/admissions/advising/index.aspx">Advising</a></li><li class="dropdown-item"><a href="/tutoring/index.aspx">Tutoring</a></li><li class="dropdown-item"><a href="/testing-centers/index.aspx">Testing</a></li><li class="dropdown-item"><a href="/office-of-the-registrar/index.aspx">Transcripts</a></li><li class="dropdown-item"><a href="/libraries/index.aspx">Libraries</a></li><li class="dropdown-item"><a href="/student-support/disability-services/index.aspx">Disability Access</a></li></ul></div><div class="nav-dropdown-div dropdown"><a href="/locations/index.aspx" class="nav-link">Locations</a><button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="sr-only">Toggle Dropdown</span></button><ul class="dropdown-menu"><li class="dropdown-item"><a href="/locations/florissant-valley/index.aspx">Florissant Valley</a></li><li class="dropdown-item"><a href="/locations/forest-park/index.aspx">Forest Park</a></li><li class="dropdown-item"><a href="/campus-life-community/our-locations/william-j-harrison-education-center/">Harrison Center</a></li><li class="dropdown-item"><a href="/locations/meramec/index.aspx">Meramec</a></li><li class="dropdown-item"><a href="/locations/south-county/index.aspx">South County</a></li><li class="dropdown-item"><a href="/locations/wildwood/index.aspx">Wildwood</a></li><li class="dropdown-item"><a href="/locations/brdg-park/index.aspx">BRDG Park</a></li></ul></div></div><div class="mobile-buttons"><a class="light-blue-button" href="/info-tours/index.aspx">Visit</a><a class="dark-blue-button" href="/apply/index.aspx">Apply</a><a class="dark-blue-button" href="/register/index.aspx">Register</a></div></div></div></div></div></nav><div id="header" style="position:relative"><div class="holder" style="height:0px; margin-bottom:0px; padding:0;"></div></div></header>
+         <main id="main" role="main">
+            <section class="hero-block">
+               <div class="bg-stretch"><span data-srcset="/images/students/banner/archer-connect-banner-v1-small.jpg"></span><span data-srcset="/images/students/banner/archer-connect-banner-v1-medium.jpg" data-media="(min-width: 700px)"></span><span data-srcset="/images/students/banner/archer-connect-banner-v1.jpg" data-media="(min-width: 1025px)"></span></div>
+               <div class="holder pathways-home-page-demo">
+                  <div class="caption-wrap">
+                     <h1>Start Your Career with Flexible, Affordable College in St. Louis
+                        </h1>
+                     <p></p><a href="/apply" class="btn">Apply Now</a></div>
+               </div>
+            </section>
+            <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb Navigation">
+               <ul>
+                  <li class="active"><a href="#">Home</a></li>
+               </ul>
+            </nav>
+            <div class="main-content">
+               <div id="content">
+                  <div class="intro-holder"></div>
+               </div>
+               <!--
+<div class="alert-cta">
+<h3>Archer Connect Outage</h3>
+<p>Due to the ongoing AWS outage, the Archer Connect portal is currently experiencing an outage as well.</p>
+<p>We are actively working with the vendor and continuing to monitor the situation; however, the service will remain unavailable until AWS has fully resolved the underlying issue.</p>
+<p>We appreciate your patience and understanding, and we will provide an update once service has been restored.</p>
+</div>
+-->
+               
+               <div class="stlcc-background-logo">
+                  
+                  <div class="pathways-container">
+                     
+                     <div class="content-block-video">
+                        
+                        <div class="content-block-video-iframe"><iframe class="pathways-video" title="Find Your Reason at STLCC commercial" src="https://www.youtube.com/embed/4RTLCvQAqok?si=tpYZSAjrVWUFDPwy&amp;controls=0" allowfullscreen="allowfullscreen"></iframe></div>
+                        
+                        <div class="content-block-video-text">
+                           
+                           <h3>What's Your Reason?</h3>
+                           
+                           <p>The nurse at your doctor’s office. Your trusted car mechanic. Your boss. All these
+                              people have something in common: St. Louis Community College helped them transform
+                              their lives. Over a million people have taken classes, earned professional certifications,
+                              built valuable skills or started here and transferred to a four-year university. Our
+                              alums are everywhere, doing every kind of job and making a difference in our community.</p>
+                           
+                           <h3>Now enrolling for spring semester.</h3>
+                           
+                           <p><a id="blue-button-snippet" class="blue-button-snippet-dark" href="/register">Register Now</a></p>
+                           </div>
+                        </div>
+                     </div>
+                  
+                  <div class="stlcc-whats-happening">
+                     
+                     <div class="pathways-container">
+                        
+                        <h2 class="default-headline">What's Happening at STLCC</h2>
+                        
+                        <div class="whats-happening-content">
+                           
+                           <div class="whats-happening-events">
+                              
+                              <div class="events"><div class='event-item'>	<div class='event-date'>		<div class='event-date-bg'>			<span class='event-month'>Nov</span>			<span class='event-day'>18</span>		</div>	</div>	<div class='event-text'>	<div class='event-item-header'><h3><a class='event-title' href="https://stlcc.edu/events#event-details/db1be458-a5f8-4504-92b3-1ceacf89c092">Library Speaker Series: The Voyager Project</a></h3>		</div>	<div class="event-item-copy"><p><p>Join the STLCC Library for The Voyager Project, a virtual presentation with Bijan Pashaie, PhD....</p>		</div>		<div class='event-item-time-location'>			<span class='time'>10:00 AM</span>		</div>		</div>		</div><div class='event-item'>	<div class='event-date'>		<div class='event-date-bg'>			<span class='event-month'>Nov</span>			<span class='event-day'>18</span>		</div>	</div>	<div class='event-text'>	<div class='event-item-header'><h3><a class='event-title' href="https://stlcc.edu/events#event-details/75ce6ab1-7166-4f8d-a7e3-aede6fd7b9d7">Impaired Driving Pop-UP</a></h3>		</div>	<div class="event-item-copy"><p>Campus Life and Campus Police presents: Impair Driving Pop-up<br /><br />Can you pass the straight...</p>		</div>		<div class='event-item-time-location'>			<span class='time'>10:30 AM</span>		</div>		</div>		</div><div class='event-item'>	<div class='event-date'>		<div class='event-date-bg'>			<span class='event-month'>Nov</span>			<span class='event-day'>18</span>		</div>	</div>	<div class='event-text'>	<div class='event-item-header'><h3><a class='event-title' href="https://stlcc.edu/events#event-details/ae0cf255-58b9-437a-9440-c782536dee90">Origami Tea Party</a></h3>		</div>	<div class="event-item-copy"><p>Celebrate the Origami Tea Party with the Genshiken Club!&nbsp;<br /><br />Destress from midterms...</p>		</div>		<div class='event-item-time-location'>			<span class='time'>11:00 AM</span>		</div>		</div>		</div><div class='event-item'>	<div class='event-date'>		<div class='event-date-bg'>			<span class='event-month'>Nov</span>			<span class='event-day'>18</span>		</div>	</div>	<div class='event-text'>	<div class='event-item-header'><h3><a class='event-title' href="https://stlcc.edu/events#event-details/613fbc7f-207d-4954-b50e-9cee60ed7362">Lunch and Learn: Impaired Driving Awareness Workshop</a></h3>		</div>	<div class="event-item-copy"><p><p>Join STLCC Campus Life and Campus Police for an informative workshop about the dangers of...</p>		</div>		<div class='event-item-time-location'>			<span class='time'>11:00 AM</span>		</div>		</div>		</div></div>
+                              <p><a id="blue-button-snippet" class="blue-button-snippet-dark" href="/events">
+                                    				View All Events
+                                    			</a></p>
+                              
+                              </div>
+                           
+                           <div class="whats-happening-news">
+                              
+                              <div class="whats-happening-news-articles"><div><a href="/insider/news/meramec-student-newspaper-national-award.aspx"><p class="news-article-headline">STLCC-Meramec Student Newspaper Wins National Award</p><p class="news-article-content">STLCC-Meramec's student newspaper earns national recognition for excellence in journalism, highlighting the talent and dedication of student...</p></a></div><div><a href="/insider/college-pathways/innovative-interiors-veterans.aspx"><p class="news-article-headline">STLCC Interior Design Students Support Veterans</p><p class="news-article-content">STLCC interior design students partner with Veterans Community Project to create welcoming, accessible spaces for veterans experiencing...</p></a></div><div><a href="/insider/employer-resources/customized-workforce-training.aspx"><p class="news-article-headline">Your Business Has Challenges. STLCC Has the Training to Solve Them.</p><p class="news-article-content">Discover how STLCC helps St. Louis businesses improve productivity, develop leaders and strengthen their workforce through customized training...</p></a></div><div><a href="/insider/college-pathways/advanced-manufacturing.aspx"><p class="news-article-headline">Why Advanced Manufacturing Is a Smart Career Move and How STLCC Can Help You Get There</p><p class="news-article-content">Learn about career opportunities in advanced manufacturing and how STLCC prepares students with the technical skills and training needed to...</p></a></div></div>
+                              <p class="whats-happening-button"><a id="blue-button-snippet" class="blue-button-snippet-dark" href="/insider">Read the Insider Blog</a></p>
+                              
+                              </div>
+                           </div>
+                        
+                        <p>&nbsp;</p>
+                        </div>
+                     </div>
+                  </div>
+               
+               <div class="education-for-life">
+                  
+                  <div class="pathways-container">
+                     
+                     <h2 class="default-headline">Education for Life</h2>
+                     
+                     <p>&nbsp;</p>
+                     
+                     <div class="education-for-life-icons">
+                        
+                        <div class="education-for-life-icon"><a href="/admissions/apply-to-stlcc/first-time.aspx"><i class="fa-solid fa-book-open-reader"></i>First-Time Students</a></div>
+                        
+                        <div class="education-for-life-icon"><a href="/admissions/apply-to-stlcc/returning.aspx"><i class="fa-solid fa-address-card"></i>Returning Students</a></div>
+                        
+                        <div class="education-for-life-icon"><a href="/admissions/apply-to-stlcc/transfer-students/"><i class="fa-solid fa-arrows-repeat"></i>Transferring Students</a></div>
+                        
+                        <div class="education-for-life-icon"><a href="/workforce/training-programs/"><i class="fa-solid fa-comments"></i>Career Training</a></div>
+                        
+                        <div class="education-for-life-icon"><a href="/programs-academics/continuing-education/"><i class="fa-solid fa-network-wired"></i>Personal Enrichment</a></div>
+                        </div>
+                     </div>
+                  </div>
+               
+               <div class="pathways-to-success-home">
+                  
+                  <div class="pathways-container">
+                     
+                     <div class="content-block-video">
+                        
+                        <div class="content-block-video-text">
+                           
+                           <h2 class="default-headline">PATHWAYS TO SUCCESS</h2>
+                           
+                           <h2><strong>FOLLOW YOUR PATH</strong></h2>
+                           
+                           <div class="pathways-to-success-home-spacer">&nbsp;</div>
+                           
+                           <p>&nbsp;</p>
+                           
+                           <p>STLCC meets you where you are with programs that make sense for your life. Transfer
+                              to a four-year university, earn a certificate to advance your career or complete focused
+                              training for immediate employment. Our focused pathways help you achieve your goals,
+                              saving both time and money in the process.</p>
+                           
+                           <p><a id="blue-button-snippet" class="blue-button-snippet-inverse-home" href="/pathways/index.aspx">Explore Programs</a></p>
+                           </div>
+                        
+                        <div class="content-block-video-iframe"><iframe class="pathways-video" title="Pathways to Success video" src="https://www.youtube.com/embed/9rSIR80nQXg?si=lJiaejxLew95nQCk&amp;controls=0" allowfullscreen="allowfullscreen"></iframe></div>
+                        </div>
+                     </div>
+                  </div>
+               
+               <div class="pathways-home-page-cta">
+                  
+                  <div class="pathways-home-page-cta-logo"><picture>
+                        <source srcset="/images/logos-icons/archie-fox-mascot-paper-plane.jpg, /images/logos-icons/archie-fox-mascot-paper-plane-2x.jpg 2x" media="(max-width: 699px)"></source>
+                        <source srcset="/images/logos-icons/archie-fox-mascot-paper-plane-2x.jpg, /images/logos-icons/archie-fox-mascot-paper-plane-2x.jpg 2x"></source><img src="/images/logos-icons/archie-fox-mascot-paper-plane.jpg" width="600" height="600" alt="Archie Fox Mascot Logo" onerror="this.onerror=null;this.src='https://cms.stlcc.edu/files/content?site=Pub_website&amp;path=/images/logos-icons/archie-fox-mascot-logo.png'"></picture></div>
+                  
+                  <div class="pathways-home-page-cta-text">
+                     
+                     <h2><strong>MEET STLCC</strong></h2>
+                     
+                     <p><strong>Through economic shifts and rising higher education costs, STLCC has remained a steadfast
+                           source of opportunity. That's our promise to you.</strong></p>
+                     
+                     <p>STLCC has served over 1.3 million students, representing more than 50% of St. Louis
+                        area households in our student body. Since 1962, we've believed in the transformative
+                        power of education—lifting individuals, communities and our city. This belief inspires
+                        us to continue providing opportunities and hope for a better future.</p>
+                     
+                     <p>STLCC offers affordable education. Our tuition and fees are 75% less than Missouri's
+                        largest public four-year university, saving more than $11,000 annually. Over the lifetime
+                        of your career, you can earn $2 million with an associate degree and $2.8 million
+                        with a bachelor's degree. Compare this to only $1.6 million with a high school diploma.</p>
+                     
+                     <p>STLCC is proud to help more students transfer to four-year Missouri public universities
+                        than any other community college in the state. Research shows that students who earn
+                        associate degrees before transferring perform better academically, have higher grade
+                        point averages and are more likely to earn their bachelor's degree than students who
+                        do not complete an associate degree. We provide the tools for your success, ensuring
+                        you a confident future.</p>
+                     
+                     <p>We offer stackable credentials for career advancement and hundreds of online courses.
+                        With a 22:1 student-teacher ratio and various learning modalities, STLCC provides
+                        personalized education.</p>
+                     
+                     <p>Since 1966, STLCC has been accredited by the Higher Learning Commission, a testament
+                        to our commitment to high standards in education, services and faculty. This accreditation
+                        ensures that you receive a quality education recognized and respected in the academic
+                        and professional world.</p>
+                     
+                     <p><a id="blue-button-snippet" class="blue-button-snippet-dark" href="/about/index.aspx">Learn More About STLCC</a></p>
+                     </div>
+                  </div>
+            </div>
+         </main>
+         <footer id="footer" role="contentinfo"><div class="footer-main container"><div class="row"><div class="col-lg-5 footer-flex"><div class="logo-wrap"><img src="/_resources/images/_new/stlcc-logo-primary.png" alt="logo St. Louis Community College Expanding Minds. Changing Lives." class="footer-logo"></div><div class="footer-social"><a href="https://www.instagram.com/stlccedu/" class="social-link"><span class="fab fa-instagram"></span><span class="sr-only">Instagram</span></a><a href="https://www.facebook.com/STLCC/" class="social-link"><span class="fab fa-facebook"></span><span class="sr-only">Facebook</span></a><a href="https://www.youtube.com/@stlccofficial" class="social-link"><span class="fab fa-youtube"></span><span class="sr-only">Youtube</span></a><a href="https://www.tiktok.com/@stlccedu" class="social-link"><span class="fab fa-tiktok"></span><span class="sr-only">Tiktok</span></a><a href="http://www.linkedin.com/school/19996/" class="social-link"><span class="fab fa-linkedin"></span><span class="sr-only">Linkedin</span></a></div></div><div class="col-lg-7 footer-main-links"><div class="row"><div class="col-12 col-md-4"><a href="/contact-us/index.aspx">Contact STLCC</a><a href="/workforce/">Workforce Solutions Group</a><a href="/about/foundation/">Foundation</a><a href="/about/alumni/index.aspx">Alumni</a><a href="/careers/">Careers</a></div><div class="col-12 col-md-4"><a href="/stores/index.aspx">Campus Stores</a><a href="/about/police-safety/">College Police</a><a href="/insider/">STLCC Blog</a><a href="/events/">STLCC Events</a><a href="/faculty-and-staff/index.aspx">Faculty &amp; Staff</a></div><div class="col-12 col-md-4"><div class="be-ix-link-block"></div></div></div></div></div></div><div class="footer-foot container"><div class="row"><div class="col-12"><ul class="list-inline"><li><a href="#"><span class="copyright"><span id="directedit">©</span>2026 St. Louis Community College</span></a></li><li><a href="/college-policy-procedures/consumer-information/privacy-policy.aspx">Privacy Policy</a></li><li><a href="/college-policy-procedures/consumer-information/nondiscrimination-statement.aspx">Non-Discrimination Agreement</a></li><li><a href="/college-policy-procedures/title-ix/index.aspx">Title IX</a></li><li><a href="/college-policy-procedures/consumer-information/index.aspx">Consumer Information</a></li><li><a href="/about/institutional-research/student-right-to-know.aspx">Students Right to Know</a></li></ul></div></div></div></footer>
+<script src="/_resources/js/_new/ouscripts.js"></script>
+<script src="/_resources/js/_new/direct-edit.js"></script>
+<script>
+$(document).ready(function() {
+function close_accordion_section() {
+$('.accordion .accordion-section-title').removeClass('active');
+$('.accordion .accordion-section-content').slideUp(300).removeClass('open');
+}
+
+$('.accordion-section-title').click(function(e) {
+// Grab current anchor value
+var currentAttrValue = $(this).attr('href');
+
+if($(e.target).is('.active')) {
+close_accordion_section();
+}else {
+close_accordion_section();
+
+// Add active class to section title
+$(this).addClass('active');
+// Open up the hidden content panel
+$('.accordion ' + currentAttrValue).slideDown(300).addClass('open');
+}
+
+e.preventDefault();
+});
+});
+</script>
+<script src="/_resources/js/_new/bootstrap.bundle.min.js"></script>
+<script>
+// search toggler
+document.addEventListener("DOMContentLoaded", function () {
+var headerSearchButton = document.getElementById("headerSearchButton");
+// define the fa icon inside of search button
+var headerButtonIcon = headerSearchButton.querySelector("span.fa");
+var searchForm = document.getElementById("searchForm");
+
+headerSearchButton.addEventListener("click", function () {
+searchForm.classList.toggle("d-none");
+headerButtonIcon.classList.toggle("fa-magnifying-glass");
+headerButtonIcon.classList.toggle("fa-times");
+});
+});
+
+// Get the navbar toggler element
+const navbarToggler = document.querySelector(
+".main-header .navbar-toggler"
+);
+
+// Function to toggle the icon
+function toggleIcon() {
+const icon = navbarToggler.querySelector(
+".main-header .navbar-toggler span.fa"
+);
+if (navbarToggler.getAttribute("aria-expanded") === "true") {
+icon.classList.remove("fa-bars");
+icon.classList.add("fa-times");
+} else {
+icon.classList.remove("fa-times");
+icon.classList.add("fa-bars");
+}
+}
+// Event listener to handle icon toggle on click
+navbarToggler.addEventListener("click", toggleIcon);
+
+//Check the scroll position and add a class to the header that moves it upwards off the viewport
+window.addEventListener("scroll", function () {
+//set a variable for the viewpoprt height
+const vH = window.innerHeight;
+const header = document.getElementById("site-navigation");
+if (window.scrollY > vH) {
+header.classList.add("hideNav");
+} else {
+header.classList.remove("hideNav");
+}
+});
+</script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=374990959"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '374990959');
+</script>
+         <div id="hidden" style="display:none;"><a id="de" href="https://a.cms.omniupdate.com/11/?skin=stlcc&amp;account=master&amp;site=Pub_website&amp;action=de&amp;path=/index.pcf">© </a></div><a class="accessibility" accesskey="t" href="#wrapper">Back to top</a></div><script>
+			document.addEventListener("DOMContentLoaded", function() {
+				const accordionButtons = document.querySelectorAll(".programs-accordion");
+				const panels = document.querySelectorAll(".programs-panel");
+				let isSmallScreen = window.innerWidth >= 992;
+
+				// Function to toggle the display of a panel
+				function togglePanel(panelId) {
+					panels.forEach(panel => {
+						if (panel.id === panelId) {
+							if (isSmallScreen) {
+								// Toggle the display property for small screens
+								panel.style.display = panel.style.display === "block" ? "none" : "block";
+							} else {
+								panel.style.display = "block";
+							}
+						} else {
+							panel.style.display = "none";
+						}
+					});
+
+					accordionButtons.forEach(button => {
+						if (button.id === `programsAcc_${panelId.split('_')[1]}`) {
+							button.classList.toggle("active");
+						} else {
+							button.classList.remove("active");
+						}
+					});
+				}
+
+				// Initial setup
+				togglePanel("programsAccPanel_1"); // Activate the first panel
+
+				// Event listener for button clicks
+				accordionButtons.forEach(button => {
+					button.addEventListener("click", function() {
+						const panelId = button.id.replace("programsAcc", "programsAccPanel");
+						togglePanel(panelId);
+					});
+				});
+
+				// Update the isSmallScreen variable on window resize
+				window.addEventListener("resize", function() {
+					isSmallScreen = window.innerWidth >= 992;
+				});
+			});
+		</script><script src="/_resources/js/alert-message.js"></script></body>
+</html>

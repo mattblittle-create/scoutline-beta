@@ -1,0 +1,49 @@
+{
+  "slug": "baton-rouge-community-college",
+  "name": "Baton Rouge Community College",
+  "collegeId": "cmox1gf6p000lqtsgw810db4k",
+  "programId": "cmox1gf7h000nqtsg35fr8hif",
+  "storedState": "LA",
+  "storedDivision": "NJCAA_D1",
+  "directoryMatch": {
+    "unitid": "437103",
+    "name": "Baton Rouge Community College",
+    "aliases": [
+      "BRCC"
+    ],
+    "state": "LA",
+    "city": "Baton Rouge",
+    "host": "mybrcc.edu",
+    "decision": "UNIQUE_EXACT_NAME_OR_ALIAS_AND_STATE_DISCOVERY_LEAD_ONLY"
+  },
+  "directoryMatchStatus": "DISCOVERY_LEAD_NOT_CURRENT_CAMPUS_VERIFIED",
+  "needsHeadCoach": false,
+  "needs2027Roster": false,
+  "newPagesAttempted": 1,
+  "pages": [
+    {
+      "requestedUrl": "https://mybrcc.edu/",
+      "checkedAtUtc": "2026-11-18T16:09:34.200Z",
+      "finalUrl": "https://mybrcc.edu/",
+      "status": 403,
+      "contentType": "text/html",
+      "sha256": "75056b2e237f5f973f4a5d37cb315f274db15e111e5be3edc14b5f0a1a69d44f",
+      "sourcePath": "sources/7216a950e1333c390f98b2c3ced0251973e78ebd41676124f5560539efd568d0.source",
+      "kind": "INSTITUTIONAL_DIRECTORY_HOST_LEAD",
+      "parent": {
+        "sourcePath": "../../geography/us-college-locations-ipeds2024.json",
+        "unitid": "437103",
+        "publishedName": "Baton Rouge Community College",
+        "state": "LA",
+        "city": "Baton Rouge"
+      }
+    }
+  ],
+  "unfetchedPublishedLeads": [],
+  "publishedLeads": [],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "campusIdentityReviewRequired": true,
+  "currentMembershipVerified": false,
+  "importApproval": "NOT_GRANTED"
+}

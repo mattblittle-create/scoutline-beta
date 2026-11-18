@@ -1,0 +1,89 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<script src="/src/SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
+<link href="/src/SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+<!--
+input {
+	font-size: 18px;
+	line-height: 18px;
+}
+.style1 {font-size: 0.8em}
+-->
+</style>
+</head>
+
+<body>
+<div id="divWrapper">
+	<div id="divContainer">
+		<div id="divContent"><!-- InstanceBeginEditable name="ContentBody" -->
+			<!-- header not needed... explained in the CMS -->	
+			<!-- <h1>Faculty and Staff Directory</h1> -->
+			<!-- or not... -->
+			<h3>Faculty and Staff Directory</h3>
+			<form id="directFrm" name="directFrm" method="get" action="directory.php">
+				<h4>Enter a First Name or Last Name: </h4> (Partial Matches are Allowed)<br />
+ 
+				<span id="sprytextfield1">
+					<input name="searchfield" type="text" id="searchfield" size="24">
+					<span class="textfieldRequiredMsg">A value is required.</span>
+					<span class="textfieldMinCharsMsg">Please enter at least 2 characters.</span>
+				</span>
+				<input type="submit" name="Submit" value="Submit" />
+			</form>
+	      
+          <p>The number of results from your search = 2 </p>
+                        <br />
+              <div id="divResult">
+                <table width="100%" border="1" cellpadding="3" cellspacing="0">
+              <tr>
+                <th>Name</th>
+                <th>Title</th>
+                <th>Division</th>
+                <th>Location</th>
+                <th>Phone</th>
+              </tr>
+                              <tr bgcolor="#CCCCCC" onmouseout="this.style.backgroundColor=''" onmouseover="this.style.backgroundColor='#ECECEC'">
+                  <td>
+                                        <a href="mailto:MEGHAN.NEFFENDORF@LSUS.EDU" class="style1">
+                                        MEGHAN NEFFENDORF                                        </a>
+                                      </td>
+                  <td>
+                    <span class="style1">
+                    DIRECTOR OF SPORTS MEDICINE                    </span> </td>
+                  <td><span class="style1">
+                  ATHLETIC DIRECTOR'S OFFICE                  </span> </td>
+                  <td><span class="style1">HPE-101</span></td>
+                  <td><span class="style1">
+                  318-795-2446                  </span></td>
+              </tr>
+                <tr bgcolor="#FFFFFF" onmouseout="this.style.backgroundColor=''" onmouseover="this.style.backgroundColor='#ECECEC'">
+                  <td>
+                                        <a href="mailto:BRADLEY.NEFFENDORF@LSUS.EDU" class="style1">
+                                        BRAD NEFFENDORF                                        </a>
+                                      </td>
+                  <td>
+                    <span class="style1">
+                    HEAD COACH                    </span> </td>
+                  <td><span class="style1">
+                  BASEBALL                  </span> </td>
+                  <td><span class="style1">HPE-1A</span></td>
+                  <td><span class="style1">
+                  318-798-4109                  </span></td>
+              </tr>
+                </table>
+	      </div>
+	    		    <script type="text/javascript">
+<!--
+var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1", "none", {validateOn:["blur", "change"], minChars:2});
+//-->
+            </script>
+<!-- InstanceEndEditable -->
+		  <p>&nbsp;</p>
+	  </div>
+	</div>
+</div>
+</body>
+<!-- InstanceEnd --></html>

@@ -1,0 +1,44 @@
+{
+  "slug": "lewis-and-clark-community-college",
+  "name": "Lewis & Clark Community College",
+  "collegeId": "cmox237ye0073qtfkashksyoi",
+  "programId": "cmox237z30075qtfk6vdhicek",
+  "storedState": "IL",
+  "storedDivision": "NJCAA_D2",
+  "directoryMatch": {
+    "unitid": "146603",
+    "name": "Lewis and Clark Community College",
+    "aliases": [],
+    "state": "IL",
+    "city": "Godfrey",
+    "host": "lc.edu",
+    "decision": "UNIQUE_EXACT_NAME_OR_ALIAS_AND_STATE_DISCOVERY_LEAD_ONLY"
+  },
+  "directoryMatchStatus": "DISCOVERY_LEAD_NOT_CURRENT_CAMPUS_VERIFIED",
+  "needsHeadCoach": true,
+  "needs2027Roster": true,
+  "newPagesAttempted": 1,
+  "pages": [
+    {
+      "requestedUrl": "https://lc.edu/",
+      "checkedAtUtc": "2026-11-18T16:21:17.033Z",
+      "status": "FAILED",
+      "errorType": "Error",
+      "kind": "INSTITUTIONAL_DIRECTORY_HOST_LEAD",
+      "parent": {
+        "sourcePath": "../../geography/us-college-locations-ipeds2024.json",
+        "unitid": "146603",
+        "publishedName": "Lewis and Clark Community College",
+        "state": "IL",
+        "city": "Godfrey"
+      }
+    }
+  ],
+  "unfetchedPublishedLeads": [],
+  "publishedLeads": [],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "campusIdentityReviewRequired": true,
+  "currentMembershipVerified": false,
+  "importApproval": "NOT_GRANTED"
+}

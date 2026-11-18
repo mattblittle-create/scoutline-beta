@@ -1,0 +1,1 @@
+Collect remaining published staff indices and current-roster pages across all403 stored NJCAA programs. Staff/roster first; max10newpages/program,4workers; noDBwrites or imports. See NEXT-SESSION-NOTES.md.

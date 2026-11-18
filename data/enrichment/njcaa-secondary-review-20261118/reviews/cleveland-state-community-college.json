@@ -1,0 +1,111 @@
+{
+  "slug": "cleveland-state-community-college",
+  "programId": "cmox1gfn6001kqtsglzcs24ji",
+  "collegeId": "cmox1gfme001iqtsg23nqcgwc",
+  "checkedAtUtc": "2026-11-18T14:43:28.802Z",
+  "sourcePath": "../njcaa-core-review-20261118/sources/cleveland-state-community-college-0.source",
+  "sourceSHA256": "b2e4f58b08a579354ed34f325cc125b2d85dedb35a8797735f5fdd47ae8d3b8e",
+  "sourceUrl": "https://www.cscougars.com/sports/bsb/index",
+  "socialLeads": [
+    {
+      "url": "https://www.twitter.com/CS_Athletics",
+      "label": "Twitter",
+      "context": "Baseball: Twitter",
+      "kind": "HTML"
+    },
+    {
+      "url": "https://www.instagram.com/clevelandstateathletics",
+      "label": "Instagram",
+      "context": "Baseball: Instagram",
+      "kind": "HTML"
+    }
+  ],
+  "recruitingLeads": [
+    {
+      "url": "https://www.cscougars.com/sports/bsb/Prospective_Baseball_Player_Questionnaire",
+      "label": "Recruit Me!",
+      "context": "",
+      "kind": "QUESTIONNAIRE"
+    },
+    {
+      "url": "https://www.cscougars.com/sports/mgolf/Men-s_Golf_Questionnaire",
+      "label": "Golf",
+      "context": "Recruit Me!: Golf",
+      "kind": "QUESTIONNAIRE"
+    },
+    {
+      "url": "https://www.cscougars.com/sports/bsb/Camps",
+      "label": "Camps & Tournaments",
+      "context": "",
+      "kind": "CAMP"
+    },
+    {
+      "url": "https://www.cscougars.com/information/camps",
+      "label": "Camps & Upcoming Events",
+      "context": "Inside Athletics: Camps & Upcoming Events",
+      "kind": "CAMP"
+    }
+  ],
+  "logoLeads": [
+    {
+      "url": "https://www.cscougars.com/images/setup/Primary_Logo.png",
+      "label": "Official Site of the Cleveland State Cougars Home Page img-fluid img-mh-5"
+    }
+  ],
+  "captures": [
+    {
+      "requestedUrl": "https://www.cscougars.com/sports/bsb/Prospective_Baseball_Player_Questionnaire",
+      "kind": "QUESTIONNAIRE",
+      "status": 200,
+      "finalUrl": "https://www.cscougars.com/sports/bsb/Prospective_Baseball_Player_Questionnaire",
+      "sourcePath": "../njcaa-core-review-20261118/sources/cleveland-state-community-college-4.source",
+      "sha256": "85e9c4f7ce81191cd50099c9825cf38a6714f6bfc89ec3f7cdb155df5f11bf47",
+      "reusedEvidence": true
+    },
+    {
+      "requestedUrl": "https://www.cscougars.com/sports/mgolf/Men-s_Golf_Questionnaire",
+      "kind": "QUESTIONNAIRE",
+      "status": 200,
+      "finalUrl": "https://www.cscougars.com/sports/mgolf/Men-s_Golf_Questionnaire",
+      "contentType": "text/html; charset=UTF-8",
+      "sourcePath": "sources/cleveland-state-community-college-1.source",
+      "sha256": "481f2596788a2aa3c5d7fa3affb7b24fa4cba21dc0b8788226cd0dd71576d707"
+    },
+    {
+      "requestedUrl": "https://www.cscougars.com/sports/bsb/Camps",
+      "kind": "CAMP",
+      "status": 200,
+      "finalUrl": "https://www.cscougars.com/sports/bsb/Camps",
+      "sourcePath": "../njcaa-core-review-20261118/sources/cleveland-state-community-college-5.source",
+      "sha256": "0c37ed74fd80fad24c14bca70b18cf5387f33504136050d1d74b53d473ea8451",
+      "reusedEvidence": true
+    },
+    {
+      "requestedUrl": "https://www.cscougars.com/information/camps",
+      "kind": "CAMP",
+      "status": 200,
+      "finalUrl": "https://www.cscougars.com/information/camps",
+      "contentType": "text/html; charset=UTF-8",
+      "sourcePath": "sources/cleveland-state-community-college-3.source",
+      "sha256": "f2885b07d8088274149e6b3fb5f12085b687d41e3cd1c3a403fc51138f33d62b"
+    },
+    {
+      "requestedUrl": "https://www.cscougars.com/images/setup/Primary_Logo.png",
+      "kind": "LOGO_ASSET",
+      "status": 200,
+      "finalUrl": "https://d2o2figo6ddd0g.cloudfront.net/r/7/242041d846x2b6/Primary_Logo.png",
+      "contentType": "image/png",
+      "sourcePath": "sources/cleveland-state-community-college-4.source",
+      "sha256": "d9e15f7b102883b5a9edb4103d776038b55a4d34ccffc645450e749af8b3f4b6",
+      "decoded": {
+        "format": "png",
+        "width": 800,
+        "height": 680
+      },
+      "assetDecoded": true
+    }
+  ],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED"
+}

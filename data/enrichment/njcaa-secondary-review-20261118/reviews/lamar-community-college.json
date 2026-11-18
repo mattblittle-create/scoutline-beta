@@ -1,0 +1,78 @@
+{
+  "slug": "lamar-community-college",
+  "programId": "cmox1ghv5006bqtsgapyr5mc8",
+  "collegeId": "cmox1ghue0069qtsgeslr90uj",
+  "checkedAtUtc": "2026-11-18T14:43:31.262Z",
+  "sourcePath": "../njcaa-discovery-20261118/sources/lamar-community-college-1.source",
+  "sourceSHA256": "a6a087d87aac774200a729c13b1c361b8c454daa81c94a7b0cf6915d07e39fe9",
+  "sourceUrl": "https://www.golopes.com/sports/bsb/index",
+  "socialLeads": [
+    {
+      "url": "https://www.instagram.com/lopes_baseball/",
+      "label": "Instagram",
+      "context": "Baseball: Instagram",
+      "kind": "HTML"
+    },
+    {
+      "url": "https://twitter.com/LamarCCBaseball",
+      "label": "Twitter",
+      "context": "Baseball: Twitter",
+      "kind": "HTML"
+    }
+  ],
+  "recruitingLeads": [
+    {
+      "url": "https://www.golopes.com/sports/bsb/Recruits",
+      "label": "Recruiting Questionnaire",
+      "context": "",
+      "kind": "QUESTIONNAIRE"
+    },
+    {
+      "url": "http://www.lopesbaseballacademy.com/",
+      "label": "Camps",
+      "context": "",
+      "kind": "CAMP"
+    },
+    {
+      "url": "https://www.golopes.com/information/Camps_MBKB",
+      "label": "Basketball, Men's",
+      "context": "Camps: Basketball, Men's",
+      "kind": "CAMP"
+    }
+  ],
+  "logoLeads": [
+    {
+      "url": "https://www.golopes.com/images/setup/Primary_Logo.png",
+      "label": "Lamar Community College Home Page img-fluid img-mh-5"
+    }
+  ],
+  "captures": [
+    {
+      "requestedUrl": "https://www.golopes.com/sports/bsb/Recruits",
+      "kind": "QUESTIONNAIRE",
+      "status": "HELD_ACCESS_NOT_RETRIED",
+      "finalUrl": "https://www.golopes.com/sports/bsb/Recruits"
+    },
+    {
+      "requestedUrl": "http://www.lopesbaseballacademy.com/",
+      "kind": "CAMP",
+      "status": "FAILED",
+      "errorType": "TypeError"
+    },
+    {
+      "requestedUrl": "https://www.golopes.com/information/Camps_MBKB",
+      "kind": "CAMP",
+      "status": "HELD_ACCESS_NOT_RETRIED",
+      "finalUrl": "https://www.golopes.com/information/Camps_MBKB"
+    },
+    {
+      "requestedUrl": "https://www.golopes.com/images/setup/Primary_Logo.png",
+      "kind": "LOGO_ASSET",
+      "status": "HELD_ACCESS_NOT_RETRIED",
+      "finalUrl": "https://www.golopes.com/images/setup/Primary_Logo.png"
+    }
+  ],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED"
+}

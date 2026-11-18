@@ -1,0 +1,44 @@
+{
+  "slug": "reid-state-technical-college",
+  "name": "Reid State Technical College",
+  "collegeId": "cmox239tf00b0qtfkd5vmnymk",
+  "programId": "cmox239u300b2qtfkl8y9vrne",
+  "storedState": "AL",
+  "storedDivision": "NJCAA_D2",
+  "directoryMatch": {
+    "unitid": "101994",
+    "name": "Reid State Technical College",
+    "aliases": [],
+    "state": "AL",
+    "city": "Evergreen",
+    "host": "rstc.edu",
+    "decision": "UNIQUE_EXACT_NAME_OR_ALIAS_AND_STATE_DISCOVERY_LEAD_ONLY"
+  },
+  "directoryMatchStatus": "DISCOVERY_LEAD_NOT_CURRENT_CAMPUS_VERIFIED",
+  "needsHeadCoach": true,
+  "needs2027Roster": true,
+  "newPagesAttempted": 1,
+  "pages": [
+    {
+      "requestedUrl": "https://rstc.edu/",
+      "checkedAtUtc": "2026-11-18T16:21:31.248Z",
+      "status": "FAILED",
+      "errorType": "Error",
+      "kind": "INSTITUTIONAL_DIRECTORY_HOST_LEAD",
+      "parent": {
+        "sourcePath": "../../geography/us-college-locations-ipeds2024.json",
+        "unitid": "101994",
+        "publishedName": "Reid State Technical College",
+        "state": "AL",
+        "city": "Evergreen"
+      }
+    }
+  ],
+  "unfetchedPublishedLeads": [],
+  "publishedLeads": [],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "campusIdentityReviewRequired": true,
+  "currentMembershipVerified": false,
+  "importApproval": "NOT_GRANTED"
+}

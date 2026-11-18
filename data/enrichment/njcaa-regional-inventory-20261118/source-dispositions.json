@@ -1,0 +1,83 @@
+[
+  {
+    "source": "https://www.accac.org/landing/index",
+    "finalUrl": null,
+    "status": "FAILED",
+    "decision": "HELD_NETWORK_FAILURE",
+    "usableMembershipEvidence": false,
+    "sourcePath": null,
+    "sourceSHA256": null
+  },
+  {
+    "source": "http://gracsports.com/landing/index",
+    "finalUrl": "https://gracsports.com/landing/index",
+    "status": 403,
+    "decision": "HELD_HTTP_403",
+    "usableMembershipEvidence": false,
+    "sourcePath": "sources/3a5cc7eabd85be98e6880b9904fb9b005968d7e4137e1cd48a1e7406a0e6ec01.source",
+    "sourceSHA256": "f5168055887d0cba5ae2e9388d7673b078a4beb9cde8331f06ebf1c2433ccc27"
+  },
+  {
+    "source": "https://www.iccac.org/",
+    "finalUrl": "https://www.iccac.org/",
+    "status": 403,
+    "decision": "HELD_HTTP_403",
+    "usableMembershipEvidence": false,
+    "sourcePath": "sources/ae9f12878183197a25437bbd6ad885bff7b94776eb6ded0cacd5de0f9eae845d.source",
+    "sourceSHA256": "0c627df08074040c7d3d47e0caef57c0dc265564169d6ffe7373e8cd33e754a4"
+  },
+  {
+    "source": "https://www.kjccc.org/",
+    "finalUrl": "https://www.kjccc.org/",
+    "status": 403,
+    "decision": "HELD_HTTP_403",
+    "usableMembershipEvidence": false,
+    "sourcePath": "sources/d83b674b16ecc65391a26c5efbd6aae16b9998c3b07308d2b3640373b8a5be2e.source",
+    "sourceSHA256": "a6a9ee42e4b154e0aad61dce07fd5c777ba90e791baca0654a0f9d9680fe2b6c"
+  },
+  {
+    "source": "https://mccac.co/",
+    "finalUrl": "https://erpsystem4u.com/terms-conditions/",
+    "status": 200,
+    "decision": "EXCLUDED_UNRELATED_GAMING_REDIRECT",
+    "usableMembershipEvidence": false,
+    "sourcePath": "sources/069fcff0ac65f286dfd3fb3bab197eff6938eb9274e1030fc2eaa2fdb4f10505.source",
+    "sourceSHA256": "8cfb57b33fcb4211af59725b057d9da4498bbfe748e3cc64e3157e0f7ba2c5f8"
+  },
+  {
+    "source": "https://njcaaregion14.com/landing/index",
+    "finalUrl": "https://njcaaregion14.com/landing/index",
+    "status": 403,
+    "decision": "HELD_HTTP_403",
+    "usableMembershipEvidence": false,
+    "sourcePath": "sources/c94973af4b5eccf06ae1305ef9c8ca1ee7f86a6d1821559b481e4d741d58201b.source",
+    "sourceSHA256": "055693d8f18ae8888c3f3031ba853ee0b26a3a1b8b1415907450df767740953d"
+  },
+  {
+    "source": "http://www.region19.org/",
+    "finalUrl": "https://www.region19.org/",
+    "status": 403,
+    "decision": "HELD_HTTP_403",
+    "usableMembershipEvidence": false,
+    "sourcePath": "sources/7c523d85fbcff0d4a1ec220a202a3eee9fb247bee3f91e50e9d84ed7e4959738.source",
+    "sourceSHA256": "f6a02c98e0f74d6a760e3f7c0f99405c73e5ef65ccc7e2937fb27940dde0c7cc"
+  },
+  {
+    "source": "https://region4sports.com/",
+    "finalUrl": "https://region4sports.com/",
+    "status": 403,
+    "decision": "HELD_HTTP_403",
+    "usableMembershipEvidence": false,
+    "sourcePath": "sources/42db3bb5dc883f9ec435675392f6bb564ecf525e6d455006d08a6cd3eda76542.source",
+    "sourceSHA256": "0865c0f2ba851e6a6b6132d965853d290e3e74f5cef66d732bc024ff74fb1eee"
+  },
+  {
+    "source": "https://www.scenicwestsports.com/",
+    "finalUrl": "https://www.scenicwestsports.com/",
+    "status": 200,
+    "decision": "HELD_NO_PARSED_HTML",
+    "usableMembershipEvidence": false,
+    "sourcePath": "sources/6cd0a4104f84c647d8893e963c97bf681eb3e3f258771c8a7d1c80094821986c.source",
+    "sourceSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+]

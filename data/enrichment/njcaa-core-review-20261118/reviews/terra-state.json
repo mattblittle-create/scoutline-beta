@@ -1,0 +1,41 @@
+{
+  "slug": "terra-state",
+  "collegeId": "cmox2o3pb006lqtbkfaynpac8",
+  "programId": "cmox2o3q3006nqtbkej5h2w05",
+  "name": "Terra State",
+  "storedState": "OH",
+  "storedDivision": "NJCAA_D3",
+  "checkedAtUtc": "2026-11-18T14:21:39.768Z",
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "currentMembershipVerified": false,
+  "campusIdentityVerified": false,
+  "importApproval": "NOT_GRANTED",
+  "pages": [
+    {
+      "requestedUrl": "http://terra.edu/life_at_terra_state/athletics/baseball/index.php",
+      "kind": "DIRECTORY_ALIAS_REQUIRES_CAMPUS_REVIEW",
+      "parent": {
+        "sourcePath": "../njcaa-discovery-20261118/sources/directory-d3.source",
+        "sha256": "3888c2777289f782525671d17b3faadb0f9e289d4cea1ba375ac777b58c7203b",
+        "label": "Terra State CC (OH)"
+      },
+      "status": 404,
+      "finalUrl": "https://terra.edu/life_at_terra_state/athletics/baseball/index.php",
+      "checkedAtUtc": "2026-11-18T14:21:40.053Z",
+      "sourcePath": "sources/terra-state-0.source",
+      "sha256": "80c3fe2ae1062abf56456f52518bd670f9ec3917b7f85e152b347ac6b6faf880"
+    }
+  ],
+  "discoveryAliases": [
+    {
+      "url": "http://terra.edu/life_at_terra_state/athletics/baseball/index.php",
+      "label": "Terra State CC (OH)",
+      "parentSourcePath": "sources/directory-d3.source",
+      "parentSHA256": "3888c2777289f782525671d17b3faadb0f9e289d4cea1ba375ac777b58c7203b",
+      "parentUrl": "https://www.thebaseballobserver.com/njcaa-diii-baseball",
+      "status": "UNVERIFIED_NORMALIZED_NAME_LEAD"
+    }
+  ],
+  "status": "HELD_NO_READABLE_SOURCE"
+}

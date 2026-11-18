@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--
+  ______   ____    ____ ____      ____   ______  
+.' ____ \ |_   \  /   _|_  _|    |_  _|.' ___  | 
+| (___ \_|  |   \/   |   \ \  /\  / / / .'   \_| 
+`_.____`.   | |\  /| |    \ \/  \/ /  | |        
+| \____) | _| |_\/_| |_    \  /\  /   \ `.___.'\ 
+ \______.'|_____||_____|    \/  \/     `.____ .' 
+
+Go Pomeroys!
+-->
+<head>
+	<meta charset="UTF-8"><script type="text/javascript">(window.NREUM||(NREUM={})).init={ajax:{deny_list:["bam.nr-data.net"]},feature_flags:["rum_v2"]};(window.NREUM||(NREUM={})).loader_config={licenseKey:"52c447d2fc",applicationID:"66825322",browserID:"66826536"};;/*! For license information please see nr-loader-rum-1.324.1.min.js.LICENSE.txt */
+(()=>{var e={8122(e,t,r){"use strict";r.d(t,{a:()=>i});var n=r(944);function i(e,t){try{if(!e||"object"!=typeof e)return(0,n.R)(3);if(!t||"object"!=typeof t)return(0,n.R)(4);const r=Object.create(Object.getPrototypeOf(t),Object.getOwnPropertyDescriptors(t)),a=0===Object.keys(r).length?e:r;for(let s in a)if(void 0!==e[s])try{if(null===e[s]){r[s]=null;continue}Array.isArray(e[s])&&Array.isArray(t[s])?r[s]=Array.from(new Set([...e[s],...t[s]])):e[s]instanceof Map||e[s]instanceof Set||e[s]instanceof Date||e[s]instanceof RegExp?r[s]=e[s]:"object"==typeof e[s]&&null!==t[s]&&"object"==typeof t[s]?r[s]=i(e[s],t[s]):r[s]=e[s]}catch(e){r[s]||(0,n.R)(1,e)}return r}catch(e){(0,n.R)(2,e)}}},2555(e,t,r){"use strict";r.d(t,{f:()=>s});var n=r(384),i=r(8122);const a={beacon:n.NT.beacon,errorBeacon:n.NT.errorBeacon,licenseKey:void 0,applicationID:void 0,sa:void 0,queueTime:void 0,applicationTime:void 0,ttGuid:void 0,user:void 0,account:void 0,product:void 0,extra:void 0,jsAttributes:{},userAttributes:void 0,atts:void 0,transactionName:void 0,tNamePlain:void 0};function s(e){try{return!!e.licenseKey&&!!e.errorBeacon&&!!e.applicationID}catch(e){return!1}}r.d(t,["D",0,e=>(0,i.a)(e,a)])},7699(e,t,r){"use strict";var n=r(860);const i=1e6,a={[n.K7.logging]:!0,[n.K7.genericEvents]:!0,[n.K7.jserrors]:!0,[n.K7.ajax]:!0};r.d(t,["It",0,i,"KC",0,a,"qh",0,"SESSION_ERROR","zd",0,5e5])},9324(e,t,r){"use strict";r.d(t,["xv",0,"1.324.1"])},981(e,t,r){"use strict";r.d(t,["R",0,{AJAX:"AjaxRequest",PA:"PageAction",UA:"UserAction",BP:"BrowserPerformance",WS:"WebSocket",SPV:"SecurityPolicyViolation",JSE:"JavaScriptError",LOG:"Log",PVE:"PageView",PVT:"PageViewTiming",SR:"SessionReplay",ST:"SessionTrace",BI:"BrowserInteraction"}])},6154(e,t,r){"use strict";var n=r(1863);const i="undefined"!=typeof window&&!!window.document,a="undefined"!=typeof WorkerGlobalScope&&("undefined"!=typeof self&&self instanceof WorkerGlobalScope&&self.navigator instanceof WorkerNavigator||"undefined"!=typeof globalThis&&globalThis instanceof WorkerGlobalScope&&globalThis.navigator instanceof WorkerNavigator),s=i?window:"undefined"!=typeof WorkerGlobalScope&&("undefined"!=typeof self&&self instanceof WorkerGlobalScope&&self||"undefined"!=typeof globalThis&&globalThis instanceof WorkerGlobalScope&&globalThis),o=Boolean("hidden"===s?.document?.visibilityState),c=""+s?.location,u=/iPad|iPhone|iPod/.test(s.navigator?.userAgent),d=u&&"undefined"==typeof SharedWorker,l=((()=>{const e=s.navigator?.userAgent?.match(/Firefox[/\s](\d+\.\d+)/);Array.isArray(e)&&e.length>=2&&e[1]})(),Date.now()-(0,n.t)());r.d(t,["OF",0,u,"RI",0,i,"WN",0,l,"bv",0,a,"gm",0,s,"m",0,c,"mw",0,o,"sb",0,d,"zk",0,()=>{const e=s?.performance?.getEntriesByType?.("navigation")?.[0];if(e&&e.responseStart>0&&e.responseStart<s.performance.now())return e}])},3241(e,t,r){"use strict";r.d(t,{W:()=>i});var n=r(6154);function i(e={}){try{n.gm.dispatchEvent(new CustomEvent("newrelic",{detail:e}))}catch(e){}}},1687(e,t,r){"use strict";r.d(t,{Ak:()=>o,Ze:()=>u,x3:()=>c});var n=r(3241),i=r(3606),a=r(860),s=r(2646);function o(e,t){if(!e)return;const r={staged:!1,priority:a.P3[t]||0};e.runtime.drainRegistry.get(t)||e.runtime.drainRegistry.set(t,r)}function c(e,t){if(!e)return;const r=e.runtime.drainRegistry;r&&(r.get(t)&&r.delete(t),l(e,t,!1),r.size&&d(e))}function u(e,t="feature",r=!1){if(e){if(!e.runtime.drainRegistry.get(t)||r)return l(e,t);e.runtime.drainRegistry.get(t).staged=!0,d(e)}}function d(e){if(!e)return;const t=Array.from(e.runtime.drainRegistry);t.every(([e,t])=>t.staged)&&(t.sort((e,t)=>e[1].priority-t[1].priority),t.forEach(([t])=>{e.runtime.drainRegistry.delete(t),l(e,t)}))}function l(e,t,r=!0){if(!e)return;const a=e.ee,o=i.i.handlers;if(a&&!a.aborted&&a.backlog&&o){if((0,n.W)({type:"lifecycle",name:"drain",feature:t}),r){const e=a.backlog[t],r=o[t];if(r){for(let t=0;e&&t<e.length;++t)f(e[t],r);Object.entries(r).forEach(([e,t])=>{Object.values(t||{}).forEach(t=>{t[0]?.on&&t[0].context()instanceof s.y&&!t[0].listeners(e).includes(t[1])&&t[0].on(e,t[1])})})}}a.isolatedBacklog||delete o[t],a.backlog[t]=null,a.emit("drain-"+t,[])}}function f(e,t){var r=e[1];Object.values(t[r]||{}).forEach(t=>{var r=e[0];if(t[0]===r){var n=t[1],i=e[3],a=e[2];n.apply(i,a)}})}},7836(e,t,r){"use strict";var n=r(384),i=r(8990),a=r(2646),s=r(5607);const o="nr@context:".concat(s.W),c=function e(t,r){var n={},s={},d={},l=!1;try{l=16===r.length&&u.initializedAgents?.[r]?.runtime.isolatedBacklog}catch(e){}var f={on:p,addEventListener:p,removeEventListener:function(e,t){var r=n[e];if(!r)return;for(var i=0;i<r.length;i++)r[i]===t&&r.splice(i,1)},emit:function(e,r,n,i,a){!1!==a&&(a=!0);if(c.aborted&&!i)return;t&&a&&t.emit(e,r,n);var o=g(n);m(e).forEach(e=>{e.apply(o,r)});var u=v()[s[e]];u&&u.push([f,e,r,o]);return o},get:h,listeners:m,context:g,buffer:function(e,t){const r=v();if(t=t||"feature",f.aborted)return;Object.entries(e||{}).forEach(([e,n])=>{s[n]=t,t in r||(r[t]=[])})},abort:function(){f._aborted=!0,Object.keys(f.backlog).forEach(e=>{delete f.backlog[e]})},isBuffering:function(e){return!!v()[s[e]]},debugId:r,backlog:l?{}:t&&"object"==typeof t.backlog?t.backlog:{},isolatedBacklog:l};return Object.defineProperty(f,"aborted",{get:()=>{let e=f._aborted||!1;return e||(t&&(e=t.aborted),e)}}),f;function g(e){return e&&e instanceof a.y?e:e?(0,i.I)(e,o,()=>new a.y(o)):new a.y(o)}function p(e,t){n[e]=m(e).concat(t)}function m(e){return n[e]||[]}function h(t){return d[t]=d[t]||e(f,t)}function v(){return f.backlog}}(void 0,"globalEE"),u=(0,n.Zm)();u.ee||(u.ee=c),r.d(t,["P",0,o,"ee",0,c])},2646(e,t,r){"use strict";r.d(t,{y:()=>n});class n{constructor(e){this.contextId=e}}},9908(e,t,r){"use strict";r.d(t,{d:()=>n,p:()=>i});var n=r(7836).ee.get("handle");function i(e,t,r,i,a){a?(a.buffer([e],i),a.emit(e,t,r)):(n.buffer([e],i),n.emit(e,t,r))}},3606(e,t,r){"use strict";r.d(t,{i:()=>a});var n=r(9908);a.on=s;var i=a.handlers={};function a(e,t,r,a){s(a||n.d,i,e,t,r)}function s(e,t,r,i,a){a||(a="feature"),e||(e=n.d);var s=t[a]=t[a]||{};(s[r]=s[r]||[]).push([e,i])}},3878(e,t,r){"use strict";function n(e,t){return{capture:e,passive:!1,signal:t}}function i(e,t,r=!1,i){window.addEventListener(e,t,n(r,i))}function a(e,t,r=!1,i){document.addEventListener(e,t,n(r,i))}r.d(t,{DD:()=>a,jT:()=>n,sp:()=>i})},5607(e,t,r){"use strict";const n=(0,r(9566).bz)();r.d(t,["W",0,n])},9566(e,t,r){"use strict";r.d(t,{LA:()=>s,bz:()=>a});var n=r(6154);function i(e,t){return e?15&e[t]:16*Math.random()|0}function a(){const e=n.gm?.crypto||n.gm?.msCrypto;let t,r=0;return e&&e.getRandomValues&&(t=e.getRandomValues(new Uint8Array(30))),"xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".split("").map(e=>"x"===e?i(t,r++).toString(16):"y"===e?(3&i()|8).toString(16):e).join("")}function s(e){const t=n.gm?.crypto||n.gm?.msCrypto;let r,a=0;t&&t.getRandomValues&&(r=t.getRandomValues(new Uint8Array(e)));const s=[];for(var o=0;o<e;o++)s.push(i(r,a++).toString(16));return s.join("")}},2614(e,t,r){"use strict";r.d(t,["BB",0,18e5,"Wt",0,"NRBA_SESSION::","iL",0,{SAME_TAB:"same-tab",CROSS_TAB:"cross-tab"},"tS",0,{STARTED:"session-started",PAUSE:"session-pause",RESET:"session-reset",RESUME:"session-resume",UPDATE:"session-update"},"wk",0,144e5])},1863(e,t,r){"use strict";function n(){return Math.floor(performance.now())}r.d(t,{t:()=>n})},944(e,t,r){"use strict";r.d(t,{R:()=>i});var n=r(3241);function i(e,t){"function"==typeof console.debug&&(console.debug("New Relic Warning: https://github.com/newrelic/newrelic-browser-agent/blob/main/docs/warning-codes.md#".concat(e),t),(0,n.W)({drained:null,type:"data",name:"warn",feature:"warn",data:{code:e,secondary:t}}))}},8990(e,t,r){"use strict";r.d(t,{I:()=>i});var n=Object.prototype.hasOwnProperty;function i(e,t,r){if(n.call(e,t))return e[t];var i=r();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,t,{value:i,writable:!0,enumerable:!1}),i}catch(e){}return e[t]=i,i}},6389(e,t,r){"use strict";function n(e,t=500,r={}){const n=r?.leading||!1;let i;return(...r)=>{n&&void 0===i&&(e.apply(this,r),i=setTimeout(()=>{i=clearTimeout(i)},t)),n||(clearTimeout(i),i=setTimeout(()=>{e.apply(this,r)},t))}}function i(e){let t=!1;return(...r)=>{t||(t=!0,e.apply(this,r))}}r.d(t,{J:()=>i,s:()=>n})},1910(e,t,r){"use strict";r.d(t,{i:()=>a});var n=r(944);const i=new Map;function a(...e){return e.every(e=>{if(i.has(e))return i.get(e);const t="function"==typeof e?e.toString():"",r=t.includes("[native code]"),a=t.includes("nrWrapper");return r||a||(0,n.R)(64,e?.name||t),i.set(e,r),r})}},5289(e,t,r){"use strict";r.d(t,{GG:()=>s,Qr:()=>c,sB:()=>o});var n=r(3878),i=r(6389);function a(){return"undefined"==typeof document||"complete"===document.readyState}function s(e,t){if(a())return e();const r=(0,i.J)(e),s=setInterval(()=>{a()&&(clearInterval(s),r())},500);(0,n.sp)("load",r,t)}function o(e){if(a())return e();(0,n.DD)("DOMContentLoaded",e)}function c(e){if(a())return e();(0,n.sp)("popstate",e)}},384(e,t,r){"use strict";r.d(t,{Zm:()=>c,bQ:()=>d,dV:()=>u,pV:()=>l});var n=r(6154),i=r(1863),a=r(944),s=r(1910);const o={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net"};function c(){return n.gm.NREUM||(n.gm.NREUM={}),void 0===n.gm.newrelic&&(n.gm.newrelic=n.gm.NREUM),n.gm.NREUM}function u(){let e=c();return e.o||(e.o={ST:n.gm.setTimeout,SI:n.gm.setImmediate||n.gm.setInterval,CT:n.gm.clearTimeout,XHR:n.gm.XMLHttpRequest,REQ:n.gm.Request,EV:n.gm.Event,PR:n.gm.Promise,MO:n.gm.MutationObserver,FETCH:n.gm.fetch,WS:n.gm.WebSocket},(0,s.i)(...Object.values(e.o))),e}function d(e,t){let r=c();r.initializedAgents??={},t.initializedAt={ms:(0,i.t)(),date:new Date},r.initializedAgents[e]=t,2===Object.keys(r.initializedAgents).length&&(0,a.R)(69)}function l(){return function(){let e=c();const t=e.info||{};e.info={beacon:o.beacon,errorBeacon:o.errorBeacon,...t}}(),function(){let e=c();const t=e.init||{};e.init={...t}}(),u(),function(){let e=c();const t=e.loader_config||{};e.loader_config={...t}}(),c()}r.d(t,["NT",0,o])},2843(e,t,r){"use strict";r.d(t,{G:()=>a,u:()=>i});var n=r(3878);function i(e,t=!1,r,i){(0,n.DD)("visibilitychange",function(){if(t)return void("hidden"===document.visibilityState&&e());e(document.visibilityState)},r,i)}function a(e,t,r){(0,n.sp)("pagehide",e,t,r)}},9300(e,t,r){"use strict";r(860).K7.ajax;r.d(t,["mo",0,{NONE:"none",FAILURES:"failures",ALL:"all"}])},3969(e,t,r){"use strict";const n=r(860).K7.metrics;r.d(t,["TZ",0,n,"XG",0,"storeEventMetrics","xV",0,"storeSupportabilityMetrics"])},6630(e,t,r){"use strict";const n=r(860).K7.pageViewEvent;r.d(t,["T",0,n])},782(e,t,r){"use strict";const n=r(860).K7.pageViewTiming;r.d(t,["T",0,n])},4234(e,t,r){"use strict";r.d(t,{W:()=>i});var n=r(1687);class i{constructor(e,t){this.agentRef=e,this.ee=e?.ee,this.featureName=t,this.blocked=!1}deregisterDrain(){(0,n.x3)(this.agentRef,this.featureName)}}},7767(e,t,r){"use strict";var n=r(6154);r.d(t,["V",0,e=>n.RI&&!0===e?.privacy.cookies_enabled])},8362(e,t,r){"use strict";r.d(t,{d:()=>a});var n=r(9566),i=r(1741);class a extends i.W{agentIdentifier=(0,n.LA)(16)}},1741(e,t,r){"use strict";r.d(t,{W:()=>a});var n=r(944),i=r(4261);class a{#e(e,...t){if(this[e]!==a.prototype[e])return this[e](...t);(0,n.R)(35,e)}addPageAction(e,t){return this.#e(i.hG,e,t)}register(e){return this.#e(i.eY,e)}recordCustomEvent(e,t){return this.#e(i.fF,e,t)}setPageViewName(e,t){return this.#e(i.Fw,e,t)}setCustomAttribute(e,t,r){return this.#e(i.cD,e,t,r)}noticeError(e,t){return this.#e(i.o5,e,t)}setUserId(e,t=!1){return this.#e(i.Dl,e,t)}setApplicationVersion(e){return this.#e(i.nb,e)}setErrorHandler(e){return this.#e(i.bt,e)}addRelease(e,t){return this.#e(i.k6,e,t)}log(e,t){return this.#e("log",e,t)}start(){return this.#e("start")}finished(e){return this.#e(i.BL,e)}recordReplay(){return this.#e(i.CH)}pauseReplay(){return this.#e(i.Tb)}addToTrace(e){return this.#e(i.U2,e)}setCurrentRouteName(e){return this.#e(i.PA,e)}interaction(e){return this.#e(i.dT,e)}wrapLogger(e,t,r){return this.#e(i.Wb,e,t,r)}measure(e,t){return this.#e(i.V1,e,t)}consent(e){return this.#e(i.Pv,e)}}},4261(e,t,r){"use strict";r.d(t,["BL",0,"finished","CH",0,"recordReplay","Dl",0,"setUserId","Fw",0,"setPageViewName","PA",0,"setCurrentRouteName","Pv",0,"consent","Tb",0,"pauseReplay","U2",0,"addToTrace","V1",0,"measure","Wb",0,"wrapLogger","bt",0,"setErrorHandler","cD",0,"setCustomAttribute","dT",0,"interaction","eY",0,"register","fF",0,"recordCustomEvent","hG",0,"addPageAction","k6",0,"addRelease","nb",0,"setApplicationVersion","o5",0,"noticeError"])},1738(e,t,r){"use strict";r.d(t,{U:()=>l,Y:()=>d});var n=r(3241),i=r(9908),a=r(1863),s=r(944),o=r(3969),c=r(8362),u=r(860);function d(e,t,r,a){const d=a||r;!d||d[e]&&d[e]!==c.d.prototype[e]||(d[e]=function(){(0,i.p)(o.xV,["API/"+e+"/called"],void 0,u.K7.metrics,r.ee),(0,n.W)({drained:!!r.runtime?.activatedFeatures,type:"data",name:"api",feature:"api-"+e,data:{}});try{return t.apply(this,arguments)}catch(e){(0,s.R)(23,e)}})}function l(e,t,r,n,s){const o=e.info;null===r?delete o.jsAttributes[t]:o.jsAttributes[t]=r,(s||null===r)&&(0,i.p)("api-"+n,[(0,a.t)(),t,r],void 0,"session",e.ee)}},8374(e,t,r){r.nc=(()=>{try{return document?.currentScript?.nonce}catch(e){}return""})()},860(e,t,r){"use strict";const n="events",i="jserrors",a="browser/blobs",s="browser/logs",o={ajax:"ajax",genericEvents:"generic_events",jserrors:i,logging:"logging",metrics:"metrics",pageAction:"page_action",pageViewEvent:"page_view_event",pageViewTiming:"page_view_timing",sessionReplay:"session_replay",sessionTrace:"session_trace",softNav:"soft_navigations"},c={[o.pageViewEvent]:1,[o.pageViewTiming]:2,[o.metrics]:3,[o.jserrors]:4,[o.softNav]:5,[o.ajax]:6,[o.sessionTrace]:7,[o.sessionReplay]:8,[o.logging]:9,[o.genericEvents]:10},u={[o.pageViewEvent]:"rum",[o.pageViewTiming]:n,[o.ajax]:n,[o.softNav]:n,[o.metrics]:i,[o.jserrors]:i,[o.sessionTrace]:a,[o.sessionReplay]:a,[o.logging]:s,[o.genericEvents]:"ins"};r.d(t,["$J",0,u,"K7",0,o,"P3",0,c,"XX",0,i,"Yy",0,s,"df",0,a,"hg",0,"connect"])}};const t={};function r(n){const i=t[n];if(void 0!==i)return i.exports;const a=t[n]={exports:{}};return e[n](a,a.exports,r),a.exports}r.m=e,r.d=(e,t)=>{if(Array.isArray(t))for(var n=0;n<t.length;){var i=t[n++],a=t[n++];r.o(e,i)?0===a&&n++:0===a?Object.defineProperty(e,i,{enumerable:!0,value:t[n++]}):Object.defineProperty(e,i,{enumerable:!0,get:a})}else for(var i in t)r.o(t,i)&&!r.o(e,i)&&Object.defineProperty(e,i,{enumerable:!0,get:t[i]})},r.f={},r.e=e=>Promise.all(Object.keys(r.f).reduce((t,n)=>(r.f[n](e,t),t),[])),r.u=e=>"nr-rum-1.324.1.min.js",r.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t),(()=>{const e={},t="NRBA-1.324.1.PROD:";r.l=(n,i,a,s)=>{if(e[n])return void e[n].push(i);let o,c;if(void 0!==a){const e=document.getElementsByTagName("script");for(var u=0;u<e.length;u++){const r=e[u];if(r.getAttribute("src")==n||r.getAttribute("data-webpack")==t+a){o=r;break}}}if(!o){c=!0;var d={296:"sha512-zuv39xzZ8AH/HwpVrtkixvcBuOFo2ydcFzMtXjx+3Iwr5g++inX+6YDH7J/8fOCAtBetz8aDyaYCRkGy2nnG/w=="};o=document.createElement("script"),o.charset="utf-8",r.nc&&o.setAttribute("nonce",r.nc),o.setAttribute("data-webpack",t+a),o.src=n,0!==o.src.indexOf(window.location.origin+"/")&&(o.crossOrigin="anonymous"),d[s]&&(o.integrity=d[s])}e[n]=[i];const l=(t,r)=>{o.onerror=o.onload=null,clearTimeout(f);const i=e[n];if(delete e[n],o.parentNode?.removeChild(o),i?.forEach(e=>e(r)),t)return t(r)},f=setTimeout(l.bind(null,void 0,{type:"timeout",target:o}),12e4);o.onerror=l.bind(null,o.onerror),o.onload=l.bind(null,o.onload),c&&document.head.appendChild(o)}})(),r.r=e=>{Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},r.p="https://js-agent.newrelic.com/",(()=>{const e={374:0,840:0};r.f.j=(t,n)=>{let i=r.o(e,t)?e[t]:void 0;if(0!==i)if(i)n.push(i[2]);else{const a=new Promise((r,n)=>i=e[t]=[r,n]);n.push(i[2]=a);const s=r.p+r.u(t),o=new Error,c=n=>{if(r.o(e,t)&&(i=e[t],0!==i&&(e[t]=void 0),i)){const e=n&&("load"===n.type?"missing":n.type),r=n&&n.target&&n.target.src;o.message="Loading chunk "+t+" failed: ("+e+": "+r+")",o.name="ChunkLoadError",o.type=e,o.request=r,i[1](o)}};r.l(s,c,"chunk-"+t,t)}};const t=(t,n)=>{let[i,a,s]=n;var o,c,u=0;if(i.some(t=>0!==e[t])){for(o in a)r.o(a,o)&&(r.m[o]=a[o]);if(s)s(r)}for(t&&t(n);u<i.length;u++)c=i[u],r.o(e,c)&&e[c]&&e[c][0](),e[c]=0},n=self["webpackChunk:NRBA-1.324.1.PROD"]=self["webpackChunk:NRBA-1.324.1.PROD"]||[];n.forEach(t.bind(null,0)),n.push=t.bind(null,n.push.bind(n))})(),(()=>{"use strict";r(8374);var e=r(8362),t=r(860);const n=Object.values(t.K7);var i=r(384),a=r(1741);var s=r(2555),o=r(981);t.K7.genericEvents,o.R.PA,o.R.UA,o.R.BP;const c={RESOURCES:"experimental.resources",REGISTER:"register"};var u=r(9300);const d=e=>{if(!e||"string"!=typeof e)return!1;try{document.createDocumentFragment().querySelector(e)}catch{return!1}return!0};var l=r(2614),f=r(944),g=r(8122);const p="[data-nr-mask]",m=e=>(0,g.a)(e,(()=>{const e={feature_flags:[],experimental:{register:!1,resources:!1,iframe_bridge:!1,iframe_domains:[]},mask_selector:"*",block_selector:"[data-nr-block]",mask_input_options:{color:!1,date:!1,"datetime-local":!1,email:!1,month:!1,number:!1,range:!1,search:!1,tel:!1,text:!1,time:!1,url:!1,week:!1,textarea:!1,select:!1,password:!0}};return{ajax:{deny_list:void 0,block_internal:!0,enabled:!0,autoStart:!0,capture_payloads:u.mo.NONE},api:{register:{get enabled(){return e.feature_flags.includes(c.REGISTER)||e.experimental.register},set enabled(t){e.experimental.register=t},duplicate_data_to_container:!1,get allow_iframe_bridge(){return e.feature_flags.includes(c.IFRAME_BRIDGE)||e.experimental.iframe_bridge},set allow_iframe_bridge(t){e.experimental.iframe_bridge=t},get iframe_domains(){return e.experimental.iframe_domains},set iframe_domains(t){Array.isArray(t)?e.experimental.iframe_domains=t:(0,f.R)(1,t)}}},browser_consent_mode:{enabled:!1},distributed_tracing:{enabled:void 0,exclude_newrelic_header:void 0,cors_use_newrelic_header:void 0,cors_use_tracecontext_headers:void 0,allowed_origins:void 0},get feature_flags(){return e.feature_flags},set feature_flags(t){e.feature_flags=t},generic_events:{enabled:!0,autoStart:!0},harvest:{interval:30},jserrors:{enabled:!0,autoStart:!0},logging:{enabled:!0,autoStart:!0},metrics:{enabled:!0,autoStart:!0},obfuscate:void 0,page_action:{enabled:!0},page_view_event:{enabled:!0,autoStart:!0},page_view_timing:{enabled:!0,autoStart:!0},performance:{capture_marks:!1,capture_measures:!1,capture_detail:!0,resources:{get enabled(){return e.feature_flags.includes(c.RESOURCES)||e.experimental.resources},set enabled(t){e.experimental.resources=t},asset_types:[],first_party_domains:[],ignore_newrelic:!0}},privacy:{cookies_enabled:!0},proxy:{assets:void 0,beacon:void 0},session:{expiresMs:l.wk,inactiveMs:l.BB},session_replay:{autoStart:!0,enabled:!1,preload:!1,collect_fonts:!1,inline_images:!1,fix_stylesheets:!0,mask_all_inputs:!0,get mask_text_selector(){return e.mask_selector},set mask_text_selector(t){d(t)?e.mask_selector="".concat(t,",").concat(p):""===t||null===t?e.mask_selector=p:(0,f.R)(5,t)},get block_class(){return"nr-block"},get ignore_class(){return"nr-ignore"},get mask_text_class(){return"nr-mask"},get block_selector(){return e.block_selector},set block_selector(t){d(t)?e.block_selector+=",".concat(t):""!==t&&(0,f.R)(6,t)},get mask_input_options(){return e.mask_input_options},set mask_input_options(t){t&&"object"==typeof t?e.mask_input_options={...t,password:!0}:(0,f.R)(7,t)}},session_trace:{enabled:!0,autoStart:!0},soft_navigations:{enabled:!0,autoStart:!0},ssl:void 0,user_actions:{enabled:!0,elementAttributes:["id","className","tagName","type"]},web_sockets:{enabled:!1}}})());var h=r(6154),v=r(9324);let b=0;const y={buildEnv:"PROD",distMethod:"CDN",version:v.xv,originTime:h.WN},_={consented:!1},w={activatedFeatures:void 0,appMetadata:{},configured:!1,get consented(){return this.session?.state?.consent||_.consented},set consented(e){_.consented=e},customTransaction:void 0,denyList:[],disabled:!1,drainRegistry:new Map,connector:void 0,harvester:void 0,v2Target:void 0,isolatedBacklog:!1,isRecording:!1,loaderType:void 0,maxBytes:3e4,obfuscator:void 0,onerror:void 0,ptid:void 0,releaseIds:{},session:void 0,timeKeeper:void 0,registeredEntities:[],jsAttributesMetadata:{bytes:0},get harvestCount(){return++b},listeningForIframeMessages:!1},R="BA";var A=r(7836),x=r(3241);const E={accountID:void 0,trustKey:void 0,agentID:void 0,licenseKey:void 0,applicationID:void 0,xpid:void 0};var S=r(9908);const k="newrelic-iframe-";function T(e,t={},n,o){let{init:c,info:u,loader_config:d,runtime:l={},exposed:f=!0}=t;if(!u){const e=(0,i.pV)();c=e.init,u=e.info,d=e.loader_config}var p;e.init=m(c||{}),e.loader_config=(p=d||{},(0,g.a)(p,E)),u.jsAttributes??={},h.bv&&(u.jsAttributes.isWorker=!0),e.info=(0,s.D)(u);const v=e.init;e.runtime??=(e=>{const t=(0,g.a)(e,w),r=Object.keys(y).reduce((e,t)=>(e[t]={value:y[t],writable:!1,configurable:!0,enumerable:!0},e),{});return Object.defineProperties(t,r)})(l),e.runtime.v2Target??={type:R,instance:e.agentIdentifier,get id(){return e.runtime.appMetadata?.agents?.[0]?.entityGuid},get attributes(){return{"entity.guid":this.id,appId:e.info.applicationID}}},v.proxy.assets&&(e=>{const t=e.startsWith("http");e+="/",r.p=t?e:"https://"+e})(v.proxy.assets),e.runtime.configured||(Object.defineProperty(e,"beacons",{get:()=>[e.info.beacon,e.info.errorBeacon,e.init.proxy.assets,e.init.proxy.beacon].filter(Boolean)}),Object.defineProperty(e.runtime,"denyList",{get:()=>[...e.init.ajax.deny_list||[],...e.init.ajax.block_internal?e.beacons:[]]}),e.runtime.ptid=e.agentIdentifier,function(e){const t=(0,i.pV)();Object.getOwnPropertyNames(a.W.prototype).forEach(r=>{const n=a.W.prototype[r];if("function"!=typeof n||"constructor"===n)return;let i=t[r];e[r]&&!1!==e.exposed&&"micro-agent"!==e.runtime?.loaderType&&(t[r]=(...t)=>{const n=e[r](...t);return i?i(...t):n})})}(e),e.runtime.loaderType=n,e.ee=A.ee.get(e.agentIdentifier),e.exposed=f,(0,x.W)({drained:!!e.runtime.activatedFeatures,type:"lifecycle",name:"initialize",feature:void 0,data:e.config}),e.init.api.register.allow_iframe_bridge&&h.gm.addEventListener("message",t=>{"string"==typeof t.data?.type&&t.data.type.startsWith(k)&&(0,S.p)("iframe-message",[t],void 0,"IFRAME",e.ee)}),e.runtime.configured=!0)}var j=r(1863),P=r(4261),N=r(1738);var O=r(1687),M=r(4234),I=r(5289),D=r(7767);function V(e){return!!(0,i.dV)().o.MO&&(0,D.V)(e)&&!0===e?.session_trace.enabled}var W=r(6389),B=r(7699);const C=new WeakSet,K=new WeakMap;class U extends M.W{constructor(e,t){super(e,t),this.abortHandler=void 0,this.featAggregate=void 0,this.loadedSuccessfully=void 0,this.onAggregateImported=new Promise(e=>{this.loadedSuccessfully=e}),this.deferred=Promise.resolve(),!1===e.init[this.featureName].autoStart?this.deferred=new Promise((t,r)=>{this.ee.on("manual-start-all",(0,W.J)(()=>{(0,O.Ak)(e,this.featureName),t()}))}):(0,O.Ak)(e,t)}importAggregator(e,t,n={}){if(this.featAggregate)return;const i=async()=>{if(await this.deferred,this.#t(e),!(0,s.f)(e.info))return(0,f.R)(43),e.ee.abort(),void this.loadedSuccessfully(!1);try{await async function(e,t,n){if(K.has(e))return K.get(e);const i=(async()=>{if((0,D.V)(e.init))try{const{setupAgentSession:t}=await r.e(296).then(r.bind(r,1768));t(e)}catch(e){(0,f.R)(20,e),t.emit("internal-error",[e]),(0,S.p)(B.qh,[e],void 0,n,t)}if(e.init.api.register.allow_iframe_bridge)try{const{setupIframeMFEMessageListener:t}=await Promise.resolve().then(function(){const e=new Error("Cannot find module '../../loaders/configure/iframe-message-handler'");throw e.code="MODULE_NOT_FOUND",e});t(e)}catch(e){(0,f.R)(23,e)}const[{Connector:i},{Harvester:a}]=await Promise.all([r.e(296).then(r.bind(r,6589)),r.e(296).then(r.bind(r,5237))]);e.runtime.connector=new i(e),e.runtime.harvester=new a(e);const s=Object.values(e.features).filter(t=>e.runtime.drainRegistry.has(t.featureName));Promise.all(s.map(e=>e.onAggregateImported)).then(()=>e.runtime.harvester.startTimer())})();K.set(e,i),await i}(e,this.ee,this.featureName)}catch(e){return(0,f.R)(79,e),this.ee.abort(),void this.loadedSuccessfully(!1)}try{if(!this.#r(this.featureName,e.runtime.session,e.init))return this.abortHandler?.(),(0,O.Ze)(this.agentRef,this.featureName),void this.loadedSuccessfully(!1);const{Aggregate:r}=await t();this.featAggregate=new r(e,n),e.runtime.harvester.initializedAggregates.push(this.featAggregate),this.loadedSuccessfully(!0)}catch(e){(0,f.R)(34,e),this.abortHandler?.(),(0,O.Ze)(this.agentRef,this.featureName,!0),this.loadedSuccessfully(!1)}};h.RI?(0,I.GG)(()=>i(),!0):i()}#r(e,r,n){if(this.blocked)return!1;switch(e){case t.K7.sessionReplay:return V(n)&&!!r;case t.K7.sessionTrace:return!!r;default:return!0}}#t(e){if(!C.has(e)&&(C.add(e),!(0,s.f)(e.info))){const t=(0,i.pV)();let r={...t.info?.jsAttributes};try{r={...r,...e.info?.jsAttributes}}catch(e){}T(e,{...t,info:{...t.info,jsAttributes:r},runtime:e.runtime},e.runtime.loaderType)}}}var L=r(6630);class F extends U{static featureName=L.T;constructor(e){var t;super(e,L.T),this.setupInspectionEvents(),t=e,(0,N.Y)(P.Fw,function(e,r){"string"==typeof e&&("/"!==e.charAt(0)&&(e="/"+e),t.runtime.customTransaction=(r||"http://custom.transaction")+e,(0,S.p)("api-"+P.Fw,[(0,j.t)()],void 0,void 0,t.ee))},t),this.importAggregator(e,()=>e.init.feature_flags.includes("rum_v2")?r.e(296).then(r.bind(r,908)):r.e(296).then(r.bind(r,7927)))}setupInspectionEvents(){const e=(e,t)=>{e&&(0,x.W)({timeStamp:e.timeStamp,loaded:"complete"===e.target.readyState,type:"window",name:t,data:e.target.location+""})};(0,I.sB)(t=>{e(t,"DOMContentLoaded")}),(0,I.GG)(t=>{e(t,"load")}),(0,I.Qr)(t=>{e(t,"navigate")}),this.ee.on(l.tS.UPDATE,(e,t)=>{(0,x.W)({type:"lifecycle",name:"session",data:t})})}}class G extends e.d{constructor(e){var t;(super(),h.gm)?(this.features={},(0,i.bQ)(this.agentIdentifier,this),this.desiredFeatures=new Set(e.features||[]),this.desiredFeatures.add(F),T(this,e,e.loaderType||"agent"),t=this,(0,N.Y)(P.cD,function(e,r,n=!1){if("string"==typeof e){if(["string","number","boolean"].includes(typeof r)||null===r)return(0,N.U)(t,e,r,P.cD,n);(0,f.R)(40,typeof r)}else(0,f.R)(39,typeof e)},t),function(e){(0,N.Y)(P.Dl,function(t,r=!1){if("string"!=typeof t&&null!==t)return void(0,f.R)(41,typeof t);const n=e.info.jsAttributes["enduser.id"];r&&null!=n&&n!==t?(0,S.p)("api-setUserIdAndResetSession",[t],void 0,"session",e.ee):(0,N.U)(e,"enduser.id",t,P.Dl,!0)},e)}(this),function(e){(0,N.Y)(P.nb,function(t){if("string"==typeof t||null===t)return(0,N.U)(e,"application.version",t,P.nb,!1);(0,f.R)(42,typeof t)},e)}(this),function(e){(0,N.Y)("start",function(){e.ee.emit("manual-start-all")},e)}(this),function(e){(0,N.Y)(P.Pv,function(t=!0){if("boolean"==typeof t){if((0,S.p)("api-"+P.Pv,[t],void 0,"session",e.ee),e.runtime.consented=t,t){const t=e.features.page_view_event;t.onAggregateImported.then(e=>{const r=t.featAggregate;e&&!r.sentRum&&r.sendRum?.()})}}else(0,f.R)(65,typeof t)},e)}(this),this.run()):(0,f.R)(21)}get config(){return{info:this.info,init:this.init,loader_config:this.loader_config,runtime:this.runtime}}get api(){return this}run(){try{const e=function(e){const t={};return n.forEach(r=>{t[r]=!!e[r]?.enabled}),t}(this.init),r=[...this.desiredFeatures],i=this.init.feature_flags.includes("rum_v2");r.sort((e,r)=>t.P3[e.featureName]-t.P3[r.featureName]),r.forEach(r=>{if(!e[r.featureName]&&(i||r.featureName!==t.K7.pageViewEvent))return;const n=function(e){switch(e){case t.K7.ajax:return[t.K7.jserrors];case t.K7.sessionTrace:return[t.K7.ajax,t.K7.pageViewEvent];case t.K7.sessionReplay:return[t.K7.sessionTrace];case t.K7.pageViewTiming:return[t.K7.pageViewEvent];default:return[]}}(r.featureName).filter(e=>!(e in this.features));n.length>0&&(0,f.R)(36,{targetFeature:r.featureName,missingDependencies:n}),this.features[r.featureName]=new r(this)})}catch(e){(0,f.R)(22,e);for(const e in this.features)this.features[e].abortHandler?.();const t=(0,i.Zm)();delete t.initializedAgents[this.agentIdentifier]?.features,delete this.sharedAggregator;return t.ee.get(this.agentIdentifier).abort(),!1}}}var H=r(2843),z=r(782);class Y extends U{static featureName=z.T;constructor(e){super(e,z.T),h.RI&&((0,H.u)(()=>(0,S.p)("docHidden",[(0,j.t)()],void 0,z.T,this.ee),!0),(0,H.G)(()=>(0,S.p)("winPagehide",[(0,j.t)()],void 0,z.T,this.ee)),this.importAggregator(e,()=>r.e(296).then(r.bind(r,9981))))}}var Z=r(3969);class q extends U{static featureName=Z.TZ;constructor(e){super(e,Z.TZ),this.importAggregator(e,()=>r.e(296).then(r.bind(r,9623)))}}new G({features:[F,Y,q],loaderType:"lite"})})()})();</script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#0e3055">
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+
+	<!-- Load webfonts -->
+	<link rel="preconnect" href="https://p.typekit.net" crossorigin>
+	<link rel="preconnect" href="https://use.typekit.net/" crossorigin>
+	<link rel="preload" href="https://use.typekit.net/smp7nvr.css" as="style">
+	
+	<!-- FontAwesome preconnect -->
+	<link href="https://kit-free.fontawesome.com/" rel="preconnect" crossorigin>
+
+	<!-- Facebook verificaiton -->
+	<meta name="facebook-domain-verification" content="2eadk5hym5d6jht2f0ggrfanx1ro9j" />
+
+	<meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+
+	<!-- This site is optimized with the Yoast SEO plugin v16.2 - https://yoast.com/wordpress/plugins/seo/ -->
+	<title>Athletics - Saint Mary-of-the-Woods College</title>
+	<meta name="description" content="SMWC Athletics. Saint Mary-of-the-Woods Catholic Liberal Arts College in Indiana offers campus, distance and graduate programs." />
+	<link rel="canonical" href="https://www.smwc.edu/athletics/" />
+	<meta property="og:locale" content="en_US" />
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="Athletics - Saint Mary-of-the-Woods College" />
+	<meta property="og:description" content="SMWC Athletics. Saint Mary-of-the-Woods Catholic Liberal Arts College in Indiana offers campus, distance and graduate programs." />
+	<meta property="og:url" content="https://www.smwc.edu/athletics/" />
+	<meta property="og:site_name" content="Saint Mary-of-the-Woods College" />
+	<meta property="article:modified_time" content="2024-07-29T19:31:51+00:00" />
+	<meta name="twitter:card" content="summary" />
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://www.smwc.edu/#organization","name":"Saint Mary-of-the-Woods College","url":"https://www.smwc.edu/","sameAs":[],"logo":{"@type":"ImageObject","@id":"https://www.smwc.edu/#logo","inLanguage":"en-US","url":"https://www.smwc.edu/wp-content/uploads/2019/11/smwc-circle-navy.png","contentUrl":"https://www.smwc.edu/wp-content/uploads/2019/11/smwc-circle-navy.png","width":612,"height":576,"caption":"Saint Mary-of-the-Woods College"},"image":{"@id":"https://www.smwc.edu/#logo"}},{"@type":"WebSite","@id":"https://www.smwc.edu/#website","url":"https://www.smwc.edu/","name":"Saint Mary-of-the-Woods College","description":"","publisher":{"@id":"https://www.smwc.edu/#organization"},"potentialAction":[{"@type":"SearchAction","target":"https://www.smwc.edu/?s={search_term_string}","query-input":"required name=search_term_string"}],"inLanguage":"en-US"},{"@type":"WebPage","@id":"https://www.smwc.edu/athletics/#webpage","url":"https://www.smwc.edu/athletics/","name":"Athletics - Saint Mary-of-the-Woods College","isPartOf":{"@id":"https://www.smwc.edu/#website"},"datePublished":"2017-01-04T23:25:43+00:00","dateModified":"2024-07-29T19:31:51+00:00","description":"SMWC Athletics. Saint Mary-of-the-Woods Catholic Liberal Arts College in Indiana offers campus, distance and graduate programs.","breadcrumb":{"@id":"https://www.smwc.edu/athletics/#breadcrumb"},"inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["https://www.smwc.edu/athletics/"]}]},{"@type":"BreadcrumbList","@id":"https://www.smwc.edu/athletics/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"WebPage","@id":"https://www.smwc.edu/","url":"https://www.smwc.edu/","name":"Home"}},{"@type":"ListItem","position":2,"item":{"@id":"https://www.smwc.edu/athletics/#webpage"}}]}]}</script>
+	<!-- / Yoast SEO plugin. -->
+
+
+<link rel='dns-prefetch' href='//www.smwc.edu' />
+<link rel='dns-prefetch' href='//kit.fontawesome.com' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<script type="text/javascript">
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/www.smwc.edu\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.9.19"}};
+/*! This file is auto-generated */
+!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+</script>
+<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 0.07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='wp-block-library-css'  href='https://www.smwc.edu/wp-includes/css/dist/block-library/style.min.css?ver=5.9.19' type='text/css' media='all' />
+<style id='global-styles-inline-css' type='text/css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--color--navy: #00205b;--wp--preset--color--pomeroy-blue: #69b3e7;--wp--preset--color--smwc-green: #2fb87f;--wp--preset--color--smwc-yellow: #f0a628;--wp--preset--color--smwc-orange: #ce5e28;--wp--preset--color--grey: #555555;--wp--preset--color--lightest-grey: #ebebeb;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--duotone--dark-grayscale: url('#wp-duotone-dark-grayscale');--wp--preset--duotone--grayscale: url('#wp-duotone-grayscale');--wp--preset--duotone--purple-yellow: url('#wp-duotone-purple-yellow');--wp--preset--duotone--blue-red: url('#wp-duotone-blue-red');--wp--preset--duotone--midnight: url('#wp-duotone-midnight');--wp--preset--duotone--magenta-yellow: url('#wp-duotone-magenta-yellow');--wp--preset--duotone--purple-green: url('#wp-duotone-purple-green');--wp--preset--duotone--blue-orange: url('#wp-duotone-blue-orange');--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+</style>
+<link rel='stylesheet' id='cpsh-shortcodes-css'  href='https://www.smwc.edu/wp-content/plugins/column-shortcodes//assets/css/shortcodes.css?ver=1.0.1' type='text/css' media='all' />
+<link rel='stylesheet' id='lbwps-styles-css'  href='https://www.smwc.edu/wp-content/plugins/lightbox-photoswipe/assets/styles/classic.css?ver=3.1.12' type='text/css' media='all' />
+<link rel='stylesheet' id='wpa-style-css'  href='https://www.smwc.edu/wp-content/plugins/wp-accessibility/css/wpa-style.css?ver=5.9.19' type='text/css' media='all' />
+<link rel='stylesheet' id='cmplz-general-css'  href='https://www.smwc.edu/wp-content/plugins/complianz-gdpr/assets/css/cookieblocker.min.css?ver=1794385417' type='text/css' media='all' />
+<link rel='stylesheet' id='primary-style-css'  href='https://www.smwc.edu/wp-content/themes/smwc/assets/css/app-min.css?ver=1794385419' type='text/css' media='all' />
+<script type='text/javascript' src='https://www.smwc.edu/wp-includes/js/jquery/jquery.min.js?ver=3.6.0' id='jquery-core-js'></script>
+<script type='text/javascript' src='https://www.smwc.edu/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2' id='jquery-migrate-js'></script>
+<script type='text/javascript' id='bodhi_svg_inline-js-extra'>
+/* <![CDATA[ */
+var cssTarget = "img.style-svg";
+var ForceInlineSVGActive = "false";
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://www.smwc.edu/wp-content/plugins/svg-support/js/min/svgs-inline-min.js?ver=1.0.0' id='bodhi_svg_inline-js'></script>
+<link rel="https://api.w.org/" href="https://www.smwc.edu/wp-json/" /><link rel="alternate" type="application/json" href="https://www.smwc.edu/wp-json/wp/v2/pages/20" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.smwc.edu/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://www.smwc.edu/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 5.9.19" />
+<link rel='shortlink' href='https://www.smwc.edu/?p=20' />
+<link rel="alternate" type="application/json+oembed" href="https://www.smwc.edu/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.smwc.edu%2Fathletics%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://www.smwc.edu/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.smwc.edu%2Fathletics%2F&#038;format=xml" />
+<meta name="generator" content="Site Kit by Google 1.31.0" /><!-- Stream WordPress user activity plugin v3.6.2 -->
+
+<style type='text/css'>
+	
+		.wpa-hide-ltr#skiplinks a, .wpa-hide-ltr#skiplinks a:hover, .wpa-hide-ltr#skiplinks a:visited {  }
+		.wpa-hide-ltr#skiplinks a:active,  .wpa-hide-ltr#skiplinks a:focus { background-color: #f1f1f1; box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6); clip: auto; color: #0073aa; display: block; font-weight: 600; height: auto; line-height: normal; padding: 15px 23px 14px; position: absolute; left: 6px; top: 7px; text-decoration: none; text-transform: none; width: auto; z-index: 100000;  }
+		
+</style>			<style>.cmplz-hidden {
+					display: none !important;
+				}</style>		<script>
+			document.documentElement.className = document.documentElement.className.replace( 'no-js', 'js' );
+		</script>
+				<style>
+			.no-js img.lazyload { display: none; }
+			figure.wp-block-image img.lazyloading { min-width: 150px; }
+							.lazyload, .lazyloading { opacity: 0; }
+				.lazyloaded {
+					opacity: 1;
+					transition: opacity 400ms;
+					transition-delay: 0ms;
+				}
+					</style>
+		<!-- Google Tag Manager added by Site Kit -->
+<script>
+( function( w, d, s, l, i ) {
+	w[l] = w[l] || [];
+	w[l].push( {'gtm.start': new Date().getTime(), event: 'gtm.js'} );
+	var f = d.getElementsByTagName( s )[0],
+		j = d.createElement( s ), dl = l != 'dataLayer' ? '&l=' + l : '';
+	j.async = true;
+	j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+	f.parentNode.insertBefore( j, f );
+} )( window, document, 'script', 'dataLayer', 'GTM-TK7TVC' );
+</script>
+<!-- End Google Tag Manager -->
+		<link rel="icon" href="https://www.smwc.edu/wp-content/uploads/2019/11/cropped-smwc-circle-navy-112x113.png" sizes="32x32" />
+<link rel="icon" href="https://www.smwc.edu/wp-content/uploads/2019/11/cropped-smwc-circle-navy-300x300.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://www.smwc.edu/wp-content/uploads/2019/11/cropped-smwc-circle-navy-180x180.png" />
+<meta name="msapplication-TileImage" content="https://www.smwc.edu/wp-content/uploads/2019/11/cropped-smwc-circle-navy-300x300.png" />
+		<style type="text/css" id="wp-custom-css">
+			.marquee {
+ height: 100px;	
+ overflow: hidden;
+ position: relative;
+}
+.marquee p {
+ position: absolute;
+ width: 100%;
+ height: fit-content;
+ margin: 0;
+ line-height: 30px;
+ text-align: center;
+ /* Starting position */
+ -moz-transform:translateY(100%);
+ -webkit-transform:translateY(100%);	
+ transform:translateY(100%);
+ /* Apply animation to this element */	
+ -moz-animation: scroll-up 20s linear infinite;
+ -webkit-animation: scroll-up 20s linear infinite;
+ animation: scroll-up 15s linear infinite;
+}
+/* Move it (define the animation) */
+@-moz-keyframes scroll-up {
+ 0%   { -moz-transform: translateY(100%); }
+ 100% { -moz-transform: translateY(-100%); }
+}
+@-webkit-keyframes scroll-up {
+ 0%   { -webkit-transform: translateY(100%); }
+ 100% { -webkit-transform: translateY(-100%); }
+}
+@keyframes scroll-up {
+ 0%   { 
+ -moz-transform: translateY(100%); /* Browser bug fix */
+ -webkit-transform: translateY(100%); /* Browser bug fix */
+ transform: translateY(100%); 		
+ }
+ 100% { 
+ -moz-transform: translateY(-100%); /* Browser bug fix */
+ -webkit-transform: translateY(-100%); /* Browser bug fix */
+ transform: translateY(-100%); 
+ }
+}
+
+@import "compass/css3";
+
+body {
+  font-family: Helvetica; 
+}
+
+.donation-meter {
+  margin-left: 30px;
+  width: 100px;
+  .glass {
+    background: #e5e5e5;
+    border-radius: 100px 100px 0 0;
+    display: block;
+    height: 300px;
+    margin: 0 35px 10px;
+    padding: 5px;
+    position: relative;
+    width: 20px;
+  }
+  .amount {
+    background: #f34e54;
+    border-radius: 100px;
+    display: block;
+    width: 20px;
+    position: absolute;
+     bottom: 5px;
+  }
+  strong { display: block; text-align: center; }
+  .goal {
+    font-size: 30px;
+  }
+  .total {
+    font-size: 16px;
+    position: absolute;
+    right: 35px;
+  }
+}
+
+.bulb {
+  background: #e5e5e5;
+  border-radius: 100px;
+  display: block;
+  height: 50px;
+  margin: 0 35px 10px;
+  padding: 5px;
+  position: relative;
+    top: -20px;
+    right: 15px;
+  width: 50px;
+  .red-circle {
+    background: #f34e54;
+    border-radius: 100px;
+    display: block;
+    height: 50px;
+    width: 50px;
+  }
+  .filler {
+    background: #f34e54;
+    border-radius: 100px 100px 0 0;
+    display: block;
+    height: 30px;
+    width: 20px;
+    position: relative;
+      top: -65px;
+      right: -15px;
+    z-index: 30;
+  }
+}		</style>
+		
+	
+	<link rel="stylesheet" href="https://use.typekit.net/smp7nvr.css">
+</head>
+<body class="page-template page-template-template-student-life-home page-template-template-student-life-home-php page page-id-20 page-parent wp-embed-responsive">
+	<svg display="none" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<defs>
+		<symbol id="icon-icon-search" viewBox="0 0 50.9 51.1">
+			<style type="text/css">
+				.st0{fill:none;stroke:#c3cfdc;stroke-width:5;stroke-miterlimit:10;}
+			</style>
+			<path d="M 48.4 22.6 A 20.1 20.1 0 0 1 28.3 42.7 A 20.1 20.1 0 0 1 8.2 22.6 A 20.1 20.1 0 0 1 28.3 2.5 A 20.1 20.1 0 0 1 48.4 22.6 Z" id="XMLID_1_" class="st0"/>
+			<path d="M 1.8 49.4 L 14.1 36.7" id="XMLID_3_" class="st0"/>
+		</symbol>
+
+		<symbol id="icon-facebook" viewBox="0 0 32 32">
+			<path class="path1" d="M19 6h5v-6h-5c-3.86 0-7 3.14-7 7v3h-4v6h4v16h6v-16h5l1-6h-6v-3c0-0.542 0.458-1 1-1z"></path>
+		</symbol>
+
+		<symbol id="icon-twitter" viewBox="0 0 32 32">
+			<path class="path1" d="M32 7.075c-1.175 0.525-2.444 0.875-3.769 1.031 1.356-0.813 2.394-2.1 2.887-3.631-1.269 0.75-2.675 1.3-4.169 1.594-1.2-1.275-2.906-2.069-4.794-2.069-3.625 0-6.563 2.938-6.563 6.563 0 0.512 0.056 1.012 0.169 1.494-5.456-0.275-10.294-2.888-13.531-6.862-0.563 0.969-0.887 2.1-0.887 3.3 0 2.275 1.156 4.287 2.919 5.463-1.075-0.031-2.087-0.331-2.975-0.819 0 0.025 0 0.056 0 0.081 0 3.181 2.263 5.838 5.269 6.437-0.55 0.15-1.131 0.231-1.731 0.231-0.425 0-0.831-0.044-1.237-0.119 0.838 2.606 3.263 4.506 6.131 4.563-2.25 1.762-5.075 2.813-8.156 2.813-0.531 0-1.050-0.031-1.569-0.094 2.913 1.869 6.362 2.95 10.069 2.95 12.075 0 18.681-10.006 18.681-18.681 0-0.287-0.006-0.569-0.019-0.85 1.281-0.919 2.394-2.075 3.275-3.394z"></path>
+		</symbol>
+
+		<symbol id="icon-instagram" viewBox="0 0 32 32">
+			<path class="path1" d="M16 2.881c4.275 0 4.781 0.019 6.462 0.094 1.563 0.069 2.406 0.331 2.969 0.55 0.744 0.288 1.281 0.638 1.837 1.194 0.563 0.563 0.906 1.094 1.2 1.838 0.219 0.563 0.481 1.412 0.55 2.969 0.075 1.688 0.094 2.194 0.094 6.463s-0.019 4.781-0.094 6.463c-0.069 1.563-0.331 2.406-0.55 2.969-0.288 0.744-0.637 1.281-1.194 1.837-0.563 0.563-1.094 0.906-1.837 1.2-0.563 0.219-1.413 0.481-2.969 0.55-1.688 0.075-2.194 0.094-6.463 0.094s-4.781-0.019-6.463-0.094c-1.563-0.069-2.406-0.331-2.969-0.55-0.744-0.288-1.281-0.637-1.838-1.194-0.563-0.563-0.906-1.094-1.2-1.837-0.219-0.563-0.481-1.413-0.55-2.969-0.075-1.688-0.094-2.194-0.094-6.463s0.019-4.781 0.094-6.463c0.069-1.563 0.331-2.406 0.55-2.969 0.288-0.744 0.638-1.281 1.194-1.838 0.563-0.563 1.094-0.906 1.838-1.2 0.563-0.219 1.412-0.481 2.969-0.55 1.681-0.075 2.188-0.094 6.463-0.094zM16 0c-4.344 0-4.887 0.019-6.594 0.094-1.7 0.075-2.869 0.35-3.881 0.744-1.056 0.412-1.95 0.956-2.837 1.85-0.894 0.888-1.438 1.781-1.85 2.831-0.394 1.019-0.669 2.181-0.744 3.881-0.075 1.713-0.094 2.256-0.094 6.6s0.019 4.887 0.094 6.594c0.075 1.7 0.35 2.869 0.744 3.881 0.413 1.056 0.956 1.95 1.85 2.837 0.887 0.887 1.781 1.438 2.831 1.844 1.019 0.394 2.181 0.669 3.881 0.744 1.706 0.075 2.25 0.094 6.594 0.094s4.888-0.019 6.594-0.094c1.7-0.075 2.869-0.35 3.881-0.744 1.050-0.406 1.944-0.956 2.831-1.844s1.438-1.781 1.844-2.831c0.394-1.019 0.669-2.181 0.744-3.881 0.075-1.706 0.094-2.25 0.094-6.594s-0.019-4.887-0.094-6.594c-0.075-1.7-0.35-2.869-0.744-3.881-0.394-1.063-0.938-1.956-1.831-2.844-0.887-0.887-1.781-1.438-2.831-1.844-1.019-0.394-2.181-0.669-3.881-0.744-1.712-0.081-2.256-0.1-6.6-0.1v0z"></path>
+			<path class="path2" d="M16 7.781c-4.537 0-8.219 3.681-8.219 8.219s3.681 8.219 8.219 8.219 8.219-3.681 8.219-8.219c0-4.537-3.681-8.219-8.219-8.219zM16 21.331c-2.944 0-5.331-2.387-5.331-5.331s2.387-5.331 5.331-5.331c2.944 0 5.331 2.387 5.331 5.331s-2.387 5.331-5.331 5.331z"></path>
+			<path class="path3" d="M26.462 7.456c0 1.060-0.859 1.919-1.919 1.919s-1.919-0.859-1.919-1.919c0-1.060 0.859-1.919 1.919-1.919s1.919 0.859 1.919 1.919z"></path>
+		</symbol>
+
+		<symbol id="icon-flickr" viewBox="0 0 32 32">
+			<path class="path1" d="M0 17c0-3.866 3.134-7 7-7s7 3.134 7 7c0 3.866-3.134 7-7 7s-7-3.134-7-7zM18 17c0-3.866 3.134-7 7-7s7 3.134 7 7c0 3.866-3.134 7-7 7s-7-3.134-7-7z"></path>
+		</symbol>
+
+		<symbol id="icon-youtube" viewBox="0 0 32 32">
+			<path class="path1" d="M31.681 9.6c0 0-0.313-2.206-1.275-3.175-1.219-1.275-2.581-1.281-3.206-1.356-4.475-0.325-11.194-0.325-11.194-0.325h-0.012c0 0-6.719 0-11.194 0.325-0.625 0.075-1.987 0.081-3.206 1.356-0.963 0.969-1.269 3.175-1.269 3.175s-0.319 2.588-0.319 5.181v2.425c0 2.587 0.319 5.181 0.319 5.181s0.313 2.206 1.269 3.175c1.219 1.275 2.819 1.231 3.531 1.369 2.563 0.244 10.881 0.319 10.881 0.319s6.725-0.012 11.2-0.331c0.625-0.075 1.988-0.081 3.206-1.356 0.962-0.969 1.275-3.175 1.275-3.175s0.319-2.587 0.319-5.181v-2.425c-0.006-2.588-0.325-5.181-0.325-5.181zM12.694 20.15v-8.994l8.644 4.513-8.644 4.481z"></path>
+		</symbol>
+
+		<symbol id="icon-linkedin" viewBox="0 0 32 32">
+			<path class="path1" d="M12 12h5.535v2.837h0.079c0.77-1.381 2.655-2.837 5.464-2.837 5.842 0 6.922 3.637 6.922 8.367v9.633h-5.769v-8.54c0-2.037-0.042-4.657-3.001-4.657-3.005 0-3.463 2.218-3.463 4.509v8.688h-5.767v-18z"></path>
+			<path class="path2" d="M2 12h6v18h-6v-18z"></path>
+			<path class="path3" d="M8 7c0 1.657-1.343 3-3 3s-3-1.343-3-3c0-1.657 1.343-3 3-3s3 1.343 3 3z"></path>
+		</symbol>
+
+		<symbol id="icon-twitter-color" viewBox="0 0 32 32">
+			<style type="text/css">
+				.z0{fill:#00ADEC;}
+				.z1{fill:#FFFFFF;}
+			</style>
+			<g>
+				<path class="z0" d="M16,0.6C7.5,0.6,0.6,7.5,0.6,16S7.5,31.4,16,31.4S31.4,24.5,31.4,16S24.5,0.6,16,0.6z"/>
+				<path class="z1" d="M22.2,13.2c0,0.1,0,0.3,0,0.4c0,4-3,8.6-8.6,8.6c-1.7,0-3.3-0.5-4.6-1.4c0.2,0,0.5,0,0.7,0
+					c1.4,0,2.7-0.5,3.8-1.3c-1.3,0-2.4-0.9-2.8-2.1c0.2,0,0.4,0.1,0.6,0.1c0.3,0,0.5,0,0.8-0.1c-1.4-0.3-2.4-1.5-2.4-3c0,0,0,0,0,0
+					c0.4,0.2,0.9,0.4,1.4,0.4c-0.8-0.5-1.3-1.5-1.3-2.5c0-0.6,0.1-1.1,0.4-1.5c1.5,1.8,3.7,3,6.2,3.2c-0.1-0.2-0.1-0.5-0.1-0.7
+					c0-1.7,1.4-3,3-3c0.9,0,1.7,0.4,2.2,1c0.7-0.1,1.3-0.4,1.9-0.7c-0.2,0.7-0.7,1.3-1.3,1.7c0.6-0.1,1.2-0.2,1.7-0.5
+					C23.4,12.3,22.8,12.8,22.2,13.2L22.2,13.2z"/>
+			</g>
+		</symbol>
+
+		<symbol id="icon-linkedin-color" viewBox="0 0 32 32">
+			<style type="text/css">
+				.x0{fill:#007db9;}
+				.x1{fill:#FFFFFF;}
+				.x2{fill:#FFFFFF;}
+			</style>
+			<g>
+				<path class="x0" d="M16,0.6C7.5,0.6,0.6,7.5,0.6,16S7.5,31.4,16,31.4S31.4,24.5,31.4,16S24.5,0.6,16,0.6z"/>
+			</g>
+			<g>
+				<path class="x1" d="M10.7,11.1c-1,0-1.6-0.7-1.6-1.6C9.1,8.7,9.8,8,10.8,8s1.6,0.7,1.6,1.6C12.4,10.4,11.8,11.1,10.7,11.1z"/>
+				<path class="x1" d="M23.7,22.4h-3.1v-5.5c0-1.3-0.5-2.2-1.6-2.2c-0.9,0-1.4,0.6-1.6,1.2c-0.1,0.2-0.1,0.5-0.1,0.8v5.8h-3.1v-6.8
+					c0-1.2,0-2.3-0.1-3.2h2.7l0.1,1.4H17c0.4-0.7,1.4-1.6,3.1-1.6c2,0,3.6,1.4,3.6,4.3V22.4L23.7,22.4z"/>
+				<rect x="9.1" y="12.4" class="x2" width="3.1" height="10"/>
+			</g>
+		</symbol>
+
+		<symbol id="icon-facebook-color" viewBox="0 0 67 67">
+			<style type="text/css">
+				.zt0{fill:#3A589B;}
+				.zt1{fill:#FFFFFF;}
+			</style>
+			<g>
+			<path class="zt0" d="M34,4C17.4,4,4,17.4,4,34c0,16.6,13.4,30,30,30s30-13.4,30-30C64,17.4,50.6,4,34,4z M41,34h-4.5v16.3h-6.7V34
+				h-3.4v-5.6h3.4V25c0-4.6,1.9-7.3,7.3-7.3h4.5v5.6h-2.8c-2.1,0-2.2,0.8-2.2,2.3l0,2.8h5.1L41,34z" />
+			<path class="zt1" d="M36.5,25.6c0-1.5,0.1-2.3,2.2-2.3h2.8v-5.6h-4.5c-5.4,0-7.3,2.7-7.3,7.3v3.4h-3.4V34h3.4v16.3h6.7V34H41
+				l0.6-5.6h-5.1L36.5,25.6z" />
+			</g>
+		</symbol>
+
+		<symbol id="icon-pinterest-color" viewBox="0 0 512 512">
+			<circle cx="256" cy="256" fill="#BD081C" r="256"/>
+			<path d="M280.8,323.2c-18.9,0-36.6-10.2-42.6-21.8c0,0-10.1,40.2-12.3,48   c-7.6,27.4-29.8,54.9-31.5,57.1c-1.2,1.6-3.9,1.1-4.1-1c-0.5-3.5-6.1-38.1,0.5-66.3c3.3-14.2,22.5-95.1,22.5-95.1   s-5.6-11.1-5.6-27.6c0-25.9,15-45.2,33.7-45.2c15.9,0,23.5,11.9,23.5,26.2c0,16-10.2,39.8-15.4,61.9c-4.4,18.5,9.3,33.6,27.5,33.6   c33.1,0,55.3-42.5,55.3-92.8c0-38.3-25.8-66.9-72.6-66.9c-52.9,0-86,39.5-86,83.6c0,15.2,4.5,25.9,11.5,34.2   c3.2,3.8,3.7,5.4,2.5,9.7c-0.9,3.2-2.8,11-3.6,14c-1.2,4.4-4.8,6-8.8,4.4c-24.4-9.9-35.7-36.7-35.7-66.7c0-49.6,41.8-109,124.8-109   c66.7,0,110.5,48.2,110.5,100C375,272.1,336.9,323.2,280.8,323.2z" fill="#FFFFFF" id="pinterest-circle-icon_1_"></path>
+		</symbol>
+
+		<symbol id="icon-instagram-color" viewBox="0 0 60 60">
+			<path fill="#000" d="M 28.3 5.2 C 14.7 5.2 3.7 16.2 3.7 29.8 C 3.7 43.4 14.7 54.4 28.3 54.4 C 41.9 54.4 52.9 43.4 52.9 29.8 C 53 16.2 41.9 5.2 28.3 5.2 Z"/>
+		  <path d="M 33.6 19.2 L 22.6 19.2 C 21 19.2 19.6 19.7 18.7 20.6 C 17.8 21.5 17.3 22.9 17.3 24.5 L 17.3 35.5 C 17.3 37.1 17.8 38.5 18.8 39.5 C 19.8 40.4 21.1 40.9 22.7 40.9 L 33.6 40.9 C 35.2 40.9 36.6 40.4 37.5 39.5 C 38.5 38.6 39 37.2 39 35.6 L 39 24.6 C 39 23 38.5 21.7 37.6 20.7 C 36.6 19.7 35.3 19.2 33.6 19.2 Z" style="stroke: rgb(255, 255, 255);"/>
+		  <path d="M 35.2 24.5 C 34.3 24.5 33.6 23.8 33.6 22.9 C 33.6 22 34.3 21.3 35.2 21.3 C 36.1 21.3 36.8 22 36.8 22.9 C 36.8 23.8 36.1 24.5 35.2 24.5 Z" style="fill: rgb(255, 255, 255);"/>
+		  <path d="M 28.1 36.8 C 24.3 36.8 21.3 33.7 21.3 30 C 21.3 26.2 24.4 23.2 28.1 23.2 C 31.8 23.2 35 26.2 35 30 C 35 33.8 31.9 36.8 28.1 36.8 Z" style="stroke: rgb(255, 255, 255);"/>
+		</symbol>
+
+		<symbol id="icon-mail-color" viewBox="0 0 512 512">
+			<circle fill="#6bb98f" cx="256" cy="256" r="256"/>
+			<path d="M 379.956 164.444 L 257.005 258.741 L 134.25 164.444 L 379.956 164.444 Z M 133.399 190.272 L 205.726 245.831 L 133.399 318.158 L 133.399 190.272 Z M 133.7 347.555 L 222.521 258.734 L 256.995 285.214 L 291.413 258.818 L 380.151 347.554 L 133.7 347.554 L 133.7 347.555 Z M 380.6 318.307 L 308.22 245.927 L 380.6 190.416 L 380.6 318.307 Z" style="fill: rgb(255, 255, 255);"/>
+		</symbol>
+
+		<symbol id="icon-retweet" viewBox="0 0 15.031 9.031">
+			<path id="Retweet" class="cls-1" d="M8.177,7.5A1.13,1.13,0,0,1,9.309,8.632a1.151,1.151,0,0,1-.33.793,1.13,1.13,0,0,1-.8.331H3.658A1.13,1.13,0,0,1,2.537,8.632v-3.4H1.4a0.752,0.752,0,0,1-.389-0.118A0.714,0.714,0,0,1,.731,4.81a0.788,0.788,0,0,1-.071-0.4A0.828,0.828,0,0,1,.8,4.018L3.068,0.989a0.767,0.767,0,0,1,1.192,0L6.466,3.947a2.677,2.677,0,0,1,.153.237,0.825,0.825,0,0,1,.059.3,0.767,0.767,0,0,1-.755.757H4.79V7.5H8.177Zm7.516-1.443a0.745,0.745,0,0,1-.142.39L13.285,9.46a0.859,0.859,0,0,1-.26.213,0.667,0.667,0,0,1-.342.083,0.611,0.611,0,0,1-.319-0.083,0.774,0.774,0,0,1-.271-0.213L9.828,6.443a0.746,0.746,0,0,1-.142-0.39,0.81,0.81,0,0,1,.071-0.4,0.714,0.714,0,0,1,.283-0.308,0.741,0.741,0,0,1,.389-0.106h1.133V2.965H8.177a1.13,1.13,0,0,1-.8-0.331,1.108,1.108,0,0,1-.33-0.793A1.129,1.129,0,0,1,8.177.705h4.507a1.129,1.129,0,0,1,1.133,1.136v3.4h1.133a0.783,0.783,0,0,1,.4.106,0.688,0.688,0,0,1,.271.308A0.809,0.809,0,0,1,15.692,6.053Z" transform="translate(-0.656 -0.719)"/>
+		</symbol>
+
+		<symbol id="icon-like" viewBox="0 0 10.969 10">
+			<path id="Like" class="cls-1" d="M11.737,2.88C11.626,6.361,7.428,10,6.261,10,5.069,9.975.784,6.349,0.784,2.88A2.891,2.891,0,0,1,3.529-.008,3.518,3.518,0,0,1,6.261,1.841,3.547,3.547,0,0,1,9.005-.008,2.89,2.89,0,0,1,11.737,2.88Z" transform="translate(-0.781)"/>
+		</symbol>
+
+		<symbol id="icon-reply" viewBox="0 0 12.031 8.938">
+			<path id="Reply" class="cls-1" d="M12.725,8.632a1.214,1.214,0,0,1-.331.853,1.157,1.157,0,0,1-.827.371,1.117,1.117,0,0,1-.827-0.371A1.278,1.278,0,0,1,10.4,8.632,2.1,2.1,0,0,0,9.83,7.186a1.914,1.914,0,0,0-1.382-.593H6.9V9.04a0.752,0.752,0,0,1-.118.42,0.984,0.984,0,0,1-.319.309c-0.024.012-.047,0.012-0.071,0.025L6.3,9.832a0.869,0.869,0,0,1-.177.025,0.888,0.888,0,0,1-.248-0.049,0.679,0.679,0,0,1-.224-0.124L0.992,6.024A0.582,0.582,0,0,1,.767,5.74,0.811,0.811,0,0,1,.673,5.381,0.782,0.782,0,0,1,.767,5.01,0.719,0.719,0,0,1,.992,4.726L5.647,1.067a0.751,0.751,0,0,1,.4-0.161,0.618,0.618,0,0,1,.414.087,0.687,0.687,0,0,1,.319.3,0.781,0.781,0,0,1,.118.42V4.157H8.448a4.185,4.185,0,0,1,3.025,1.31A4.582,4.582,0,0,1,12.725,8.632Z" transform="translate(-0.688 -0.906)"/>
+		</symbol>
+
+		<symbol id="icon-smwc-logo" x="0" y="0" viewBox="0 0 334 334" xml:space="preserve" style="enable-background:new 0 0 334 334;">
+		  <style type="text/css">
+		    .svg-logo {fill:#fff}
+		  </style>
+		  <path class="svg-logo" d="M167.1 312.2c-80.2 0-145.3-65.1-145.3-145.3 0-38.5 15.3-75.5 42.5-102.7 56.5-57 148.5-57.2 205.5-.7s57.3 148.5.7 205.5l-.7.7a144.74 144.74 0 01-102.7 42.5zm0-287C89 25.2 25.5 88.7 25.5 166.9S89 308.5 167.1 308.5 308.8 245 308.8 166.9 245.2 25.2 167.1 25.2z"/><path class="svg-logo" d="M188 173.1v4.5l-.3.2c-.1 0-5.8 2.7-7.4 5.9l-24.4 74.5h-4.6l-25.7-62.5-22.3 62.6h-4.4l-.2-.4-25.1-75.3a9.62 9.62 0 00-7.1-5.1l-.4-.1-.3-4.3h29.9v4.8H95c-1.7-.1-6.1.3-6.6 2.6 0 .3-.1.8-.1 1.1 0 2.1.3 4.2.9 6.2l15.5 46.8 21.3-61.7h4.4l.2.3 24.7 61.4 17-51.9c.3-.9.1-1.7-.4-2.4-1-1.3-3.3-2.1-6.7-2.1h-.6V173l23.4.1zM255.1 236l-1.7 17.1-.3.1c-8.5 3-17.5 4.6-26.7 4.7-14.8 0-23.3-4.7-23.5-4.8-14.7-7.8-20.1-19.7-22-28.2-1.3-5.6-1.5-11.3-.6-17 5.8-30 27.4-35.4 27.5-35.4 22-6.6 44.3 1.3 44.5 1.4l.3.1 1.9 16.8-6.1.5-.1-.5c-3.8-17.9-21.9-16.6-22-16.6-15.1 0-25.3 16.5-25.3 16.6-13.8 27.6-1.5 45.2-1.4 45.4l.1.1c6.9 14.5 26 15.3 26.2 15.3 19.9-1.1 22.8-14.6 22.9-15.2l.1-.4h6.2zM232.9 152.6l.3-60.6-33.2 61-33.6-55.8v52.4c0 1.7.9 3.4 2.2 4.5 3 2.2 7.9 1.2 7.9 1.2l.7-.2v5.5h-29.4v-5.2l.7.1c3 .4 5.4 0 7.1-1.3 1.3-1 2.2-2.5 2.4-4.2V86.8c0-3.3-6.9-4.2-9.5-4.3h-.6v-4.7h22.2l33.6 56.1 30.4-56.4 23.3-.2-.3 5.6h-.5c-5.8 0-8.3 1.4-9.2 2.6-.5.6-.8 1.4-.7 2.2v.1l1 64.3c1.1 3.8 9 3.3 9.1 3.3l.6-.1.3 5.4h-34.3V155l.7.1c6.1.9 8.4-1.9 8.8-2.5zM136.4 143.8c-1.1 6.5-6.4 10.1-7.1 10.5-5.9 6.3-22.9 8.3-23.6 8.4-3 .3-6 .6-9 .6-8 0-15.9-1.1-23.6-3.4l-.3-.1-1.9-19.7h7.2v.5c.3 7 7.7 12.3 8.4 12.8 18.9 7.8 29 .3 29.1.3 3.5-2.9 5.3-6.1 5.5-9.4.3-4.9-3.1-8.4-3.1-8.4l-.1-.1v-.2c-.7-2-22-14.4-35.3-21.8-12.5-8.6-10.8-18.1-10.7-18.5C74.7 78.5 96.7 76 96.8 76c13.8-2.6 34.9 2.6 35.2 2.6l.3.1 2.4 16.5-6.5.7-.2-.4c-5.6-18.6-30.2-14.9-30.5-14.9C85.7 83.5 87 95 87.1 95.4v.2c-.4 7.1 25.4 20.6 35.5 25.2 2.1 1 7.8 6.3 8 6.5l.1.1c4.6 5.7 6.6 11.3 5.7 16.4z"/>
+		</symbol>
+	</defs>
+</svg>
+
+	<header id="masthead" class="site-header" role="banner" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+		<nav class="top-navigation">
+  <div class="small-wrap">
+    <div class="nav-menu menu-top-menu-container"><ul id = "menu-top-navigation" class = "menu"><li class="menu__item menu__item--depth-0"><a href="https://www.smwc.edu/alumni/">Alumni</a></li>
+<li class="menu__item menu__item--depth-0"><a href="https://www.smwc.edu/community/">Community</a></li>
+<li class="menu__item menu__item--depth-0"><a href="https://www.smwc.edu/giving/">Giving</a></li>
+<li class="menu__item menu__item--depth-0"><a href="https://www.smwc.edu/contact/">Contact</a></li>
+<li class="menu__item--split-nav menu__item menu__item--depth-0"><a href="https://smwc.sharepoint.com/sites/WoodsNet-students">Students</a></li>
+<li class="menu__item menu__item--depth-0"><a href="https://smwc.sharepoint.com/sites/WoodsNet-FacultyStaff">Faculty &#038; Staff</a></li>
+<li class="menu__item menu__item--parent menu__item--offices-resources menu__item--depth-0"><a href="https://www.smwc.edu/offices-resources/">Offices &#038; Resources</a>
+<div class="top-sub"><div class="close"></div><div class="wrap"><ul class="sub-menu">
+	<li class="menu__item menu__item--parent menu__item--offices menu__item--depth-1"><a href="https://www.smwc.edu/offices-resources/offices/">Offices</a>
+	<ul class="sub-menu">
+		<li class="menu__item menu__item--depth-2"><a href="https://www.smwc.edu/offices-resources/offices/academic-affairs/">Academic Affairs</a></li>
+		<li class="menu__item menu__item--depth-2"><a href="https://www.smwc.edu/offices-resources/offices/business-office-2/">Business Office</a></li>
+		<li class="menu__item menu__item--depth-2"><a href="https://www.smwc.edu/offices-resources/offices/bookstore/">Bookstore</a></li>
+		<li class="menu__item menu__item--depth-2"><a href="https://www.smwc.edu/offices-resources/offices/career-center/">Career Center</a></li>
+		<li class="menu__item menu__item--depth-2"><a href="https://www.smwc.edu/offices-resources/offices/counseling-center/">Student Counseling &#038; Wellness Center</a></li>
+		<li class="menu__item menu__item--depth-2"><a href="https://www.smwc.edu/offices-resources/offices/financial-aid/">Financial Aid</a></li>
+		<li class="menu__item menu__item--depth-2"><a href="https://www.smwc.edu/offices-resources/offices/health-services-clinic/">Health Services Clinic</a></li>
+		<li class="menu__item menu__item--depth-2"><a href="https://www.smwc.edu/offices-resources/offices/office-of-people-success-and-opportunity/">Office of People, Success and Opportunity</a></li>
+		<li class="menu__item menu__item--depth-2"><a href="https://www.smwc.edu/offices-resources/offices/learning-resource-center/">Learning Resource Center</a></li>
+		<li class="menu__item menu__item--depth-2"><a href="https://www.smwc.edu/offices-resources/offices/marketing-and-communications/">Marketing &#038; Communications</a></li>
+		<li class="menu__item menu__item--depth-2"><a href="https://www.smwc.edu/offices-resources/offices/information-technology/">Information Technology</a></li>
+		<li class="menu__item menu__item--depth-2"><a href="https://www.smwc.edu/offices-resources/offices/office-of-the-president/">Office of the President</a></li>
+		<li class="menu__item menu__item--depth-2"><a href="https://www.smwc.edu/camp-at-the-woods-programs/">Office of Pre-College Outreach</a></li>
+		<li class="menu__item menu__item--depth-2"><a href="https://www.smwc.edu/offices-resources/offices/public-safety/">Public Safety</a></li>
+		<li class="menu__item menu__item--depth-2"><a href="https://www.smwc.edu/offices-resources/offices/registrar/">Registrar</a></li>
+		<li class="menu__item menu__item--depth-2"><a href="https://www.smwc.edu/offices-resources/offices/rooney-library/">Rooney Library</a></li>
+		<li class="menu__item menu__item--depth-2"><a href="https://www.smwc.edu/offices-resources/offices/service-learning-center/">Service Learning Center</a></li>
+		<li class="menu__item menu__item--depth-2"><a href="https://www.smwc.edu/offices-resources/offices/rooney-library/smw-archives/">SMW Archives</a></li>
+		<li class="menu__item menu__item--depth-2"><a href="https://www.smwc.edu/offices-resources/offices/financial-aid/student-accounts/">Student Accounts Office</a></li>
+	</ul>
+</li>
+	<li class="menu__item menu__item--parent menu__item--resources menu__item--depth-1"><a href="#">Resources</a>
+	<ul class="sub-menu">
+		<li class="menu__item menu__item--depth-2"><a href="https://www.smwc.edu/offices-resources/faculty-directory/">Faculty and Staff Directory</a></li>
+		<li class="menu__item menu__item--depth-2"><a href="https://www.smwc.edu/offices-resources/a-z-directory/">A – Z Directory</a></li>
+		<li class="menu__item menu__item--depth-2"><a href="https://www.smwc.edu/offices-resources/student-consumer-information/">Student Consumer Information</a></li>
+		<li class="menu__item menu__item--depth-2"><a href="https://www.smwc.edu/offices-resources/student-consumer-information/college-policies/harassment-free-environment/">Title IX</a></li>
+		<li class="menu__item menu__item--depth-2"><a href="https://www.smwc.edu/global-leadership-institute/">Global Leadership Institute</a></li>
+	</ul>
+</li>
+</ul></div></div>
+</li>
+</ul></div>	<a class="search_toggle">
+	<svg class="icon icon-search">
+	  <use xlink:href="#icon-icon-search"></use>
+	</svg>
+	</a>
+	</div>
+</nav>
+<nav class="main-navigation">
+  <div class="wrap">
+    <div class="nav-menu menu-main-menu-container"><ul id = "menu-main-menu" class = "menu"><li class="menu__item menu__item--parent menu__item--academics menu__item--depth-0"><a href="https://www.smwc.edu/departments/academics/">Academics</a>
+<div class="mega-menu"><div class="wrap"><div class="banner" style="background-color: #11316b;"><a href="https://www.smwc.edu/academics/all-degrees/"><img width="300" height="213"   alt="Equine student standing with horse in the stable" data-srcset="https://www.smwc.edu/wp-content/uploads/Photos/Academics/Equine-Studies/smwc-horse-gabby-300x213.jpg 300w, https://www.smwc.edu/wp-content/uploads/Photos/Academics/Equine-Studies/smwc-horse-gabby-1024x727.jpg 1024w, https://www.smwc.edu/wp-content/uploads/Photos/Academics/Equine-Studies/smwc-horse-gabby-150x107.jpg 150w, https://www.smwc.edu/wp-content/uploads/Photos/Academics/Equine-Studies/smwc-horse-gabby.jpg 1440w"   loading="lazy" data-src="https://www.smwc.edu/wp-content/uploads/Photos/Academics/Equine-Studies/smwc-horse-gabby-300x213.jpg" data-sizes="(max-width: 300px) 100vw, 300px" class="attachment-medium size-medium lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" /><noscript><img width="300" height="213" src="https://www.smwc.edu/wp-content/uploads/Photos/Academics/Equine-Studies/smwc-horse-gabby-300x213.jpg" class="attachment-medium size-medium" alt="Equine student standing with horse in the stable" srcset="https://www.smwc.edu/wp-content/uploads/Photos/Academics/Equine-Studies/smwc-horse-gabby-300x213.jpg 300w, https://www.smwc.edu/wp-content/uploads/Photos/Academics/Equine-Studies/smwc-horse-gabby-1024x727.jpg 1024w, https://www.smwc.edu/wp-content/uploads/Photos/Academics/Equine-Studies/smwc-horse-gabby-150x107.jpg 150w, https://www.smwc.edu/wp-content/uploads/Photos/Academics/Equine-Studies/smwc-horse-gabby.jpg 1440w" sizes="(max-width: 300px) 100vw, 300px"  loading="lazy" /></noscript><div class="title">Majors & Minors</div><div class="sub-title">View All</div></a></div><ul class="sub-menu">
+	<li class="menu__item menu__item--depth-1"><a href="/academics/graduate-degrees/?degree=graduate-degree">Graduate Degrees</a></li>
+	<li class="menu__item menu__item--depth-1"><a href="/academics/bachelors-degrees/?degree=bachelors-degree">Bachelor’s Degrees</a></li>
+	<li class="menu__item menu__item--depth-1"><a href="/academics/associates-degrees/?degree=associates-degree">Associate’s Degrees</a></li>
+	<li class="menu__item menu__item--depth-1"><a href="https://www.smwc.edu/academics/certificate-programs/?degree=certificate">Certificate Programs</a></li>
+	<li class="menu__item menu__item--depth-1"><a href="/academics/licensure-programs/?degree=licensure">Licensure Programs</a></li>
+	<li class="menu__item menu__item--depth-1"><a href="https://www.smwc.edu/woods-core/">Woods Core</a></li>
+	<li class="menu__item menu__item--parent menu__item--departments menu__item--depth-1"><a href="https://www.smwc.edu/departments/">Departments</a>
+	<ul class="sub-menu">
+		<li class="menu__item menu__item--depth-2"><a href="https://www.smwc.edu/departments/arts-letters-music/">Arts, Letters &#038; Music</a></li>
+		<li class="menu__item menu__item--depth-2"><a href="https://www.smwc.edu/departments/business-leadership/">Business and Leadership</a></li>
+		<li class="menu__item menu__item--depth-2"><a href="https://www.smwc.edu/departments/education/">Education</a></li>
+		<li class="menu__item menu__item--depth-2"><a href="https://www.smwc.edu/departments/equine-studies/">Equine Studies</a></li>
+		<li class="menu__item menu__item--depth-2"><a href="https://www.smwc.edu/departments/graduate-studies/">Graduate Studies</a></li>
+		<li class="menu__item menu__item--depth-2"><a href="https://www.smwc.edu/departments/nursing/">Nursing</a></li>
+		<li class="menu__item menu__item--depth-2"><a href="https://www.smwc.edu/departments/sciences-mathematics/">Sciences and Mathematics</a></li>
+		<li class="menu__item menu__item--depth-2"><a href="https://www.smwc.edu/departments/social-behavioral-sciences/">Social and Behavioral Sciences</a></li>
+		<li class="menu__item menu__item--depth-2"><a href="https://www.smwc.edu/all-degrees/?degree=bachelors-degree&#038;degree_type=online">Woods Online</a></li>
+	</ul>
+</li>
+</ul></div></div>
+</li>
+<li class="menu__item menu__item--depth-0"><a href="https://www.smwc.edu/all-degrees/?degree=bachelors-degree&#038;degree_type=online">Online</a></li>
+<li class="menu__item menu__item--parent menu__item--admission menu__item--depth-0"><a href="https://www.smwc.edu/admission/">Admissions</a>
+<div class="mega-menu"><div class="wrap"><div class="banner" style="background-color: #f1ad39;"><a href="https://www.smwc.edu/admission/request-program-information/"><img width="300" height="200"   alt="A close up of a female student smiling in a classroom." data-srcset="https://www.smwc.edu/wp-content/uploads/smwc-student-smiling-300x200.jpg 300w, https://www.smwc.edu/wp-content/uploads/smwc-student-smiling-1024x684.jpg 1024w, https://www.smwc.edu/wp-content/uploads/smwc-student-smiling-150x100.jpg 150w, https://www.smwc.edu/wp-content/uploads/smwc-student-smiling-94x62.jpg 94w, https://www.smwc.edu/wp-content/uploads/smwc-student-smiling-196x131.jpg 196w, https://www.smwc.edu/wp-content/uploads/smwc-student-smiling.jpg 1440w"   loading="lazy" data-src="https://www.smwc.edu/wp-content/uploads/smwc-student-smiling-300x200.jpg" data-sizes="(max-width: 300px) 100vw, 300px" class="attachment-medium size-medium lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" /><noscript><img width="300" height="200" src="https://www.smwc.edu/wp-content/uploads/smwc-student-smiling-300x200.jpg" class="attachment-medium size-medium" alt="A close up of a female student smiling in a classroom." srcset="https://www.smwc.edu/wp-content/uploads/smwc-student-smiling-300x200.jpg 300w, https://www.smwc.edu/wp-content/uploads/smwc-student-smiling-1024x684.jpg 1024w, https://www.smwc.edu/wp-content/uploads/smwc-student-smiling-150x100.jpg 150w, https://www.smwc.edu/wp-content/uploads/smwc-student-smiling-94x62.jpg 94w, https://www.smwc.edu/wp-content/uploads/smwc-student-smiling-196x131.jpg 196w, https://www.smwc.edu/wp-content/uploads/smwc-student-smiling.jpg 1440w" sizes="(max-width: 300px) 100vw, 300px"  loading="lazy" /></noscript><div class="title">Request Information</div><div class="sub-title"></div></a></div><ul class="sub-menu">
+	<li class="menu__item menu__item--depth-1"><a href="https://www.smwc.edu/admission/campus-undergraduate/">Campus Undergraduate</a></li>
+	<li class="menu__item menu__item--depth-1"><a href="https://www.smwc.edu/admission/online-undergraduate/">Online Undergraduate</a></li>
+	<li class="menu__item menu__item--depth-1"><a href="https://www.smwc.edu/admission/graduate/">Graduate</a></li>
+	<li class="menu__item menu__item--depth-1"><a href="https://www.smwc.edu/admission/international/">International</a></li>
+	<li class="menu__item menu__item--depth-1"><a href="https://www.smwc.edu/admission/transfer/">Transfer</a></li>
+	<li class="menu__item menu__item--depth-1"><a href="https://apply.smwc.edu/">Apply</a></li>
+	<li class="menu__item menu__item--depth-1"><a href="https://www.smwc.edu/admission/visit-campus/">Visit Campus</a></li>
+	<li class="menu__item menu__item--depth-1"><a href="https://hipaa.jotform.com/212655631576157">Confirm Your Enrollment</a></li>
+	<li class="menu__item menu__item--depth-1"><a href="https://www.smwc.edu/offices-resources/offices/financial-aid/">Financial Aid</a></li>
+	<li class="menu__item menu__item--depth-1"><a href="https://www.smwc.edu/offices-resources/offices/financial-aid/tuition-and-fees/">Tuition and Fees</a></li>
+	<li class="menu__item menu__item--depth-1"><a href="https://www.smwc.edu/admission/international/english-language-institute/">ESL Program</a></li>
+	<li class="menu__item menu__item--depth-1"><a href="https://www.smwc.edu/admission/contact-admissions/">Contact Admissions</a></li>
+	<li class="menu__item menu__item--depth-1"><a href="https://www.smwc.edu/category/events/admissions/">Admissions Events</a></li>
+	<li class="menu__item menu__item--depth-1"><a href="https://www.smwc.edu/offices-resources/offices/career-center/">Career Center</a></li>
+	<li class="menu__item menu__item--depth-1"><a href="https://www.smwc.edu/admission/faq/">Frequently Asked Questions</a></li>
+</ul></div></div>
+</li>
+<li class="menu__item--split-nav menu__item menu__item--parent menu__item--student-life menu__item--depth-0"><a href="https://www.smwc.edu/student-life/">Student Life</a>
+<div class="mega-menu"><div class="wrap"><div class="banner" style="background-color: #ce5e28;"><a href="https://www.smwc.edu/student-life/le-fer-hall/"><img width="300" height="212"   alt="Student studying in dorm room" data-srcset="https://www.smwc.edu/wp-content/uploads/2021/01/SMWC-student-Dorm-300x212.jpg 300w, https://www.smwc.edu/wp-content/uploads/2021/01/SMWC-student-Dorm-1024x722.jpg 1024w, https://www.smwc.edu/wp-content/uploads/2021/01/SMWC-student-Dorm-150x106.jpg 150w"   loading="lazy" data-src="https://www.smwc.edu/wp-content/uploads/2021/01/SMWC-student-Dorm-300x212.jpg" data-sizes="(max-width: 300px) 100vw, 300px" class="attachment-medium size-medium lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" /><noscript><img width="300" height="212" src="https://www.smwc.edu/wp-content/uploads/2021/01/SMWC-student-Dorm-300x212.jpg" class="attachment-medium size-medium" alt="Student studying in dorm room" srcset="https://www.smwc.edu/wp-content/uploads/2021/01/SMWC-student-Dorm-300x212.jpg 300w, https://www.smwc.edu/wp-content/uploads/2021/01/SMWC-student-Dorm-1024x722.jpg 1024w, https://www.smwc.edu/wp-content/uploads/2021/01/SMWC-student-Dorm-150x106.jpg 150w" sizes="(max-width: 300px) 100vw, 300px"  loading="lazy" /></noscript><div class="title">Living in Le Fer Hall</div><div class="sub-title">Learn More</div></a></div><ul class="sub-menu">
+	<li class="menu__item menu__item--depth-1"><a href="https://www.smwc.edu/student-life/residence-halls/">Residence Halls</a></li>
+	<li class="menu__item menu__item--depth-1"><a href="https://www.smwc.edu/commuter-student-resources/">Commuter Student Resources</a></li>
+	<li class="menu__item menu__item--depth-1"><a href="https://www.smwc.edu/student-life/campus-student-forms-resources/">Student Forms and Resources</a></li>
+	<li class="menu__item menu__item--depth-1"><a href="https://www.smwc.edu/student-life/orientation/">Orientation</a></li>
+	<li class="menu__item menu__item--depth-1"><a href="https://www.smwc.edu/new-student-resources/">New Student Resources</a></li>
+	<li class="menu__item menu__item--depth-1"><a href="https://www.smwc.edu/student-life/student-activities-and-organizations/">Student Activities and Organizations</a></li>
+	<li class="menu__item menu__item--depth-1"><a href="https://www.smwc.edu/student-life/campus-ministry/">Campus Ministry</a></li>
+	<li class="menu__item menu__item--depth-1"><a href="https://www.smwc.edu/faith/">Faith</a></li>
+	<li class="menu__item menu__item--depth-1"><a href="https://www.smwc.edu/student-life/campus-dining/">Campus Dining</a></li>
+	<li class="menu__item menu__item--depth-1"><a href="https://www.smwc.edu/student-life/arts-and-culture/">Arts and Culture</a></li>
+	<li class="menu__item menu__item--depth-1"><a href="https://www.smwc.edu/student-life/parents-family/">Parents and Family</a></li>
+	<li class="menu__item menu__item--depth-1"><a href="https://www.smwc.edu/student-life/student-health/">Student Health</a></li>
+	<li class="menu__item menu__item--depth-1"><a href="https://www.smwc.edu/student-life/contact-student-life/">Contact Student Life</a></li>
+	<li class="menu__item menu__item--depth-1"><a href="https://www.smwc.edu/student-stories/">Stories From The Woods</a></li>
+	<li class="menu__item menu__item--depth-1"><a href="https://www.smwc.edu/?page_id=34203">Diversity, Equity and Inclusion</a></li>
+	<li class="menu__item menu__item--depth-1"><a href="https://www.smwc.edu/offices-resources/offices/public-safety/">Campus Safety and Security</a></li>
+	<li class="menu__item menu__item--depth-1"><a href="https://www.smwc.edu/offices-resources/offices/bookstore/">Bookstore</a></li>
+</ul></div></div>
+</li>
+<li class="menu__item menu__item--current menu__item--parent menu__item--athletics menu__item--depth-0"><a href="https://www.smwc.edu/athletics/">Athletics</a>
+<div class="mega-menu"><div class="wrap"><div class="banner" style="background-color: #69b3e7;"><a href="https://smwcathletics.com/"><img width="300" height="160"   alt="Two male and one female cross country students stand together smiling." data-srcset="https://www.smwc.edu/wp-content/uploads/smwc-cross-country-students-e1502898225245-300x160.jpg 300w, https://www.smwc.edu/wp-content/uploads/smwc-cross-country-students-e1502898225245-1024x545.jpg 1024w, https://www.smwc.edu/wp-content/uploads/smwc-cross-country-students-e1502898225245-150x80.jpg 150w, https://www.smwc.edu/wp-content/uploads/smwc-cross-country-students-e1502898225245.jpg 1439w"   loading="lazy" data-src="https://www.smwc.edu/wp-content/uploads/smwc-cross-country-students-e1502898225245-300x160.jpg" data-sizes="(max-width: 300px) 100vw, 300px" class="attachment-medium size-medium lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" /><noscript><img width="300" height="160" src="https://www.smwc.edu/wp-content/uploads/smwc-cross-country-students-e1502898225245-300x160.jpg" class="attachment-medium size-medium" alt="Two male and one female cross country students stand together smiling." srcset="https://www.smwc.edu/wp-content/uploads/smwc-cross-country-students-e1502898225245-300x160.jpg 300w, https://www.smwc.edu/wp-content/uploads/smwc-cross-country-students-e1502898225245-1024x545.jpg 1024w, https://www.smwc.edu/wp-content/uploads/smwc-cross-country-students-e1502898225245-150x80.jpg 150w, https://www.smwc.edu/wp-content/uploads/smwc-cross-country-students-e1502898225245.jpg 1439w" sizes="(max-width: 300px) 100vw, 300px"  loading="lazy" /></noscript><div class="title">Pomeroy Strong</div><div class="sub-title">Visit SMWC Athletics</div></a></div><ul class="sub-menu">
+	<li class="menu__item menu__item--depth-1"><a href="https://smwcathletics.com/">SMWCAthletics.com</a></li>
+	<li class="menu__item menu__item--depth-1"><a href="https://smwcathletics.com/sports/2021/6/17/intramurals-at-the-woods.aspx">Intramurals</a></li>
+	<li class="menu__item menu__item--depth-1"><a href="https://smwcathletics.com/sports/2021/4/14/recreation-Club-Sports.aspx">Club Sports</a></li>
+	<li class="menu__item menu__item--depth-1"><a href="https://smwcathletics.com/sports/2021/4/22/future-commits.aspx">Recruit Central</a></li>
+	<li class="menu__item menu__item--depth-1"><a href="https://www.smwc.edu/athletics/contact-athletics/">Contact Athletics</a></li>
+	<li class="menu__item menu__item--depth-1"><a href="https://smwcathletics.com/sports/2021/4/22/what-is-a-pomeroy.aspx">What is a Pomeroy?</a></li>
+	<li class="menu__item menu__item--depth-1"><a href="https://www.smwc.edu/about/meet-onyx/">Meet Onyx</a></li>
+	<li class="menu__item menu__item--depth-1"><a href="https://www.bkstr.com/saintmaryofthewoodsstore/home">Purchase SMWC Gear</a></li>
+</ul></div></div>
+</li>
+<li class="menu__item menu__item--parent menu__item--about menu__item--depth-0"><a href="https://www.smwc.edu/about/">About</a>
+<div class="mega-menu"><div class="wrap"><div class="banner" style="background-color: #26af73;"><a href="https://www.smwc.edu/about/history/"><img width="300" height="200"   alt="The Avenue" data-srcset="https://www.smwc.edu/wp-content/uploads/photos/outdoors/avenue/smwc-avenue-moment-avenue-300x200.jpg 300w, https://www.smwc.edu/wp-content/uploads/photos/outdoors/avenue/smwc-avenue-moment-avenue-1024x683.jpg 1024w, https://www.smwc.edu/wp-content/uploads/photos/outdoors/avenue/smwc-avenue-moment-avenue-150x100.jpg 150w, https://www.smwc.edu/wp-content/uploads/photos/outdoors/avenue/smwc-avenue-moment-avenue-94x62.jpg 94w, https://www.smwc.edu/wp-content/uploads/photos/outdoors/avenue/smwc-avenue-moment-avenue-196x131.jpg 196w, https://www.smwc.edu/wp-content/uploads/photos/outdoors/avenue/smwc-avenue-moment-avenue.jpg 1440w"   loading="lazy" data-src="https://www.smwc.edu/wp-content/uploads/photos/outdoors/avenue/smwc-avenue-moment-avenue-300x200.jpg" data-sizes="(max-width: 300px) 100vw, 300px" class="attachment-medium size-medium lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" /><noscript><img width="300" height="200" src="https://www.smwc.edu/wp-content/uploads/photos/outdoors/avenue/smwc-avenue-moment-avenue-300x200.jpg" class="attachment-medium size-medium" alt="The Avenue" srcset="https://www.smwc.edu/wp-content/uploads/photos/outdoors/avenue/smwc-avenue-moment-avenue-300x200.jpg 300w, https://www.smwc.edu/wp-content/uploads/photos/outdoors/avenue/smwc-avenue-moment-avenue-1024x683.jpg 1024w, https://www.smwc.edu/wp-content/uploads/photos/outdoors/avenue/smwc-avenue-moment-avenue-150x100.jpg 150w, https://www.smwc.edu/wp-content/uploads/photos/outdoors/avenue/smwc-avenue-moment-avenue-94x62.jpg 94w, https://www.smwc.edu/wp-content/uploads/photos/outdoors/avenue/smwc-avenue-moment-avenue-196x131.jpg 196w, https://www.smwc.edu/wp-content/uploads/photos/outdoors/avenue/smwc-avenue-moment-avenue.jpg 1440w" sizes="(max-width: 300px) 100vw, 300px"  loading="lazy" /></noscript><div class="title">Our Story</div><div class="sub-title">Learn More</div></a></div><ul class="sub-menu">
+	<li class="menu__item menu__item--depth-1"><a href="https://www.smwc.edu/about/vision-mission-values/">Vision, Mission and Values</a></li>
+	<li class="menu__item menu__item--depth-1"><a href="https://www.smwc.edu/about/accreditation/">Accreditation</a></li>
+	<li class="menu__item menu__item--depth-1"><a href="https://www.smwc.edu/about/smwc-distinctions/">Distinctions</a></li>
+	<li class="menu__item menu__item--depth-1"><a href="https://www.smwc.edu/about/history/">Our History</a></li>
+	<li class="menu__item menu__item--depth-1"><a href="https://www.smwc.edu/about/traditions-and-celebrations/">Traditions and Celebrations</a></li>
+	<li class="menu__item menu__item--depth-1"><a href="https://www.smwc.edu/offices-resources/offices/office-of-the-president/">Office of the President</a></li>
+	<li class="menu__item menu__item--depth-1"><a href="https://www.smwc.edu/about/location/">Location</a></li>
+	<li class="menu__item menu__item--depth-1"><a href="https://www.smwc.edu/about/campus-map/">Campus Maps</a></li>
+	<li class="menu__item menu__item--depth-1"><a href="https://www.smwc.edu/category/news/">News</a></li>
+	<li class="menu__item menu__item--depth-1"><a href="https://www.smwc.edu/category/blog/">Blog</a></li>
+	<li class="menu__item menu__item--depth-1"><a href="https://www.smwc.edu/about/in-the-news/">In the News</a></li>
+	<li class="menu__item menu__item--depth-1"><a href="https://www.smwc.edu/category/events/">Events</a></li>
+</ul></div></div>
+</li>
+</ul></div>	<div class="logo">
+	  <a href="https://www.smwc.edu" aria-labelledby="desktop_logo">
+      <svg class="icon icon--smwc-logo" role="img"><title id="desktop_logo">SMWC logo</title><use xlink:href="#icon-smwc-logo"></use></svg>
+	  </a>
+	</div>
+	</div>
+</nav>
+  
+  <nav class="mobile-navigation">
+    <a class="search_toggle">
+      <svg class="icon icon-search">
+        <use xlink:href="#icon-icon-search"></use>
+      </svg>
+    </a>
+    <div class="logo">
+      <a href="https://www.smwc.edu" aria-labelledby="mobile_logo">
+        <svg class="icon icon--smwc-logo" role="img"><title id="mobile_logo">SMWC logo</title><use xlink:href="#icon-smwc-logo"></use></svg>
+      </a>
+  	</div>
+  	<a class="menu-toggle">
+  	   <span></span>
+  	</a>
+  </nav>
+  <nav class="mobile-sub-navigation">
+    <ul id="main-list">
+      <li><a href="https://www.smwc.edu/departments/academics/" class=" has-children">Academics</a><ul class="sub-menu"><a href="#" class="back-btn">BACK</a><div><span><a href="https://www.smwc.edu/departments/academics/">Academics</a></span></div><li><a href="/academics/graduate-degrees/?degree=graduate-degree" class=" ">Graduate Degrees</a><li><a href="/academics/bachelors-degrees/?degree=bachelors-degree" class=" ">Bachelor’s Degrees</a><li><a href="/academics/associates-degrees/?degree=associates-degree" class=" ">Associate’s Degrees</a><li><a href="https://www.smwc.edu/academics/certificate-programs/?degree=certificate" class=" ">Certificate Programs</a><li><a href="/academics/licensure-programs/?degree=licensure" class=" ">Licensure Programs</a><li><a href="https://www.smwc.edu/woods-core/" class=" ">Woods Core</a><li><a href="https://www.smwc.edu/departments/" class=" has-children">Departments</a><ul class="sub-menu"><a href="#" class="back-btn">BACK</a><div><span><a href="https://www.smwc.edu/departments/">Departments</a></span></div><li><a href="https://www.smwc.edu/departments/arts-letters-music/" class=" ">Arts, Letters & Music</a><li><a href="https://www.smwc.edu/departments/business-leadership/" class=" ">Business and Leadership</a><li><a href="https://www.smwc.edu/departments/education/" class=" ">Education</a><li><a href="https://www.smwc.edu/departments/equine-studies/" class=" ">Equine Studies</a><li><a href="https://www.smwc.edu/departments/graduate-studies/" class=" ">Graduate Studies</a><li><a href="https://www.smwc.edu/departments/nursing/" class=" ">Nursing</a><li><a href="https://www.smwc.edu/departments/sciences-mathematics/" class=" ">Sciences and Mathematics</a><li><a href="https://www.smwc.edu/departments/social-behavioral-sciences/" class=" ">Social and Behavioral Sciences</a><li><a href="https://www.smwc.edu/all-degrees/?degree=bachelors-degree&degree_type=online" class=" ">Woods Online</a></li></ul></li></ul></li><li><a class=" " href="https://www.smwc.edu/all-degrees/?degree=bachelors-degree&degree_type=online">Online</a></li><li><a href="https://www.smwc.edu/admission/" class=" has-children">Admissions</a><ul class="sub-menu"><a href="#" class="back-btn">BACK</a><div><span><a href="https://www.smwc.edu/admission/">Admissions</a></span></div><li><a href="https://www.smwc.edu/admission/campus-undergraduate/" class="highlight ">Campus Undergraduate</a><li><a href="https://www.smwc.edu/admission/online-undergraduate/" class="highlight ">Online Undergraduate</a><li><a href="https://www.smwc.edu/admission/graduate/" class="highlight ">Graduate</a><li><a href="https://www.smwc.edu/admission/international/" class="highlight ">International</a><li><a href="https://www.smwc.edu/admission/transfer/" class="highlight divider ">Transfer</a><li><a href="https://apply.smwc.edu/" class=" ">Apply</a><li><a href="https://www.smwc.edu/admission/visit-campus/" class=" ">Visit Campus</a><li><a href="https://hipaa.jotform.com/212655631576157" class=" ">Confirm Your Enrollment</a><li><a href="https://www.smwc.edu/offices-resources/offices/financial-aid/" class=" ">Financial Aid</a><li><a href="https://www.smwc.edu/offices-resources/offices/financial-aid/tuition-and-fees/" class=" ">Tuition and Fees</a><li><a href="https://www.smwc.edu/admission/international/english-language-institute/" class=" ">ESL Program</a><li><a href="https://www.smwc.edu/admission/contact-admissions/" class=" ">Contact Admissions</a><li><a href="https://www.smwc.edu/category/events/admissions/" class=" ">Admissions Events</a><li><a href="https://www.smwc.edu/offices-resources/offices/career-center/" class=" ">Career Center</a><li><a href="https://www.smwc.edu/admission/faq/" class=" ">Frequently Asked Questions</a></li></ul></li><li><a href="https://www.smwc.edu/student-life/" class="split_nav has-children">Student Life</a><ul class="sub-menu"><a href="#" class="back-btn">BACK</a><div><span><a href="https://www.smwc.edu/student-life/">Student Life</a></span></div><li><a href="https://www.smwc.edu/student-life/residence-halls/" class=" ">Residence Halls</a><li><a href="https://www.smwc.edu/commuter-student-resources/" class=" ">Commuter Student Resources</a><li><a href="https://www.smwc.edu/student-life/campus-student-forms-resources/" class=" ">Student Forms and Resources</a><li><a href="https://www.smwc.edu/student-life/orientation/" class=" ">Orientation</a><li><a href="https://www.smwc.edu/new-student-resources/" class=" ">New Student Resources</a><li><a href="https://www.smwc.edu/student-life/student-activities-and-organizations/" class=" ">Student Activities and Organizations</a><li><a href="https://www.smwc.edu/student-life/campus-ministry/" class=" ">Campus Ministry</a><li><a href="https://www.smwc.edu/faith/" class=" ">Faith</a><li><a href="https://www.smwc.edu/student-life/campus-dining/" class=" ">Campus Dining</a><li><a href="https://www.smwc.edu/student-life/arts-and-culture/" class=" ">Arts and Culture</a><li><a href="https://www.smwc.edu/student-life/parents-family/" class=" ">Parents and Family</a><li><a href="https://www.smwc.edu/student-life/student-health/" class=" ">Student Health</a><li><a href="https://www.smwc.edu/student-life/contact-student-life/" class=" ">Contact Student Life</a><li><a href="https://www.smwc.edu/student-stories/" class=" ">Stories From The Woods</a><li><a href="https://www.smwc.edu/?page_id=34203" class=" ">Diversity, Equity and Inclusion</a><li><a href="https://www.smwc.edu/offices-resources/offices/public-safety/" class=" ">Campus Safety and Security</a><li><a href="https://www.smwc.edu/offices-resources/offices/bookstore/" class=" ">Bookstore</a></li></ul></li><li><a href="https://www.smwc.edu/athletics/" class=" has-children">Athletics</a><ul class="sub-menu"><a href="#" class="back-btn">BACK</a><div><span><a href="https://www.smwc.edu/athletics/">Athletics</a></span></div><li><a href="https://smwcathletics.com/" class=" ">SMWCAthletics.com</a><li><a href="https://smwcathletics.com/sports/2021/6/17/intramurals-at-the-woods.aspx" class=" ">Intramurals</a><li><a href="https://smwcathletics.com/sports/2021/4/14/recreation-Club-Sports.aspx" class=" ">Club Sports</a><li><a href="https://smwcathletics.com/sports/2021/4/22/future-commits.aspx" class=" ">Recruit Central</a><li><a href="https://www.smwc.edu/athletics/contact-athletics/" class=" ">Contact Athletics</a><li><a href="https://smwcathletics.com/sports/2021/4/22/what-is-a-pomeroy.aspx" class=" ">What is a Pomeroy?</a><li><a href="https://www.smwc.edu/about/meet-onyx/" class=" ">Meet Onyx</a><li><a href="https://www.bkstr.com/saintmaryofthewoodsstore/home" class=" ">Purchase SMWC Gear</a></li></ul></li><li><a href="https://www.smwc.edu/about/" class=" has-children">About</a><ul class="sub-menu"><a href="#" class="back-btn">BACK</a><div><span><a href="https://www.smwc.edu/about/">About</a></span></div><li><a href="https://www.smwc.edu/about/vision-mission-values/" class="highlight ">Vision, Mission and Values</a><li><a href="https://www.smwc.edu/about/accreditation/" class="highlight ">Accreditation</a><li><a href="https://www.smwc.edu/about/smwc-distinctions/" class=" ">Distinctions</a><li><a href="https://www.smwc.edu/about/history/" class="highlight ">Our History</a><li><a href="https://www.smwc.edu/about/traditions-and-celebrations/" class="highlight ">Traditions and Celebrations</a><li><a href="https://www.smwc.edu/offices-resources/offices/office-of-the-president/" class=" ">Office of the President</a><li><a href="https://www.smwc.edu/about/location/" class=" ">Location</a><li><a href="https://www.smwc.edu/about/campus-map/" class=" ">Campus Maps</a><li><a href="https://www.smwc.edu/category/news/" class=" ">News</a><li><a href="https://www.smwc.edu/category/blog/" class=" ">Blog</a><li><a href="https://www.smwc.edu/about/in-the-news/" class=" ">In the News</a><li><a href="https://www.smwc.edu/category/events/" class=" ">Events</a></li></ul></li>      <li class="divider"><a class=" top-nav" href="https://www.smwc.edu/alumni/">Alumni</a></li><li><a class=" top-nav" href="https://www.smwc.edu/community/">Community</a></li><li><a class=" top-nav" href="https://www.smwc.edu/giving/">Giving</a></li><li><a class=" top-nav" href="https://www.smwc.edu/contact/">Contact</a></li><li><a class="split_nav top-nav" href="https://smwc.sharepoint.com/sites/WoodsNet-students">Students</a></li><li><a class=" top-nav" href="https://smwc.sharepoint.com/sites/WoodsNet-FacultyStaff">Faculty & Staff</a></li><li><a href="https://www.smwc.edu/offices-resources/" class=" top-nav has-children">Offices & Resources</a><ul class="sub-menu"><a href="#" class="back-btn">BACK</a><div><span><a href="https://www.smwc.edu/offices-resources/">Offices & Resources</a></span></div><li><a href="https://www.smwc.edu/offices-resources/offices/" class=" has-children">Offices</a><ul class="sub-menu"><a href="#" class="back-btn">BACK</a><div><span><a href="https://www.smwc.edu/offices-resources/offices/">Offices</a></span></div><li><a href="https://www.smwc.edu/offices-resources/offices/academic-affairs/" class=" ">Academic Affairs</a><li><a href="https://www.smwc.edu/offices-resources/offices/business-office-2/" class=" ">Business Office</a><li><a href="https://www.smwc.edu/offices-resources/offices/bookstore/" class=" ">Bookstore</a><li><a href="https://www.smwc.edu/offices-resources/offices/career-center/" class=" ">Career Center</a><li><a href="https://www.smwc.edu/offices-resources/offices/counseling-center/" class=" ">Student Counseling &#038; Wellness Center</a><li><a href="https://www.smwc.edu/offices-resources/offices/financial-aid/" class=" ">Financial Aid</a><li><a href="https://www.smwc.edu/offices-resources/offices/health-services-clinic/" class=" ">Health Services Clinic</a><li><a href="https://www.smwc.edu/offices-resources/offices/office-of-people-success-and-opportunity/" class=" ">Office of People, Success and Opportunity</a><li><a href="https://www.smwc.edu/offices-resources/offices/learning-resource-center/" class=" ">Learning Resource Center</a><li><a href="https://www.smwc.edu/offices-resources/offices/marketing-and-communications/" class=" ">Marketing & Communications</a><li><a href="https://www.smwc.edu/offices-resources/offices/information-technology/" class=" ">Information Technology</a><li><a href="https://www.smwc.edu/offices-resources/offices/office-of-the-president/" class=" ">Office of the President</a><li><a href="https://www.smwc.edu/camp-at-the-woods-programs/" class=" ">Office of Pre-College Outreach</a><li><a href="https://www.smwc.edu/offices-resources/offices/public-safety/" class=" ">Public Safety</a><li><a href="https://www.smwc.edu/offices-resources/offices/registrar/" class=" ">Registrar</a><li><a href="https://www.smwc.edu/offices-resources/offices/rooney-library/" class=" ">Rooney Library</a><li><a href="https://www.smwc.edu/offices-resources/offices/service-learning-center/" class=" ">Service Learning Center</a><li><a href="https://www.smwc.edu/offices-resources/offices/rooney-library/smw-archives/" class=" ">SMW Archives</a><li><a href="https://www.smwc.edu/offices-resources/offices/financial-aid/student-accounts/" class=" ">Student Accounts Office</a></li></ul><li><a href="#" class=" has-children">Resources</a><ul class="sub-menu"><a href="#" class="back-btn">BACK</a><div><span><a href="#">Resources</a></span></div><li><a href="https://www.smwc.edu/offices-resources/faculty-directory/" class=" ">Faculty and Staff Directory</a><li><a href="https://www.smwc.edu/offices-resources/a-z-directory/" class=" ">A – Z Directory</a><li><a href="https://www.smwc.edu/offices-resources/student-consumer-information/" class=" ">Student Consumer Information</a><li><a href="https://www.smwc.edu/offices-resources/student-consumer-information/college-policies/harassment-free-environment/" class=" ">Title IX</a><li><a href="https://www.smwc.edu/global-leadership-institute/" class=" ">Global Leadership Institute</a></li></ul></li></ul></li>    </ul>
+  </nav>
+	</header>
+	<main role="main" id="main-content">
+	<section id="feature-section"  class="video-background">
+	<div class="fs-background">
+			</div>
+						<!-- The video -->
+			<video autoplay muted loop id="featureVideo">
+									<source data-src="https://www.smwc.edu/wp-content/uploads/2024/07/athletics-web-banner.mp4" src="" type="video/mp4">
+															</video>
+
+			<!-- Use a button to pause/play the video with JavaScript -->
+			<div class="video-controls">
+				<button class="pause-button"><i class="fa fa-pause" aria-hidden="true"></i><span class="screen-reader-text">Pause</span></button>
+				<button class="play-button" style="display: none;"><i class="fa fa-play" aria-hidden="true"></i><span class="screen-reader-text">Play</span></button>
+			</div>
+				<div class="wrap">
+		<h1>
+			Athletics		</h1>
+		<div class="message">
+					</div>
+	</div>
+</section>
+<section class="top-section" style="background-image: url( 'https://www.smwc.edu/wp-content/uploads/2017/01/woodgrain-bg.jpg' );">
+	<div class="wrap">
+		<div class="column one-image">
+			<img width="1024" height="683"   alt="the fan section cheering at a basketball game" data-srcset="https://www.smwc.edu/wp-content/uploads/2020/08/smwc-Students-BBgame-cheer-1-1024x683.jpg 1024w, https://www.smwc.edu/wp-content/uploads/2020/08/smwc-Students-BBgame-cheer-1-300x200.jpg 300w, https://www.smwc.edu/wp-content/uploads/2020/08/smwc-Students-BBgame-cheer-1-150x100.jpg 150w, https://www.smwc.edu/wp-content/uploads/2020/08/smwc-Students-BBgame-cheer-1-94x62.jpg 94w, https://www.smwc.edu/wp-content/uploads/2020/08/smwc-Students-BBgame-cheer-1-196x131.jpg 196w"   loading="lazy" data-src="https://www.smwc.edu/wp-content/uploads/2020/08/smwc-Students-BBgame-cheer-1-1024x683.jpg" data-sizes="(max-width: 1024px) 100vw, 1024px" class="attachment-large size-large lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" /><noscript><img width="1024" height="683" src="https://www.smwc.edu/wp-content/uploads/2020/08/smwc-Students-BBgame-cheer-1-1024x683.jpg" class="attachment-large size-large" alt="the fan section cheering at a basketball game" srcset="https://www.smwc.edu/wp-content/uploads/2020/08/smwc-Students-BBgame-cheer-1-1024x683.jpg 1024w, https://www.smwc.edu/wp-content/uploads/2020/08/smwc-Students-BBgame-cheer-1-300x200.jpg 300w, https://www.smwc.edu/wp-content/uploads/2020/08/smwc-Students-BBgame-cheer-1-150x100.jpg 150w, https://www.smwc.edu/wp-content/uploads/2020/08/smwc-Students-BBgame-cheer-1-94x62.jpg 94w, https://www.smwc.edu/wp-content/uploads/2020/08/smwc-Students-BBgame-cheer-1-196x131.jpg 196w" sizes="(max-width: 1024px) 100vw, 1024px"  loading="lazy" /></noscript>		</div>
+		<div class="column">
+							<h2 class="large_heading">We are proud Pomeroys</h2>
+			<p>Find game schedules and keep up with the latest news on the official site of the SMWC Pomeroys. </p>
+<ul>                        <li><a href="https://smwcathletics.com">Go to SMWCathletics.com</a>
+                </ul>		</div>
+	</div>
+</section>
+<section class="middle-section has-slider">
+	<div class="column one-image">
+						<div class="image-block image-1" style="background-image: url( 'https://www.smwc.edu/wp-content/uploads/2022/08/one-woods-thumbnail.png' );"></div>
+				</div>
+	<div class="column">
+		<div class="small-block">
+							<h2>One Woods, Our Woods</h2>
+						<div class="message">
+				<p>As the campus of Saint Mary-of-the-Woods College (SMWC) grows more diverse, so does its intentionality in affirming its commitment to an inclusive culture. SMWC recently launched a video titled “One Woods. Our Woods,” that speaks to the SMWC culture as a way of life – the shared behaviors, beliefs and values, which focus on respect, personal responsibility, and recognition of the value of all people. “One Woods. Our Woods,” delivers this message through student-athletes.</p>
+                                                    <a href="https://www.smwc.edu/offices-resources/offices/office-of-diversity-equity-and-inclusion/we-are-one-woods/" class="view-more-text">We are ONE WOODS</a>
+                			</div>
+		</div>
+	</div>
+</section>
+    <section id="sub-section-student-stories" class="text_slider bg_lightblue">
+		<div class="cycle-slideshow" data-cycle-speed="100" data-timeout="20000" data-cycle-slides="> div.cycle-slide" data-cycle-swipe="true" data-cycle-next=".cycle-next" data-cycle-prev=".cycle-prev" data-cycle-log="false" data-cycle-fx="scrollHorz">
+		<div class="cycle-slide cycle-text">
+			<div class="inside">
+									<h4>Pomeroy Pride</h4>
+													<p>SMWC&#8217;s teams are known as the Pomeroys. It was a name chosen in memory of alumna and former faculty member Sister Mary Joseph Pomeroy, a great advocate of athletics and physical fitness. It represents the spirit of athletic excellence and sportsmanship.</p>
+							</div>
+		</div>
+				<div class="cycle-slide cycle-text">
+			<div class="inside">
+									<h4>Be Fit. Make Friends.</h4>
+													<p>Intramurals allow you to participate in fun and exciting recreational activities and are offered to all students.<br />
+<a href="https://smwcathletics.com/sports/2021/6/17/intramurals-at-the-woods.aspx">Play Intramurals</a></p>
+							</div>
+		</div>
+		<div class="cycle-arrows">
+	<a href="javascript: void(0);" class="cycle-prev"></a>
+	<a href="javascript: void(0);" class="cycle-next"></a>
+</div>
+<div class="cycle-pager"></div>
+</div>
+    </section>
+<section class="related-links">
+	<div class="wrap">
+		<h2>Related Links</h2>
+		<div class="column-wrap">
+						<div class="column">
+					<a href="https://smwcathletics.com/sports/2021/4/22/future-commits.aspx">
+						<div class="image-wrap">
+							<img width="230" height="130"   alt=""  loading="lazy" data-src="https://www.smwc.edu/wp-content/uploads/2017/08/MG_0382-X3-230x130.jpg" class="attachment-program-listing size-program-listing lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" /><noscript><img width="230" height="130" src="https://www.smwc.edu/wp-content/uploads/2017/08/MG_0382-X3-230x130.jpg" class="attachment-program-listing size-program-listing" alt=""  loading="lazy" /></noscript>						</div>
+						<div class="content-wrap">
+							<h3>Recruit Central</h3>
+							<div class="message"><p>Prepare to join SMWC Athletics.</p>
+</div>
+						</div>
+					</a>
+				</div>
+								<div class="column">
+					<a href="https://www.smwc.edu/offices-resources/offices/bookstore/">
+						<div class="image-wrap">
+							<img width="230" height="130"   alt=""  loading="lazy" data-src="https://www.smwc.edu/wp-content/uploads/2017/08/2024-Move-in-Day-20240816_056-X2-230x130.jpg" class="attachment-program-listing size-program-listing lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" /><noscript><img width="230" height="130" src="https://www.smwc.edu/wp-content/uploads/2017/08/2024-Move-in-Day-20240816_056-X2-230x130.jpg" class="attachment-program-listing size-program-listing" alt=""  loading="lazy" /></noscript>						</div>
+						<div class="content-wrap">
+							<h3>Show your pride</h3>
+							<div class="message"><p>Get your Pomeroy gear. </p>
+</div>
+						</div>
+					</a>
+				</div>
+								<div class="column">
+					<a href="">
+						<div class="image-wrap">
+							<img width="230" height="130"   alt="Student pouring chemical in science lab"  loading="lazy" data-src="https://www.smwc.edu/wp-content/uploads/2020/07/smwc-student-lab-pouring-e1595452084794-230x130.jpg" class="attachment-program-listing size-program-listing lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" /><noscript><img width="230" height="130" src="https://www.smwc.edu/wp-content/uploads/2020/07/smwc-student-lab-pouring-e1595452084794-230x130.jpg" class="attachment-program-listing size-program-listing" alt="Student pouring chemical in science lab"  loading="lazy" /></noscript>						</div>
+						<div class="content-wrap">
+							<h3>Academics</h3>
+							<div class="message"><p>Check out a variety of majors and minors available to you.</p>
+</div>
+						</div>
+					</a>
+				</div>
+								<div class="column">
+					<a href="https://www.smwc.edu/student-life/">
+						<div class="image-wrap">
+							<img width="230" height="130"   alt="" data-srcset="https://www.smwc.edu/wp-content/uploads/2017/08/DSC02541-X4-230x130.jpg 230w, https://www.smwc.edu/wp-content/uploads/2017/08/DSC02541-X4-300x169.jpg 300w, https://www.smwc.edu/wp-content/uploads/2017/08/DSC02541-X4-1024x576.jpg 1024w, https://www.smwc.edu/wp-content/uploads/2017/08/DSC02541-X4-150x84.jpg 150w, https://www.smwc.edu/wp-content/uploads/2017/08/DSC02541-X4.jpg 2047w"   loading="lazy" data-src="https://www.smwc.edu/wp-content/uploads/2017/08/DSC02541-X4-230x130.jpg" data-sizes="(max-width: 230px) 100vw, 230px" class="attachment-program-listing size-program-listing lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" /><noscript><img width="230" height="130" src="https://www.smwc.edu/wp-content/uploads/2017/08/DSC02541-X4-230x130.jpg" class="attachment-program-listing size-program-listing" alt="" srcset="https://www.smwc.edu/wp-content/uploads/2017/08/DSC02541-X4-230x130.jpg 230w, https://www.smwc.edu/wp-content/uploads/2017/08/DSC02541-X4-300x169.jpg 300w, https://www.smwc.edu/wp-content/uploads/2017/08/DSC02541-X4-1024x576.jpg 1024w, https://www.smwc.edu/wp-content/uploads/2017/08/DSC02541-X4-150x84.jpg 150w, https://www.smwc.edu/wp-content/uploads/2017/08/DSC02541-X4.jpg 2047w" sizes="(max-width: 230px) 100vw, 230px"  loading="lazy" /></noscript>						</div>
+						<div class="content-wrap">
+							<h3>Student Life</h3>
+							<div class="message"><p>There’s plenty to experience and learn. </p>
+</div>
+						</div>
+					</a>
+				</div>
+						</div>
+	</div>
+</section>
+		</main>
+
+		<footer class="site-footer" id="footer">
+			<div class="wrap">
+				<div class="footer-top">
+					<div class="column logo-footer">
+						<img  alt="SMWC logo" title="Saint Mary-of-the-Woods College"  loading="lazy" data-src="https://www.smwc.edu/wp-content/themes/smwc/assets/images/logo-footer.png" class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" /><noscript><img src="https://www.smwc.edu/wp-content/themes/smwc/assets/images/logo-footer.png" alt="SMWC logo" title="Saint Mary-of-the-Woods College"  loading="lazy" /></noscript>
+					</div>
+					<div class="column location-info" itemscope itemtype="http://schema.org/Organization">
+						<div class="name" itemprop="name">Saint Mary-of-the-Woods College</div>
+						<div class="address" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+							<a href="https://www.google.com/maps/place/Saint+Mary-of-the-Woods+College/@39.5093503,-87.4630052,17z/data=!4m8!1m2!2m1!1s1+St.+Mary-of-the-Woods+College+Saint+Mary-of-the-Woods,+IN+47876!3m4!1s0x886d6387f3b5a1d9:0x54839fa508424324!8m2!3d39.5069536!4d-87.4618791">
+							<span itemprop="streetAddress">1 St Mary of Woods Coll</span><br />
+							<span itemprop="addressLocality">Saint Mary of the Woods, IN</span> <span itemprop="postalCode">47876</span></a>
+						</div>
+												<div class="phone" itemprop="telephone"><a href="tel:812-535-5151">812-535-5151</a></div>
+						<div class="email" itemprop="email"><a href="mailto:&#115;&#x6d;&#119;&#x63;&#64;&#x73;&#109;&#x77;&#99;&#x2e;&#101;&#x64;&#117;">Email Us</a></div>
+					</div>
+					<div class="column menu">
+						<div class="nav-menu menu-footer-menu-container"><ul id = "menu-footer-menu" class = "menu"><li class="menu__item menu__item--depth-0"><a href="https://apply.smwc.edu/">Apply</a></li>
+<li class="menu__item menu__item--depth-0"><a href="https://hipaa.jotform.com/212655631576157">Deposit</a></li>
+<li class="menu__item menu__item--depth-0"><a href="https://www.smwc.edu/admission/visit-campus/">Visit</a></li>
+<li class="menu__item menu__item--depth-0"><a href="https://www.smwc.edu/contact/">Contact</a></li>
+<li class="menu__item menu__item--depth-0"><a href="https://www.smwc.edu/offices-resources/offices/office-of-people-success-and-opportunity/employment-opportunities/">Careers</a></li>
+<li class="menu__item menu__item--depth-0"><a href="https://www.smwc.edu/offices-resources/a-z-directory/">A – Z Directory</a></li>
+</ul></div>					</div>
+				</div>
+				<div class="footer-bottom">
+					<div class="column social-media">
+						<ul>
+							<li><a href="https://www.facebook.com/smwcollege/" target="_blank" rel="noopener" aria-label="facebook"><svg class="icon icon--social icon--facebook" viewBox="0 0 32 32"><use xlink:href="#icon-facebook"></use></svg></a></li><li><a href="https://twitter.com/smwc" target="_blank" rel="noopener" aria-label="twitter"><svg class="icon icon--social icon--twitter" viewBox="0 0 32 32"><use xlink:href="#icon-twitter"></use></svg></a></li><li><a href="https://www.instagram.com/smwcollege/" target="_blank" rel="noopener" aria-label="instagram"><svg class="icon icon--social icon--instagram" viewBox="0 0 32 32"><use xlink:href="#icon-instagram"></use></svg></a></li><li><a href="https://www.flickr.com/photos/smwc/albums" target="_blank" rel="noopener" aria-label="flickr"><svg class="icon icon--social icon--flickr" viewBox="0 0 32 32"><use xlink:href="#icon-flickr"></use></svg></a></li><li><a href="https://www.youtube.com/c/saintmaryofthewoodscollege" target="_blank" rel="noopener" aria-label="youtube"><svg class="icon icon--social icon--youtube" viewBox="0 0 32 32"><use xlink:href="#icon-youtube"></use></svg></a></li><li><a href="https://www.linkedin.com/school/saint-mary-of-the-woods-college/" target="_blank" rel="noopener" aria-label="linkedin"><svg class="icon icon--social icon--linkedin" viewBox="0 0 32 32"><use xlink:href="#icon-linkedin"></use></svg></a></li>						</ul>
+					</div>
+					<div class="column copyright">
+						©2026 Saint Mary-of-the-Woods College								<span class="sep">|</span>
+								<a href="https://www.smwc.edu/disclaimer/">Disclaimer</a>
+																<span class="sep">|</span>
+								<a href="https://www.smwc.edu/about/privacy-policy/">Privacy Policy</a>
+								<span class="sep">|</span><a href="https://mjkretsinger.com/" target="_blank" rel="noopener" style="text-decoration: none;">Designed by MJ Kretsinger</a>
+					</div>
+				</div>
+			</div>
+		</footer>
+		<div id="search" class="modal">
+	<button class="close">Close</button>
+	<div class="small-wrap">
+		<div class="modal-title">
+			WHAT CAN WE HELP YOU FIND?
+		</div>
+		<div class="modal-content">
+			<form action="https://www.smwc.edu" method="get">
+				<label for="search_box" class="screen-reader-text">Search SMWC.edu: </label>
+				<input type="text" name="s" value="" id="search_box" placeholder="Search SMWC.edu" />
+				<input type="submit" class="search_button" aria-label="Search"/>
+			</form>
+		</div>
+	</div>
+</div>
+<div id="video" class="modal">
+	<button class="close">Close</button>
+	<div class="small-wrap">
+		<div class="modal-content">
+			
+		</div>
+	</div>
+</div>
+<div class="sticky-share">
+	SHARE
+</div>
+<div id="share" class="modal">
+	<button class="close">Close</button>
+	<div class="small-wrap">
+		<div class="modal-title">
+			SHARE
+		</div>
+		<div class="modal-content">
+			<p>Share this page content with others</p>
+			<div class="social-media">
+				<ul>
+										
+						<li>
+							<a
+								href="javascript: void(0)"onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https://www.smwc.edu/athletics/');" aria-label="facebook">
+									<svg class="icon icon--social icon--facebook" viewBox="0 0 32 32"><use xlink:href="#icon-facebook-color"></use></svg>
+							</a>
+						</li>
+
+										
+						<li>
+							<a
+								href="javascript: void(0)"onclick="window.open('https://twitter.com/share?text=Athletics&url=https://www.smwc.edu/athletics/', 'share', 'toolbar=0,status=0,width=620,height=400');" aria-label="twitter">
+									<svg class="icon icon--social icon--twitter" viewBox="0 0 32 32"><use xlink:href="#icon-twitter-color"></use></svg>
+							</a>
+						</li>
+
+										
+						<li>
+							<a
+								href="javascript: pinterest();"onclick="pinterest()" aria-label="pinterest">
+									<svg class="icon icon--social icon--pinterest" viewBox="0 0 32 32"><use xlink:href="#icon-pinterest-color"></use></svg>
+							</a>
+						</li>
+
+										
+						<li>
+							<a
+								href="https://www.linkedin.com/shareArticle?mini=true&url=https://www.smwc.edu/athletics/&title=Athletics&source=Saint Mary-of-the-woods"rel="noopener" aria-label="linkedin">
+									<svg class="icon icon--social icon--linkedin" viewBox="0 0 32 32"><use xlink:href="#icon-linkedin-color"></use></svg>
+							</a>
+						</li>
+
+										
+						<li>
+							<a
+								href="mailto:?subject=Saint Mary-Of-The-Woods College&body=https://www.smwc.edu/athletics/" aria-label="mail">
+									<svg class="icon icon--social icon--mail" viewBox="0 0 32 32"><use xlink:href="#icon-mail-color"></use></svg>
+							</a>
+						</li>
+
+														</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	function fbShare(url, title, descr, image, winWidth, winHeight) {
+		var winTop = (screen.height / 2) - (winHeight / 2);
+		var winLeft = (screen.width / 2) - (winWidth / 2);
+		window.open('http://www.facebook.com/sharer.php?s=100&p[title]=' + title + '&p[summary]=' + descr + '&p[url]=' + url + '&p[images][0]=' + image, 'sharer', 'top=' + winTop + ',left=' + winLeft + ',toolbar=0,status=0,width=' + winWidth + ',height=' + winHeight);
+	}
+
+	function pinterest() {
+		(function() {
+			var e = document.createElement('script');
+			e.setAttribute('type','text/javascript');
+			e.setAttribute('charset','UTF-8');
+			e.setAttribute('src','https://assets.pinterest.com/js/pinmarklet.js?r='+Math.random()*99999999);
+			document.body.appendChild(e);
+		})()
+	}
+</script>
+		<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="pswp__bg"></div>
+    <div class="pswp__scroll-wrap">
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip">
+                </div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Consent Management powered by Complianz | GDPR/CCPA Cookie Consent https://wordpress.org/plugins/complianz-gdpr -->
+<div id="cmplz-cookiebanner-container"><div id="cmplz-cookiebanner-1-optout" class="cmplz-cookiebanner cmplz-hidden banner-1 consent-banner optout cmplz-bottom-right cmplz-categories-type-view-preferences" aria-modal="true" data-nosnippet="true" role="dialog" aria-live="polite" aria-labelledby="cmplz-header-1-optout" aria-describedby="cmplz-message-1-optout">
+	<div class="cmplz-header">
+		<div class="cmplz-logo"></div>
+		<div class="cmplz-title" id="cmplz-header-1-optout">Manage Consent</div>
+		<div class="cmplz-close" tabindex="0" role="button" aria-label="Close dialog">
+			<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times" class="svg-inline--fa fa-times fa-w-11" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512"><path fill="currentColor" d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"></path></svg>
+		</div>
+	</div>
+
+	<div class="cmplz-divider cmplz-divider-header"></div>
+	<div class="cmplz-body">
+		<div class="cmplz-message" id="cmplz-message-1-optout">To provide the best experiences, we use technologies like cookies to store and/or access device information. Consenting to these technologies will allow us to process data such as browsing behavior or unique IDs on this site. Not consenting or withdrawing consent, may adversely affect certain features and functions.</div>
+		<!-- categories start -->
+		<div class="cmplz-categories">
+			<div class="cmplz-category cmplz-functional">
+				<div class="cmplz-category-header">
+					<span class="cmplz-category-title" id="cmplz-title-functional-1-optout">Functional</span>
+					<span class='cmplz-always-active'>
+						<span class="cmplz-banner-checkbox">
+							<input type="checkbox"
+								   id="cmplz-functional-optout"
+								   data-category="cmplz_functional"
+								   class="cmplz-consent-checkbox cmplz-functional"
+								   size="40"
+								   value="1"/>
+							<label class="cmplz-label" for="cmplz-functional-optout"><span class="screen-reader-text">Functional</span></label>
+						</span>
+						Always active					</span>
+					<button class="cmplz-category-toggle"
+							aria-expanded="false"
+							aria-controls="cmplz-desc-functional-1-optout"
+							aria-labelledby="cmplz-title-functional-1-optout">
+						<span class="cmplz-icon cmplz-open">
+							<svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" height="18"><path d="M224 416c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L224 338.8l169.4-169.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-192 192C240.4 412.9 232.2 416 224 416z"/></svg>
+						</span>
+					</button>
+				</div>
+				<div class="cmplz-description" id="cmplz-desc-functional-1-optout" hidden>
+					<span class="cmplz-description-functional">The technical storage or access is strictly necessary for the legitimate purpose of enabling the use of a specific service explicitly requested by the subscriber or user, or for the sole purpose of carrying out the transmission of a communication over an electronic communications network.</span>
+				</div>
+			</div>
+
+			<div class="cmplz-category cmplz-preferences">
+				<div class="cmplz-category-header">
+					<span class="cmplz-category-title" id="cmplz-title-preferences-1-optout">Preferences</span>
+					<span class="cmplz-banner-checkbox">
+						<input type="checkbox"
+							   id="cmplz-preferences-optout"
+							   data-category="cmplz_preferences"
+							   class="cmplz-consent-checkbox cmplz-preferences"
+							   size="40"
+							   value="1"/>
+						<label class="cmplz-label" for="cmplz-preferences-optout"><span class="screen-reader-text">Preferences</span></label>
+					</span>
+					<button class="cmplz-category-toggle"
+							aria-expanded="false"
+							aria-controls="cmplz-desc-preferences-1-optout"
+							aria-labelledby="cmplz-title-preferences-1-optout">
+						<span class="cmplz-icon cmplz-open">
+							<svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" height="18"><path d="M224 416c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L224 338.8l169.4-169.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-192 192C240.4 412.9 232.2 416 224 416z"/></svg>
+						</span>
+					</button>
+				</div>
+				<div class="cmplz-description" id="cmplz-desc-preferences-1-optout" hidden>
+					<span class="cmplz-description-preferences">The technical storage or access is necessary for the legitimate purpose of storing preferences that are not requested by the subscriber or user.</span>
+				</div>
+			</div>
+
+			<div class="cmplz-category cmplz-statistics">
+				<div class="cmplz-category-header">
+					<span class="cmplz-category-title" id="cmplz-title-statistics-1-optout">Statistics</span>
+					<span class="cmplz-banner-checkbox">
+						<input type="checkbox"
+							   id="cmplz-statistics-optout"
+							   data-category="cmplz_statistics"
+							   class="cmplz-consent-checkbox cmplz-statistics"
+							   size="40"
+							   value="1"/>
+						<label class="cmplz-label" for="cmplz-statistics-optout"><span class="screen-reader-text">Statistics</span></label>
+					</span>
+					<button class="cmplz-category-toggle"
+							aria-expanded="false"
+							aria-controls="cmplz-desc-statistics-1-optout"
+							aria-labelledby="cmplz-title-statistics-1-optout">
+						<span class="cmplz-icon cmplz-open">
+							<svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" height="18"><path d="M224 416c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L224 338.8l169.4-169.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-192 192C240.4 412.9 232.2 416 224 416z"/></svg>
+						</span>
+					</button>
+				</div>
+				<div class="cmplz-description" id="cmplz-desc-statistics-1-optout" hidden>
+					<span class="cmplz-description-statistics">The technical storage or access that is used exclusively for statistical purposes.</span>
+					<span class="cmplz-description-statistics-anonymous">The technical storage or access that is used exclusively for anonymous statistical purposes. Without a subpoena, voluntary compliance on the part of your Internet Service Provider, or additional records from a third party, information stored or retrieved for this purpose alone cannot usually be used to identify you.</span>
+				</div>
+			</div>
+
+			<div class="cmplz-category cmplz-marketing">
+				<div class="cmplz-category-header">
+					<span class="cmplz-category-title" id="cmplz-title-marketing-1-optout">Marketing</span>
+					<span class="cmplz-banner-checkbox">
+						<input type="checkbox"
+							   id="cmplz-marketing-optout"
+							   data-category="cmplz_marketing"
+							   class="cmplz-consent-checkbox cmplz-marketing"
+							   size="40"
+							   value="1"/>
+						<label class="cmplz-label" for="cmplz-marketing-optout"><span class="screen-reader-text">Marketing</span></label>
+					</span>
+					<button class="cmplz-category-toggle"
+							aria-expanded="false"
+							aria-controls="cmplz-desc-marketing-1-optout"
+							aria-labelledby="cmplz-title-marketing-1-optout">
+						<span class="cmplz-icon cmplz-open">
+							<svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" height="18"><path d="M224 416c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L224 338.8l169.4-169.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-192 192C240.4 412.9 232.2 416 224 416z"/></svg>
+						</span>
+					</button>
+				</div>
+				<div class="cmplz-description" id="cmplz-desc-marketing-1-optout" hidden>
+					<span class="cmplz-description-marketing">The technical storage or access is required to create user profiles to send advertising, or to track the user on a website or across several websites for similar marketing purposes.</span>
+				</div>
+			</div>
+		</div><!-- categories end -->
+			</div>
+
+	<div class="cmplz-links cmplz-information">
+		<ul>
+			<li><a class="cmplz-link cmplz-manage-options cookie-statement" href="#" data-relative_url="#cmplz-manage-consent-container">Manage options</a></li>
+			<li><a class="cmplz-link cmplz-manage-third-parties cookie-statement" href="#" data-relative_url="#cmplz-cookies-overview">Manage services</a></li>
+			<li><a class="cmplz-link cmplz-manage-vendors tcf cookie-statement" href="#" data-relative_url="#cmplz-tcf-wrapper">Manage {vendor_count} vendors</a></li>
+			<li><a class="cmplz-link cmplz-external cmplz-read-more-purposes tcf" target="_blank" rel="noopener noreferrer nofollow" href="https://cookiedatabase.org/tcf/purposes/" aria-label="Read more about TCF purposes on Cookie Database">Read more about these purposes</a></li>
+		</ul>
+			</div>
+
+	<div class="cmplz-divider cmplz-footer"></div>
+
+	<div class="cmplz-buttons">
+		<button class="cmplz-btn cmplz-accept">Accept</button>
+		<button class="cmplz-btn cmplz-deny">Deny</button>
+		<button class="cmplz-btn cmplz-view-preferences">View preferences</button>
+		<button class="cmplz-btn cmplz-save-preferences">Save preferences</button>
+		<a class="cmplz-btn cmplz-manage-options tcf cookie-statement" href="#" data-relative_url="#cmplz-manage-consent-container">View preferences</a>
+			</div>
+
+
+	<div class="cmplz-documents cmplz-links">
+		<ul>
+			<li><a class="cmplz-link cookie-statement" href="#" data-relative_url="">{title}</a></li>
+			<li><a class="cmplz-link privacy-statement" href="#" data-relative_url="">{title}</a></li>
+			<li><a class="cmplz-link impressum" href="#" data-relative_url="">{title}</a></li>
+		</ul>
+			</div>
+</div>
+</div>
+					<div id="cmplz-manage-consent" data-nosnippet="true"><button class="cmplz-btn cmplz-hidden cmplz-manage-consent manage-consent-1" aria-haspopup="dialog" aria-controls="cmplz-cookiebanner-1-optout">Manage consent</button>
+
+</div><!-- Custom Feeds for Instagram JS -->
+<script type="text/javascript">
+var sbiajaxurl = "https://www.smwc.edu/wp-admin/admin-ajax.php";
+
+</script>
+		<!-- Google Tag Manager (noscript) added by Site Kit -->
+		<noscript>
+			<iframe  height="0" width="0" style="display:none;visibility:hidden" data-src="https://www.googletagmanager.com/ns.html?id=GTM-TK7TVC" class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></iframe>
+		</noscript>
+		<!-- End Google Tag Manager (noscript) -->
+		<script type='text/javascript' id='lbwps-js-extra'>
+/* <![CDATA[ */
+var lbwpsOptions = {"label_facebook":"Share on Facebook","label_twitter":"Tweet","label_pinterest":"Pin it","label_download":"Download image","label_copyurl":"Copy image URL","share_facebook":"1","share_twitter":"1","share_pinterest":"1","share_download":"1","share_direct":"0","share_copyurl":"0","share_custom_label":"","share_custom_link":"","wheelmode":"zoom","close_on_drag":"0","history":"1","show_counter":"0","show_fullscreen":"0","show_zoom":"1","show_caption":"1","loop":"0","pinchtoclose":"0","taptotoggle":"1","spacing":"0","close_on_click":"1","fulldesktop":"0","use_alt":"0","desktop_slider":"1","idletime":"4000","hide_scrollbars":"1"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://www.smwc.edu/wp-content/plugins/lightbox-photoswipe/assets/scripts.js?ver=3.1.12' id='lbwps-js'></script>
+<script type='text/javascript' id='longdesc.button-js-extra'>
+/* <![CDATA[ */
+var wparest = {"url":"https:\/\/www.smwc.edu\/wp-json\/wp\/v2\/media","text":"<span>Long Description<\/span>"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://www.smwc.edu/wp-content/plugins/wp-accessibility/js/longdesc.button.js?ver=1.0' id='longdesc.button-js'></script>
+<script type='text/javascript' src='https://www.smwc.edu/wp-content/plugins/wp-accessibility/js/current-menu-item.js?ver=1.0' id='current.menu-js'></script>
+<script type='text/javascript' src='https://www.smwc.edu/wp-content/plugins/wp-smushit/app/assets/js/smush-lazy-load.min.js?ver=3.8.4' id='smush-lazy-load-js'></script>
+<script type='text/javascript' src='https://www.smwc.edu/wp-content/themes/smwc/assets/js/vendor/slick.min.js?ver=1794385419' id='slick-min-js'></script>
+<script type='text/javascript' src='https://www.smwc.edu/wp-content/themes/smwc/assets/js/production-min.js?ver=1794385419' id='production-js-js'></script>
+<script src="https://kit.fontawesome.com/812adde880.js" defer="defer" type="text/javascript"></script>
+<script type='text/javascript' id='cmplz-cookiebanner-js-extra'>
+/* <![CDATA[ */
+var complianz = {"prefix":"cmplz_","user_banner_id":"1","set_cookies":[],"block_ajax_content":"0","banner_version":"19","version":"7.5.0","store_consent":"","do_not_track_enabled":"","consenttype":"optout","region":"us","geoip":"","dismiss_timeout":"","disable_cookiebanner":"","soft_cookiewall":"","dismiss_on_scroll":"","cookie_expiry":"365","url":"https:\/\/www.smwc.edu\/wp-json\/complianz\/v1\/","locale":"lang=en&locale=en_US","set_cookies_on_root":"0","cookie_domain":"","current_policy_id":"29","cookie_path":"\/","categories":{"statistics":"statistics","marketing":"marketing"},"tcf_active":"","placeholdertext":"Click to accept {category} cookies and enable this content","css_file":"https:\/\/www.smwc.edu\/wp-content\/uploads\/complianz\/css\/banner-{banner_id}-{type}.css?v=19","page_links":{"us":{"cookie-statement":{"title":"Privacy policy","url":"https:\/\/www.smwc.edu\/opt-out-preferences\/"},"privacy-statement":{"title":"Privacy Statement","url":"https:\/\/www.smwc.edu\/privacy-policy\/"}}},"tm_categories":"1","forceEnableStats":"","preview":"","clean_cookies":"","aria_label":"Click to accept {category} cookies and enable this content"};
+/* ]]> */
+</script>
+<script defer type='text/javascript' src='https://www.smwc.edu/wp-content/plugins/complianz-gdpr/cookiebanner/js/complianz.min.js?ver=1794385418' id='cmplz-cookiebanner-js'></script>
+<script type='text/javascript' id='cmplz-cookiebanner-js-after'>
+	let cmplzBlockedContent = document.querySelector('.cmplz-blocked-content-notice');
+	if ( cmplzBlockedContent) {
+	        cmplzBlockedContent.addEventListener('click', function(event) {
+            event.stopPropagation();
+        });
+	}
+    
+</script>
+
+<script type='text/javascript'>
+//<![CDATA[
+(function( $ ) { 'use strict';
+	$('body').prepend('<div class="wpa-hide-ltr" id="skiplinks" role="navigation" aria-label="Skip links"><a href="#main-content">Skip to content</a> <a href="#masthead">Skip to navigation</a> </div>'); $('#main-content').attr('tabindex','-1');$('#masthead').attr('tabindex','-1');
+	
+	
+	$('input,a,select,textarea,button').removeAttr('tabindex');
+	
+}(jQuery));
+//]]>
+</script>	<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"52c447d2fc","applicationID":"66825322","transactionName":"YAYANxMHDUdQW0dYDFlMIwAVDwxaHkxWXBNbAhYGTBUXQVVdXUVOWwoEBkwODFlU","queueTime":0,"applicationTime":1401,"atts":"TEEDQVsdHkk=","errorBeacon":"bam.nr-data.net","agent":""}</script></body>
+</html>

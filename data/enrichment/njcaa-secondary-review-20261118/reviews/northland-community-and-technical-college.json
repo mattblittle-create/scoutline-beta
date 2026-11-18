@@ -1,0 +1,70 @@
+{
+  "slug": "northland-community-and-technical-college",
+  "programId": "cmox2o2uj004wqtbk5ab85ok3",
+  "collegeId": "cmox2o2tt004uqtbkuh5a9l9i",
+  "checkedAtUtc": "2026-11-18T14:43:38.928Z",
+  "sourcePath": "../njcaa-core-review-20261118/sources/northland-community-and-technical-college-0.source",
+  "sourceSHA256": "3a7c9cb8feb405f5af9dda8058c47de265365cc9d97cc21e9f46a79f42d57151",
+  "sourceUrl": "https://northlandpioneers.com/sports/baseball",
+  "socialLeads": [
+    {
+      "url": "https://x.com/pioneerswearego",
+      "label": "Baseball: X",
+      "context": "",
+      "kind": "HTML"
+    }
+  ],
+  "recruitingLeads": [
+    {
+      "url": "https://northlandpioneers.com/sports/2017/3/29/be-a-pioneer",
+      "label": "Be a Pioneer - Recruiting Information",
+      "context": "",
+      "kind": "QUESTIONNAIRE"
+    },
+    {
+      "url": "https://northlandpioneers.com/sb_output.aspx?form=6",
+      "label": "Recruit Me",
+      "context": "",
+      "kind": "QUESTIONNAIRE"
+    },
+    {
+      "url": "https://northlandpioneers.com/sports/2018/10/23/camps-clinics-leagues",
+      "label": "Camps, Clinics & Leagues",
+      "context": "",
+      "kind": "CAMP"
+    }
+  ],
+  "logoLeads": [],
+  "captures": [
+    {
+      "requestedUrl": "https://northlandpioneers.com/sports/2017/3/29/be-a-pioneer",
+      "kind": "QUESTIONNAIRE",
+      "status": 200,
+      "finalUrl": "https://northlandpioneers.com/sports/2017/3/29/be-a-pioneer",
+      "sourcePath": "../njcaa-core-review-20261118/sources/northland-community-and-technical-college-4.source",
+      "sha256": "71f7e2574cbe9fd286623b9596b388caf3d01a8ba90c1fd43a95545b488b8975",
+      "reusedEvidence": true
+    },
+    {
+      "requestedUrl": "https://northlandpioneers.com/sb_output.aspx?form=6",
+      "kind": "QUESTIONNAIRE",
+      "status": 200,
+      "finalUrl": "https://northlandpioneers.com/sb_output.aspx?form=6",
+      "contentType": "text/html; charset=utf-8",
+      "sourcePath": "sources/northland-community-and-technical-college-1.source",
+      "sha256": "af2316c998a4a1291b368d0411e5d21bb333ebe12fd1177a1986dc9074e083a4"
+    },
+    {
+      "requestedUrl": "https://northlandpioneers.com/sports/2018/10/23/camps-clinics-leagues",
+      "kind": "CAMP",
+      "status": 200,
+      "finalUrl": "https://northlandpioneers.com/sports/2018/10/23/camps-clinics-leagues",
+      "contentType": "text/html; charset=utf-8",
+      "sourcePath": "sources/northland-community-and-technical-college-2.source",
+      "sha256": "8001a186b77f47f3e674e76f6070298856135362c1d341340fda87e510f8ce35"
+    }
+  ],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED"
+}

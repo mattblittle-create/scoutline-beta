@@ -1,0 +1,47 @@
+{
+  "slug": "hutchinson-community-college",
+  "name": "Hutchinson Community College",
+  "collegeId": "cmox1ghax0053qtsgc3bt8rz4",
+  "programId": "cmox1ghbn0055qtsgtm6wrvh6",
+  "storedState": "KS",
+  "storedDivision": "NJCAA_D1",
+  "directoryMatch": {
+    "unitid": "155195",
+    "name": "Hutchinson Community College",
+    "aliases": [],
+    "state": "KS",
+    "city": "Hutchinson",
+    "host": "hutchcc.edu",
+    "decision": "UNIQUE_EXACT_NAME_OR_ALIAS_AND_STATE_DISCOVERY_LEAD_ONLY"
+  },
+  "directoryMatchStatus": "DISCOVERY_LEAD_NOT_CURRENT_CAMPUS_VERIFIED",
+  "needsHeadCoach": true,
+  "needs2027Roster": true,
+  "newPagesAttempted": 1,
+  "pages": [
+    {
+      "requestedUrl": "https://hutchcc.edu/",
+      "checkedAtUtc": "2026-11-18T16:20:04.857Z",
+      "finalUrl": "https://www.hutchcc.edu/",
+      "status": 403,
+      "contentType": "text/html",
+      "sha256": "58bf2215b395dcac74c009aa98701854e43cbe54a1cd3a95fee6a647ca9910d4",
+      "sourcePath": "sources/318f85a1deb0d208f1be8e00f7f12bcedfd5c3e95c19fa621d2f74fc6b0dcfcd.source",
+      "kind": "INSTITUTIONAL_DIRECTORY_HOST_LEAD",
+      "parent": {
+        "sourcePath": "../../geography/us-college-locations-ipeds2024.json",
+        "unitid": "155195",
+        "publishedName": "Hutchinson Community College",
+        "state": "KS",
+        "city": "Hutchinson"
+      }
+    }
+  ],
+  "unfetchedPublishedLeads": [],
+  "publishedLeads": [],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "campusIdentityReviewRequired": true,
+  "currentMembershipVerified": false,
+  "importApproval": "NOT_GRANTED"
+}

@@ -1,0 +1,49 @@
+{
+  "slug": "anne-arundel-community-college",
+  "name": "Anne Arundel Community College",
+  "collegeId": "cmox234nk0006qtfk9kcfd0gh",
+  "programId": "cmox234oa0008qtfkb9m06eg2",
+  "storedState": "MD",
+  "storedDivision": "NJCAA_D2",
+  "directoryMatch": {
+    "unitid": "161767",
+    "name": "Anne Arundel Community College",
+    "aliases": [
+      "AACC"
+    ],
+    "state": "MD",
+    "city": "Arnold",
+    "host": "aacc.edu",
+    "decision": "UNIQUE_EXACT_NAME_OR_ALIAS_AND_STATE_DISCOVERY_LEAD_ONLY"
+  },
+  "directoryMatchStatus": "DISCOVERY_LEAD_NOT_CURRENT_CAMPUS_VERIFIED",
+  "needsHeadCoach": true,
+  "needs2027Roster": true,
+  "newPagesAttempted": 1,
+  "pages": [
+    {
+      "requestedUrl": "https://aacc.edu/",
+      "checkedAtUtc": "2026-11-18T16:20:41.557Z",
+      "finalUrl": "https://www.aacc.edu/",
+      "status": 403,
+      "contentType": "text/html",
+      "sha256": "3e89adcc73c1fa7a37ade9448d729b664d2f1a6eca38146734627f916765d9a6",
+      "sourcePath": "sources/81fb1ef661147191aac0cfdb2b150626318cf8c15fe8f85239f49d0e46da4b78.source",
+      "kind": "INSTITUTIONAL_DIRECTORY_HOST_LEAD",
+      "parent": {
+        "sourcePath": "../../geography/us-college-locations-ipeds2024.json",
+        "unitid": "161767",
+        "publishedName": "Anne Arundel Community College",
+        "state": "MD",
+        "city": "Arnold"
+      }
+    }
+  ],
+  "unfetchedPublishedLeads": [],
+  "publishedLeads": [],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "campusIdentityReviewRequired": true,
+  "currentMembershipVerified": false,
+  "importApproval": "NOT_GRANTED"
+}

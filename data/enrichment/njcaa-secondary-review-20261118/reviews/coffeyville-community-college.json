@@ -1,0 +1,53 @@
+{
+  "slug": "coffeyville-community-college",
+  "programId": "cmox1gftz001zqtsgduc1kzzq",
+  "collegeId": "cmox1gft9001xqtsg5fezijcy",
+  "checkedAtUtc": "2026-11-18T14:43:29.070Z",
+  "sourcePath": "../njcaa-discovery-20261118/sources/coffeyville-community-college-1.source",
+  "sourceSHA256": "7042066762d692e7e75cb1df220fbd34f9d817e2533bd7076fddfefe7bce7032",
+  "sourceUrl": "https://redravenathletics.com/sports/bsb/index",
+  "socialLeads": [],
+  "recruitingLeads": [
+    {
+      "url": "https://redravenathletics.com/sports/bsb/2018-19/files/Baseball_Questionnaire",
+      "label": "Recruit Questionnaire",
+      "context": "",
+      "kind": "QUESTIONNAIRE"
+    }
+  ],
+  "logoLeads": [
+    {
+      "url": "https://redravenathletics.com/images/setup/PRIMARY_LOGO.png",
+      "label": "Coffeyville Community College Red Raven Athletics d-inline-block align-text-top"
+    }
+  ],
+  "captures": [
+    {
+      "requestedUrl": "https://redravenathletics.com/sports/bsb/2018-19/files/Baseball_Questionnaire",
+      "kind": "QUESTIONNAIRE",
+      "status": 200,
+      "finalUrl": "https://redravenathletics.com/sports/bsb/2018-19/files/Baseball_Questionnaire",
+      "sourcePath": "../njcaa-core-review-20261118/sources/coffeyville-community-college-4.source",
+      "sha256": "07fc9aefac9c81f9d730de618b582871ad316bea04705aee794e471a921aa433",
+      "reusedEvidence": true
+    },
+    {
+      "requestedUrl": "https://redravenathletics.com/images/setup/PRIMARY_LOGO.png",
+      "kind": "LOGO_ASSET",
+      "status": 200,
+      "finalUrl": "https://d2o2figo6ddd0g.cloudfront.net/v/6/ltmhab2z8j93yf/PRIMARY_LOGO.png",
+      "contentType": "image/png",
+      "sourcePath": "sources/coffeyville-community-college-1.source",
+      "sha256": "cec357450d4ed94197f5bcce5e70ba85d9aad2666ab7ed6000259bfca32f6441",
+      "decoded": {
+        "format": "png",
+        "width": 800,
+        "height": 604
+      },
+      "assetDecoded": true
+    }
+  ],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED"
+}

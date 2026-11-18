@@ -1,0 +1,41 @@
+{
+  "slug": "muskegon-community-college",
+  "collegeId": "cmox238w90093qtfk1xg0k5sl",
+  "programId": "cmox238wy0095qtfkq11f8z9o",
+  "name": "Muskegon Community College",
+  "state": "MI",
+  "storedDivision": "NJCAA_D2",
+  "pages": [
+    {
+      "requestedUrl": "https://njcaastats.prestosports.com/sports/bsb/2024-25/div2/teams/muskegoncommunitycollege",
+      "kind": "STORED_URL_UNVERIFIED",
+      "checkedAtUtc": "2026-11-18T14:17:00.705Z",
+      "status": "HELD_ACCESS_NOT_RETRIED",
+      "finalUrl": "https://njcaastats.prestosports.com/sports/bsb/2024-25/div2/teams/muskegoncommunitycollege"
+    },
+    {
+      "requestedUrl": "https://www.muskegoncc.edu/athletics/baseball/",
+      "kind": "DISCOVERY_LEAD_NOT_CAMPUS_VERIFIED",
+      "checkedAtUtc": "2026-11-18T14:17:00.707Z",
+      "status": 404,
+      "finalUrl": "https://www.muskegoncc.edu/athletics/baseball/",
+      "contentType": "text/html; charset=UTF-8",
+      "sourcePath": "sources/muskegon-community-college-1.source",
+      "sha256": "38ac82da020e09aee21f49025b98eacbf092906a83d4def68814a006a62ad032"
+    }
+  ],
+  "thirdPartyExactNameLeads": [
+    {
+      "url": "https://www.muskegoncc.edu/athletics/baseball/",
+      "label": "Muskegon CC",
+      "parentSourcePath": "sources/directory-1.source",
+      "parentSHA256": "496ce44f9a76dc28894dc481d97424ffa3efb0cc8fe8f218363abbc43f06de00",
+      "parentUrl": "https://www.thebaseballobserver.com/njcaa-dii-baseball"
+    }
+  ],
+  "currentMembershipVerified": false,
+  "campusIdentityVerified": false,
+  "importApproval": "NOT_GRANTED",
+  "databaseAccess": false,
+  "databaseWrites": 0
+}

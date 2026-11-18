@@ -1,0 +1,63 @@
+{
+  "slug": "crowder-college",
+  "programId": "cmox1gg81002tqtsgxuxxparx",
+  "collegeId": "cmox1gg7d002rqtsgcljd692c",
+  "checkedAtUtc": "2026-11-18T14:43:29.551Z",
+  "sourcePath": "../njcaa-discovery-20261118/sources/crowder-college-1.source",
+  "sourceSHA256": "ee48e06df923bef4ad9c26ff48a7dd8c22b0360d7e6b32912a69805ec9b5c2f1",
+  "sourceUrl": "https://crowderathletics.com/sports/bsb/index",
+  "socialLeads": [
+    {
+      "url": "https://twitter.com/CrowderBasebal1",
+      "label": "Twitter",
+      "context": "Men's Baseball Twitter",
+      "kind": "HTML"
+    }
+  ],
+  "recruitingLeads": [
+    {
+      "url": "http://www.crowderbaseballcamps.com/",
+      "label": "Baseball",
+      "context": "Camps: Baseball",
+      "kind": "CAMP"
+    },
+    {
+      "url": "https://www.crowdersoccercamps.com/",
+      "label": "Men's Soccer",
+      "context": "Camps: Men's Soccer",
+      "kind": "CAMP"
+    }
+  ],
+  "logoLeads": [
+    {
+      "url": "https://crowderathletics.com/images/setup-redesign/Roughrider.png",
+      "label": "undefined"
+    }
+  ],
+  "captures": [
+    {
+      "requestedUrl": "http://www.crowderbaseballcamps.com/",
+      "kind": "CAMP",
+      "status": 200,
+      "finalUrl": "https://www.crowderbaseballcamps.com/",
+      "contentType": "text/html;charset=UTF-8",
+      "sourcePath": "sources/crowder-college-0.source",
+      "sha256": "10fd2108de100038fefde3e1c56216ff8c3a0bf600728a7ca49f18cf2dc9d5d4"
+    },
+    {
+      "requestedUrl": "https://www.crowdersoccercamps.com/",
+      "kind": "CAMP",
+      "status": "FAILED",
+      "errorType": "TypeError"
+    },
+    {
+      "requestedUrl": "https://crowderathletics.com/images/setup-redesign/Roughrider.png",
+      "kind": "LOGO_ASSET",
+      "status": "HELD_ACCESS_NOT_RETRIED",
+      "finalUrl": "https://crowderathletics.com/images/setup-redesign/Roughrider.png"
+    }
+  ],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED"
+}

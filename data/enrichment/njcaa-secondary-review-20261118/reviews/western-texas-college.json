@@ -1,0 +1,53 @@
+{
+  "slug": "western-texas-college",
+  "programId": "cmox1gkyq00czqtsgijdtd275",
+  "collegeId": "cmox1gky300cxqtsgcg0ex03r",
+  "checkedAtUtc": "2026-11-18T14:43:33.846Z",
+  "sourcePath": "../njcaa-discovery-20261118/sources/western-texas-college-1.source",
+  "sourceSHA256": "587d432c15963c9d17b71cd20c860e05791a8478df098d8f817c01aec74acd8c",
+  "sourceUrl": "https://www.wtcathletics.com/sports/bsb/index",
+  "socialLeads": [],
+  "recruitingLeads": [
+    {
+      "url": "https://www.wtcathletics.com/sports/bsb/questionnaire",
+      "label": "Recruit Questionnaire",
+      "context": "",
+      "kind": "QUESTIONNAIRE"
+    },
+    {
+      "url": "https://www.wtcathletics.com/information/Camps",
+      "label": "Camps",
+      "context": "",
+      "kind": "CAMP"
+    }
+  ],
+  "logoLeads": [
+    {
+      "url": "https://www.wtcathletics.com/assets/Primary_Logo_-_.5x.png",
+      "label": "Western Texas College Home Page img-fluid img-mh-5"
+    }
+  ],
+  "captures": [
+    {
+      "requestedUrl": "https://www.wtcathletics.com/sports/bsb/questionnaire",
+      "kind": "QUESTIONNAIRE",
+      "status": "HELD_ACCESS_NOT_RETRIED",
+      "finalUrl": "https://www.wtcathletics.com/sports/bsb/questionnaire"
+    },
+    {
+      "requestedUrl": "https://www.wtcathletics.com/information/Camps",
+      "kind": "CAMP",
+      "status": "HELD_ACCESS_NOT_RETRIED",
+      "finalUrl": "https://www.wtcathletics.com/information/Camps"
+    },
+    {
+      "requestedUrl": "https://www.wtcathletics.com/assets/Primary_Logo_-_.5x.png",
+      "kind": "LOGO_ASSET",
+      "status": "HELD_ACCESS_NOT_RETRIED",
+      "finalUrl": "https://www.wtcathletics.com/assets/Primary_Logo_-_.5x.png"
+    }
+  ],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED"
+}

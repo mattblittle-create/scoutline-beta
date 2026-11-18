@@ -1,0 +1,44 @@
+{
+  "slug": "hutchinson-community-college",
+  "programId": "cmox1ghbn0055qtsgtm6wrvh6",
+  "collegeId": "cmox1ghax0053qtsgc3bt8rz4",
+  "checkedAtUtc": "2026-11-18T14:43:30.995Z",
+  "sourcePath": "../njcaa-discovery-20261118/sources/hutchinson-community-college-1.source",
+  "sourceSHA256": "5f7119c3913663322b49b54982c2fe8a75054259a4fb457e08cd25c9ea278de2",
+  "sourceUrl": "https://www.bluedragonsports.com/sports/bsb/index",
+  "socialLeads": [],
+  "recruitingLeads": [
+    {
+      "url": "https://www.hutchclinic.com/",
+      "label": "",
+      "context": "Hutchinson Clinic (opens in a new tab)",
+      "kind": "CAMP"
+    }
+  ],
+  "logoLeads": [
+    {
+      "url": "https://www.bluedragonsports.com/images/setup/Primary_Logo.png",
+      "label": "Hutchinson Community College Home Page img-fluid img-mh-7"
+    }
+  ],
+  "captures": [
+    {
+      "requestedUrl": "https://www.hutchclinic.com/",
+      "kind": "CAMP",
+      "status": 200,
+      "finalUrl": "https://www.hutchclinic.com/",
+      "sourcePath": "../njcaa-core-review-20261118/sources/hutchinson-community-college-4.source",
+      "sha256": "de08b8dd74a265bede9e452b7014e08f6e51bad1608c77dc0378ec337c6d891e",
+      "reusedEvidence": true
+    },
+    {
+      "requestedUrl": "https://www.bluedragonsports.com/images/setup/Primary_Logo.png",
+      "kind": "LOGO_ASSET",
+      "status": "HELD_ACCESS_NOT_RETRIED",
+      "finalUrl": "https://www.bluedragonsports.com/images/setup/Primary_Logo.png"
+    }
+  ],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED"
+}

@@ -1,0 +1,41 @@
+{
+  "slug": "hocking",
+  "collegeId": "cmox2374u005cqtfk4dijqisw",
+  "programId": "cmox2375h005eqtfk7891fcuj",
+  "name": "Hocking",
+  "storedState": "OH",
+  "storedDivision": "NJCAA_D2",
+  "checkedAtUtc": "2026-11-18T14:21:09.309Z",
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "currentMembershipVerified": false,
+  "campusIdentityVerified": false,
+  "importApproval": "NOT_GRANTED",
+  "pages": [
+    {
+      "requestedUrl": "https://athletics.hocking.edu/mens-baseball",
+      "kind": "DIRECTORY_ALIAS_REQUIRES_CAMPUS_REVIEW",
+      "parent": {
+        "sourcePath": "../njcaa-discovery-20261118/sources/directory-1.source",
+        "sha256": "496ce44f9a76dc28894dc481d97424ffa3efb0cc8fe8f218363abbc43f06de00",
+        "label": "Hocking College"
+      },
+      "status": 202,
+      "finalUrl": "https://athletics.hocking.edu/mens-baseball",
+      "checkedAtUtc": "2026-11-18T14:21:09.649Z",
+      "sourcePath": "sources/hocking-0.source",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "discoveryAliases": [
+    {
+      "url": "https://athletics.hocking.edu/mens-baseball",
+      "label": "Hocking College",
+      "parentSourcePath": "sources/directory-1.source",
+      "parentSHA256": "496ce44f9a76dc28894dc481d97424ffa3efb0cc8fe8f218363abbc43f06de00",
+      "parentUrl": "https://www.thebaseballobserver.com/njcaa-dii-baseball",
+      "status": "UNVERIFIED_NORMALIZED_NAME_LEAD"
+    }
+  ],
+  "status": "HELD_NO_READABLE_SOURCE"
+}

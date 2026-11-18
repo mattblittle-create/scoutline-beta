@@ -1,0 +1,48 @@
+{
+  "slug": "college-of-central-florida",
+  "programId": "cmox1gfwo0025qtsgtkd1h66m",
+  "collegeId": "cmox1gfvz0023qtsggc70ytsw",
+  "checkedAtUtc": "2026-11-18T14:43:29.234Z",
+  "sourcePath": "../njcaa-discovery-20261118/sources/college-of-central-florida-1.source",
+  "sourceSHA256": "f650347bf9d6014ad13fb37c6641aab67b50072bea62f898b19576546c89875c",
+  "sourceUrl": "https://www.cfpatriots.net/sports/bsb/index",
+  "socialLeads": [],
+  "recruitingLeads": [
+    {
+      "url": "https://www.cfpatriots.net/sports/bsb/bsb_recruit_questionnaire",
+      "label": "Prospect Questionnaire",
+      "context": "",
+      "kind": "QUESTIONNAIRE"
+    },
+    {
+      "url": "http://www.floridajucoshowcase.com/index.html",
+      "label": "Camps",
+      "context": "",
+      "kind": "CAMP"
+    }
+  ],
+  "logoLeads": [],
+  "captures": [
+    {
+      "requestedUrl": "https://www.cfpatriots.net/sports/bsb/bsb_recruit_questionnaire",
+      "kind": "QUESTIONNAIRE",
+      "status": 200,
+      "finalUrl": "https://www.cfpatriots.net/sports/bsb/bsb_recruit_questionnaire",
+      "sourcePath": "../njcaa-core-review-20261118/sources/college-of-central-florida-4.source",
+      "sha256": "e1f6f4d6608be641eb76cacb7f8995c695136c39118c071234911d22d3eeadf7",
+      "reusedEvidence": true
+    },
+    {
+      "requestedUrl": "http://www.floridajucoshowcase.com/index.html",
+      "kind": "CAMP",
+      "status": 200,
+      "finalUrl": "http://www.floridajucoshowcase.com/index.html",
+      "sourcePath": "../njcaa-core-review-20261118/sources/college-of-central-florida-5.source",
+      "sha256": "169457c641afef0d2726d67cd121f5dcd5d3b36c40ab0544e5f0187af929a2b5",
+      "reusedEvidence": true
+    }
+  ],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED"
+}

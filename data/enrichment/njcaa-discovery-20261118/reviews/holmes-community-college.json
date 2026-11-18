@@ -1,0 +1,41 @@
+{
+  "slug": "holmes-community-college",
+  "collegeId": "cmox23764005fqtfky74wzucz",
+  "programId": "cmox2376t005hqtfkpf5g56is",
+  "name": "Holmes Community College",
+  "state": "MS",
+  "storedDivision": "NJCAA_D2",
+  "pages": [
+    {
+      "requestedUrl": "https://njcaastats.prestosports.com/sports/bsb/2024-25/div2/teams/holmescommunitycollege",
+      "kind": "STORED_URL_UNVERIFIED",
+      "checkedAtUtc": "2026-11-18T14:16:46.364Z",
+      "status": "HELD_ACCESS_NOT_RETRIED",
+      "finalUrl": "https://njcaastats.prestosports.com/sports/bsb/2024-25/div2/teams/holmescommunitycollege"
+    },
+    {
+      "requestedUrl": "https://www.holmesathletics.com/sports/bsb/index",
+      "kind": "DISCOVERY_LEAD_NOT_CAMPUS_VERIFIED",
+      "checkedAtUtc": "2026-11-18T14:16:46.367Z",
+      "status": 202,
+      "finalUrl": "https://www.holmesathletics.com/sports/bsb/index",
+      "contentType": "text/html; charset=UTF-8",
+      "sourcePath": "sources/holmes-community-college-1.source",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "thirdPartyExactNameLeads": [
+    {
+      "url": "https://www.holmesathletics.com/sports/bsb/index",
+      "label": "Holmes CC",
+      "parentSourcePath": "sources/directory-1.source",
+      "parentSHA256": "496ce44f9a76dc28894dc481d97424ffa3efb0cc8fe8f218363abbc43f06de00",
+      "parentUrl": "https://www.thebaseballobserver.com/njcaa-dii-baseball"
+    }
+  ],
+  "currentMembershipVerified": false,
+  "campusIdentityVerified": false,
+  "importApproval": "NOT_GRANTED",
+  "databaseAccess": false,
+  "databaseWrites": 0
+}

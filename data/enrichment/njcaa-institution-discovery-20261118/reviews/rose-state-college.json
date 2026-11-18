@@ -1,0 +1,49 @@
+{
+  "slug": "rose-state-college",
+  "name": "Rose State College",
+  "collegeId": "cmox1gjd4009iqtsg9rv924hr",
+  "programId": "cmox1gjdy009kqtsg5o6j761h",
+  "storedState": "OK",
+  "storedDivision": "NJCAA_D1",
+  "directoryMatch": {
+    "unitid": "207670",
+    "name": "Rose State College",
+    "aliases": [
+      "RSC/Rose/Oscar Rose Junior College/ORJC"
+    ],
+    "state": "OK",
+    "city": "Midwest City",
+    "host": "rose.edu",
+    "decision": "UNIQUE_EXACT_NAME_OR_ALIAS_AND_STATE_DISCOVERY_LEAD_ONLY"
+  },
+  "directoryMatchStatus": "DISCOVERY_LEAD_NOT_CURRENT_CAMPUS_VERIFIED",
+  "needsHeadCoach": false,
+  "needs2027Roster": true,
+  "newPagesAttempted": 1,
+  "pages": [
+    {
+      "requestedUrl": "https://rose.edu/",
+      "checkedAtUtc": "2026-11-18T16:20:21.760Z",
+      "finalUrl": "https://rose.edu/",
+      "status": 403,
+      "contentType": "text/html; charset=UTF-8",
+      "sha256": "7dfdc1a841e7aaf762b9d1e93e4ed95882678d4f8c95aa6aa424ced07d7faac2",
+      "sourcePath": "sources/6ae142cd40edb979fb0043873536f333c14f78e048f4d032daa6aa280ff46d71.source",
+      "kind": "INSTITUTIONAL_DIRECTORY_HOST_LEAD",
+      "parent": {
+        "sourcePath": "../../geography/us-college-locations-ipeds2024.json",
+        "unitid": "207670",
+        "publishedName": "Rose State College",
+        "state": "OK",
+        "city": "Midwest City"
+      }
+    }
+  ],
+  "unfetchedPublishedLeads": [],
+  "publishedLeads": [],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "campusIdentityReviewRequired": true,
+  "currentMembershipVerified": false,
+  "importApproval": "NOT_GRANTED"
+}

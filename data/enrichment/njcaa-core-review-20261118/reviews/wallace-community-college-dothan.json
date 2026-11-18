@@ -1,0 +1,41 @@
+{
+  "slug": "wallace-community-college-dothan",
+  "collegeId": "cmox23aub00d6qtfkuqdpvvbi",
+  "programId": "cmox23auy00d8qtfkjzlz7hlj",
+  "name": "Wallace Community College-Dothan",
+  "storedState": "AL",
+  "storedDivision": "NJCAA_D2",
+  "checkedAtUtc": "2026-11-18T14:21:23.578Z",
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "currentMembershipVerified": false,
+  "campusIdentityVerified": false,
+  "importApproval": "NOT_GRANTED",
+  "pages": [
+    {
+      "requestedUrl": "https://www.wallace.edu/athletics/baseball/",
+      "kind": "DIRECTORY_ALIAS_REQUIRES_CAMPUS_REVIEW",
+      "parent": {
+        "sourcePath": "../njcaa-discovery-20261118/sources/directory-0.source",
+        "sha256": "63f1c531b007d2922e4db3aa2ba596ee54e397dbafd287df69b95213a011a404",
+        "label": "Wallace-Dothan CC"
+      },
+      "status": 404,
+      "finalUrl": "https://wallace.edu/athletics/baseball/",
+      "checkedAtUtc": "2026-11-18T14:21:27.455Z",
+      "sourcePath": "sources/wallace-community-college-dothan-0.source",
+      "sha256": "355e3d3e5ad8db079da86b69196167d575e09d6963566e13720473ad4936baee"
+    }
+  ],
+  "discoveryAliases": [
+    {
+      "url": "https://www.wallace.edu/athletics/baseball/",
+      "label": "Wallace-Dothan CC",
+      "parentSourcePath": "sources/directory-0.source",
+      "parentSHA256": "63f1c531b007d2922e4db3aa2ba596ee54e397dbafd287df69b95213a011a404",
+      "parentUrl": "https://www.thebaseballobserver.com/njcaa-di-baseball",
+      "status": "UNVERIFIED_NORMALIZED_NAME_LEAD"
+    }
+  ],
+  "status": "HELD_NO_READABLE_SOURCE"
+}

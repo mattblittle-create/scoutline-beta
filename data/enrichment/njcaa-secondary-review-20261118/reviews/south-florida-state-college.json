@@ -1,0 +1,87 @@
+{
+  "slug": "south-florida-state-college",
+  "programId": "cmox23a5j00bqqtfkmp43w6pr",
+  "collegeId": "cmox23a4v00boqtfkj75nusd7",
+  "checkedAtUtc": "2026-11-18T14:43:36.927Z",
+  "sourcePath": "../njcaa-core-review-20261118/sources/south-florida-state-college-0.source",
+  "sourceSHA256": "4cef083269a75f03501c96abf98263e18399db4cb4a2611a597281920e48aeb1",
+  "sourceUrl": "https://www.southflorida.edu/community/athletics/baseball",
+  "socialLeads": [],
+  "recruitingLeads": [
+    {
+      "url": "https://www.southflorida.edu/community/athletics/baseball/camp",
+      "label": "Baseball Camps",
+      "context": "",
+      "kind": "CAMP"
+    },
+    {
+      "url": "https://www.southflorida.edu/community/services-community/cosmetology-clinic",
+      "label": "Cosmetology Clinic",
+      "context": "",
+      "kind": "CAMP"
+    }
+  ],
+  "logoLeads": [
+    {
+      "url": "https://www.southflorida.edu/wp-content/themes/sfsc_2014/images/logo.png",
+      "label": "SFSC Logo undefined"
+    },
+    {
+      "url": "https://www.southflorida.edu/wp-content/uploads/sites/3/2014/06/breadcrumb-ico.png",
+      "label": "Return to the South Florida State College Homepage undefined"
+    }
+  ],
+  "captures": [
+    {
+      "requestedUrl": "https://www.southflorida.edu/community/athletics/baseball/camp",
+      "kind": "CAMP",
+      "status": 200,
+      "finalUrl": "https://www.southflorida.edu/community/athletics/baseball/camp",
+      "sourcePath": "../njcaa-core-review-20261118/sources/south-florida-state-college-4.source",
+      "sha256": "101169f88fa82a6ab6571bd3d6d92e41be96e120cce21d5cb249ced3c9991b98",
+      "reusedEvidence": true
+    },
+    {
+      "requestedUrl": "https://www.southflorida.edu/community/services-community/cosmetology-clinic",
+      "kind": "CAMP",
+      "status": 200,
+      "finalUrl": "https://www.southflorida.edu/community/services-community/cosmetology-clinic",
+      "contentType": "text/html; charset=UTF-8",
+      "sourcePath": "sources/south-florida-state-college-1.source",
+      "sha256": "16f5fdec14a033e084f213fa2de7dd231f38772c8ed0254dd6b0e235790b75f7"
+    },
+    {
+      "requestedUrl": "https://www.southflorida.edu/wp-content/themes/sfsc_2014/images/logo.png",
+      "kind": "LOGO_ASSET",
+      "status": 200,
+      "finalUrl": "https://www.southflorida.edu/wp-content/themes/sfsc_2014/images/logo.png",
+      "contentType": "image/png",
+      "sourcePath": "sources/south-florida-state-college-2.source",
+      "sha256": "9f29fd920b6219896d469195fb379b812bc26e1b0584818aaea682f69af04dcc",
+      "decoded": {
+        "format": "png",
+        "width": 266,
+        "height": 109
+      },
+      "assetDecoded": true
+    },
+    {
+      "requestedUrl": "https://www.southflorida.edu/wp-content/uploads/sites/3/2014/06/breadcrumb-ico.png",
+      "kind": "LOGO_ASSET",
+      "status": 200,
+      "finalUrl": "https://www.southflorida.edu/wp-content/uploads/sites/3/2014/06/breadcrumb-ico.png",
+      "contentType": "image/png",
+      "sourcePath": "sources/south-florida-state-college-3.source",
+      "sha256": "bcb423b3233ee2442c3e2101a3654b051d59397165d55ed353cc27d96b304f31",
+      "decoded": {
+        "format": "png",
+        "width": 16,
+        "height": 16
+      },
+      "assetDecoded": true
+    }
+  ],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED"
+}

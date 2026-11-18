@@ -1,0 +1,41 @@
+{
+  "slug": "connors-state-college",
+  "collegeId": "cmox1gg4l002lqtsgyq0efnp8",
+  "programId": "cmox1gg59002nqtsgnqjrb44f",
+  "name": "Connors State College",
+  "storedState": "OK",
+  "storedDivision": "NJCAA_D1",
+  "checkedAtUtc": "2026-11-18T14:20:32.942Z",
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "currentMembershipVerified": false,
+  "campusIdentityVerified": false,
+  "importApproval": "NOT_GRANTED",
+  "pages": [
+    {
+      "requestedUrl": "http://www.connorsathletics.com/sports/bsb/index",
+      "kind": "DIRECTORY_ALIAS_REQUIRES_CAMPUS_REVIEW",
+      "parent": {
+        "sourcePath": "../njcaa-discovery-20261118/sources/directory-0.source",
+        "sha256": "63f1c531b007d2922e4db3aa2ba596ee54e397dbafd287df69b95213a011a404",
+        "label": "Connors State (OK)"
+      },
+      "status": 202,
+      "finalUrl": "https://www.connorsathletics.com/sports/bsb/index",
+      "checkedAtUtc": "2026-11-18T14:20:34.997Z",
+      "sourcePath": "sources/connors-state-college-0.source",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "discoveryAliases": [
+    {
+      "url": "http://www.connorsathletics.com/sports/bsb/index",
+      "label": "Connors State (OK)",
+      "parentSourcePath": "sources/directory-0.source",
+      "parentSHA256": "63f1c531b007d2922e4db3aa2ba596ee54e397dbafd287df69b95213a011a404",
+      "parentUrl": "https://www.thebaseballobserver.com/njcaa-di-baseball",
+      "status": "UNVERIFIED_NORMALIZED_NAME_LEAD"
+    }
+  ],
+  "status": "HELD_NO_READABLE_SOURCE"
+}

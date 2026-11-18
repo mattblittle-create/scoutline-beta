@@ -1,0 +1,742 @@
+{
+  "slug": "macalester-college",
+  "collegeId": "cmw26egnb000iqtwg3shtedwe",
+  "programId": "cmw26egnc000jqtwguov5ryhi",
+  "checkedAtUtc": "2026-11-17T20:36:30.942Z",
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED",
+  "missingFields": [
+    "scheduleUrl",
+    "questionnaireUrl",
+    "campsUrl",
+    "generalContactEmail",
+    "programInstagramUrl"
+  ],
+  "pages": [
+    {
+      "requestedUrl": "https://athletics.macalester.edu/sports/baseball",
+      "kind": "baseball-home",
+      "parent": null,
+      "status": 200,
+      "finalUrl": "https://athletics.macalester.edu/sports/baseball",
+      "checkedAtUtc": "2026-11-17T20:36:31.606Z",
+      "sourcePath": "sources/macalester-college-0.html",
+      "sha256": "a4b6b5ca0c7aa1664fe4338d2c4a9aa659efb4c213c1b65458801f6c866cedaa",
+      "parsed": {
+        "title": "Baseball - Macalester College Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "Macalester College Athletics",
+          "Scoreboard",
+          "Main Navigation Menu",
+          "Sport Navigation Menu",
+          "Top Stories",
+          "Videos",
+          "Athletes of the Week",
+          "Parallax",
+          "Content Stream",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://athletics.macalester.edu/staff-directory",
+            "label": "Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/sports/2012/7/10/GEN_0710125144.aspx",
+            "label": "Camps & Clinics",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.macalester.edu/sports/2024/1/9/printable-schedules.aspx",
+            "label": "Printable Schedules",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.macalester.edu/documents/studenthandbook/05campuspolicies/05-22harassment.html",
+            "label": "Discrimination / Discriminatory Harassment Policy",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.macalester.edu/sports/baseball/schedule",
+            "label": "Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.macalester.edu/sports/baseball/roster",
+            "label": "Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.macalester.edu/sports/baseball/coaches",
+            "label": "Coaches",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://athletics.macalester.edu/sports/baseball/schedule",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "sources/macalester-college-0.html",
+        "sha256": "a4b6b5ca0c7aa1664fe4338d2c4a9aa659efb4c213c1b65458801f6c866cedaa",
+        "url": "https://athletics.macalester.edu/sports/baseball/schedule",
+        "label": "Schedule"
+      },
+      "status": 200,
+      "finalUrl": "https://athletics.macalester.edu/sports/baseball/schedule",
+      "checkedAtUtc": "2026-11-17T20:36:31.799Z",
+      "sourcePath": "sources/macalester-college-1.html",
+      "sha256": "3f1de04e3f9a81b7b5c5fce4be075da097d1fe09516dcdbcf067991fe8b8d9fc",
+      "parsed": {
+        "title": "2026 Baseball Schedule - Macalester College Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "Macalester College Athletics",
+          "Scoreboard",
+          "Main Navigation Menu",
+          "Sport Navigation Menu",
+          "2026 Baseball Schedule",
+          "Season Record",
+          "Scheduled Games",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://athletics.macalester.edu/sports/baseball/schedule",
+            "label": "Skip To Main Content",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory",
+            "label": "Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/sports/2012/7/10/GEN_0710125144.aspx",
+            "label": "Camps & Clinics",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.macalester.edu/sports/2024/1/9/printable-schedules.aspx",
+            "label": "Printable Schedules",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.macalester.edu/documents/studenthandbook/05campuspolicies/05-22harassment.html",
+            "label": "Discrimination / Discriminatory Harassment Policy",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.macalester.edu/sports/baseball/roster",
+            "label": "Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.macalester.edu/sports/baseball/coaches",
+            "label": "Coaches",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/sports/baseball/schedule?print=true",
+            "label": "Print Print this page",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.macalester.edu/sports/baseball/schedule/2026?grid=true",
+            "label": "Grid Switch to Grid View",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.macalester.edu/services/schedule_txt.ashx?schedule=511",
+            "label": "Text Text Format For Braille (New Tab)",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://athletics.macalester.edu/sports/baseball/coaches",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "sources/macalester-college-0.html",
+        "sha256": "a4b6b5ca0c7aa1664fe4338d2c4a9aa659efb4c213c1b65458801f6c866cedaa",
+        "url": "https://athletics.macalester.edu/sports/baseball/coaches",
+        "label": "Coaches"
+      },
+      "status": 200,
+      "finalUrl": "https://athletics.macalester.edu/sports/baseball/coaches",
+      "checkedAtUtc": "2026-11-17T20:36:33.029Z",
+      "sourcePath": "sources/macalester-college-2.html",
+      "sha256": "cead7a9df7784ba2d0fa4b8af8ff81fa195966b54f8ad66ef405a4701422c965",
+      "parsed": {
+        "title": "Baseball Coaches - Macalester College Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "Macalester College Athletics",
+          "Scoreboard",
+          "Main Navigation Menu",
+          "Sport Navigation Menu",
+          "2027 Baseball Coaching Staff",
+          "2027 Baseball Support Staff",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://athletics.macalester.edu/sports/baseball/coaches",
+            "label": "Skip To Main Content",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory",
+            "label": "Staff Directory",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/sports/2012/7/10/GEN_0710125144.aspx",
+            "label": "Camps & Clinics",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.macalester.edu/sports/2024/1/9/printable-schedules.aspx",
+            "label": "Printable Schedules",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.macalester.edu/documents/studenthandbook/05campuspolicies/05-22harassment.html",
+            "label": "Discrimination / Discriminatory Harassment Policy",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.macalester.edu/sports/baseball/schedule",
+            "label": "Schedule",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.macalester.edu/sports/baseball/roster",
+            "label": "Roster",
+            "kind": "ROSTER_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://athletics.macalester.edu/sports/baseball/coaches?print=true",
+            "label": "Print",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/sports/baseball/roster/coaches/matt-parrington/2592",
+            "label": "Matt Parrington",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "mailto:parrington@macalester.edu",
+            "label": "parrington@macalester.edu",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.macalester.edu/sports/baseball/roster/coaches/nick-worcester/2598",
+            "label": "Nick Worcester",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "mailto:nworcest@macalester.edu",
+            "label": "nworcest@macalester.edu",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.macalester.edu/sports/baseball/roster/coaches/graig-weber/2595",
+            "label": "Graig Weber",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "mailto:gweber1@macalester.edu",
+            "label": "gweber1@macalester.edu",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.macalester.edu/sports/baseball/roster/coaches/ted-wiedmann/2599",
+            "label": "Ted Wiedmann",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/sports/baseball/roster/coaches/joe-shallenberger/2594",
+            "label": "Joe Shallenberger",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/sports/baseball/roster/coaches/mike-davis/2596",
+            "label": "Mike Davis",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/sports/baseball/roster/coaches/chris-peterson/2597",
+            "label": "Chris Peterson",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/sports/baseball/roster/coaches/jamie-eggleston/2593",
+            "label": "Jamie Eggleston",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "mailto:jegglest@macalester.edu",
+            "label": "jegglest@macalester.edu",
+            "kind": "EMAIL_REQUIRES_GENERAL_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.macalester.edu/sports/baseball/roster/staff/wendy-weber/305",
+            "label": "Wendy Weber",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/sports/baseball/roster/staff/leo-st-martin/306",
+            "label": "Leo St. Martin",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          }
+        ]
+      }
+    },
+    {
+      "requestedUrl": "https://athletics.macalester.edu/staff-directory",
+      "kind": "published-navigation",
+      "parent": {
+        "sourcePath": "sources/macalester-college-0.html",
+        "sha256": "a4b6b5ca0c7aa1664fe4338d2c4a9aa659efb4c213c1b65458801f6c866cedaa",
+        "url": "https://athletics.macalester.edu/staff-directory",
+        "label": "Staff Directory"
+      },
+      "status": 200,
+      "finalUrl": "https://athletics.macalester.edu/staff-directory",
+      "checkedAtUtc": "2026-11-17T20:36:33.132Z",
+      "sourcePath": "sources/macalester-college-3.html",
+      "sha256": "b0a5b9d8f36ca39413598e21dbfc325f81868e703e47e61c03307124be8590ca",
+      "parsed": {
+        "title": "Staff Directory - Macalester College Athletics Sidearm Sports, opens a new window",
+        "headings": [
+          "Macalester College Athletics",
+          "Scoreboard",
+          "Main Navigation Menu",
+          "Staff Directory",
+          "Footer"
+        ],
+        "links": [
+          {
+            "url": "https://athletics.macalester.edu/staff-directory",
+            "label": "Skip To Main Content",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/sports/2012/7/10/GEN_0710125144.aspx",
+            "label": "Camps & Clinics",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.macalester.edu/sports/2024/1/9/printable-schedules.aspx",
+            "label": "Printable Schedules",
+            "kind": "SCHEDULE_REQUIRES_CURRENT_SEASON"
+          },
+          {
+            "url": "https://www.macalester.edu/documents/studenthandbook/05campuspolicies/05-22harassment.html",
+            "label": "Discrimination / Discriminatory Harassment Policy",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory?print=true",
+            "label": "Print",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/donnie-brooks/328",
+            "label": "Donnie Brooks Donnie Brooks, Administration, Associate Vice President for Student Affairs/Director of Athletics",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/steve-murray/284",
+            "label": "Steve Murray Steve Murray, Administration, Associate Director of Athletics/Compliance and Operations",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/ron-osterman/17",
+            "label": "Ron Osterman Ron Osterman, Administration, Assistant Athletic Director/Facilities",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/paula-natvig/15",
+            "label": "Paula Natvig Paula Natvig, Administration, Assistant Athletic Director for Student Well-Being/Head Athletic Trainer/SWA",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/devyn-smith/366",
+            "label": "Devyn Smith Devyn Smith, Administration, Assistant Athletic Director for Student-Athlete Success and Development",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/matt-mclagan/249",
+            "label": "Matt McLagan Matt McLagan, Administration, Director of Sports Information",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/maureen-johnson/468",
+            "label": "Maureen Johnson Maureen Johnson, Administration, Business Operations Specialist",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/katja-mckiernan/490",
+            "label": "Katja McKiernan Katja McKiernan, Administration, Athletics Operations Assistant",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/jody-gabriel/152",
+            "label": "Jody Gabriel Jody Gabriel, Administration, Head Softball Coach/Deputy Title IX Coordinator",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/laura-creech/458",
+            "label": "Laura Creech Laura Creech, Administration, Title IX Coordinator",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/pam-latterell/266",
+            "label": "Pam Latterell Pam Latterell, Facilities, Assistant Softball Coach/Leonard Center Assistant Manager",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/a-ja-nauden/491",
+            "label": "A'ja Nauden Aja Nauden, Sports Information, Athletics Multimedia Coordinator",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/karen-moberg/341",
+            "label": "Karen Moberg Karen Moberg, Sports Medicine, Associate Athletic Trainer",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/michael-hall/256",
+            "label": "Michael Hall Michael Hall, Sports Medicine, Assistant Athletic Trainer",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/liz-solarz/386",
+            "label": "Liz Solarz Liz Solarz, Sports Medicine, Assistant Athletic Trainer",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/leul-lemma/478",
+            "label": "Leul Lemma Leul Lemma, Sports Medicine, Assistant Athletic Trainer",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/nick-brundy/502",
+            "label": "Nick Brundy Nick Brundy, Sports Performance, Head of Sports Performance/Deno Fitness Center Manager",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/guy-farmer/515",
+            "label": "Guy Farmer Guy Farmer, Sports Performance, Assistant Sports Performance Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/matt-parrington/18",
+            "label": "Matt Parrington Matt Parrington, Baseball, Head Baseball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/nick-worcester/459",
+            "label": "Nick Worcester Nick Worcester, Baseball, Assistant Baseball Coach - Player Development Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/graig-weber/369",
+            "label": "Graig Weber Graig Weber, Baseball, Assistant Baseball Coach - Pitching Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/jamie-eggleston/315",
+            "label": "Jamie Eggleston Jamie Eggleston, Baseball, Volunteer Assistant Pitching Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/joe-shallenberger/32",
+            "label": "Joe Shallenberger Joe Shallenberger, Baseball, Assistant Baseball Coach - Infield",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/mike-davis/372",
+            "label": "Mike Davis Mike Davis, Baseball, Assistant Baseball Coach - Outfield",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/chris-peterson/409",
+            "label": "Chris Peterson Chris Peterson, Baseball, Assistant Baseball Coach - Catching",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/ted-wiedmann/484",
+            "label": "Ted Wiedmann Ted Wiedmann, Baseball, Assistant Baseball Coach - Pitching Development",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/rich-glesmann/498",
+            "label": "Rich Glesmann Rich Glesmann, Mens Basketball, Head Mens Basketball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/mamadou-diallo/504",
+            "label": "Mamadou Diallo Mamadou Diallo, Mens Basketball, Assistant Mens Basketball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/dylan-kilgour/431",
+            "label": "Dylan Kilgour Dylan Kilgour, Mens Basketball, Assistant Mens Basketball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/ad-donovan/499",
+            "label": "AD Donovan AD Donovan, Womens Basketball, Head Womens Basketball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/taylor-pilot/503",
+            "label": "Taylor Pilot Taylor Pilot, Womens Basketball, Assistant Womens Basketball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/emma-veach/323",
+            "label": "Emma Veach Emma Veach, Womens Basketball, Assistant Womens Basketball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/katie-manecke/510",
+            "label": "Katie Manecke Katie Manecke, Womens Basketball, Assistant Womens Basketball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/dan-schofer/337",
+            "label": "Dan Schofer Dan Schofer, Mens & Womens Cross Country, Director of Track & Field/Cross Country, Distance Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/danielle-freshwaters/425",
+            "label": "Danielle Freshwaters Danielle Freshwaters, Mens & Womens Cross Country, Assistant Cross Country Coach, Assistant Distance Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/phil-nicolaides/415",
+            "label": "Phil Nicolaides Phil Nicolaides, Football, Head Football Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/matthew-reed/335",
+            "label": "Matthew Reed Matthew Reed, Football, Assistant Football Coach - Offensive Coordinator/Quarterbacks & Recruiting Coordinator",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/kyle-artinian/441",
+            "label": "Kyle Artinian Kyle Artinian, Football, Assistant Football Coach - Defensive Coordinator/Defensive Backs",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/zach-hauser/311",
+            "label": "Zach Hauser Zach Hauser, Football, Assistant Football Coach - Co-Defensive Coordinator/Defensive Line",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/mahlon-slaughter/494",
+            "label": "Mahlon Slaughter Mahlon Slaughter, Football, Assistant Football Coach - Linebackers/Special Teams Coordinator",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/noah-bresson/495",
+            "label": "Noah Bresson Noah Bresson, Football, Assistant Football Coach - Running Backs/Tight Ends/Co-Special Teams Coordinator",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/nolan-richardson/501",
+            "label": "Nolan Richardson Nolan Richardson, Football, Assistant Football Coach - Offensive Line",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/wade-smethers/514",
+            "label": "Wade Smethers Wade Smethers, Football, Assistant Football Coach - Receivers",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/andrew-porter/378",
+            "label": "Andrew Porter Andrew Porter, Football, Assistant Football Coach - Assistant Defensive Line",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/jon-neve/444",
+            "label": "Jon Neve Jon Neve, Football, Assistant Football Coach - Specialists",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/johnny-greene/357",
+            "label": "Johnny Greene Johnny Greene, Mens & Womens Golf, Head Golf Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/jim-smith/389",
+            "label": "Jim Smith Jim Smith, Mens & Womens Golf, Assistant Golf Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/scarlett-liu/523",
+            "label": "Scarlett Liu Scarlett Liu, Mens & Womens Golf, Assistant Golf Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/gregg-olson/179",
+            "label": "Gregg Olson Gregg Olson, Mens Soccer, Head Mens Soccer Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/oscar-campbell/456",
+            "label": "Oscar Campbell Oscar Campbell, Mens Soccer, Assistant Mens Soccer Coach",
+            "kind": "CAMP_REQUIRES_BASEBALL_CONTEXT"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/chris-foreman/507",
+            "label": "Chris Foreman Chris Foreman, Mens Soccer, Assistant Soccer Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/marissa-olson-guillou/445",
+            "label": "Marissa Olson-Guillou Marissa Olson-Guillou, Womens Soccer, Interim Head Womens Soccer Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/lauren-witte/521",
+            "label": "Lauren Witte Lauren Witte, Womens Soccer, Assistant Womens Soccer Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/britt-stewart/435",
+            "label": "Britt Stewart Britt Stewart, Softball, Assistant Softball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/lindsay-burr/485",
+            "label": "Lindsay Burr Lindsay Burr, Softball, Assistant Softball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/nikki-caicedo/486",
+            "label": "Nikki Caicedo Nikki Caicedo, Softball, Assistant Softball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/kyllian-griffin/316",
+            "label": "Kyllian Griffin Kyllian Griffin, Mens & Womens Swimming & Diving, Head Swimming & Diving Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/wilson-josephson/293",
+            "label": "Wilson Josephson Wilson Josephson, Mens & Womens Swimming & Diving, Assistant Swimming Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/sophie-pilhofer/321",
+            "label": "Sophie Pilhofer Sophie Pilhofer, Mens & Womens Swimming & Diving, Assistant Swimming Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/zoe-johnson/396",
+            "label": "Zoe Johnson Zoe Johnson, Mens & Womens Swimming & Diving, Diving Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/smaranda-georgescu-walvoort/524",
+            "label": "Smaranda Georgescu-Walvoort Smaranda Georgescu-Walvoort, Mens & Womens Swimming & Diving, Assistant Swimming Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/verity-wray-raabolle/525",
+            "label": "Verity Wray-Raabolle Verity Wray-Raabolle, Mens & Womens Swimming & Diving, Assistant Swimming Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/chase-johnson/488",
+            "label": "Chase Johnson Chase Johnson, Mens & Womens Tennis, Head Mens & Womens Tennis Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/johana-brower/511",
+            "label": "Johana Brower Johana Brower, Mens & Womens Tennis, Assistant Mens & Womens Tennis Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/rachel-leonard/474",
+            "label": "Rachel Leonard Rachel Leonard, Mens & Womens Track & Field, Head Track & Field Coach - Sprints/Hurdles",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/matthew-boone/473",
+            "label": "Matthew Boone Matthew Boone, Mens & Womens Track & Field, Assistant Track & Field Coach - Jumps/Multis",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/alex-wise/240",
+            "label": "Alex Wise Alex Wise, Mens & Womens Track & Field, Assistant Track & Field Coach - Pole Vault",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/erin-porter/327",
+            "label": "Erin Porter Erin Porter, Mens & Womens Track & Field, Assistant Track & Field Coach - Sprints",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/paige-olowu/487",
+            "label": "Paige Olowu Paige Olowu, Mens & Womens Track & Field, Assistant Track & Field Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/kostas-zaltos/508",
+            "label": "Kostas Zaltos Kostas Zaltos, Mens & Womens Track & Field, Assistant Track & Field Coach - Throws",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/mary-johnston/379",
+            "label": "Mary Johnston Mary Johnston, Volleyball, Head Volleyball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/delilah-wolf/500",
+            "label": "Delilah Wolf Delilah Wolf, Volleyball, Assistant Volleyball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/willie-nielsen/520",
+            "label": "Willie Nielsen Willie Nielsen, Volleyball, Assistant Volleyball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/lindsey-weaver/309",
+            "label": "Lindsey Weaver Lindsey Weaver, Volleyball, Volunteer Assistant Volleyball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/jenae-alderson/516",
+            "label": "Jenae Alderson Jenae Alderson, Volleyball, Volunteer Assistant Volleyball Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/scott-reed/260",
+            "label": "Scott Reed Scott Reed, Water Polo, Head Womens Water Polo Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/anya-phillips/329",
+            "label": "Anya Phillips Anya Phillips, Water Polo, Assistant Water Polo Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          },
+          {
+            "url": "https://athletics.macalester.edu/staff-directory/jessica-browning/493",
+            "label": "Jessica Browning Jessica Browning, Water Polo, Volunteer Assistant Coach",
+            "kind": "STAFF_REQUIRES_CURRENT_BASEBALL_ROLE"
+          }
+        ]
+      }
+    }
+  ],
+  "status": "EVIDENCE_CAPTURED_REQUIRES_REVIEW"
+}

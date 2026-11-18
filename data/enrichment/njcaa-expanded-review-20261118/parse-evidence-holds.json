@@ -1,0 +1,520 @@
+[
+  {
+    "slug": "gaston-college",
+    "type": "FIELD",
+    "field": "baseballWebsiteUrl",
+    "before": "https://gastonsports.com/sports/baseball",
+    "after": "https://www.gcrhinos.com/sports/bsb/coaches/Shohn_Doty",
+    "reason": "Existing nonhistorical populated field retained"
+  },
+  {
+    "slug": "louisburg-college",
+    "type": "ROSTER",
+    "url": "https://www.lchurricanes.com/sports/bsb/2026-27/roster",
+    "reason": "Roster empty, partial or unresolved format",
+    "sourcePath": "../njcaa-core-review-20261118/sources/louisburg-college-3.source"
+  },
+  {
+    "slug": "louisburg-college",
+    "type": "ROSTER",
+    "url": "https://www.lchurricanes.com/sports/bsb/2026-27/roster?dec=printer-decorator",
+    "reason": "Roster empty, partial or unresolved format",
+    "sourcePath": "sources/5faaae1b0aec9ca8a3f81bdb4dfa21f14c8edbfa7f9dfcd98375a49b3507439d.source"
+  },
+  {
+    "slug": "louisburg-college",
+    "type": "ROSTER",
+    "url": "https://www.lchurricanes.com/sports/bsb/2026-27/roster?sort=number",
+    "reason": "Roster empty, partial or unresolved format",
+    "sourcePath": "sources/1280247c2e129e2ad0465f71319f8dcaa52783f396c2fb8d7a30e1c33228d616.source"
+  },
+  {
+    "slug": "louisburg-college",
+    "type": "ROSTER",
+    "url": "https://www.lchurricanes.com/sports/bsb/2026-27/roster?sort=last_name",
+    "reason": "Roster empty, partial or unresolved format",
+    "sourcePath": "sources/12ef088e8215394902ee0104b093f035eacc18788b6988377197a78208f0d45c.source"
+  },
+  {
+    "slug": "louisburg-college",
+    "type": "ROSTER",
+    "url": "https://www.lchurricanes.com/sports/bsb/2026-27/roster?sort=position",
+    "reason": "Roster empty, partial or unresolved format",
+    "sourcePath": "sources/6898b6bb5e824d1c8c57e93a7d081e6d9acf38eda496bcd0e5912b4eaa2a810a.source"
+  },
+  {
+    "slug": "allen-county-community-college",
+    "type": "ROSTER",
+    "url": "https://www.allenreddevils.com/sports/bsb/2026-27/roster",
+    "reason": "Roster empty, partial or unresolved format",
+    "sourcePath": "../njcaa-core-review-20261118/sources/allen-county-community-college-2.source"
+  },
+  {
+    "slug": "allen-county-community-college",
+    "type": "ROSTER",
+    "url": "https://www.allenreddevils.com/sports/bsb/2026-27/roster?view=list",
+    "reason": "Roster empty, partial or unresolved format",
+    "sourcePath": "sources/467035674af7d2c8d9cc0e32aa625b43a9f5f21d5163ba0909eca11409cede5c.source"
+  },
+  {
+    "slug": "allen-county-community-college",
+    "type": "ROSTER",
+    "url": "https://www.allenreddevils.com/sports/bsb/2026-27/roster?view=headshot",
+    "reason": "Roster empty, partial or unresolved format",
+    "sourcePath": "sources/3c803df2d63205447db4ed2b3e39fdc72b17dc18f7dff304d571f9f0bef5c0e4.source"
+  },
+  {
+    "slug": "butler-community-college-ks",
+    "type": "STAFF",
+    "url": "https://www.butlergrizzlies.com/sports/bsb/2025-26/coaches",
+    "reason": "Explicit older-season coaching heading held",
+    "sourcePath": "../njcaa-core-review-20261118/sources/butler-community-college-ks-1.source"
+  },
+  {
+    "slug": "central-arizona-college",
+    "type": "ROSTER",
+    "url": "https://www.vaquerosports.com/sports/bsb/2026-27/roster",
+    "reason": "Roster empty, partial or unresolved format",
+    "sourcePath": "../njcaa-core-review-20261118/sources/central-arizona-college-2.source"
+  },
+  {
+    "slug": "central-arizona-college",
+    "type": "ROSTER",
+    "url": "https://www.vaquerosports.com/sports/bsb/2026-27/roster?view=list",
+    "reason": "Roster empty, partial or unresolved format",
+    "sourcePath": "sources/d76181433315f41cab4e0e027752d2f557501233367d012d9b19896cf83ee72a.source"
+  },
+  {
+    "slug": "central-arizona-college",
+    "type": "ROSTER",
+    "url": "https://www.vaquerosports.com/sports/bsb/2026-27/roster?view=headshot",
+    "reason": "Roster empty, partial or unresolved format",
+    "sourcePath": "sources/3a6eb6c976d4570eeaceb75f2e072c77450d615f3d70315f362bd9713dd69402.source"
+  },
+  {
+    "slug": "chipola-college",
+    "type": "STAFF",
+    "url": "https://chipolaathletics.com/sports/bsb/coaches/index",
+    "reason": "Exactly one explicit varsity head coach required\n\n0 !== 1\n",
+    "sourcePath": "../njcaa-core-review-20261118/sources/chipola-college-1.source"
+  },
+  {
+    "slug": "chipola-college",
+    "type": "STAFF",
+    "url": "https://www.facebook.com/share_channel/?type=reshare&link=https%3A%2F%2Fchipolaathletics.com%2Fsports%2Fbsb%2Fcoaches%2Findex&app_id=966242223397117&source_surface=external_reshare&display&hashtag",
+    "reason": "Current baseball coaching directory not established",
+    "sourcePath": "sources/1b8af57cfeaf482ae0350eb51b3267d24585ec93799b42aac44829a6151fa2ca.source"
+  },
+  {
+    "slug": "chipola-college",
+    "type": "STAFF",
+    "url": "https://x.com/i/jf/onboarding/web?redirect_after_login=%2Fintent%2Ftweet%3Ftext%3DBaseball%26url%3Dhttps%253A%252F%252Fchipolaathletics.com%252Fsports%252Fbsb%252Fcoaches%252Findex&mode=login",
+    "reason": "Current baseball coaching directory not established",
+    "sourcePath": "sources/3bfac6f3941e7f6057fe6269a45a9067b892c3a6263e05eaf581dbaa6c1f2bea.source"
+  },
+  {
+    "slug": "chipola-college",
+    "type": "STAFF",
+    "url": "https://chipolaathletics.com/sports/bsb/2026-27/roster",
+    "reason": "Current baseball coaching directory not established",
+    "sourcePath": "../njcaa-core-review-20261118/sources/chipola-college-2.source"
+  },
+  {
+    "slug": "cisco-college",
+    "type": "ROSTER",
+    "url": "https://www.wranglersports.net/sports/bsb/2026-27/roster",
+    "reason": "Roster empty, partial or unresolved format",
+    "sourcePath": "../njcaa-core-review-20261118/sources/cisco-college-2.source"
+  },
+  {
+    "slug": "cleveland-state-community-college",
+    "type": "ROSTER",
+    "url": "https://www.cscougars.com/sports/bsb/2026-27/roster",
+    "reason": "Roster empty, partial or unresolved format",
+    "sourcePath": "../njcaa-core-review-20261118/sources/cleveland-state-community-college-2.source"
+  },
+  {
+    "slug": "cleveland-state-community-college",
+    "type": "ROSTER",
+    "url": "https://www.cscougars.com/sports/bsb/2026-27/roster?view=list",
+    "reason": "Roster empty, partial or unresolved format",
+    "sourcePath": "sources/97901f97755d9743707eb985de75ae6842901a00f7f0dcb7be6fc6b1debd1950.source"
+  },
+  {
+    "slug": "cleveland-state-community-college",
+    "type": "ROSTER",
+    "url": "https://www.cscougars.com/sports/bsb/2026-27/roster?view=headshot",
+    "reason": "Roster empty, partial or unresolved format",
+    "sourcePath": "sources/1fb93e5098cb4f09a702f41e20cd22e428e69657e6ffecb5c67371b8b37c3a87.source"
+  },
+  {
+    "slug": "cleveland-state-community-college",
+    "type": "ROSTER",
+    "url": "https://www.cscougars.com/sports/bsb/2026-27/roster?dec=printer-decorator",
+    "reason": "Roster empty, partial or unresolved format",
+    "sourcePath": "sources/8df45745ad0cbafa5e247b02bef6048cba7fe93b90b3ecaf3d05868485388013.source"
+  },
+  {
+    "slug": "cleveland-state-community-college",
+    "type": "ROSTER",
+    "url": "https://www.cscougars.com/sports/bsb/2026-27/roster?sort=number",
+    "reason": "Roster empty, partial or unresolved format",
+    "sourcePath": "sources/0b16f5ebb288b5b57b3fe1519ce4616026e4cccb300d5c901a70ba983704811c.source"
+  },
+  {
+    "slug": "cleveland-state-community-college",
+    "type": "ROSTER",
+    "url": "https://www.cscougars.com/sports/bsb/2026-27/roster?sort=last_name",
+    "reason": "Roster empty, partial or unresolved format",
+    "sourcePath": "sources/ae6717c3450ea4bb3be55881bda16d966a2dad2165b618624b5b3fe873c02099.source"
+  },
+  {
+    "slug": "cleveland-state-community-college",
+    "type": "ROSTER",
+    "url": "https://www.cscougars.com/sports/bsb/2026-27/roster?sort=position",
+    "reason": "Roster empty, partial or unresolved format",
+    "sourcePath": "sources/2a89bf51dbc27554d624b7005c1aab720a022d9ab322c5f9c3139b7a43d02da4.source"
+  },
+  {
+    "slug": "crowder-college",
+    "type": "FIELD",
+    "field": "baseballWebsiteUrl",
+    "before": "https://crowderathletics.com/sports/baseball",
+    "after": "https://crowderathletics.com/sports/bsb/index",
+    "reason": "Existing nonhistorical populated field retained"
+  },
+  {
+    "slug": "harford-community-college",
+    "type": "STAFF",
+    "url": "https://harfordathletics.com/sports/baseball/coaches",
+    "reason": "Explicit older-season coaching heading held",
+    "sourcePath": "../njcaa-core-review-20261118/sources/harford-community-college-1.source"
+  },
+  {
+    "slug": "lincoln-trail-college",
+    "type": "STAFF",
+    "url": "https://iecc.edu/quicklinks/staff-directory",
+    "reason": "Current baseball coaching directory not established",
+    "sourcePath": "sources/38801402021c29873a847b10e12b7cc470c16e5254a953a17ddc7d2e234939a5.source"
+  },
+  {
+    "slug": "lincoln-trail-college",
+    "type": "STAFF",
+    "url": "https://iecc.edu/index.php/quicklinks/staff-directory",
+    "reason": "Current baseball coaching directory not established",
+    "sourcePath": "sources/9d19ec3062e49dbb07ee06dab8cca74de449f88818548fd908c8e96c72195e3b.source"
+  },
+  {
+    "slug": "rose-state-college",
+    "type": "ROSTER",
+    "url": "https://rscraiders.com/sports/baseball/roster",
+    "reason": "Roster empty, partial or unresolved format",
+    "sourcePath": "../njcaa-core-review-20261118/sources/rose-state-college-2.source"
+  },
+  {
+    "slug": "rose-state-college",
+    "type": "ROSTER",
+    "url": "https://rscraiders.com/sports/baseball/roster/",
+    "reason": "Roster empty, partial or unresolved format",
+    "sourcePath": "sources/19d06b4ff8ec4db398e13a0fadd3fab69fd7c98629e61c4c4f5abd18ef6e5020.source"
+  },
+  {
+    "slug": "rose-state-college",
+    "type": "ROSTER",
+    "url": "https://rscraiders.com/sports/baseball/roster?path=general",
+    "reason": "Roster empty, partial or unresolved format",
+    "sourcePath": "sources/75e384259cb5011e9500006d28e64a769daa23d56f52a841e408369fa67d75e3.source"
+  },
+  {
+    "slug": "rose-state-college",
+    "type": "ROSTER",
+    "url": "https://rscraiders.com/sports/baseball/roster?print=true",
+    "reason": "Roster empty, partial or unresolved format",
+    "sourcePath": "sources/009a622e947a0061b03de8a07d2433071fdf5f462cb5f594453a8670ac7c355f.source"
+  },
+  {
+    "slug": "rose-state-college",
+    "type": "ROSTER",
+    "url": "https://rscraiders.com/sports/baseball/roster/?path=general",
+    "reason": "Roster empty, partial or unresolved format",
+    "sourcePath": "sources/dc3fa86eba111ddc5f643549a080772e134254f1e5329a95f88e299b5c6c169c.source"
+  },
+  {
+    "slug": "rose-state-college",
+    "type": "ROSTER",
+    "url": "https://rscraiders.com/sports/baseball/roster/?print=true",
+    "reason": "Roster empty, partial or unresolved format",
+    "sourcePath": "sources/393adb7cd75773bc2610120091c69a7636ebca0e42d7cd197fdf0f4624419bf7.source"
+  },
+  {
+    "slug": "south-georgia-state-college",
+    "type": "STAFF",
+    "url": "https://www.sgsc.edu/quicklinks/faculty-and-staff",
+    "reason": "Current baseball coaching directory not established",
+    "sourcePath": "../njcaa-core-review-20261118/sources/south-georgia-state-college-1.source"
+  },
+  {
+    "slug": "southeastern-illinois-college",
+    "type": "STAFF",
+    "url": "https://sic.edu/event/2021/03/05/staff-development-day-classes-dismiss-at-1130-a-m/",
+    "reason": "Current baseball coaching directory not established",
+    "sourcePath": "../njcaa-core-review-20261118/sources/southeastern-illinois-college-1.source"
+  },
+  {
+    "slug": "southern-union-state-community-college",
+    "type": "STAFF",
+    "url": "https://www.suscc.edu/admissions/campus-tours",
+    "reason": "Current baseball coaching directory not established",
+    "sourcePath": "../njcaa-core-review-20261118/sources/southern-union-state-community-college-1.source"
+  },
+  {
+    "slug": "southwestern-illinois-college",
+    "type": "STAFF",
+    "url": "https://www.swic.edu/students/services/student-life/athletics/baseball/coaches/",
+    "reason": "Exactly one explicit varsity head coach required\n\n0 !== 1\n",
+    "sourcePath": "../njcaa-core-review-20261118/sources/southwestern-illinois-college-1.source"
+  },
+  {
+    "slug": "utah-state-eastern",
+    "type": "STAFF",
+    "url": "https://usueasternathletics.com/sports/baseball/coaches",
+    "reason": "Explicit older-season coaching heading held",
+    "sourcePath": "../njcaa-core-review-20261118/sources/utah-state-eastern-1.source"
+  },
+  {
+    "slug": "allegany-college-of-maryland",
+    "type": "STAFF",
+    "url": "https://acmtrojans.com/sports/baseball/coaches",
+    "reason": "Explicit older-season coaching heading held",
+    "sourcePath": "../njcaa-core-review-20261118/sources/allegany-college-of-maryland-1.source"
+  },
+  {
+    "slug": "allegany-college-of-maryland",
+    "type": "STAFF",
+    "url": "https://acmtrojans.com/staff-directory",
+    "reason": "Current baseball coaching directory not established",
+    "sourcePath": "sources/b2f3a84302656741d0ea1fd29b8925d6aef7d3411d8d5a80abfecd8ae21f7e71.source"
+  },
+  {
+    "slug": "allegany-college-of-maryland",
+    "type": "STAFF",
+    "url": "https://acmtrojans.com/staff-directory/logan-stewart/15",
+    "reason": "Current baseball coaching directory not established",
+    "sourcePath": "sources/28b52a35b4cf2083c55d17c0cdb9389faec884ffa0a713498253e7610f13693b.source"
+  },
+  {
+    "slug": "allegany-college-of-maryland",
+    "type": "STAFF",
+    "url": "https://acmtrojans.com/staff-directory/jr-perdew/11",
+    "reason": "Current baseball coaching directory not established",
+    "sourcePath": "sources/67f08ec97317cb5ca3655c77eddf49a2720b6c5ce35297d029baa67f74823504.source"
+  },
+  {
+    "slug": "allegany-college-of-maryland",
+    "type": "STAFF",
+    "url": "https://acmtrojans.com/sports/baseball/coaches?print=true",
+    "reason": "Explicit older-season coaching heading held",
+    "sourcePath": "sources/1883ecb0a7526fed62652a34a097500daefc655e76fe29431030ee749ffe6cd8.source"
+  },
+  {
+    "slug": "allegany-college-of-maryland",
+    "type": "STAFF",
+    "url": "https://acmtrojans.com/sports/baseball/coaches/2026",
+    "reason": "Explicit older-season coaching heading held",
+    "sourcePath": "sources/8b7e7de234f62bda24d40581a21d398c709bc225325fb6f3ec565da38f9daea9.source"
+  },
+  {
+    "slug": "allegany-college-of-maryland",
+    "type": "STAFF",
+    "url": "https://acmtrojans.com/sports/baseball/coaches/2025",
+    "reason": "Explicit older-season coaching heading held",
+    "sourcePath": "sources/7033edd44ee21bffb43eb34a619b7fd1c445c46a84a322a34d2f2895fd6e5f4e.source"
+  },
+  {
+    "slug": "brunswick-community-college",
+    "type": "STAFF",
+    "url": "https://www.hometeamsonline.com/teams/default.asp?u=BCCBASEBALL&s=baseball&p=coaches",
+    "reason": "Current baseball coaching directory not established",
+    "sourcePath": "../njcaa-core-review-20261118/sources/brunswick-community-college-1.source"
+  },
+  {
+    "slug": "coahoma-community-college",
+    "type": "STAFF",
+    "url": "https://coahomasports.com/sports/baseball/coaches",
+    "reason": "Explicit older-season coaching heading held",
+    "sourcePath": "../njcaa-core-review-20261118/sources/coahoma-community-college-1.source"
+  },
+  {
+    "slug": "harper-college",
+    "type": "STAFF",
+    "reason": "Prior duplicate identity hold remains unresolved"
+  },
+  {
+    "slug": "madison-college",
+    "type": "STAFF",
+    "url": "https://madisoncollegeathletics.com/sports/baseball/coaches",
+    "reason": "Explicit older-season coaching heading held",
+    "sourcePath": "../njcaa-core-review-20261118/sources/madison-college-1.source"
+  },
+  {
+    "slug": "mercer-county-community-college",
+    "type": "STAFF",
+    "url": "https://www.mccc.edu/athletics_coaches.shtml",
+    "reason": "Current baseball coaching directory not established",
+    "sourcePath": "../njcaa-core-review-20261118/sources/mercer-county-community-college-1.source"
+  },
+  {
+    "slug": "mercer-county-community-college",
+    "type": "STAFF",
+    "url": "https://www.mccc.edu/athletics_staff.shtml",
+    "reason": "Current baseball coaching directory not established",
+    "sourcePath": "sources/c12127424affa02107462cc127b3e11a31647be02156cf4fae964ce76802f5e4.source"
+  },
+  {
+    "slug": "morton-college",
+    "type": "STAFF",
+    "url": "https://gomcpanthers.com/sports/baseball/coaches",
+    "reason": "Explicit older-season coaching heading held",
+    "sourcePath": "../njcaa-core-review-20261118/sources/morton-college-1.source"
+  },
+  {
+    "slug": "northwest-mississippi-community-college",
+    "type": "STAFF",
+    "url": "https://nwccrangers.com/sports/baseball/coaches",
+    "reason": "Explicit older-season coaching heading held",
+    "sourcePath": "../njcaa-core-review-20261118/sources/northwest-mississippi-community-college-1.source"
+  },
+  {
+    "slug": "south-mountain-community-college",
+    "type": "STAFF",
+    "url": "https://athletics.southmountaincc.edu/sports/bsb/coaches/ToddEastinSMCCBio",
+    "reason": "Current baseball coaching directory not established",
+    "sourcePath": "../njcaa-core-review-20261118/sources/south-mountain-community-college-1.source"
+  },
+  {
+    "slug": "southeastern-community-college-whiteville",
+    "type": "STAFF",
+    "url": "https://sccnc.edu/employees/",
+    "reason": "Current baseball coaching directory not established",
+    "sourcePath": "../njcaa-core-review-20261118/sources/southeastern-community-college-whiteville-1.source"
+  },
+  {
+    "slug": "southwest-mississippi-community-college",
+    "type": "STAFF",
+    "url": "https://southwestbearathletics.com/sports/baseball/coaches",
+    "reason": "Explicit older-season coaching heading held",
+    "sourcePath": "../njcaa-core-review-20261118/sources/southwest-mississippi-community-college-1.source"
+  },
+  {
+    "slug": "southwest-mississippi-community-college",
+    "type": "STAFF",
+    "url": "https://southwestbearathletics.com/staff-directory/ken-jackson/5?path=general",
+    "reason": "Current baseball coaching directory not established",
+    "sourcePath": "sources/e0d1dd8720db1df05277795ae1d3aab0fa39b59e3da1a21641b3ca378e84c0df.source"
+  },
+  {
+    "slug": "southwest-mississippi-community-college",
+    "type": "STAFF",
+    "url": "https://southwestbearathletics.com/staff-directory/jamie-jackson/126",
+    "reason": "Current baseball coaching directory not established",
+    "sourcePath": "sources/7b93bc9b55570937b0613db030365a0bdeeb29f6a54de0b729c9afc0522aa9e5.source"
+  },
+  {
+    "slug": "wallace-community-college-selma",
+    "type": "STAFF",
+    "url": "https://www.wccs.edu/programs/student-success-coaches/american-with-disabilities-act-ada",
+    "reason": "Current baseball coaching directory not established",
+    "sourcePath": "../njcaa-core-review-20261118/sources/wallace-community-college-selma-1.source"
+  },
+  {
+    "slug": "atlantic-cape-community-college",
+    "type": "STAFF",
+    "url": "https://atlanticcape.edu/directory/index.php",
+    "reason": "Current baseball coaching directory not established",
+    "sourcePath": "sources/7e228aa531c2e13aaaaf79ceae647fbb2e0d68631771ab686d11e1ef820e6bc6.source"
+  },
+  {
+    "slug": "atlantic-cape-community-college",
+    "type": "STAFF",
+    "url": "https://atlanticcape.edu/athletics/baseball/coaches.php",
+    "reason": "Current baseball coaching directory not established",
+    "sourcePath": "sources/c4ff958cb0760216fef54c2f134032baf659b56733ca44510cb521be519703c7.source"
+  },
+  {
+    "slug": "borough-of-manhattan-community-college",
+    "type": "STAFF",
+    "url": "https://bmccathletics.com/sports/baseball/coaches",
+    "reason": "Explicit older-season coaching heading held",
+    "sourcePath": "../njcaa-core-review-20261118/sources/borough-of-manhattan-community-college-1.source"
+  },
+  {
+    "slug": "bronx-community-college",
+    "type": "STAFF",
+    "url": "https://bronxbroncos.com/documents/2022/1/5/2022_20Coach_20Handbook.pdf",
+    "reason": "Current baseball coaching directory not established",
+    "sourcePath": "../njcaa-core-review-20261118/sources/bronx-community-college-1.source"
+  },
+  {
+    "slug": "holyoke-community-college",
+    "type": "STAFF",
+    "url": "https://www.hcc.edu/faculty-and-staff",
+    "reason": "Current baseball coaching directory not established",
+    "sourcePath": "../njcaa-core-review-20261118/sources/holyoke-community-college-1.source"
+  },
+  {
+    "slug": "kingsborough-community-college",
+    "type": "STAFF",
+    "url": "https://kccathletics.com/sports/baseball/coaches",
+    "reason": "Explicit older-season coaching heading held",
+    "sourcePath": "../njcaa-core-review-20261118/sources/kingsborough-community-college-1.source"
+  },
+  {
+    "slug": "monroe-university-bronx",
+    "type": "STAFF",
+    "url": "https://monroeexpress.com/sports/baseball/coaches/",
+    "reason": "Explicit older-season coaching heading held",
+    "sourcePath": "../njcaa-core-review-20261118/sources/monroe-university-bronx-1.source"
+  },
+  {
+    "slug": "nassau-community-college",
+    "type": "STAFF",
+    "url": "https://nassaulions.com/sports/baseball/coaches",
+    "reason": "Explicit older-season coaching heading held",
+    "sourcePath": "../njcaa-core-review-20261118/sources/nassau-community-college-1.source"
+  },
+  {
+    "slug": "north-arkansas-college",
+    "type": "STAFF",
+    "url": "https://www.northark.edu/faculty-and-staff/",
+    "reason": "Current baseball coaching directory not established",
+    "sourcePath": "sources/f572de51cd08b258cff5e31aea0ef059189c3e6726f75f7f5123754857b8211e.source"
+  },
+  {
+    "slug": "northampton-community-college",
+    "type": "STAFF",
+    "url": "https://www.nccspartans.com/sports/baseball/roster/coaches/adrian-yaguez/291",
+    "reason": "No supported coaching rows",
+    "sourcePath": "../njcaa-core-review-20261118/sources/northampton-community-college-1.source"
+  },
+  {
+    "slug": "onondaga-community-college",
+    "type": "STAFF",
+    "url": "https://onondagalazers.com/sports/baseball/coaches",
+    "reason": "Explicit older-season coaching heading held",
+    "sourcePath": "../njcaa-core-review-20261118/sources/onondaga-community-college-1.source"
+  },
+  {
+    "slug": "quinsigamond-community-college",
+    "type": "STAFF",
+    "url": "https://www.qcc.edu/information/faculty-staff",
+    "reason": "Current baseball coaching directory not established",
+    "sourcePath": "../njcaa-core-review-20261118/sources/quinsigamond-community-college-1.source"
+  },
+  {
+    "slug": "quinsigamond-community-college",
+    "type": "STAFF",
+    "url": "https://www.qcc.mass.edu/QCCWS/ADDir/AD_Dir.aspx",
+    "reason": "Current baseball coaching directory not established",
+    "sourcePath": "sources/87b21d75a527b882edbad447b674c4423a8520b9e17bbb38344158b0bcecc14e.source"
+  }
+]

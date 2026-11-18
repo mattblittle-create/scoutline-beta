@@ -1,0 +1,78 @@
+{
+  "slug": "allen-county-community-college",
+  "programId": "cmox1gew60002qtsgfojzsopb",
+  "collegeId": "cmox1gesh0000qtsgs8vvl5m1",
+  "checkedAtUtc": "2026-11-18T14:43:27.572Z",
+  "sourcePath": "../njcaa-discovery-20261118/sources/allen-county-community-college-1.source",
+  "sourceSHA256": "6f59715ab5bb35cba67c37605d2ebe21592067a94d92eb2636b282f4b2d332dd",
+  "sourceUrl": "https://www.allenreddevils.com/sports/bsb/index",
+  "socialLeads": [],
+  "recruitingLeads": [
+    {
+      "url": "https://www.allenreddevils.com/recruit_me/prospective_student_athletes",
+      "label": "Prospective Student-Athletes",
+      "context": "Recruit Me: Prospective Student-Athletes",
+      "kind": "QUESTIONNAIRE"
+    },
+    {
+      "url": "https://www.allenreddevils.com/recruit_me/bsbquestionnaire",
+      "label": "Questionnaire",
+      "context": "",
+      "kind": "QUESTIONNAIRE"
+    },
+    {
+      "url": "https://www.allenreddevils.com/camps/bsb/camps",
+      "label": "Camps",
+      "context": "",
+      "kind": "CAMP"
+    },
+    {
+      "url": "https://www.allenreddevils.com/navbar-camps",
+      "label": "Camps",
+      "context": "",
+      "kind": "CAMP"
+    }
+  ],
+  "logoLeads": [],
+  "captures": [
+    {
+      "requestedUrl": "https://www.allenreddevils.com/recruit_me/prospective_student_athletes",
+      "kind": "QUESTIONNAIRE",
+      "status": 200,
+      "finalUrl": "https://www.allenreddevils.com/recruit_me/prospective_student_athletes",
+      "sourcePath": "../njcaa-core-review-20261118/sources/allen-county-community-college-4.source",
+      "sha256": "7c4912c5d54b66666ef78d8c1f102b216a31dc1de25dd26f97d1665344b4b3a8",
+      "reusedEvidence": true
+    },
+    {
+      "requestedUrl": "https://www.allenreddevils.com/recruit_me/bsbquestionnaire",
+      "kind": "QUESTIONNAIRE",
+      "status": 200,
+      "finalUrl": "https://www.allenreddevils.com/recruit_me/bsbquestionnaire",
+      "contentType": "text/html; charset=UTF-8",
+      "sourcePath": "sources/allen-county-community-college-1.source",
+      "sha256": "371d2b803774814b21da6877b152f523448a139b603f6b23b61776024256263d"
+    },
+    {
+      "requestedUrl": "https://www.allenreddevils.com/camps/bsb/camps",
+      "kind": "CAMP",
+      "status": 200,
+      "finalUrl": "https://www.allenreddevils.com/camps/bsb/camps-tournaments",
+      "sourcePath": "../njcaa-core-review-20261118/sources/allen-county-community-college-5.source",
+      "sha256": "11d5dc227b2a61a79818834e7f116983b56964b07bb0022df890d44217723af6",
+      "reusedEvidence": true
+    },
+    {
+      "requestedUrl": "https://www.allenreddevils.com/navbar-camps",
+      "kind": "CAMP",
+      "status": 200,
+      "finalUrl": "https://www.allenreddevils.com/navbar-camps",
+      "contentType": "text/html; charset=UTF-8",
+      "sourcePath": "sources/allen-county-community-college-3.source",
+      "sha256": "a8f5206ff3a8225df8bda35629ee73e8f49b5a9f7f20bcf148d888017d9f6c8d"
+    }
+  ],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED"
+}

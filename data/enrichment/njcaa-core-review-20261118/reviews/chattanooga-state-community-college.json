@@ -1,0 +1,41 @@
+{
+  "slug": "chattanooga-state-community-college",
+  "collegeId": "cmox1gfgo0016qtsgs9ugt5nt",
+  "programId": "cmox1gfhh0018qtsguz7u9pmv",
+  "name": "Chattanooga State Community College",
+  "storedState": "TN",
+  "storedDivision": "NJCAA_D1",
+  "checkedAtUtc": "2026-11-18T14:20:21.950Z",
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "currentMembershipVerified": false,
+  "campusIdentityVerified": false,
+  "importApproval": "NOT_GRANTED",
+  "pages": [
+    {
+      "requestedUrl": "https://www.chattanoogastate.edu/athletics/baseball",
+      "kind": "DIRECTORY_ALIAS_REQUIRES_CAMPUS_REVIEW",
+      "parent": {
+        "sourcePath": "../njcaa-discovery-20261118/sources/directory-0.source",
+        "sha256": "63f1c531b007d2922e4db3aa2ba596ee54e397dbafd287df69b95213a011a404",
+        "label": "Chattanooga State"
+      },
+      "status": 403,
+      "finalUrl": "https://www.chattanoogastate.edu/athletics/baseball",
+      "checkedAtUtc": "2026-11-18T14:20:23.380Z",
+      "sourcePath": "sources/chattanooga-state-community-college-0.source",
+      "sha256": "9ee5c496fe09b7d997ed76557a3e41ddbe98070507dc4103cf45b4c1b30b4d33"
+    }
+  ],
+  "discoveryAliases": [
+    {
+      "url": "https://www.chattanoogastate.edu/athletics/baseball",
+      "label": "Chattanooga State",
+      "parentSourcePath": "sources/directory-0.source",
+      "parentSHA256": "63f1c531b007d2922e4db3aa2ba596ee54e397dbafd287df69b95213a011a404",
+      "parentUrl": "https://www.thebaseballobserver.com/njcaa-di-baseball",
+      "status": "UNVERIFIED_NORMALIZED_NAME_LEAD"
+    }
+  ],
+  "status": "HELD_NO_READABLE_SOURCE"
+}

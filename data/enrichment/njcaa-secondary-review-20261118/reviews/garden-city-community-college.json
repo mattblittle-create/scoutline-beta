@@ -1,0 +1,70 @@
+{
+  "slug": "garden-city-community-college",
+  "programId": "cmox1ggw20048qtsguyxv9hhv",
+  "collegeId": "cmox1ggvg0046qtsgg6sclzdp",
+  "checkedAtUtc": "2026-11-18T14:43:30.805Z",
+  "sourcePath": "../njcaa-discovery-20261118/sources/garden-city-community-college-1.source",
+  "sourceSHA256": "5477ceaf14254d4f5f56b3fb290dac141b9b14333a9254ddc6fb7d9c50e268ab",
+  "sourceUrl": "https://www.gobroncbusters.com/sports/bsb/index",
+  "socialLeads": [
+    {
+      "url": "https://x.com/GCCCBaseball",
+      "label": "Twitter",
+      "context": "Baseball: Twitter",
+      "kind": "HTML"
+    }
+  ],
+  "recruitingLeads": [
+    {
+      "url": "https://www.gobroncbusters.com/information/baseball-recruit",
+      "label": "Recruiting Questionnaire",
+      "context": "",
+      "kind": "QUESTIONNAIRE"
+    },
+    {
+      "url": "https://gobroncbusters.com/sports/bsb/index",
+      "label": "Camps",
+      "context": "",
+      "kind": "CAMP"
+    }
+  ],
+  "logoLeads": [
+    {
+      "url": "https://www.gobroncbusters.com/assets/images/gc-logo-lg.png",
+      "label": "Menu img-fluid"
+    },
+    {
+      "url": "https://www.gobroncbusters.com/assets/images/gc-logo.png",
+      "label": "Garden City CC Home Page img-fluid img-mh-5"
+    }
+  ],
+  "captures": [
+    {
+      "requestedUrl": "https://www.gobroncbusters.com/information/baseball-recruit",
+      "kind": "QUESTIONNAIRE",
+      "status": "HELD_ACCESS_NOT_RETRIED",
+      "finalUrl": "https://www.gobroncbusters.com/information/baseball-recruit"
+    },
+    {
+      "requestedUrl": "https://gobroncbusters.com/sports/bsb/index",
+      "kind": "CAMP",
+      "status": "HELD_ACCESS_NOT_RETRIED",
+      "finalUrl": "https://gobroncbusters.com/sports/bsb/index"
+    },
+    {
+      "requestedUrl": "https://www.gobroncbusters.com/assets/images/gc-logo-lg.png",
+      "kind": "LOGO_ASSET",
+      "status": "HELD_ACCESS_NOT_RETRIED",
+      "finalUrl": "https://www.gobroncbusters.com/assets/images/gc-logo-lg.png"
+    },
+    {
+      "requestedUrl": "https://www.gobroncbusters.com/assets/images/gc-logo.png",
+      "kind": "LOGO_ASSET",
+      "status": "HELD_ACCESS_NOT_RETRIED",
+      "finalUrl": "https://www.gobroncbusters.com/assets/images/gc-logo.png"
+    }
+  ],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED"
+}

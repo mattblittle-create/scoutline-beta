@@ -1,0 +1,96 @@
+{
+  "slug": "louisburg-college",
+  "programId": "cmorjat94005bqt4weql0gwgc",
+  "collegeId": "cmorjat8g0059qt4wzrxhvygw",
+  "checkedAtUtc": "2026-11-18T14:43:27.552Z",
+  "sourcePath": "../njcaa-discovery-20261118/sources/louisburg-college-1.source",
+  "sourceSHA256": "f2bc1b346f5e450e927607f7af8e02301135011c82b72083db2027d59f1ab254",
+  "sourceUrl": "https://www.lchurricanes.com/sports/bsb/index",
+  "socialLeads": [
+    {
+      "url": "https://www.instagram.com/louisburgbaseball/",
+      "label": "Instagram",
+      "context": "Men's Baseball Instagram",
+      "kind": "HTML"
+    },
+    {
+      "url": "https://twitter.com/LCbaseballnews",
+      "label": "Twitter",
+      "context": "Men's Baseball Twitter",
+      "kind": "HTML"
+    }
+  ],
+  "recruitingLeads": [
+    {
+      "url": "https://www.lchurricanes.com/archived_cheer/ProspectiveStudentAthletes",
+      "label": "Info",
+      "context": "Women's Cheerleading (Co-Ed) Info",
+      "kind": "QUESTIONNAIRE"
+    },
+    {
+      "url": "https://www.lchurricanes.com/sports/bsb/2026-27/releases/20260904k8wllp",
+      "label": "Baseball Fall Prospect Camp",
+      "context": "",
+      "kind": "CAMP"
+    },
+    {
+      "url": "https://www.lchurricanes.com/sports/bsb/2026-27/releases/20260707ghgesz",
+      "label": "Louisburg Baseball Summer Camp Opportunities",
+      "context": "",
+      "kind": "CAMP"
+    }
+  ],
+  "logoLeads": [
+    {
+      "url": "https://www.lchurricanes.com/assets/images/Louisburg%20logo.png",
+      "label": "undefined"
+    }
+  ],
+  "captures": [
+    {
+      "requestedUrl": "https://www.lchurricanes.com/archived_cheer/ProspectiveStudentAthletes",
+      "kind": "QUESTIONNAIRE",
+      "status": 200,
+      "finalUrl": "https://www.lchurricanes.com/archived_cheer/ProspectiveStudentAthletes",
+      "sourcePath": "../njcaa-core-review-20261118/sources/louisburg-college-5.source",
+      "sha256": "1150c3c1bfd0a08e371ab1302350276725c5118e81eaf6e15988365448edd9e3",
+      "reusedEvidence": true
+    },
+    {
+      "requestedUrl": "https://www.lchurricanes.com/sports/bsb/2026-27/releases/20260904k8wllp",
+      "kind": "CAMP",
+      "status": 200,
+      "finalUrl": "https://www.lchurricanes.com/sports/bsb/2026-27/releases/20260904k8wllp",
+      "sourcePath": "../njcaa-core-review-20261118/sources/louisburg-college-6.source",
+      "sha256": "0485b7c5fff2b2a88b875318e3a8dde392ff31cf88d619779da999322a91d9d0",
+      "reusedEvidence": true
+    },
+    {
+      "requestedUrl": "https://www.lchurricanes.com/sports/bsb/2026-27/releases/20260707ghgesz",
+      "kind": "CAMP",
+      "status": 200,
+      "finalUrl": "https://www.lchurricanes.com/sports/bsb/2026-27/releases/20260707ghgesz",
+      "contentType": "text/html; charset=UTF-8",
+      "sourcePath": "sources/louisburg-college-2.source",
+      "sha256": "aa8717536ceca062266352c78cc5fb4472188bfae432d360722b24ff7ca3cf11"
+    },
+    {
+      "requestedUrl": "https://www.lchurricanes.com/assets/images/Louisburg%20logo.png",
+      "kind": "LOGO_ASSET",
+      "status": 200,
+      "finalUrl": "https://d2o2figo6ddd0g.cloudfront.net/y/u/z9gbhvcsm52upi/Louisburg_logo.png",
+      "contentType": "image/png",
+      "sourcePath": "sources/louisburg-college-3.source",
+      "sha256": "25b3c187b7a2f3f0e1774834acd57a3f75e240a5cca3e326f273be03b014f389",
+      "decoded": {
+        "format": "png",
+        "width": 256,
+        "height": 256
+      },
+      "assetDecoded": true
+    }
+  ],
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "importApproval": "NOT_GRANTED"
+}

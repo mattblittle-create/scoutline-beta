@@ -1,0 +1,41 @@
+{
+  "slug": "cochise-college",
+  "collegeId": "cmox1gfrx001uqtsgjm4zjbds",
+  "programId": "cmox1gfsl001wqtsgmoufzp8j",
+  "name": "Cochise College",
+  "state": "AZ",
+  "storedDivision": "NJCAA_D1",
+  "pages": [
+    {
+      "requestedUrl": "https://njcaastats.prestosports.com/sports/bsb/2024-25/div1/teams/cochisecollege",
+      "kind": "STORED_URL_UNVERIFIED",
+      "checkedAtUtc": "2026-11-18T14:15:54.586Z",
+      "status": "HELD_ACCESS_NOT_RETRIED",
+      "finalUrl": "https://njcaastats.prestosports.com/sports/bsb/2024-25/div1/teams/cochisecollege"
+    },
+    {
+      "requestedUrl": "https://athletics.cochise.edu/baseball/",
+      "kind": "DISCOVERY_LEAD_NOT_CAMPUS_VERIFIED",
+      "checkedAtUtc": "2026-11-18T14:15:54.587Z",
+      "status": 404,
+      "finalUrl": "https://athletics.cochise.edu/baseball/",
+      "contentType": "text/html; charset=UTF-8",
+      "sourcePath": "sources/cochise-college-1.source",
+      "sha256": "e32397ba06bfad8bd74d77c0d8b39bece9c0555b1b14232ca191aef8ec499a33"
+    }
+  ],
+  "thirdPartyExactNameLeads": [
+    {
+      "url": "https://athletics.cochise.edu/baseball/",
+      "label": "Cochise College",
+      "parentSourcePath": "sources/directory-0.source",
+      "parentSHA256": "63f1c531b007d2922e4db3aa2ba596ee54e397dbafd287df69b95213a011a404",
+      "parentUrl": "https://www.thebaseballobserver.com/njcaa-di-baseball"
+    }
+  ],
+  "currentMembershipVerified": false,
+  "campusIdentityVerified": false,
+  "importApproval": "NOT_GRANTED",
+  "databaseAccess": false,
+  "databaseWrites": 0
+}
